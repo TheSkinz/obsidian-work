@@ -1,0 +1,35 @@
+# OS and editor churn
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# Sync conflict artifacts
+*conflicted copy*
+*sync-conflict*
+*.sync-conflict-*
+
+# Obsidian volatile local state
+.obsidian/workspace*.json
+.obsidian/cache/
+.obsidian/trash/
+.obsidian/sync*.json
+
+# Obsidian plugin/theme runtime files
+.obsidian/plugins/*/main.js
+.obsidian/plugins/*/styles.css
+.obsidian/plugins/*/data.json
+.obsidian/themes/*/theme.css
+
+# Raw, generated, bulky, or non-canonical areas
+attachments/
+_RAW/
+_OUTPUTS/
+_COMPILED_WIKI/
+archive/
+templates/

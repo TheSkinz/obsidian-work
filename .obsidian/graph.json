@@ -1,0 +1,121 @@
+{
+  "collapse-filter": false,
+  "search": "-path:_RAW -path:_OUTPUTS -path:_COMPILED_WIKI",
+  "showTags": true,
+  "showAttachments": false,
+  "hideUnresolved": true,
+  "showOrphans": false,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "path:03-jobs",
+      "color": {
+        "a": 1,
+        "rgb": 16106776
+      }
+    },
+    {
+      "query": "path:05-projects/sales-proposals",
+      "color": {
+        "a": 1,
+        "rgb": 16106776
+      }
+    },
+    {
+      "query": "path:02-facilities",
+      "color": {
+        "a": 1,
+        "rgb": 1752220
+      }
+    },
+    {
+      "query": "path:01-context",
+      "color": {
+        "a": 1,
+        "rgb": 1752220
+      }
+    },
+    {
+      "query": "path:05-projects/operations-admin",
+      "color": {
+        "a": 1,
+        "rgb": 1752220
+      }
+    },
+    {
+      "query": "path:06-insights",
+      "color": {
+        "a": 1,
+        "rgb": 3066993
+      }
+    },
+    {
+      "query": "path:05-projects/field-execution",
+      "color": {
+        "a": 1,
+        "rgb": 3066993
+      }
+    },
+    {
+      "query": "path:04-knowledge/sops",
+      "color": {
+        "a": 1,
+        "rgb": 3066993
+      }
+    },
+    {
+      "query": "path:04-knowledge/equipment",
+      "color": {
+        "a": 1,
+        "rgb": 15105570
+      }
+    },
+    {
+      "query": "path:05-projects",
+      "color": {
+        "a": 1,
+        "rgb": 15105570
+      }
+    },
+    {
+      "query": "path:00-inbox",
+      "color": {
+        "a": 1,
+        "rgb": 15158332
+      }
+    },
+    {
+      "query": "path:04-knowledge/concepts",
+      "color": {
+        "a": 1,
+        "rgb": 10181046
+      }
+    },
+    {
+      "query": "path:05-projects/technical-docs",
+      "color": {
+        "a": 1,
+        "rgb": 10181046
+      }
+    },
+    {
+      "query": "path:04-knowledge",
+      "color": {
+        "a": 1,
+        "rgb": 10181046
+      }
+    }
+  ],
+  "collapse-display": true,
+  "showArrow": false,
+  "textFadeMultiplier": -1,
+  "nodeSizeMultiplier": 1.4,
+  "lineSizeMultiplier": 1.4,
+  "collapse-forces": false,
+  "centerStrength": 0.48961937716263,
+  "repelStrength": 7.37024221453287,
+  "linkStrength": 0.64878892733564,
+  "linkDistance": 202,
+  "scale": 0.6671395276741392,
+  "close": true
+}
