@@ -6,7 +6,7 @@ confidence: high
 created: 2026-06-27
 review_after: 2026-07-04
 related:
-  - [[CND25004]]
+  - CND25004
   - [[7-2-F-1]]
   - [[2026-06-26-cnd25004-candidate-canonical-updates]]
 tags: [contradiction, knowledge-system, Syncrude, CND25004, pigging]
@@ -16,7 +16,7 @@ tags: [contradiction, knowledge-system, Syncrude, CND25004, pigging]
 
 ## Trigger
 
-The open review [[2026-06-26-cnd25004-candidate-canonical-updates]] flagged a possible swab-size mismatch in [[CND25004]]. This is a small, evidence-backed contradiction that affects whether swab size should be copied into heater-card or estimating references.
+The open review [[2026-06-26-cnd25004-candidate-canonical-updates]] flagged a possible swab-size mismatch in CND25004. This is a small, evidence-backed contradiction that affects whether swab size should be copied into heater-card or estimating references.
 
 ## Evidence
 

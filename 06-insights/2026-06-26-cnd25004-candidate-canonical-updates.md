@@ -7,7 +7,7 @@ confidence: medium
 created: 2026-06-26
 review_after: 2026-07-03
 related:
-  - [[CND25004]]
+  - CND25004
   - [[7-2-F-1]]
   - [[_facility]]
 tags: [review, knowledge-system, Syncrude, heater-card, CND25004]
@@ -17,7 +17,7 @@ tags: [review, knowledge-system, Syncrude, heater-card, CND25004]
 
 ## Trigger
 
-Post-routing extraction pass for [[CND25004]]. The report is now routed under `03-jobs/Syncrude/` and can feed candidate facility/heater knowledge through the approval workflow.
+Post-routing extraction pass for CND25004. The report is now routed under `03-jobs/Syncrude/` and can feed candidate facility/heater knowledge through the approval workflow.
 
 ## Proposed Changes Made As Draft
 
@@ -31,19 +31,19 @@ This is not fully canonical yet. It is marked `status: draft`, `source_authority
 
 | Fact | Source | Proposed Destination | Approval Need |
 |---|---|---|---|
-| Facility is Syncrude Refinery - Mildred Lake / Wood Buffalo, AB. | [[CND25004]] customer details. | [[_facility]] identity/notes. | Review naming preference: Fort McMurray vs Wood Buffalo vs Mildred Lake. |
-| Site training listed as CSO / Syncrude Site Specific. | [[CND25004]] project details. | [[_facility]] site access/safety. | Low; still source-derived. |
-| Hydrant / soda ash solution / chemical mixed in tank used on job. | [[CND25004]] project details. | Facility constraints and heater card water source. | Medium; distinguish site standard from job-specific condition. |
+| Facility is Syncrude Refinery - Mildred Lake / Wood Buffalo, AB. | CND25004 customer details. | [[_facility]] identity/notes. | Review naming preference: Fort McMurray vs Wood Buffalo vs Mildred Lake. |
+| Site training listed as CSO / Syncrude Site Specific. | CND25004 project details. | [[_facility]] site access/safety. | Low; still source-derived. |
+| Hydrant / soda ash solution / chemical mixed in tank used on job. | CND25004 project details. | Facility constraints and heater card water source. | Medium; distinguish site standard from job-specific condition. |
 
 ## Candidate Heater Facts
 
 | Fact | Source | Proposed Destination | Approval Need |
 |---|---|---|---|
-| Heater tag/name is 7-2 F-1 Bitumen Column Feed Heater. | [[CND25004]] pigging details and coil data. | `7-2-F-1.md` identity. | Low. |
-| 8 coils reported. | [[CND25004]] configuration and coil data. | `7-2-F-1.md` identity/config rollup. | Medium; verify physical arrangement. |
-| Convection: OD 6.625, schedule 40, wall 0.280, ID 6.065, 16 tubes, length 1040, U-bends. | [[CND25004]] coil data. | `7-2-F-1.md` tube geometry. | Medium; verify length semantics before estimating. |
-| Radiant: OD 6.625, schedule 40, wall 0.280, ID 6.065, 31 tubes, length 1271, U-bends. | [[CND25004]] coil data. | `7-2-F-1.md` tube geometry. | Medium; verify length semantics before estimating. |
-| Launcher location: 16 launchers, inlet control valve station / outlet radiant outlet flanges. | [[CND25004]] pigging details. | `7-2-F-1.md` connection info / field notes. | Medium; flange sizes not recorded. |
+| Heater tag/name is 7-2 F-1 Bitumen Column Feed Heater. | CND25004 pigging details and coil data. | `7-2-F-1.md` identity. | Low. |
+| 8 coils reported. | CND25004 configuration and coil data. | `7-2-F-1.md` identity/config rollup. | Medium; verify physical arrangement. |
+| Convection: OD 6.625, schedule 40, wall 0.280, ID 6.065, 16 tubes, length 1040, U-bends. | CND25004 coil data. | `7-2-F-1.md` tube geometry. | Medium; verify length semantics before estimating. |
+| Radiant: OD 6.625, schedule 40, wall 0.280, ID 6.065, 31 tubes, length 1271, U-bends. | CND25004 coil data. | `7-2-F-1.md` tube geometry. | Medium; verify length semantics before estimating. |
+| Launcher location: 16 launchers, inlet control valve station / outlet radiant outlet flanges. | CND25004 pigging details. | `7-2-F-1.md` connection info / field notes. | Medium; flange sizes not recorded. |
 
 ## Candidate Job Facts To Keep In CND25004
 
@@ -59,7 +59,7 @@ This is not fully canonical yet. It is marked `status: draft`, `source_authority
 
 | Issue | Impact | Proposed Handling |
 |---|---|---|
-| Report body contains `JOB #: CND25002`. | Source-body defect can poison routing/search if copied blindly. | Already preserved warning in [[CND25004]]; CND25004 confirmed by Jesse. |
+| Report body contains `JOB #: CND25002`. | Source-body defect can poison routing/search if copied blindly. | Already preserved warning in CND25004; CND25004 confirmed by Jesse. |
 | Dewater detail says 10 in swab; pig table says 10.5 in swab. | Possible equipment-size mismatch. | Leave both in notes; create contradiction only if sizing is used operationally. |
 | Length fields may be total or per-circuit. | Estimating error risk. | Mark ambiguous until drawing/heater card source confirms. |
 

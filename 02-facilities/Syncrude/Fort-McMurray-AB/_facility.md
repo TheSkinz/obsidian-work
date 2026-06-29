@@ -44,7 +44,7 @@ tags: [facility, Syncrude]
 
 ## Heaters at This Facility
 
-- [[CND25004]] source report references 7-2 F-1 Column Feed Heater.
+- CND25004 source report references 7-2 F-1 Column Feed Heater.
 
 ---
 

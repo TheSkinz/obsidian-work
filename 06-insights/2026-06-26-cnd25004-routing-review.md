@@ -7,7 +7,7 @@ confidence: medium
 created: 2026-06-26
 review_after: 2026-07-03
 related:
-  - [[CND25004]]
+  - CND25004
   - [[2026-06-26-cnd25004-job-number-contradiction]]
   - [[knowledge-system-governance]]
 tags: [review, knowledge-system, job-number, Syncrude, routing]
