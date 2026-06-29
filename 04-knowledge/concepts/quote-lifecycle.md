@@ -32,15 +32,11 @@ The `_pipeline.md` Dataview queries pull on `status` automatically — no manual
 
 ---
 
-## If Awarded: Create the Job Note
+## If Awarded: Record on the Heater Card(s)
 
-1. Use the template at `templates/usa-job-template.md` (Ctrl+P → Insert Template in Obsidian)
-2. File location: `03-jobs/[Client]/[USA#####].md`
-   - Example: `03-jobs/Marathon/USA27001.md`
-3. Set `quote: DSP#####` in the job note frontmatter to link back to the source quote
-4. The `awarded-as: USA#####` field you set on the DSP note links forward
+There is no standalone job note — the `03-jobs/` folder is retired and jobs dissolve into the heater card(s) they touch. On award, set `awarded-as: USA#####` on the source quote so the link carries forward; the operational record then accrues on each heater card as the job runs.
 
-The job note is the operational record for the job from award through closeout. It collects execution dates, revenue, cost, crew, and post-job notes.
+The heater card is the operational record. Job-level commercial data (revenue, cost, margin, crew) lives in the file estate, not the vault.
 
 ---
 
@@ -52,10 +48,10 @@ Move the quote row from Pending/Bidding to Awarded/Pre-Execution in `01-context/
 
 ## Job Closeout
 
-When the job completes, update the USA##### note:
+When the job completes, record the actuals on each heater card the job touched:
 
-- Set `status: complete`
-- Fill in `date-end`
-- Confirm `revenue`, `cost`, and `margin` match the final ticket breakdown
+- Add the `## Job History` row (Job #, quote, dates)
+- Fill the `## Task Durations` actuals row (elapsed hours, Rigs, Stand-By, Total — actuals only)
+- Add the `### USA##### — Month Year` narrative under `## Field Notes`
 
-The `_revenue.md` dashboard pulls from `03-jobs` WHERE `status = "complete"` — it populates automatically once status is set.
+Commercial close (revenue, cost, margin against the final ticket breakdown) is handled in the file estate, not the vault.

@@ -24,10 +24,7 @@ _No articles yet._
 
 ## Operations Admin
 
-| Article | Description | Last Updated |
-|---|---|---|
-| `05-projects/operations-admin/onedrive-facilities-structure.md` | Canonical Facilities folder hierarchy, naming convention, migration notes | 2026-06-06 |
-| `05-projects/operations-admin/onedrive-company-structure.md` | Company\ and _Pending-Archive\ structure, source mapping, Phase 2 scope | 2026-06-06 |
+_No articles yet._ (Former `05-projects/operations-admin/onedrive-*` references retired with the `05-projects/` decommission.)
 
 ---
 

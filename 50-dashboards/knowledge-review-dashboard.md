@@ -46,7 +46,7 @@ SORT file.mtime DESC
 
 ```dataview
 TABLE type, status, last_reviewed, review_after, file.mtime as "Updated"
-FROM "01-context" OR "02-facilities" OR "03-jobs" OR "04-knowledge" OR "05-projects" OR "06-insights"
+FROM "01-context" OR "02-facilities" OR "04-knowledge" OR "06-insights"
 WHERE status = "stale" OR (review_after AND review_after <= date(today))
 SORT review_after ASC
 ```
@@ -55,7 +55,7 @@ SORT review_after ASC
 
 ```dataview
 TABLE type, status, file.folder as "Folder", file.mtime as "Updated"
-FROM "00-inbox" OR "03-jobs" OR "05-projects"
+FROM "00-inbox"
 WHERE tags = []
 SORT file.mtime DESC
 ```

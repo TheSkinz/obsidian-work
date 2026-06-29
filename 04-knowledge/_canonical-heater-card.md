@@ -31,7 +31,7 @@ Validated against: F-802, 210-1401A, 210-1402B, 210-1403A, 210-1404B, F-301, F-3
 FOLDER STRUCTURE (locked 2026-06-22):
   02-facilities/<Client>/<City-ST>/<HeaterTag>.md — flat, no per-heater subfolders.
   _facility.md lives alongside heater cards at the site level.
-  03-jobs/<USA#####>.md — separate, linked via frontmatter heaters: [] and wikilinks.
+  Jobs are not separate files — job actuals dissolve into each heater card (## Job History + ## Task Durations).
   Folders are for human navigation; frontmatter is for programmatic access.
 -->
 

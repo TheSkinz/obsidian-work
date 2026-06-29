@@ -10,9 +10,7 @@ Every session: read all files in `01-context/` before responding. Total target: 
 
 Load on-demand only when named:
 - `02-facilities/[Client-City-State]/` — when a specific facility is referenced
-- `03-jobs/[USA#####]/` — when a specific job number is active
 - `04-knowledge/` — when technical depth is needed (equipment specs, SOP structure, process theory)
-- `05-projects/` — when working inside a specific Codex Project context
 
 Never load `archive/`, `attachments/`, or `templates/` automatically.
 
@@ -85,7 +83,7 @@ Additions for ExxonMobil / major operator jobs: Phase I flush section, Phase III
 - Callout boxes for critical warnings (border accent with ⚠ symbol)
 
 **What this replaces**
-The section structure in `05-projects/technical-docs/system-prompt.md` is aspirational. This vault definition governs actual SOP production. The system prompt governs behavior and role boundaries; this file governs output format.
+This vault definition governs actual SOP production — it supersedes the earlier aspirational SOP structure from the now-retired Codex Projects system prompts. The system prompt governs behavior and role boundaries; this file governs output format.
 
 ---
 

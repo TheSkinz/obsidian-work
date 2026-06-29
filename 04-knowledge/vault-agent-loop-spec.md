@@ -68,7 +68,7 @@ Check these areas in order:
 | 1 | `00-inbox/` | Unprocessed source notes and routing candidates. |
 | 2 | `06-insights/` | Open reviews, contradictions, and prior loop notes. |
 | 3 | `04-knowledge/` | Governance, canonical rules, evaluation questions, stale/due notes. |
-| 4 | `02-facilities/` and `03-jobs/` | Only when a specific facility/job is needed for the selected item. |
+| 4 | `02-facilities/` | Only when a specific facility/heater is needed for the selected item. |
 | 5 | `change-log.md` | Confirm history before writing or closing a loop. |
 
 Never scan the whole vault deeply unless the selected item requires it.

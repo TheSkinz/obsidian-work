@@ -33,11 +33,7 @@ tags: [facility, Cenovus]
 
 
 ## Job History
-```dataview
-TABLE job-number as "Job #", date-start as "Start", date-end as "End", revenue as "Revenue"
-FROM "03-jobs"
-WHERE type = "job" AND facility = "Cenovus-Toledo-OH"
-SORT date-start DESC
-```
+
+_Job history now lives on each heater card's `## Job History` section (see the `## Heaters` list above)._
 
 ## Notes
