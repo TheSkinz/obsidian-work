@@ -184,11 +184,18 @@ cost, billed how, sourced from which quote.
 
 ---
 
-## Pig History
-
-| Job # | Quote # | Date | Pig sequence used | Est. duration | Actual duration | Notes |
-|---|---|---|---|---|---|---|
-| | | | | | | |
+## Task Durations
+<!-- Wall-clock ELAPSED hours per decoke, one row per job (Date = job START, YYYY-MM-DD;
+multi-day span lives in Job History). Rigs = number of TriMax on the job; task hours are
+ELAPSED, so labor ≈ task hrs × Rigs. The per-rig split stays in Field Notes (never
+averaged into this table). Stand-By is tracked but EXCLUDED from Total (Total = productive
+task hours: Rig-In + Pig + Smart Pig + Rig-Over + Rig-Out). Total is DERIVED but hand-entered
+(no formula layer) — re-sum on any edit, do not trust a stale Total.
+  "–" = task confirmed did NOT occur (e.g. no smart pig on this job).
+  "?" = task occurred-status unrecorded / unknown — distinct from "–". -->
+| Date | Job # | Rigs | Rig-In | Pig | Smart Pig | Rig-Over | Rig-Out | Stand-By | Total |
+|---|---|---|---|---|---|---|---|---|---|
+| | | | | | | | | | |
 
 ---
 
