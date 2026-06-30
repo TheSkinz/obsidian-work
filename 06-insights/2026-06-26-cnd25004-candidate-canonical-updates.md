@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: canonical-update
 source_authority: secondary
 confidence: medium
@@ -65,14 +65,15 @@ This is not fully canonical yet. It is marked `status: draft`, `source_authority
 
 ## Decision
 
-- [ ] Approve draft heater scaffold as source-derived record
-- [ ] Promote selected facts to reviewed heater-card status
-- [ ] Revise facility naming/key
-- [ ] Create contradiction for 10 in vs 10.5 in swab detail
-- [ ] Need more source material
+- [x] Approve draft heater scaffold as source-derived record
+- [x] Promote selected facts to reviewed heater-card status (identity facts only; geometry stays medium confidence)
+- [x] Revise facility naming/key — resolved as Mildred Lake
+- [x] Create contradiction for 10 in vs 10.5 in swab detail — resolved as 10 in
+- [ ] Need more source material — deferred
 
 ## Apply Log
 
 | Date | Action | By |
 |---|---|---|
 | 2026-06-26 | Created draft heater scaffold and candidate canonical update review. | Codex |
+| 2026-06-29 | Approved scaffold to source-derived; promoted identity facts; facility named Mildred Lake; swab resolved to 10 in; more source deferred. Applied to 7-2-F-1.md, _facility.md, and equipment-library.md. | Jesse |

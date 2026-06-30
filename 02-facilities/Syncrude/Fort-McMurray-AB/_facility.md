@@ -8,7 +8,9 @@ last-updated: 2026-06-26
 tags: [facility, Syncrude]
 ---
 
-# Syncrude — Fort McMurray, AB
+# Syncrude — Mildred Lake, AB
+
+> Fort McMurray is the nearest city; Mildred Lake is the Syncrude plant site (Wood Buffalo region). Folder path retained as Fort-McMurray-AB for routing continuity.
 
 ---
 

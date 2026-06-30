@@ -28,7 +28,11 @@ USADeBusk's proprietary trailer-mounted pigging pumper. Transports cleaning pigs
 - Both serve as either feed or return depending on selected pig travel direction
 - Valve manifold on TriMax controls direction from cab — no hose swapping
 
-**Operating note:** High-volume / low-pressure system. High volume is the distinguishing characteristic — pigs are propelled by flow, not pressure alone. Pressure range: 100–600 PSI system limit; typical operating range 100–400 PSI depending on fouling.
+**Operating note:** High-volume / low-pressure system. High volume is the distinguishing characteristic — pigs are propelled by flow, not pressure alone.
+
+**Discharge pressure specs:**
+- Normal operating: 150–250 PSI
+- Maximum: 600 PSI
 
 ## Second TriMax (2× TriMax Configuration)
 
