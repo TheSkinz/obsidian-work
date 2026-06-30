@@ -11,6 +11,9 @@
 - `02-facilities/` — heater cards and facility overviews, canonical schema
 - `04-knowledge/` — concepts, equipment, SOPs
 - `06-insights/` — session insights and reviews
+- `07-llms/` — LLM platforms, tools, best practices (per-platform + cross-platform)
+- `08-systems/` — hardware, software, OS config, dev environment
+- `09-interests/` — personal topics, research interests, non-work knowledge
 - `50-dashboards/`
 - `archive/`, `templates/`
 
