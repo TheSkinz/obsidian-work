@@ -8,7 +8,9 @@
 
 | Project | Status | Next Action |
 |---|---|---|
-| Obsidian Vault Build | Active — 43 facilities scaffolded, Marathon Garyville fully built, DSP26058 ingested | Continue populating heater data and job history as jobs are awarded |
+| *None currently active.* | — | Add when work mobilizes. |
+
+Vault structure is stable post-cleanup: `03-jobs/` and `05-projects/` decommissioned, job actuals dissolved into heater cards. Facility population continues as routine work, not a tracked project.
 
 ---
 
