@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: heater-card-routing
 created: 2026-06-29
 source_authority: secondary
@@ -44,7 +44,7 @@ The source is lower-confidence than H-2421 and H-2501 because it is explicitly n
 
 ## Decision
 
-- [ ] Keep this as inbox evidence only
+- [x] Keep this as inbox evidence only
 - [ ] Regenerate or repair the H-30 extraction from original source material
 - [ ] Approve creating a low-confidence draft/source-derived H-30 heater card with warnings preserved
 - [ ] Request review of original drawings/source package before any heater-card promotion
@@ -55,3 +55,4 @@ The source is lower-confidence than H-2421 and H-2501 because it is explicitly n
 | Date | Action | By | Notes |
 |---|---|---|---|
 | 2026-06-29 | Created review note; no source or canonical notes modified. | Codex | Daily Vault Review Loop. |
+| 2026-06-29 | Keep as inbox evidence only. No heater card to be created from this source. | Jesse | |
