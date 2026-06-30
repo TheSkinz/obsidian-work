@@ -17,7 +17,12 @@ Local model inference via LM Studio on the desktop workstation. Primary motivati
 
 ## Model evaluations
 
-(Placeholder — populate as models are tested. Record model name, quant level, VRAM use, task, and qualitative result.)
+| Tool / Model | Task | Result |
+|---|---|---|
+| ComfyUI (via Pinokio) | Local image generation | Failed to execute — abandoned |
+| Amuse 3.1.8 | Local image-to-video generation | Active working pipeline — difficulty locating specific models (e.g., Wan 2.2) but pipeline itself functional |
+
+See [[ai-image-generation]] for image-generation workflow details.
 
 ## Use case candidates
 

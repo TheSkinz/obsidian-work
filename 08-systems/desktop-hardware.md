@@ -23,3 +23,9 @@ tags: [hardware, workstation, amd]
 ## Notes
 
 The 9800X3D's 3D V-Cache is designed for gaming workloads with large working sets; not especially relevant for development or LLM inference (which is GPU-bound). The RX 9070 XT is the bottleneck for local inference quality — VRAM determines the maximum quantized model size that fits in a single pass.
+
+**Wireless card antenna connectors.** The wireless card uses proprietary ASUS Q-Antenna quick-connectors, not standard screw-on RP-SMA barrels. This matters for any future antenna swap or wireless hardware troubleshooting — RP-SMA accessories won't fit without an adapter.
+
+**RAM upgrade path.** 64GB is the first recommended upgrade if local AI workloads, large PDF/OCR batch jobs, engineering drawing processing, or heavy multitasking become priorities. No urgent compute upgrade needed for gaming alone at current config.
+
+**AMD/CUDA tradeoff.** Vulkan-backed local AI inference works, but CUDA-first NVIDIA tooling (many AI frameworks, ComfyUI extensions, ROCm-dependent workflows) remains smoother for a wide range of AI tasks. This is a known tradeoff of the current GPU choice — worth tracking as RDNA 4 tooling matures.

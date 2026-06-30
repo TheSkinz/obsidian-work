@@ -43,3 +43,41 @@ Deployed a 5-rule corrective architecture to fix email deliverability and sortin
 ## Sycophancy-reduction custom instructions
 
 (Placeholder — document the custom instructions approach once finalized.)
+
+---
+
+## SharePoint vs. OneDrive — settled architecture
+
+SharePoint is the primary knowledge substrate for anything that needs to be durable, shared, or agent-accessible. OneDrive is for staging and personal drafts only. Agents grounded in SharePoint can cite sources; agents grounded in OneDrive cannot be reliably shared or governed.
+
+## Agent Builder vs. Copilot Studio
+
+Use **Agent Builder** first for simple, declarative, read-only agents — lower friction, no admin overhead, sufficient for most grounding-plus-prompt tasks. Reserve **Copilot Studio** for advanced workflows, connectors/actions, governance requirements, and production deployment. Don't start in Studio for agents that could be built in Builder.
+
+## Daily Ops Brief Agent — design constraint
+
+Start read-only: grounded in SharePoint, Outlook, and Teams with citations enabled, no write actions. Add write actions only after the read-only version is validated on real data. This is the proven maturation path — build the audit loop before adding automation.
+
+## Tenant-reality-first research pattern
+
+Before designing any Copilot feature or agent, verify what the actual tenant exposes: model picker availability, agent creation access, SharePoint grounding, connector catalog, publishing options, admin constraints. Do not design around advertised features that may be behind a license gate or admin toggle. Discovering a capability gap after building against it is expensive.
+
+## Outlook automation maturity path
+
+Start with simple deterministic rules: sender and topic-based routing. Mature into facility/customer/project routing only after validating rules on real messages. Don't manually categorize long-term once rules are validated — the rules should do the work. Heavy rule systems built before real-message testing consistently over-fit to expected cases and miss edge cases.
+
+## Agent boundary
+
+Agents may read, analyze, summarize, and draft. They may not edit SharePoint source files without explicit per-task permission. This boundary should be hard-coded in agent instructions, not left to model judgment.
+
+## Pricing boundary
+
+Agents and automated outputs must derive pricing only from sourced inputs. Margin and cost language is restricted to conversations with Jason, Marshall, or Travis — not surfaced in agent outputs, reports, or any document that leaves those conversations.
+
+## Copilot Chat memory
+
+Copilot Chat does not have durable access to prior chat history across sessions. Anything worth retaining must be copied into a SharePoint file, notebook, or explicit handover prompt before the session ends. Do not rely on Copilot Chat to remember context from a previous conversation.
+
+## Structured output preference
+
+For multi-item status, comparisons, and project tracking: prefer ini/yaml-style or tabular structured output over verbose Markdown prose. Structured output is scannable, diff-able, and copy-pasteable into downstream tools. Default to this format whenever output will be reviewed quickly or reused.

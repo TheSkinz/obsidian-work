@@ -30,4 +30,10 @@ Principles and patterns for getting reliable, high-quality output from LLMs. Thi
 
 ## Decision rules
 
-(Placeholder — add rules for choosing between approaches, e.g., when to use a Gem vs. a one-off prompt, when to use structured vs. free-form output.)
+**Evidence governance, not just extraction rules.** For any multi-step extraction or research task, track source family, revision/as-built status, contradiction chains, dependency chains, and calculation confidence alongside the extracted values. This prevents unsupported assumptions from silently becoming treated as facts downstream. The principle generalizes beyond heater drawing extraction — it applies to any workflow where intermediate outputs feed later decisions.
+
+**Pre-Execution Audit pattern.** For multi-step documents or scripts, include an explicit audit section that assesses assumptions and logical flaws before generation begins, not after. Catching a bad assumption at the start costs one short exchange; catching it in a finished document costs a rewrite.
+
+**Keep facts, assumptions, recommendations, and risks structurally separate.** In technical or decision-oriented outputs, these categories should be visually and structurally distinct — not interleaved in prose. A reader should be able to scan for assumptions without reading the full document.
+
+**Test on real data before scaling.** Validate extraction rules or automation logic on actual examples, audit the failures, update the rules, then expand. Heavy automation built before rules are validated is low-ROI and often reduces quality relative to a manual process. The right order: real data → audit loop → rule update → scale.
