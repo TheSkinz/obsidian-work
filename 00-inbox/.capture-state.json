@@ -1,0 +1,17 @@
+{
+  "last_run": "2026-06-30",
+  "window_start": "2026-06-23",
+  "notes": "First controlled pass. Excluded current loop session 8e2dd916 and its subagents per spec.",
+  "processed_transcripts": {
+    "C--Windows-system32/76f1b168-fa00-4ab1-882b-33db4b0be890.jsonl": { "hash": "d901f985b530cccbfe840d5a17374750", "harvested_at": "2026-06-30", "disposition": "skip:execution" },
+    "C--Windows-system32/f902fc6b-68c2-41d6-b9fb-f74f156520aa.jsonl": { "hash": "123a8bd313a8d796fad74b95e69a3ea7", "harvested_at": "2026-06-30", "disposition": "skip:recon" },
+    "C--Users-Jwuts/b53ab468-35fc-4b74-bdd4-f5b3276e1cff.jsonl": { "hash": "769d28c050c2309d8005d41b88f23714", "harvested_at": "2026-06-30", "disposition": "harvested:07-llms/claude/code.md" },
+    "C--Users-Jwuts/9b1c080d-8ee7-49b3-8bbb-2b3ac8159bed.jsonl": { "hash": "ea8dd2e071459c9bd5bfdb50d25a9f0b", "harvested_at": "2026-06-30", "disposition": "skip:setup-already-applied" },
+    "C--Users-Jwuts--claude/38f94d32-84f8-4dda-880d-ecb26153ceb5.jsonl": { "hash": "c7a9d95570eb532a7d60cfea957e52bb", "harvested_at": "2026-06-30", "disposition": "defer:operational-skill-refactor" },
+    "C--Users-Jwuts-obsidian-work/38de9c55-6c06-4e16-b953-860061bff717.jsonl": { "hash": "0ddfcb8d8d7fd368e98cfdc2aea64471", "harvested_at": "2026-06-30", "disposition": "defer:operational-heater-schema" },
+    "C--Users-Jwuts-obsidian-work/1b349c90-1993-431a-9c39-76c073f4c0af.jsonl": { "hash": "0d5d50e402f52527d8d97e26fad18b61", "harvested_at": "2026-06-30", "disposition": "skip:config-already-applied" },
+    "C--Users-Jwuts-obsidian-work/3f8fdd2d-2c59-483e-98d3-ce0ce9e1dcae.jsonl": { "hash": "2868be9101465b334effa9eae99eacd7", "harvested_at": "2026-06-30", "disposition": "skip:vault-expansion-already-applied" },
+    "C--Users-Jwuts-obsidian-work/86fb42ae-c1ab-45ef-b4c9-52da87816b7d.jsonl": { "hash": "3363794d62ffe42c5f2ee72ba5a8a4f6", "harvested_at": "2026-06-30", "disposition": "skip:already-routed-to-vault" },
+    "C--Users-Jwuts/79f49353-a759-4e86-9046-97cb1332e342.jsonl": { "hash": "327e46b1af936b031b4226bb2c854dce", "harvested_at": "2026-06-30", "disposition": "defer:operational-brand-recon" }
+  }
+}

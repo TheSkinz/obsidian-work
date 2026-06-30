@@ -23,17 +23,13 @@ Vault Review Loop
 
 ## Trigger
 
-Recurring schedule:
-
-```text
-Monday and Friday mornings at 8:00 AM America/Chicago.
-```
-
-Manual on-demand command:
+On-demand only. Run manually after a batch of operational work, or whenever you want the operational core reviewed:
 
 ```text
 Run the Vault Review Loop on obsidian-work. Pick one safest item and create a review note only.
 ```
+
+This loop is deliberately **not** scheduled. It governs high-stakes operational content (pricing, SOPs, heater cards) that changes infrequently and should only be reviewed when you are present. The low-ceremony content layer is handled on a schedule by the Vault Capture Loop ([[vault-capture-loop-spec]]); this loop does not perform session harvest and does not run unattended. It runs locally against the working tree — no cloud routine, no separate clone.
 
 ## Scope
 
@@ -44,6 +40,19 @@ C:\Users\Jwuts\obsidian-work
 ```
 
 Before any write, verify the target path starts with the canonical vault path in [[vault-source-of-truth]].
+
+## Governance Scope
+
+This loop governs the **operational core** of the vault:
+
+- `02-facilities/` (heater cards, facility overviews)
+- `04-knowledge/` (canonical rules, governance, equipment, SOPs)
+- Pricing, SOP, safety, field-execution, and customer-facing content wherever it appears
+- `change-log.md`
+
+It does **not** govern `00-inbox/` content routing or the `07-llms/`, `08-systems/`, `09-interests/` content layers. Those are owned by the Vault Capture Loop ([[vault-capture-loop-spec]]). When a harvested item is operational, it routes here under this loop's approval boundaries regardless of which session produced it.
+
+`change-log.md` is a **shared append-only history**. Both loops append their own dated entries; neither edits or removes the other's. This loop logs approved operational changes; the capture loop logs its scheduled run summaries. Single-writer-per-entry, never a shared edit.
 
 ## Goal
 
@@ -105,7 +114,7 @@ Never scan the whole vault deeply unless the selected item requires it.
 | Edit pricing, SOP, safety, field execution, customer-facing, or heater-card facts | Operational risk. |
 | Merge conflicting claims | Must preserve contradiction trail. |
 | Bulk edit metadata across many notes | Sync and regression risk. |
-| Change recurring schedule | Requires explicit approval. |
+| Convert this loop to an automated/unattended schedule | Operational core must stay manually triggered and reviewed while present. |
 
 ## Selection Rule
 
@@ -133,6 +142,22 @@ Every loop-created review artifact must include:
 | Decision | Checkboxes for approve/reject/needs more source material. |
 | Apply Log | Date/action/by after any approved change. |
 
+## Staleness Check Categories
+
+Mined from the claude-obsidian wiki-lint audit, filtered to operational content. Observe-only; flag in the review note, never auto-fix.
+
+| Category | What to flag |
+|---|---|
+| Dead links | Broken `[[wikilinks]]` or relative paths in `02-facilities/` / `04-knowledge/` notes pointing to renamed or deleted files. |
+| Frontmatter gaps | Operational notes missing required fields per `_canonical-heater-card.md` or governance frontmatter (type, status, source_authority, confidence). |
+| Stale reviews | `06-insights/` review notes past `review_after`, or with an unresolved Decision checklist older than 14 days. |
+| Stale claims | An operational claim contradicted by a newer source note. Create a contradiction note; do not merge. |
+| Orphan pages (informational only) | Operational notes with no inbound links. Report count only; do not propose deletion. |
+
+Dropped as non-transferable: semantic tiling (requires ollama + wiki structure), DragonScale address validity, Dataview/canvas dashboard generation.
+
+The scan may surface several issues at once; the loop still creates one review note for the single highest-priority item per the Selection Rule. Un-actioned flags are simply re-detected on the next on-demand run — there is no backlog artifact, and that is acceptable because this loop is manual and infrequent.
+
 ## Stop Conditions
 
 Stop and report instead of continuing when:
@@ -141,7 +166,7 @@ Stop and report instead of continuing when:
 - Source authority is unclear.
 - The path is outside the canonical vault.
 - The same class of failure happens twice.
-- OneDrive sync or file existence state is ambiguous.
+- Git working-tree or file-existence state is ambiguous (uncommitted conflicts, missing expected files).
 
 ## Success Criteria
 

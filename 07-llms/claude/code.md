@@ -44,6 +44,16 @@ Skills drive specialized behavior. When a task touches USADeBusk work, the relev
 - Large vault glob operations can be slow; prefer targeted reads over broad auto-scans.
 - Vision / image reading works but hasn't been benchmarked against Gemini for engineering drawings. See [[gem-drawing-extraction]] for current production standard.
 
+## Underutilized capabilities
+
+Identified in a 2026-06-23 capability review and still partly open:
+
+- **Permissions allowlist** in `settings.json` / `settings.local.json` — pre-declaring routine read-only and path-scoped write commands removes repeated interactive prompts. This is also what lets an unattended scheduled run proceed without stalling. Partially deployed.
+- **Session-transcript search** — past sessions are stored as plain JSONL under `~/.claude/projects/`. They can be searched directly (or via the `ccd_session_mgmt` MCP tool). This is the foundation of the vault capture loop's harvest step. See [[vault-capture-loop-spec]].
+- **Custom slash commands** — none defined yet; repeatable multi-step workflows are candidates.
+
+The git-guard hook recommended in the same review has since been implemented (see Key workflow patterns above).
+
 ## Links
 
 - Config repo: https://github.com/TheSkinz/claude-config
