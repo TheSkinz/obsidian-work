@@ -1,0 +1,18 @@
+# Normalize line endings so the working tree stops showing phantom LF/CRLF
+# modifications. Markdown/text files are stored with LF in the repo; Git
+# handles the working-tree conversion. This keeps `git status` honest, which
+# the capture loop's "stop if git state is ambiguous" guard depends on.
+* text=auto eol=lf
+
+# Treat these as text explicitly
+*.md   text eol=lf
+*.json text eol=lf
+*.txt  text eol=lf
+
+# Binary assets — never touch line endings
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.pdf  binary
+*.webp binary
+*.canvas binary
