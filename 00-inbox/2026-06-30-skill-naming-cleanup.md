@@ -1,16 +1,15 @@
 ---
 type: note
-status: inbox
+status: complete
 created: 2026-06-30
+closed: 2026-07-01
 tags: [skills, cleanup, claude-config]
 ---
 
-# Skill naming/staleness cleanup — flagged 2026-06-30, not yet actioned
+# Skill naming/staleness cleanup — flagged 2026-06-30, resolved 2026-07-01
 
-Two separate issues noticed while closing out tonight's session, neither fixed yet.
+Two separate issues noticed while closing out the 2026-06-30 session. Both resolved.
 
-**1. `usadebusk-vault-ingest` has stale references to the retired vault path.** Its own SKILL.md description still says "ingesting documents into the obsidian-usadebusk vault" — that's `C:\Users\Jwuts\OneDrive\obsidian-usadebusk`, retired 2026-06-27 per [[vault-source-of-truth]] in favor of the canonical `C:\Users\Jwuts\obsidian-work`. It also carries a `vault-onedrive-safety.md` reference file, almost certainly written against the dead path. This is a mechanical fix, not a design decision — update the skill's description and reference docs to point at the current vault.
+**1. `usadebusk-vault-ingest` had stale references to the retired vault path.** Its SKILL.md description said "ingesting documents into the obsidian-usadebusk vault" — that's `C:\Users\Jwuts\OneDrive\obsidian-usadebusk`, retired 2026-06-27 per [[vault-source-of-truth]] in favor of the canonical `C:\Users\Jwuts\obsidian-work`. It also carried a `vault-onedrive-safety.md` reference file written against the dead path, and a vault schema diagram listing the retired `05-projects/` folder. **Fixed** in `claude-config` PR #1 (branch `claude/task-planning-99chnf`): description and schema updated to `obsidian-work`, `05-projects/` removed from the diagram, OneDrive safety reference de-hardcoded to a `[OneDrive vault root]` placeholder since no vault is currently OneDrive-backed. Confirmed via repo-wide grep: no other stale `obsidian-usadebusk`/OneDrive-vault references remain anywhere in `claude-config`.
 
-**2. `claude-obsidian:*` (wiki, wiki-ingest, wiki-query, wiki-fold, wiki-lint, save, canvas, and others) is a whole unused plugin ecosystem.** It implements its own "wiki vault" pattern that was never adopted here — the actual vault uses the bespoke governance built in `04-knowledge/` instead. It's not stale, just idle, but its skill names are close enough to the real workflow that it nearly caused a mistake this session (`/wiki-ingest` almost got invoked instead of the vault's own ingestion workflow for the ChatGPT/Copilot deep-research report). This needs an actual decision, not just a fix: keep it around for some future different use, or remove it to eliminate the collision risk.
-
-**Next step:** pick this up in a future session — item 1 is a quick fix, item 2 needs Jesse's call on keep-vs-remove before any action.
+**2. `claude-obsidian:*` (wiki, wiki-ingest, wiki-query, wiki-fold, wiki-lint, save, canvas, and others) is a whole unused plugin ecosystem.** It implements its own "wiki vault" pattern never adopted here — the vault uses the bespoke governance in `04-knowledge/` instead. Not stale, just idle, but its skill names are close enough to the real workflow that it nearly caused a mistake (`/wiki-ingest` almost got invoked instead of the vault's own ingestion workflow). **Decided (2026-07-01, Jesse):** keep as-is for now. Collision risk noted but accepted; revisit if it causes an actual mistake rather than a near-miss.
