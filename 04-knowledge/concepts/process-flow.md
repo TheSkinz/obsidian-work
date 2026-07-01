@@ -57,7 +57,7 @@ The filtration loop operates independently from the main pigging process and doe
 When two passes are looped via 180° jumper spool:
 - Spool connects Radiant Outlet Pass 1 to Radiant Outlet Pass 2
 - Pig travels: Conv. Inlet Pass 1 → full Pass 1 coil → Rad. Outlet Pass 1 → Jumper Spool → Rad. Outlet Pass 2 → full Pass 2 coil (reverse direction) → Conv. Inlet Pass 2
-- Creates longer circuit — pig transit times 10–20+ minutes depending on footage
+- Creates longer circuit — extended pig transit and blind period. Transit is a function of footage, pipe ID, and GPM — observed ~6–30 min across looped jobs, not a fixed range.
 - Longer blind period between launches requires careful monitoring
 - Final pig size may need to be larger (e.g., 6.5" vs. 6.25") to achieve full wall contact on long combined circuits
 

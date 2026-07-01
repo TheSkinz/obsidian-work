@@ -8,7 +8,7 @@
 
 Most jobs (95%+): T&M on execution, Lump Sum on Mob/Demob.
 
-Mob/Demob is estimated as Day shift cost bucket only: total drive hours + per diem per travel day per person + equipment travel costs. Presented as two separate lump sum line items.
+Mob and Demob are calculated separately (Demob mirrors Mob as the return trip) and presented as two lump-sum line items. Four cost parts: equipment travel (one-way miles × $3.00/mile × pieces, driver labor included), driver per diem, non-driver crew travel + one per diem, and travel ancillaries at contract markup. Full formula in `usadebusk-estimating` (and `04-knowledge/concepts/estimating-pricing.md`).
 
 Third-party markup rate is contract-specific.
 

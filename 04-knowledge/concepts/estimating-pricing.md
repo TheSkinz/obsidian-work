@@ -50,6 +50,19 @@ SIMOPS (multi-heater jobs): Overlapping heater timeline visibility required — 
 - Pumping rate: when TriMax is actively pigging
 - Non-pumping / stand-by rate: during rig-in, rig-out, stand-by
 
+**Stand-by applies to two rate lines only — TriMax Pumper and Filter Press.** Triggered when the project is not actively moving forward (rig-in, rig-out, waiting) and USADeBusk cannot rig-in, pig, or smart-pig. All other resources (support equipment, labor, per diem, materials, mob/demob) bill unchanged regardless of stand-by status.
+
+## Mob/Demob costing
+
+Basis: Deer Park, TX shop → facility, one-way miles per trip. Mob and Demob are calculated **separately**; Demob mirrors Mob as the return trip. Presented as two lump-sum line items.
+
+1. **Equipment travel** — one-way miles × $3.00/mile × number of equipment pieces traveling. The $3.00/mile includes driver labor (drivers carry no separate travel-labor line). One driver per piece.
+2. **Driver per diem** — drivers × drive-days × contract per-diem rate ($150/day). Drive-days = total one-way drive time ÷ ~10 hrs/day, rounded up; any drive over 1 hour accrues at least one per diem, per driver per drive-day.
+3. **Non-driver crew travel** — (total crew − drivers) × hourly labor rate × actual travel hours (drive or air; typically 8, occasionally as low as 1). Each non-driver also receives exactly one day of per diem. Non-driver travel never exceeds one day.
+4. **Travel ancillaries** — rental cars, flights, and other travel rentals at the quoted day/unit rate + contract third-party markup.
+
+Costing is distinct from duration/scheduling. The duration model's mob/demob entry governs how mob/demob occupies the schedule; it does not set price.
+
 ## Baseline rate table
 
 Generic rates for new facilities without established contract rates. Use as starting estimate only — replace with actual contract rates before finalizing any proposal.

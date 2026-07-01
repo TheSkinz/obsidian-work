@@ -6,42 +6,55 @@
 
 ## TriMax Pumper Unit
 
-USADeBusk's proprietary trailer-mounted pigging pumper. Transports cleaning pigs bi-directionally through furnace tubes using high-volume, low-pressure water.
+USADeBusk's proprietary trailer-mounted pigging pumper. Transports cleaning pigs bi-directionally through furnace tubes using high-volume, low-pressure water. High volume is the distinguishing characteristic — pigs are propelled by flow, not pressure alone. Not a jetting unit.
 
-**Physical layout (left to right):**
-- Control cab (operator station, far left)
-- Dirty tank (2,000 gallons)
-- Clean tank (3,000 gallons)
-- Waterous CMU Series Two-Stage Centrifugal Pump (far right end)
+**Unit architecture — TRIPLE:** One TriMax trailer contains **3 independent pumping assemblies**. Each assembly has its own engine, gearbox, pump (Waterous CMU Series two-stage centrifugal), and valve manifold. All three share ONE clean tank (3,000 gal) and ONE dirty tank (2,000 gal). Three operator stations in the control cab — one per assembly. Each assembly cleans one circuit independently: direction, flow state, and progress are set per assembly. Scope determines how many of the 3 assemblies are used; unused assemblies sit idle. The three assemblies, left → right: **left (pump 1), center (pump 2), right (pump 3)** — referenced as left/center/right when identifying which assembly/circuit is in use.
 
-**Internal routing:**
-- Return water from receiver enters via Fig. 200 RAD port at trailer rear
-- Routes via fixed pipe along trailer ceiling toward clean tank
-- Diverter (90° plunger, operator-controlled from cab) sits at junction above dirty/clean tank
-  - Default: water flows to clean tank
-  - Thrown (when effluent cloudy): water diverts to dirty tank
-- Pump inlet: right side of clean tank
-- Pump discharge: right side of pump → out to launcher via Fig. 200 CONV port
+**Physical layout (left → right):**
+Control cab (3 operator stations) | Dirty tank (2,000 gal, shared) | Clean tank (3,000 gal, shared) | 3× pump/engine assemblies
+
+**Internal routing (per assembly):**
+- Feed side: clean tank → suction strainer → pump → flow meter → valve manifold → Fig. 200 CONV port → launcher
+- Return water enters via Fig. 200 RAD port at trailer rear, routes via fixed pipe along trailer ceiling toward clean tank
+- Diverter (90° plunger, operator-controlled from cab) at junction above the tanks
+  - Default: clean tank
+  - Thrown (cloudy effluent / pig capture / initial flush): dirty tank
 
 **Rear connections:**
 - Two Fig. 200 (3") ports at rear of trailer, side by side — one CONV, one RAD
 - Both serve as either feed or return depending on selected pig travel direction
-- Valve manifold on TriMax controls direction from cab — no hose swapping
+- Valve manifold controls direction from cab — no hose swapping
+- Standard conv-to-rad: feed exits CONV, return enters RAD. Reversed: feed exits RAD, return enters CONV.
 
-**Operating note:** High-volume / low-pressure system. High volume is the distinguishing characteristic — pigs are propelled by flow, not pressure alone.
-
-**Discharge pressure specs:**
-- Normal operating: 150–250 PSI
-- Maximum: 600 PSI
+**Operating pressure:** 100–400 PSI typical; 600 PSI absolute system limit. Over-pressure checklist required above 500 PSI.
 
 ## Second TriMax (2× TriMax Configuration)
 
-When running 2x TriMax simultaneously:
-- Each unit has its own clean tank (3,000 gal) and dirty tank (2,000 gal)
-- One shared 4×3 pump and one shared filter press
-- T-connections with valve manifolds on both sides link each dirty tank outlet to shared pump suction
-- Clean filtrate returns to respective clean tanks
-- Both units pig the same direction — B→R means convection-inlet-to-radiant-outlet (standard direction)
+Terminology: "second TriMax" or "2× TriMax" — never "dual-pumper." Use "Triple" for the unit itself.
+
+- Each TriMax = its own tanks (3,000 gal clean / 2,000 gal dirty) + its own 3 pump/engine assemblies → 2× TriMax = up to **6 simultaneous circuits**
+- Filtration scales **conditionally**: 2× filter presses + 2× 4×3 pumps when the customer requires it AND a 2nd press is available; otherwise 1× shared filter press + 1× shared 4×3 pump serving both units
+- When shared: T-connections with valve manifolds on both sides link both dirty-tank outlets to shared pump suction; clean filtrate returns to respective clean tanks
+- Each assembly runs its own circuit fully independently — direction, flow state, and progress are set per assembly. There is **no cross-assembly direction constraint** (the two units do not have to pig the same direction).
+
+## Double Pumper
+
+Same custom design as the TriMax but on a single trailer with **two** of each major component (engine, gearbox, pump, valve manifold) instead of three. Two independent pump assemblies: **left = pump 1, right = pump 2. No center.** Cleans two circuits simultaneously. Fleet carries two of these (Double 1, Double 2), reserved for special/overseas jobs (~1×/year each) — see [[equipment-fleet]].
+
+**Distinguishing invariant:** assembly count (two vs. three) and the presence/absence of a center assembly. This separates the double pumper from both the TriMax (three assemblies, L/C/R = 1/2/3, one trailer) and the Second TriMax (two trailers, six assemblies total).
+
+**Guardrails:**
+- **Don't overwrite:** when a job states it uses the double pumper, do NOT substitute the TriMax. "Double pumper" is accepted terminology for this specific unit — leave it as written.
+- **Don't invent:** NEVER infer the double pumper from heater data. Pass count, circuit count, and two-pass geometry do NOT imply a double pumper. The TriMax is the default mobilized unit for essentially all jobs INCLUDING two-pass heaters — one pump side simply goes unused. The double pumper is used only when explicitly stated for that job. It is never a heater-card field.
+
+## Terminology Discipline — Pumper Naming
+
+Three distinct units — do not conflate:
+- **TriMax / Triple** — 3 assemblies, 1 trailer, L/C/R = 1/2/3
+- **Double pumper** — 2 assemblies, 1 trailer, L/R = 1/2, no center
+- **Second TriMax / 2× TriMax** — 2 trailers, 6 assemblies total
+
+**"dual-pumper" / "dual pumper" is BANNED** in any document, internal or customer-facing — customers misread it as a pumper limited to two circuits, and it mischaracterizes the three-assembly TriMax as two-assembly. Flag and correct on sight. Note the deliberate near-homophone guard: *double pumper* (real, rare unit) ≠ *dual-pumper* (banned term).
 
 ## Filter Press
 

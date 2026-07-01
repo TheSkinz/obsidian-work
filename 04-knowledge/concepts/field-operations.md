@@ -16,7 +16,7 @@ Handwritten daily document completed by Project Manager for each 12-hour shift.
 - Materials used (pigs by type and size, DEF)
 - Third-party services (description, hours, cost)
 - Plant Down Time (hours, cause)
-- Shift summary (narrative of activities)
+- Shift summary (narrative of activities) — **includes which pump/side/circuit(s) were operated/cleaned this shift.** The L/C/R marking preprinted on the form is a legacy circling convention no longer used; which assembly (left/center/right = pump 1/2/3) ran is captured in this narrative, not by circling L/C/R.
 - Clean ID — largest pig size that passed through the full circuit without obstruction. Required for progress tracking. Maximum pig size = tube ID + 0.250". Example: 5.000" ID tube → 5.25" max; 6.065" ID tube → 6.25" standard final / 6.5" max in heavy fouling.
 - Customer signature and supervisor signature
 
