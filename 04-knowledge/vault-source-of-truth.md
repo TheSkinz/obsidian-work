@@ -30,6 +30,9 @@ Before writing vault files, confirm:
 | Change is small and reviewable | Yes |
 | Source notes are preserved unless explicitly approved | Yes |
 | Canonical notes are changed only after approval when safety, pricing, SOP, field execution, customer-facing content, or heater-card facts are affected | Yes |
+| Content changes use the Edit/Write tools, not shell in-place editors | Yes |
+
+**Tooling note (2026-06-30):** `sed -i` (and similar rename-based in-place shell edits) was observed to report success while silently failing to persist changes to a vault file — confirmed via direct re-read, not reproduced reliably on demand, cause not fully pinned down. The Edit and Write tools were reliable throughout the same session. Until this is understood, do not use shell-based in-place text editing for vault content — read the file, then use Edit or Write. Bash remains fine for git operations, listing, and read-only inspection.
 
 ## Known Non-Canonical Paths
 
