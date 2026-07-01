@@ -8,6 +8,7 @@ last_reviewed: 2026-06-30
 review_after: 2026-07-30
 related:
   - [[vault-agent-loop-spec]]
+  - [[vault-idea-loop-spec]]
   - [[knowledge-system-governance]]
   - [[vault-source-of-truth]]
 tags: [knowledge-system, agent-loop, capture, governance]

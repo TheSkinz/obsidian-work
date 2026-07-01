@@ -77,6 +77,10 @@ When a question is answered poorly, create a question note. Record the expected 
 
 Use `review_after`, `last_reviewed`, and `status: stale` to build review queues. A stale note is not wrong; it is due for verification.
 
+### Idea Research
+
+Speculative ideas (`type: idea-seed` in `00-inbox/`) get bounded, unattended web research on a nightly schedule rather than sitting until someone manually revisits them. One seed per run, findings land as a review note in `06-insights/`, the seed's status flips to `researched`. Never decides, never builds. See [[vault-idea-loop-spec]].
+
 ## First Pilot Scope
 
 For the first phase, apply this only to new review notes, new source notes, unresolved contradictions, and dashboard views. Do not mass-edit existing job, facility, heater, or proposal notes until the review loop is proven.

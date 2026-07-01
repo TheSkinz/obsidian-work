@@ -10,6 +10,7 @@ related:
   - [[knowledge-system-governance]]
   - [[vault-source-of-truth]]
   - [[knowledge-review-dashboard]]
+  - [[vault-idea-loop-spec]]
 tags: [knowledge-system, agent-loop, vault-review, governance]
 ---
 
