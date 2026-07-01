@@ -39,7 +39,7 @@ Terminology: "second TriMax" or "2× TriMax" — never "dual-pumper." Use "Tripl
 
 ## Double Pumper
 
-Same custom design as the TriMax but on a single trailer with **two** of each major component (engine, gearbox, pump, valve manifold) instead of three. Two independent pump assemblies: **left = pump 1, right = pump 2. No center.** Cleans two circuits simultaneously. Fleet carries two of these (Double 1, Double 2), reserved for special/overseas jobs (~1×/year each) — see [[equipment-fleet]].
+Same custom design as the TriMax but on a single 48' trailer with **two** of each major component (engine, gearbox, pump, valve manifold) instead of three — housed in a sea-can container retrofitted onto the trailer bed (the fleet name "Sea-Can Double Pumper" refers to this build, not a separate unit type). Two independent pump assemblies: **left = pump 1, right = pump 2. No center.** Cleans two circuits simultaneously. Fleet carries two of these (Double 1, Double 2), reserved for special/overseas jobs (~1×/year each) — see [[equipment-fleet]].
 
 **Distinguishing invariant:** assembly count (two vs. three) and the presence/absence of a center assembly. This separates the double pumper from both the TriMax (three assemblies, L/C/R = 1/2/3, one trailer) and the Second TriMax (two trailers, six assemblies total).
 
