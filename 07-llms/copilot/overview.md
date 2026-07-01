@@ -50,6 +50,14 @@ Deployed a 5-rule corrective architecture to fix email deliverability and sortin
 
 SharePoint is the primary knowledge substrate for anything that needs to be durable, shared, or agent-accessible. OneDrive is for staging and personal drafts only. Agents grounded in SharePoint can cite sources; agents grounded in OneDrive cannot be reliably shared or governed.
 
+Full governance depth (permissions-over-prompts, oversharing risk, SharePoint Advanced Management, cleanup checklist) lives in [[chatgpt-copilot-workflow-architecture]].
+
+**Restricted SharePoint Search is not a security boundary.** It's documented as a temporary containment measure only, meant to be disabled after validation — use real permission remediation and site governance first, not this as a standing fix. Distinct from Restricted Content Discovery (a site-level discovery control, doesn't touch permissions, can't apply to OneDrive).
+
+## Researcher and Analyst — governance scope
+
+Researcher (deep multistep research) and Analyst (data analysis) are first-party Microsoft 365 Copilot experiences that are part of the core Copilot chat experience — they do **not** fall under agent-related admin settings. Don't assume "agent settings" governance will manage or disable these the same way it manages user-created agents.
+
 ## Agent Builder vs. Copilot Studio
 
 Use **Agent Builder** first for simple, declarative, read-only agents — lower friction, no admin overhead, sufficient for most grounding-plus-prompt tasks. Reserve **Copilot Studio** for advanced workflows, connectors/actions, governance requirements, and production deployment. Don't start in Studio for agents that could be built in Builder.
