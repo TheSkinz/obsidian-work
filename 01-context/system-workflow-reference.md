@@ -20,14 +20,14 @@ Full specs: [[vault-capture-loop-spec]], [[vault-agent-loop-spec]], [[vault-idea
 
 ## Skill Trigger Map
 
-Skills live at `~/.claude/skills/` (= the `claude-config` repo, no separate deploy step). `usadebusk-core` loads alongside every other one below.
+Skills live at `~/.claude/skills/`, no separate deploy step. `usadebusk-core` loads alongside every other one below.
 
 | Skill | For | Trigger words / task types | Load alongside |
 |---|---|---|---|
 | **usadebusk-core** | Foundational context for any USADeBusk task | Any proposal, SOP, estimating, field ops, or technical-doc question; furnace decoking, pigging, fired heaters | Always, with any other skill below |
 | **usadebusk-equipment** | Physical equipment specs | Pig sizing, launcher/receiver sizing, hose connections, TriMax pumper, filter press specs, hardware selection | usadebusk-core |
 | **usadebusk-estimating** | Proposals, pricing, bids | New RFQ, bid package, scope pricing, heater card development, mob/demob, TA scope, emergency decoke | usadebusk-core |
-| **usadebusk-fieldpm** | Field project management | `/setup`, `/extract`, `/log`, `/email`, `/status`, `/report`; service receipts, shift notes, payroll, job progress | usadebusk-core; usadebusk-equipment mid-job if pig sizing comes up |
+| **usadebusk-fieldpm** | Field project management — **dormant** (reactivates on job mobilization) | `/setup`, `/extract`, `/log`, `/email`, `/status`, `/report`; service receipts, shift notes, payroll, job progress | usadebusk-core; usadebusk-equipment mid-job if pig sizing comes up |
 | **usadebusk-ops** | Field ops admin/paperwork | Service receipts, ticket breakdowns, invoice prep, field documentation | usadebusk-core |
 | **usadebusk-sop** | Procedures and SOPs | Writing a procedure, pre-execution package, process flow diagram; decoking sequence, pig travel path | usadebusk-core, usadebusk-equipment |
 | **usadebusk-vault-ingest** | Document ingestion | `/convert`, `/ingest`, `/dry-run`; converting DOCX/PDF into the vault | usadebusk-core |
