@@ -1,6 +1,6 @@
 ---
 type: idea-seed
-status: researched
+status: approved-blocked
 created: 2026-06-30
 related:
   - [[2026-07-01-idea-research-skill-update-feedback-loop]]

@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: inbox
 source_authority: inferred
 confidence: high
@@ -58,13 +58,11 @@ Specific approval is required before:
 
 ## Decision
 
-- [ ] Move to `06-insights/`
-- [ ] Move to `archive/`
-- [ ] Keep in `00-inbox` and add routing metadata
-- [ ] Needs more context
+- [x] Move to `archive/`
 
 ## Apply Log
 
 | Date | Action | By |
 |---|---|---|
 | 2026-06-26 | Created routing review only; source inbox note was not modified. | Codex |
+| 2026-07-05 | Jesse approved archiving. Moved to `archive/2026-06-06-refineries-migration.md`. | Claude |

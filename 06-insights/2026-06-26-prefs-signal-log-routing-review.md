@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: inbox
 source_authority: inferred
 confidence: high
@@ -56,14 +56,11 @@ Specific approval is required before:
 
 ## Decision
 
-- [ ] Move to AI/tooling vault
-- [ ] Move to personal vault
-- [ ] Archive inside `obsidian-usadebusk`
-- [ ] Keep temporarily and add non-work metadata
-- [ ] Needs more context
+- [x] Move to AI/tooling vault
 
 ## Apply Log
 
 | Date | Action | By |
 |---|---|---|
 | 2026-06-26 | Created routing review only; source inbox note was not modified. | Codex |
+| 2026-07-05 | Jesse approved moving to AI/tooling content. Vault scope has since expanded to include an LLM-knowledge layer (`07-llms/`, per CLAUDE.md), so this stayed in-vault: moved to `07-llms/claude/prefs-signal-log.md` rather than a separate vault. | Claude |

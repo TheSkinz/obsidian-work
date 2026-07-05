@@ -1,6 +1,6 @@
 ---
 type: contradiction
-status: unresolved
+status: resolved
 source_authority: secondary
 confidence: high
 created: 2026-06-27
@@ -43,14 +43,11 @@ No source note, draft heater card, canonical heater-card fact, estimating refere
 
 ## Decision
 
-- [ ] Confirm `10 in` swab as correct
-- [ ] Confirm `10.5 in` swabs as correct
-- [ ] Treat both as acceptable shorthand and document normalization rule
-- [ ] Needs stronger source material
-- [ ] Reject as not operationally meaningful
+- [x] Confirm `10.5 in` swabs as correct
 
 ## Apply Log
 
 | Date | Action | By | Notes |
 |---|---|---|---|
 | 2026-06-27 | Created contradiction note; no source or canonical notes modified. | Codex | Daily Vault Review Loop. |
+| 2026-07-05 | Jesse confirmed 10.5 in swabs (receipt 10153 + pig-utilization table outweigh the summary field). Corrected `02-facilities/Syncrude/Fort-McMurray-AB/7-2-F-1.md`, which had self-asserted the opposite (10 in) resolution without going through this review. | Claude |

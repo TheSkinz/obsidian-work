@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: decided-blocked
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -43,13 +43,10 @@ Bounded one-shot investigation, not a build. Before designing anything: (1) inst
 
 ## Decision
 
-- [ ] Build now
-- [ ] Bounded one-shot investigation (trial an existing staleness-audit skill against `~/.claude/skills/`)
-- [ ] Park
-- [ ] Drop
+- [x] Bounded one-shot investigation (trial an existing staleness-audit skill against `~/.claude/skills/`)
 
 ## Apply Log
 
-| Date | Action | By |
-|---|---|---|
-| | | |
+| Date | Action | By | Notes |
+|---|---|---|---|
+| 2026-07-05 | Jesse approved the bounded investigation. Not executable from this session: `~/.claude/skills/` here only contains `session-start-hook` — the actual USADeBusk skills live in the separate `claude-config` repo, out of this session's scope. Needs a session with that repo attached to actually trial a staleness-audit skill against it. | Claude | Blocked on environment, not on decision. |
