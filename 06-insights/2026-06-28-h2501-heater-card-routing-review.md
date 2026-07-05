@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: heater-card-routing
 created: 2026-06-28
 source_authority: secondary
@@ -46,7 +46,7 @@ This loop run did not move, edit, archive, delete, canonicalize, or promote `00-
 
 ## Decision
 
-- [ ] Approve creating a draft/source-derived H-2501 heater card
+- [x] Approve creating a draft/source-derived H-2501 heater card
 - [ ] Approve creating a reviewed H-2501 heater card from this final output
 - [ ] Keep this as inbox evidence only
 - [ ] Request review of the original Excel heater card before promotion
@@ -57,3 +57,4 @@ This loop run did not move, edit, archive, delete, canonicalize, or promote `00-
 | Date | Action | By | Notes |
 |---|---|---|---|
 | 2026-06-28 | Created review note; no source or canonical notes modified. | Codex | Daily Vault Review Loop. |
+| 2026-07-05 | Jesse approved creating a draft/source-derived H-2501 card. Created `02-facilities/HF-Sinclair/Artesia-NM/H-2501.md`. Discovered during creation that the source inbox note is truncated mid-"Radiant Flow Path (NOW CONFIRMED)" section — no evidence table or overall-confidence section follows, unlike the parallel H-2421 output. Flagged this gap on the new card; radiant routing is not treated as confirmed. Archived the source note to `06-insights/2026-07-05-source-h-2501-heater-card-output.md`. | Claude | |

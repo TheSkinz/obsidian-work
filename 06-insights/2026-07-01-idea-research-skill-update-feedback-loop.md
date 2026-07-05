@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -44,7 +44,7 @@ Bounded one-shot investigation, not a build. Before designing anything: (1) inst
 ## Decision
 
 - [ ] Build now
-- [ ] Bounded one-shot investigation (trial an existing staleness-audit skill against `~/.claude/skills/`)
+- [x] Bounded one-shot investigation (trial an existing staleness-audit skill against `~/.claude/skills/`)
 - [ ] Park
 - [ ] Drop
 
@@ -52,4 +52,4 @@ Bounded one-shot investigation, not a build. Before designing anything: (1) inst
 
 | Date | Action | By |
 |---|---|---|
-| | | |
+| 2026-07-05 | Jesse approved the bounded one-shot investigation. Not yet run — queued as a future session's task (trial CAI Drift Check or the Agent Instruction Audit pattern against `~/.claude/skills/`). Moved the source idea-seed to `06-insights/idea-skill-update-feedback-loop.md` since its disposition is now decided. | Claude |

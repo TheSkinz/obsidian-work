@@ -1,3 +1,6 @@
+> [!note] Archived 2026-07-05
+> Single closeout record from a 2026-04-26 claude.ai prefs-audit session. Never followed through: no `/close` skill exists anywhere in `~/.claude/skills/`, no other `prefs-signal-log` entries were ever added, and the "artifacts" referenced (revised userPreferences, `/close` schema) only ever existed in that chat, not in this vault. Current CLAUDE.md's "Working style"/"Output" sections appear to be the surviving output of this session. Kept for historical record per an open routing review ([[2026-06-26-prefs-signal-log-routing-review]]); not active guidance.
+
 /close
 
 SESSION: Prefs audit + redesign

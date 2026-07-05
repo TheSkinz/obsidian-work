@@ -13,4 +13,6 @@ Two separate issues noticed while closing out tonight's session, neither fixed y
 
 **2. `claude-obsidian:*` (wiki, wiki-ingest, wiki-query, wiki-fold, wiki-lint, save, canvas, and others) is a whole unused plugin ecosystem.** It implements its own "wiki vault" pattern that was never adopted here — the actual vault uses the bespoke governance built in `04-knowledge/` instead. It's not stale, just idle, but its skill names are close enough to the real workflow that it nearly caused a mistake this session (`/wiki-ingest` almost got invoked instead of the vault's own ingestion workflow for the ChatGPT/Copilot deep-research report). This needs an actual decision, not just a fix: keep it around for some future different use, or remove it to eliminate the collision risk.
 
-**Next step:** pick this up in a future session — item 1 is a quick fix, item 2 needs Jesse's call on keep-vs-remove before any action.
+**Update 2026-07-05:** Item 1 is done — `grep -rl "obsidian-usadebusk"` across `~/.claude/skills/` now returns zero hits. No skill file still references the retired path (checked during an inbox cleanup pass). Item 2 is still open.
+
+**Next step:** item 2 needs Jesse's call on keep-vs-remove for `claude-obsidian:*` before any action.

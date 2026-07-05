@@ -2,6 +2,8 @@
 **Layer:** 04-knowledge/equipment
 **Source:** Master Reference Module 5
 
+Raw spec sheets for the equipment below live in [`source-pdfs/`](source-pdfs/): Cummins TriMax, DEBUSK Pumper & Support Dims, Fig 200 Spec Sheets, Filter Press #1, Pump Curve (CMU Pigging), USA Pig Launcher Dims with flanges. This page is the distilled prose reference; check the PDFs for exact dimensions/part numbers.
+
 ---
 
 ## TriMax Pumper Unit

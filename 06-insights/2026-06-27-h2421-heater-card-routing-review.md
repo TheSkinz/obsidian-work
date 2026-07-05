@@ -56,6 +56,7 @@ This loop run did not move, edit, archive, delete, canonicalize, or promote `00-
 |---|---|---|---|
 | 2026-06-27 | Created review note; no source or canonical notes modified. | Codex | Daily Vault Review Loop. |
 | 2026-06-27 | Created draft/source-derived H-2421 heater card with uncertainty preserved. | Codex | Destination: `02-facilities/HF-Sinclair/Artesia-NM/H-2421.md`. |
+| 2026-07-05 | Archived the now-processed inbox source note (content fully captured on the H-2421 card). | Claude | Moved to `06-insights/2026-07-05-source-h-2421-heater-card-output.md`. |
 
 
 

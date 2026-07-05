@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: inbox
 source_authority: inferred
 confidence: high
@@ -58,7 +58,7 @@ Specific approval is required before:
 
 ## Decision
 
-- [ ] Move to `06-insights/`
+- [x] Move to `06-insights/`
 - [ ] Move to `archive/`
 - [ ] Keep in `00-inbox` and add routing metadata
 - [ ] Needs more context
@@ -68,3 +68,4 @@ Specific approval is required before:
 | Date | Action | By |
 |---|---|---|
 | 2026-06-26 | Created routing review only; source inbox note was not modified. | Codex |
+| 2026-07-05 | Jesse approved moving the note out of inbox. Moved `00-inbox/2026-06-06-refineries-migration.md` to `06-insights/2026-06-06-refineries-migration.md` (filename unchanged, so `insights-log.md` backlinks still resolve). | Claude |

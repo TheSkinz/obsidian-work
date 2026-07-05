@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: inbox
 source_authority: inferred
 confidence: high
@@ -58,7 +58,7 @@ Specific approval is required before:
 
 - [ ] Move to AI/tooling vault
 - [ ] Move to personal vault
-- [ ] Archive inside `obsidian-usadebusk`
+- [x] Archive inside `obsidian-usadebusk`
 - [ ] Keep temporarily and add non-work metadata
 - [ ] Needs more context
 
@@ -67,3 +67,4 @@ Specific approval is required before:
 | Date | Action | By |
 |---|---|---|
 | 2026-06-26 | Created routing review only; source inbox note was not modified. | Codex |
+| 2026-07-05 | Jesse deferred to review-before-deciding. On inspection: no `/close` skill was ever built, no further signal-log entries exist, and the session's actual output (revised userPreferences) appears already reflected in current global CLAUDE.md. Archived as a dead-end closeout record rather than active workflow material. Moved to `archive/prefs-signal-log_2026-07-05_superseded-no-followthrough.md` with a note explaining why. | Claude |
