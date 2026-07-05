@@ -37,15 +37,6 @@ Vault structure is stable post-cleanup: `03-jobs/` and `05-projects/` decommissi
 
 ---
 
-## Open Architecture Decisions
-
-One decision from the LLM knowledge base planning session remains open if/when that project resumes:
-- Index layer: Bases or index.md
-
-Sync solution closed 2026-07-05: git is the sole backup in practice (OneDrive and Obsidian Sync both retired per change-log 2026-06-30), no longer an open choice. Neuron handling dropped 2026-07-05: no documented rationale existed for why it was flagged, nothing lost by removing it.
-
----
-
 ## Recently Completed
 
 | Job / Project | Completed | Notes |
