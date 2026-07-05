@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: superseded
 review_type: inbox
 source_authority: inferred
 confidence: high
@@ -69,3 +69,4 @@ Specific approval is required before:
 | Date | Action | By |
 |---|---|---|
 | 2026-06-26 | Created routing review only; source inbox note was not modified. | Codex |
+| 2026-07-05 | Closed as moot — Jesse confirmed. `00-inbox/read-only-inventory-task-do-elegant-summit.md` no longer exists in the vault (deleted at some point after this review was written, likely during the 2026-06-29 vault consolidation). Nothing left to move. | Claude |

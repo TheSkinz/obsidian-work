@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: superseded
 review_type: inbox
 source_authority: inferred
 confidence: medium
@@ -57,3 +57,4 @@ Recommended first follow-up:
 | Date | Action | By |
 |---|---|---|
 | 2026-06-26 | Created pilot inbox triage note; no source notes modified. | Codex |
+| 2026-07-05 | Closed as superseded — Jesse confirmed. Everything this note proposed for CND25004 already happened via later reviews: job-number confirmed ([[2026-06-26-cnd25004-routing-review]]), contradiction resolved ([[2026-06-26-cnd25004-job-number-contradiction]]), canonical updates approved ([[2026-06-26-cnd25004-candidate-canonical-updates]]), heater scaffold created (`02-facilities/Syncrude/Fort-McMurray-AB/7-2-F-1.md`). Nothing left to approve here. | Claude |

@@ -56,15 +56,11 @@ Specific approval is required before:
 
 ## Decision
 
-- [ ] Move to AI/tooling vault
-- [ ] Move to personal vault
-- [x] Archive inside `obsidian-usadebusk`
-- [ ] Keep temporarily and add non-work metadata
-- [ ] Needs more context
+- [x] Move to AI/tooling vault
 
 ## Apply Log
 
 | Date | Action | By |
 |---|---|---|
 | 2026-06-26 | Created routing review only; source inbox note was not modified. | Codex |
-| 2026-07-05 | Jesse deferred to review-before-deciding. On inspection: no `/close` skill was ever built, no further signal-log entries exist, and the session's actual output (revised userPreferences) appears already reflected in current global CLAUDE.md. Archived as a dead-end closeout record rather than active workflow material. Moved to `archive/prefs-signal-log_2026-07-05_superseded-no-followthrough.md` with a note explaining why. | Claude |
+| 2026-07-05 | Jesse approved moving to AI/tooling content. Vault scope has since expanded to include an LLM-knowledge layer (`07-llms/`, per CLAUDE.md), so this stayed in-vault: moved to `07-llms/claude/prefs-signal-log.md` rather than a separate vault. | Claude |
