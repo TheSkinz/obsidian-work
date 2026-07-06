@@ -19,6 +19,7 @@ desktop.ini
 .obsidian/cache/
 .obsidian/trash/
 .obsidian/sync*.json
+.obsidian/graph.json
 
 # Obsidian plugin/theme runtime files
 .obsidian/plugins/*/main.js
