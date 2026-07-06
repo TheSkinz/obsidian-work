@@ -65,7 +65,9 @@ This table is the human-facing core set. The full machine-enforced vocabulary (i
 
 Four lanes. Every agent action belongs to exactly one. Commit-subject prefixes make the lane visible in `git log`: `[auto]`, `[exp]`, `[default]`, `[gated]`. When unsure which lane applies, act one lane more conservative. This policy refines the ceremony gradient above — it does not replace the Source Hierarchy, the human-gate on operational truth, or the three loops.
 
-**Git note (overrides the branch's original draft):** No lane auto-commits or auto-pushes. Content edits follow the lanes below, but *committing and pushing* stay governed by the permission gate and Jesse's "commit/push only when asked" rule — this is deliberate, so the policy never reopens the silent-git-mutation hole the `claude-config` hygiene pass closed. An agent stages its own changes; Jesse (or an explicit instruction) triggers the commit.
+**Git note (updated 2026-07-06 — supersedes the 2026-06 "gated" git policy below):** Commit and push are now delegated to the agent's judgment for content-lane work (Lanes 1-3), following each lane's own commit-prefix and staged-file-count discipline. This intentionally reopens what the original policy called "the silent-git-mutation hole" — Jesse reviewed that tradeoff on 2026-07-06 and decided the friction of gating every commit outweighed the risk, given the hard bans below still hold. The prior rule was in `CLAUDE.md`/session instructions, not enforced by tooling, and had been causing cross-session friction (constant re-confirmation, uncommitted work piling up across sessions).
+
+**What stays hard-gated regardless of lane:** force-push, rewriting/amending existing commits, `git reset --hard`, deleting branches, and any push to a shared/customer-facing remote beyond Jesse's own `origin`. Lane 4 (domain truth, irreversibles) still requires an explicit in-session ask before the *content* change is made, independent of the commit/push question — an agent should never promote draft→verified or edit pricing/safety/SOP content unasked, regardless of how freely it can commit.
 
 ### Lane 1 — Auto-act (reversible, low-risk: just do it)
 
@@ -116,7 +118,7 @@ Four lanes. Every agent action belongs to exactly one. Commit-subject prefixes m
 | Schema changes | 3 additive / 4 breaking | Additive field = default-applied; rename/remove = ask. |
 | Folder restructuring | 3 within-domain / 4 top-level | New subfolder = default; new/renamed top-level = ask. |
 | Source / provenance handling | 1 | Sources are immutable once filed; only additions allowed. |
-| Git commit / push | gated | Never auto; own changes only, lane prefix, staged-count check; never force-push or rewrite history. |
+| Git commit / push | 1-3, per the lane of the content committed | Own changes only, lane prefix, staged-count check; never force-push or rewrite history (see Git note above, updated 2026-07-06). |
 | Archival | 1 duplicates+generated / 3 content notes | Always `git mv`, never delete. |
 | Deletion | 4, always | And even then archive is the default answer. |
 
