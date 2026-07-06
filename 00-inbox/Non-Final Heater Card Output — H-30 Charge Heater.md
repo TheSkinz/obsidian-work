@@ -1,3 +1,5 @@
+<!-- vault-loop: operational content (heater card draft, H-30 Charge Heater), deferred to vault-agent-loop-spec — capture loop does not route heater-card facts -->
+
 ## Heater Card — H-30 Charge Heater
 **State:** NON-FINAL (convection tube OD/wall not anchored; geometry-derived lengths)
 

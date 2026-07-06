@@ -54,6 +54,20 @@ Identified in a 2026-06-23 capability review and still partly open:
 
 The git-guard hook recommended in the same review has since been implemented (see Key workflow patterns above).
 
+## Dispatch vs. local sessions — collision risk
+
+Claude Dispatch runs in an isolated cloud sandbox: no `claude-config` skills checkout, and no visibility into locally-running Claude Code sessions on the same machine. A local Code session and a parallel Dispatch run can both triage the same repo state independently and push divergent, unmerged branches without either side detecting the collision. Mitigation: `git fetch` before starting local vault work if Dispatch may have touched the repo recently.
+
+Source: Claude Code session 04d37db4, 2026-07-05 (discovered via a git-fork reconciliation between a local session and a Dispatch run on `obsidian-work`).
+
+## Fable 5 skill-design guidance
+
+For Fable-5-era Claude, over-prescriptive, step-enumerated prompts measurably reduce output quality — stating the goal and constraints outperforms scripting the conversation turn-by-turn. Separately, a fresh-context verifier subagent catches problems that self-critique on the same context misses; delegate red-teaming to a separately-spawned agent rather than asking the acting agent to audit its own recommendation.
+
+Applied when building the `idea-triage` skill (2026-07-02): SKILL.md states goals/constraints rather than scripting the triage conversation, and the red-team pass against "execute" verdicts runs as a spawned subagent, never inline self-review.
+
+Source: Claude Code session 6601b270, 2026-07-02.
+
 ## Links
 
 - Config repo: https://github.com/TheSkinz/claude-config

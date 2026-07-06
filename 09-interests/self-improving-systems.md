@@ -23,6 +23,7 @@ This is explicitly a "not yet built" item — the architecture is designed, the 
 ## References evaluated
 
 - **jaredrhod/ai-memory-vault** — explored this repo as a reference for automated memory management patterns
+- **sam-illingworth/audit-setup** (GitHub Claude Code skill) — implements a four-step configuration review pattern for auditing a tool/platform setup. Surfaced while researching the recurring "cold-start tax" problem (re-deriving optimal setup/config/patterns each time a new tool or platform is adopted). Found to already cover much of that need, which is why the resulting decision favored a lightweight dossier template (`templates/_setup-scout-template.md`) over building new harness/skill infrastructure, gated by a two-pilot trial before any skill/loop conversion.
 - (Placeholder — add other repos, videos, or articles evaluated as this area develops)
 
 ## Broader pattern
