@@ -5,6 +5,8 @@
 
 ---
 
+**[2026-07-01] | Equipment — Double Pumper "sea-can" build resolved:** The "Sea-Can Double Pumper" fleet name and the `usadebusk-equipment` skill's "single 48' trailer" description are not a discrepancy, per Jesse — it is a single 48' trailer with a sea-can shipping container retrofitted onto the bed, housing the two engine/pump/valve assemblies. Both descriptions are correct; the build detail is recorded in `01-context/equipment-fleet.md` under Notes. (Salvaged from orphan branch `claude/task-planning-99chnf`, commit 5394815, during the 2026-07-05 knowledge-loop-os reconciliation — the fact was absent from current main.)
+
 **[2026-06-13] | System — Module 10 Integration Pass complete:** All pre-approved changes from the Fable planning session applied. Skills (A1–A7), Master Reference Doc (MRD-1..5), and B1 diagrams (D1) updated. Module 10 housekeeping done — Entries 1, 4, 5, 7, 8, 9, 10 retired; Entries 2, 3, 6 kept. GDoc portion (B1g–B5g + GDoc Module 10 retirements) remains Jesse's manual task. Two open flags: chloride ppm (DRAFTED-NOT-CANONICAL) and B2 control-action sequences (operator-unconfirmed). See [[B5-Module10_Integration_Complete]].
 
 **[2026-06-06] | System — Desktop\Refineries folder migrated to USADeBusk vault tree:** 73 files cleared from Desktop\Refineries — 64 moved into structured `OneDrive\USADeBusk\Facilities\` and `Company\` tree, 9 deleted. 30 new facility folders created covering 24 client sites (CITGO, BP, Valero ×3, P66, Westlake ×2, PBF, Monroe, Ergon, Hunt, BASF, Dow, Sinclair WY, NWR, Syncrude, HF Sinclair ×2, Ecopetrol, Marathon, Flint Hills). Desktop folder is now empty. See [[2026-06-06-refineries-migration]].

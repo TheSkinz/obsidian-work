@@ -1,6 +1,6 @@
 ---
 type: note
-status: inbox
+status: complete
 created: 2026-06-30
 tags: [skills, cleanup, claude-config]
 ---
@@ -15,6 +15,6 @@ Two separate issues noticed while closing out tonight's session, neither fixed y
 
 **Update 2026-07-05 (item 1):** Confirmed fixed. `grep -rl "obsidian-usadebusk"` across the live `~/.claude/skills/` directory on the local machine now returns zero hits — no skill file still references the retired path. (A parallel session run the same day couldn't verify this — its environment only had `session-start-hook` under `~/.claude/skills/`, not the full `claude-config` checkout — so it left item 1 marked open/out-of-scope. This check was run directly against the real local skills directory, so it stands.)
 
-**Decision (2026-07-05, item 2):** Keep for now. Note before dropping this: three of its functions already have vault-native equivalents built into the three-loop system — `save` → Capture Loop harvest filter, `wiki-ingest`'s manifest → Capture Loop's `.capture-state.json` delta tracking, `wiki-lint`'s audit → Agent Loop's Staleness Check Categories (see `04-knowledge/vault-capture-loop-spec.md`, `vault-agent-loop-spec.md`). `wiki-query`, `wiki-fold`, and `canvas` were never evaluated against vault-native equivalents. The naming-collision risk that prompted this note is not resolved by keeping it — still worth a beat of caution before typing `/wiki-*` commands in a vault-ingestion session.
+**Decision (2026-07-05, item 2):** ~~Keep for now.~~ **Superseded same day — dropped.** The initial call was "keep for now," but the parallel `claude-config` hygiene arc then **disabled `claude-obsidian` and removed its marketplace** (commit `e343e5f`, 2026-07-05), eliminating the naming-collision risk this note flagged. Its vault-as-context role is to be replaced later by Obsidian's Local REST API MCP server (not yet configured). For the record, three of its functions had vault-native equivalents anyway — `save` → Capture Loop harvest filter, `wiki-ingest`'s manifest → Capture Loop's `.capture-state.json` delta tracking, `wiki-lint`'s audit → Agent Loop's Staleness Check Categories.
 
-**Next step:** both items are closed for now — item 1 verified fixed, item 2 decided (keep). Nothing pending here.
+**Next step:** both items closed. Item 1 verified fixed; item 2 resolved by dropping the plugin (not keeping it). Nothing pending here. Note: the earlier vault commit `17d8798` ("keep claude-obsidian… for now") is now superseded by `e343e5f` in `claude-config`.

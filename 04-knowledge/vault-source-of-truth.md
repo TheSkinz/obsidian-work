@@ -11,13 +11,16 @@ tags: [knowledge-system, vault, source-of-truth, guardrail]
 
 # Vault Source Of Truth
 
-The canonical USADeBusk Obsidian vault is:
+The canonical vault is identified by a **marker**, not a hardcoded path: it is any checkout whose repository root contains this repo's `CLAUDE.md`. Before writing, confirm the target lives inside such a checkout:
 
-```text
-C:\Users\Jwuts\obsidian-work
+```sh
+git rev-parse --show-toplevel   # -> the checkout root
+# the write target must be under that root, and that root must contain CLAUDE.md
 ```
 
-Any Codex, Claude, plugin, script, or automation workflow that edits the USADeBusk vault must verify the target path starts with that exact path before writing.
+This replaces the former hardcoded `C:\Users\Jwuts\obsidian-work` check. The marker holds identically on the laptop, in a cloud sandbox, in a worktree, or on any future machine — a legitimate remote session is no longer a technical violation, so the guardrail stays meaningful instead of being routinely ignored. (`C:\Users\Jwuts\obsidian-work` remains the typical local location, but it is a fact about one machine, not the definition of the vault.)
+
+Any Claude, plugin, script, or automation workflow that edits the vault must pass this marker check before writing.
 
 ## Edit Guardrail
 
@@ -25,7 +28,7 @@ Before writing vault files, confirm:
 
 | Check | Required Result |
 |---|---|
-| Target path starts with canonical vault path | Yes |
+| Target is inside a checkout whose root contains this repo's `CLAUDE.md` (`git rev-parse --show-toplevel`) | Yes |
 | File is inside the active vault, not a cache/project metadata folder | Yes |
 | Change is small and reviewable | Yes |
 | Source notes are preserved unless explicitly approved | Yes |

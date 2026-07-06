@@ -47,43 +47,7 @@ These rules govern all output. They do not require re-stating in conversation.
 
 ## Document Output: SOP Formatting Standard
 
-SOPs are the primary document type. The following describes actual production SOPs — not aspirational structure.
-
-**Title block (every SOP)**
-- Gold label: "MECHANICAL DECOKING OF" (or job-specific variant)
-- Large bold heater name/title
-- Italic subtitle: "Operational SOP | USADeBusk | [Facility]"
-- 2×4 header grid table: Project / Heater / Document No. / Revision // Contractor / Document Type / Prepared By / Date
-- Header table: dark charcoal fill on label rows, white text, bold
-
-**Page layout**
-- Font: Helvetica throughout (Arial acceptable as fallback for DOCX generation)
-- Running header: document number right-aligned, subtitle below (lighter weight)
-- Footer: "DeBusk Services Group | Deer Park, TX" left, page number right
-- Color scheme: gold (#FCC30A) for section divider rules and subsection headers; charcoal/black for body text and primary table headers
-- US Letter, 1" margins
-
-**Section structure — derived from completed SOPs**
-Section numbering and order adapt to job complexity. Baseline structure:
-1. Purpose and Scope (includes Heater & Coil Specifications table)
-2. Safety and PPE Requirements (includes configuration subsections: launcher/receiver, water supply, TriMax allocation when running a second TriMax)
-3. System Configuration (equipment list table)
-4. Operating Parameters (table: tube IDs, footage, cleaning medium, pressure range, max pig OD, completion criteria)
-5. Pig Progression Sequence (table: stage / pig OD / type / purpose)
-6. Procedure (phase-based subsections: Rig-In, Mechanical Decoking, Smart Pig if applicable)
-7. Flow Test Procedure (BEFORE baseline + AFTER post-cleaning; GPM controlled constant)
-8. Completion and Demobilization (dewater, depressurize, rig-out, waste management)
-9. Definitions (two-column table)
-
-Additions for ExxonMobil / major operator jobs: Phase I flush section, Phase III Smart Pig section, written approval gate before rig-out.
-
-**Tables**
-- Header row: dark charcoal fill, white text, bold
-- Body rows: white background
-- Callout boxes for critical warnings (border accent with ⚠ symbol)
-
-**What this replaces**
-This vault definition governs actual SOP production — it supersedes the earlier aspirational SOP structure from the now-retired Codex Projects system prompts. The system prompt governs behavior and role boundaries; this file governs output format.
+The SOP formatting standard has one canonical home: **`04-knowledge/sops/sop-formatting-standard.md`**. It governs SOP layout, title block, page layout, section structure, and tables. Do not maintain a second copy here — this file previously embedded a partial duplicate, which is exactly the kind of drift the standard exists to prevent. Read the canonical file when producing an SOP; the `usadebusk-sop` skill governs SOP content and defers formatting to that same file.
 
 ---
 

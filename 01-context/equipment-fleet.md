@@ -27,3 +27,5 @@ Deer Park, TX — all US equipment stages here unless assigned to a job.
 ## Notes
 
 Mob distance for any job is measured from Deer Park, TX unless a unit is already staged elsewhere.
+
+**Sea-Can Double Pumper build (Double 1, Double 2).** The fleet name "Sea-Can Double Pumper" and the `usadebusk-equipment` skill's "single 48' trailer" describe the same unit, not a discrepancy: it is a single 48' trailer with a sea-can shipping container retrofitted onto the bed, and the two engine/pump/valve assemblies are housed inside that container. Two independent pump assemblies (left = pump 1, right = pump 2; no center), cleaning two circuits simultaneously. The distinguishing invariant vs. the TriMax is assembly count (two vs. three) and the absence of a center assembly. Detail lives in the `usadebusk-equipment` skill (resolved per Jesse, 2026-07-01).

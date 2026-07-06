@@ -29,4 +29,4 @@ Task Durations table (actuals only) — full spec lives in the exemplar and the 
 
 ## Output
 
-Formatting and session-mode rules live in `01-context/output-preferences.md`. SOP formatting and other document standards live in the relevant skill — not here.
+Formatting and session-mode rules live in `01-context/output-preferences.md`. The **SOP formatting standard** has one canonical home: `04-knowledge/sops/sop-formatting-standard.md` — not here, not in a skill, not in `AGENTS.md`. The `usadebusk-sop` skill governs SOP *content* and explicitly defers formatting to that file; anything else that mentions SOP formatting points at it.

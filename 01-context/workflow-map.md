@@ -19,10 +19,7 @@ Vault structure is stable post-cleanup: `03-jobs/` and `05-projects/` decommissi
 | Project | Status | Resume Trigger |
 |---|---|---|
 | LLM Knowledge Base / Wiki | Paused — architecture designed | Explicit decision to resume |
-| Git / Obsidian Version Control | Pending — GitHub setup complete on personal laptop | Business laptop Day 1 setup |
-| iPhone Shortcut → 00-inbox | Deferred | Vault live and stable |
 | SOP → Diagram Visualization Pipeline | Parked — separate project | Separate session |
-| Gemini CLI Adapter Layer | Deferred | Same session as vault stabilization |
 
 ---
 

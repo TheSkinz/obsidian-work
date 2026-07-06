@@ -3,7 +3,7 @@ type: review
 status: superseded
 review_type: inbox
 source_authority: inferred
-confidence: high
+confidence: medium
 created: 2026-06-26
 review_after: 2026-07-03
 related:
