@@ -4,7 +4,7 @@ status: active
 source_authority: primary
 confidence: high
 created: 2026-06-26
-last_reviewed: 2026-07-05
+last_reviewed: 2026-07-06
 review_after: 2026-10-05
 tags: [knowledge-system, governance]
 ---
@@ -15,7 +15,7 @@ This note governs the self-improving knowledge workflow for the USADeBusk vault.
 
 ## Operating Principle
 
-The vault improves through reviewable proposals, not silent rewrites. Agents may inspect, summarize, compare, and propose. Canonical notes change only after approval when the change affects customer-facing content, pricing, safety, field execution, SOPs, heater-card facts, or source hierarchy.
+The vault improves through reviewable proposals, not silent rewrites. Agents may inspect, summarize, compare, and propose. Canonical notes change only after approval when the change affects customer-facing content, pricing, safety, field execution, SOPs, or source hierarchy. **Heater-card/facility facts are excluded as of 2026-07-06** — see the Delegated Autonomy Policy's facility-data note.
 
 ## Source Hierarchy
 
@@ -57,9 +57,9 @@ This table is the human-facing core set. The full machine-enforced vocabulary (i
 | Create review notes | Yes | Use templates and cite source notes. |
 | Suggest tags, links, and properties | Yes | Put suggestions in a review note first when uncertain. |
 | Update inbox/source notes | Yes, with care | Preserve raw evidence and original wording. |
-| Update canonical knowledge | Approval required | Applies to SOPs, heater cards, pricing, proposals, safety, and field execution. |
+| Update canonical knowledge | Approval required | Applies to SOPs, pricing, proposals, safety, and field execution. **Heater-card/facility facts are excluded as of 2026-07-06** — see the Delegated Autonomy Policy's facility-data note below. |
 | Delete notes | No | Archive or mark deprecated unless Jesse explicitly approves deletion. |
-| Merge conflicting claims | No | Create a contradiction note instead. |
+| Merge conflicting claims | No, except heater-card/facility facts (see facility-data note below) | Create a contradiction note instead. |
 
 ## Delegated Autonomy Policy
 
@@ -69,11 +69,13 @@ Four lanes. Every agent action belongs to exactly one. Commit-subject prefixes m
 
 **What stays hard-gated regardless of lane:** force-push, rewriting/amending existing commits, `git reset --hard`, deleting branches, and any push to a shared/customer-facing remote beyond Jesse's own `origin`. Lane 4 (domain truth, irreversibles) still requires an explicit in-session ask before the *content* change is made, independent of the commit/push question — an agent should never promote draft→verified or edit pricing/safety/SOP content unasked, regardless of how freely it can commit.
 
+**Facility-data note (added 2026-07-06):** `02-facilities/` heater cards were designed for a compounding-repeat-heater workflow Jesse doesn't actually have — most bids are first-time heaters with no prior-job library to accumulate onto, and nothing downstream (no skill, no live Claude bid session) currently reads a populated card. Jesse's real-world practice is to infer missing data and use personal judgment rather than chase it down, and confirmed that never hurts his workflow. Heater-card/facility content (Tube Geometry, Connection Info, Task Durations, Job History, facility rate tables — the full card, not just drafting) is now **Lane 1 in full**, including correcting existing facts and resolving discrepancies between sources: capture what's reasonably known using the Source Hierarchy for judgment calls, note a real gap in one line, and move on. No contradiction note, no confidence-tier/verified-gate ceremony, no escalation to Lane 4, unless the card is actively feeding a specific pending bid or customer-facing document *right now* — that's the one case worth double-checking before something wrong goes out the door. The intended future use is repeat-project reference and periodic mining for `usadebusk-estimating`/`usadebusk-core` skill improvements — both are occasional-use, not something to proactively chase precision for.
+
 ### Lane 1 — Auto-act (reversible, low-risk: just do it)
 
-**May:** file any inbox item to its home, including operational documents → **draft** heater cards (`status: draft`, `verified: never`, source linked) — drafting is reversible, only *verification* is truth; create/append/refactor notes in `07-llms/`, `08-systems/`, `09-interests/`; fix dead wikilinks with an unambiguous target; normalize frontmatter to schema; file source documents to their home and link them (the `90-sources/` provenance layer is planned — Session B); reorganize a note's internal layout to its schema; `git mv` demonstrably superseded duplicates and generated files to `archive/`.
+**May:** file any inbox item to its home, including operational documents → **draft** heater cards (`status: draft`, `verified: never`, source linked) — drafting is reversible, only *verification* is truth; create/append/refactor notes in `07-llms/`, `08-systems/`, `09-interests/`; fix dead wikilinks with an unambiguous target; normalize frontmatter to schema; file source documents to their home and link them (the `90-sources/` provenance layer is planned — Session B); reorganize a note's internal layout to its schema; `git mv` demonstrably superseded duplicates and generated files to `archive/`; **create, correct, or resolve discrepancies in any `02-facilities/` heater-card or facility-file content** (see facility-data note above — this is the one Lane-1 carve-out that includes correction/promotion, not just drafting).
 
-**Must not:** change the *meaning* of any operational fact; touch pricing, rates, safety, or SOP content values; promote draft → verified; delete anything; rewrite Jesse's own words in his notes; sweep unrelated files into commits.
+**Must not:** change the *meaning* of any operational fact **outside `02-facilities/`**; touch pricing, rates, safety, or SOP content values **outside `02-facilities/`**; promote draft → verified **outside `02-facilities/`**; delete anything; rewrite Jesse's own words in his notes; sweep unrelated files into commits.
 
 **Logging:** `[auto]` commit prefix; the diff is the log. No change-log entry.
 **Validation:** `tools/vault_lint.py` passes after the change; staged-file count verified before any commit.
@@ -112,7 +114,7 @@ Four lanes. Every agent action belongs to exactly one. Commit-subject prefixes m
 | Area | Lane | Notes |
 |---|---|---|
 | Inbox filing (all domains) | 1 | Operational docs file as **drafts**, not deferred. |
-| Heater-card operational facts | 1 to draft / **4 to verify** | Append draft facts with source links freely; promotion and contradiction resolution are Jesse's, at bid time. |
+| Heater-card / facility operational facts | 1, in full | Draft, correct, and resolve discrepancies freely — no verify-gate, no contradiction note (see facility-data note above). Escalate only if a card is actively feeding a pending bid/customer document right now. |
 | Personal / LLM / systems knowledge (07, 08, 09) | 1 | Zero ceremony. |
 | Codebase (`tools/`) | 2 | Design by experiment; new lint rules via Lane 3; hard-constraint enforcement via Lane 4. |
 | Schema changes | 3 additive / 4 breaking | Additive field = default-applied; rename/remove = ask. |
