@@ -7,8 +7,8 @@
 | Open decision rows | 0 | <= 10 | ok |
 | Lint errors | 0 | 0 | ok |
 | Lint warnings | 7 | (backlog) | ok |
-| Inbox items | 1 | - | ok |
-| Inbox median age | 8 d | < 14 d | ok |
+| Inbox items | 2 | - | ok |
+| Inbox median age | 4 d | < 14 d | ok |
 | Inbox oldest item | 8 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
@@ -20,7 +20,7 @@ Each scheduled loop's closing commit is its heartbeat. A scheduled loop goes **F
 | Loop | Last heartbeat | Cadence | Status |
 |---|---|---|---|
 | Capture loop | awaiting 1st run | 7 d | pending |
-| Idea-research loop | 2026-07-01 (4 d ago) | on-demand | manual |
+| Idea-research loop | 2026-07-05 (0 d ago) | on-demand | manual |
 
 ## Notes
 

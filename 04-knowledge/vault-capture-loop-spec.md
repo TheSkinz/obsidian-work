@@ -52,7 +52,7 @@ Low. The content-layer blast radius is small and every write is versioned in git
 2. **Ingest inbox** — for each `.md` file in `00-inbox/`, apply the three-outcome routing model. This is the primary job and runs first.
 3. **Harvest transcripts** — scan transcripts in scope (see Transcript Scope) modified since `last_run`, applying the self-exclusion rule and the Save-vs-Skip filter. For each durable finding: rewrite declarative present-tense, then route to an existing note (append) or create a new one.
 4. Update `00-inbox/.capture-state.json` (see Delta Tracking).
-5. Append a dated run summary to `change-log.md`.
+5. Run `python tools/vault_lint.py` (use `py -3` if `python` is not on PATH); it must report **0 errors** before committing. Fix any error the run introduced — warnings are acceptable. Do **not** append a run summary to `change-log.md`: per the 2026-07-05 narrowing rule, `change-log.md` is decisions-only and the run record lives in the commit message (the `vault-capture:` heartbeat) and git log.
 6. **Commit and push** (see Durability).
 
 ## Transcript Scope
@@ -126,7 +126,7 @@ OneDrive sync has been removed; git is the only backup and the single source of 
 
 - Commit message: `vault-capture: <YYYY-MM-DD> run — N ingested, M harvested`. **This `vault-capture:` subject prefix is the loop's heartbeat** — `tools/vault_health.py` reads the most recent one and flags the loop overdue in `50-dashboards/health.md` if it is older than 14 days (2x the weekly cadence). Keep the prefix exact.
 - Push to `origin`. The git-guard hook does not block `obsidian-work` paths (it gates only `USADEBUSK\` paths), so the push proceeds without confirmation.
-- If the working tree has unrelated uncommitted changes, commit only the loop's own touched paths (`00-inbox/`, `07-llms/`, `08-systems/`, `09-interests/`, `change-log.md`); do not sweep unrelated edits into the commit.
+- If the working tree has unrelated uncommitted changes, commit only the loop's own touched paths (`00-inbox/`, `07-llms/`, `08-systems/`, `09-interests/`); do not sweep unrelated edits into the commit.
 
 ## Allowed Without Additional Approval
 
@@ -136,8 +136,8 @@ OneDrive sync has been removed; git is the only backup and the single source of 
 | Append to / create notes in `00-inbox/`, `07-llms/`, `08-systems/`, `09-interests/` | Content layer only. Must read cold; must cite source. |
 | Add the no-home comment to an inbox file | Comment only; no content change. |
 | Update `00-inbox/.capture-state.json` | State tracking only; merge, never blank-overwrite. |
-| Append to `change-log.md` | Dated run summary. Append-only; never edit the operational loop's entries. |
-| Commit and push the loop's own touched paths | Durability close, per Durability. |
+| Run `tools/vault_lint.py` before committing | Pre-commit gate; must be 0 errors. Read-only check. |
+| Commit and push the loop's own touched paths | Durability close, per Durability. The commit message is the run record — no `change-log.md` entry (decisions-only since 2026-07-05). |
 
 ## Blocked Without Specific Approval
 

@@ -56,8 +56,8 @@ Low, but not silent. Every run either produces one evidence-gathering artifact (
 4. Research: web search for prior art, existing tools, or power-user solutions to the problem the idea describes. Also check what's already built in this vault (`04-knowledge/`, `06-insights/`) and in the deployed skills (`~/.claude/skills/`) that might already cover the idea, partially or fully — many ideas turn out to be already-solved or already-partially-built, and that's a valid, valuable finding.
 5. Write a review note in `06-insights/` (filename pattern `YYYY-MM-DD-idea-research-<slug>.md`) using the standard template: Trigger (why this seed was picked), Evidence (sources found, with links), Interpretation (sound / trap / premature / already covered, and why), Recommended Action (build now / bounded one-shot investigation / park / drop), Decision (empty checkboxes for Jesse), Apply Log (empty, filled in after Jesse acts).
 6. Update the idea-seed: `status: researched`, add `related: [[<new review note>]]`.
-7. Append one dated run summary to `change-log.md` (append-only; trigger label "Vault Idea Research Loop").
-8. Commit and push: `git add` only this run's touched paths (the review note, the idea-seed file, `change-log.md`), commit message `vault-idea-research: <YYYY-MM-DD> — researched <slug>`, push to `origin`. **This `vault-idea-research:` subject prefix is the loop's heartbeat** — `tools/vault_health.py` flags the loop overdue in `50-dashboards/health.md` if the most recent one is older than 2 days (2x the nightly cadence). Keep the prefix exact.
+7. Run `python tools/vault_lint.py` (use `py -3` if `python` is not on PATH); it must report **0 errors** before committing. Fix any error the run introduced — warnings are acceptable. Do **not** append a run summary to `change-log.md`: per the 2026-07-05 narrowing rule, `change-log.md` is decisions-only and the run record lives in the commit message and git log.
+8. Commit and push: `git add` only this run's touched paths (the review note and the idea-seed file), commit message `vault-idea-research: <YYYY-MM-DD> — researched <slug>`, push to `origin`. **This `vault-idea-research:` subject prefix is the loop's heartbeat** — `tools/vault_health.py` flags the loop overdue in `50-dashboards/health.md` if the most recent one is older than 2 days (2x the nightly cadence). Keep the prefix exact.
 
 ## Allowed Without Additional Approval
 
@@ -66,8 +66,8 @@ Low, but not silent. Every run either produces one evidence-gathering artifact (
 | Read any vault note, skill file, or the web | Read-only. |
 | Create one review note per run in `06-insights/` | Must use the standard template; must cite sources. |
 | Update the processed idea-seed's `status` and `related:` frontmatter | Frontmatter only; never rewrite its body. |
-| Append to `change-log.md` | Dated run summary, append-only. |
-| Commit and push this run's touched paths | Per Loop Steps step 8. |
+| Run `tools/vault_lint.py` before committing | Pre-commit gate; must be 0 errors. Read-only check. |
+| Commit and push this run's touched paths | Per Loop Steps step 8. The commit message is the run record — no `change-log.md` entry (decisions-only since 2026-07-05). |
 
 ## Blocked Without Specific Approval
 
