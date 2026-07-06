@@ -11,16 +11,16 @@
 | Inbox median age | 8 d | < 14 d | ok |
 | Inbox oldest item | 8 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
-| Loop heartbeats overdue | yes | no | FAIL |
+| Loop heartbeats overdue | no | no | ok |
 
 ## Loop heartbeats
 
-Each scheduled loop's closing commit is its heartbeat. Overdue = last seen older than 2x cadence, or never fired. The review/agent loop is on-demand by design and not tracked.
+Each scheduled loop's closing commit is its heartbeat. A scheduled loop goes **FAIL** when its last heartbeat is older than 2x cadence; **pending** = scheduled but not yet run; **manual** = on-demand, not scheduled. The review/agent loop is on-demand by design and not listed.
 
 | Loop | Last heartbeat | Cadence | Status |
 |---|---|---|---|
-| Capture loop | never fired | 7 d | FAIL |
-| Idea-research loop | 2026-07-01 (4 d ago) | 1 d | FAIL |
+| Capture loop | awaiting 1st run | 7 d | pending |
+| Idea-research loop | 2026-07-01 (4 d ago) | on-demand | manual |
 
 ## Notes
 

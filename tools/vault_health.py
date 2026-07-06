@@ -42,13 +42,15 @@ HEALTH_REL = "50-dashboards/health.md"
 QUEUE_ROW_RE = re.compile(r"^\|\s*(DQ-\d+)\s*\|")
 INBOX_SKIP_SUBDIRS = ("preserved-dsps",)
 
-# Loop heartbeats: (label, commit-subject prefix, cadence in days). Each loop's
-# closing commit is its heartbeat; a loop is overdue when its last such commit is
-# older than 2x its cadence (or has never been seen). The review/agent loop is
-# deliberately on-demand (no schedule), so it is not tracked here.
+# Loop heartbeats: (label, commit-subject prefix, cadence_days, scheduled).
+# Each loop's closing commit is its heartbeat. A *scheduled* loop is flagged
+# overdue (red) when its last heartbeat is older than 2x its cadence, or never
+# fired. A non-scheduled loop is run on-demand — it shows its last run for
+# information only and never goes red. The review/agent loop is on-demand by
+# design and not listed at all.
 LOOP_HEARTBEATS = [
-    ("Capture loop", "vault-capture:", 7),
-    ("Idea-research loop", "vault-idea-research:", 1),
+    ("Capture loop", "vault-capture:", 7, True),
+    ("Idea-research loop", "vault-idea-research:", 1, False),  # manual until the queue proves it drains
 ]
 
 
@@ -126,16 +128,20 @@ def loop_heartbeats(root: Path):
     today = date.today()
     rows = []
     any_overdue = False
-    for label, prefix, cadence in LOOP_HEARTBEATS:
+    for label, prefix, cadence, scheduled in LOOP_HEARTBEATS:
         d = git_last_grep_date(root, prefix)
+        last = "never fired" if d is None else f"{d.isoformat()} ({(today - d).days} d ago)"
+        if not scheduled:
+            # on-demand: informational only, never red
+            rows.append((label, last, "on-demand", "manual"))
+            continue
         if d is None:
-            rows.append((label, "never fired", f"{cadence} d", "FAIL"))
-            any_overdue = True
+            # scheduled but no heartbeat yet: "overdue" needs a prior beat to
+            # measure against, so a never-fired scheduled loop is pending, not dead.
+            rows.append((label, "awaiting 1st run", f"{cadence} d", "pending"))
         else:
-            gap = (today - d).days
-            overdue = gap > 2 * cadence
-            rows.append((label, f"{d.isoformat()} ({gap} d ago)", f"{cadence} d",
-                         "FAIL" if overdue else "ok"))
+            overdue = (today - d).days > 2 * cadence
+            rows.append((label, last, f"{cadence} d", "FAIL" if overdue else "ok"))
             any_overdue = any_overdue or overdue
     return rows, any_overdue
 
@@ -176,8 +182,10 @@ def build(root: Path) -> str:
         "",
         "## Loop heartbeats",
         "",
-        "Each scheduled loop's closing commit is its heartbeat. Overdue = last seen older "
-        "than 2x cadence, or never fired. The review/agent loop is on-demand by design and not tracked.",
+        "Each scheduled loop's closing commit is its heartbeat. A scheduled loop goes **FAIL** "
+        "when its last heartbeat is older than 2x cadence; **pending** = scheduled but not yet "
+        "run; **manual** = on-demand, not scheduled. The review/agent loop is on-demand by "
+        "design and not listed.",
         "",
         "| Loop | Last heartbeat | Cadence | Status |",
         "|---|---|---|---|",

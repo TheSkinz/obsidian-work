@@ -25,9 +25,11 @@ Vault Idea Research Loop
 
 ## Trigger
 
-Scheduled nightly at 2:00 AM local via the `mcp__scheduled-tasks` mechanism (task id `vault-idea-research-loop`). Runs while the Claude Code app is active; if the app is closed at trigger time, it runs on next launch — same degraded-but-not-lost behavior as [[vault-capture-loop-spec]].
+**On-demand (run manually).** This loop is *not* scheduled. It is the vault's one proposal-generator — every run writes a review note with an open decision checklist — so it spends Jesse's decision attention, the exact scarce resource the decision queue exists to protect. It runs on a schedule only once the queue has a sustained track record of staying near-empty; until then it runs when Jesse asks, so nightly output can't rebuild a backlog faster than he clears it. The runbook prompt lives at `~/.claude/scheduled-tasks/vault-idea-research-loop/SKILL.md`. When it is eventually scheduled, the intended cadence is nightly (~2 AM local) via `mcp__scheduled-tasks`, and its `scheduled` flag in `tools/vault_health.py` flips to `True` so the heartbeat starts tracking it.
 
-This loop only needs git-tracked vault content and web search, so unlike the Capture Loop it has no dependency on local session transcripts. It could in principle run as a fully desktop-independent cloud routine, but that mechanism was checked during this loop's design and found unavailable in this environment (the relevant remote-environment service returned 404 on every call). Local scheduling is deliberately the fallback, not a compromise — revisit if cloud routines become available.
+**History:** it was briefly scheduled nightly (deployed 2026-06-30, ran 07-01 and 07-02), then de-registered as collateral of the 2026-07-02 kernel-consolidation plan — a plan reversed on 2026-07-05 in favor of keeping the loops + the decision queue. Re-scheduling it is now a deliberate future step gated on the queue proving it drains, not an automatic restore.
+
+This loop only needs git-tracked vault content and web search, so unlike the Capture Loop it has no dependency on local session transcripts. It could in principle run as a fully desktop-independent cloud routine, but that mechanism was checked during this loop's design and found unavailable in this environment (the relevant remote-environment service returned 404 on every call).
 
 ## Scope
 
