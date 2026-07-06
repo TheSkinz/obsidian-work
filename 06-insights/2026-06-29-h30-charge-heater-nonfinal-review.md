@@ -8,7 +8,7 @@ confidence: medium
 review_after: 2026-07-06
 related:
   - [[Non-Final Heater Card Output — H-30 Charge Heater]]
-  - [[HF-Sinclair-Artesia-NM]]
+  - [[_facility|HF Sinclair Navajo Refinery facility]]
 tags: [vault-review, heater-card, HF-Sinclair, Navajo-Refinery, H-30]
 ---
 

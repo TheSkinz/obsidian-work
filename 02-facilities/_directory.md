@@ -7,7 +7,7 @@ tags: [facilities, directory]
 
 # Facilities Directory
 
-**Create-on-first-fact rule.** A facility gets files only when there is real content — rates, contacts, heater cards, or job actuals. Create fresh from `templates/_facility-template.md` when the first fact arrives; there's no scaffold-recovery step to think about anymore. **2026-07-06:** dropped the pre-scaffolded "known sites, no data yet" list below (and the empty directories it produced) — that was a leftover from an earlier vault concept and served no purpose once the facility-data lane moved to low-ceremony, capture-what-you-have (see `04-knowledge/knowledge-system-governance.md`).
+**Create-on-first-fact rule.** A facility gets files only when there is real content — rates, contacts, heater cards, or job actuals. Create fresh from `04-knowledge/_facility-template.md` when the first fact arrives; there's no scaffold-recovery step to think about anymore. (An older, incompatible duplicate at `templates/_facility-template.md` was removed 2026-07-06 — this is now the only facility template.) **2026-07-06:** dropped the pre-scaffolded "known sites, no data yet" list below (and the empty directories it produced) — that was a leftover from an earlier vault concept and served no purpose once the facility-data lane moved to low-ceremony, capture-what-you-have (see `04-knowledge/knowledge-system-governance.md`).
 
 ## Facilities
 

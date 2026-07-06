@@ -8,7 +8,7 @@ confidence: high
 review_after: 2026-07-05
 related:
   - [[2026-07-05-source-h-2501-heater-card-output|Final Heater Card Output — HF Sinclair Navajo Refinery - H-2501]]
-  - [[HF-Sinclair-Artesia-NM]]
+  - [[_facility|HF Sinclair Navajo Refinery facility]]
 tags: [vault-review, heater-card, HF-Sinclair, Navajo-Refinery, H-2501]
 ---
 
@@ -25,7 +25,7 @@ Daily Vault Review Loop found the next unreviewed heater-card inbox item at `00-
 | Source note identifies HF Sinclair Navajo Refinery / H-2501. | `00-inbox/Final Heater Card Output — HF Sinclair Navajo Refinery - H-2501.md`, heading and Job / Heater Identification table. | Secondary extracted heater-card output. | Search found no existing `H-2501` heater note outside the inbox during this loop. |
 | Source note is marked `OUTPUT STATUS: FINAL`. | Same source note, status block. | Secondary extracted heater-card output. | The note states no unresolved variables affect calculations. |
 | Facility, heater, service, convection/radiant lengths, pass count, tubes per pass, and coil lengths per pass are described as anchor values from source Excel. | Same source note, status block and Source Inventory. | Secondary extracted heater-card output from stated Excel source-of-record. | Higher confidence than H-2421 because the note does not preserve routing uncertainty. |
-| Likely destination exists at HF Sinclair Artesia facility area. | `02-facilities/HF-Sinclair/Artesia-NM/HF-Sinclair-Artesia-NM.md`; existing `02-facilities/HF-Sinclair/Artesia-NM/H-2421.md`. | Existing vault structure. | Destination should be approved before creating `H-2501.md`. |
+| Likely destination exists at HF Sinclair Artesia facility area. | `02-facilities/HF-Sinclair/Artesia-NM/_facility.md` (created 2026-07-06; this row originally pointed at an empty pre-scaffold, since removed); existing `02-facilities/HF-Sinclair/Artesia-NM/H-2421.md`. | Existing vault structure. | Destination should be approved before creating `H-2501.md`. |
 
 ## Proposed Action
 
