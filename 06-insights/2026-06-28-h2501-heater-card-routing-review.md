@@ -7,7 +7,7 @@ source_authority: secondary
 confidence: high
 review_after: 2026-07-05
 related:
-  - [[Final Heater Card Output — HF Sinclair Navajo Refinery - H-2501]]
+  - [[2026-07-05-source-h-2501-heater-card-output|Final Heater Card Output — HF Sinclair Navajo Refinery - H-2501]]
   - [[HF-Sinclair-Artesia-NM]]
 tags: [vault-review, heater-card, HF-Sinclair, Navajo-Refinery, H-2501]
 ---

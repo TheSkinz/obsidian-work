@@ -6,7 +6,7 @@ created: 2026-06-27
 source_authority: secondary
 confidence: medium
 related:
-  - [[Final Heater Card Output — H-2421]]
+  - [[2026-07-05-source-h-2421-heater-card-output|Final Heater Card Output — H-2421]]
 tags: [vault-review, heater-card, HF-Sinclair, Navajo-Refinery, H-2421]
 ---
 

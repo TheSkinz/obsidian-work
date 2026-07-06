@@ -12,6 +12,8 @@ doc_type: proposal
 routing: resolved
 routing_note: DSP#26030 and P66 Ponca City in filename; Ponca-City-OK folder confirmed in vault; no USA# — placed at facility level as proposal document
 tags: [proposal, decoke, coker, two-pumper]
+source: DSP#26030_P66 Ponca City_H-28 & H-29_Two Pumper Option_May 4 2026.pdf
+verified: never
 ---
 
 # DSP#26030 — P66 Ponca City H-28 & H-29 Coker Decoke Proposal

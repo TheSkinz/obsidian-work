@@ -2,6 +2,8 @@
 type: reference
 tags: [pricing, rates]
 last-updated: 
+source: USADeBusk internal rate schedule
+verified: never
 ---
 
 # Standard Rate Reference

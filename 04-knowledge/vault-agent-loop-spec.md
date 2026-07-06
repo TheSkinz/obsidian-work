@@ -149,7 +149,7 @@ Mined from the claude-obsidian wiki-lint audit, filtered to operational content.
 
 | Category | What to flag |
 |---|---|
-| Dead links | Broken `[[wikilinks]]` or relative paths in `02-facilities/` / `04-knowledge/` notes pointing to renamed or deleted files. |
+| Dead links | Broken wiki-links or relative paths in `02-facilities/` / `04-knowledge/` notes pointing to renamed or deleted files. |
 | Frontmatter gaps | Operational notes missing required fields per `_canonical-heater-card.md` or governance frontmatter (type, status, source_authority, confidence). |
 | Stale reviews | `06-insights/` review notes past `review_after`, or with an unresolved Decision checklist older than 14 days. |
 | Stale claims | An operational claim contradicted by a newer source note. Create a contradiction note; do not merge. |
