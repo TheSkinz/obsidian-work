@@ -42,6 +42,15 @@ HEALTH_REL = "50-dashboards/health.md"
 QUEUE_ROW_RE = re.compile(r"^\|\s*(DQ-\d+)\s*\|")
 INBOX_SKIP_SUBDIRS = ("preserved-dsps",)
 
+# Loop heartbeats: (label, commit-subject prefix, cadence in days). Each loop's
+# closing commit is its heartbeat; a loop is overdue when its last such commit is
+# older than 2x its cadence (or has never been seen). The review/agent loop is
+# deliberately on-demand (no schedule), so it is not tracked here.
+LOOP_HEARTBEATS = [
+    ("Capture loop", "vault-capture:", 7),
+    ("Idea-research loop", "vault-idea-research:", 1),
+]
+
 
 def git_last_commit_date(root: Path, rel: str) -> date | None:
     try:
@@ -100,6 +109,37 @@ def days_since_last_commit(root: Path) -> int | None:
     return (date.today() - d).days if d else None
 
 
+def git_last_grep_date(root: Path, prefix: str) -> date | None:
+    """Date of the most recent commit whose subject starts with `prefix`."""
+    try:
+        out = subprocess.run(
+            ["git", "log", "-1", "--format=%cs", f"--grep=^{re.escape(prefix)}"],
+            cwd=root, capture_output=True, text=True, timeout=30,
+        ).stdout.strip()
+        return datetime.strptime(out, "%Y-%m-%d").date() if out else None
+    except Exception:
+        return None
+
+
+def loop_heartbeats(root: Path):
+    """Return (rows, any_overdue). Each row: (label, last_seen, cadence, status)."""
+    today = date.today()
+    rows = []
+    any_overdue = False
+    for label, prefix, cadence in LOOP_HEARTBEATS:
+        d = git_last_grep_date(root, prefix)
+        if d is None:
+            rows.append((label, "never fired", f"{cadence} d", "FAIL"))
+            any_overdue = True
+        else:
+            gap = (today - d).days
+            overdue = gap > 2 * cadence
+            rows.append((label, f"{d.isoformat()} ({gap} d ago)", f"{cadence} d",
+                         "FAIL" if overdue else "ok"))
+            any_overdue = any_overdue or overdue
+    return rows, any_overdue
+
+
 def build(root: Path) -> str:
     findings = vault_lint.run_lint(root)
     errors = sum(1 for f in findings if f.severity == "error")
@@ -108,6 +148,7 @@ def build(root: Path) -> str:
     open_dec = count_open_decisions(root)
     inbox_n, inbox_med, inbox_max = inbox_stats(root)
     since = days_since_last_commit(root)
+    hb_rows, hb_overdue = loop_heartbeats(root)
 
     def flag(ok: bool) -> str:
         return "ok" if ok else "FAIL"
@@ -131,6 +172,18 @@ def build(root: Path) -> str:
         f"| Inbox median age | {inbox_med_s} | < 14 d | {flag(inbox_med is None or inbox_med < 14)} |",
         f"| Inbox oldest item | {inbox_max_s} | < 30 d | {flag(inbox_max is None or inbox_max < 30)} |",
         f"| Days since last commit | {since_s} | {dash} | {flag(True)} |",
+        f"| Loop heartbeats overdue | {'yes' if hb_overdue else 'no'} | no | {flag(not hb_overdue)} |",
+        "",
+        "## Loop heartbeats",
+        "",
+        "Each scheduled loop's closing commit is its heartbeat. Overdue = last seen older "
+        "than 2x cadence, or never fired. The review/agent loop is on-demand by design and not tracked.",
+        "",
+        "| Loop | Last heartbeat | Cadence | Status |",
+        "|---|---|---|---|",
+    ]
+    lines += [f"| {label} | {last} | {cad} | {st} |" for label, last, cad, st in hb_rows]
+    lines += [
         "",
         "## Notes",
         "",
@@ -139,9 +192,9 @@ def build(root: Path) -> str:
         "- **Lint warnings** are the standing to-do list (provenance-frontmatter backfill, "
         "stale `related:` links), not failures. Detail: run `python tools/vault_lint.py --report` "
         "→ `50-dashboards/lint-report.md`.",
-        "- **Heartbeats:** per-loop overdue-detection is deferred to a later build session "
-        "(needs a commit-subject prefix convention on the loops). This dashboard currently "
-        "shows overall repo liveness only.",
+        "- **Heartbeats overdue** means a scheduled loop hasn't committed within 2x its cadence — "
+        "check whether its desktop scheduled task is still firing (sleep, app closed, or "
+        "deregistration are the usual causes).",
     ]
     return "\n".join(lines) + "\n"
 

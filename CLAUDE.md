@@ -2,7 +2,7 @@
 
 **Scope.** USADeBusk operational knowledge, expanding to include personal and LLM-knowledge layers. The vault is no longer USADeBusk-only — treat new top-level domains as expected, not anomalies.
 
-**Session startup.** Read every file in `01-context/` before responding. Load `02-facilities/` and `04-knowledge/` on demand only when named. Do not auto-load `archive/`, `templates/`, `_RAW/`, `_COMPILED_WIKI/`, or `_OUTPUTS/`.
+**Session startup.** Read every file in `01-context/` before responding. Load `02-facilities/` and `04-knowledge/` on demand only when named. Do not auto-load `archive/`, `templates/`, `_RAW/`, `_COMPILED_WIKI/`, or `_OUTPUTS/`. Check `50-dashboards/health.md` and surface any red (FAIL) rows — a lint error or an overdue loop heartbeat — before starting other work.
 
 ## Folder structure (post-cleanup)
 

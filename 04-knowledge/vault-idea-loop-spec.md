@@ -55,7 +55,7 @@ Low, but not silent. Every run either produces one evidence-gathering artifact (
 5. Write a review note in `06-insights/` (filename pattern `YYYY-MM-DD-idea-research-<slug>.md`) using the standard template: Trigger (why this seed was picked), Evidence (sources found, with links), Interpretation (sound / trap / premature / already covered, and why), Recommended Action (build now / bounded one-shot investigation / park / drop), Decision (empty checkboxes for Jesse), Apply Log (empty, filled in after Jesse acts).
 6. Update the idea-seed: `status: researched`, add `related: [[<new review note>]]`.
 7. Append one dated run summary to `change-log.md` (append-only; trigger label "Vault Idea Research Loop").
-8. Commit and push: `git add` only this run's touched paths (the review note, the idea-seed file, `change-log.md`), commit message `vault-idea-research: <YYYY-MM-DD> — researched <slug>`, push to `origin`.
+8. Commit and push: `git add` only this run's touched paths (the review note, the idea-seed file, `change-log.md`), commit message `vault-idea-research: <YYYY-MM-DD> — researched <slug>`, push to `origin`. **This `vault-idea-research:` subject prefix is the loop's heartbeat** — `tools/vault_health.py` flags the loop overdue in `50-dashboards/health.md` if the most recent one is older than 2 days (2x the nightly cadence). Keep the prefix exact.
 
 ## Allowed Without Additional Approval
 

@@ -124,7 +124,7 @@ If `00-inbox/` holds 3+ untagged notes on one theme with no existing home, propo
 
 OneDrive sync has been removed; git is the only backup and the single source of truth. The run therefore ends by committing its writes and pushing to the `obsidian-work` remote:
 
-- Commit message: `vault-capture: <YYYY-MM-DD> run — N ingested, M harvested`.
+- Commit message: `vault-capture: <YYYY-MM-DD> run — N ingested, M harvested`. **This `vault-capture:` subject prefix is the loop's heartbeat** — `tools/vault_health.py` reads the most recent one and flags the loop overdue in `50-dashboards/health.md` if it is older than 14 days (2x the weekly cadence). Keep the prefix exact.
 - Push to `origin`. The git-guard hook does not block `obsidian-work` paths (it gates only `USADEBUSK\` paths), so the push proceeds without confirmation.
 - If the working tree has unrelated uncommitted changes, commit only the loop's own touched paths (`00-inbox/`, `07-llms/`, `08-systems/`, `09-interests/`, `change-log.md`); do not sweep unrelated edits into the commit.
 

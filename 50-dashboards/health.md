@@ -11,9 +11,19 @@
 | Inbox median age | 8 d | < 14 d | ok |
 | Inbox oldest item | 8 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
+| Loop heartbeats overdue | yes | no | FAIL |
+
+## Loop heartbeats
+
+Each scheduled loop's closing commit is its heartbeat. Overdue = last seen older than 2x cadence, or never fired. The review/agent loop is on-demand by design and not tracked.
+
+| Loop | Last heartbeat | Cadence | Status |
+|---|---|---|---|
+| Capture loop | never fired | 7 d | FAIL |
+| Idea-research loop | 2026-07-01 (4 d ago) | 1 d | FAIL |
 
 ## Notes
 
 - **Decision queue:** [[decision-queue]] — 0 open. Cap is 10; over cap, proposal-generating loops pause.
 - **Lint warnings** are the standing to-do list (provenance-frontmatter backfill, stale `related:` links), not failures. Detail: run `python tools/vault_lint.py --report` → `50-dashboards/lint-report.md`.
-- **Heartbeats:** per-loop overdue-detection is deferred to a later build session (needs a commit-subject prefix convention on the loops). This dashboard currently shows overall repo liveness only.
+- **Heartbeats overdue** means a scheduled loop hasn't committed within 2x its cadence — check whether its desktop scheduled task is still firing (sleep, app closed, or deregistration are the usual causes).
