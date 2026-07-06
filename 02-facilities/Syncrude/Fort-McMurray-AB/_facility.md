@@ -46,10 +46,10 @@ tags: [facility, Syncrude]
 
 ## Heaters at This Facility
 
-- CND25004 source report references 7-2 F-1 Column Feed Heater.
+- [[7-1-F-1|7-1 F-1 Column Feed Heater]] (corrected 2026-07-06 from an earlier "7-2 F-1" mislabel — see card for detail)
 
 ---
 
 ## Notes
 
-Created from routed source report `CND25004.md`. Treat site facts as source-derived until reviewed against customer/job-control documentation.
+Created from routed source report `CND25004.md`. Treat site facts as source-derived until reviewed against customer/job-control documentation. Heater identity corrected 2026-07-06: Jesse confirmed 7-1 F-1, not 7-2 F-1. The source job number (CND25004 vs. CND24002) remains an open question — see the heater card's Field Notes.

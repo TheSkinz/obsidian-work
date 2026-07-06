@@ -8,7 +8,7 @@ created: 2026-06-26
 review_after: 2026-07-03
 related:
   - CND25004
-  - [[7-2-F-1]]
+  - [[7-1-F-1]]
   - [[_facility]]
 tags: [review, knowledge-system, Syncrude, heater-card, CND25004]
 ---
