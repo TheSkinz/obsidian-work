@@ -8,7 +8,7 @@ created: 2026-06-26
 review_after: 2026-07-03
 related:
   - [[2026-06-06-refineries-migration]]
-  - [[insights-log]]
+  - [[insights-log_2026-04-25-to-2026-07-01|insights-log (archived 2026-07-06)]]
   - [[vault-agent-loop-spec]]
 tags: [review, knowledge-system, inbox, routing, migration]
 ---

@@ -124,6 +124,23 @@ USADeBusk Filter Press #1 specs:
 - When pig OD ≤ tube ID: pins extend and dig into coke deposits
 - When pig OD > tube ID (oversized): urethane body compresses; pins lay back — differential hardness means pins cut coke but deflect off harder tube wall without damage
 
+## Tube Dimensions (Additional Sizes)
+
+Beyond the 4"/5"/6" sizes in `usadebusk-core`'s Common Tube Dimensions table:
+
+| Size | OD | ID |
+|---|---|---|
+| 8" Sch 40 | 8.625" | 7.981" |
+| 10" Sch 40 | 10.750" | 10.020" |
+
+## Looped Circuits — Pig Transit Time
+
+Looped passes (joined via jumper spool) have pig transit times of 15-20
+minutes or more for long circuits — an extended blind period between pig
+launches requiring careful monitoring. Final pig size may need to be larger
+(e.g., 6.5" vs. 6.25") to achieve full wall contact through the longer
+combined circuit.
+
 ## Hoses & Connections
 
 | Component | Type | Size | Notes |
