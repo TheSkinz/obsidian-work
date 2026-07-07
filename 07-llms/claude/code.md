@@ -68,6 +68,14 @@ Applied when building the `idea-triage` skill (2026-07-02): SKILL.md states goal
 
 Source: Claude Code session 6601b270, 2026-07-02.
 
+## Naive exact-match scoring can manufacture a false signal
+
+When building a programmatic evaluator for LLM output (not an LLM judge — a deterministic field-matching scorer), a strict-equality rule for anything that "looks numeric" will fail correct extractions that include a natural-language unit (e.g. model output `"22 dollars"` against a reference value `"22"`). A first read of the aggregate scores looked like a real capability gap between two models; auditing every individual failure showed 100% were this same formatting artifact, not a wrong value. Fix: for a bare-numeric reference value, pull the numeric core out of the candidate string and compare that instead of the whole string; treat hyphens and spaces as equivalent for text-field comparisons (e.g. "two-year" vs "two years").
+
+General rule: when an aggregate score contradicts expectations (especially "the more capable model did worse"), audit the actual failing cases before trusting the number — a scoring bug looks identical to a real finding until you check.
+
+Source: Claude Code session 9a0789df, 2026-07-06 (`leverage` repo thesis experiment, see [[self-improving-systems]]).
+
 ## Links
 
 - Config repo: https://github.com/TheSkinz/claude-config
