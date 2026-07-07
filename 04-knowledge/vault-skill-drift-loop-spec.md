@@ -29,7 +29,7 @@ Scheduled monthly (1st of the month, ~3 AM local) via `mcp__scheduled-tasks`. Ru
 
 ## Scope
 
-Reads: every `SKILL.md` and reference file under `~/.claude/skills/`; vault knowledge layers (`04-knowledge/`, `06-insights/`, `07-llms/`, `08-systems/`); `04-knowledge/estimating-actuals-rollup.md`; the two CLAUDE.md files; git log of the config repo since the last run.
+Reads: every `SKILL.md` and reference file under `~/.claude/skills/`; vault knowledge layers (`04-knowledge/`, `06-insights/`, `07-llms/`, `08-systems/`); `04-knowledge/estimating-actuals-rollup.md`; the two CLAUDE.md files; git log of the config repo since the last run; **the agent memory directory** (`~/.claude/projects/C--Users-Jwuts-obsidian-work/memory/` — index + topic files), audited as a drift surface only, never edited by this loop.
 
 Writes:
 
@@ -44,6 +44,7 @@ Never edits skills on `main`. Never touches vault operational content, pricing v
 2. Two skills contradicting each other (the audit's fieldpm-vs-equipment class).
 3. A skill referencing a file, folder, plugin, tool, or workflow that no longer exists.
 4. A correction applied to one home of a fact while a pointer or restatement elsewhere still carries the old version.
+5. An agent-memory file asserting state the vault, skills, or filesystem contradict (retired tools still listed as live, renamed files, "not yet done" claims with completion evidence in git). Memory findings are *flagged only* — the review note recommends a `/consolidate-memory` pass; this loop never edits memory files itself.
 
 ## Ceremony Level
 
