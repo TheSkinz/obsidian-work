@@ -53,7 +53,8 @@ Low. The content-layer blast radius is small and every write is versioned in git
 3. **Harvest transcripts** — scan transcripts in scope (see Transcript Scope) modified since `last_run`, applying the self-exclusion rule and the Save-vs-Skip filter. For each durable finding: rewrite declarative present-tense, then route to an existing note (append) or create a new one.
 4. Update `00-inbox/.capture-state.json` (see Delta Tracking).
 5. Run `python tools/vault_lint.py` (use `py -3` if `python` is not on PATH); it must report **0 errors** before committing. Fix any error the run introduced — warnings are acceptable. Do **not** append a run summary to `change-log.md`: per the 2026-07-05 narrowing rule, `change-log.md` is decisions-only and the run record lives in the commit message (the `vault-capture:` heartbeat) and git log.
-6. **Commit and push** (see Durability).
+6. **Refresh generated files** — run `py -3 tools/vault_index.py` and `py -3 tools/vault_health.py` so `INDEX.md` and `50-dashboards/health.md` reflect this run's ingested/harvested notes; include both in the commit. (Generated files are the sanctioned overwrite exception; added 2026-07-07.)
+7. **Commit and push** (see Durability).
 
 ## Transcript Scope
 

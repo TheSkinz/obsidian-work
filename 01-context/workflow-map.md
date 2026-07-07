@@ -23,14 +23,16 @@ Vault structure is stable post-cleanup: `03-jobs/` and `05-projects/` decommissi
 
 ---
 
-## Claude Projects (Deployed)
+## Claude Projects (Retired 2026-07-07)
 
-| Project | System Prompt Version | Primary Use |
+Jesse no longer uses claude.ai chat Projects — Claude Code is the primary interface for all of this work, with the skills at `~/.claude/skills/` carrying the knowledge the project system prompts used to. (Gemini also retired; Copilot M365 is the company-provided tool for Microsoft-ecosystem tasks.) Rows kept for history:
+
+| Project | Status | Where the capability lives now |
 |---|---|---|
-| Sales & Proposals | RETIRED 2026-06-15 | Dissolved — proposal content, section templates & bid intake relocated to `usadebusk-estimating` skill |
-| Technical Docs | v2.1 | SOP and pre-execution package writing |
-| Operations & Admin | v2.0 | Receipt analysis, crew packages, ops handoff |
-| Field Execution | Current | Per-job field PM, receipt extraction, shift emails |
+| Sales & Proposals | Retired 2026-06-15 | `usadebusk-estimating` skill |
+| Technical Docs | Retired 2026-07-07 | `usadebusk-sop` skill |
+| Operations & Admin | Retired 2026-07-07 | `usadebusk-ops` skill |
+| Field Execution | Retired 2026-07-07 | `usadebusk-fieldpm` skill (dormant between mobilizations) |
 
 ---
 
