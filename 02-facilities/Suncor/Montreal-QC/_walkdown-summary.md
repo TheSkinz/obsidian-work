@@ -12,20 +12,20 @@ Full detail and source drawings live in each heater's own card in this folder.
 
 ## B-101 — Vacuum Feed Heater
 **Passes:** Radiant 2 (Double Mode). Convection 10 coils via Mk3/Mk4.
-**Tube ID:** Radiant steps 10.02"/7.98"/6.07"/5.05"/4.03". Convection ~4.03" (unconfirmed). **Governing ID: 4.03".**
+**Tube ID:** Radiant steps 10.020"/7.981"/6.065"/5.047"/4.026" (all confirmed, std Sch 40). Convection 4.026" (confirmed). **Governing ID: 4.026".**
 **Metallurgy:** Convection P5, Radiant P9 — mixed, both need passivation confirmation.
 **Connections:** Conv 4"-300# RF ×2 (Mk3/Mk4). Radiant 10"-150# RF ×2 (Mk1/Mk2) — ⚠ verify rating, a 10"-300# label also appears on-source.
-**Max Pig OD:** ~4.28"
+**Max Pig OD:** ~4.276"
 **Flags:** Footprint 12 sqft, elev 24 ft, scaffolding by Suncor. Smart pig/X-ray ELECTED.
 
 ---
 
 ## B-102 — Crude Furnace
 **Passes:** Convection 2 (Double Mode). Radiant 2 legs (Double Mode). **2 independent circuits — crossover removed for decoke, not one continuous path.**
-**Tube ID:** Convection ~4.03". Radiant 6" run ~6.07", 8" run ~7.98"/8.07". **Two circuits, two different pig sizes.**
+**Tube ID:** Convection 4.026" (confirmed). Radiant 6" run 6.065", 8" run 7.981" (both confirmed, std Sch 40). **Two circuits, two different pig sizes.**
 **Metallurgy:** Convection P5. Radiant: P5 (6" main) → P9 (short 8" stub) → 347H stainless (8" outlet).
 **Connections:** Conv 4"-300# RF at Mk1/Mk3, plus Mk2/Mk4/Mk5. Radiant 8"-300# RF ×2.
-**Max Pig OD:** Conv ~4.28". Radiant ~6.32".
+**Max Pig OD:** Conv ~4.276". Radiant ~6.315".
 **Flags:** N2 purge required before removing spool sections 1-5/11-15. Site supplies own soda ash/filter press setup — confirm scope split.
 
 ---
@@ -41,11 +41,11 @@ Full detail and source drawings live in each heater's own card in this folder.
 ---
 
 ## B-103 — Preflash Reboiler
-**Passes:** 1, single circuit — not Double Mode.
-**Tube ID:** Not confirmed, est. ~4.0" — **confirm in field.**
-**Metallurgy:** 5Cr-½Mo family (unconfirmed base tube grade).
+**Passes:** 1, single circuit — not Double Mode. 88 tubes total (42 convection + 46 radiant).
+**Tube ID:** 4.026" (confirmed, standard 4" Sch 40).
+**Metallurgy:** Convection P5, Radiant P9 — mixed, same as B-101/B-102.
 **Connections:** Entrance 4"-300# RF ground level. Exit 4"-300# RF, 4th balcony, 35 ft up.
-**Max Pig OD:** ~4.25" (estimated)
+**Max Pig OD:** ~4.28"
 **Flags:** ⚠ 35 ft elevation entrance-to-exit — biggest access issue in the package. No smart pig/filtration election.
 
 ---
