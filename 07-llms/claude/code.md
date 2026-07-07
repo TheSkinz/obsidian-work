@@ -19,7 +19,9 @@ Skills drive specialized behavior. When a task touches USADeBusk work, the relev
 - `usadebusk-core` — always loaded for USADeBusk tasks
 - `usadebusk-equipment`, `usadebusk-estimating`, `usadebusk-fieldpm`, `usadebusk-ops`, `usadebusk-sop` — domain-specific
 - `usadebusk-vault-ingest` — converts raw docs to vault notes
-- `claude-obsidian` plugin skills — wiki query, ingest, lint, save, etc.
+- `adversarial-review`, `idea-triage` — general-purpose (non-USADeBusk) skills
+
+(The `claude-obsidian` plugin was dropped 2026-06-30 and fully uninstalled 2026-07-06 — its skills are no longer available.)
 
 ## Config repo
 

@@ -1,5 +1,5 @@
 
-Jesse is a project manager and field supervisor based in League City, Texas. He works at USADeBusk, an industrial services company specializing in furnace decoking and pigging for refineries and petrochemical plants.
+Jesse is a technical specialist based in League City, Texas. He works at USADeBusk, an industrial services company specializing in furnace decoking and pigging for refineries and petrochemical plants, and runs the full workflow cycle: technical sales, proposals, estimating, engineering-document analysis, and field operations.
 
 ## Role
 
@@ -31,9 +31,3 @@ Jesse is a project manager and field supervisor based in League City, Texas. He 
 - Actively experiments with AI workflows outside of USADeBusk tasks
 
 - Long-term goal: systematize AI tooling across both personal and USADeBusk domains
-
-## Related Articles
-
-- [[career]] — USADeBusk role detail and industry context
-
-- [[workflows]] — how Jesse structures work and tooling
