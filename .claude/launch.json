@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "pig-tracker",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "apps/pig-tracker", "-l", "4173"],
+      "port": 4173
+    }
+  ]
+}
