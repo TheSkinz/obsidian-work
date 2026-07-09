@@ -19,6 +19,8 @@ Applied to:
 
 This is treated as the operational standard for forensic mechanical engineering tasks on degraded or low-resolution drawings — not a one-off experiment.
 
+See [[drawing-extraction-strategy]] for the canonical two-pass tile method distilled from the Grok repo's heater-drawing-analysis skill.
+
 ## Custom agent / skill development
 
 Grok Build CLI, skill-creator tooling, Zapier/Albato integrations, Gmail and Google Drive automation, email digest pipelines. Use cases are in active exploration — document specific deployed integrations as they stabilize.
