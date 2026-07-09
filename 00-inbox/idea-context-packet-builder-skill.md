@@ -1,7 +1,9 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-07-07
+related:
+  - [[2026-07-09-idea-research-context-packet-builder-skill]]
 tags: [idea, skills, claude-config, future]
 ---
 
