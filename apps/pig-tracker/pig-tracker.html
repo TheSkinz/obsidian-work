@@ -17,8 +17,7 @@
     --muted: #7a8794;
     --cyan: #4fd8eb;
     --amber: #ffb454;
-    --amber-dim: #8a6430;
-    --cyan-dim: #2a7d8c;
+    --red: #e06c6c;
   }
   * { box-sizing: border-box; }
   html, body {
@@ -32,7 +31,7 @@
   .app { display: flex; flex-direction: column; height: 100vh; padding: 10px; gap: 10px; }
 
   header {
-    display: flex; align-items: center; gap: 14px;
+    display: flex; align-items: center; gap: 10px;
     background: var(--panel); border: 1px solid var(--panel-edge);
     border-radius: 6px; padding: 8px 14px;
   }
@@ -43,25 +42,26 @@
   header h1::before { content: "●"; color: var(--cyan); margin-right: 8px; font-size: 10px; vertical-align: 2px; }
   select {
     font-size: 14px; padding: 5px 10px; border-radius: 4px; font-family: inherit;
-    border: 1px solid var(--line); background: #0d1219; color: var(--ink);
+    border: 1px solid var(--line); background: #0d1219; color: var(--ink); max-width: 330px;
   }
-  .circuit-meta { color: var(--muted); font-size: 12.5px; margin-left: auto; letter-spacing: 0.04em; }
+  .hdr-btn {
+    font-size: 11px; padding: 5px 10px; letter-spacing: 0.08em;
+  }
+  .circuit-meta { color: var(--muted); font-size: 12.5px; margin-left: auto; letter-spacing: 0.04em; white-space: nowrap; }
 
   .main { flex: 1; display: flex; gap: 10px; min-height: 0; }
   .schematic-panel {
     flex: 1 1 auto; background: var(--panel); border: 1px solid var(--panel-edge);
-    border-radius: 6px; padding: 6px; display: flex; min-width: 0;
+    border-radius: 6px; padding: 6px; display: flex; min-width: 0; position: relative;
   }
-  .schematic-panel svg { width: 100%; height: 100%; display: block; }
+  .schematic-panel svg { width: 100%; height: 100%; display: block; cursor: crosshair; }
 
   .readout-panel {
     flex: 0 0 264px; background: var(--panel); border: 1px solid var(--panel-edge);
     border-radius: 6px; padding: 12px 16px 10px; display: flex; flex-direction: column; gap: 5px;
     overflow-y: auto;
   }
-  .ro-label {
-    color: var(--muted); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase;
-  }
+  .ro-label { color: var(--muted); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; }
   .ro-value { font-size: 15px; font-weight: 600; }
   .status-line { font-size: 16px; font-weight: 700; letter-spacing: 0.03em; }
   .status-line.running { color: var(--cyan); }
@@ -75,6 +75,16 @@
   hr.sep { border: none; border-top: 1px solid var(--line); margin: 4px 0; width: 100%; }
   .pct-track { height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; }
   .pct-fill { height: 100%; width: 0%; background: var(--trail); border-radius: 2px; }
+
+  .log-head { display: flex; justify-content: space-between; align-items: center; margin-top: 2px; }
+  .log-box {
+    flex: 1 1 56px; min-height: 48px; overflow-y: auto;
+    background: #0d1219; border: 1px solid var(--line); border-radius: 4px;
+    padding: 5px 7px; font-size: 11px; line-height: 1.5;
+    font-family: "Cascadia Mono", "Consolas", monospace;
+  }
+  .log-line { color: var(--ink); }
+  .log-line .t { color: var(--muted); margin-right: 6px; }
 
   .controls-bar {
     background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 6px;
@@ -90,14 +100,19 @@
   button.dir-btn { min-width: 128px; }
   button.dir-btn.active { border-color: var(--cyan); color: var(--cyan); box-shadow: 0 0 12px rgba(79,216,235,0.25), inset 0 0 8px rgba(79,216,235,0.08); }
   button.dir-btn.active.paused { border-color: var(--amber); color: var(--amber); box-shadow: 0 0 12px rgba(255,180,84,0.22), inset 0 0 8px rgba(255,180,84,0.08); }
+  button.small { font-size: 11px; padding: 4px 9px; letter-spacing: 0.06em; }
+
+  .chk { display: flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--muted); white-space: nowrap; letter-spacing: 0.04em; }
+  .chk input { accent-color: var(--cyan); }
 
   .mode-toggle { display: flex; align-items: center; gap: 14px; margin-left: auto; flex-wrap: wrap; }
   .mode-toggle label { display: flex; align-items: center; gap: 6px; font-size: 13px; white-space: nowrap; color: var(--muted); }
   .mode-toggle input[type="radio"] { accent-color: var(--cyan); }
-  .mode-toggle input[type="number"] {
-    width: 76px; padding: 6px 8px; border-radius: 4px; border: 1px solid var(--line);
+  input[type="number"], input[type="text"] {
+    padding: 6px 8px; border-radius: 4px; border: 1px solid var(--line);
     background: #0d1219; color: var(--ink); font-family: "Cascadia Mono", "Consolas", monospace; font-size: 14px;
   }
+  .mode-toggle input[type="number"] { width: 76px; }
   input[type="range"] { width: 170px; accent-color: var(--cyan); }
   input:disabled { opacity: 0.35; }
 
@@ -106,12 +121,34 @@
   .tube-num { font-size: 8.5px; fill: var(--muted); font-family: "Cascadia Mono", "Consolas", monospace; }
   .node-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; fill: var(--ink); }
   .node-sub { font-size: 8.5px; letter-spacing: 0.14em; fill: var(--muted); }
+  .svg-hint { font-size: 9px; fill: var(--muted); letter-spacing: 0.06em; }
 
   #pigGlow { animation: pulse 1.6s ease-in-out infinite; }
   @keyframes pulse { 0%,100% { opacity: 0.55; } 50% { opacity: 1; } }
-  @media (prefers-reduced-motion: reduce) {
-    #pigGlow { animation: none; opacity: 0.7; }
+  @media (prefers-reduced-motion: reduce) { #pigGlow { animation: none; opacity: 0.7; } }
+
+  /* ---- circuit builder overlay ---- */
+  .builder {
+    position: absolute; inset: 0; z-index: 5; display: none;
+    flex-direction: column; gap: 10px; background: var(--panel);
+    border-radius: 6px; padding: 14px 16px; overflow-y: auto;
   }
+  .builder.open { display: flex; }
+  .builder h2 { margin: 0; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); font-weight: 700; }
+  .b-row-top { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .b-row-top label { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; display: flex; flex-direction: column; gap: 3px; }
+  .b-grid { display: flex; flex-direction: column; gap: 4px; }
+  .b-head, .b-seg {
+    display: grid; grid-template-columns: 118px 1fr 62px 92px 78px 84px; gap: 6px; align-items: center;
+  }
+  .b-head span { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .b-seg select, .b-seg input { width: 100%; font-size: 13px; padding: 5px 6px; }
+  .b-seg .rowbtns { display: flex; gap: 3px; }
+  .b-seg .rowbtns button { padding: 4px 7px; font-size: 11px; }
+  .b-foot { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 4px; }
+  .b-total { color: var(--muted); font-size: 12px; margin-left: auto; }
+  .b-err { color: var(--red); font-size: 12.5px; min-height: 16px; }
+  .b-note { color: var(--muted); font-size: 11.5px; }
 </style>
 </head>
 <body>
@@ -119,19 +156,45 @@
   <header>
     <h1>Pig Travel Tracker</h1>
     <select id="circuitSelect"></select>
+    <button class="small hdr-btn" id="newBtn">+ New</button>
+    <button class="small hdr-btn" id="editBtn">Edit</button>
     <span class="circuit-meta mono" id="circuitMeta"></span>
   </header>
 
   <div class="main">
     <div class="schematic-panel">
       <svg id="svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"></svg>
+
+      <!-- circuit builder overlay -->
+      <div class="builder" id="builder">
+        <h2 id="builderTitle">New circuit</h2>
+        <div class="b-row-top">
+          <label>Circuit name<input type="text" id="bName" style="width:280px" placeholder="e.g. F-201 — Site, Unit"></label>
+          <label>Default tube ID (in)<input type="number" id="bDefId" style="width:110px" step="0.001" min="0.1" value="4.026"></label>
+        </div>
+        <div class="b-note">Rows are flow order, Point B (launcher) first. Zones must run convection → crossover → radiant (any zone can be skipped). Leave ID blank to use the default; enter it per row for step-down coils. U-bend spacing is drawn automatically — it carries no footage.</div>
+        <div class="b-grid" id="bGrid">
+          <div class="b-head"><span>Zone</span><span>Label</span><span>Tubes</span><span>Total len (ft)</span><span>ID (in)</span><span></span></div>
+        </div>
+        <div><button class="small" id="bAddRow">+ Add row</button></div>
+        <div class="b-err" id="bErr"></div>
+        <div class="b-foot">
+          <button class="small" id="bSave" style="border-color: var(--cyan); color: var(--cyan);">Save</button>
+          <button class="small" id="bCancel">Cancel</button>
+          <button class="small" id="bDelete" style="border-color: var(--red); color: var(--red);">Delete</button>
+          <button class="small" id="bExport">Export JSON</button>
+          <button class="small" id="bImport">Import JSON</button>
+          <input type="file" id="bImportFile" accept=".json,application/json" style="display:none">
+          <span class="b-total mono" id="bTotal"></span>
+        </div>
+      </div>
     </div>
 
     <div class="readout-panel">
       <span class="ro-label">Status</span>
       <div class="status-line" id="statusLine">Docked at B</div>
       <hr class="sep">
-      <span class="ro-label">ETA to target</span>
+      <span class="ro-label" id="etaLabel">ETA to R</span>
       <div class="mono" id="etaBig">--:--</div>
       <div id="arrival">arrives <b class="mono" id="arrivalClock">—</b></div>
       <hr class="sep">
@@ -145,9 +208,15 @@
       <div class="ro-pair"><span class="ro-label">Complete</span><span class="ro-value mono" id="pctText">0%</span></div>
       <div class="pct-track"><div class="pct-fill" id="pctFill"></div></div>
       <hr class="sep">
-      <div class="ro-pair"><span class="ro-label">Velocity</span><span class="ro-value mono" id="velocity">0.0 ft/min</span></div>
+      <div class="ro-pair"><span class="ro-label">Velocity at pig</span><span class="ro-value mono" id="velocity">0.0 ft/min</span></div>
       <div class="ro-pair"><span class="ro-label"></span><span style="font-size:12px;color:var(--muted);" class="mono" id="velocitySub"></span></div>
       <div class="ro-pair"><span class="ro-label">Elapsed</span><span class="ro-value mono" id="elapsed">00:00</span></div>
+      <hr class="sep">
+      <div class="log-head">
+        <span class="ro-label">Run log</span>
+        <button class="small" id="logCopy">Copy</button>
+      </div>
+      <div class="log-box" id="logBox"></div>
     </div>
   </div>
 
@@ -155,6 +224,8 @@
     <button class="dir-btn" id="btnBR">B → R</button>
     <button class="dir-btn" id="btnRB">R → B</button>
     <button id="stopBtn">Stop / Reset</button>
+    <label class="chk"><input type="checkbox" id="chimeChk" checked> arrival chime</label>
+    <label class="chk"><input type="checkbox" id="wakeChk"> keep screen on</label>
 
     <div class="mode-toggle">
       <label><input type="radio" name="mode" value="gpm" id="modeGpm" checked> GPM</label>
@@ -168,9 +239,11 @@
 
 <script>
 // ---------------------------------------------------------------------------
-// Circuit data — segments carry the physics; `tubes` explodes them for display
+// Built-in circuits. Segments carry the physics; `tubes` explodes them for
+// display; optional `id_in` overrides the circuit default ID per segment
+// (step-down coils) — velocity is computed per segment at constant GPM.
 // ---------------------------------------------------------------------------
-const CIRCUITS = [
+const BUILTIN_CIRCUITS = [
   {
     name: "Synthetic test — 10 conv + 10 radiant @ 10 ft",
     default_id_inches: 4.026,
@@ -201,15 +274,30 @@ const CIRCUITS = [
 ];
 
 // ---------------------------------------------------------------------------
+// Persistence (localStorage; degrades to in-memory if blocked)
+// ---------------------------------------------------------------------------
+function lsGet(key, fallback) {
+  try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
+  catch (e) { return fallback; }
+}
+function lsSet(key, value) {
+  try { localStorage.setItem(key, JSON.stringify(value)); return true; }
+  catch (e) { return false; }
+}
+let customCircuits = lsGet("pigTracker.circuits", []);
+const settings = { chime: lsGet("pigTracker.chime", true) };
+
+// ---------------------------------------------------------------------------
 // Runtime state
 // ---------------------------------------------------------------------------
 let circuit = null;
+let currentRef = { type: "b", idx: 0 };  // which dropdown entry is loaded
 let segments = [];
-let cumStart = [];      // physics: prefix-sum ft at start of each segment
+let cumStart = [];
 let totalLength = 0;
 
-let units = [];          // exploded display tubes: {segIdx, zone, zoneIdx, len_ft, ftStart, sPx, ePx}
-let zoneCounts = {};     // tubes per zone
+let units = [];
+let zoneCounts = {};
 let pathEl = null, trailEl = null, pigEl = null, pigGlowEl = null;
 let pathTotalPx = 0, pxScale = 1;
 
@@ -219,7 +307,7 @@ let state = {
   running: false,
   elapsedSec: 0,
   lastTickMs: null,
-  launchEnd: "B"         // which flange the current run launched from (anchors the trail)
+  launchEnd: "B"
 };
 
 function isDocked() {
@@ -230,17 +318,46 @@ const svg = document.getElementById("svg");
 const circuitSelect = document.getElementById("circuitSelect");
 
 // ---------------------------------------------------------------------------
-// Geometry: one continuous path — B stub, convection serpentine (down the left
-// bank), crossover bridge, radiant serpentine (up the right bank), R stub.
-// U-bends are semicircles; their px is split between adjoining tubes at the
-// bend midpoint so the pig sweeps through bends instead of jumping.
+// Run log
+// ---------------------------------------------------------------------------
+const logs = [];
+function nowStamp() { return new Date().toLocaleTimeString([], { hour12: false }); }
+function addLog(msg) {
+  logs.push({ t: nowStamp(), msg });
+  if (logs.length > 300) logs.shift();
+  const box = document.getElementById("logBox");
+  const line = document.createElement("div");
+  line.className = "log-line";
+  line.innerHTML = `<span class="t">${logs[logs.length-1].t}</span>`;
+  line.appendChild(document.createTextNode(msg));
+  box.prepend(line);
+  while (box.children.length > 300) box.removeChild(box.lastChild);
+}
+document.getElementById("logCopy").addEventListener("click", () => {
+  const text = [`Pig run log — ${circuit.name}`]
+    .concat(logs.map(l => `${l.t}  ${l.msg}`)).join("\n");
+  const done = () => addLog("Log copied to clipboard");
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done, () => {});
+  } else {
+    const ta = document.createElement("textarea");
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    document.execCommand("copy"); document.body.removeChild(ta); done();
+  }
+});
+
+// ---------------------------------------------------------------------------
+// Geometry: one continuous path. Both banks when convection and radiant both
+// exist; a single centered bank otherwise (convection-only heaters, straight
+// pipelines). U-bend px is split between adjoining tubes at the bend midpoint
+// so the pig sweeps through bends continuously.
 // ---------------------------------------------------------------------------
 const VB_W = 1040;
-const CONV_BOX = { x0: 84, x1: 470 };
-const RAD_BOX  = { x0: 570, x1: 956 };
+const LEFT_BOX  = { x0: 84,  x1: 470 };
+const RIGHT_BOX = { x0: 570, x1: 956 };
+const CENTER_BOX = { x0: 330, x1: 716 };
 
 function buildGeometry() {
-  // explode segments into display units
   units = [];
   zoneCounts = { convection: 0, crossover: 0, radiant: 0 };
   segments.forEach((seg, segIdx) => {
@@ -253,111 +370,127 @@ function buildGeometry() {
   units.forEach(u => { u.ftStart = acc; acc += u.len_ft; });
 
   const nConv = zoneCounts.convection, nRad = zoneCounts.radiant;
-  const maxRows = Math.max(nConv, nRad);
+  const both = nConv > 0 && nRad > 0;
+  const convRect = both ? LEFT_BOX : CENTER_BOX;
+  const radRect  = both ? RIGHT_BOX : CENTER_BOX;
+
+  const maxRows = Math.max(nConv, nRad, 1);
   const pitch = Math.min(48, Math.max(9, 560 / maxRows));
   const r = pitch / 2;
   const topY = 64;
   const convBot = topY + nConv * pitch;
   const radBot = topY + nRad * pitch;
   const bridgeY = Math.max(convBot, radBot) + 34;
-  const vbH = bridgeY + 44;
+  const vbH = (both ? bridgeY : Math.max(convBot, radBot) + 34) + 44;
+  const stubLen = 46;
 
-  const convL = CONV_BOX.x0 + r + 4, convR = CONV_BOX.x1 - r - 4;
-  const radL = RAD_BOX.x0 + r + 4,  radR = RAD_BOX.x1 - r - 4;
+  const convL = convRect.x0 + r + 4, convR = convRect.x1 - r - 4;
+  const radL = radRect.x0 + r + 4,  radR = radRect.x1 - r - 4;
 
-  // walk the flow, emitting path pieces and tracking analytic px
   let d = "", px = 0;
-  const pieces = [];   // for units: sPx/ePx of their straight (or bridge share)
-  const rowY = [];     // conv rows top-down
+  const rowY = [];
   for (let i = 0; i < nConv; i++) rowY.push(topY + (i + 0.5) * pitch);
-  const radRowY = [];  // radiant rows in FLOW order (bottom-up)
+  const radRowY = [];
   for (let j = 0; j < nRad; j++) radRowY.push(topY + (nRad - 1 - j + 0.5) * pitch);
 
   const convUnits = units.filter(u => u.zone === "convection");
   const xoUnits   = units.filter(u => u.zone === "crossover");
   const radUnits  = units.filter(u => u.zone === "radiant");
 
-  // B stub
-  const stubLen = 46;
-  d += `M ${convL - r - stubLen},${rowY[0]} L ${convL},${rowY[0]}`;
-  px += stubLen + r;
+  let bStub = null, rStub = null;
 
-  // convection serpentine, top -> bottom; row 0 flows L->R
-  convUnits.forEach((u, i) => {
-    const y = rowY[i];
-    const ltr = i % 2 === 0;
-    u.sPx = px;
-    d += ltr ? ` L ${convR},${y}` : ` L ${convL},${y}`;
-    px += convR - convL;
-    u.ePx = px;
-    if (i < nConv - 1) {
-      const y2 = rowY[i + 1];
-      // right-end bends bulge right (sweep 1 going down); left-end bulge left (sweep 0)
-      d += ltr ? ` A ${r},${r} 0 0 1 ${convR},${y2}` : ` A ${r},${r} 0 0 0 ${convL},${y2}`;
-      px += Math.PI * r;
-    }
-  });
+  if (nConv > 0) {
+    // B stub enters convection row 0 from the left
+    bStub = { x: convL - r - stubLen, y: rowY[0] };
+    d += `M ${bStub.x},${rowY[0]} L ${convL},${rowY[0]}`;
+    px += stubLen + r;
 
-  // bridge: convection exit -> down -> across -> up into radiant bottom row
-  const convExitX = (nConv - 1) % 2 === 0 ? convR : convL;
-  const convExitY = rowY[nConv - 1];
-  const radEntryY = radRowY[0];
-  const bridgeStartPx = px;
-  const legs = [
-    [convExitX, bridgeY], [radL - r, bridgeY], [radL - r, radEntryY], [radL, radEntryY]
-  ];
-  let prev = [convExitX, convExitY];
-  legs.forEach(p => {
-    d += ` L ${p[0]},${p[1]}`;
-    px += Math.hypot(p[0] - prev[0], p[1] - prev[1]);
-    prev = p;
-  });
-  const bridgePx = px - bridgeStartPx;
-  // crossover units split the bridge px proportionally by their footage
-  if (xoUnits.length) {
-    const xoTotal = xoUnits.reduce((s, u) => s + u.len_ft, 0);
-    let f = 0;
-    xoUnits.forEach(u => {
-      u.sPx = bridgeStartPx + (f / xoTotal) * bridgePx;
-      f += u.len_ft;
-      u.ePx = bridgeStartPx + (f / xoTotal) * bridgePx;
+    convUnits.forEach((u, i) => {
+      const y = rowY[i];
+      const ltr = i % 2 === 0;
+      u.sPx = px;
+      d += ltr ? ` L ${convR},${y}` : ` L ${convL},${y}`;
+      px += convR - convL;
+      u.ePx = px;
+      if (i < nConv - 1) {
+        const y2 = rowY[i + 1];
+        d += ltr ? ` A ${r},${r} 0 0 1 ${convR},${y2}` : ` A ${r},${r} 0 0 0 ${convL},${y2}`;
+        px += Math.PI * r;
+      }
     });
   }
 
-  // radiant serpentine, bottom -> top; flow row 0 is the bottom row, L->R
-  radUnits.forEach((u, j) => {
-    const y = radRowY[j];
-    const ltr = j % 2 === 0;
-    u.sPx = px;
-    d += ltr ? ` L ${radR},${y}` : ` L ${radL},${y}`;
-    px += radR - radL;
-    u.ePx = px;
-    if (j < nRad - 1) {
-      const y2 = radRowY[j + 1];
-      // going up: right-end bends bulge right (sweep 0); left-end bulge left (sweep 1)
-      d += ltr ? ` A ${r},${r} 0 0 0 ${radR},${y2}` : ` A ${r},${r} 0 0 1 ${radL},${y2}`;
-      px += Math.PI * r;
+  if (both) {
+    // bridge: convection exit -> down -> across -> up into radiant bottom row
+    const convExitX = (nConv - 1) % 2 === 0 ? convR : convL;
+    const convExitY = rowY[nConv - 1];
+    const radEntryY = radRowY[0];
+    const bridgeStartPx = px;
+    const legs = [[convExitX, bridgeY], [radL - r, bridgeY], [radL - r, radEntryY], [radL, radEntryY]];
+    let prev = [convExitX, convExitY];
+    legs.forEach(p => {
+      d += ` L ${p[0]},${p[1]}`;
+      px += Math.hypot(p[0] - prev[0], p[1] - prev[1]);
+      prev = p;
+    });
+    const bridgePx = px - bridgeStartPx;
+    if (xoUnits.length) {
+      const xoTotal = xoUnits.reduce((s, u) => s + u.len_ft, 0);
+      let f = 0;
+      xoUnits.forEach(u => {
+        u.sPx = bridgeStartPx + (f / xoTotal) * bridgePx;
+        f += u.len_ft;
+        u.ePx = bridgeStartPx + (f / xoTotal) * bridgePx;
+      });
     }
-  });
+  }
 
-  // R stub: up and out of the radiant bank (receiver is up on the balcony)
-  const radExitX = (nRad - 1) % 2 === 0 ? radR : radL;
-  const radExitY = radRowY[nRad - 1];
-  d += ` L ${radExitX},${topY - 30}`;
-  px += radExitY - (topY - 30);
+  if (nRad > 0) {
+    if (!both) {
+      // radiant-only: B stub enters the bottom radiant row from the left
+      bStub = { x: radL - r - stubLen, y: radRowY[0] };
+      d += `M ${bStub.x},${radRowY[0]} L ${radL},${radRowY[0]}`;
+      px += stubLen + r;
+    }
+    radUnits.forEach((u, j) => {
+      const y = radRowY[j];
+      const ltr = j % 2 === 0;
+      u.sPx = px;
+      d += ltr ? ` L ${radR},${y}` : ` L ${radL},${y}`;
+      px += radR - radL;
+      u.ePx = px;
+      if (j < nRad - 1) {
+        const y2 = radRowY[j + 1];
+        d += ltr ? ` A ${r},${r} 0 0 0 ${radR},${y2}` : ` A ${r},${r} 0 0 1 ${radL},${y2}`;
+        px += Math.PI * r;
+      }
+    });
+    // R stub: up and out the top of the radiant bank
+    const radExitX = (nRad - 1) % 2 === 0 ? radR : radL;
+    const radExitY = radRowY[nRad - 1];
+    d += ` L ${radExitX},${topY - 30}`;
+    px += radExitY - (topY - 30);
+    rStub = { x: radExitX, y: topY - 30, vertical: true };
+  } else {
+    // convection-only: R stub exits the last row horizontally, away from the bank
+    const exitLeft = (nConv - 1) % 2 !== 0;
+    const exitX = exitLeft ? convL : convR;
+    const exitY = rowY[nConv - 1];
+    const endX = exitLeft ? convL - r - stubLen : convR + r + stubLen;
+    d += ` L ${endX},${exitY}`;
+    px += stubLen + r;
+    rStub = { x: endX, y: exitY, vertical: false, left: exitLeft };
+  }
 
-  // ft -> px knots: bend midpoints between consecutive units; flange stubs
-  // belong to the first/last tube so a docked pig sits at the flange
+  // ft -> px knots at bend midpoints; flange stubs belong to first/last tube
   const knots = [0];
   for (let k = 1; k < units.length; k++) knots.push((units[k - 1].ePx + units[k].sPx) / 2);
   knots.push(px);
   units.forEach((u, k) => { u.mS = knots[k]; u.mE = knots[k + 1]; });
 
   return {
-    d, totalPx: px, vbH, pitch, r, topY, nConv, nRad,
-    convBot, radBot, bridgeY, convL, convR, radL, radR,
-    bStub: { x: convL - r - stubLen, y: rowY[0] },
-    rStub: { x: radExitX, y: topY - 30 }
+    d, totalPx: px, vbH, pitch, r, topY, nConv, nRad, both,
+    convRect, radRect, convBot, radBot, bStub, rStub
   };
 }
 
@@ -369,6 +502,17 @@ function pxOfDistance(dft) {
   }
   const t = u.len_ft > 0 ? (dd - u.ftStart) / u.len_ft : 0;
   return (u.mS + t * (u.mE - u.mS)) * pxScale;
+}
+
+function distanceOfPx(pxIn) {
+  const p = Math.min(Math.max(pxIn / pxScale, 0), units[units.length - 1].mE);
+  for (const u of units) {
+    if (p <= u.mE) {
+      const t = u.mE > u.mS ? (p - u.mS) / (u.mE - u.mS) : 0;
+      return Math.min(Math.max(u.ftStart + t * u.len_ft, 0), totalLength);
+    }
+  }
+  return totalLength;
 }
 
 function unitAtDistance(dft) {
@@ -390,57 +534,55 @@ function drawStatic(geo) {
     return el;
   };
 
-  // glow as a radial gradient — an feGaussianBlur filter here forces a full
-  // filter recomposite every frame and stalls weaker GPUs
   const defs = add("defs", {});
   const grad = add("radialGradient", { id: "pigHalo" }, defs);
   add("stop", { offset: "0%", "stop-color": "var(--pig)", "stop-opacity": 0.85 }, grad);
   add("stop", { offset: "45%", "stop-color": "var(--pig)", "stop-opacity": 0.35 }, grad);
   add("stop", { offset: "100%", "stop-color": "var(--pig)", "stop-opacity": 0 }, grad);
 
-  // zone boxes
   const boxPad = 10;
-  add("rect", {
-    x: CONV_BOX.x0 - boxPad, y: geo.topY - boxPad,
-    width: CONV_BOX.x1 - CONV_BOX.x0 + boxPad * 2, height: geo.convBot - geo.topY + boxPad * 2,
-    fill: "rgba(79,216,235,0.035)", stroke: "rgba(79,216,235,0.28)", "stroke-width": 1, rx: 4
-  });
-  add("rect", {
-    x: RAD_BOX.x0 - boxPad, y: geo.topY - boxPad,
-    width: RAD_BOX.x1 - RAD_BOX.x0 + boxPad * 2, height: geo.radBot - geo.topY + boxPad * 2,
-    fill: "rgba(255,180,84,0.035)", stroke: "rgba(255,180,84,0.26)", "stroke-width": 1, rx: 4
-  });
-  add("text", { x: CONV_BOX.x0 - boxPad, y: geo.topY - boxPad - 8, class: "zone-label", fill: "var(--cyan)" })
-    .textContent = `CONVECTION · ${geo.nConv} TUBES`;
-  // radiant label goes on the side opposite the R stub so they never collide
-  const radExitsLeft = geo.rStub.x < (RAD_BOX.x0 + RAD_BOX.x1) / 2;
-  add("text", {
-    x: radExitsLeft ? RAD_BOX.x1 + boxPad : RAD_BOX.x0 - boxPad,
-    y: geo.topY - boxPad - 8, class: "zone-label", fill: "var(--amber)",
-    "text-anchor": radExitsLeft ? "end" : "start"
-  }).textContent = `RADIANT · ${geo.nRad} TUBES`;
+  if (geo.nConv > 0) {
+    add("rect", {
+      x: geo.convRect.x0 - boxPad, y: geo.topY - boxPad,
+      width: geo.convRect.x1 - geo.convRect.x0 + boxPad * 2, height: geo.convBot - geo.topY + boxPad * 2,
+      fill: "rgba(79,216,235,0.035)", stroke: "rgba(79,216,235,0.28)", "stroke-width": 1, rx: 4
+    });
+    add("text", { x: geo.convRect.x0 - boxPad, y: geo.topY - boxPad - 8, class: "zone-label", fill: "var(--cyan)" })
+      .textContent = `CONVECTION · ${geo.nConv} TUBES`;
+  }
+  if (geo.nRad > 0) {
+    add("rect", {
+      x: geo.radRect.x0 - boxPad, y: geo.topY - boxPad,
+      width: geo.radRect.x1 - geo.radRect.x0 + boxPad * 2, height: geo.radBot - geo.topY + boxPad * 2,
+      fill: "rgba(255,180,84,0.035)", stroke: "rgba(255,180,84,0.26)", "stroke-width": 1, rx: 4
+    });
+    const radExitsLeft = geo.rStub && geo.rStub.vertical &&
+      geo.rStub.x < (geo.radRect.x0 + geo.radRect.x1) / 2;
+    add("text", {
+      x: radExitsLeft ? geo.radRect.x1 + boxPad : geo.radRect.x0 - boxPad,
+      y: geo.topY - boxPad - 8, class: "zone-label", fill: "var(--amber)",
+      "text-anchor": radExitsLeft ? "end" : "start"
+    }).textContent = `RADIANT · ${geo.nRad} TUBES`;
+  }
 
-  // tube numbers (every 5th, plus first and last), on the outer edge of each bank
+  // tube numbers every 5th (plus first/last) on the outer edge of each bank
   const num = (x, y, n, anchor) => {
-    const t = add("text", { x, y: y + 3, class: "tube-num", "text-anchor": anchor });
-    t.textContent = n;
+    add("text", { x, y: y + 3, class: "tube-num", "text-anchor": anchor }).textContent = n;
   };
   for (let i = 0; i < geo.nConv; i++) {
     const n = i + 1;
     if (n === 1 || n === geo.nConv || n % 5 === 0)
-      num(CONV_BOX.x0 - boxPad - 6, geo.topY + (i + 0.5) * geo.pitch, n, "end");
+      num(geo.convRect.x0 - boxPad - 6, geo.topY + (i + 0.5) * geo.pitch, n, "end");
   }
   for (let j = 0; j < geo.nRad; j++) {
-    const n = j + 1; // flow order: 1 at the bottom
+    const n = j + 1;
     if (n === 1 || n === geo.nRad || n % 5 === 0)
-      num(RAD_BOX.x1 + boxPad + 6, geo.topY + (geo.nRad - 1 - j + 0.5) * geo.pitch, n, "start");
+      num(geo.radRect.x1 + boxPad + 6, geo.topY + (geo.nRad - 1 - j + 0.5) * geo.pitch, n, "start");
   }
 
-  // base tube path, then trail overlay
   pathEl = add("path", { d: geo.d, fill: "none", stroke: "var(--tube)", "stroke-width": 2.5, "stroke-linecap": "round", "stroke-linejoin": "round" });
   trailEl = add("path", { d: geo.d, fill: "none", stroke: "var(--trail)", "stroke-width": 3, "stroke-linecap": "round", "stroke-linejoin": "round", opacity: 0.9 });
 
-  // flange nodes
   const flange = (x, y, vertical) => {
     const s = 7;
     if (vertical) {
@@ -454,24 +596,54 @@ function drawStatic(geo) {
   flange(geo.bStub.x, geo.bStub.y, false);
   add("text", { x: geo.bStub.x - 4, y: geo.bStub.y - 14, class: "node-label", "text-anchor": "start" }).textContent = "B";
   add("text", { x: geo.bStub.x - 4, y: geo.bStub.y + 24, class: "node-sub", "text-anchor": "start" }).textContent = "LAUNCHER";
-  flange(geo.rStub.x, geo.rStub.y, true);
-  add("text", { x: geo.rStub.x + 12, y: geo.rStub.y + 4, class: "node-label" }).textContent = "R";
-  add("text", { x: geo.rStub.x + 12, y: geo.rStub.y + 14, class: "node-sub" }).textContent = "RECEIVER";
 
-  // pig marker: glow halo + solid dot
+  flange(geo.rStub.x, geo.rStub.y, geo.rStub.vertical);
+  if (geo.rStub.vertical) {
+    add("text", { x: geo.rStub.x + 12, y: geo.rStub.y + 4, class: "node-label" }).textContent = "R";
+    add("text", { x: geo.rStub.x + 12, y: geo.rStub.y + 14, class: "node-sub" }).textContent = "RECEIVER";
+  } else {
+    const anchor = geo.rStub.left ? "end" : "start";
+    const dx = geo.rStub.left ? -10 : 10;
+    add("text", { x: geo.rStub.x + dx, y: geo.rStub.y - 10, class: "node-label", "text-anchor": anchor }).textContent = "R";
+    add("text", { x: geo.rStub.x + dx, y: geo.rStub.y + 20, class: "node-sub", "text-anchor": anchor }).textContent = "RECEIVER";
+  }
+
+  add("text", { x: 12, y: geo.vbH - 10, class: "svg-hint" }).textContent = "CLICK COIL TO SET PIG POSITION";
+
   pigGlowEl = add("circle", { id: "pigGlow", r: 14, fill: "url(#pigHalo)" });
   pigEl = add("circle", { id: "pig", r: 4.5, fill: "var(--pig)", stroke: "#5c3a10", "stroke-width": 1 });
 
-  // reconcile analytic px with the browser's path length
   pathTotalPx = pathEl.getTotalLength();
   pxScale = pathTotalPx / geo.totalPx;
 }
 
 // ---------------------------------------------------------------------------
-// Circuit loading
+// Circuit loading + dropdown
 // ---------------------------------------------------------------------------
-function loadCircuit(idx) {
-  circuit = CIRCUITS[idx];
+function rebuildCircuitSelect() {
+  circuitSelect.innerHTML = "";
+  const gb = document.createElement("optgroup"); gb.label = "Built-in";
+  BUILTIN_CIRCUITS.forEach((c, i) => {
+    const o = document.createElement("option"); o.value = `b:${i}`; o.textContent = c.name; gb.appendChild(o);
+  });
+  circuitSelect.appendChild(gb);
+  if (customCircuits.length) {
+    const gc = document.createElement("optgroup"); gc.label = "My circuits";
+    customCircuits.forEach((c, i) => {
+      const o = document.createElement("option"); o.value = `c:${i}`; o.textContent = c.name; gc.appendChild(o);
+    });
+    circuitSelect.appendChild(gc);
+  }
+  circuitSelect.value = `${currentRef.type}:${currentRef.idx}`;
+}
+
+function circuitByRef(ref) {
+  return ref.type === "b" ? BUILTIN_CIRCUITS[ref.idx] : customCircuits[ref.idx];
+}
+
+function loadCircuit(ref) {
+  currentRef = ref;
+  circuit = circuitByRef(ref);
   segments = circuit.segments;
   cumStart = [];
   let acc = 0;
@@ -490,30 +662,58 @@ function loadCircuit(idx) {
   updateDirectionButtons();
   renderFrame();
 
+  const ids = [...new Set(segments.map(s => s.id_in || circuit.default_id_inches))].sort((a, b) => a - b);
+  const idText = ids.length === 1 ? `ID ${ids[0]}"` : `ID ${ids[0]}–${ids[ids.length - 1]}"`;
   document.getElementById("circuitMeta").textContent =
-    `${segments.length} segments · ${totalLength.toFixed(1)} ft · ID ${circuit.default_id_inches}"`;
+    `${segments.length} segments · ${totalLength.toFixed(1)} ft · ${idText}`;
+  addLog(`Circuit loaded: ${circuit.name} (${totalLength.toFixed(1)} ft)`);
 }
 
 // ---------------------------------------------------------------------------
-// Physics (unchanged from v1)
+// Physics — velocity is per segment when IDs differ; ETA integrates
+// remaining time across every segment still ahead of the pig
 // ---------------------------------------------------------------------------
+function segIdInches(k) { return segments[k].id_in || circuit.default_id_inches; }
+
 function locate(distance_ft) {
   let i = segments.length - 1;
   for (let k = 0; k < segments.length; k++) {
     const segEnd = cumStart[k] + segments[k].length_ft;
     if (distance_ft < segEnd || k === segments.length - 1) { i = k; break; }
   }
-  const into = distance_ft - cumStart[i];
-  return { i, into };
+  return { i, into: distance_ft - cumStart[i] };
 }
 
-function currentVelocityFtPerMin() {
-  if (document.getElementById("modeGpm").checked) {
-    const gpm = parseFloat(document.getElementById("gpmInput").value) || 0;
-    const id = circuit.default_id_inches;
-    return 24.51 * gpm / (id * id);
+function isGpmMode() { return document.getElementById("modeGpm").checked; }
+function currentGpm() { return parseFloat(document.getElementById("gpmInput").value) || 0; }
+
+function velocityFtMinAt(distance_ft) {
+  if (isGpmMode()) {
+    const id = segIdInches(locate(distance_ft).i);
+    return 24.51 * currentGpm() / (id * id);
   }
   return parseFloat(document.getElementById("ftminInput").value) || 0;
+}
+
+function etaSecondsFrom(distance_ft) {
+  const lo = state.direction === 1 ? distance_ft : 0;
+  const hi = state.direction === 1 ? totalLength : distance_ft;
+  if (!isGpmMode()) {
+    const v = (parseFloat(document.getElementById("ftminInput").value) || 0) / 60;
+    return v > 0 ? (hi - lo) / v : Infinity;
+  }
+  const gpm = currentGpm();
+  if (gpm <= 0) return Infinity;
+  let t = 0;
+  for (let k = 0; k < segments.length; k++) {
+    const s = cumStart[k], e = s + segments[k].length_ft;
+    const ov = Math.min(e, hi) - Math.max(s, lo);
+    if (ov > 0) {
+      const id = segIdInches(k);
+      t += ov / (24.51 * gpm / (id * id) / 60);
+    }
+  }
+  return t;
 }
 
 // ---------------------------------------------------------------------------
@@ -532,13 +732,11 @@ function fmtTime(totalSeconds) {
 const ZONE_NAMES = { convection: "Convection", crossover: "Crossover", radiant: "Radiant" };
 
 function renderFrame() {
-  // marker along the continuous path
   const curPx = pxOfDistance(state.distance_ft);
   const pt = pathEl.getPointAtLength(curPx);
   pigEl.setAttribute("cx", pt.x); pigEl.setAttribute("cy", pt.y);
   pigGlowEl.setAttribute("cx", pt.x); pigGlowEl.setAttribute("cy", pt.y);
 
-  // trail anchored to the launch flange
   if (state.launchEnd === "B") {
     trailEl.setAttribute("stroke-dasharray", `${curPx} ${pathTotalPx}`);
     trailEl.setAttribute("stroke-dashoffset", "0");
@@ -547,7 +745,6 @@ function renderFrame() {
     trailEl.setAttribute("stroke-dashoffset", `${-curPx}`);
   }
 
-  // position readouts
   const { i, into } = locate(state.distance_ft);
   const u = unitAtDistance(state.distance_ft);
   document.getElementById("zoneTube").textContent =
@@ -565,24 +762,23 @@ function renderFrame() {
   document.getElementById("pctText").textContent = `${pct.toFixed(1)}%`;
   document.getElementById("pctFill").style.width = `${pct}%`;
 
-  // velocity + times
-  const vFtMin = currentVelocityFtPerMin();
+  const vFtMin = velocityFtMinAt(state.distance_ft);
   const vFtSec = vFtMin / 60;
   document.getElementById("velocity").textContent = `${vFtMin.toFixed(1)} ft/min`;
-  const gpmNote = document.getElementById("modeGpm").checked
-    ? `${vFtSec.toFixed(2)} ft/s · ${parseFloat(document.getElementById("gpmInput").value) || 0} gpm`
+  const idHere = segIdInches(i);
+  document.getElementById("velocitySub").textContent = isGpmMode()
+    ? `${vFtSec.toFixed(2)} ft/s · ${currentGpm()} gpm · ID ${idHere}"`
     : `${vFtSec.toFixed(2)} ft/s · direct`;
-  document.getElementById("velocitySub").textContent = gpmNote;
   document.getElementById("elapsed").textContent = fmtTime(state.elapsedSec);
 
-  const etaSec = vFtSec > 0 ? remaining / vFtSec : Infinity;
+  const etaSec = etaSecondsFrom(state.distance_ft);
+  document.getElementById("etaLabel").textContent = `ETA to ${state.direction === 1 ? "R" : "B"}`;
   document.getElementById("etaBig").textContent = fmtTime(etaSec);
   document.getElementById("arrivalClock").textContent =
     (state.running && isFinite(etaSec))
       ? new Date(Date.now() + etaSec * 1000).toLocaleTimeString([], { hour12: false })
       : "—";
 
-  // status line
   const dirLabel = state.direction === 1 ? "B → R" : "R → B";
   const el = document.getElementById("statusLine");
   if (state.running) {
@@ -597,24 +793,131 @@ function renderFrame() {
   }
 }
 
-function tick(now) {
-  if (state.lastTickMs === null) state.lastTickMs = now;
-  const dt = (now - state.lastTickMs) / 1000;
-  state.lastTickMs = now;
-
-  if (state.running) {
-    const vFtSec = currentVelocityFtPerMin() / 60;
-    state.distance_ft += state.direction * vFtSec * dt;
-    state.elapsedSec += dt;
-    if (state.direction === -1 && state.distance_ft <= 0) { state.distance_ft = 0; state.running = false; updateDirectionButtons(); }
-    if (state.direction === 1 && state.distance_ft >= totalLength) { state.distance_ft = totalLength; state.running = false; updateDirectionButtons(); }
-    renderFrame();
+// Advance position by dtSec, walking segment boundaries analytically with
+// per-segment velocity. Exact for any dt — a browser can suspend rendering
+// for half an hour (minimized window) and the pig lands where the math says.
+function advance(dtSec) {
+  let remainingT = dtSec;
+  let d = state.distance_ft;
+  const dir = state.direction;
+  let guard = 0;
+  while (remainingT > 1e-9 && guard++ <= segments.length + 2) {
+    const v = velocityFtMinAt(d) / 60;
+    if (v <= 0) break;
+    const { i } = locate(d);
+    const segStart = cumStart[i], segEnd = segStart + segments[i].length_ft;
+    const boundary = dir === 1 ? segEnd : segStart;
+    const tToBoundary = Math.abs(boundary - d) / v;
+    if (tToBoundary >= remainingT) {
+      d += dir * v * remainingT;
+      remainingT = 0;
+    } else {
+      d = boundary + dir * 1e-9;   // nudge into the next segment
+      remainingT -= tToBoundary;
+    }
+    if (d <= 0 || d >= totalLength) { d = Math.min(Math.max(d, 0), totalLength); break; }
   }
+  state.distance_ft = d;
+}
+
+// Shared clock step, driven by both rAF (smooth when visible) and a 1 s
+// interval (keeps time when the tab is hidden and rAF is suspended).
+function step(nowMs) {
+  if (state.lastTickMs === null) state.lastTickMs = nowMs;
+  const dt = (nowMs - state.lastTickMs) / 1000;
+  state.lastTickMs = nowMs;
+  if (!state.running || dt <= 0) return false;
+
+  advance(dt);
+  state.elapsedSec += dt;
+  if (state.direction === -1 && state.distance_ft <= 0) {
+    state.distance_ft = 0; state.running = false; updateDirectionButtons();
+    addLog(`ARRIVED at B — elapsed ${fmtTime(state.elapsedSec)}`);
+    chime();
+  }
+  if (state.direction === 1 && state.distance_ft >= totalLength) {
+    state.distance_ft = totalLength; state.running = false; updateDirectionButtons();
+    addLog(`ARRIVED at R — elapsed ${fmtTime(state.elapsedSec)}`);
+    chime();
+  }
+  return true;
+}
+
+function tick(now) {
+  if (step(now)) renderFrame();
   requestAnimationFrame(tick);
 }
 
+// background heartbeat: rAF stops in hidden tabs; this keeps the model honest
+setInterval(() => {
+  if (document.visibilityState === "hidden") step(performance.now());
+}, 1000);
+
 // ---------------------------------------------------------------------------
-// Controls — same valve-button state machine as v1
+// Arrival chime + wake lock
+// ---------------------------------------------------------------------------
+let audioCtx = null;
+function ensureAudio() {
+  if (!settings.chime) return;
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === "suspended") audioCtx.resume();
+  } catch (e) { /* no audio available */ }
+}
+function chime() {
+  if (!settings.chime || !audioCtx) return;
+  try {
+    [[880, 0], [1320, 0.18]].forEach(([freq, delay]) => {
+      const o = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      o.frequency.value = freq; o.type = "sine";
+      g.gain.setValueAtTime(0.0001, audioCtx.currentTime + delay);
+      g.gain.exponentialRampToValueAtTime(0.25, audioCtx.currentTime + delay + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + delay + 0.16);
+      o.connect(g); g.connect(audioCtx.destination);
+      o.start(audioCtx.currentTime + delay); o.stop(audioCtx.currentTime + delay + 0.2);
+    });
+  } catch (e) { /* ignore */ }
+}
+document.getElementById("chimeChk").checked = settings.chime;
+document.getElementById("chimeChk").addEventListener("change", e => {
+  settings.chime = e.target.checked;
+  lsSet("pigTracker.chime", settings.chime);
+  if (settings.chime) ensureAudio();
+});
+
+let wakeLock = null;
+async function requestWake() {
+  try {
+    wakeLock = await navigator.wakeLock.request("screen");
+    wakeLock.addEventListener("release", () => { wakeLock = null; });
+  } catch (e) {
+    document.getElementById("wakeChk").checked = false;
+    addLog("Keep-screen-on not available in this browser");
+  }
+}
+document.getElementById("wakeChk").addEventListener("change", async e => {
+  if (e.target.checked) {
+    if (!("wakeLock" in navigator)) {
+      e.target.checked = false;
+      addLog("Keep-screen-on not supported here");
+      return;
+    }
+    await requestWake();
+  } else if (wakeLock) {
+    wakeLock.release(); wakeLock = null;
+  }
+});
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") {
+    step(performance.now());   // catch up on any hidden-time gap immediately
+    renderFrame();
+    if (document.getElementById("wakeChk").checked && !wakeLock) requestWake();
+  }
+});
+
+// ---------------------------------------------------------------------------
+// Controls — same valve-button state machine, now with logging
 // ---------------------------------------------------------------------------
 function updateDirectionButtons() {
   const br = document.getElementById("btnBR");
@@ -628,21 +931,34 @@ function updateDirectionButtons() {
   rb.textContent = (state.direction === -1 ? icon : "") + "R → B";
 }
 
+function flowDesc() {
+  return isGpmMode()
+    ? `${currentGpm()} gpm (${velocityFtMinAt(state.distance_ft).toFixed(1)} ft/min at pig)`
+    : `${(parseFloat(document.getElementById("ftminInput").value) || 0).toFixed(1)} ft/min direct`;
+}
+
 function handleDirectionClick(clickedDirection) {
+  ensureAudio();
+  const dirLabel = clickedDirection === 1 ? "B → R" : "R → B";
   if (state.direction === clickedDirection) {
-    // same button clicked again: toggle Start/Pause in place
     state.running = !state.running;
-    if (state.running) state.lastTickMs = null;
+    if (state.running) {
+      state.lastTickMs = null;
+      addLog(isDocked() ? `Launched ${dirLabel} — ${flowDesc()}` : `Resumed ${dirLabel} at ${state.distance_ft.toFixed(1)} ft`);
+    } else {
+      addLog(`Paused at ${state.distance_ft.toFixed(1)} ft`);
+    }
   } else {
     const wasDocked = isDocked();
     state.direction = clickedDirection;
     if (wasDocked) {
-      // place pig at this direction's home flange, fresh launch
       state.distance_ft = clickedDirection === 1 ? 0 : totalLength;
       state.elapsedSec = 0;
       state.launchEnd = clickedDirection === 1 ? "B" : "R";
+      addLog(`Launched ${dirLabel} — ${flowDesc()}`);
+    } else {
+      addLog(`Reversed to ${dirLabel} at ${state.distance_ft.toFixed(1)} ft`);
     }
-    // else: live reverse in place — position, elapsed, and trail anchor carry over
     state.running = true;
     state.lastTickMs = null;
   }
@@ -659,21 +975,34 @@ document.getElementById("stopBtn").addEventListener("click", () => {
   state.elapsedSec = 0;
   state.lastTickMs = null;
   state.launchEnd = state.direction === 1 ? "B" : "R";
+  addLog(`Stop/Reset — pig docked at ${state.launchEnd}`);
   updateDirectionButtons();
   renderFrame();
 });
 
-// GPM slider <-> number sync, and mode toggle enable/disable
+// GPM slider <-> number sync + debounced flow-change logging
 const gpmInput = document.getElementById("gpmInput");
 const gpmSlider = document.getElementById("gpmSlider");
 const ftminInput = document.getElementById("ftminInput");
+let flowLogTimer = null, lastLoggedFlow = null;
 
-gpmSlider.addEventListener("input", () => { gpmInput.value = gpmSlider.value; renderFrame(); });
-gpmInput.addEventListener("input", () => { gpmSlider.value = gpmInput.value; renderFrame(); });
-ftminInput.addEventListener("input", renderFrame);
+function scheduleFlowLog() {
+  clearTimeout(flowLogTimer);
+  flowLogTimer = setTimeout(() => {
+    const desc = flowDesc();
+    if (desc !== lastLoggedFlow) {
+      addLog(`Flow set: ${desc}`);
+      lastLoggedFlow = desc;
+    }
+  }, 1200);
+}
+
+gpmSlider.addEventListener("input", () => { gpmInput.value = gpmSlider.value; scheduleFlowLog(); renderFrame(); });
+gpmInput.addEventListener("input", () => { gpmSlider.value = gpmInput.value; scheduleFlowLog(); renderFrame(); });
+ftminInput.addEventListener("input", () => { scheduleFlowLog(); renderFrame(); });
 
 function applyMode() {
-  const gpmMode = document.getElementById("modeGpm").checked;
+  const gpmMode = isGpmMode();
   gpmInput.disabled = !gpmMode;
   gpmSlider.disabled = !gpmMode;
   ftminInput.disabled = gpmMode;
@@ -681,18 +1010,243 @@ function applyMode() {
 }
 document.querySelectorAll('input[name="mode"]').forEach(el => el.addEventListener("change", applyMode));
 
-circuitSelect.addEventListener("change", () => loadCircuit(parseInt(circuitSelect.value, 10)));
+circuitSelect.addEventListener("change", () => {
+  const [t, i] = circuitSelect.value.split(":");
+  loadCircuit({ type: t, idx: parseInt(i, 10) });
+});
+
+// ---------------------------------------------------------------------------
+// Click-to-set position: nearest point on the path within 20px (viewBox units)
+// ---------------------------------------------------------------------------
+svg.addEventListener("click", evt => {
+  if (document.getElementById("builder").classList.contains("open")) return;
+  const ctm = svg.getScreenCTM();
+  if (!ctm) return;
+  const pt = new DOMPoint(evt.clientX, evt.clientY).matrixTransform(ctm.inverse());
+
+  // coarse pass then refine
+  let bestPx = 0, bestDist = Infinity;
+  for (let p = 0; p <= pathTotalPx; p += 24) {
+    const q = pathEl.getPointAtLength(p);
+    const dd = Math.hypot(q.x - pt.x, q.y - pt.y);
+    if (dd < bestDist) { bestDist = dd; bestPx = p; }
+  }
+  for (let p = Math.max(0, bestPx - 24); p <= Math.min(pathTotalPx, bestPx + 24); p += 2) {
+    const q = pathEl.getPointAtLength(p);
+    const dd = Math.hypot(q.x - pt.x, q.y - pt.y);
+    if (dd < bestDist) { bestDist = dd; bestPx = p; }
+  }
+  if (bestDist > 20) return;
+
+  const from = state.distance_ft;
+  state.distance_ft = distanceOfPx(bestPx);
+  const u = unitAtDistance(state.distance_ft);
+  addLog(`Position set: ${state.distance_ft.toFixed(1)} ft (${ZONE_NAMES[u.zone]} tube ${u.zoneIdx + 1}) — was ${from.toFixed(1)} ft`);
+  updateDirectionButtons();
+  renderFrame();
+});
+
+// ---------------------------------------------------------------------------
+// Circuit builder
+// ---------------------------------------------------------------------------
+const builder = document.getElementById("builder");
+const bGrid = document.getElementById("bGrid");
+let builderSource = null; // null = new; {type,idx} = editing that entry
+
+function bAddSegRow(seg) {
+  const row = document.createElement("div");
+  row.className = "b-seg";
+  row.innerHTML = `
+    <select class="bZone">
+      <option value="convection">Convection</option>
+      <option value="crossover">Crossover</option>
+      <option value="radiant">Radiant</option>
+    </select>
+    <input type="text" class="bLabel" placeholder="e.g. Convection bank">
+    <input type="number" class="bTubes" min="1" step="1" value="1">
+    <input type="number" class="bLen" min="0" step="0.001" placeholder="ft">
+    <input type="number" class="bId" min="0" step="0.001" placeholder="default">
+    <span class="rowbtns">
+      <button type="button" class="bUp" title="Move up">↑</button>
+      <button type="button" class="bDown" title="Move down">↓</button>
+      <button type="button" class="bDel" title="Remove row">✕</button>
+    </span>`;
+  if (seg) {
+    row.querySelector(".bZone").value = seg.zone;
+    row.querySelector(".bLabel").value = seg.label || "";
+    row.querySelector(".bTubes").value = seg.tubes || 1;
+    row.querySelector(".bLen").value = seg.length_ft;
+    if (seg.id_in) row.querySelector(".bId").value = seg.id_in;
+  }
+  row.querySelector(".bUp").addEventListener("click", () => {
+    const prev = row.previousElementSibling;
+    if (prev && prev.classList.contains("b-seg")) bGrid.insertBefore(row, prev);
+    bUpdateTotal();
+  });
+  row.querySelector(".bDown").addEventListener("click", () => {
+    const next = row.nextElementSibling;
+    if (next) bGrid.insertBefore(next, row);
+    bUpdateTotal();
+  });
+  row.querySelector(".bDel").addEventListener("click", () => { row.remove(); bUpdateTotal(); });
+  row.querySelectorAll("input, select").forEach(el => el.addEventListener("input", bUpdateTotal));
+  bGrid.appendChild(row);
+}
+
+function bRows() { return [...bGrid.querySelectorAll(".b-seg")]; }
+
+function bUpdateTotal() {
+  let tubes = 0, ft = 0;
+  bRows().forEach(r => {
+    tubes += parseInt(r.querySelector(".bTubes").value, 10) || 0;
+    ft += parseFloat(r.querySelector(".bLen").value) || 0;
+  });
+  document.getElementById("bTotal").textContent = `${tubes} tubes · ${ft.toFixed(1)} ft`;
+}
+
+function bCollect() {
+  const name = document.getElementById("bName").value.trim();
+  const defId = parseFloat(document.getElementById("bDefId").value);
+  const rows = bRows();
+  if (!name) return { err: "Circuit name is required." };
+  if (!(defId > 0)) return { err: "Default tube ID must be a positive number." };
+  if (!rows.length) return { err: "Add at least one segment row." };
+
+  const segs = [];
+  const zoneRank = { convection: 0, crossover: 1, radiant: 2 };
+  let lastRank = -1;
+  for (let i = 0; i < rows.length; i++) {
+    const r = rows[i];
+    const zone = r.querySelector(".bZone").value;
+    const tubes = parseInt(r.querySelector(".bTubes").value, 10);
+    const len = parseFloat(r.querySelector(".bLen").value);
+    const idIn = parseFloat(r.querySelector(".bId").value);
+    if (!(tubes >= 1)) return { err: `Row ${i + 1}: tubes must be at least 1.` };
+    if (!(len > 0)) return { err: `Row ${i + 1}: total length must be a positive number of feet.` };
+    if (r.querySelector(".bId").value !== "" && !(idIn > 0)) return { err: `Row ${i + 1}: ID must be positive (or blank for default).` };
+    if (zoneRank[zone] < lastRank) return { err: `Row ${i + 1}: zones must run convection → crossover → radiant.` };
+    lastRank = zoneRank[zone];
+    const label = r.querySelector(".bLabel").value.trim() ||
+      `${zone.charAt(0).toUpperCase() + zone.slice(1)}${tubes > 1 ? ` (${tubes} tubes)` : ""}`;
+    const seg = { id: `${zone}-${i + 1}`, label, zone, tubes, length_ft: len };
+    if (r.querySelector(".bId").value !== "") seg.id_in = idIn;
+    segs.push(seg);
+  }
+  const hasConv = segs.some(s => s.zone === "convection");
+  const hasRad = segs.some(s => s.zone === "radiant");
+  const hasXo = segs.some(s => s.zone === "crossover");
+  if (!hasConv && !hasRad) return { err: "Circuit needs at least one convection or radiant row." };
+  if (hasXo && (!hasConv || !hasRad)) return { err: "Crossover rows need both a convection row before and a radiant row after." };
+  return { circuit: { name, default_id_inches: defId, segments: segs } };
+}
+
+function openBuilder(source) {
+  builderSource = source;
+  bGrid.querySelectorAll(".b-seg").forEach(el => el.remove());
+  document.getElementById("bErr").textContent = "";
+  if (source) {
+    const c = circuitByRef(source);
+    const isBuiltin = source.type === "b";
+    document.getElementById("builderTitle").textContent = isBuiltin ? "Edit (saves as a copy)" : "Edit circuit";
+    document.getElementById("bName").value = isBuiltin ? `${c.name} (copy)` : c.name;
+    document.getElementById("bDefId").value = c.default_id_inches;
+    c.segments.forEach(bAddSegRow);
+    document.getElementById("bDelete").style.display = isBuiltin ? "none" : "";
+  } else {
+    document.getElementById("builderTitle").textContent = "New circuit";
+    document.getElementById("bName").value = "";
+    document.getElementById("bDefId").value = "4.026";
+    bAddSegRow({ zone: "convection", tubes: 10, length_ft: "" });
+    bAddSegRow({ zone: "radiant", tubes: 10, length_ft: "" });
+    document.getElementById("bDelete").style.display = "none";
+  }
+  bUpdateTotal();
+  builder.classList.add("open");
+}
+
+function closeBuilder() { builder.classList.remove("open"); }
+
+document.getElementById("newBtn").addEventListener("click", () => openBuilder(null));
+document.getElementById("editBtn").addEventListener("click", () => openBuilder(currentRef));
+document.getElementById("bAddRow").addEventListener("click", () => { bAddSegRow(); bUpdateTotal(); });
+document.getElementById("bCancel").addEventListener("click", closeBuilder);
+
+document.getElementById("bSave").addEventListener("click", () => {
+  const res = bCollect();
+  if (res.err) { document.getElementById("bErr").textContent = res.err; return; }
+  const editingCustom = builderSource && builderSource.type === "c";
+  let idx;
+  if (editingCustom) {
+    customCircuits[builderSource.idx] = res.circuit;
+    idx = builderSource.idx;
+  } else {
+    customCircuits.push(res.circuit);
+    idx = customCircuits.length - 1;
+  }
+  if (!lsSet("pigTracker.circuits", customCircuits)) {
+    addLog("Warning: could not save to browser storage — circuit lives in this session only");
+  }
+  currentRef = { type: "c", idx };
+  rebuildCircuitSelect();
+  closeBuilder();
+  loadCircuit(currentRef);
+  addLog(`Circuit saved: ${res.circuit.name}`);
+});
+
+document.getElementById("bDelete").addEventListener("click", () => {
+  if (!builderSource || builderSource.type !== "c") return;
+  if (!confirm(`Delete "${customCircuits[builderSource.idx].name}"?`)) return;
+  const name = customCircuits[builderSource.idx].name;
+  customCircuits.splice(builderSource.idx, 1);
+  lsSet("pigTracker.circuits", customCircuits);
+  currentRef = { type: "b", idx: 0 };
+  rebuildCircuitSelect();
+  closeBuilder();
+  loadCircuit(currentRef);
+  addLog(`Circuit deleted: ${name}`);
+});
+
+document.getElementById("bExport").addEventListener("click", () => {
+  const res = bCollect();
+  if (res.err) { document.getElementById("bErr").textContent = res.err; return; }
+  const blob = new Blob([JSON.stringify(res.circuit, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = res.circuit.name.replace(/[^\w\-]+/g, "-").replace(/^-+|-+$/g, "").toLowerCase() + ".json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+document.getElementById("bImport").addEventListener("click", () => document.getElementById("bImportFile").click());
+document.getElementById("bImportFile").addEventListener("change", e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const obj = JSON.parse(reader.result);
+      if (!obj.name || !Array.isArray(obj.segments)) throw new Error("bad shape");
+      bGrid.querySelectorAll(".b-seg").forEach(el => el.remove());
+      document.getElementById("bName").value = obj.name;
+      document.getElementById("bDefId").value = obj.default_id_inches || 4.026;
+      obj.segments.forEach(bAddSegRow);
+      bUpdateTotal();
+      document.getElementById("bErr").textContent = "";
+    } catch (err) {
+      document.getElementById("bErr").textContent = "Import failed — file is not a valid circuit JSON.";
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = "";
+});
 
 // ---------------------------------------------------------------------------
 // Init
 // ---------------------------------------------------------------------------
-CIRCUITS.forEach((c, i) => {
-  const opt = document.createElement("option");
-  opt.value = i; opt.textContent = c.name;
-  circuitSelect.appendChild(opt);
-});
-loadCircuit(0);
+rebuildCircuitSelect();
+loadCircuit({ type: "b", idx: 0 });
 applyMode();
+lastLoggedFlow = flowDesc();
 requestAnimationFrame(tick);
 </script>
 </body>
