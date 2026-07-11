@@ -3,174 +3,128 @@ type: job-sheet
 job-number: USA26038
 client: HF Sinclair Navajo
 facility: HF-Sinclair-Artesia-NM
-status: mobilized — staging pending customer approval
 last-updated: 2026-07-11
 tags: [job-sheet, HF-Sinclair, USA26038]
 ---
 
 # USA26038 — HF Sinclair Navajo Refinery, Artesia, NM
 
-> Crew reference for this job: current project info, technical specs, crew/shift assignment, billing categories, and carry-forward notes from the last project on these heaters (USA25051, Aug 2025). Actual task hours for USA26038 get logged on the job report, not here — the "Current Quote" hours below are the plan to work against.
+> Vault-native copy of the printable crew job sheet. The canonical printable version is
+> `USA26038-job-sheet.pdf` (rendered from `USA26038-job-sheet.html`). A job sheet is static —
+> created at bid-win from the quoted work-up. Actuals and timeline live on the job report, never here.
 
 ---
 
-## Job Details
+## Project Details
 
 | Field | Value |
 |---|---|
+| Facility | HF Sinclair Navajo Refinery — Artesia, NM |
 | Job # | USA26038 |
-| Customer | HF Sinclair Navajo |
-| Location | Artesia, NM |
-| Facility | HF Sinclair Navajo Refinery |
-| Heaters in scope | H19, H20 |
-| Project type | Emergency project — mechanical decoke, (2) TriMax units |
+| Scope | Mechanical decoke — H19 & H20, (2) TriMax pumpers with filtration |
+| Heaters | H19 Crude Charge Heater · H20 Vertical Crude Hydro Heater |
+| Project Type | Emergency turnaround project |
+| Training | Site Specific |
 
 ---
 
-## Project Leadership
+## Crew Assignment — By Rig & Shift
 
-> Dacorey Slater is the customer-facing lead and final-decision authority for this project — but he bills as Day Supervisor / Supervisor, same as Jesse. "Project Manager" is not his billing title on this job.
+**Dayshift**
 
-| Role | Name | Billed As |
+| Rig | Supervisor | Operators |
 |---|---|---|
-| Customer-facing lead / final decisions | Dacorey Slater | Day Supervisor |
-| Day Supervisor | Jesse Utsey | Day Supervisor |
-| Night Supervisor | Samuel Mixon | Supervisor |
-| Night Supervisor | Daniel Harman | Supervisor |
+| TriMax 5 | Dacorey Slater | Dandrew Brown, Andre Madison |
+| TriMax 3 | Jesse Utsey | Blake Baugh |
 
----
+**Night Shift**
 
-## Crew Roster — By Shift
-
-| Dayshift | Role |
-|---|---|
-| Dacorey Slater | Day Supervisor (customer-facing lead) |
-| Jesse Utsey | Day Supervisor |
-| Blake Baugh | Operator |
-| Andre Madison | Operator |
-| Dandrew Brown | Operator |
-
-| Night Shift | Role |
-|---|---|
-| Samuel Mixon | Supervisor |
-| Daniel Harman | Supervisor |
-| Kailon Golston | Operator |
-| Joel Ruiz | Operator |
-| James "JC" McDaniel | Operator |
-
----
-
-## Equipment
-
-> Equipment is mobilized to the job, not pre-assigned to a specific heater — which unit works which heater is a field decision made on-site, not fixed here.
-
-| Unit |
-|---|
-| Trimax 5 |
-| Trimax 3 |
-| Support 5 |
-| Support 3 |
-| Press 1 |
-| Press 2 |
-
----
-
-## Rig / Crew Assignment (Service Receipt Template)
-
-> Supervisors are fixed to a rig for the duration of the job — this is the template each supervisor submits their daily service receipt against. Heater assignment (which rig works H19 vs H20) is not fixed and is a field decision, made day-to-day. Operators are a shared pool across both rigs, assigned as needed each shift — not fixed to one rig.
-
-| Rig | Day Supervisor | Night Supervisor |
+| Rig | Supervisor | Operators |
 |---|---|---|
-| Trimax 5 | Dacorey Slater | Samuel Mixon |
-| Trimax 3 | Jesse Utsey | Daniel Harman |
+| TriMax 5 | Samuel Mixon | Kailon Golston |
+| TriMax 3 | Daniel Harman | Joel Ruiz, James McDaniel |
 
-Operator pool (assign day-to-day, day stays with day, night stays with night): Blake Baugh, Andre Madison, Dandrew Brown (day) · Kailon Golston, Joel Ruiz, James "JC" McDaniel (night).
-
----
-
-## Billable Resource Categories (Service Receipt Reference)
-
-> Categories only, no rates — log hours against these so billing matches the quote's line items. See PM/office for current rate sheet.
-
-| Category | Billed As |
-|---|---|
-| Pumper: Rigging | Hour |
-| Pumper: Pigging | Hour |
-| Pumper: Smart Pig | Hour |
-| Pumper: Stand-by | Hour |
-| Support Unit | Hour |
-| Filtration | Hour |
-| Filter Stand-by | Hour |
-| Crew Truck | Hour |
-| Project Manager | Hour |
-| Supervisor | Hour |
-| Operator | Hour |
-| Per Diem | Day |
-| DEF | Shift |
+Supervisors are fixed to a rig; which rig works H19 vs. H20 is a field decision. Operators may shift between rigs within their shift. Dacorey Slater is the customer-facing lead / final-decision authority and bills as Project Manager on the H-20 work-up (see billing below).
 
 ---
 
-## Heater Technical Summary (Compact)
+## Billing Reference — By Heater
 
-### H-19 Crude Charge Heater
+Pumper Amt shows the heater total; Rig-In / Pig / Rig-Out breakdown is in each heading.
 
-| Field | Value |
-|---|---|
-| Pass config | (2) coils looped to (1) pass |
-| Coil details | (40) 4" Convection → (46) 3" Radiant tubes → (7) 4" Radiant tubes |
-| Metallurgy | 9 Chrome |
-| Effluent | Firewater, filtered through press, stored in frac tanks |
-| Connections | (2) 4" launchers at control valve station (grade) |
-| Max pig OD | 3.318" (3.068" radiant ID governs) |
+### H-19 Crude Charge Heater — 48 Hrs Total (Rig-In 6 / Pig 36 / Rig-Out 6)
 
-### H-20 Vertical Crude Hydro Heater
+| Qty | Item | Amt | Unit |
+|---|---|---|---|
+| 1 | TriMax Pumper | 48 | Hrs |
+| 1 | Support Unit | 48 | Hrs |
+| 1 | Filter Unit | 48 | Hrs |
+| 1 | Crew Truck | 48 | Hrs |
+| 1 | Day Supervisor | 24 | Hrs |
+| 2 | Day Operators | 48 | Hrs |
+| 1 | Night Supervisor | 24 | Hrs |
+| 1 | Night Operator | 24 | Hrs |
+| 3 | Per Diem: Dayshift | 2 | Days |
+| 2 | Per Diem: Nightshift | 2 | Days |
+| 1 | Materials: DEF | 4 | Shifts |
 
-| Field | Value |
-|---|---|
-| Pass config | (4) coils looped to (3) passes: convection looped to 2 passes, radiant looped to 1 pass |
-| Coil details | Convection 4.026" ID (14 tubes/coil, 21.4' ea) · Radiant 3.068" ID (30 tubes/coil, 37.8' ea) |
-| Metallurgy | 9 Chrome |
-| Effluent | Firewater, filtered through press, dewatered, stored in frac tanks |
-| Connections | Convection: (4) 4" launchers, 10' from grade · Radiant: (2) 4" launchers at grade |
-| Max pig OD | 3.318" (3.068" radiant ID governs) |
+### H-20 Vertical Crude Hydro Heater — 80 Hrs Total (Rig-In 12 / Pig 56 / Rig-Out 12)
+
+| Qty | Item | Amt | Unit |
+|---|---|---|---|
+| 1 | TriMax Pumper | 80 | Hrs |
+| 1 | Support Unit | 80 | Hrs |
+| 1 | Filter Unit | 80 | Hrs |
+| 1 | Crew Truck | 80 | Hrs |
+| 1 | Project Manager | 44 | Hrs |
+| 1 | Day Supervisor | 44 | Hrs |
+| 2 | Day Operators | 88 | Hrs |
+| 1 | Night Supervisor | 36 | Hrs |
+| 2 | Night Operators | 72 | Hrs |
+| 3 | Per Diem: Dayshift | 4 | Days |
+| 3 | Per Diem: Nightshift | 3 | Days |
+| 1 | Materials: DEF | 5 | Shifts |
+
+Operator / Night Operator Amt is combined man-hours (Qty × per-person shift hours). Quoted total across both heaters: 128 pumper hours.
+
+---
+
+## H-19 Crude Charge Heater — Coil Data
+
+| Section | Coils | Pipe OD | Pipe Wall | Pipe ID | Tube Length | Tubes/Coil | Ft/Section |
+|---|---|---|---|---|---|---|---|
+| Convection | 2 | 4.500 | 0.237 | 4.026 | 19.6' | 40 | 824' |
+| Radiant | 2 | 3.500 | 0.216 | 3.068 | 31.0' | 46 | 1,426' |
+| Radiant (outlet) | 2 | 4.500 | 0.237 | 4.026 | 31.0' | 7 | 217' |
+
+Metallurgy: 9 Chrome. Pass config: (2) coils looped to (1) pass, 180° at radiant outlet (see Carry-Forward Notes). Connections: (2) 4" launchers at control valve station (grade). Effluent: firewater, filtered through press, stored in frac tanks.
+
+---
+
+## H-20 Vertical Crude Hydro Heater — Coil Data
+
+| Section | Coils | Pipe OD | Pipe Wall | Pipe ID | Tube Length | Tubes/Coil | Ft/Section |
+|---|---|---|---|---|---|---|---|
+| Convection | 2 | 4.5 | 0.237 | 4.026 | 21.4' | 14 | 300' |
+| Radiant | 2 | 3.5 | 0.216 | 3.068 | 37.8' | 30 | 1,134' |
+
+Metallurgy: 9 Chrome. Pass config: (4) coils looped to (3) passes — convection 2-pass, radiant 1-pass via temp 180° spools (see Carry-Forward Notes). Connections: convection (4) 4" launchers, 10' from grade; radiant (2) 4" launchers at grade. Effluent: firewater, filtered through press, dewatered, stored in frac tanks.
 
 Full tube geometry, config rollup, and pig spec history: [[H19]], [[H20]].
 
 ---
 
-## Task Hours — Previous Actuals vs. Current Quote
+## Carry-Forward Notes — Prior Decoke (USA25051, Aug 2025)
 
-| Heater | Source | Rig-In | Pig | Smart Pig | Rig-Out | Stand-By | Total (productive) |
-|---|---|---|---|---|---|---|---|
-| H19 | USA25051 actual (Aug 2025) | 10 | 103 | – | 30 | 41 | 143 |
-| H19 | USA26038 quote (double mode) | 6 | 36 | 0 | 6 | 0 | 48 |
-| H20 | USA25051 actual (Aug 2025) | 22 | 69 | – | 38 | 63 | 129 |
-| H20 | USA26038 quote (triple mode) | 12 | 56 | 0 | 12 | 0 | 80 |
-
-Quoted total: 128h / 4 days / 7 shifts across both heaters (18h rig-in, 92h pig, 18h rig-out).
-
----
-
-## Carry-Forward Notes — What to Remember from USA25051
-
-**H19:**
-- Last job installed a temp 180° spool between Pass 1 & Pass 2 radiant outlets. It choked pigging access to the last 7 tubes (4" radiant outlet section) and caused a dewatering air-lock that took extra hours to clear. Avoid repeating this loop if the job allows keeping the passes independent — confirm current piping configuration on arrival before assuming last job's setup is still in place.
-- 3" radiant pigging will fight you until convection flow opens up — stage convection cleaning first; last job's breakthrough came around 50–60 GPM, which is what let 3.8" pigs start moving.
-- Modified fill/flush procedure: route discharge hoses from the outlet launcher straight to frac tanks, not the pumper's dirty tank — minimizes crew H₂S exposure. Confirm this is still the customer's required procedure.
-
-**H20:**
-- Radiant was run as a single 4-pass circuit last job — recommended fix was splitting it into two 2-pass circuits (grade launchers on Pass 3 & 4 mirroring Pass 1 & 2). Confirm on arrival whether HF Sinclair implemented this; if not, expect the same long pig travel times (12–15 min/pass) and slower dewatering as last time.
-- Same modified fill/flush procedure as H19 (frac tanks, not dirty tank).
-
----
-
-## Mobilization Timeline
-
-| Date | Event |
-|---|---|
-| 2026-07-10 | Crew took site-specific training and mobilized; arrived at hotel 7:00 PM. |
-| 2026-07-11 (today) | Crew badged in; on stand-by awaiting customer rep approval to stage equipment in unit. |
+| Heater | Watch For | Action |
+|---|---|---|
+| H19 | Temp 180° spool at Pass 1/2 radiant outlets choked the last 7 tubes (4" radiant outlet) and caused a dewatering air-lock. | Confirm current piping on arrival; avoid repeating the loop if passes can run independent. |
+| H19 | 3" radiant pigging stalls until convection flow opens up. | Stage convection cleaning first — breakthrough came around 50–60 GPM, enabling 3.8" pigs. |
+| H20 | Radiant ran as a single 4-pass circuit — long pig travel (12–15 min/pass) and slow dewatering. | Confirm whether HF Sinclair reconfigured to two 2-pass circuits; if not, expect the same delays. |
+| Both | Customer-required modified fill/flush procedure to limit H₂S exposure. | Route discharge hoses from outlet launcher directly to frac tanks, not the pumper's dirty tank — confirm still in effect. |
 
 ---
 
 ## Notes
+
+Printable deliverable: `USA26038-job-sheet.pdf` (source `USA26038-job-sheet.html`), alongside this file. Billing tables reflect the quoted work-up (12-person resource plan). Actual mobilized crew and timeline are recorded on the job report, not here.
