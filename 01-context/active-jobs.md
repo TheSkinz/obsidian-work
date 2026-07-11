@@ -6,7 +6,9 @@
 
 ## Active
 
-*None currently active. Update when a job mobilizes.*
+| Job # | Facility | Heater(s) | Status | Notes |
+|---|---|---|---|---|
+| USA26038 | HF Sinclair Navajo, Artesia NM | H19, H20 | Mobilized 2026-07-10; staging pending customer approval | Emergency project, 2 TriMax units. PM Dacorey Slater. See [[USA26038-job-sheet]]. |
 
 ---
 
