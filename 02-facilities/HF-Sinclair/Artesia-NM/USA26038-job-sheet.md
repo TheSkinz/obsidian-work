@@ -29,12 +29,14 @@ tags: [job-sheet, HF-Sinclair, USA26038]
 
 ## Project Leadership
 
-| Role | Name |
-|---|---|
-| Project Manager | Dacorey Slater |
-| Day Supervisor | Jesse Utsey |
-| Night Supervisor | Samuel Mixon |
-| Night Supervisor | Daniel Harman |
+> Dacorey Slater is the customer-facing lead and final-decision authority for this project — but he bills as Day Supervisor / Supervisor, same as Jesse. "Project Manager" is not his billing title on this job.
+
+| Role | Name | Billed As |
+|---|---|---|
+| Customer-facing lead / final decisions | Dacorey Slater | Day Supervisor |
+| Day Supervisor | Jesse Utsey | Day Supervisor |
+| Night Supervisor | Samuel Mixon | Supervisor |
+| Night Supervisor | Daniel Harman | Supervisor |
 
 ---
 
@@ -42,8 +44,8 @@ tags: [job-sheet, HF-Sinclair, USA26038]
 
 | Dayshift | Role |
 |---|---|
-| Dacorey Slater | Project Manager |
-| Jesse Utsey | Supervisor |
+| Dacorey Slater | Day Supervisor (customer-facing lead) |
+| Jesse Utsey | Day Supervisor |
 | Blake Baugh | Operator |
 | Andre Madison | Operator |
 | Dandrew Brown | Operator |
@@ -70,6 +72,19 @@ tags: [job-sheet, HF-Sinclair, USA26038]
 | Support 3 |
 | Press 1 |
 | Press 2 |
+
+---
+
+## Rig / Crew Assignment (Service Receipt Template)
+
+> Supervisors are fixed to a rig for the duration of the job — this is the template each supervisor submits their daily service receipt against. Heater assignment (which rig works H19 vs H20) is not fixed and is a field decision, made day-to-day. Operators are a shared pool across both rigs, assigned as needed each shift — not fixed to one rig.
+
+| Rig | Day Supervisor | Night Supervisor |
+|---|---|---|
+| Trimax 5 | Dacorey Slater | Samuel Mixon |
+| Trimax 3 | Jesse Utsey | Daniel Harman |
+
+Operator pool (assign day-to-day, day stays with day, night stays with night): Blake Baugh, Andre Madison, Dandrew Brown (day) · Kailon Golston, Joel Ruiz, James "JC" McDaniel (night).
 
 ---
 
