@@ -20,7 +20,9 @@
 
 ## Awarded / Pre-Execution
 
-*None currently. Add when a job is awarded and execution date is confirmed.*
+| Job # | Facility | Heater(s) | Execution Window | Notes |
+|---|---|---|---|---|
+| USA26038 | HF Sinclair Navajo, Artesia NM | H19, H20 (per USA25051 precedent — confirm) | (not yet confirmed) | PM Dacorey Slater. See [[USA26038-job-sheet]]. |
 
 ---
 
