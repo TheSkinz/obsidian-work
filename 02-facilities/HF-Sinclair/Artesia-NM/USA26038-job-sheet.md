@@ -60,14 +60,16 @@ tags: [job-sheet, HF-Sinclair, USA26038]
 
 ## Equipment
 
-| Unit | Assigned To |
-|---|---|
-| Trimax 3 | H19 (matches USA25051 assignment) |
-| Support 3 | H19 (matches USA25051 assignment) |
-| Press 2 | H19 (matches USA25051 assignment) |
-| Trimax 5 | H20 (inferred — replaces Trimax 1 from USA25051; confirm on-site) |
-| Support 5 | H20 (inferred — replaces Support 1 from USA25051; confirm on-site) |
-| Press 1 | H20 (matches USA25051 assignment) |
+> Equipment is mobilized to the job, not pre-assigned to a specific heater — which unit works which heater is a field decision made on-site, not fixed here.
+
+| Unit |
+|---|
+| Trimax 5 |
+| Trimax 3 |
+| Support 5 |
+| Support 3 |
+| Press 1 |
+| Press 2 |
 
 ---
 
