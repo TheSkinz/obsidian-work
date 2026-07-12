@@ -127,9 +127,9 @@ Also noted, one line each, owned by other loops: `04-knowledge/concepts/quote-li
 
 ## Part 4 — Open questions (domain knowledge this loop can't settle from files; no edits proposed)
 
-1. **Operating pressure range** differs across three homes: `usadebusk-equipment:33` "100–400 PSI typical," `usadebusk-sop:107` "100–200 PSI nominal; 150–400 PSI hard fouling," `equipment-library.md:34` "Normal operating: 150–250 PSI." All agree on 600 max. Which formulation is canonical? (Lane 4.)
-2. **9 Chrome metallurgy.** Skills model metallurgy as a carbon/stainless binary (estimating intake #9 "carbon steel or stainless"; SOP Variants A/B) — but both live USA26038 heaters record "9 Chrome" per-section (H19.md:37-39). Presumably runs as Variant A with no passivation, but that's an inference; how should chrome alloys be recorded and handled? (Lane 4.)
-3. **Labor: 12-hr Day Rate or hourly?** Estimating skill:78 says "Labor | 12-hr Day Rate" while its own Baseline Rate Table, the receipts, and the USA26038 work-up all carry labor in $/hr and Hrs. Both models coexist in the same skill. (Lane 4.)
+1. ~~**Operating pressure range**~~ **ANSWERED 2026-07-12:** normal operating pressure is **150–300 PSI** (Jesse). Applied to `usadebusk-equipment` and `usadebusk-sop` on `drift/2026-07`, and to `equipment-library.md` in the vault.
+2. ~~**9 Chrome metallurgy**~~ **ANSWERED 2026-07-12 — no change needed:** metallurgy is a minor detail, relevant only when the customer requires passivation, which is customer-performed and not USADeBusk's responsibility (Jesse). The carbon/stainless framing in the skills stands; alloys like 9 Chrome are simply recorded as-found on the card.
+3. ~~**Labor: 12-hr Day Rate or hourly?**~~ **ANSWERED 2026-07-12:** labor bills **hourly** (Jesse). Applied to `usadebusk-estimating` Pricing Structure on `drift/2026-07`, and to `field-operations.md` and `estimating-pricing.md` in the vault.
 4. **Passivation numeric extras.** `industry-foundation.md:56-61` carries values absent from the canonical home (circulation 1–2 ft/s, 4–6 hrs duration, chloride ≤250/≤500/<0.5 ppm, "USADeBusk can supply if required") — `usadebusk-core:103` says such values live only in sop Variant B, which omits them. Promote to the skill, or trim the vault note to a pointer? (Lane 4 — safety chemistry.)
 5. **Rig-in 6-hr default calibration.** Valero actuals 27/34.5\* hrs; USA26038 H-20 quoted Rig-In 12. The rollup already flags this class; benchmark changes are yours. (Lane 4.)
 6. **Filter press rate during smart pigging:** usadebusk-ops:75 counts smart pigging as "pumping"; usadebusk-estimating:85 defines pumping as "TriMax actively pigging" without mentioning smart pig. One sentence in estimating would close it — which way?
@@ -150,4 +150,10 @@ Also noted, one line each, owned by other loops: `04-knowledge/concepts/quote-li
 
 ## Apply Log
 
-*(empty — filled when decisions are applied)*
+| Date | Decision | Applied where | By |
+|---|---|---|---|
+| 2026-07-12 | Q1: normal operating pressure = 150–300 PSI (Jesse, in-session) | `drift/2026-07` commits on usadebusk-equipment + usadebusk-sop; vault `equipment-library.md` (supersedes the V-list's 150–250 quote) | Claude |
+| 2026-07-12 | Q2: 9 Chrome / metallurgy — no change needed; only customer-required passivation matters and it's customer-performed (Jesse, in-session) | none | Claude |
+| 2026-07-12 | Q3: labor bills hourly (Jesse, in-session) | `drift/2026-07` commit on usadebusk-estimating; vault `field-operations.md` + `estimating-pricing.md` | Claude |
+
+Remaining open: Q4 (passivation numeric extras), Q5 (rig-in default calibration), Q6 (filter press rate during smart pig), Q7 (FHR/Flint-Hills, HR expansion) — plus the D/U merge decisions and the V1–V8 vault fixes (only the answered items above are applied; e.g. V6's markup/PDT rows and V4's transit ranges remain).

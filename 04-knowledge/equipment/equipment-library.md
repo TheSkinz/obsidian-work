@@ -31,7 +31,7 @@ USADeBusk's proprietary trailer-mounted pigging pumper. Transports cleaning pigs
 **Operating note:** High-volume / low-pressure system. High volume is the distinguishing characteristic — pigs are propelled by flow, not pressure alone.
 
 **Discharge pressure specs:**
-- Normal operating: 150–250 PSI
+- Normal operating: 150–300 PSI (per Jesse, 2026-07-12)
 - Maximum: 600 PSI
 
 **Physical dimensions (trailer):**
