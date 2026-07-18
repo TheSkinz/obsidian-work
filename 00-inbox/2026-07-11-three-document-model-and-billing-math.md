@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — defers to on-demand Agent-Review loop; destination is 04-knowledge/ (near estimating-approach), out of Capture Loop's writable scope. -->
 ---
 type: capture
 status: inbox

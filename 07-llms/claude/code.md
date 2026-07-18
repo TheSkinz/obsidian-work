@@ -78,6 +78,12 @@ General rule: when an aggregate score contradicts expectations (especially "the 
 
 Source: Claude Code session 9a0789df, 2026-07-06 (`leverage` repo thesis experiment, see [[self-improving-systems]]).
 
+## Undocumented `tasks/` directory
+
+`C:\Users\Jwuts\.claude\tasks\` contains four UUID-named folders with numbered `.json` files and `.lock` files. This looks like internal session/agent task-queue plumbing rather than anything user-authored, and it isn't referenced in either CLAUDE.md or the vault governance doc. Not confirmed broken — just unexplained. Treat as safe to ignore until something depends on understanding it.
+
+Source: Claude Code session (harness audit), 2026-07-07.
+
 ## Links
 
 - Config repo: https://github.com/TheSkinz/claude-config
