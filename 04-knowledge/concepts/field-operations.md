@@ -41,14 +41,14 @@ Purpose: source for invoice generation. All service receipt data feeds here.
 | 4×3 Pump | Equipment | N hrs | Hourly |
 | Support Unit | Equipment | N hrs | Hourly |
 | Crew Truck | Equipment | N hrs | Hourly |
-| DS Supervisor | Labor | N hrs | Day Rate |
-| NS Supervisor | Labor | N hrs | Day Rate |
-| Operator | Labor | N hrs | Day Rate |
+| DS Supervisor | Labor | N hrs | Hourly |
+| NS Supervisor | Labor | N hrs | Hourly |
+| Operator | Labor | N hrs | Hourly |
 | Per Diem | Labor | N count | Daily |
 | DEF | Materials | N shifts | Per shift |
 | Pigs | Materials | qty/type | Unit rate |
-| Third Party | Third Party | N hrs | Cost + 10% |
-| Plant Down Time | Stand-by | N hrs | Stand-by rate |
+| Third Party | Third Party | N hrs | Cost + markup (contract-specific, confirm each job — some facilities as low as 5%) |
+| Plant Down Time | Stand-by | N hrs | Billed via the TriMax Pumper / Filter Press stand-by rates only — no generic stand-by line |
 
 ## Plant Down Time (PDT)
 

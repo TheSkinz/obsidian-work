@@ -40,7 +40,7 @@ SIMOPS (multi-heater jobs): Overlapping heater timeline visibility required — 
 |---|---|---|
 | Equipment | Hourly task-based | TriMax Pumper (rates vary: Rig-In / Pigging / Stand-By) |
 | Support equipment | Hourly fixed | 4×3 Trash Pump, Filter Press (pumping / non-pumping), Support Units, Crew Trucks |
-| Labor | 12-hour Day Rate | Supervisor/Lead (Day/Night), Technician/Operator (Day/Night) |
+| Labor | Hourly (12-hr shifts) | Supervisor/Lead (Day/Night), Technician/Operator (Day/Night) |
 | Per Diem | Fixed daily allowance | 1 PD per 12-hour shift per person |
 | Materials | Unit rate | Pigs (Foam, HR, TC, Swab — per pig), DEF (per shift) |
 | Third Party | Cost + markup | Vac truck, light plant, compressor, rental vehicles, flights |

@@ -8,13 +8,15 @@
 
 USADeBusk's proprietary trailer-mounted pigging pumper. Transports cleaning pigs bi-directionally through furnace tubes using high-volume, low-pressure water.
 
-**Physical layout (left to right):**
-- Control cab (operator station, far left)
-- Dirty tank (2,000 gallons)
-- Clean tank (3,000 gallons)
-- Waterous CMU Series Two-Stage Centrifugal Pump (far right end)
+**Unit architecture — Triple:** One TriMax trailer contains 3 independent pumping assemblies (own engine, gearbox, pump, and valve manifold each), sharing ONE clean tank (3,000 gal) and ONE dirty tank (2,000 gal). Three operator stations in the control cab, one per assembly — left (pump 1), center (pump 2), right (pump 3). Each assembly cleans one circuit independently: direction, flow state, and progress are set per assembly; unused assemblies sit idle. Full detail is canonical in `usadebusk-equipment` — this entry carries the manufacturer spec-sheet data that skill doesn't (dimensions, engine, pump curve).
 
-**Internal routing:**
+**Physical layout (left to right):**
+- Control cab (3 operator stations)
+- Dirty tank (2,000 gallons, shared)
+- Clean tank (3,000 gallons, shared)
+- 3× pump/engine assemblies (Waterous CMU Series Two-Stage Centrifugal Pump, one per assembly)
+
+**Internal routing (per assembly):**
 - Return water from receiver enters via Fig. 200 RAD port at trailer rear
 - Routes via fixed pipe along trailer ceiling toward clean tank
 - Diverter (90° plunger, operator-controlled from cab) sits at junction above dirty/clean tank
@@ -31,7 +33,7 @@ USADeBusk's proprietary trailer-mounted pigging pumper. Transports cleaning pigs
 **Operating note:** High-volume / low-pressure system. High volume is the distinguishing characteristic — pigs are propelled by flow, not pressure alone.
 
 **Discharge pressure specs:**
-- Normal operating: 150–250 PSI
+- Normal operating: 150–300 PSI (per Jesse, 2026-07-12)
 - Maximum: 600 PSI
 
 **Physical dimensions (trailer):**
@@ -57,11 +59,10 @@ USADeBusk's proprietary trailer-mounted pigging pumper. Transports cleaning pigs
 ## Second TriMax (2× TriMax Configuration)
 
 When running 2x TriMax simultaneously:
-- Each unit has its own clean tank (3,000 gal) and dirty tank (2,000 gal)
-- One shared 4×3 pump and one shared filter press
-- T-connections with valve manifolds on both sides link each dirty tank outlet to shared pump suction
-- Clean filtrate returns to respective clean tanks
-- Both units pig the same direction — B→R means convection-inlet-to-radiant-outlet (standard direction)
+- Each unit has its own clean tank (3,000 gal) and dirty tank (2,000 gal), plus its own 3 pump/engine assemblies — up to 6 simultaneous circuits total
+- Filtration scales conditionally: 2× filter presses + 2× 4×3 pumps when the customer requires it AND a 2nd press is available; otherwise 1× shared filter press + 1× shared 4×3 pump serving both units
+- When shared: T-connections with valve manifolds on both sides link each dirty tank outlet to shared pump suction; clean filtrate returns to respective clean tanks
+- Each assembly runs its own circuit fully independently — direction, flow state, and progress are set per assembly. No cross-assembly direction constraint.
 
 ## Filter Press
 
@@ -116,7 +117,7 @@ USADeBusk Filter Press #1 specs:
 |---|---|---|
 | Foam | Soft foam cylinder — no abrasive elements | Opening passes, initial flow establishment, verification |
 | TC (Tungsten Carbide Pin) | Urethane body (84A Duro typical, 78A special), TC pins embedded during molding | Primary coke removal — main workhorse pig |
-| HR (High-Recovery / Hard Rubber) | Harder durometer body, aggressive cleaning | Heavy fouling, pitch-laden tubes |
+| HR (Hell Raiser) | Harder durometer body, aggressive cleaning | Heavy fouling, pitch-laden tubes |
 | Swab | Oversized soft urethane | Final cleanup, verification, larger tube sections |
 
 **TC Pig mechanics:**
@@ -135,11 +136,12 @@ Beyond the 4"/5"/6" sizes in `usadebusk-core`'s Common Tube Dimensions table:
 
 ## Looped Circuits — Pig Transit Time
 
-Looped passes (joined via jumper spool) have pig transit times of 15-20
-minutes or more for long circuits — an extended blind period between pig
-launches requiring careful monitoring. Final pig size may need to be larger
-(e.g., 6.5" vs. 6.25") to achieve full wall contact through the longer
-combined circuit.
+Looped passes (joined via jumper spool) extend pig transit — a function of
+footage, pipe ID, and GPM, observed ~6–30 min across looped jobs, not a
+fixed range — creating an extended blind period between pig launches that
+requires careful monitoring. Final pig size may need to be larger (e.g.,
+6.5" vs. 6.25") to achieve full wall contact through the longer combined
+circuit.
 
 ## Hoses & Connections
 

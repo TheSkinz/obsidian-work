@@ -119,11 +119,13 @@ tags: [heater-card, <Client>, <heater-type>]
 
 ### <Job # — Month Year>
 
-**Task Durations (actuals):**
+**Pigs Ran:**
 
 **Obstacles:**
 
 **Facility Procedures:**
+
+**Per-rig split (multi-TriMax only):**
 
 ---
 
