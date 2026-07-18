@@ -5,7 +5,7 @@
 | Metric | Value | Target | Status |
 |---|---|---|---|
 | Open decision rows | 0 | <= 10 | ok |
-| Review notes awaiting decision | 5 | <= 5 | ok |
+| Review notes awaiting decision | 0 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
 | Lint warnings | 28 | (backlog) | ok |
 | Inbox items | 7 | - | ok |
@@ -28,6 +28,6 @@ Each scheduled loop's closing commit is its heartbeat. A scheduled loop goes **F
 ## Notes
 
 - **Decision queue:** [[decision-queue]] — 0 open. Cap is 10; over cap, proposal-generating loops pause.
-- **Review notes awaiting decision:** 5 in `06-insights/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
+- **Review notes awaiting decision:** 0 in `06-insights/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
 - **Lint warnings** are the standing to-do list (provenance-frontmatter backfill, stale `related:` links), not failures. Detail: run `python tools/vault_lint.py --report` → `50-dashboards/lint-report.md`.
 - **Heartbeats overdue** means a scheduled loop hasn't committed within 2x its cadence — check whether its desktop scheduled task is still firing (sleep, app closed, or deregistration are the usual causes).

@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -35,13 +35,13 @@ Park, with a concrete adaptation path recorded for whenever it's picked up. Not 
 
 ## Decision
 
-- [ ] Build now — domain-adapted `/prime`-style command
-- [ ] Bounded one-shot investigation first
-- [ ] Park — revisit only if a real mobilization/bid shows manual context-gathering friction
-- [ ] Drop
+- [ ] ~~Build now — domain-adapted `/prime`-style command~~
+- [ ] ~~Bounded one-shot investigation first~~
+- [x] **Park — revisit only if a real mobilization/bid shows manual context-gathering friction** — Jesse, 2026-07-18
+- [ ] ~~Drop~~
 
 ## Apply Log
 
 | Date | Action | By | Notes |
 |---|---|---|---|
-| | | | |
+| 2026-07-18 | Parked per recommendation (Jesse). No incident has shown the manual path — `usadebusk-core` auto-load + manual skill selection — actually failing. Adaptation path if resumed: a domain-scoped `/prime`-style command (candidate trigger `/context` or `/brief`, per-job or per-bid) that assembles job-specific pointers (heater card links, applicable SOPs, past-job actuals, format rules) and **proposes-and-confirms** rather than auto-populating — respecting the cross-job guardrails `usadebusk-fieldpm` and `usadebusk-estimating` already enforce. | Claude | Idea-seed left as a parked pointer. |

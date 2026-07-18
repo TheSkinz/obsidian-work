@@ -1,11 +1,13 @@
 ---
 type: idea-seed
-status: researched
+status: complete
 created: 2026-06-30
 related:
   - [[2026-07-05-idea-research-self-obsolescence-detection]]
 tags: [idea, vault-system, future]
 ---
+
+> **Disposition (2026-07-18):** Mechanical slice **built** — `REVIEW-OVERDUE` + `SUPERSEDED` lint rules and the `superseded_by:` convention now live in `tools/vault_lint.py`. Semantic reversal-detector **parked** with the on-demand Review Loop. See [[2026-07-05-idea-research-self-obsolescence-detection]].
 
 # Self-obsolescence detection
 

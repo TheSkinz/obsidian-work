@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -53,13 +53,16 @@ Bounded build of the mechanical slice only; park the semantic slice.
 
 ## Decision
 
-- [ ] Build now — bounded (`REVIEW-OVERDUE` lint rule + `superseded_by` convention)
-- [ ] Bounded one-shot investigation first
-- [ ] Park — leave to the on-demand Review Loop for now
-- [ ] Drop
+- [x] **Build now — bounded (`REVIEW-OVERDUE` lint rule + `superseded_by` convention)** — Jesse, 2026-07-18; built same session
+- [ ] ~~Bounded one-shot investigation first~~
+- [ ] ~~Park — leave to the on-demand Review Loop for now~~
+- [ ] ~~Drop~~
+
+The semantic reversal-detector (auto-noticing a silently-superseded decision) stays parked with the on-demand Review Loop, as recommended.
 
 ## Apply Log
 
 | Date | Action | By | Notes |
 |---|---|---|---|
-| | | | |
+| 2026-07-18 | Built the mechanical slice. Added two `vault_lint.py` rules — **REVIEW-OVERDUE** (flags a non-terminal note whose `review_after` has passed; skips terminal statuses) and **SUPERSEDED** (flags a note carrying `superseded_by:` still marked live). Added a shared `TERMINAL_STATUS` set and fixtures for both rules (`--self-test` passes, 9/9). Adopted the human-declared `superseded_by:` frontmatter convention. Real-vault run: 0 new findings (no live note is currently overdue). | Claude | Decision box checked; semantic slice parked per recommendation. |
+| 2026-07-18 | Also fixed `vault_health.py` "review notes awaiting decision" to skip terminal-status notes (was false-counting 3 closed reviews). | Claude | Paired fix surfaced by this build. |

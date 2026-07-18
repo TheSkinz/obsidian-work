@@ -7,6 +7,8 @@ related:
 tags: [idea, skills, claude-config, future]
 ---
 
+> **Disposition (2026-07-18):** **Parked** — revisit only if a real mobilization/bid shows manual context-gathering actually causing friction. Adaptation path (domain-scoped `/prime`-style command, propose-and-confirm) recorded in [[2026-07-09-idea-research-context-packet-builder-skill]].
+
 # Context-packet-builder skill
 
 Idea seed captured 2026-07-07 for a future exploration session. The read below is tentative — confirm intent with Jesse before designing.
