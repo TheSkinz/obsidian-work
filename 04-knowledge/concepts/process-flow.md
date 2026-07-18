@@ -6,12 +6,12 @@
 
 ## Full decoking sequence
 
-**Rig-In (12-hour fixed event, simultaneous Day and Night shift)**
+**Rig-In (fixed event; default 6 hrs, duration varies by pass count and access complexity — see Duration Model in `usadebusk-estimating`. The 12-hour simultaneous Day/Night framing belongs to Mob/Demob, a separate event.)**
 1. Position TriMax pumper, clean tank, dirty tank adjacent to heater
 2. Install pig launchers on convection inlet flanges (adapters as required)
 3. Install pig receivers on radiant outlet flanges (adapters as required)
 4. Route Fig. 200 jetting hoses from TriMax rear ports to launcher/receiver connections
-5. Connect filtration circuit: dirty tank → 4×3 pump → filter press → clean tank
+5. Connect filtration circuit *(only when filtration is Elected — read the heater card Job Options)*: dirty tank → 4×3 pump → filter press → clean tank; otherwise effluent drains to coke pit / oily water sewer
 6. Fill system and pressure test
 7. Confirm valve manifold positions (direction of pig travel)
 8. Run BEFORE flow test (RPM vs PSI vs GPM baseline) — must occur before first pig launch
@@ -22,13 +22,13 @@
 3. Pig exits at receiver, collected
 4. Return water enters TriMax via Fig. 200 port → ceiling pipe → diverter
 5. Operator monitors effluent: cloudy → divert to dirty tank; clear → clean tank
-6. Dirty tank → 4×3 pump → filter press → clean tank (concurrent filtration loop)
+6. Filtration loop runs concurrently *(only when filtration is Elected — otherwise effluent drains to coke pit / oily water sewer)*: dirty tank → 4×3 pump → filter press → clean tank
 7. Load next pig (same size or next size up), repeat
 8. Continue until effluent discharge time ≤ 3–5 seconds and effluent runs clear
 9. Run AFTER flow test (same RPM vs PSI vs GPM) — after final pig pass
 10. Log all data on service receipt
 
-**Rig-Out (12-hour fixed event)**
+**Rig-Out (fixed event; default 6 hrs, duration varies — see Duration Model)**
 - Remove launchers, receivers, all hoses and surface equipment
 - Reconnect customer flanges, clean site
 
@@ -44,20 +44,20 @@ Diverter → Clean Tank (clear) or Dirty Tank (cloudy)
 
 For reversed direction (radiant-to-convection): return water comes back via CONV port. Valve manifold on TriMax controls direction — no manual hose swapping required.
 
-**Filtration loop (concurrent):**
+**Filtration loop (concurrent — only when filtration is Elected; see the heater card Job Options):**
 ```
 Dirty Tank → 3" Camlock → 4×3 Pump → 3" Camlock → Filter Press (100 PSI) →
 3" Camlock → Clean Tank
 ```
 
-The filtration loop operates independently from the main pigging process and does not influence process coil pressure or pig travel.
+The filtration loop operates independently from the main pigging process and does not influence process coil pressure or pig travel. When not elected, effluent drains to coke pit / oily water sewer instead.
 
 ## Looped circuit (jumper spool configuration)
 
 When two passes are looped via 180° jumper spool:
 - Spool connects Radiant Outlet Pass 1 to Radiant Outlet Pass 2
 - Pig travels: Conv. Inlet Pass 1 → full Pass 1 coil → Rad. Outlet Pass 1 → Jumper Spool → Rad. Outlet Pass 2 → full Pass 2 coil (reverse direction) → Conv. Inlet Pass 2
-- Creates longer circuit — pig transit times 10–20+ minutes depending on footage
+- Creates longer circuit — extended pig transit, a function of footage, pipe ID, and GPM (observed ~6–30 min across looped jobs, not a fixed range)
 - Longer blind period between launches requires careful monitoring
 - Final pig size may need to be larger (e.g., 6.5" vs. 6.25") to achieve full wall contact on long combined circuits
 

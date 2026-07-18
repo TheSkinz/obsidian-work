@@ -143,8 +143,8 @@ Also noted, one line each, owned by other loops: `04-knowledge/concepts/quote-li
 - [ ] **D1–D5:** merge partially — note which findings to drop in Apply Log
 - [ ] **U1–U3:** merge `upgrade/2026-07` as-is
 - [ ] **U1–U3:** merge partially — note which proposals to drop in Apply Log
-- [ ] **V1–V8:** approve vault-side fixes as proposed (apply in a follow-up session using this note's diffs)
-- [ ] **V1–V8:** walk through individually first
+- [x] **V1–V8:** approve vault-side fixes as proposed — applied 2026-07-18
+- [ ] ~~**V1–V8:** walk through individually first~~
 - [ ] Discard branch(es) — reason in Apply Log
 - [ ] Open questions: answers / decisions recorded in Apply Log
 
@@ -161,5 +161,17 @@ Also noted, one line each, owned by other loops: `04-knowledge/concepts/quote-li
 | 2026-07-18 | Q6: filter press pumping rate = pigging only; smart pig bills at non-pumping/stand-by rate (Jesse) | `drift/2026-07` commits on usadebusk-ops + usadebusk-estimating | Claude |
 | 2026-07-18 | Q7a: HR pig type = "Hell Raiser," not "High-Recovery"; TC/PPS/Pin are the same pig, PPS is a vendor name not "Pin Poly Soft" (Jesse) | `drift/2026-07` commit on usadebusk-equipment + usadebusk-fieldpm extraction reference; vault `equipment-library.md` | Claude |
 | 2026-07-18 | Q7b: FHR = Flint Hills Resources, same client as "Flint-Hills," was listed twice (Jesse) | `drift/2026-07` commit on usadebusk-vault-ingest known-clients list | Claude |
+| 2026-07-18 | V1–V8: "Knock out the V1-V8" (Jesse) | `equipment-library.md`, `process-flow.md`, `field-operations.md`, `_canonical-heater-card.md`, `templates/_heater-template.md`, `F-802.md`, `H19.md`, `H20.md` | Claude |
 
-All seven open questions are now answered. Remaining: the D/U branch merge decisions and the V1–V8 vault fixes in full (V1–V8 as originally proposed — the Q1/Q3/Q7a answers separately fixed two facts in `equipment-library.md` that overlapped with this list's subject matter — operating pressure and the HR pig-type expansion — but V1's Triple-architecture rewrite, V2's direction-constraint deletion, V3's conditional-filtration fix, V4's transit-time ranges, V6's remaining rows, V7's election gate, and V8's Field Notes schema sync are all still open).
+All seven open questions are now answered. **V1–V8 applied 2026-07-18** (Jesse: "Knock out the V1-V8"):
+
+- **V1** — `equipment-library.md` TriMax rewritten to the Triple architecture (3 assemblies, shared tanks, 3 operator stations); manufacturer spec-sheet data (dimensions, engine, pump curve) kept, now framed as supplementing `usadebusk-equipment` rather than contradicting it.
+- **V2** — the false cross-unit direction constraint deleted from the Second TriMax section.
+- **V3** — 2× filtration made conditional (2× press/pump only when required + available; otherwise shared), matching the skill and resolving the file's internal self-contradiction.
+- **V4** — looped-circuit transit time in `equipment-library.md` and `process-flow.md` both changed to "~6–30 min, not a fixed range."
+- **V5** — `process-flow.md` Rig-In/Rig-Out relabeled "fixed event, default 6 hrs" (was "12-hour fixed event"); the 12-hr simultaneous-shift framing now correctly attributed to Mob/Demob.
+- **V6** — `field-operations.md` Third Party row changed to "Cost + markup (contract-specific)"; PDT row changed to "billed via TriMax Pumper / Filter Press stand-by rates only — no generic stand-by line."
+- **V7** — filtration election gate added to `process-flow.md`'s Rig-In step, Pigging Operations step, and the Filtration loop diagram block.
+- **V8** — Field Notes schema synced to the ingest-skill's derived shape (`Pigs Ran` / `Obstacles` / `Facility Procedures` / `Per-rig split (multi-TriMax only)`) in both `_canonical-heater-card.md` (exemplar) and `templates/_heater-template.md`. Also swept and fixed all three live cards carrying the old duplicated-duration-prose pattern: `F-802.md`, `H19.md`, `H20.md` — each had "Task Durations (actuals): ..." restating numbers already in the Task Durations table; replaced with `Pigs Ran: (not recorded)` and preserved the genuinely non-duplicate content (crew names, ticket references, per-pass sub-splits) under new freeform lines.
+
+Remaining: only the D/U branch merge decisions in `claude-config`.

@@ -213,18 +213,22 @@ DERIVED but hand-entered (no formula layer) — re-sum on any edit, do not trust
 ## Field Notes
 
 <!--
-Per-job operational record: durations, standby causes, obstacles, facility procedures learned.
+Per-job operational record: pigs ran, obstacles, facility procedures learned, and (multi-TriMax
+jobs only) the per-rig split backing the Task Durations table. Never restate the Task Durations
+table's numbers here as prose — the table carries the numbers, Field Notes carries the "why."
 "Difficulty"/challenges content (formerly a frontmatter key, dropped 2026-06-22) belongs here,
 scoped to the job it occurred on — not as a card-level rating.
 -->
 
 ### <Job # — Month Year>
 
-**Task Durations (actuals):**
+**Pigs Ran:**
 
 **Obstacles:**
 
 **Facility Procedures:**
+
+**Per-rig split (multi-TriMax only):**
 
 ---
 
