@@ -116,7 +116,7 @@ USADeBusk Filter Press #1 specs:
 |---|---|---|
 | Foam | Soft foam cylinder — no abrasive elements | Opening passes, initial flow establishment, verification |
 | TC (Tungsten Carbide Pin) | Urethane body (84A Duro typical, 78A special), TC pins embedded during molding | Primary coke removal — main workhorse pig |
-| HR (High-Recovery / Hard Rubber) | Harder durometer body, aggressive cleaning | Heavy fouling, pitch-laden tubes |
+| HR (Hell Raiser) | Harder durometer body, aggressive cleaning | Heavy fouling, pitch-laden tubes |
 | Swab | Oversized soft urethane | Final cleanup, verification, larger tube sections |
 
 **TC Pig mechanics:**
