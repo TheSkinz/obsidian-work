@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: complete
 review_type: skill-drift
 source_authority: primary
 confidence: high
@@ -139,14 +139,16 @@ Also noted, one line each, owned by other loops: `04-knowledge/concepts/quote-li
 
 ## Decision
 
-- [ ] **D1–D5:** merge `drift/2026-07` as-is (D3 is Lane 4 — merging applies the billing-math addition)
-- [ ] **D1–D5:** merge partially — note which findings to drop in Apply Log
-- [ ] **U1–U3:** merge `upgrade/2026-07` as-is
-- [ ] **U1–U3:** merge partially — note which proposals to drop in Apply Log
+- [x] **D1–D5:** merge `drift/2026-07` as-is — merged 2026-07-18, includes D3 (Lane 4 billing-math) and the Q1/Q3/Q5-Q7 answers
+- [ ] ~~**D1–D5:** merge partially — note which findings to drop in Apply Log~~
+- [x] **U1–U4:** merge `upgrade/2026-07` as-is — merged 2026-07-18, includes U4 (added after the D/U diff review)
+- [ ] ~~**U1–U4:** merge partially — note which proposals to drop in Apply Log~~
 - [x] **V1–V8:** approve vault-side fixes as proposed — applied 2026-07-18
 - [ ] ~~**V1–V8:** walk through individually first~~
-- [ ] Discard branch(es) — reason in Apply Log
-- [ ] Open questions: answers / decisions recorded in Apply Log
+- [ ] ~~Discard branch(es) — reason in Apply Log~~
+- [x] Open questions: answers / decisions recorded in Apply Log
+
+**Status: CLOSED.** Every finding from this review's first run — drift (D1–D5), upgrade proposals (U1–U4), vault-side fixes (V1–V8), and all 7 open questions — is answered, applied, and (for the config-repo branches) merged to `main`. Nothing outstanding from this run.
 
 ## Apply Log
 
@@ -162,6 +164,7 @@ Also noted, one line each, owned by other loops: `04-knowledge/concepts/quote-li
 | 2026-07-18 | Q7a: HR pig type = "Hell Raiser," not "High-Recovery"; TC/PPS/Pin are the same pig, PPS is a vendor name not "Pin Poly Soft" (Jesse) | `drift/2026-07` commit on usadebusk-equipment + usadebusk-fieldpm extraction reference; vault `equipment-library.md` | Claude |
 | 2026-07-18 | Q7b: FHR = Flint Hills Resources, same client as "Flint-Hills," was listed twice (Jesse) | `drift/2026-07` commit on usadebusk-vault-ingest known-clients list | Claude |
 | 2026-07-18 | V1–V8: "Knock out the V1-V8" (Jesse) | `equipment-library.md`, `process-flow.md`, `field-operations.md`, `_canonical-heater-card.md`, `templates/_heater-template.md`, `F-802.md`, `H19.md`, `H20.md` | Claude |
+| 2026-07-18 | "Merge both" — drift/2026-07 and upgrade/2026-07 approved for merge (Jesse) | claude-config `main`: merge commit `a6bd97e` (drift, no conflicts), merge commit `93d36f1` (upgrade, 3 files auto-merged cleanly), pushed to origin | Claude |
 
 All seven open questions are now answered. **V1–V8 applied 2026-07-18** (Jesse: "Knock out the V1-V8"):
 
