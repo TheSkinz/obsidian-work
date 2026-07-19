@@ -91,7 +91,11 @@ DSP26058's Internal Financials block is the seed of a margin history — if ever
 
 Requires Jesse to supply internal cost figures; nothing here can be derived. Lane 4.
 
-- [ ] Approved
+**Resolved 2026-07-19, same session.** Jesse supplied `Desktop\Facilities\DSP-workup-rates-vs-cost.md`, an extraction of six recent DSP# workbooks. `_cost-model.md` is populated with Tier 1 and Tier 2 at correct units, plus a margin-structure section and three flagged anomalies. Tier 3 confirmed absent from all workups.
+
+One finding materially strengthens the rest of this note: **internal cost is identical across all six workups**, spanning two facilities, three contract regimes, and Jan–Jul 2026. Only bill rates and quantities moved. Cost is genuinely company-wide and belongs in one vault note; rates are not and do not. That is independent confirmation of the grain split proposed in A through D, arrived at from data rather than from argument.
+
+- [x] Approved
 - [ ] Approved with edits
 - [ ] Rejected
 - [ ] Needs more source material
@@ -132,3 +136,4 @@ Per-proposal checkboxes above. This note is open until each of A–F is disposit
 | Date | Action | By |
 |---|---|---|
 | 2026-07-19 | Note filed from session; no canonical content modified | Claude (Opus 4.8) |
+| 2026-07-19 | Proposal E approved and applied — `_cost-model.md` populated from Jesse's six-workup analysis | Claude (Opus 4.8) |
