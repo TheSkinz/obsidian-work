@@ -1,7 +1,9 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-07-11
+related:
+  - [[2026-07-18-idea-research-job-sheet-type-formalization]]
 tags: [idea, vault-system, future, job-sheet]
 ---
 
