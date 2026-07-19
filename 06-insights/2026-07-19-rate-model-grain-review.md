@@ -35,7 +35,7 @@ Session 2026-07-19. While documenting the RFQ intake protocol, step 3 assumed co
 
 Reverses the recommendation made earlier in the same session. The facility is the wrong grain; backfilling would encode the modeling error more deeply and create exactly the ambiguity the Baytown warning is compensating for. Existing facility rate blocks stay as historical record but should be relabeled with the contract or quote they belong to.
 
-- [ ] Approved
+- [x] Approved
 - [ ] Approved with edits
 - [ ] Rejected
 - [ ] Needs more source material
@@ -44,7 +44,7 @@ Reverses the recommendation made earlier in the same session. The facility is th
 
 Where a contract covers one scope and ends with the project, there is no reusable rate schedule, and recording those rates anywhere but the quote note actively misleads the next bid at that site. All three existing quote notes already do the right thing. No new structure.
 
-- [ ] Approved
+- [x] Approved
 - [ ] Approved with edits
 - [ ] Rejected
 - [ ] Needs more source material
@@ -55,9 +55,11 @@ Only where a rate schedule genuinely spans many future bids. One note per contra
 
 **Deferred pending confirmation that a live multi-year agreement actually exists.** If none is currently active, this is speculative and should not be built — write it when the first one lands.
 
+**Rejected 2026-07-19 — not on merit.** Jesse confirmed multi-year agreements exist in the industry but none are on the accounts he currently works. Building the note type now would be structure for a hypothetical. **Revisit trigger:** the first bid that arrives under a multi-year or master agreement. Until then `rate-basis: quote-specific` covers every quote.
+
 - [ ] Approved
 - [ ] Approved with edits
-- [ ] Rejected
+- [x] Rejected
 - [ ] Needs more source material
 
 ### D. Add `contract-type` to quote frontmatter (not `department`)
@@ -78,7 +80,7 @@ Vocabulary for `contract-type` is not yet settled and should be drawn from real 
 
 Department is cheap to keep as an optional secondary field and has genuine business-development value (which groups at which refineries actually send work, and which you win), but it should not be the primary discriminator.
 
-- [ ] Approved
+- [x] Approved
 - [ ] Approved with edits
 - [ ] Rejected
 - [ ] Needs more source material
@@ -141,3 +143,7 @@ Per-proposal checkboxes above. This note is open until each of A–F is disposit
 |---|---|---|
 | 2026-07-19 | Note filed from session; no canonical content modified | Claude (Opus 4.8) |
 | 2026-07-19 | Proposal E approved and applied — `_cost-model.md` populated from Jesse's six-workup analysis | Claude (Opus 4.8) |
+| 2026-07-19 | E corrected and downgraded after Jesse clarified the cost figures are approximations | Claude (Opus 4.8) |
+| 2026-07-19 | A, B, D approved by Jesse and applied; C rejected (no live multi-year agreement on his accounts) | Claude (Opus 4.8) |
+| 2026-07-19 | A applied: "Rates — do not add" block in `_facility-template.md`; intake protocol step 3 corrected | Claude (Opus 4.8) |
+| 2026-07-19 | D applied: contract-field spec added to [[quote-lifecycle]] | Claude (Opus 4.8) |

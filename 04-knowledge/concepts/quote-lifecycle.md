@@ -17,6 +17,24 @@ This covers what happens when a quote is decided — won or lost — and how to 
 
 ---
 
+## Quote Frontmatter — Contract Fields
+
+Adopted 2026-07-19 (proposal D, [[2026-07-19-rate-model-grain-review]]). Rates are a property of a contract, not of a facility — one site can carry several concurrent contracts at different rates. These three fields record which regime a quote was priced under, so two quotes at the same site showing different rates is answerable rather than alarming.
+
+| Field | Purpose | Values |
+|---|---|---|
+| `contract-type` | The contract/terms form named in the bid instructions | Vocabulary is **open** — take the value from the actual bid instructions rather than inventing one. Seen so far: short-form scope contract, purchase-order only. Long-term maintenance agreements exist in the industry but not currently on Jesse's accounts. |
+| `rate-basis` | Where this quote's rates came from | `quote-specific` (the common case — rates negotiated for this scope, contract ends with the project), or a wikilink to a contract note where a multi-project agreement governs |
+| `billing-basis` | Commercial structure | `T&M + LS mob/demob` (95%+ of jobs), `lump sum`, or as stated |
+
+Leave a field blank rather than guessing. On older quotes the bid instructions may no longer be at hand, and a blank is honest where an inferred value is not.
+
+The **issuing department** (turnaround, maintenance, procurement, capital projects) is optional and not a pricing field. It has business-development value over time — which groups at which refineries send work, and which convert — but it only correlates with the terms, it does not determine them. Contract type is the discriminator.
+
+There is no contract note type yet. It is deliberately unbuilt: as of 2026-07-19 none of Jesse's active accounts carry a long-term agreement, so `rate-basis` is `quote-specific` everywhere. Build it when the first multi-year agreement actually lands.
+
+---
+
 ## On Decision
 
 Open the DSP##### quote note and update these frontmatter fields:

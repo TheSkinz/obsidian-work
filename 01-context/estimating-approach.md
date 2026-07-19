@@ -10,7 +10,7 @@ Most jobs (95%+): T&M on execution, Lump Sum on Mob/Demob.
 
 Mob/Demob is estimated as Day shift cost bucket only: total drive hours + per diem per travel day per person + equipment travel costs. Presented as two separate lump sum line items.
 
-Third-party markup rate is contract-specific.
+Third-party markup rate is contract-specific. 15% is the current typical rate and trending that way (2026-07-19); 5–10% still occurs. Confirm per contract — never apply a default.
 
 ---
 

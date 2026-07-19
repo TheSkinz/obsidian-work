@@ -30,7 +30,9 @@ DSP##### = DSP + YYNNN, assigned at proposal start, before any work product exis
 
 ### 3. Recon the vault before extracting anything
 
-Read, in this order: the site's `_facility.md` for contracted rates and third-party markup; any existing heater card for a tag named in the RFQ; and `04-knowledge/estimating-actuals-rollup.md`. A repeat heater with recorded Task Durations means durations come from that heater's actuals, not from the 6/6/4 generic defaults — verified numbers govern. Consult `INDEX.md` before concluding a facility or heater isn't already in the vault.
+Read, in this order: the site's `_facility.md` for access, site constraints, and equipment limits; any existing heater card for a tag named in the RFQ; and `04-knowledge/estimating-actuals-rollup.md`.
+
+**Rates do not come from the facility card.** They are a property of the contract, and one site can carry several concurrent contracts at different rates — see the frontmatter fields in [[quote-lifecycle]]. Read prior quote notes at that site for what was charged before, treating each as one contract's rates rather than the site's rates, and take the governing figures from the contract or bid instructions for this opportunity. Where facility cards do carry a rates block, it is labeled with the specific quote it came from and should be read that way. A repeat heater with recorded Task Durations means durations come from that heater's actuals, not from the 6/6/4 generic defaults — verified numbers govern. Consult `INDEX.md` before concluding a facility or heater isn't already in the vault.
 
 ### 4. Extract drawings into the heater card, not the proposal
 
@@ -75,8 +77,7 @@ Emergency decokes compress steps 1 through 6 into a single call — the customer
 
 ## Open Questions
 
-- **Facility cards do not reliably carry contracted rates.** Step 3 assumes `_facility.md` is where contract rates live, but as of 2026-07-19 only ExxonMobil Baytown has a rates section, and it is scoped to one quote (PS8 F-802, DSP25084) with an explicit warning not to apply it to DSP26039. Marathon Garyville has none. Until this is backfilled, rates come from the source quote or the contract itself, not from the vault.
-- The **existing-contract estimate** — the common case, where the facility and rates are known and there is no bid packet — has no documented fast path. Blocked on the rates backfill above.
+- The **existing-contract estimate** — the common case, where there is no bid packet and the scope is priced against a known regime — has no documented fast path. No longer blocked: under the corrected rate model it reads `rate-basis` off the prior quote rather than depending on a facility rate schedule. Write it against a real estimate rather than speculatively.
 - Whether the `_pipeline.md` Dataview dashboard referenced in [[quote-lifecycle]] exists — no such file is present in the vault as of 2026-07-19, so the Pending/Bidding table in `active-jobs.md` is the only working pipeline view.
 
 ## Change Log
