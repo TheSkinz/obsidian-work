@@ -20,9 +20,9 @@ It does not govern proposal *content*. Section composition, the intake checklist
 
 ### 1. Land the source documents
 
-Keep the RFQ package — contract terms, bid instructions, drawings, data sheets — intact and unrenamed in a per-bid folder outside the vault. The vault holds distilled knowledge and the quote record, never the source PDFs. Record the folder path in the quote note's `## Source Files` section so the trail survives.
+Keep the RFQ package — contract terms, bid instructions, drawings, data sheets — intact and unrenamed in that facility's own OneDrive folder, alongside everything else for that site. Do not build a separate RFQ tree; the per-facility layout already mirrors the vault's `02-facilities/<Client>/<City-ST>/` shape, and a parallel structure is a second system to maintain for no retrieval gain.
 
-Storage location is currently inconsistent: DSP26058 used a local Desktop bid folder, while the Google Drive `DeBusk/` facility-first tree is the documented estate. Pick one per bid and write down which. Resolving this is an open question below.
+The vault is the index, OneDrive is the store. What makes this work is not the folder layout but the link between them: the full path **must** be recorded in the quote note's `## Source Files` section, as DSP26058, DSP26039, and DSP25084 all do. An unrecorded path is how a bid trail goes cold. Note the path is the only pointer — nothing syncs, and moving the folder later silently breaks it.
 
 ### 2. Assign the DSP# and open the quote note
 
@@ -75,7 +75,8 @@ Emergency decokes compress steps 1 through 6 into a single call — the customer
 
 ## Open Questions
 
-- Where RFQ source packages canonically live: Google Drive `DeBusk/` tree or a local bid folder. Current practice is split.
+- **Facility cards do not reliably carry contracted rates.** Step 3 assumes `_facility.md` is where contract rates live, but as of 2026-07-19 only ExxonMobil Baytown has a rates section, and it is scoped to one quote (PS8 F-802, DSP25084) with an explicit warning not to apply it to DSP26039. Marathon Garyville has none. Until this is backfilled, rates come from the source quote or the contract itself, not from the vault.
+- The **existing-contract estimate** — the common case, where the facility and rates are known and there is no bid packet — has no documented fast path. Blocked on the rates backfill above.
 - Whether the `_pipeline.md` Dataview dashboard referenced in [[quote-lifecycle]] exists — no such file is present in the vault as of 2026-07-19, so the Pending/Bidding table in `active-jobs.md` is the only working pipeline view.
 
 ## Change Log

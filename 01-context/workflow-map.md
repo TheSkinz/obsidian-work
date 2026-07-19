@@ -37,4 +37,4 @@ Jesse no longer uses claude.ai chat Projects — Claude Code is the primary inte
 | Valero Port Arthur (USA26025) | Complete | Reference only. Dual-rig, dual-shift coker job. |
 | Outlook Email Security Architecture | Deployed | 5-rule corrective architecture. 48-hr audit recommended post-deploy. smtp.com in Rule 02A flagged as known gap. |
 | USADeBusk Claude Architecture | Deployed | 6 skills, 3 project system prompts + Field Execution. Master Reference Document (10 modules) in GDrive. |
-| Google Drive Architecture | Finalized | Two-tree structure: DeBusk/ (facility-first) + AI Workflow/ (separate). |
+| Google Drive Architecture | Superseded 2026-07-19 | Two-tree structure (DeBusk/ + AI Workflow/) — no longer in use. Job and bid source files live in per-facility OneDrive folders; see [[rfq-intake-protocol]]. Row kept for history. |
