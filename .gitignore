@@ -34,6 +34,9 @@ _OUTPUTS/
 _COMPILED_WIKI/
 archive/
 
+# Loop run ledger — local liveness telemetry, read by tools/vault_health.py
+50-dashboards/.loop-runs.json
+
 # Python bytecode cache (from tools/)
 __pycache__/
 *.pyc

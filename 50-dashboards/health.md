@@ -5,29 +5,29 @@
 | Metric | Value | Target | Status |
 |---|---|---|---|
 | Open decision rows | 0 | <= 10 | ok |
-| Review notes awaiting decision | 0 | <= 5 | ok |
+| Review notes awaiting decision | 1 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
 | Lint warnings | 28 | (backlog) | ok |
 | Inbox items | 8 | - | ok |
 | Inbox median age | 0 d | < 14 d | ok |
 | Inbox oldest item | 12 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
-| Loop heartbeats overdue | no | no | ok |
+| Loop heartbeats overdue | yes | no | FAIL |
 
 ## Loop heartbeats
 
-Each scheduled loop's closing commit is its heartbeat. A scheduled loop goes **FAIL** when its last heartbeat is older than 2x cadence; **pending** = scheduled but not yet run; **manual** = on-demand, not scheduled. The review/agent loop is on-demand by design and not listed.
+Two signals per loop: **Last fired** comes from the local run ledger (`50-dashboards/.loop-runs.json`, written by every run as its first and last action) and proves the scheduler is alive; **Last heartbeat** is the loop's closing commit and proves a run finished with output. `FAIL: started, never finished` = a run fired but never closed out (crash or interrupted). `FAIL: scheduler silent` = no firing within the staleness window — the task is disabled, deregistered, or the machine was off. **pending** = no data yet. The review/agent loop is on-demand by design and not listed.
 
-| Loop | Last heartbeat | Cadence | Status |
-|---|---|---|---|
-| Capture loop | 2026-07-06 (12 d ago) | 7 d | ok |
-| Idea-research loop | 2026-07-09 (9 d ago) | 30 d | ok |
-| Skill-drift loop | 2026-07-18 (0 d ago) | 31 d | ok |
-| Consolidation loop | awaiting 1st run | 31 d | pending |
+| Loop | Last fired | Last heartbeat | Cadence | Status |
+|---|---|---|---|---|
+| Capture loop | 2026-07-13 (5 d ago) | 2026-07-06 (12 d ago) | 7 d | FAIL: started, never finished |
+| Idea-research loop | - | 2026-07-18 (0 d ago) | 30 d | ok |
+| Skill-drift loop | - | 2026-07-18 (0 d ago) | 31 d | ok |
+| Consolidation loop | 2026-07-18 (0 d ago) | never | 31 d | FAIL: started, never finished |
 
 ## Notes
 
 - **Decision queue:** [[decision-queue]] — 0 open. Cap is 10; over cap, proposal-generating loops pause.
-- **Review notes awaiting decision:** 0 in `06-insights/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
+- **Review notes awaiting decision:** 1 in `06-insights/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
 - **Lint warnings** are the standing to-do list (provenance-frontmatter backfill, stale `related:` links), not failures. Detail: run `python tools/vault_lint.py --report` → `50-dashboards/lint-report.md`.
-- **Heartbeats overdue** means a scheduled loop hasn't committed within 2x its cadence — check whether its desktop scheduled task is still firing (sleep, app closed, or deregistration are the usual causes).
+- **Heartbeats overdue** means a loop row shows FAIL — either the scheduler stopped firing (check the task's enabled state in the desktop app) or a run started and never finished (check the app's session history for that run). A loop that fires and no-ops cleanly shows ok with no new commit — that is healthy, not silent.

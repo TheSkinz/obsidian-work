@@ -16,6 +16,8 @@
 
 Full specs: [[vault-capture-loop-spec]], [[vault-agent-loop-spec]], [[vault-idea-loop-spec]], [[vault-skill-drift-loop-spec]], [[vault-consolidation-loop-spec]].
 
+**Two monitoring rules:** every run — scheduled or manual — writes the run ledger (`50-dashboards/.loop-runs.json`, local) as its first and last action, and a manual pass of a scheduled loop must use the loop's exact heartbeat commit prefix (`vault-capture:`, not `[auto]`) — otherwise the run is invisible to `vault_health.py` and the dashboard reports a loop failure that didn't happen, or misses one that did.
+
 **Why five, not one:** they differ on two axes — how risky the content is (content layer vs. operational core vs. speculative vs. skills) and how much judgment the write requires (mechanical filing vs. approval-gated change vs. bounded research vs. propose-only detection). The capture loop fills the vault; the consolidation loop keeps it a wiki instead of a log pile; the skill-drift loop is the return path that pushes vault truth back into the skills every session loads.
 
 ---

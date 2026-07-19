@@ -40,6 +40,8 @@ Low. Merging and rewriting within 07/08/09 is Lane 1 (reversible — the loser i
 
 ## Loop Steps
 
+**Run ledger (every run, first and last action):** Before anything else, update `50-dashboards/.loop-runs.json` (local, gitignored — create if missing): set this loop's entry (`vault-consolidation-loop`) to `{"fired": "<now, UTC ISO-8601>", "completed": null, "result": "running"}`, merging without touching other loops' entries. As the run's very last action — after the final push, or immediately on deciding the run is a no-op or hitting a fatal problem — set `completed` to now and `result` to `committed`, `no-op`, or `error: <one line>`. Use Write/Edit tools, never shell editors. `tools/vault_health.py` reads this file to tell a dead scheduler from a quiet loop; a run that skips it surfaces as a monitoring FAIL.
+
 1. Run `py -3 tools/vault_lint.py` and collect the current ORPHAN and DEAD-LINK findings for 07/08/09.
 2. **Merge pass (max 3 merges per run):** find near-duplicate notes covering the same topic; fold the weaker into the stronger (preserving any unique facts and source attributions), `git mv` the emptied loser to `archive/`, update inbound links. When merge direction is ambiguous, skip and report.
 3. **Rewrite pass (max 3 notes per run):** notes that have accumulated appended fragments (trailing "Update:" blocks, contradictory paragraphs, session-note stubs) get rewritten as a single declarative article in present tense. Never drop a fact or a source line; never rewrite text Jesse wrote himself — agent-harvested content only.

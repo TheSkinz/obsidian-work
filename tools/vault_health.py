@@ -24,10 +24,11 @@ Windows: `py tools/vault_health.py`.
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import subprocess
 import sys
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from pathlib import Path
 from statistics import median
 
@@ -39,22 +40,52 @@ HEALTH_REL = "50-dashboards/health.md"
 QUEUE_ROW_RE = re.compile(r"^\|\s*(DQ-\d+)\s*\|")
 INBOX_SKIP_SUBDIRS = ("preserved-dsps",)
 
-# Loop heartbeats: (label, commit-subject prefix, cadence_days, scheduled).
-# Each loop's closing commit is its heartbeat. A *scheduled* loop is flagged
-# overdue (red) when its last heartbeat is older than 2x its cadence, or never
-# fired. A non-scheduled loop is run on-demand — it shows its last run for
-# information only and never goes red. The review/agent loop is on-demand by
-# design and not listed at all.
+# Loop monitoring reads two independent signals:
+#   1. The run ledger (50-dashboards/.loop-runs.json, local + gitignored):
+#      every loop records "fired" as its first action and "completed" as its
+#      last. This is the liveness channel — it distinguishes a dead/disabled
+#      scheduler (fired goes stale) from a run that crashed mid-flight
+#      (fired without completed) from a quiet no-op (completed, no commit).
+#   2. The git heartbeat (commit-subject prefix): proof a run finished with
+#      output. Kept as fallback for loops with no ledger telemetry yet.
+# The review/agent loop is on-demand by design and not listed at all.
+#
+# Tuples: (label, ledger task_id, commit prefix, hb_cadence_days, fired_stale_days).
+# fired_stale_days is 2x the loop's run cadence (with slack for a machine that
+# is off at fire time — the app catches up missed runs on wake).
 LOOP_HEARTBEATS = [
-    ("Capture loop", "vault-capture:", 7, True),
-    # Idea loop runs nightly but only commits when a seed exists, so its
-    # heartbeat cadence is monitoring-grade (30 d), not its run cadence:
-    # FAIL here means either the scheduler died or the seed queue has been
-    # empty for 60+ days — both worth a look, neither an emergency.
-    ("Idea-research loop", "vault-idea-research:", 30, True),
-    ("Skill-drift loop", "skill-drift:", 31, True),
-    ("Consolidation loop", "vault-consolidate:", 31, True),
+    ("Capture loop", "vault-capture-loop", "vault-capture:", 7, 14),
+    # Idea loop runs nightly but only commits when a seed exists, so its git
+    # heartbeat cadence is monitoring-grade (30 d), not its run cadence. Its
+    # ledger staleness is tight (3 d) — nightly firing should never be older.
+    ("Idea-research loop", "vault-idea-research-loop", "vault-idea-research:", 30, 3),
+    ("Skill-drift loop", "vault-skill-drift-loop", "skill-drift:", 31, 62),
+    ("Consolidation loop", "vault-consolidation-loop", "vault-consolidate:", 31, 62),
 ]
+
+LEDGER_REL = "50-dashboards/.loop-runs.json"
+
+# A run older than this with "fired" but no "completed" is presumed dead,
+# not still working. Generous: no loop run legitimately takes 6 hours.
+RUN_DEAD_HOURS = 6
+
+
+def read_ledger(root: Path) -> dict:
+    try:
+        data = json.loads((root / LEDGER_REL).read_text(encoding="utf-8"))
+        return data if isinstance(data, dict) else {}
+    except Exception:
+        return {}
+
+
+def parse_iso(s) -> datetime | None:
+    if not isinstance(s, str) or not s:
+        return None
+    try:
+        dt = datetime.fromisoformat(s.replace("Z", "+00:00"))
+        return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
+    except ValueError:
+        return None
 
 
 def git_last_commit_date(root: Path, rel: str) -> date | None:
@@ -155,25 +186,39 @@ def git_last_grep_date(root: Path, prefix: str) -> date | None:
 
 
 def loop_heartbeats(root: Path):
-    """Return (rows, any_overdue). Each row: (label, last_seen, cadence, status)."""
+    """Return (rows, any_overdue). Each row: (label, fired, heartbeat, cadence, status)."""
     today = date.today()
+    now = datetime.now(timezone.utc)
+    ledger = read_ledger(root)
     rows = []
     any_overdue = False
-    for label, prefix, cadence, scheduled in LOOP_HEARTBEATS:
+    for label, task_id, prefix, cadence, stale_days in LOOP_HEARTBEATS:
         d = git_last_grep_date(root, prefix)
-        last = "never fired" if d is None else f"{d.isoformat()} ({(today - d).days} d ago)"
-        if not scheduled:
-            # on-demand: informational only, never red
-            rows.append((label, last, "on-demand", "manual"))
-            continue
-        if d is None:
-            # scheduled but no heartbeat yet: "overdue" needs a prior beat to
-            # measure against, so a never-fired scheduled loop is pending, not dead.
-            rows.append((label, "awaiting 1st run", f"{cadence} d", "pending"))
+        hb = "never" if d is None else f"{d.isoformat()} ({(today - d).days} d ago)"
+        entry = ledger.get(task_id) or {}
+        fired = parse_iso(entry.get("fired"))
+        completed = parse_iso(entry.get("completed"))
+
+        if fired is not None:
+            age_days = (now - fired).days
+            fired_s = f"{fired.date().isoformat()} ({age_days} d ago)"
+            if completed is None or completed < fired:
+                hours = (now - fired).total_seconds() / 3600
+                status = "running" if hours <= RUN_DEAD_HOURS else "FAIL: started, never finished"
+            elif age_days > stale_days:
+                status = "FAIL: scheduler silent"  # disabled, deregistered, or machine off
+            else:
+                status = "ok"
         else:
-            overdue = (today - d).days > 2 * cadence
-            rows.append((label, last, f"{cadence} d", "FAIL" if overdue else "ok"))
-            any_overdue = any_overdue or overdue
+            # No ledger telemetry yet — fall back to the git heartbeat alone.
+            fired_s = "-"
+            if d is None:
+                status = "pending"
+            else:
+                status = "FAIL" if (today - d).days > 2 * cadence else "ok"
+
+        any_overdue = any_overdue or status.startswith("FAIL")
+        rows.append((label, fired_s, hb, f"{cadence} d", status))
     return rows, any_overdue
 
 
@@ -215,15 +260,18 @@ def build(root: Path) -> str:
         "",
         "## Loop heartbeats",
         "",
-        "Each scheduled loop's closing commit is its heartbeat. A scheduled loop goes **FAIL** "
-        "when its last heartbeat is older than 2x cadence; **pending** = scheduled but not yet "
-        "run; **manual** = on-demand, not scheduled. The review/agent loop is on-demand by "
-        "design and not listed.",
+        "Two signals per loop: **Last fired** comes from the local run ledger "
+        "(`50-dashboards/.loop-runs.json`, written by every run as its first and last action) "
+        "and proves the scheduler is alive; **Last heartbeat** is the loop's closing commit and "
+        "proves a run finished with output. `FAIL: started, never finished` = a run fired but "
+        "never closed out (crash or interrupted). `FAIL: scheduler silent` = no firing within "
+        "the staleness window — the task is disabled, deregistered, or the machine was off. "
+        "**pending** = no data yet. The review/agent loop is on-demand by design and not listed.",
         "",
-        "| Loop | Last heartbeat | Cadence | Status |",
-        "|---|---|---|---|",
+        "| Loop | Last fired | Last heartbeat | Cadence | Status |",
+        "|---|---|---|---|---|",
     ]
-    lines += [f"| {label} | {last} | {cad} | {st} |" for label, last, cad, st in hb_rows]
+    lines += [f"| {label} | {fired} | {hb} | {cad} | {st} |" for label, fired, hb, cad, st in hb_rows]
     lines += [
         "",
         "## Notes",
@@ -236,9 +284,10 @@ def build(root: Path) -> str:
         "- **Lint warnings** are the standing to-do list (provenance-frontmatter backfill, "
         "stale `related:` links), not failures. Detail: run `python tools/vault_lint.py --report` "
         "→ `50-dashboards/lint-report.md`.",
-        "- **Heartbeats overdue** means a scheduled loop hasn't committed within 2x its cadence — "
-        "check whether its desktop scheduled task is still firing (sleep, app closed, or "
-        "deregistration are the usual causes).",
+        "- **Heartbeats overdue** means a loop row shows FAIL — either the scheduler stopped "
+        "firing (check the task's enabled state in the desktop app) or a run started and never "
+        "finished (check the app's session history for that run). A loop that fires and no-ops "
+        "cleanly shows ok with no new commit — that is healthy, not silent.",
     ]
     return "\n".join(lines) + "\n"
 

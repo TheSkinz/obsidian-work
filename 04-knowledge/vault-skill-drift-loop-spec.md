@@ -52,6 +52,8 @@ Low for detection, zero authority for application. Every proposed edit is a diff
 
 ## Loop Steps
 
+**Run ledger (every run, first and last action):** Before anything else, update `50-dashboards/.loop-runs.json` in the vault (local, gitignored — create if missing): set this loop's entry (`vault-skill-drift-loop`) to `{"fired": "<now, UTC ISO-8601>", "completed": null, "result": "running"}`, merging without touching other loops' entries. As the run's very last action — after the final push, or immediately on deciding the run is a no-op or hitting a fatal problem — set `completed` to now and `result` to `committed`, `no-op`, or `error: <one line>`. Use Write/Edit tools, never shell editors. `tools/vault_health.py` reads this file to tell a dead scheduler from a quiet loop; a run that skips it surfaces as a monitoring FAIL.
+
 1. `git -C ~/.claude fetch` and confirm a clean working tree on `main`; stop if ambiguous.
 2. Read all skills; read vault layers changed since the last `skill-drift:` heartbeat (git log date-bounded); read the actuals rollup.
 3. Detect drift per the four classes above. Quote exact lines — no finding without a quote (audit discipline).

@@ -50,6 +50,8 @@ Low, but not silent. Every run either produces one evidence-gathering artifact (
 
 ## Loop Steps
 
+**Run ledger (every run, first and last action):** Before anything else, update `50-dashboards/.loop-runs.json` (local, gitignored — create if missing): set this loop's entry (`vault-idea-research-loop`) to `{"fired": "<now, UTC ISO-8601>", "completed": null, "result": "running"}`, merging without touching other loops' entries. As the run's very last action — after the final push, or immediately on deciding the run is a no-op or hitting a fatal problem — set `completed` to now and `result` to `committed`, `no-op`, or `error: <one line>`. Use Write/Edit tools, never shell editors. `tools/vault_health.py` reads this file to tell a dead scheduler from a quiet loop; a run that skips it surfaces as a monitoring FAIL. This matters most for this loop: it no-ops on most nights, and the ledger is the only signal separating "no seeds to research" from "scheduler stopped firing."
+
 1. Scan `00-inbox/` for files with `type: idea-seed` and `status: unexplored`. If none exist, report a clean no-op and stop — do not manufacture work.
 2. Pick the oldest unexplored idea-seed (by `created` frontmatter date). Process exactly one per run — same one-item discipline as [[vault-agent-loop-spec]]'s Selection Rule.
 3. Read the seed's "Tentative read" and "To explore" sections as the research brief.

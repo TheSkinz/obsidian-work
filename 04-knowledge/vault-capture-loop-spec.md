@@ -48,6 +48,8 @@ Low. The content-layer blast radius is small and every write is versioned in git
 
 ## Loop Steps
 
+**Run ledger (every run, first and last action):** Before anything else, update `50-dashboards/.loop-runs.json` (local, gitignored — create if missing): set this loop's entry (`vault-capture-loop`) to `{"fired": "<now, UTC ISO-8601>", "completed": null, "result": "running"}`, merging without touching other loops' entries. As the run's very last action — after the final push, or immediately on deciding the run is a no-op or hitting a fatal problem — set `completed` to now and `result` to `committed`, `no-op`, or `error: <one line>`. Use Write/Edit tools, never shell editors. `tools/vault_health.py` reads this file to tell a dead scheduler from a quiet loop; a run that skips it surfaces as a monitoring FAIL.
+
 1. Load last-run state from `00-inbox/.capture-state.json` (create if missing; default `last_run` = 7 days ago).
 2. **Ingest inbox** — for each `.md` file in `00-inbox/`, apply the three-outcome routing model. This is the primary job and runs first.
 3. **Harvest transcripts** — scan transcripts in scope (see Transcript Scope) modified since `last_run`, applying the self-exclusion rule and the Save-vs-Skip filter. For each durable finding: rewrite declarative present-tense, then route to an existing note (append) or create a new one.
