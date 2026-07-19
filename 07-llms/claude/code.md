@@ -10,7 +10,7 @@ Claude Code is Anthropic's official CLI for Claude — an interactive agent that
 
 ## How I use it
 
-Primary interface for all implementation work: writing vault notes, building and updating skills, running git operations, generating documents, and anything that touches files. The split is: **chat = decisions, Code = execution**.
+Primary interface for all implementation work: writing vault notes, building and updating skills, running git operations, generating documents, and anything that touches files. The split is: **chat = decisions, Code = execution**. See [[chat]] for the chat-side counterpart.
 
 The vault at `C:\Users\Jwuts\obsidian-work` is the working directory. Claude Code reads `CLAUDE.md` and `01-context/` on startup to load session context automatically.
 
@@ -42,7 +42,7 @@ Skills drive specialized behavior. When a task touches USADeBusk work, the relev
 ## Known limitations / gotchas
 
 - Claude Code is session-scoped; context is rebuilt each session from `01-context/` and memory. Long context is summarized automatically, but deep state from early in a session can drift.
-- File write on Windows uses PowerShell-style paths. Bash tool uses POSIX syntax inside Git Bash — path mismatches can cause silent failures if mixing shells.
+- File write on Windows uses PowerShell-style paths. Bash tool uses POSIX syntax inside Git Bash — path mismatches can cause silent failures if mixing shells. See [[windows-config]] for the OneDrive KFM redirection trap and shell-path details.
 - Large vault glob operations can be slow; prefer targeted reads over broad auto-scans.
 - Vision / image reading works but hasn't been benchmarked against Gemini for engineering drawings. See [[gem-drawing-extraction]] for current production standard.
 
@@ -64,7 +64,7 @@ Source: Claude Code session 04d37db4, 2026-07-05 (discovered via a git-fork reco
 
 ## Fable 5 skill-design guidance
 
-For Fable-5-era Claude, over-prescriptive, step-enumerated prompts measurably reduce output quality — stating the goal and constraints outperforms scripting the conversation turn-by-turn. Separately, a fresh-context verifier subagent catches problems that self-critique on the same context misses; delegate red-teaming to a separately-spawned agent rather than asking the acting agent to audit its own recommendation.
+For Fable-5-era Claude, over-prescriptive, step-enumerated prompts measurably reduce output quality — stating the goal and constraints outperforms scripting the conversation turn-by-turn. (See [[prompt-engineering]] for the broader prompting principles this reinforces.) Separately, a fresh-context verifier subagent catches problems that self-critique on the same context misses; delegate red-teaming to a separately-spawned agent rather than asking the acting agent to audit its own recommendation.
 
 Applied when building the `idea-triage` skill (2026-07-02): SKILL.md states goals/constraints rather than scripting the triage conversation, and the red-team pass against "execute" verdicts runs as a spawned subagent, never inline self-review.
 

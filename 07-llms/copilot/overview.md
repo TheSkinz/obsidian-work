@@ -38,7 +38,7 @@ Deployed a 5-rule corrective architecture to fix email deliverability and sortin
 
 ## Agent creation
 
-(Placeholder — add notes from any Copilot agent setup sessions when they occur.)
+The concrete example built so far is the [[heater-extraction-agent]] — a Copilot-side architecture for extracting fired heater coil data from degraded engineering drawings, using SharePoint-hosted knowledge files and a separate Auditor agent pattern. Document further agent setups here as they occur.
 
 ## Sycophancy-reduction custom instructions
 

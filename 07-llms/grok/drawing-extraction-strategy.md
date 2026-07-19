@@ -10,7 +10,7 @@ Canonical method decisions from the Grok repo (`.grok/skills/heater-drawing-anal
 
 ## Problem class
 
-Customer heater packages are often **image / uncontrolled VIEW prints**, not clean vector text PDFs. Sparse PDF text layers, vertical CAD OCR, MarkItDown, and default full-page multimodal vision all fail or under-read dense BOMs, title blocks, and mid-page tables. That is the right diagnosis for the pilot (Valero Jean-Gaulin TA2027) and the default assumption until a package proves a real text layer.
+Customer heater packages are often **image / uncontrolled VIEW prints**, not clean vector text PDFs. Sparse PDF text layers, vertical CAD OCR, MarkItDown, and default full-page multimodal vision all fail or under-read dense BOMs, title blocks, and mid-page tables. That is the right diagnosis for the pilot (Valero Jean-Gaulin TA2027) and the default assumption until a package proves a real text layer. See [[pdf-extraction]] for the cross-platform PDF-extraction baseline this method departs from.
 
 ## Primary method (adopted)
 

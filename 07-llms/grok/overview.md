@@ -10,7 +10,7 @@ xAI's Grok platform. Primary uses: forensic multi-model engineering workflows, v
 
 ## Forensic engineering workflow
 
-Multi-model approach combining Grok vision analysis, `code_execution` OCR preprocessing (pytesseract + Pillow), and Gemini/Claude cross-validation to extract technical data from poor-quality refinery drawings. Recreated outputs in Visio or Mermaid.
+Multi-model approach combining Grok vision analysis, `code_execution` OCR preprocessing (pytesseract + Pillow), and Gemini/Claude cross-validation to extract technical data from poor-quality refinery drawings. Recreated outputs in Visio or Mermaid — see [[diagram-creation]] for format-choice guidance.
 
 Applied to:
 - Marathon Detroit 70H1 Coker Furnace
