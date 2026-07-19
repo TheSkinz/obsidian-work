@@ -93,7 +93,11 @@ Requires Jesse to supply internal cost figures; nothing here can be derived. Lan
 
 **Resolved 2026-07-19, same session.** Jesse supplied `Desktop\Facilities\DSP-workup-rates-vs-cost.md`, an extraction of six recent DSP# workbooks. `_cost-model.md` is populated with Tier 1 and Tier 2 at correct units, plus a margin-structure section and three flagged anomalies. Tier 3 confirmed absent from all workups.
 
-One finding materially strengthens the rest of this note: **internal cost is identical across all six workups**, spanning two facilities, three contract regimes, and Jan–Jul 2026. Only bill rates and quantities moved. Cost is genuinely company-wide and belongs in one vault note; rates are not and do not. That is independent confirmation of the grain split proposed in A through D, arrived at from data rather than from argument.
+**Correction, same session.** On first reading the extraction I concluded that because internal cost was identical across all six workups, cost is genuinely company-wide and therefore belongs in one note while rates do not — treating that as data-driven confirmation of the grain split in A–D. Jesse then clarified that the cost figures are known approximations kept for a general perception of project profitability, pending revision. The inference does not hold: identical values across unrevised workbooks show the numbers are a shared assumption, not that real cost is uniform. Uniformity from a placeholder is indistinguishable from uniformity from a fact, and it was read as the latter.
+
+The grain split in A–D still stands, but on its original grounds — Jesse's account of how contracts are issued, and the Baytown card's inline warning — not on this. Whether cost is genuinely company-wide is now an open question, recorded in `_cost-model.md`.
+
+The cost model is therefore usable for comparing projects on a consistent basis and sanity-checking a bid's shape. It is **not** usable as a floor or to justify how far a rate can be cut, and the file now says so at the top.
 
 - [x] Approved
 - [ ] Approved with edits

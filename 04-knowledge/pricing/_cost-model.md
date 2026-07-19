@@ -2,7 +2,8 @@
 type: reference
 tags: [pricing, internal]
 source: Six most recent DSP# Excel workups, analyzed 2026-07-19
-verified: 2026-07-19
+verified: never
+confidence: low
 last-updated: 2026-07-19
 related:
   - rfq-intake-protocol
@@ -12,11 +13,18 @@ related:
 
 **Internal cost only — never appears in a client-facing document.** Bill rates are contract-specific and live on the quote note or its governing contract, not here; see [[rfq-intake-protocol]] and the rate-grain review note.
 
-**What "cost" means here:** these are the hardcoded **standard / divisional transfer cost** rates carried in the estimating workbooks. They are *not* a finance-certified burdened schedule — there is no separate burden %, G&A, fuel, or ownership amortization layer in any workup. Treat these as the estimating floor, not automatically as the company stop price. Settle the difference with finance before using this to justify a below-standard bid.
+> [!warning] These figures are approximations, not measured cost.
+> Per Jesse, 2026-07-19: the cost rates in the estimating workups exist to give a **general perception of cost and profit on a project**, and are known to be inaccurate. He intends to revise them. Nothing below is a validated cost.
+>
+> **Legitimate use:** comparing projects to each other on a consistent basis, sanity-checking that a bid is in the normal shape, seeing which categories carry margin *relative to one another*.
+>
+> **Illegitimate use:** treating any margin figure here as a floor, a stop price, or a justification for how far a rate can be cut. The model cannot answer "how low can we go" — it was never built to.
 
-**Units match the bill unit** so line margin computes directly: hourly for equipment and labor, per person-day for per diem, per each for pigs, per mile for equipment travel.
+**What "cost" means here:** hardcoded standard rates carried in the estimating workbooks. Not finance-certified, not burdened — no burden %, G&A, fuel, or ownership amortization layer exists in any workup — and per the warning above, not verified against actual cost either.
 
-**Cost is company-wide and stable.** Across all six workups spanning Jan–Jul 2026, two facilities, and three contract regimes, every internal cost rate was identical. Only bill rates and quantities moved. This is why cost belongs in one vault note while rates do not.
+**Units match the bill unit** so line margin computes directly: hourly for equipment and labor, per person-day for per diem, per each for pigs, per mile for equipment travel. The units are sound even where the values are not.
+
+**The rates are identical across all six workups** spanning Jan–Jul 2026, two facilities, and three contract regimes; only bill rates and quantities moved. Read this as *the values are a shared unrevised assumption*, not as evidence that real cost is uniform across facilities and equipment. Whether cost genuinely is company-wide is an open question these workbooks cannot answer.
 
 ---
 
@@ -81,20 +89,22 @@ Local Baytown work often runs 0 mob miles, so mob cost is mostly travel labor pl
 
 ---
 
-## Margin structure — where the flex actually is
+## Margin structure — read as shape, not as numbers
 
-Observed across all six workups, and the most decision-relevant thing in this file:
+Every percentage below inherits the accuracy warning at the top. What survives the caveat is the *ordering* and the *structural* claims, not the values.
 
-| Category | Typical margin | Flexibility when bidding competitively |
+| Category | Apparent margin | How much to trust it |
 |---|---|---|
-| Equipment | 50–70% | **This is the lever.** Nearly all competitive room lives here |
-| Labor | 17–28% | Limited |
-| Per Diem | 13.3%, locked | None — $130 cost against a $150 contract line |
-| Materials (pigs, DEF) | ≈ markup only, 7–14% | None — it *is* the markup |
+| Equipment | 50–70% | Directional only — the cost input is the least validated figure in the model |
+| Labor | 17–28% | Directional, though labor cost is likelier to be close since it derives from wages |
+| Per Diem | 13.3% | Arithmetic from an assumed $130 against a $150 contract line — the *spread* is soft, but per diem is genuinely near pass-through |
+| Materials (pigs, DEF) | ≈ markup only | **Structurally true regardless of cost accuracy** — charge is defined as cost × (1 + markup), so the margin *is* the markup by construction |
 
-Cutting price to win means cutting the equipment rate. Per diem and materials are effectively pass-through and cannot absorb a reduction; labor absorbs very little. A bid that discounts across the board is really discounting equipment while pretending otherwise.
+The one claim that holds independent of the numbers: materials margin is the markup, by definition, so materials cannot absorb a discount no matter what the underlying cost turns out to be. Per diem is close to the same, being a near pass-through against a fixed contract line.
 
-Blended job margin has landed between **42% and 54.5%** across every workup analyzed, plus 44.3% on DSP26058 (Marathon Garyville) from a separate source. Below roughly 42% blended is outside recent precedent and worth a deliberate decision rather than a slide.
+Beyond that, the apparent picture is that equipment carries most of the margin and would be the natural place to concede in a competitive bid. **Do not act on that without better cost data.** If equipment cost is understated, the real room is smaller than it looks — and equipment cost is exactly the figure most likely to be a placeholder.
+
+Blended workup margin ranged 42.0%–54.5% across the six files, with DSP26058 at 44.3% from a separate source. This is a useful consistency check that a new bid is in the normal *shape*. It is **not** a floor.
 
 ---
 
@@ -104,7 +114,17 @@ Blended job margin has landed between **42% and 54.5%** across every workup anal
 
 **Filter stand-by bill rate is inconsistent within one facility.** DSP26071.2 bills filter stand-by at $35/hr; other Exxon Baytown workups bill it at $150/hr against the same $20/hr cost. That is a 4× spread on the same line at the same site. Either a negotiated difference or an error worth catching.
 
-**Cost rates have not moved since at least January 2026.** Nothing in the workups updated across seven months. Plausible for standard rates, but worth confirming they are still current rather than stale defaults.
+**Cost rates have not moved since at least January 2026** and are known to be approximate. Jesse intends to revise them. Until that happens, treat the whole Tier 1/Tier 2 table as provisional.
+
+## What would make this model trustworthy
+
+In rough order of value, and none of it derivable from the workbooks:
+
+1. **Real equipment cost per hour for the TriMax pumper.** It is the largest single cost line, carries the most apparent margin, and is the least validated number here. Fixing this one figure moves the model more than everything else combined.
+2. **Actual burdened labor cost by role** — wages plus burden, rather than the assumed standard rate.
+3. **Real per-unit pig cost** from purchasing, against the catalog above.
+4. **Whether cost genuinely varies by facility or job type**, which the current uniform placeholders make impossible to see.
+5. **A burden/overhead layer** (Tier 3), absent entirely, needed before any figure here can be called a floor.
 
 ---
 
