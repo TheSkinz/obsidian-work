@@ -1,6 +1,7 @@
 ---
 type: review
-status: decided-blocked
+status: superseded
+superseded_by: "[[vault-skill-drift-loop-spec]]"
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -50,3 +51,4 @@ Bounded one-shot investigation, not a build. Before designing anything: (1) inst
 | Date | Action | By | Notes |
 |---|---|---|---|
 | 2026-07-05 | Jesse approved the bounded investigation. Not executable from this session: `~/.claude/skills/` here only contains `session-start-hook` — the actual USADeBusk skills live in the separate `claude-config` repo, out of this session's scope. Needs a session with that repo attached to actually trial a staleness-audit skill against it. | Claude | Blocked on environment, not on decision. |
+| 2026-07-19 | Closed as **superseded** by the Skill-Drift Loop ([[vault-skill-drift-loop-spec]], built 2026-07-07). The approved investigation was never run and is no longer needed. | Claude (Opus 4.8) | This note's one identified gap — cross-repo propagation, vault change → proposed skill diff — is the loop's core mechanic (drift class (a) + unmerged `drift/YYYY-MM` branch). Class (c) covers the OneDrive-path incident that motivated the seed. Proven by the loop's first run 2026-07-12: 13 findings, all adjudicated (V1–V8 vault, U1–U4 skills). Verified against the spec before closing, not assumed. |
