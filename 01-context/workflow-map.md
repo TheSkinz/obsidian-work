@@ -1,14 +1,8 @@
 # Workflow Map
 **Layer:** 01-context — loads every session
-**Purpose:** Mobilized USADeBusk jobs and their status — nothing else. Update when a job mobilizes, changes state, or closes. Personal-tooling and side-project status lives in agent auto-memory (`~/.claude/projects/.../memory/`), which tracks it better than a manually-updated table; this file stopped claiming that role 2026-07-19 after drifting stale against it.
+**Purpose:** Paused/deferred initiatives and retired-system history — nothing live. Live status has exactly one home each: jobs (mobilized, bidding, awarded) live in [[active-jobs]], and personal-tooling/side-project status lives in agent auto-memory (`~/.claude/projects/.../memory/`). This file stopped tracking active work 2026-07-19 after its "Active Projects" table drifted stale against both.
 
 ---
-
-## Mobilized Jobs
-
-| Job | Status | Next Action |
-|---|---|---|
-| *None currently mobilized.* | — | Add at mobilization. |
 
 Vault structure is stable post-cleanup: `03-jobs/` and `05-projects/` decommissioned, job actuals dissolved into heater cards. Facility population continues as routine work, not a tracked project.
 
