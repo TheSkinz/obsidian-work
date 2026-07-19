@@ -5,13 +5,13 @@
 | Metric | Value | Target | Status |
 |---|---|---|---|
 | Open decision rows | 0 | <= 10 | ok |
-| Review notes awaiting decision | 0 | <= 5 | ok |
+| Review notes awaiting decision | 1 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 21 | (backlog) | ok |
+| Lint warnings | 22 | (backlog) | ok |
 | Inbox items | 9 | - | ok |
 | Inbox median age | 1 d | < 14 d | ok |
 | Inbox oldest item | 1 d | < 30 d | ok |
-| Days since last commit | 1 d | - | ok |
+| Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | yes | no | FAIL |
 
 ## Loop heartbeats
@@ -20,7 +20,7 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 
 | Loop | Last fired | Last heartbeat | Cadence | Status |
 |---|---|---|---|---|
-| Capture loop | 2026-07-13 (6 d ago) | 2026-07-06 (13 d ago) | 7 d | FAIL: started, never finished |
+| Capture loop | 2026-07-13 (6 d ago) | 2026-07-19 (0 d ago) | 7 d | FAIL: started, never finished |
 | Idea-research loop | 2026-07-19 (0 d ago) | 2026-07-18 (1 d ago) | 30 d | ok |
 | Skill-drift loop | - | 2026-07-18 (1 d ago) | 31 d | ok |
 | Consolidation loop | 2026-07-19 (0 d ago) | 2026-07-18 (1 d ago) | 31 d | ok |
@@ -28,6 +28,6 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 ## Notes
 
 - **Decision queue:** [[decision-queue]] — 0 open. Cap is 10; over cap, proposal-generating loops pause.
-- **Review notes awaiting decision:** 0 in `06-insights/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
+- **Review notes awaiting decision:** 1 in `06-insights/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
 - **Lint warnings** are the standing to-do list (provenance-frontmatter backfill, stale `related:` links), not failures. Detail: run `python tools/vault_lint.py --report` → `50-dashboards/lint-report.md`.
 - **Heartbeats overdue** means a loop row shows FAIL — either the scheduler stopped firing (check the task's enabled state in the desktop app) or a run started and never finished (check the app's session history for that run). A loop that fires and no-ops cleanly shows ok with no new commit — that is healthy, not silent.

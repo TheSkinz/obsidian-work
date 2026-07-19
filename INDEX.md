@@ -87,6 +87,7 @@
 - [[2026-07-09-idea-research-context-packet-builder-skill]] — Idea Research — Context-Packet-Builder Skill
 - [[2026-07-12-skill-drift-review]] — Skill-Drift Review — 2026-07 (First Run)
 - [[2026-07-18-idea-research-job-sheet-type-formalization]] — Idea Research — Job-Sheet Type Formalization
+- [[2026-07-19-rate-model-grain-review]] — Review — Rate model is stored at the wrong grain (facility, should be contract)
 
 ## LLMs
 
