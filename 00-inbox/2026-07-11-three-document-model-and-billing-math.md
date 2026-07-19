@@ -1,12 +1,20 @@
-<!-- vault-loop: operational — defers to on-demand Agent-Review loop; destination is 04-knowledge/ (near estimating-approach), out of Capture Loop's writable scope. -->
+<!-- ROUTED 2026-07-18 — content landed in 04-knowledge/. Retained as the original capture record. -->
 ---
 type: capture
-status: inbox
+status: complete
 created: 2026-07-11
+related:
+  - [[_canonical-job-sheet]]
+  - [[quote-lifecycle]]
+  - [[2026-07-18-idea-research-job-sheet-type-formalization]]
 tags: [capture, vault-system, knowledge, job-sheet, estimating]
 ---
 
 # Durable knowledge from USA26038: the three-document model + work-up billing math
+
+> **Routed 2026-07-18.** The three-document model now lives in [[quote-lifecycle]]; the work-up
+> billing math is canonical in [[_canonical-job-sheet]]. This note is kept as the original capture
+> record — edit the canonical homes, not this file.
 
 Captured 2026-07-11 for routing into `04-knowledge/` (near `01-context/estimating-approach` and the estimating rollup). Most of the USA26038 job-sheet session was spent re-deriving these distinctions from scratch — writing them down once prevents re-litigating them every job.
 

@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -35,13 +35,18 @@ Bounded one-shot investigation/build, not urgent enough to jump the queue but lo
 
 ## Decision
 
-- [ ] Build now — canonical + template, routed with the billing-math capture note
+- [x] Build now — canonical + template, routed with the billing-math capture note
 - [ ] Bounded one-shot investigation first (confirm template shape with Jesse before writing canonical)
 - [ ] Park — revisit at the next won bid
 - [ ] Drop
+
+Jesse, 2026-07-18: "Build now."
 
 ## Apply Log
 
 | Date | Action | By | Notes |
 |---|---|---|---|
-|  |  |  |  |
+| 2026-07-18 | Created `04-knowledge/_canonical-job-sheet.md` | Claude (Opus 4.8) | Schema authority, derived from USA26038. Carries the work-up billing math as authoritative field-generation rules. Marked DRAFT — validated against one instance only. |
+| 2026-07-18 | Created `templates/_job-sheet-template.md` | Claude (Opus 4.8) | Derived from the exemplar; annotations reduced to the failure-prone rules (combined man-hours, per-diem PM exclusion, conditional Filter Unit / Carry-Forward sections). |
+| 2026-07-18 | Routed `00-inbox/2026-07-11-three-document-model-and-billing-math.md` | Claude (Opus 4.8) | Three-document model → `concepts/quote-lifecycle.md` (+ job-sheet creation step at award); billing math → the canonical. Capture note set `status: complete`, retained as origin record. |
+| 2026-07-18 | Render script NOT built | Claude (Opus 4.8) | Out of the approved scope and gated on real friction per this note's recommendation. Deferral documented in the canonical's closing comment. |

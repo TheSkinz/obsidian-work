@@ -53,6 +53,7 @@
 ## Knowledge
 
 - [[_canonical-heater-card]] — <Unit/Tag> <ShortName> — <Client> <City>, <ST>
+- [[_canonical-job-sheet]] — <USA#####> — <Client> <Facility Name>, <City>, <ST>
 - [[_facility-template]] — <Client> — <City>, <ST>
 - [[estimating-pricing]] — Estimating & Pricing Logic `(concepts)`
 - [[field-operations]] — Field Operations & Admin `(concepts)`
