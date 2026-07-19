@@ -22,7 +22,9 @@ Principles and patterns for getting reliable, high-quality output from LLMs. Thi
 
 ## Pattern catalog
 
-(Placeholder — add validated patterns here as they accumulate. Format: pattern name, when to use, example prompt skeleton.)
+**Dependency-tree interview pattern** (analyzed via the `grilling` skill from aihero.dev, not built here). A clarifying-questions instruction degenerates into either a wall of questions or premature agreement unless it's constrained by two specific splits: (1) primitive vs. wrapper — one battle-tested interrogation skill that thin, purpose-specific wrappers invoke, so the technique isn't reinvented per use case; (2) verify vs. ask — the agent checks anything it can confirm itself from available context and only asks about genuine decisions. On top of that: one question at a time (not a batch), the plan modeled as a dependency tree so an early answer reshapes later questions, every question shipped with the agent's own recommended answer (so obvious ones get rubber-stamped and only real disagreements slow things down), and a hard gate — no implementation until shared understanding is confirmed. Candidate fit for USADeBusk work: locking an RFQ/heater-card scope or an SOP's decision branches before drafting, both dependency-tree-shaped problems where premature agreement is the known failure mode.
+
+Source: Claude Code session f4df43ad, 2026-07-09.
 
 ## Anti-patterns
 
