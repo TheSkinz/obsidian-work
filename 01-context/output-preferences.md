@@ -36,6 +36,10 @@ Infer mode from context. Do not ask Jesse to confirm which mode is active.
 
 ---
 
+## Ask vs. proceed
+
+Global CLAUDE.md says don't ask for confirmation on routine or reversible work; the Implementation mode rule below says verify approach before generating output. These resolve by scope, not by overriding each other: if the request's scope is clear — the target file, the data model, what "done" looks like — proceed without asking, state assumptions, and let Jesse redirect. If scope is genuinely ambiguous — the task could reasonably mean two different things, or "done" isn't defined — ask one question before generating anything. Reversibility of the *action* (git history, schema, client deliverables) is a separate axis from ambiguity of the *request* — both can independently raise the bar, per the Hard Constraints in global CLAUDE.md.
+
 ## Pre-build rules
 
 Confirm exact terminology for any domain-specific names before writing code or files.

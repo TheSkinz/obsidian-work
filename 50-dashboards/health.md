@@ -23,7 +23,7 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 | Capture loop | 2026-07-13 (5 d ago) | 2026-07-06 (12 d ago) | 7 d | FAIL: started, never finished |
 | Idea-research loop | - | 2026-07-18 (0 d ago) | 30 d | ok |
 | Skill-drift loop | - | 2026-07-18 (0 d ago) | 31 d | ok |
-| Consolidation loop | 2026-07-19 (0 d ago) | never | 31 d | running |
+| Consolidation loop | 2026-07-19 (0 d ago) | 2026-07-18 (0 d ago) | 31 d | ok |
 
 ## Notes
 
