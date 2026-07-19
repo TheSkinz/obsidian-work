@@ -60,6 +60,7 @@
 - [[industry-foundation]] — Industry Foundation `(concepts)`
 - [[process-flow]] — Process Flow & Pig Travel `(concepts)`
 - [[quote-lifecycle]] — Quote Lifecycle `(concepts)`
+- [[rfq-intake-protocol]] — RFQ Intake Protocol `(concepts)`
 - [[equipment-library]] — Equipment Library `(equipment)`
 - [[knowledge-system-evaluation-questions]] — Knowledge System Evaluation Questions
 - [[knowledge-system-governance]] — Knowledge System Governance

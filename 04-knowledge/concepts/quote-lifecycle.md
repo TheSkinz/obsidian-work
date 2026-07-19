@@ -5,7 +5,7 @@ tags: [workflow, quotes, jobs]
 
 # Quote Lifecycle
 
-This covers what happens when a quote is decided — won or lost — and how to create a job record when one is awarded.
+This covers what happens when a quote is decided — won or lost — and how to create a job record when one is awarded. The front half — RFQ arrival through proposal submission — is [[rfq-intake-protocol]].
 
 ---
 
