@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: contradiction
 source_authority: inferred
 confidence: medium
@@ -110,8 +110,13 @@ The cost model is therefore usable for comparing projects on a consistent basis 
 
 Its "base rates overridden per facility" model is wrong on the same axis as (A), and its own notes already record that no company-wide base schedule exists. Either rewrite it to describe the contract-grain model or fold it into the cost model and archive it.
 
-- [ ] Approved
-- [ ] Approved with edits
+**Decided 2026-07-19 — archived rather than rewritten.** Three compounding reasons: the framing is wrong on the grain axis just corrected in (A); it duplicates the Baseline Rate Table already in `usadebusk-estimating`; and every rate cell was blank while its own note recorded that no company-wide schedule exists. Rewriting would have preserved a file whose job another artifact already does.
+
+Content rescued rather than lost: the stand-by cause table (weather / client delay / equipment downtime) moved to the skill's Contract Terms review section, since billability by cause is a terms question; the 2026-07-06 SharePoint and QuickBooks findings moved to [[rfq-intake-protocol]] as the empirical backing for contract-grain rates.
+
+Not built: a generated cross-quote rate-history rollup, the genuinely missing artifact. Deferred with a trigger (~12 quote notes under a settled heading convention) rather than built for four rows.
+
+- [x] Approved with edits
 - [ ] Rejected
 - [ ] Needs more source material
 
@@ -147,3 +152,4 @@ Per-proposal checkboxes above. This note is open until each of A–F is disposit
 | 2026-07-19 | A, B, D approved by Jesse and applied; C rejected (no live multi-year agreement on his accounts) | Claude (Opus 4.8) |
 | 2026-07-19 | A applied: "Rates — do not add" block in `_facility-template.md`; intake protocol step 3 corrected | Claude (Opus 4.8) |
 | 2026-07-19 | D applied: contract-field spec added to [[quote-lifecycle]] | Claude (Opus 4.8) |
+| 2026-07-19 | F decided and applied: `Rate Reference.md` archived, content rescued to the skill and intake protocol | Claude (Opus 4.8) |

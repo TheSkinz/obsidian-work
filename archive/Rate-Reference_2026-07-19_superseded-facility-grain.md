@@ -6,7 +6,20 @@ source: USADeBusk internal rate schedule
 verified: never
 ---
 
-# Standard Rate Reference
+# Standard Rate Reference — ARCHIVED 2026-07-19
+
+> [!warning] Superseded. Do not use.
+> Archived by proposal F of `06-insights/2026-07-19-rate-model-grain-review.md`.
+>
+> **Why:** three reasons. (1) It modeled rates as "base rates overridden per facility" — the wrong grain. Rates belong to a *contract*; one site can carry several concurrent contracts at different rates. (2) It duplicated the Baseline Rate Table already in the `usadebusk-estimating` skill. (3) Every rate cell was blank, and its own 2026-07-06 note recorded that no company-wide base schedule exists — the file documented its own premise failing.
+>
+> **Where its content went:** the stand-by cause table moved to the Contract Terms & Bid Instructions Review section of `usadebusk-estimating` (it is a terms question, not a rate question). The 2026-07-06 SharePoint and QuickBooks findings moved to `04-knowledge/concepts/rfq-intake-protocol.md`, where they back the contract-grain rule. Internal cost lives in `04-knowledge/pricing/_cost-model.md`.
+>
+> **Current model:** `rfq-intake-protocol.md` and `quote-lifecycle.md` (contract fields).
+>
+> Retained verbatim below for history.
+
+---
 
 _Base bill rates before facility-specific contract negotiation. See each facility
 file for contracted rates that override these. Fill every cell below — a blank

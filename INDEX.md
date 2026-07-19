@@ -65,7 +65,6 @@
 - [[knowledge-system-evaluation-questions]] — Knowledge System Evaluation Questions
 - [[knowledge-system-governance]] — Knowledge System Governance
 - [[_cost-model]] — Internal Cost Model `(pricing)`
-- [[Rate Reference]] — Standard Rate Reference `(pricing)`
 - [[sop-formatting-standard]] — SOP Formatting Standard `(sops)`
 - [[vault-agent-loop-spec]] — Vault Agent Loop Spec
 - [[vault-capture-loop-spec]] — Vault Capture Loop Spec
