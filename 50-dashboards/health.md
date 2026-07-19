@@ -12,7 +12,7 @@
 | Inbox median age | 1 d | < 14 d | ok |
 | Inbox oldest item | 1 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
-| Loop heartbeats overdue | yes | no | FAIL |
+| Loop heartbeats overdue | no | no | ok |
 
 ## Loop heartbeats
 
@@ -20,7 +20,7 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 
 | Loop | Last fired | Last heartbeat | Cadence | Status |
 |---|---|---|---|---|
-| Capture loop | 2026-07-13 (6 d ago) | 2026-07-19 (0 d ago) | 7 d | FAIL: started, never finished |
+| Capture loop | 2026-07-13 (6 d ago) | 2026-07-19 (0 d ago) | 7 d | ok |
 | Idea-research loop | 2026-07-19 (0 d ago) | 2026-07-18 (1 d ago) | 30 d | ok |
 | Skill-drift loop | - | 2026-07-18 (1 d ago) | 31 d | ok |
 | Consolidation loop | 2026-07-19 (0 d ago) | 2026-07-18 (1 d ago) | 31 d | ok |
