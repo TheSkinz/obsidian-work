@@ -7,8 +7,8 @@
 | Open decision rows | 0 | <= 10 | ok |
 | Review notes awaiting decision | 0 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 20 | (backlog) | ok |
-| Inbox items | 9 | - | ok |
+| Lint warnings | 25 | (backlog) | ok |
+| Inbox items | 13 | - | ok |
 | Inbox median age | 1 d | < 14 d | ok |
 | Inbox oldest item | 1 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
@@ -16,13 +16,12 @@
 
 ## Loop heartbeats
 
-Two signals per loop: **Last fired** comes from the local run ledger (`50-dashboards/.loop-runs.json`, written by every run as its first and last action) and proves the scheduler is alive; **Last heartbeat** is the loop's closing commit and proves a run finished with output. `FAIL: started, never finished` = a run fired but never closed out (crash or interrupted). `FAIL: scheduler silent` = no firing within the staleness window — the task is disabled, deregistered, or the machine was off. **pending** = no data yet. The review/agent loop is on-demand by design and not listed.
+Two signals per loop: **Last fired** comes from the local run ledger (`50-dashboards/.loop-runs.json`, written by every run as its first and last action) and proves the scheduler is alive; **Last heartbeat** is the loop's closing commit and proves a run finished with output. `FAIL: started, never finished` = a run fired but never closed out (crash or interrupted). `FAIL: scheduler silent` = no firing within the staleness window — the task is disabled, deregistered, or the machine was off. **pending** = no data yet. The review/agent and skill-drift loops are on-demand by design and not listed — skill-drift needs config-repo write authority that is deliberately not pre-granted, so it is run manually rather than on a schedule.
 
 | Loop | Last fired | Last heartbeat | Cadence | Status |
 |---|---|---|---|---|
 | Capture loop | 2026-07-13 (6 d ago) | 2026-07-19 (0 d ago) | 7 d | ok |
 | Idea-research loop | 2026-07-19 (0 d ago) | 2026-07-18 (1 d ago) | 30 d | ok |
-| Skill-drift loop | - | 2026-07-18 (1 d ago) | 31 d | ok |
 | Consolidation loop | 2026-07-19 (0 d ago) | 2026-07-18 (1 d ago) | 31 d | ok |
 
 ## Notes

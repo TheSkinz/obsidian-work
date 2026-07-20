@@ -25,7 +25,9 @@ Vault Skill-Drift Loop
 
 ## Trigger
 
-Scheduled monthly (1st of the month, ~3 AM local) via `mcp__scheduled-tasks`. Runbook prompt: `~/.claude/scheduled-tasks/vault-skill-drift-loop/SKILL.md`. Heartbeat tracked by `tools/vault_health.py` under the `skill-drift:` commit prefix (31-day cadence).
+**On-demand only** — say "run the Skill-Drift Loop" in a session. Runbook prompt: `~/.claude/scheduled-tasks/vault-skill-drift-loop/SKILL.md` (the task is registered but disabled, so it can still be started manually).
+
+**Why not scheduled (2026-07-19).** This loop is the only one that must write outside the vault: it creates a `drift/YYYY-MM` branch in the config repo, edits files under `~/.claude/skills/`, and commits and pushes there. Git mutation authority is deliberately scoped to the vault (see `change-log.md`, 2026-07-19), and Claude Code permission rules match on command strings and file paths — they cannot be scoped to a branch. Pre-granting what this loop needs would also let any interactive session commit to the config repo and edit skill files on `main` without a prompt, which is where Lane 4 domain truth (pricing, safety, SOP values) lives. Running it manually keeps that gate intact at the cost of one deliberate invocation a month. Because it is no longer scheduled, it is not heartbeat-tracked in `tools/vault_health.py` — a silent scheduler is not a failure for an on-demand loop.
 
 ## Scope
 
