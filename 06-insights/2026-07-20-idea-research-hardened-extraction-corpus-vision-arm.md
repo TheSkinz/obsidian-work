@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -48,12 +48,13 @@ Park, not drop — the technical case is sound and the corpus/harness groundwork
 
 ## Decision
 
-- [ ] Build now — harden corpus + add vision arm together
-- [ ] Bounded one-shot investigation first
-- [ ] Park — revisit on live extraction-routing pain or the 90-day leverage-repo dormancy checkpoint
-- [ ] Drop
+- [ ] ~~Build now — harden corpus + add vision arm together~~
+- [ ] ~~Bounded one-shot investigation first~~
+- [x] **Park — revisit on live extraction-routing pain or the 90-day leverage-repo dormancy checkpoint** — Jesse, 2026-07-20
+- [ ] ~~Drop~~
 
 ## Apply Log
 
 | Date | Action | By | Notes |
 |---|---|---|---|
+| 2026-07-20 | Parked per recommendation (Jesse). No forcing deadline remains (Fable access no longer expiring) and no live incident has surfaced extraction-routing pain on vision work; the leverage repo's own 90-day dormancy checkpoint (~2026-09-30) is the next natural revisit point. If resumed, treat as two separable pieces: hardening the text corpus (distractor density, schema breadth, difficulty calibration — no new harness work) vs. adding a vision arm (real harness work + pre-registration amendment, start from RealKIE/VRDU/AECV-Bench design patterns rather than from scratch). | Claude | Idea-seed left as a parked pointer. |
