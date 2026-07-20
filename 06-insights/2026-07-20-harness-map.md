@@ -101,13 +101,17 @@ account-level skills uploaded through the Claude web/desktop app, not from
 `~/.claude` or `settings.json`. Confirmed on-disk frontmatter matches the *bare*
 listing exactly; the `anthropic-skills:` text is the older pre-boundary version.
 
-This is open item #1 from [[project-harness-audit-2026-07]] (logged 2026-07-06,
-still open). Only removable/refreshable by Jesse in the app's Skills/Capabilities
-UI — no file edit resolves it.
+This was open item #1 from [[project-harness-audit-2026-07]] (logged 2026-07-06).
+**RESOLVED 2026-07-20.** Located at claude.ai › Settings › Capabilities › Skills
+(the "Author: You" rows — 9 uploads: 7 usadebusk-*, adversarial-review,
+idea-triage; the fieldpm upload was dated 3/25/26, matching the stale-party date
+from the July audit). Jesse deleted all nine; live `~/.claude/skills/` copies are
+untouched. Final confirmation is a fresh Claude Code session no longer listing the
+`anthropic-skills:usadebusk-*` rows.
 
 ## Follow-up actions (all gated, none auto-applied)
 
-1. Clear/refresh the stale account-level snapshot in the Claude app UI.
+1. ~~Clear the stale account-level snapshot in the Claude app UI.~~ DONE 2026-07-20.
 2. Heater Task-Durations: cut the inlined columns from vault CLAUDE.md, keep the
    pointer; consider a `vault_lint.py` header-order rule as the backing lock.
 3. Consolidate the output-prefs and git-authority collisions to one home each.
