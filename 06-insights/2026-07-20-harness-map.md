@@ -120,9 +120,22 @@ duplication.
 
 ## Follow-up actions (all gated, none auto-applied)
 
-1. ~~Clear the stale account-level snapshot in the Claude app UI.~~ DONE 2026-07-20.
-2. Heater Task-Durations: cut the inlined columns from vault CLAUDE.md, keep the
-   pointer; consider a `vault_lint.py` header-order rule as the backing lock.
-3. Consolidate the output-prefs and git-authority collisions to one home each.
-4. Demote `system-workflow-reference.md` + `workflow-map.md` from eager to
-   on-demand load.
+1. ~~Clear the stale account-level snapshot in the Claude app UI.~~ **DONE 2026-07-20.**
+2. ~~Heater Task-Durations: cut the inlined columns from vault CLAUDE.md.~~ **DONE
+   2026-07-20** (commit `56bdb0b`). The inline copy was already stale — 10 columns,
+   missing `Condition` — vs. the exemplar's and the skill's 11. Replaced with a
+   pointer to the exemplar. Also fixed two more stale inline counts in the same file
+   (`vault_lint.py` "7 rules" → 9). A `vault_lint.py` header-order lock remains an
+   optional future enhancement (not built).
+3. Output-prefs and git-authority collisions:
+   - **Output-prefs DONE 2026-07-20** (commit `2d0d23f`). Jesse chose global
+     CLAUDE.md as the single home; `output-preferences.md` now points up instead of
+     restating the rules.
+   - **Git-authority: intentionally left as-is.** The hard bans in both global
+     CLAUDE.md and `knowledge-system-governance.md` are a safety summary (always
+     loaded) + detail (on-demand), not harmful drift. Deduping a safety rule off the
+     always-loaded surface would be a downgrade. Reviewed, no change.
+4. ~~Demote `system-workflow-reference.md` + `workflow-map.md` from eager to
+   on-demand.~~ **DONE 2026-07-20** (commit `56bdb0b`). Both self-describe as
+   reference/history; startup rule and their Layer headers updated. ~10 KB off every
+   session's eager load.
