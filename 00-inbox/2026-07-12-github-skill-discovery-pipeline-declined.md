@@ -1,3 +1,4 @@
+<!-- ROUTED 2026-07-20 — content landed in 07-llms/self-improving-systems.md. Retained as the original capture record. -->
 ---
 type: note
 created: 2026-07-12

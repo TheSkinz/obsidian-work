@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — heater-card/estimating/regression work orders (04-knowledge, 02-facilities scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: handoff
 created: 2026-07-19

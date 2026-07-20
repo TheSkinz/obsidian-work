@@ -84,6 +84,20 @@ Source: Claude Code session 9a0789df, 2026-07-06 (`leverage` repo thesis experim
 
 Source: Claude Code session (harness audit), 2026-07-07.
 
+## Auto mode and allow-list pruning pull in opposite directions
+
+`permissions.defaultMode: "auto"` auto-saves approvals as you work, which is the same mechanism that lets a project's `settings.local.json` allow list grow unbounded over time. A 2026-07-19 audit found `obsidian-work/.claude/settings.local.json` had grown to 61 allow rules; 7 were live hazards rather than clutter — `Bash(git checkout *)` (matches `git checkout -- .`, same loss class as the already-banned `reset --hard`), `Bash(python -c ' *)` / `Bash(python -)` (unrestricted code execution), `Bash(pip install *)` (arbitrary PyPI package install+run), a `cat "...settings.json" 2>/dev/null *` rule with a trailing wildcard after a redirect (so `; <anything>` appends cleanly), and `Read(//c/Users/Jwuts/**)` (whole user profile — SSH keys, browser data, any `.env` on the machine). Eighteen more were dead one-offs (job-specific commit messages, path-specific `ls -R` probes, git verbs already covered by checked-in project settings). Separately, `~/.claude/settings.json` had `Bash(git fetch:*)`, which reads as read-only but permits arbitrary code execution via `--upload-pack='<cmd>'` and `ext::` remote URLs — this is why Claude Code's own vetted read-only git set excludes it.
+
+Pruning is not a fix, it's a reset of a counter that climbs again under auto mode — the audit's own doctor pass watched `Bash(npm view *)` get auto-added mid-session by a version lookup. An over-pruned rule just costs a re-approval prompt (no data loss), so pruning aggressively is low-risk. Re-check the rule count periodically (this audit set a 2026-09-19 re-check date for `obsidian-work`); if it's back near 60 with hazardous wildcards among the entries, auto mode costs more in permission drift than it saves in prompts.
+
+Source: `/doctor` pass, 2026-07-19.
+
+## Skill description length is a per-session token cost, and a stale job-specific banner is worse than none
+
+A skill's `description:` field is resident in every session's skill listing regardless of whether the project is relevant — length there is a real, ongoing token cost, not a one-time authoring cost. A 2026-07-19 audit found `usadebusk-fieldpm`'s description carrying a job-specific "ACTIVE for USA26038... re-dormant at demob" banner at 769 characters (~196 tokens), the longest of any skill's description. The same audit found the skill's usage counter at zero lifetime (absent from `skillUsage` in `~/.claude.json`, no `Skill` dispatch for it in the 50 most recent transcripts) despite nine days into the job it names as active — an unresolved open question (real workflow gap vs. workflow happening outside Claude Code) rather than a confirmed bug. The actionable lesson independent of that question: a job-specific ACTIVE banner needs its own demob trigger, since a stale banner pointing a live-job routing hint at a finished job is worse than a plain dormant one-liner, and reverting it recovers most of the token cost too.
+
+Source: `/doctor` pass, 2026-07-19.
+
 ## Links
 
 - Config repo: https://github.com/TheSkinz/claude-config

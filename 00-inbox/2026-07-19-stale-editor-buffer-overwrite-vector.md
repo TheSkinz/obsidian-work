@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — unresolved Lane 4 data-integrity question on B-101.md (02-facilities) plus a proposed change to knowledge-system-governance.md (04-knowledge). Defers to the on-demand Agent-Review loop / Jesse's call; capture loop cannot write this content. -->
 ---
 type: capture
 status: inbox
