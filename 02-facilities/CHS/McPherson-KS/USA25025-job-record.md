@@ -60,13 +60,17 @@ pigging ran double mode. Confirm whether that was the operating reality or a wor
 
 | Type | Count |
 |---|---|
-| Pin (TC) | 305 |
-| Hell Razor (HR) | 47 |
+| Pin (TC) | 314 |
+| Hell Razor (HR) | 46 |
 | Gauge Foam | 25 |
-| Swab | 19 |
+| Swab | 11 |
+| **Total** | **396** |
 
-37 distinct sizes, 3.0" through 12". Largest concentrations: 6.25" ×50, 6" ×33, 3.8" ×27, 5" ×24,
-4.875" ×24, 3.75" ×21, 3.3" ×20.
+26 distinct sizes, 3.0" through 12". Largest concentrations: 6.25" ×60, 6" ×47, 3.75" ×31, 5" ×31,
+3.8" ×27, 4.875" ×24, 3.3" ×23.
+
+Hell Razors cluster where the coils fought back: 3.2"–3.875" on the [[HF-0012]] Coker radiant (27 of 46)
+and 6.125" on [[HP-0002]]. A TC-only plan did not clear either.
 
 ## Timeline
 
@@ -155,15 +159,20 @@ TriMax hourly rates are crew-inclusive or labor was never entered. Unresolved.
 2. **Filtration — 636 hrs, $136,523** against a $40,280 quoted *option*. 339%.
 3. **Scope growth** — vacuum work appears on the breakdown ("HP006-11 VAC", "HEATER VAC") with no
    matching quoted decoking line.
+4. **Unbilled rig-out — ticket 8796.** The 04-05 night [[HF-0011]] rig-out shift (8 hrs rig-out + support
+   + crew truck) is customer-signed but absent from the billing workbook (NIGHT (16) empty). Documented
+   TriMax 1 work that was never billed — a lost-revenue item, distinct from the overrun above.
 
 ## Open Items
 
 - Locate any change order covering the $378,757 overrun, or establish that none was raised.
 - Resolve the zero-labor-hours question in the billing workbook.
 - Confirm governing quote version — PO cites DSP# 24005.1, file holds DSP# 24005.2 (see [[DSP24005]]).
-- Obtain the TriMax 1 physical receipts (9165–9172, 8792–8795). Task hours are already captured from the
-  breakdown; what is missing is shift narrative for the [[HF-0011]] Vacuum scope — pig progression, coil
-  condition, buy-off times.
+- ~~Obtain the TriMax 1 physical receipts~~ **RESOLVED 2026-07-20** — receipts 8792–8796 located
+  (CHS 4-6 signed.pdf). [[HF-0011]] shift narrative now recorded. Surfaced the 8796 unbilled-hours item
+  above.
+- Review ticket 8796: recover the 8 unbilled TriMax 1 rig-out hours, or confirm they were intentionally
+  written off.
 - Obtain Decoking Data Sheets (flow tests) and pig/deposit photos for the customer report.
 - **Outstanding customer request:** Randy Lenhart asked for a flow-test sign-off form (CHS Mech/Process/
   Ops signed initial and final in 2022), a pig type legend, and bolted-pig stud projection and hardness.
