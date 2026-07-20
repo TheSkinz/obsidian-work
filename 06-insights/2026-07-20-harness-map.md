@@ -1,6 +1,6 @@
 ---
 type: reference
-status: current
+status: active
 source_authority: verified
 confidence: high
 created: 2026-07-20

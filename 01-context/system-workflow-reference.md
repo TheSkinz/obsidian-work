@@ -1,5 +1,5 @@
 # System Workflow Reference
-**Layer:** 01-context — loads every session
+**Layer:** 01-context — load on demand (reference, not per-response context)
 **Purpose:** How the vault + skill system actually works, in one place: the five loops, which skill triggers on what, and how to add or ingest things manually. Read this when you forget how a piece fits together — it's not a status tracker (see [[workflow-map]] for that). **You don't need to remember any triggers:** three loops run on schedules, and every session starts by reading `50-dashboards/health.md`, which surfaces anything awaiting you. Two loops (review/agent and skill-drift) are on-demand by design — say the word and they run.
 
 ---

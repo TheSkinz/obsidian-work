@@ -1,5 +1,5 @@
 # Workflow Map
-**Layer:** 01-context — loads every session
+**Layer:** 01-context — load on demand (reference/history, not per-response context)
 **Purpose:** Paused/deferred initiatives and retired-system history — nothing live. Live status has exactly one home each: jobs (mobilized, bidding, awarded) live in [[active-jobs]], and personal-tooling/side-project status lives in agent auto-memory (`~/.claude/projects/.../memory/`). This file stopped tracking active work 2026-07-19 after its "Active Projects" table drifted stale against both.
 
 ---
