@@ -80,8 +80,24 @@ freezes the tension deliberately; H-2421's DSP26080 plan quotes 12 pig-hours for
 128 ft/hr with 6 passes on 3 assemblies).
 
 Method: pull every footage row from `04-knowledge/estimating-actuals-rollup.md`
-(4 rows as of today), normalize each to (a) ft/hr-total and (b) ft/hr-per-pass ×
-assemblies-used, against the 6-hr rig-in default. Include quote-vs-actual deltas —
+(8 rows as of today), normalize each to (a) ft/hr-total and (b) ft/hr-per-pass ×
+assemblies-used, against the 6-hr rig-in default.
+
+**Do not take the four P66 rows at face value — they are arithmetically wrong.**
+Adding verified footage to the H-28/H-29 cards on 2026-07-19 caused
+`estimating_rollup.py` to compute ft/hr for jobs 24012 and USA25041, but both
+jobs pigged H-28 and H-29 *together* and the recorded task hours are combined,
+not per-heater. The generator attributes the full combined hours to each heater
+while using only that heater's footage, so the resulting 13/16/17/20 ft/hr
+figures understate the true rate by roughly half. The correct normalization for
+those two jobs is combined: 4,238 ft against 143 hrs (24012) and 117 hrs
+(USA25041) — about 30 and 36 ft/hr, which is still far below the 100 ft/hr
+benchmark and is the real signal (hard coker coke, bend-restricted 2.6" bends).
+The combined-job caveat lives in prose on both cards; the generator cannot see
+it. **Fixing this is part of the job:** either give the rollup a way to recognize
+a multi-heater job (a shared job-number key, or a `combined-with:` field) or have
+it emit "(combined — see card)" instead of a computed rate. Same defect will hit
+any future job spanning two heaters. Include quote-vs-actual deltas —
 USA25041 ran 117 pig-hours actual vs 80 quoted (46% over). Output: a one-page
 Lane-4 memo with a recommended benchmark statement + a written duration decision
 procedure (when to use total-footage, when per-pass-parallel, when heater actuals

@@ -22,9 +22,10 @@
 - [[F-371A]] — HU9 F-371A Stabilizer Reboiler — ExxonMobil Baytown, TX `(ExxonMobil/Baytown-TX)`
 - [[F-802]] — PS8 F-802 Crude Heater — ExxonMobil Baytown, TX `(ExxonMobil/Baytown-TX)`
 - [[_facility]] — HF Sinclair — Navajo Refinery, Artesia, NM `(HF-Sinclair/Artesia-NM)`
+- [[DSP26080]] — DSP26080 — HF Sinclair Navajo Refinery February 2027 Outage `(HF-Sinclair/Artesia-NM)`
 - [[H-2421]] — H-2421 HDU Charge Heater — HF Sinclair Navajo Refinery `(HF-Sinclair/Artesia-NM)`
-- [[H-30]] — H-30 Reboiler — HF Sinclair Navajo Refinery `(HF-Sinclair/Artesia-NM)`
 - [[H-2501]] — H-2501 Hot Oil Furnace — HF Sinclair Navajo Refinery `(HF-Sinclair/Artesia-NM)`
+- [[H-30]] — H-30 Reboiler — HF Sinclair Navajo Refinery `(HF-Sinclair/Artesia-NM)`
 - [[H19]] — H-19 Crude Charge Heater — HF Sinclair Navajo Refinery, Artesia, NM `(HF-Sinclair/Artesia-NM)`
 - [[H20]] — H-20 Vertical Crude Hydro Heater — HF Sinclair Navajo Refinery, Artesia, NM `(HF-Sinclair/Artesia-NM)`
 - [[USA26038-job-sheet]] — USA26038 — HF Sinclair Navajo Refinery, Artesia, NM `(HF-Sinclair/Artesia-NM)`
@@ -63,6 +64,9 @@
 - [[quote-lifecycle]] — Quote Lifecycle `(concepts)`
 - [[rfq-intake-protocol]] — RFQ Intake Protocol `(concepts)`
 - [[equipment-library]] — Equipment Library `(equipment)`
+- [[h-2421]] — H-2421 Ground Truth — extraction record `(ground-truth)`
+- [[h-28]] — H-28 Ground Truth — extraction record `(ground-truth)`
+- [[h-29]] — H-29 Ground Truth — extraction record `(ground-truth)`
 - [[knowledge-system-evaluation-questions]] — Knowledge System Evaluation Questions
 - [[knowledge-system-governance]] — Knowledge System Governance
 - [[_cost-model]] — Internal Cost Model `(pricing)`
