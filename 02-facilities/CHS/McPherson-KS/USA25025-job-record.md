@@ -80,7 +80,38 @@ pigging ran double mode. Confirm whether that was the operating reality or a wor
 | 03-31 | [[HP-0025]] | Complete in one 24-hr cycle |
 | 04-01 → 04-02 | [[HP-0003]] + [[HP-0006]] concurrent | Stuck pig in HP-0003 reducer; HP-0006 ID discrepancy found |
 | 04-02 → 04-03 | [[HP-0002]] | TriMax 2 heaters complete; demob 3am 04-03 |
-| 04-04 → 04-06 | Demob + residual vacuum work | **Receipts absent from file set** |
+| 03-31 → 04-06 | [[HF-0011]] Vacuum — TriMax 1, concurrent | Ran alone while TriMax 2 cycled the smaller heaters |
+| 04-04 → 04-06 | TriMax 1 completion + demob | Task hours in breakdown; receipts absent |
+
+## Duration by Heater
+
+466 non-standby pumper hours, fully allocated — no remainder.
+
+| Scope | Unit | Rig | Pig | Smart Pig | Total |
+|---|---|---|---|---|---|
+| [[HF-0012]] Coker + [[HF-009A]]/[[HF-009B]] Crude ¹ | TM1 + TM2 | 42 | 162.5 | 22.5 | 227 |
+| [[HF-0011]] Vacuum ² | TM1 | 9 | 96 | 18 | 123 |
+| [[HP-0007]] | TM2 | 5 | 15 | 4 | 24 |
+| [[HP-0025]] | TM2 | 12 | 9 | 3 | 24 |
+| [[HP-0003]] + [[HP-0006]] ³ | TM2 | 6 | 26 | 4 | 36 |
+| [[HP-0002]] ⁴ | TM2 | 16 | 13 | 3 | 32 |
+| **Total** | | **90** | **321.5** | **54.5** | **466** |
+
+¹ Worked concurrently 03-22 → 03-29; breakdown bills them together. Not separable.
+² Task hours from the breakdown; TriMax 1 physical receipts not in the file set.
+³ Rigged and pigged concurrently on shared shifts; billed together.
+⁴ Rig includes the 04-03 night TriMax 2 demobilization (8 hrs), which the breakdown bills as Rig Out.
+
+## Stand-By by Cause — 190 hrs
+
+| Cause | Dates | Hours |
+|---|---|---|
+| Site readiness — heater prep, blinds, TI removal | 03-22 → 03-24 | 110.5 |
+| In-progress hold — Coker cell prep and pig recovery | 03-26 → 03-28 | 28.5 |
+| Second unit idle — TriMax 1 awaiting heater availability | 03-29 → 04-06 | 51.0 |
+| **Total** | | **190.0** |
+
+All of TriMax 2's 79.5 standby hours fall in the first two buckets. The entire third bucket is TriMax 1.
 
 ## Key Technical Findings
 
@@ -130,7 +161,9 @@ TriMax hourly rates are crew-inclusive or labor was never entered. Unresolved.
 - Locate any change order covering the $378,757 overrun, or establish that none was raised.
 - Resolve the zero-labor-hours question in the billing workbook.
 - Confirm governing quote version — PO cites DSP# 24005.1, file holds DSP# 24005.2 (see [[DSP24005]]).
-- Obtain receipts for 2025-04-04 → 04-06.
+- Obtain the TriMax 1 physical receipts (9165–9172, 8792–8795). Task hours are already captured from the
+  breakdown; what is missing is shift narrative for the [[HF-0011]] Vacuum scope — pig progression, coil
+  condition, buy-off times.
 - Obtain Decoking Data Sheets (flow tests) and pig/deposit photos for the customer report.
 - **Outstanding customer request:** Randy Lenhart asked for a flow-test sign-off form (CHS Mech/Process/
   Ops signed initial and final in 2022), a pig type legend, and bolted-pig stud projection and hardness.
