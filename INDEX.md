@@ -23,6 +23,7 @@
 - [[F-802]] — PS8 F-802 Crude Heater — ExxonMobil Baytown, TX `(ExxonMobil/Baytown-TX)`
 - [[_facility]] — HF Sinclair — Navajo Refinery, Artesia, NM `(HF-Sinclair/Artesia-NM)`
 - [[H-2421]] — H-2421 HDU Charge Heater — HF Sinclair Navajo Refinery `(HF-Sinclair/Artesia-NM)`
+- [[H-30]] — H-30 Reboiler — HF Sinclair Navajo Refinery `(HF-Sinclair/Artesia-NM)`
 - [[H-2501]] — H-2501 Hot Oil Furnace — HF Sinclair Navajo Refinery `(HF-Sinclair/Artesia-NM)`
 - [[H19]] — H-19 Crude Charge Heater — HF Sinclair Navajo Refinery, Artesia, NM `(HF-Sinclair/Artesia-NM)`
 - [[H20]] — H-20 Vertical Crude Hydro Heater — HF Sinclair Navajo Refinery, Artesia, NM `(HF-Sinclair/Artesia-NM)`

@@ -30,5 +30,4 @@
 
 | Quote # | Facility | Scope | Value | Submitted | Valid Through |
 |---------|----------|-------|-------|-----------|---------------|
-| DSP26058 | Marathon Garyville, LA | 1Q2027 TAR — 4 heaters, 2 trucks | $508,518.10 | 2026-05-12 | 2026-11-12 |
 | DSP26039 | ExxonMobil Baytown, TX | 2027 TA — HU9 F-301 & F-371A, 1 truck, T&M | $76,873.00 | 2026-04-07 | 2027-04-07 |

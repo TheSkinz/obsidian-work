@@ -61,7 +61,7 @@ ALLOWED_STATUS = {
     "deprecated", "complete", "open", "closed-unactioned", "expired",
     # review/decision outcomes
     "resolved", "unresolved", "pending", "superseded",
-    "decided-blocked", "approved-blocked", "awarded",
+    "decided-blocked", "approved-blocked", "awarded", "lost",
     # research
     "unexplored", "researched",
 }
@@ -72,7 +72,7 @@ ALLOWED_STATUS = {
 # there). Everything else in ALLOWED_STATUS is treated as a live note.
 TERMINAL_STATUS = {
     "deprecated", "complete", "closed-unactioned", "expired",
-    "resolved", "superseded", "decided-blocked", "approved-blocked", "awarded",
+    "resolved", "superseded", "decided-blocked", "approved-blocked", "awarded", "lost",
 }
 
 SECRET_PATTERNS = [

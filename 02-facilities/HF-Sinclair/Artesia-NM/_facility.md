@@ -39,7 +39,7 @@ tags: [facility, HF-Sinclair]
 
 ---
 
-## Contracted Rates — H-30 / H-2421 / H-2501 (DSP26080, Feb 2027 execution quote)
+## Quoted Rates — H-30 / H-2421 / H-2501 ([[DSP26080]], February 2027)
 
 | Line Item | Rate | Notes |
 |---|---|---|
@@ -47,14 +47,25 @@ tags: [facility, HF-Sinclair]
 | Pumper: Pigging | $500/hr | |
 | Pumper: Smart Pig | $500/hr | |
 | Pumper: Stand-by | $450/hr | |
+| Support Unit | $30/hr | |
 | Filtration | $200/hr | |
 | Filter Stand-by | $150/hr | |
+| Crew Truck | $15/hr | |
+| 4×3 Trash Pump | $1,016/shift | |
+| Supervisor | $74.10/hr | |
+| Operator | $58.25/hr | |
+| Per Diem | $150/day | |
+| DEF | $125/shift | |
+
+> [!note] Quote status
+> These are quote-specific rates, not contracted rates. DSP26080 is pending and has no recorded execution or actuals.
 
 ---
 
 ## Heaters at This Facility
 
 - [[H-2421]]
+- [[H-30]]
 - [[H-2501]]
 - [[H19]]
 - [[H20]]
