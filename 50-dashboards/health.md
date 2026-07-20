@@ -7,8 +7,8 @@
 | Open decision rows | 0 | <= 10 | ok |
 | Review notes awaiting decision | 0 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 26 | (backlog) | ok |
-| Inbox items | 15 | - | ok |
+| Lint warnings | 27 | (backlog) | ok |
+| Inbox items | 17 | - | ok |
 | Inbox median age | 1 d | < 14 d | ok |
 | Inbox oldest item | 1 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
@@ -22,7 +22,7 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 |---|---|---|---|---|
 | Capture loop | 2026-07-13 (6 d ago) | 2026-07-19 (0 d ago) | 7 d | ok |
 | Idea-research loop | 2026-07-19 (0 d ago) | 2026-07-18 (1 d ago) | 30 d | ok |
-| Consolidation loop | 2026-07-19 (0 d ago) | 2026-07-18 (1 d ago) | 31 d | ok |
+| Consolidation loop | 2026-07-19 (1 d ago) | 2026-07-18 (1 d ago) | 31 d | ok |
 
 ## Notes
 
