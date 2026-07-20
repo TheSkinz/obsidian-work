@@ -93,7 +93,8 @@ and 6.125" on [[HP-0002]]. A TC-only plan did not clear either.
 
 | Scope | Unit | Rig | Pig | Smart Pig | Total |
 |---|---|---|---|---|---|
-| [[HF-0012]] Coker + [[HF-009A]]/[[HF-009B]] Crude ¹ | TM1 + TM2 | 42 | 162.5 | 22.5 | 227 |
+| [[HF-0012]] Coker ¹ | TM1 | 19 | 85 | 10.5 | 114.5 |
+| [[HF-009A]] / [[HF-009B]] Crude ¹ | TM2 | 23 | 77.5 | 12 | 112.5 |
 | [[HF-0011]] Vacuum ² | TM1 | 9 | 96 | 18 | 123 |
 | [[HP-0007]] | TM2 | 5 | 15 | 4 | 24 |
 | [[HP-0025]] | TM2 | 12 | 9 | 3 | 24 |
@@ -101,8 +102,12 @@ and 6.125" on [[HP-0002]]. A TC-only plan did not clear either.
 | [[HP-0002]] ⁴ | TM2 | 16 | 13 | 3 | 32 |
 | **Total** | | **90** | **321.5** | **54.5** | **466** |
 
-¹ Worked concurrently 03-22 → 03-29; breakdown bills them together. Not separable.
-² Task hours from the breakdown; TriMax 1 physical receipts not in the file set.
+¹ Split by pumping unit, confirmed 2026-07-20: pumper 1 (triple mode) ran the Coker, pumper 2 (double
+mode) ran the Crude 009A/B, concurrently 03-24 → 03-29. Early rig-in (03-23 → 03-24) was shared for both
+heaters and is split by unit. Coker rig excludes the 6-hr Vacuum rig-in on 03-29 (that belongs to
+[[HF-0011]]). Crude pigging is directly documented only on receipt 9282; the balance is on the billing
+breakdown.
+² Task hours from the breakdown; TriMax 1 physical receipts 8792–8796 now located — see [[HF-0011]].
 ³ Rigged and pigged concurrently on shared shifts; billed together.
 ⁴ Rig includes the 04-03 night TriMax 2 demobilization (8 hrs), which the breakdown bills as Rig Out.
 
