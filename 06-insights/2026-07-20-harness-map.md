@@ -106,8 +106,17 @@ This was open item #1 from [[project-harness-audit-2026-07]] (logged 2026-07-06)
 (the "Author: You" rows — 9 uploads: 7 usadebusk-*, adversarial-review,
 idea-triage; the fieldpm upload was dated 3/25/26, matching the stale-party date
 from the July audit). Jesse deleted all nine; live `~/.claude/skills/` copies are
-untouched. Final confirmation is a fresh Claude Code session no longer listing the
-`anthropic-skills:usadebusk-*` rows.
+untouched. **Confirmed** in a fresh session (2026-07-20): no `anthropic-skills:*`
+duplicates remain; the seven auto-invocable skills show as bare local names.
+
+Side finding worth keeping: the two command-only skills — `idea-triage` and
+`usadebusk-vault-ingest`, both carrying `disable-model-invocation: true` locally —
+correctly drop OUT of the fresh session's model-invocation listing (they invoke by
+command: `/idea-triage`, `/usadebusk-vault-ingest`). The deleted account copies
+LACKED that flag, so the stale snapshot had been surfacing these two into the
+model's auto-invocation surface against Jesse's intent. Deleting it restored the
+command-only behavior — the cleanup fixed a subtler override bug, not just cosmetic
+duplication.
 
 ## Follow-up actions (all gated, none auto-applied)
 
