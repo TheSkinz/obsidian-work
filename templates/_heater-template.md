@@ -104,10 +104,15 @@ tags: [heater-card, <Client>, <heater-type>]
 
 ## Task Durations
 <!-- ACTUALS ONLY — elapsed hours per decoke, one row per job. Estimates never appear here.
-     Stand-By tracked but excluded from Total. "–" = confirmed did not occur; "?" = unrecorded. -->
-| Date | Job # | Rigs | Rig-In | Pig | Smart Pig | Rig-Over | Rig-Out | Stand-By | Total |
-|---|---|---|---|---|---|---|---|---|---|
-| | | | | | | | | | |
+     Stand-By tracked but excluded from Total. "–" = confirmed did not occur; "?" = unrecorded.
+     Condition = routine | crash | first | unknown (a job's hours are evidence only for the
+     next decoke of the SAME condition; "emergency" in the job details means crash).
+     Append `, hours-blended` if task hours weren't cleanly separated in the source, and
+     `, combined-heaters` if the hours are a multi-heater job total. Full spec in
+     04-knowledge/_canonical-heater-card.md. -->
+| Date | Job # | Rigs | Rig-In | Pig | Smart Pig | Rig-Over | Rig-Out | Stand-By | Total | Condition |
+|---|---|---|---|---|---|---|---|---|---|---|
+| | | | | | | | | | | |
 
 ---
 

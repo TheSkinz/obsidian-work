@@ -197,10 +197,25 @@ DERIVED but hand-entered (no formula layer) — re-sum on any edit, do not trust
   Pig includes flow-test hours — before/after flow tests are NOT a separate column; fold
         into Pig. Add a Flow Test column only when a real receipt breaks the hours out.
   "–" = task confirmed did NOT occur (e.g. no smart pig on this job).
-  "?" = task occurred-status unrecorded / unknown — distinct from "–". -->
-| Date | Job # | Rigs | Rig-In | Pig | Smart Pig | Rig-Over | Rig-Out | Stand-By | Total |
-|---|---|---|---|---|---|---|---|---|---|
-| | | | | | | | | | |
+  "?" = task occurred-status unrecorded / unknown — distinct from "–".
+  CONDITION (last column) — what state the coil was in, because a decoke's hours are only
+        evidence for the NEXT decoke of the same condition. Vocabulary:
+          `routine`  = normal service fouling, planned/TA scope.
+          `crash`    = furnace was crashed/upset; significantly dirtier than routine.
+                       Classification rule (Jesse, 2026-07-19): if the job details say
+                       "emergency" (emergency mob / emergency project), it is a crash.
+          `first`    = first-ever clean on this heater, no prior baseline.
+          `unknown`  = scope condition not recoverable from the source documents.
+        Append `, hours-blended` when the source report did not separate task hours
+        cleanly and the split across columns is an allocation, not a measurement.
+        Append `, combined-heaters` when the job pigged more than one heater and the
+        recorded hours are the JOB total, not this heater's share — the same row then
+        appears on each heater's card. Suppresses ft/hr in the rollup, which would
+        otherwise charge the full combined hours against one heater's footage.
+        NEVER estimate a routine job from crash rows — see usadebusk-estimating. -->
+| Date | Job # | Rigs | Rig-In | Pig | Smart Pig | Rig-Over | Rig-Out | Stand-By | Total | Condition |
+|---|---|---|---|---|---|---|---|---|---|---|
+| | | | | | | | | | | |
 
 ---
 

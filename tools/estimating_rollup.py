@@ -36,7 +36,7 @@ BENCH_RIG_IN = 6.0
 BENCH_RIG_OUT = 6.0
 
 TD_COLS = ["Date", "Job #", "Rigs", "Rig-In", "Pig", "Smart Pig",
-           "Rig-Over", "Rig-Out", "Stand-By", "Total"]
+           "Rig-Over", "Rig-Out", "Stand-By", "Total", "Condition"]
 
 
 def parse_frontmatter(text: str) -> dict[str, str]:
@@ -137,7 +137,10 @@ def build(root: Path) -> str:
             r = (r + [""] * len(TD_COLS))[:len(TD_COLS)]
             pig = num(r[4])
             fthr = None
-            if pig and footage:
+            # A combined-heaters row carries the whole job's hours on every heater it
+            # touched; dividing one heater's footage by them understates the rate.
+            combined = "combined-heaters" in r[10].lower()
+            if pig and footage and not combined:
                 fthr = footage / pig
             actual_rows.append((tag, client, r, footage, fthr))
 
@@ -160,18 +163,53 @@ def build(root: Path) -> str:
         "",
         "## Actuals",
         "",
-        "| Heater | Client | Date | Job # | Rigs | Rig-In | Pig | Smart Pig | Rig-Out | "
-        "Stand-By | Total | Heater footage (ft) | ft / elapsed pig-hr |",
-        "|---|---|---|---|---|---|---|---|---|---|---|---|---|",
+        "| Heater | Client | Date | Job # | Condition | Rigs | Rig-In | Pig | Smart Pig | "
+        "Rig-Out | Stand-By | Total | Heater footage (ft) | ft / elapsed pig-hr |",
+        "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
     ]
     if not actual_rows:
-        lines.append("| _no actuals recorded yet_ | | | | | | | | | | | | |")
+        lines.append("| _no actuals recorded yet_ | | | | | | | | | | | | | |")
     for tag, client, r, footage, fthr in actual_rows:
         foot_s = f"{footage:,.0f}" if footage else "(not recorded)"
         fthr_s = f"{fthr:.0f}" if fthr else "-"
+        cond = r[10].strip() or "unknown"
         lines.append(
-            f"| {tag} | {client} | {r[0]} | {r[1]} | {r[2]} | {r[3]} | {r[4]} | {r[5]} | "
-            f"{r[7]} | {r[8]} | {r[9]} | {foot_s} | {fthr_s} |")
+            f"| {tag} | {client} | {r[0]} | {r[1]} | {cond} | {r[2]} | {r[3]} | {r[4]} | "
+            f"{r[5]} | {r[7]} | {r[8]} | {r[9]} | {foot_s} | {fthr_s} |")
+
+    # Condition segmentation — crash and routine rows must never be averaged together.
+    by_cond: dict[str, list[float]] = {}
+    for tag, client, r, footage, fthr in actual_rows:
+        if fthr is None:
+            continue
+        key = (r[10].strip() or "unknown").split(",")[0].strip().lower()
+        by_cond.setdefault(key, []).append(fthr)
+    lines += ["", "## ft/hr by coil condition", ""]
+    lines += [
+        "A decoke's hours are evidence only for the next decoke of the **same condition**. "
+        "A crashed furnace runs significantly dirtier than routine service fouling, so crash "
+        "rows must not be used to estimate a routine clean (or vice versa). Classification "
+        "rule: job details saying \"emergency\" mean `crash` (Jesse, 2026-07-19).",
+        "",
+        "| Condition | Rows w/ ft/hr | Range | Mean |",
+        "|---|---|---|---|",
+    ]
+    if not by_cond:
+        lines.append("| _none_ | 0 | - | - |")
+    for key in sorted(by_cond):
+        vals = by_cond[key]
+        rng = f"{min(vals):.0f}–{max(vals):.0f}" if len(vals) > 1 else f"{vals[0]:.0f}"
+        lines.append(
+            f"| {key} | {len(vals)} | {rng} | {sum(vals) / len(vals):.0f} |")
+    if "routine" not in by_cond:
+        lines += [
+            "",
+            "> ⚠ **No routine-condition actuals carry a ft/hr figure.** Every usable rate "
+            f"above comes from a non-routine job, so the {BENCH_FT_PER_HR:.0f} ft/hr "
+            "benchmark currently has zero routine actuals either supporting or "
+            "contradicting it. Do not read a low crash rate as evidence the benchmark is "
+            "too high.",
+        ]
     lines += [
         "",
         "## Coverage gaps",

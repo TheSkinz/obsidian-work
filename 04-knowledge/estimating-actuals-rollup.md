@@ -8,18 +8,28 @@ Benchmarks as stated in `usadebusk-estimating`: **100 ft/hr** pigging (nominal f
 
 ## Actuals
 
-| Heater | Client | Date | Job # | Rigs | Rig-In | Pig | Smart Pig | Rig-Out | Stand-By | Total | Heater footage (ft) | ft / elapsed pig-hr |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| F-802 | ExxonMobil | 2026-04-28 | USA26022 | 2 | 4 | 55 | 6 | 20 | 49 | 85 | (not recorded) | - |
-| H-19 | HF Sinclair | 2025-08-17 | USA25051 | 1 | 10 | 103 | – | 30 | 41 | 143 | 4,934 | 48 |
-| H-20 | HF Sinclair | 2025-08-17 | USA25051 | 1 | 22 | 69 | – | 38 | 63 | 129 | 2,868 | 42 |
-| H-28 | P66 | 2024-01-20 | 24012 | 1 | 14 | 143 | – | 15 | 31 | 172 | 1,865 | 13 |
-| H-28 | P66 | 2025-05-10 | USA25041 | 1 | 5 | 117 | – | 9 | 1 | 131 | 1,865 | 16 |
-| H-29 | P66 | 2024-01-20 | 24012 | 1 | 14 | 143 | – | 15 | 31 | 172 | 2,373 | 17 |
-| H-29 | P66 | 2025-05-10 | USA25041 | 1 | 5 | 117 | – | 9 | 1 | 131 | 2,373 | 20 |
-| 7-1 F-1 | Syncrude | 2025-09-11 | CND25004 | 2 | ? | ? | ? | ? | ? | ? | 2,311 | - |
-| H-102A | Valero | 2026-03-26 | USA26025 | 1 | 27* | 232 | 16 | –* | 176 | 275 | 9,248 | 40 |
-| H-102B | Valero | 2026-03-26 | USA26025 | 1 | 34.5* | 242.5 | 31 | –* | 179 | 308 | 9,248 | 38 |
+| Heater | Client | Date | Job # | Condition | Rigs | Rig-In | Pig | Smart Pig | Rig-Out | Stand-By | Total | Heater footage (ft) | ft / elapsed pig-hr |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| F-802 | ExxonMobil | 2026-04-28 | USA26022 | unknown | 2 | 4 | 55 | 6 | 20 | 49 | 85 | (not recorded) | - |
+| H-19 | HF Sinclair | 2025-08-17 | USA25051 | crash | 1 | 10 | 103 | – | 30 | 41 | 143 | 4,934 | 48 |
+| H-20 | HF Sinclair | 2025-08-17 | USA25051 | crash | 1 | 22 | 69 | – | 38 | 63 | 129 | 2,868 | 42 |
+| H-28 | P66 | 2024-01-20 | 24012 | crash, combined-heaters | 1 | 14 | 143 | – | 15 | 31 | 172 | 1,865 | - |
+| H-28 | P66 | 2025-05-10 | USA25041 | routine, combined-heaters | 1 | 5 | 117 | – | 9 | 1 | 131 | 1,865 | - |
+| H-29 | P66 | 2024-01-20 | 24012 | crash, combined-heaters | 1 | 14 | 143 | – | 15 | 31 | 172 | 2,373 | - |
+| H-29 | P66 | 2025-05-10 | USA25041 | routine, combined-heaters | 1 | 5 | 117 | – | 9 | 1 | 131 | 2,373 | - |
+| 7-1 F-1 | Syncrude | 2025-09-11 | CND25004 | unknown | 2 | ? | ? | ? | ? | ? | ? | 2,311 | - |
+| H-102A | Valero | 2026-03-26 | USA26025 | crash | 1 | 27* | 232 | 16 | –* | 176 | 275 | 9,248 | 40 |
+| H-102B | Valero | 2026-03-26 | USA26025 | crash | 1 | 34.5* | 242.5 | 31 | –* | 179 | 308 | 9,248 | 38 |
+
+## ft/hr by coil condition
+
+A decoke's hours are evidence only for the next decoke of the **same condition**. A crashed furnace runs significantly dirtier than routine service fouling, so crash rows must not be used to estimate a routine clean (or vice versa). Classification rule: job details saying "emergency" mean `crash` (Jesse, 2026-07-19).
+
+| Condition | Rows w/ ft/hr | Range | Mean |
+|---|---|---|---|
+| crash | 4 | 38–48 | 42 |
+
+> ⚠ **No routine-condition actuals carry a ft/hr figure.** Every usable rate above comes from a non-routine job, so the 100 ft/hr benchmark currently has zero routine actuals either supporting or contradicting it. Do not read a low crash rate as evidence the benchmark is too high.
 
 ## Coverage gaps
 
