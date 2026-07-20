@@ -8,16 +8,8 @@
 
 ## Folder structure (post-cleanup)
 
-- `00-inbox/` — capture and triage
-- `01-context/` — auto-loaded by Cowork: `active-jobs`, `company-context`, `equipment-fleet`, `estimating-approach`, `output-preferences`, `system-workflow-reference`, `workflow-map`
-- `02-facilities/` — heater cards and facility overviews, canonical schema
-- `04-knowledge/` — concepts, equipment, SOPs
-- `06-insights/` — session insights and reviews
-- `07-llms/` — LLM platforms, tools, best practices (per-platform + cross-platform)
-- `08-systems/` — hardware, software, OS config, dev environment
-- `09-interests/` — personal topics, research interests, non-work knowledge
-- `50-dashboards/`
-- `archive/`, `templates/`
+Folder layout is discoverable from `ls` and `INDEX.md`. Only the non-obvious parts are recorded here.
+
 - `tools/` — vault automation scripts: `vault_lint.py` (7 rules incl. ORPHAN), `vault_health.py` → `50-dashboards/health.md`, `vault_index.py` → `INDEX.md`, `estimating_rollup.py` → `04-knowledge/estimating-actuals-rollup.md`
 
 Root-level files: `change-log.md` (decisions-only log), `INDEX.md`, `Identity.md`. `03-jobs/` and `05-projects/` are gone. Do not reference or recreate them — job actuals now live inside heater cards.
