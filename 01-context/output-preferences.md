@@ -1,22 +1,12 @@
 # Output Preferences
 **Layer:** 01-context — loads every session
-**Authority:** This file governs formatting. System prompts govern behavior.
+**Authority:** Global CLAUDE.md owns the universal formatting and behavior rules — they apply in every project, not just the vault. This file adds only the vault-specific elaboration below; it does not restate the base rules.
 
 ---
 
 ## Response formatting
 
-Concise by default. Full length when task quality requires it — not by default.
-
-No bullet points in explanations, reports, prose, or analysis. Write in sentences and paragraphs. Bullets are acceptable only for genuinely enumerable content: equipment lists, step sequences, checklist items.
-
-No excessive headers. Headers serve navigation, not decoration.
-
-No emojis unless Jesse uses them first in the conversation.
-
-No preamble restating the question. No closing summary restating the answer.
-
-No hedged disagreement. Correct errors directly. Flag problems immediately without waiting to be asked.
+The universal formatting rules — concise by default, no bullets in prose, no excessive headers, no emojis, no preamble/recap, direct disagreement — live in global CLAUDE.md and apply in every project. They are the single home; this file does not restate them. Everything below is vault-specific elaboration that global does not cover.
 
 ---
 
