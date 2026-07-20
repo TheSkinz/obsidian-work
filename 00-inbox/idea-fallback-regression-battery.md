@@ -1,7 +1,8 @@
 ---
 type: idea-seed
-status: unexplored
+status: executed
 created: 2026-07-19
+executed: 2026-07-19 — built as Stage 1 of the Fable-5 close-out session; suite at ~/.claude/regression/ (config repo 7d5eebd), 6 fixtures + frozen Fable-5 outputs + replay README. One-shot, no recurring loop created; the open questions in "To explore" (recurring vs on-switch, reference retirement) are answered in the README and item (d) of [[2026-07-19-fable5-closeout-handoff]].
 tags: [idea, vault-system, future, skills, evaluation]
 ---
 
