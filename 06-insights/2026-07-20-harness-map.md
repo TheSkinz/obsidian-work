@@ -22,6 +22,12 @@ Harness" video (youtu.be/PDJfciNhyHU) — six-rule framing applied to this setup
 Verification basis: `find`/`grep` across `~/.claude/skills`, `~/.claude/plugins`,
 `settings.json`, memory dir, and `01-context/` on 2026-07-20. Sizes in chars.
 
+**Visual snapshot:** `2026-07-20-harness-panel.html` (this folder) — a consolidated
+one-screen panel of the same data: load sequence, composition, and the collision
+ledger. Open in a browser (Obsidian reading view sanitizes its layout). Frozen
+snapshot, not a live view; regenerate from this note if the harness changes. Also
+published as an artifact: https://claude.ai/code/artifact/0b658200-ab6b-4943-8a4e-b9d76dc7a4b4
+
 ## 1. The whole system, one screen
 
 | Surface | Where | Loads when | Weight | Type |

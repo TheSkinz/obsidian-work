@@ -1,0 +1,563 @@
+<style>
+  :root {
+    --ink-950: #10151b;
+    --panel-dark: #171e26;
+    --panel-dark-raised: #1d2530;
+    --line-dark: rgba(230, 236, 236, 0.10);
+    --line-dark-strong: rgba(230, 236, 236, 0.18);
+    --text-dark: #e4e8e8;
+    --text-dark-muted: #8b96a0;
+
+    --paper-050: #e8eae7;
+    --panel-light: #f4f5f2;
+    --panel-light-raised: #ffffff;
+    --line-light: rgba(20, 28, 26, 0.12);
+    --line-light-strong: rgba(20, 28, 26, 0.22);
+    --text-light: #171d1b;
+    --text-light-muted: #5b6a64;
+
+    --accent: #c99248;
+    --accent-strong: #e0ab5e;
+    --ok: #4fa184;
+    --ok-strong: #6cc0a1;
+    --critical: #c9634a;
+    --critical-strong: #e08268;
+
+    --bg: var(--ink-950);
+    --panel: var(--panel-dark);
+    --panel-raised: var(--panel-dark-raised);
+    --line: var(--line-dark);
+    --line-strong: var(--line-dark-strong);
+    --text: var(--text-dark);
+    --text-muted: var(--text-dark-muted);
+
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Segoe UI Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: var(--paper-050);
+      --panel: var(--panel-light);
+      --panel-raised: var(--panel-light-raised);
+      --line: var(--line-light);
+      --line-strong: var(--line-light-strong);
+      --text: var(--text-light);
+      --text-muted: var(--text-light-muted);
+      --accent: #a6763a;
+      --ok: #2e7d5f;
+      --critical: #ae4a32;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: var(--ink-950);
+    --panel: var(--panel-dark);
+    --panel-raised: var(--panel-dark-raised);
+    --line: var(--line-dark);
+    --line-strong: var(--line-dark-strong);
+    --text: var(--text-dark);
+    --text-muted: var(--text-dark-muted);
+    --accent: #c99248;
+    --ok: #4fa184;
+    --critical: #c9634a;
+  }
+  :root[data-theme="light"] {
+    --bg: var(--paper-050);
+    --panel: var(--panel-light);
+    --panel-raised: var(--panel-light-raised);
+    --line: var(--line-light);
+    --line-strong: var(--line-light-strong);
+    --text: var(--text-light);
+    --text-muted: var(--text-light-muted);
+    --accent: #a6763a;
+    --ok: #2e7d5f;
+    --critical: #ae4a32;
+  }
+
+  * { box-sizing: border-box; }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  .panel-root {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    padding: clamp(20px, 4vw, 56px);
+    min-height: 100%;
+  }
+
+  .frame {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  /* ---------- Masthead ---------- */
+  .masthead {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 18px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 10px;
+  }
+  .title {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: clamp(22px, 3.4vw, 32px);
+    line-height: 1.15;
+    margin: 0 0 8px;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  .title .dim { color: var(--text-muted); font-weight: 500; }
+  .subtitle {
+    font-size: 14.5px;
+    color: var(--text-muted);
+    max-width: 52ch;
+    line-height: 1.55;
+    margin: 0;
+  }
+  .status-cluster {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .stamp {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-muted);
+    text-align: right;
+    margin-top: 8px;
+  }
+  .stamp strong { color: var(--text); font-weight: 600; }
+
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: 1px solid var(--line-strong);
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .chip::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+  .chip--ok { color: var(--ok); background: color-mix(in srgb, var(--ok) 12%, transparent); border-color: color-mix(in srgb, var(--ok) 40%, transparent); }
+  .chip--neutral { color: var(--text-muted); background: color-mix(in srgb, var(--text-muted) 10%, transparent); }
+  .chip--warn { color: var(--accent-strong); background: color-mix(in srgb, var(--accent) 14%, transparent); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+
+  /* ---------- Section shell ---------- */
+  section { display: flex; flex-direction: column; gap: 14px; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  h2 {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text);
+  }
+  .section-note {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  /* ---------- Load sequence ---------- */
+  .sequence {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--panel);
+  }
+  .stage {
+    display: grid;
+    grid-template-columns: 108px 1fr;
+    gap: 18px;
+    padding: 16px 18px;
+    position: relative;
+  }
+  .stage + .stage { border-top: 1px solid var(--line); }
+  .stage-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 3px 0;
+    color: var(--accent);
+    align-self: start;
+  }
+  .stage-body { display: flex; flex-direction: column; gap: 6px; }
+  .stage-items {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+  .stage-items b { font-weight: 600; }
+  .stage-items .n {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    color: var(--text-muted);
+  }
+  .stage-caption {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .stage[data-kind="enforce"] .stage-tag { color: var(--ok); }
+  .stage[data-kind="command"] .stage-tag { color: var(--text-muted); }
+
+  /* ---------- Stat strip ---------- */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .stat {
+    background: var(--panel);
+    padding: 16px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .stat-value {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    font-size: clamp(20px, 2.4vw, 26px);
+    letter-spacing: -0.01em;
+  }
+  .stat-value .fade { color: var(--text-muted); font-weight: 500; font-size: 0.62em; }
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .stat-delta {
+    font-size: 11px;
+    color: var(--ok);
+    font-family: var(--font-mono);
+  }
+
+  /* ---------- Collision ledger ---------- */
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--panel);
+  }
+  table { border-collapse: collapse; width: 100%; min-width: 660px; }
+  thead th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--line-strong);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 12px 16px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr {
+    transition: background 120ms ease;
+  }
+  tbody tr:hover { background: var(--panel-raised); }
+  td.rule { font-weight: 600; }
+  td.homes { color: var(--text-muted); font-size: 12.5px; }
+  td.ref {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .status-pill::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+  .status-pill--resolved { color: var(--ok); background: color-mix(in srgb, var(--ok) 14%, transparent); }
+  .status-pill--kept { color: var(--text-muted); background: color-mix(in srgb, var(--text-muted) 12%, transparent); }
+
+  /* ---------- Timeline ---------- */
+  .timeline {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--panel);
+    padding: 4px 0;
+  }
+  .commit-row {
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    gap: 16px;
+    padding: 9px 18px;
+    align-items: baseline;
+  }
+  .commit-row + .commit-row { border-top: 1px solid var(--line); }
+  .commit-hash {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .commit-msg { font-size: 13px; color: var(--text); }
+  .commit-msg .lane {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    margin-right: 6px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    border-top: 1px solid var(--line-strong);
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  footer p {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin: 0;
+    max-width: 60ch;
+    line-height: 1.6;
+  }
+  footer code {
+    font-family: var(--font-mono);
+    background: var(--panel);
+    padding: 1px 5px;
+    border-radius: 3px;
+    border: 1px solid var(--line);
+    font-size: 11px;
+  }
+
+  @media (max-width: 720px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stage { grid-template-columns: 1fr; gap: 6px; }
+    .masthead { align-items: flex-start; }
+    .status-cluster { justify-content: flex-start; }
+    .stamp { text-align: left; }
+  }
+</style>
+
+<div class="panel-root">
+  <div class="frame">
+
+    <div class="masthead">
+      <div>
+        <p class="eyebrow">Harness Instrumentation &mdash; Snapshot Panel</p>
+        <h1 class="title">obsidian&#8209;work <span class="dim">/ USADeBusk harness</span></h1>
+        <p class="subtitle">Every response-shaping surface across ~/.claude and the vault &mdash; what loads when, what's enforced vs. advisory, and what drifted before this session's fixes.</p>
+      </div>
+      <div>
+        <div class="status-cluster">
+          <span class="chip chip--ok">4 resolved</span>
+          <span class="chip chip--neutral">1 kept by design</span>
+          <span class="chip chip--warn">1 pending review</span>
+        </div>
+        <p class="stamp">snapshot &mdash; <strong>2026&#8209;07&#8209;20</strong> &middot; static, not live &middot; re-run to refresh</p>
+      </div>
+    </div>
+
+    <section>
+      <div class="section-head">
+        <h2>Load Sequence</h2>
+        <p class="section-note">what reaches the model, and at what stage</p>
+      </div>
+      <div class="sequence">
+        <div class="stage" data-kind="start">
+          <span class="stage-tag">START</span>
+          <div class="stage-body">
+            <p class="stage-items">Global <b>CLAUDE.md</b> &middot; vault <b>CLAUDE.md</b> &middot; memory index (<span class="n">32</span> files) &middot; <span class="n">5</span> eager <b>01&#8209;context</b> files</p>
+            <p class="stage-caption">Loads on every session, regardless of task. Trimmed this session &mdash; two reference files moved out (see On&#8209;demand).</p>
+          </div>
+        </div>
+        <div class="stage" data-kind="ondemand">
+          <span class="stage-tag">ON&#8209;DEMAND</span>
+          <div class="stage-body">
+            <p class="stage-items"><span class="n">7</span> auto&#8209;triggered skills &middot; <span class="n">2</span> reference context files &middot; <span class="n">02</span>&#8209;facilities / <span class="n">04</span>&#8209;knowledge on demand</p>
+            <p class="stage-caption">Fires when a description match or explicit ask calls for it &mdash; not read into every response.</p>
+          </div>
+        </div>
+        <div class="stage" data-kind="command">
+          <span class="stage-tag">COMMAND&#8209;ONLY</span>
+          <div class="stage-body">
+            <p class="stage-items"><b>idea&#8209;triage</b> &middot; <b>usadebusk&#8209;vault&#8209;ingest</b></p>
+            <p class="stage-caption"><code style="font-family:var(--font-mono);font-size:11.5px;">disable-model-invocation: true</code> &mdash; invoked by command, never auto&#8209;fired. A stale account&#8209;level copy of both had been missing this flag; deleting it restored the intent.</p>
+          </div>
+        </div>
+        <div class="stage" data-kind="enforce">
+          <span class="stage-tag">ENFORCED</span>
+          <div class="stage-body">
+            <p class="stage-items">git&#8209;guard hook &middot; permissions (<span class="n">9</span> allow / <span class="n">11</span> deny) &middot; vault_lint (<span class="n">9</span> rules) &middot; health&#8209;dashboard FAIL gating</p>
+            <p class="stage-caption">The only layer that can actually refuse an action. Everything above this line is advisory text, not a check.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>Composition</h2>
+        <p class="section-note">verified by recon, not inferred</p>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-value">7<span class="fade">&nbsp;+2</span></span>
+          <span class="stat-label">Skills &mdash; auto / command</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">32</span>
+          <span class="stat-label">Memory files</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">11.2<span class="fade">kb</span></span>
+          <span class="stat-label">Eager context load</span>
+          <span class="stat-delta">&darr; from 21.0kb</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">5</span>
+          <span class="stat-label">Lock mechanisms</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">9<span class="fade">/</span>11</span>
+          <span class="stat-label">Permissions &mdash; allow / deny</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>Collision Ledger</h2>
+        <p class="section-note">one rule, multiple homes &mdash; where it was found and how it closed</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rule</th>
+              <th>Homes found</th>
+              <th>Resolution</th>
+              <th>Status</th>
+              <th>Ref</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="rule">Stale skill snapshot</td>
+              <td class="homes">claude.ai account uploads, unflagged for auto&#8209;invocation</td>
+              <td>9 uploads deleted at the source</td>
+              <td><span class="status-pill status-pill--resolved">resolved</span></td>
+              <td class="ref">d77a1a4</td>
+            </tr>
+            <tr>
+              <td class="rule">Heater Task&#8209;Durations schema</td>
+              <td class="homes">exemplar, vault&#8209;ingest skill, vault CLAUDE.md (drifted &mdash; missing Condition col)</td>
+              <td>Inline copy replaced with a pointer to the exemplar</td>
+              <td><span class="status-pill status-pill--resolved">resolved</span></td>
+              <td class="ref">56bdb0b</td>
+            </tr>
+            <tr>
+              <td class="rule">Output formatting rules</td>
+              <td class="homes">global CLAUDE.md, output&#8209;preferences.md</td>
+              <td>Consolidated to global as single home</td>
+              <td><span class="status-pill status-pill--resolved">resolved</span></td>
+              <td class="ref">2d0d23f</td>
+            </tr>
+            <tr>
+              <td class="rule">Eager&#8209;load bloat</td>
+              <td class="homes">01&#8209;context read in full, every session</td>
+              <td>2 reference files demoted to on&#8209;demand</td>
+              <td><span class="status-pill status-pill--resolved">resolved</span></td>
+              <td class="ref">56bdb0b</td>
+            </tr>
+            <tr>
+              <td class="rule">Git&#8209;authority bans</td>
+              <td class="homes">global CLAUDE.md, knowledge&#8209;system&#8209;governance.md</td>
+              <td>Reviewed &mdash; summary + detail, not drift. Left as&#8209;is.</td>
+              <td><span class="status-pill status-pill--kept">kept</span></td>
+              <td class="ref">&mdash;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>Resolution Timeline</h2>
+        <p class="section-note">this session, in commit order</p>
+      </div>
+      <div class="timeline">
+        <div class="commit-row"><span class="commit-hash">c608e22</span><span class="commit-msg"><span class="lane">[gated]</span>Add harness map &mdash; full instruction&#8209;surface inventory</span></div>
+        <div class="commit-row"><span class="commit-hash">d77a1a4</span><span class="commit-msg"><span class="lane">[gated]</span>Mark stale account&#8209;skill snapshot resolved</span></div>
+        <div class="commit-row"><span class="commit-hash">329a6de</span><span class="commit-msg"><span class="lane">[gated]</span>Confirm snapshot removal &mdash; disable&#8209;model&#8209;invocation finding</span></div>
+        <div class="commit-row"><span class="commit-hash">56bdb0b</span><span class="commit-msg"><span class="lane">[gated]</span>Fix heater&#8209;schema drift; demote two eager&#8209;loaded files</span></div>
+        <div class="commit-row"><span class="commit-hash">2d0d23f</span><span class="commit-msg"><span class="lane">[gated]</span>Dedupe output&#8209;preferences to global CLAUDE.md</span></div>
+        <div class="commit-row"><span class="commit-hash">d05dc20</span><span class="commit-msg"><span class="lane">[gated]</span>Record all four collision resolutions in the map</span></div>
+        <div class="commit-row"><span class="commit-hash">8dbea68</span><span class="commit-msg"><span class="lane">[auto]</span>File idea&#8209;seed: vault_lint heater&#8209;schema lock</span></div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Built from <code>06&#8209;insights/2026&#8209;07&#8209;20&#8209;harness&#8209;map.md</code>, itself built from live recon (<code>grep</code>/<code>find</code> against ~/.claude and the vault), not inference. A pending item: an independent adversarial&#8209;review pass on the four resolved calls, to run in a fresh session.</p>
+    </footer>
+
+  </div>
+</div>
