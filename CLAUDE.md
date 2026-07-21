@@ -22,4 +22,4 @@ The Task Durations table is actuals-only; its column set and conventions live in
 
 ## Output
 
-Formatting and session-mode rules live in `01-context/output-preferences.md`. The **SOP formatting standard** has one canonical home: `04-knowledge/sops/sop-formatting-standard.md` — not here and not in a skill. The `usadebusk-sop` skill governs SOP *content* and explicitly defers formatting to that file; anything else that mentions SOP formatting points at it.
+The universal formatting rules live in global CLAUDE.md; `01-context/output-preferences.md` holds only the vault-specific session-mode and behavior elaboration. The **SOP formatting standard** has one canonical home: `04-knowledge/sops/sop-formatting-standard.md` — not here and not in a skill. The `usadebusk-sop` skill governs SOP *content* and explicitly defers formatting to that file; anything else that mentions SOP formatting points at it.

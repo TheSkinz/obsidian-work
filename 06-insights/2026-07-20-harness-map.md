@@ -62,7 +62,7 @@ Rule-5 candidates — prose that could become a lock:
   enforce it instead of relying on the model remembering.
 - **Heater-card Task-Durations column order** — if `vault_lint.py` does not already
   assert the exact `Date | Job # | Rigs | Rig-In | Pig | Smart Pig | Rig-Over |
-  Rig-Out | Stand-By | Total` header, that is the highest-value lock to add
+  Rig-Out | Stand-By | Total | Condition` header, that is the highest-value lock to add
   (see collision #3 below).
 
 ## 3. Rule collisions — one rule, several homes (video rule 3)

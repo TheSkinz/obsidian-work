@@ -24,7 +24,7 @@ Adjust the rate downward (more hours required) for:
 - Hard fouling history
 - Tight tube ID (under ~3")
 
-Use prior job data when available for the same facility or service type. **Before finalizing any duration estimate, check `04-knowledge/estimating-actuals-rollup.md`** — the generated cross-heater table of every recorded job actual against these benchmarks. It is reference, not authority (benchmark changes are Jesse's call), but an estimate that ignores a contradicting actual is a bug.
+Use prior job data when available for the same facility or service type. **Before finalizing any duration estimate, check `04-knowledge/estimating-actuals-rollup.md`** — the generated cross-heater table of every recorded job actual against these benchmarks. It is reference, not authority (benchmark changes are Jesse's call), but an estimate that ignores a contradicting actual is a bug. An actual only governs when coil condition matches — a crash/emergency decoke runs dirtier than routine, so don't apply one mode's ft/hr to the other.
 
 Standard fixed durations:
 - Rig-in: 6 hrs
