@@ -145,3 +145,77 @@ duplication.
    on-demand.~~ **DONE 2026-07-20** (commit `56bdb0b`). Both self-describe as
    reference/history; startup rule and their Layer headers updated. ~10 KB off every
    session's eager load.
+
+## 6. Harness passport — core vs. delivery (added 2026-07-20, exploration session)
+
+Cross-model porting exploration produced one organizing lens: split every surface
+into a model-agnostic **core** (portable — identity, domain facts, output prefs,
+the *intent* of the permission boundary) and a product-specific **delivery layer**
+(how the core is injected and, crucially, *enforced*). Porting the harness to
+another surface (video rule 6) means copying the core verbatim and re-authoring the
+delivery — never copying the whole thing.
+
+The locks split a second way that decides which safety survives a port:
+
+- **Product-independent locks** — `vault_lint.py`, `estimating_rollup.py`. Pure
+  scripts that run on the files regardless of which model edited them. Already
+  "ported" — they don't move. The reusable principle: push enforcement into a
+  script and it survives every port for free.
+- **Product-coupled locks** — the git-guard hook, the permission allow/deny lists.
+  Bound to the agent runtime; re-authored per product, and not every product can
+  host them.
+
+| Surface | Core / Delivery | Port note |
+|---|---|---|
+| Global + vault CLAUDE.md | Core (facts) in delivery (prose) | Facts port; prose style is Opus-tuned, re-author per model |
+| 32 memories | Core | Portable facts; frontmatter is delivery-specific |
+| 01-context/ (eager) | Core, delivered eagerly | Eager-load mechanism is product-specific |
+| 9 skills | Core content, product-specific packaging | Concept ports; format re-authored |
+| git-guard hook | Delivery (product-coupled lock) | Re-author per runtime |
+| Permissions allow/deny | Delivery (product-coupled lock) | Intent ports; syntax differs |
+| `vault_lint.py` / `estimating_rollup.py` | Delivery (product-*independent* lock) | Runs unchanged — already ported |
+
+### Live-surface port findings (web-verified 2026-07-20)
+
+Targets confirmed in active use: Claude Code (baseline), **Codex**, **Copilot
+M365**. Local models and Gemini out of scope.
+
+**Codex** is near-isomorphic to Claude Code. `AGENTS.md` maps ~1:1 to CLAUDE.md
+(global `~/.codex/AGENTS.md` + a path-chain from git-root to cwd, closer wins);
+Codex now has both **hooks** (`hooks.json` / `[hooks]` in config.toml, stable since
+v0.124.0) and **skills**, so the git-guard hook and skill suite genuinely port. Two
+caveats: AGENTS.md takes **no YAML frontmatter** (provenance conventions are
+CLAUDE.md-only), and GPT/o-series is more literal and less tolerant of long nuanced
+prose than Opus — so the prose CLAUDE.md and the eager 01-context load should
+**shrink and harden into imperatives**, not copy across. The USADeBusk half of the
+harness only needs porting if Codex actually touches vault/USADeBusk work; if it is
+generic-coding-only, only the generic slice of global CLAUDE.md belongs in
+`~/.codex/AGENTS.md`. Sources: developers.openai.com/codex (agents-md, config-reference, skills).
+
+**Copilot M365** ports the core but none of the locks. Base Copilot has no authored
+persistent system prompt; the port vehicle is a **declarative agent** built in
+**Agent Builder** (no-code, in-UI) carrying instructions + knowledge grounding +
+actions. What ports: identity, output prefs, the permission boundary rephrased
+behaviorally ("draft, never send"), plus a genuine *gain* — Microsoft Graph
+grounding against real tenant mail/files, which Claude Code lacks. What does not
+port: every lock (no hooks, lint, deny-lists, or frontmatter) — enforcement
+collapses to prose, and the honest design accepts that rather than faking safety
+machinery. Unknown to check, not assume: whether USADeBusk IT permits building
+declarative agents at all. Source: learn.microsoft.com/microsoft-365/copilot/extensibility.
+
+## 7. Pre-write skill design checklist (added 2026-07-20)
+
+Prevention counterpart to the skill-drift loop (which catches collisions *after*
+skills exist). Before writing or materially expanding a skill, run this against the
+map above — it heads off the rule-collision class in section 3:
+
+1. **Does this rule already have a home?** Check the collision ledger (§3) and
+   INDEX first. If it lives somewhere, point at it — do not restate it.
+2. **Which single surface should own it?** One rule, one home (video rule 3). Skill
+   body, CLAUDE.md, memory, or a lock — pick one; everything else references it.
+3. **Core or delivery?** If it is a portable fact, it may belong in a memory or
+   CLAUDE.md, not baked into one skill's prose.
+4. **Eager or on-demand?** Skills are deferred by design — keep task-specific depth
+   in the skill, not in eager 01-context (video rule 4).
+5. **Could a hard rule be a lock instead of prose?** If it is a yes/no check, prefer
+   `vault_lint.py` or a hook over a reminder (video rule 5).
