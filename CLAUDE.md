@@ -10,7 +10,7 @@
 
 Folder layout is discoverable from `ls` and `INDEX.md`. Only the non-obvious parts are recorded here.
 
-- `tools/` — vault automation scripts: `vault_lint.py` (9 rules; the script's rule set is authoritative), `vault_health.py` → `50-dashboards/health.md`, `vault_index.py` → `INDEX.md`, `estimating_rollup.py` → `04-knowledge/estimating-actuals-rollup.md`
+- `tools/` — vault automation scripts: `vault_lint.py` (rule set defined by and authoritative from the script itself — no count here to drift), `vault_health.py` → `50-dashboards/health.md`, `vault_index.py` → `INDEX.md`, `estimating_rollup.py` → `04-knowledge/estimating-actuals-rollup.md`
 
 Root-level files: `change-log.md` (decisions-only log), `INDEX.md`, `Identity.md`. `03-jobs/` and `05-projects/` are gone. Do not reference or recreate them — job actuals now live inside heater cards.
 
