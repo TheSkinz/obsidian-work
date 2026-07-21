@@ -1,7 +1,9 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-07-19
+related:
+  - [[2026-07-21-idea-research-portfolio-revival-pass]]
 tags: [idea, vault-system, future, project-hygiene]
 ---
 
