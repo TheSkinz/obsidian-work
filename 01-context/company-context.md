@@ -24,7 +24,7 @@ Operating base: Deer Park, TX (corporate fleet and equipment staging). Primary m
 ## Commercial defaults
 
 - Contract type: T&M on execution, Mob/Demob lump sum (~95% of jobs)
-- Third-party markup: 10% baseline (no contract). Some facilities contracted as low as 5%. Always confirm before invoicing or proposing.
+- Third-party markup: one of 5%, 10%, or 15%, set by the specific facility/project contract — no default. Always confirm before invoicing or proposing.
 - Bid platforms: ARIBA, GED, or direct email per customer requirement
 
 ## Brand standards

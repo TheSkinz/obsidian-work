@@ -54,11 +54,11 @@ SIMOPS (multi-heater jobs): Overlapping heater timeline visibility required — 
 
 Generic rates for new facilities without established contract rates. Use as starting estimate only — replace with actual contract rates before finalizing any proposal.
 
-Third-party markup: 10% baseline (no contract). Some facilities contracted at 5%. Always confirm.
+Third-party markup: 5%, 10%, or 15% per the specific facility/project contract — no default. Always confirm.
 
 | Category | Description | Rate | Unit |
 |---|---|---|---|
-| Third Party | Cost + markup | 5–10% | Contract-dependent; 10% if no contract |
+| Third Party | Cost + markup | 5 / 10 / 15% | Per contract — no default; confirm the applicable rate |
 | Mob/Equipment | TriMax Travel | $3.00 | Mile |
 | Mob/Equipment | Support Travel | $3.00 | Mile |
 | Mob/Equipment | Crew Truck Travel | $3.00 | Mile |
