@@ -21,9 +21,9 @@ The single place every open decision lives. One row per open ask — not one not
 
 | id | opened | source | ask | risk | age (d) | status |
 |---|---|---|---|---|---|---|
-| _(none)_ | | | | | | |
+| DQ-001 | 2026-07-20 | [[company-context]] | Third-party markup disagrees across homes: the `usadebusk-estimating` skill (and the now-thinned `estimating-approach.md`) say **15% typical** — Jesse-confirmed 2026-07-19, 5 of 6 recent DSP workups at 15%; but `company-context.md` and `04-knowledge/concepts/estimating-pricing.md` still say **10% baseline (no contract)**. Decide: is 10% a real no-contract default, or is 15% now typical with no default (confirm-per-contract only)? Then update the two stale homes to match. | high | 0 | open |
 
-**0 open rows** as of 2026-07-05.
+**1 open row** as of 2026-07-20.
 
 ## Why the queue is empty at launch
 

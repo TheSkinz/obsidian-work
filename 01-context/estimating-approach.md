@@ -1,63 +1,17 @@
 # Estimating Approach
-**Layer:** 01-context — loads every session
-**Source:** usadebusk-estimating skill
+**Layer:** 01-context — loads every session (thin orientation, not the full method)
+**Authority:** The `usadebusk-estimating` skill owns estimating in full — commercial structure, third-party markup, equipment/crew profile, rate-application discipline, and the 14-section proposal composition (intake checklist, section templates, guardrails). Load it for any bid. This file keeps only the duration model — the one piece worth having cold before the skill loads — and does not restate the skill's pricing or section content.
 
 ---
 
-## Commercial structure
+## Duration model
 
-Most jobs (95%+): T&M on execution, Lump Sum on Mob/Demob.
-
-Mob/Demob is estimated as Day shift cost bucket only: total drive hours + per diem per travel day per person + equipment travel costs. Presented as two separate lump sum line items.
-
-Third-party markup rate is contract-specific. 15% is the current typical rate and trending that way (2026-07-19); 5–10% still occurs. Confirm per contract — never apply a default.
-
----
-
-## Duration calculation
-
-Baseline pigging rate: 100 ft/hr per pass.
-
-Adjust the rate downward (more hours required) for:
+Baseline pigging rate: **100 ft/hr per pass.** Adjust the rate downward (more hours required) for:
 - Coker or crude service
 - Pitch presence
 - Hard fouling history
 - Tight tube ID (under ~3")
 
-Use prior job data when available for the same facility or service type. **Before finalizing any duration estimate, check `04-knowledge/estimating-actuals-rollup.md`** — the generated cross-heater table of every recorded job actual against these benchmarks. It is reference, not authority (benchmark changes are Jesse's call), but an estimate that ignores a contradicting actual is a bug. An actual only governs when coil condition matches — a crash/emergency decoke runs dirtier than routine, so don't apply one mode's ft/hr to the other.
+Standard fixed durations: Rig-in 6 hrs, Rig-out 6 hrs, Smart Pig 4 hrs (when applicable). All tasks run a 12-hr shift cycle; pigging runs 24/7.
 
-Standard fixed durations:
-- Rig-in: 6 hrs
-- Rig-out: 6 hrs
-- Smart Pig run: 4 hrs (when applicable)
-
-All tasks run on 12-hr shift cycle. Pigging runs 24/7.
-
----
-
-## Equipment profile
-
-| Config | Assets | Crew impact |
-|---|---|---|
-| 1x TriMax | 1 pumper, 1 support unit | Smaller crew |
-| 2x TriMax | 2 pumpers, 2 support units | Larger crew, dual-shift standard |
-| 3x TriMax | 3 pumpers | Major TA scope |
-
-Filter Press is billed concurrently at Pumping rate when TriMax is actively pigging, Non-Pumping (stand-by) rate otherwise.
-
----
-
-## Pricing rules
-
-- Rate-application discipline (no prior-job rates without confirmation) lives in `usadebusk-estimating` — not duplicated here.
-- Never assume tube footage, pass count, or equipment profile — always derive from provided data.
-- When generating the Execution Plan, show duration math explicitly so Jesse can verify before the document is finalized.
-- When generating the Quotation, show line item (hours × rate) calculations in a working note before producing the final table.
-
----
-
-## Proposal document structure
-
-**Canonical authority: `usadebusk-estimating` skill** (config-repo commit `025578c`, 2026-06-15). Do not maintain a parallel section list here. The skill holds the authoritative 14-section order, full section templates (Sections 3–9 detail, boilerplate 10–14), merged intake checklist (17 items + drawing rule + incomplete-input gate), and proposal generation guardrails.
-
-Document number format: DSP##### YYYY-MM
+**Before finalizing any duration, check `04-knowledge/estimating-actuals-rollup.md`** — the generated cross-heater table of every recorded actual against these benchmarks. Reference, not authority (benchmark changes are Jesse's call), but an estimate that ignores a contradicting actual is a bug. An actual only governs when coil condition matches — a crash/emergency decoke runs dirtier than routine, so don't apply one mode's ft/hr to the other. Never assume tube footage or pass count; derive from provided data.
