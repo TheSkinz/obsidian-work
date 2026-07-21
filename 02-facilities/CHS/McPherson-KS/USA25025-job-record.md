@@ -179,6 +179,11 @@ TriMax hourly rates are crew-inclusive or labor was never entered. Unresolved.
 - Review ticket 8796: recover the 8 unbilled TriMax 1 rig-out hours, or confirm they were intentionally
   written off.
 - Obtain Decoking Data Sheets (flow tests) and pig/deposit photos for the customer report.
-- **Outstanding customer request:** Randy Lenhart asked for a flow-test sign-off form (CHS Mech/Process/
-  Ops signed initial and final in 2022), a pig type legend, and bolted-pig stud projection and hardness.
-  A separate supplement document is planned.
+- **Customer request — pig types + bolted pigs: ANSWERED 2026-07-20.** Randy Lenhart's pig-type and
+  bolted-pig (hardness + projection) questions answered via email body, not a formal supplement (Jesse's
+  call). Hardness sourced from AlphaMet File 23890 (see `00-inbox/2026-07-20-pig-appendage-hardness-reference.md`).
+  Disclosure held to: TC ~1700 HV standard, 600 HB / stainless ~260 HV on request; catalog/vendors/selection
+  logic withheld; projection answered functionally (no number). Hell Razor and foam-pig legend dropped from
+  the email at Jesse's direction.
+- **Still outstanding:** flow-test sign-off form (CHS Mech/Process/Ops initial + final, per 2022) — not yet
+  built; a blank reusable form for future TAs (2025 flow-test data was lost).
