@@ -170,20 +170,28 @@ TriMax hourly rates are crew-inclusive or labor was never entered. Unresolved.
 
 ## Open Items
 
-- Locate any change order covering the $378,757 overrun, or establish that none was raised.
-- Resolve the zero-labor-hours question in the billing workbook.
-- Confirm governing quote version — PO cites DSP# 24005.1, file holds DSP# 24005.2 (see [[DSP24005]]).
-- ~~Obtain the TriMax 1 physical receipts~~ **RESOLVED 2026-07-20** — receipts 8792–8796 located
-  (CHS 4-6 signed.pdf). [[HF-0011]] shift narrative now recorded. Surfaced the 8796 unbilled-hours item
-  above.
-- Review ticket 8796: recover the 8 unbilled TriMax 1 rig-out hours, or confirm they were intentionally
-  written off.
-- Obtain Decoking Data Sheets (flow tests) and pig/deposit photos for the customer report.
+> [!note] Commercial/audit items closed 2026-07-22 — project complete
+> The change-order search, the zero-labor-hours workbook question, the DSP# 24005.1-vs-.2 quote-version
+> confirmation, and the ticket-8796 unbilled-hours recovery are dropped as no-longer-actionable. The
+> project is closed; the analysis above stays as the record. The [[HF-0011]] TriMax 1 receipts (8792–8796)
+> were located 2026-07-20.
+
+- ~~Obtain Decoking Data Sheets (flow tests)~~ **RESOLVED 2026-07-22** — 15 handwritten Decoking Data
+  Sheets located, filed to `OneDrive/Desktop/Facilities/CHS Mcpherson/2025-03 Flow Tests - USA25025 CHS
+  McPherson Plant Wide TA.pdf`. Coverage: [[HF-0012]] Coker 6 passes (pipe ID
+  reads 3.7"/3.232"/3.732" tube+3.604" U-bend across sheets — consistent with the 3.7" measured-vs-3.232"
+  design finding above), [[HF-009A]] Crude East + West (footage 7812, pipe 4"/8"/13"), [[HF-0011]]
+  Vacuum 3 passes (pipe 6"/8"/10" = 6065/7981/10.02"), [[HP-0007]] RX Coil, [[HP-0025]] Convection 1+2
+  and Radiant 1+2. Each sheet carries pre/post flow-test RPM-PSI-GPM readings plus test-operator
+  signatures. **Audit gap:** several sheets (HP-0025 Radiant, HP-0007, HF-009A East post-test, one Coker
+  pass post-test) are missing a signature on one side of the pre/post pair. Pig/deposit photos still not
+  obtained.
 - **Customer request — pig types + bolted pigs: ANSWERED 2026-07-20.** Randy Lenhart's pig-type and
   bolted-pig (hardness + projection) questions answered via email body, not a formal supplement (Jesse's
   call). Hardness sourced from AlphaMet File 23890 (see `00-inbox/2026-07-20-pig-appendage-hardness-reference.md`).
   Disclosure held to: TC ~1700 HV standard, 600 HB / stainless ~260 HV on request; catalog/vendors/selection
   logic withheld; projection answered functionally (no number). Hell Razor and foam-pig legend dropped from
   the email at Jesse's direction.
-- **Still outstanding:** flow-test sign-off form (CHS Mech/Process/Ops initial + final, per 2022) — not yet
-  built; a blank reusable form for future TAs (2025 flow-test data was lost).
+- Correction: the 2025 flow-test data was **not** lost — see resolved item above. A CHS-facing sign-off
+  form (initialed by CHS Mech/Process/Ops, per the 2022 precedent) was previously flagged as outstanding
+  but is not needed — DeBusk's own field sheet is sufficient.
