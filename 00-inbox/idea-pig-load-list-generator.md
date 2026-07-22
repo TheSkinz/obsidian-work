@@ -1,7 +1,9 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-07-19
+related:
+  - [[2026-07-22-idea-research-pig-load-list-generator]]
 tags: [idea, vault-system, future, estimating, field-ops]
 ---
 
