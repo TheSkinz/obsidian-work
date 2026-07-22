@@ -118,6 +118,7 @@
 - [[chatgpt-copilot-workflow-architecture]] — ChatGPT + Microsoft 365 Copilot — Workflow Architecture Operating Manual
 - [[chat]] — Claude Chat (claude.ai) `(claude)`
 - [[code]] — Claude Code `(claude)`
+- [[command-reference]] — Claude Code — Command Usage Reference `(claude)`
 - [[cowork]] — Cowork (Claude Code Scheduled / Auto-Context) `(claude)`
 - [[prefs-signal-log]] `(claude)`
 - [[heater-extraction-agent]] — Copilot Heater Extraction Agent `(copilot)`

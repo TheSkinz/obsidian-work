@@ -22,6 +22,11 @@ Harness" video (youtu.be/PDJfciNhyHU) — six-rule framing applied to this setup
 Verification basis: `find`/`grep` across `~/.claude/skills`, `~/.claude/plugins`,
 `settings.json`, memory dir, and `01-context/` on 2026-07-20. Sizes in chars.
 
+**Companion (usage side):** this note inventories what *shapes* a response;
+[[command-reference]] (2026-07-22) is the "which command to reach for, when, and how
+to fire it" lookup — including native built-ins like `/goal` that live in the harness
+binary and never appear in the skills list.
+
 **Visual snapshot:** `2026-07-20-harness-panel.html` (this folder) — a consolidated
 one-screen panel of the same data: load sequence, composition, and the collision
 ledger. Open in a browser (Obsidian reading view sanitizes its layout). Frozen

@@ -56,6 +56,14 @@ Identified in a 2026-06-23 capability review and still partly open:
 
 The git-guard hook recommended in the same review has since been implemented (see Key workflow patterns above).
 
+A curated *usage* lookup for the full command/skill surface — which one to reach for, when, and how to fire it — now lives in [[command-reference]]. It covers native built-ins past the knowledge cutoff (`/goal`, `/rewind`, `/context`, etc.) that never show up in the skills list because the harness binary implements them, not `~/.claude`.
+
+## Durable capture of post-cutoff Claude knowledge
+
+My built-in knowledge is frozen at Jan 2026, and the CLI drifts (version churn logged across 2.1.14x–2.1.21x). In-session web-search results do not persist across sessions unless written down — which is why domain knowledge compounds (it's in the vault) but Claude/Anthropic update knowledge kept getting re-searched cold every time.
+
+**Standing rule:** a verified post-cutoff Claude/Anthropic/model fact is durable knowledge — capture it into `07-llms/claude/`, **dated and version-stamped** (e.g. "as of CLI 2.1.217, 2026-07-22"), the same as a domain fact. Because model/product facts go stale faster than domain facts, every such capture carries a "re-verify version-sensitive details against `code.claude.com/docs` before relying on them" caveat. Capture once, stamp it, re-verify only the version-sensitive slice — do not re-derive the whole answer each session. The failure mode to avoid: a stale version-stamped note trusted blindly (same class as a stale memory). [[command-reference]] is the first note built to this rule.
+
 ## Dispatch vs. local sessions — collision risk
 
 Claude Dispatch runs in an isolated cloud sandbox: no `claude-config` skills checkout, and no visibility into locally-running Claude Code sessions on the same machine. A local Code session and a parallel Dispatch run can both triage the same repo state independently and push divergent, unmerged branches without either side detecting the collision. Mitigation: `git fetch` before starting local vault work if Dispatch may have touched the repo recently.
