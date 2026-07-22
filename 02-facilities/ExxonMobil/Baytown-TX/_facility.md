@@ -56,12 +56,12 @@ Contracted specifically for PS8 F-802. No rate schedule found for DSP26039
 
 ## Labor Rates — PS8 F-802 (USA26022, quoted vs. actual billed)
 
-| Role | Quoted ($/hr) | Actual Billed ($/hr) | Notes |
-|---|---|---|---|
-| Project Manager | 94.75 | 64.92 | Actual QB billed PM at the Day Supervisor rate — flag before assuming $94.75 is what actually gets billed |
-| Supervisor (Day) | 64.92 | 64.92 | Matches |
-| Supervisor (Night) | 67.79 | 67.79 | Matches |
-| Operator | 55.39 | 55.39 | Matches |
+| Role               | Quoted ($/hr) | Actual Billed ($/hr) | Notes                                                                                                     |
+| ------------------ | ------------- | -------------------- | --------------------------------------------------------------------------------------------------------- |
+| Project Manager    | 94.75         | 64.92                | Actual QB billed PM at the Day Supervisor rate — flag before assuming $94.75 is what actually gets billed |
+| Supervisor (Day)   | 64.92         | 64.92                | Matches                                                                                                   |
+| Supervisor (Night) | 67.79         | 67.79                | Matches                                                                                                   |
+| Operator           | 55.39         | 55.39                | Matches                                                                                                   |
 
 Source: DSP# 25084 Rev 2 PS8 F-802 Furnace Decoke 2 TriMax.pdf (quoted);
 USA26022 EXXONMOBIL F-802 TriMax Ticket Breakdown.xlsx (actual QB Sheet).

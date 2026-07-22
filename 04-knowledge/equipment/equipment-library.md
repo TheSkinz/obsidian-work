@@ -189,11 +189,11 @@ Frac Tank (Option B only) | TriMax unit(s) | Heater | Coke Pit / OWS drain termi
 
 Manufacturer/company spec sheets backing the figures above, kept at `04-knowledge/equipment/spec-sheets/`:
 
-| File | Covers |
-|---|---|
-| `Cummins TriMax.pdf` | Cummins QSL9 engine performance data (FR93996) |
-| `DEBUSK Pumper & Support Dims.pdf` | TriMax pumper and support unit trailer dimensions |
-| `Filter Press # 1.pdf` | USADeBusk Filter Press #1 dimensions and specs |
-| `Pump Curve CMUPigging.pdf` | Waterous CMU pump specifications and performance curves |
-| `USA PIG LAUNCHER Dim with flanges explained.pdf` | Pig launcher dimensions by size, flange notes |
-| `Fig 200 Spec sheets.pdf` | Kemper oilfield hammer union catalog (Fig. 200 and other pressure classes) |
+| File                                              | Covers                                                                     |
+| ------------------------------------------------- | -------------------------------------------------------------------------- |
+| `Cummins TriMax.pdf`                              | Cummins QSL9 engine performance data (FR93996)                             |
+| `DEBUSK Pumper & Support Dims.pdf`                | TriMax pumper and support unit trailer dimensions                          |
+| `Filter Press # 1.pdf`                            | USADeBusk Filter Press #1 dimensions and specs                             |
+| `Pump Curve CMUPigging.pdf`                       | Waterous CMU pump specifications and performance curves                    |
+| `USA PIG LAUNCHER Dim with flanges explained.pdf` | Pig launcher dimensions by size, flange notes                              |
+| `Fig 200 Spec sheets.pdf`                         | Kemper oilfield hammer union catalog (Fig. 200 and other pressure classes) |
