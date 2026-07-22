@@ -1,11 +1,39 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-07-21
+explored: 2026-07-21
+spec: [[job-report-generator-build-spec]]
 tags: [idea, fieldpm, automation, cross-cutting]
 ---
 
 # Job-report generator
+
+> [!done] Explored 2026-07-21 → decision-ready spec at [[job-report-generator-build-spec]].
+> Feasibility forks resolved with Jesse (see below). Next step is the build session, gated on
+> spec approval. Original seed preserved below for provenance.
+
+**Fork answers (2026-07-21):**
+- **XLSX stability:** same ticket-breakdown template every job → one mapping-spec covers all
+  jobs (the high-feasibility branch). Green light.
+- **Convergence:** governed by Jesse's document-lineage model — heater drawings → heater card →
+  quote → job sheet → job report, each inheriting the prior and adding a layer. The generator is
+  the `job sheet + actuals → job report` transfer step, inheriting the job sheet as the static
+  skeleton. Convergence with the proposal generator = shared render core + separate mapping
+  front-ends, not a monolith.
+- **Flow tests:** accept current inputs (field-sheet PDF/image, Jesse pre-extracts); no
+  field-process change forced. Structured field-capture form is a Phase-2 option that also closes
+  the outstanding USA25025 flow-test sign-off-form item.
+
+**Findings that corrected the seed:**
+- The `usadebusk-fieldpm` report spec was **stale, not missing** — reconciled to the refined
+  USA26038 format this session (dropped cover page + Timeline table; added KPI band, two-row job
+  table, Stand-By Summary, two-column Pigs, Images page).
+- Extraction + aggregation already exist and are proven (reuse, don't rebuild).
+- **USA25025 can't be an output golden-master** (internal record, flow tests lost, 9-heater
+  routine TA) — it's an input-structural stress test only. USA26038 is the golden-master.
+
+---
 
 Idea seed captured 2026-07-21 after the USA26038 job report. The read below is tentative —
 confirm intent with Jesse before designing.
