@@ -16,10 +16,19 @@ Specification produced from `00-inbox/idea-job-report-generator.md`, forks resol
 > `~/.claude/skills/usadebusk-fieldpm/scripts/` (`extract_ticket_breakdown.py` +
 > `render_job_report.py`), wired behind `/report`. It reproduces the shipped USA26038 report
 > exactly (per-heater pig/smart, operating 207, stand-by 74, pigs 298 + full matrix, 6-page
-> layout). **Rig is pooled at project level** (Jesse's decision — rigging is fungible). Open:
-> the USA25025 input-structural stress test is **blocked** — its workbook isn't on the system
-> (McPherson not in OneDrive; likely retired GDrive). The multi-heater-per-pumper boundary stays
-> untested until a second workbook is available.
+> layout). **Rig is pooled at project level** (Jesse's decision — rigging is fungible).
+>
+> **USA25025 stress test PASSED (project level).** Every project total matches the job-record
+> exactly — rig 90, pigging 321.5, smart 54.5, stand-by 190, pigs 396, operating 466 — on a
+> structurally very different job (9 heaters, TriMax 1/2, triple+double-mode pigging, routine TA,
+> 44 scope-suffixed tabs). The test caught and fixed two template-variation bugs the first cut
+> would have gotten wrong: (1) pigging split into "Triple Mode" + "Double Mode" rows — now
+> classified by row label, not fixed offset, and summed; (2) tab names suffixed with scope
+> ("DAY (2) COKER CRUDE") — now prefix-matched. **Remaining boundary:** per-heater pig/smart
+> allocation on a multi-heater job where a pumper roams heaters — the extractor flags those
+> pumpers UNMAPPED rather than misallocating (25025's scope is captured only in inconsistent
+> tab-name suffixes). Project totals are always correct; per-heater split needs the pumper to
+> stay on one heater (or a structured per-shift scope field).
 
 ## Why
 
