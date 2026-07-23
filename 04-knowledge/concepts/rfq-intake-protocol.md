@@ -25,6 +25,8 @@ Keep the RFQ package — contract terms, bid instructions, drawings, data sheets
 
 The vault is the index, OneDrive is the store. What makes this work is not the folder layout but the link between them: the full path **must** be recorded in the quote note's `## Source Files` section, as DSP26058, DSP26039, and DSP25084 all do. An unrecorded path is how a bid trail goes cold. Note the path is the only pointer — nothing syncs, and moving the folder later silently breaks it.
 
+**Canonical local store (verified 2026-07-23):** the reliably-present tree is `C:\Users\Jwuts\OneDrive\USADeBusk\Facilities\<Client City ST>\` with `Bids\`, `Jobs\`, `Reference\`, and `_History\` subfolders (SharePoint remains canonical-of-record per the 2026-07-22 audit; this is its local hydrated mirror). Record `## Source Files` paths against **this** tree, not `Desktop\` — the vault historically recorded `Desktop\…` working-copy paths, and three of them (DSP25084, DSP26039, DSP26058) went dead when those copies were cleaned up, then were re-pointed here. The new POINTER-DEAD lint rule (`tools/vault_lint.py`) now catches this class of breakage on every run. **Gotcha:** folder names can end in an invisible non-breaking space (U+00A0) that breaks any retyped path — DSP26080's did.
+
 ### 2. Assign the DSP# and open the quote note
 
 DSP##### = DSP + YYNNN, assigned at proposal start, before any work product exists. Create `02-facilities/<Client>/<City-ST>/DSP#####.md` immediately with `status: pending` and the frontmatter block from [[quote-lifecycle]]'s numbering section. Everything downstream keys off this number. If the facility folder doesn't exist yet, create it from `04-knowledge/_facility-template.md`.
