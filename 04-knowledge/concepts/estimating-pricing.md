@@ -25,12 +25,14 @@ Mob/Demob: 12-hour simultaneous Day and Night events (fixed).
 
 Total duration = Rig-In + Pigging Hours + Rig-Out ± Rig-Over + Stand-By
 
-**Pigging duration benchmark:** ~100 ft/hour per pass (nominal fouling baseline)
-- 3,000 ft coil = ~30 pigging hours for that pass
-- Reduce ft/hour rate (more hours required) for: harder fouling (coker/crude), pitch presence, tube restrictions, first-time cleans with no prior data
+**Pigging duration benchmark:** ~100 ft/hour per single unlooped coil (nominal fouling baseline)
+- 3,000 ft coil = ~30 pigging hours for that coil
+- Reduce ft/hour rate (more hours required) for: harder fouling (coker / crude / vacuum), pitch presence, tube restrictions, multiple tube sizes on one coil (each size pigged to completion in sequence), first-time cleans with no prior data
+- Vacuum heaters run long as a rule — multiple tube sizes + hard coke + pigging the larger tube sizes from the larger outlet launcher
 - Adjust using: prior cleaning data for same heater when available, job walk observations, coil loop configuration
+- Build-up method: cost one unlooped coil → decide looping → lay out pass sets by equipment mode → add rig-overs → sum with rig-in/rig-out
 
-Rig-In / Rig-Out: Fixed events. Duration varies by pass count and access complexity. Default: 6 hrs each. Smart Pig: 4 hrs when applicable.
+Rig-In / Rig-Out: Fixed events; **rig-out matches rig-in**. Tier by heater size/height and the hard-pipe run to reach the launchers: Small 4 / Moderate 6 (majority) / Large 8 / Very large 12 hrs. Rig-Over between pass sets = `ceil(passes ÷ mode) − 1` (mode = passes cleaned per set: double 2, triple 3), ~1 hr with launchers/receivers pre-installed on the added passes else ~2 hr. Smart Pig: 4 hrs when applicable.
 
 SIMOPS (multi-heater jobs): Overlapping heater timeline visibility required — resource stacking and scheduling commitments must be visible across all heater cards simultaneously.
 

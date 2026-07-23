@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: capture
 source_authority: primary
 confidence: high
@@ -161,10 +161,13 @@ files direct). Both sub-confirmations resolved 2026-07-22: moderate rig-in = **6
 **job-dependent** (~1 hr with launchers/receivers pre-installed, ~2 hr waiting on fitters) — folded
 into D and E. What remains is Jesse's approval to apply.
 
-- [ ] Approved
+- [x] Approved
 - [ ] Approved with edits
 - [ ] Rejected
 - [ ] Needs more source material
+
+**Approved 2026-07-22 (Jesse, in-session, authority granted for the skill edit).** Gap-fills A–F
+applied to all three sources.
 
 ## Apply Log
 
@@ -172,3 +175,4 @@ into D and E. What remains is Jesse's approval to apply.
 |---|---|---|
 | 2026-07-22 | Note filed from session; model captured from Jesse, gap-fills proposed; no skill or canonical content modified | Claude (Opus 4.8) |
 | 2026-07-22 | Sub-confirmations answered by Jesse: moderate rig-in = 6 hr; rig-over job-dependent (1 hr pre-installed / 2 hr waiting on fitters). Folded into D and E. Main decision still open. | Claude (Opus 4.8) |
+| 2026-07-22 | Jesse approved + granted skill-write authority. Applied A–F: `01-context/estimating-approach.md` and `04-knowledge/concepts/estimating-pricing.md` (vault), and `usadebusk-estimating` SKILL.md (config repo, main). DQ-002 closed. | Claude (Opus 4.8) |

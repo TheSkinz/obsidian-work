@@ -21,9 +21,9 @@ The single place every open decision lives. One row per open ask — not one not
 
 | id | opened | source | ask | risk | age (d) | status |
 |---|---|---|---|---|---|---|
-| DQ-002 | 2026-07-22 | [[2026-07-22-duration-model-capture]] | Approve applying gap-fills A–F to the 3 estimating sources (per-single-coil rate, vacuum/multi-size derates, rig-in 4/6/8/12 tier scale, `ceil(passes÷mode)−1` rig-over rule). Model + both sub-confirmations already settled with Jesse; only the apply step remains | high | 0 | open |
+| _(none)_ | | | | | | |
 
-**1 open row** as of 2026-07-22.
+**0 open rows** as of 2026-07-22.
 
 ## Why the queue is empty at launch
 
@@ -38,3 +38,4 @@ One housekeeping mismatch was found and fixed directly (not queued, because it n
 | id | decided | date | by |
 |---|---|---|---|
 | DQ-001 | Third-party markup is one of **5% / 10% / 15%**, set by the specific project/facility contract — **no default** (the "10% baseline (no contract)" framing was wrong; 10% is a valid tier, not a fallback). Corrected in the `usadebusk-estimating` skill, `01-context/company-context.md`, and `04-knowledge/concepts/estimating-pricing.md`. | 2026-07-20 | Jesse (in-session) |
+| DQ-002 | Duration model captured from Jesse and gap-fills A–F applied: pigging rate is per single unlooped coil; coker/crude/**vacuum** + multiple-tube-size derates; rig-in 4/6/8/12 tier scale with rig-out matching; rig-over = `ceil(passes÷mode)−1` (~1 hr launchers pre-installed / ~2 hr waiting on fitters). Applied to `usadebusk-estimating` skill, `01-context/estimating-approach.md`, `04-knowledge/concepts/estimating-pricing.md`. Source: [[2026-07-22-duration-model-capture]]. | 2026-07-22 | Jesse (in-session) |
