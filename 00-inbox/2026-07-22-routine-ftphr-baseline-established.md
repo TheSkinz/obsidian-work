@@ -19,13 +19,17 @@ convenient:
    Sanity-worthy if it ever anchors an estimate alone.
 
 Open threads left by the audit:
-- **Passivation ruling (Lane 4, Jesse):** is soda ash at Suncor Montreal (P5/P9 low-alloy) and
-  Marathon Garyville (metallurgy unrecorded) driven by (a) stainless passivation, (b) chrome-alloy
-  precaution, or (c) site decoke-water practice? B-101/B-103/210-1401A/1402B currently carry it as an
-  explicit open question.
-- **7-1-F-1 CND25004 task hours** — condition now `routine` per Jesse; he's locating the ticket
-  breakdown (said 2026-07-22, "tomorrow"). Ingest when found; with 2,311 ft recorded it would add a
-  routine anchor.
+- ~~**Passivation ruling**~~ **RESOLVED 2026-07-23:** soda ash is always customer scope (USADeBusk never
+  provides/mixes it); stainless→soda-ash is the default but the customer rep's RFQ/bid instructions
+  govern (US: NACE/facility preference; Canada: facility-specific). Marathon 210 confirmed all-stainless
+  (soda ash metallurgy-driven); Suncor is a customer-instruction override (soda ash across all 5 heaters
+  incl. carbon-steel B-151). usadebusk-core skill + all affected cards updated; min-2"-firewater-hose
+  rule added to usadebusk-equipment.
+- ~~**7-1-F-1 CND25004 task hours**~~ **RESOLVED 2026-07-23** — ticket breakdown ingested (Rig-In 14 /
+  Pig 119 / Smart 18 / Rig-Out 13 / SB 192 / Total 164, 2 TriMax). Did NOT become a routine anchor: it's
+  a 2-rig hours-blended sum (Mode blank) and the heater footage is still unverified, so the rollup shows
+  fthr=19 but excludes it from the per-pig means. **The remaining gap is footage verification** — resolve
+  the per-circuit-vs-total-8-coils ambiguity on the card and this becomes a usable routine anchor.
 - **DSP26030 (P66 two-pumper proposal)** — validity expired 2026-06-04, outcome unrecorded on the note.
 - **H-19 footage gap** — job-report looped-path ~5,754 ft vs card conv+rad 4,934 ft (~820 ≈ one conv
   coil); annotated on the card, unresolved.
