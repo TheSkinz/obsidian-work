@@ -59,7 +59,7 @@ the rig-over count and the elapsed schedule, not the footage total.
 | Tier | Hours |
 |---|---|
 | Small | 4 |
-| Moderate | 6 *(inferred — confirm; matches "the majority get 6")* |
+| Moderate | 6 |
 | Large | 8 |
 | Very large | 12 |
 
@@ -70,8 +70,9 @@ inferable from the heater's size and design.
 **Mode and rig-overs.** Mode = how many passes are cleaned per set (double mode = 2 passes/set,
 triple = 3/set). A rig-over is moving the pumps / hoses / launchers to the next set of passes after
 the current set is pigged to completion. Rig-over count = `ceil(passes ÷ mode) − 1`; the last set
-ends in rig-out, not rig-over. Each rig-over ≈ **1–2 hr** *(confirm — this figure came up inside a
-"random example," so treat as unconfirmed)*.
+ends in rig-out, not rig-over. Rig-over duration is **job-dependent**: ~**1 hr** when launchers /
+receivers are already installed on the additional passes, ~**2 hr** when the set has to wait on the
+fitters to install launchers / receivers first (Jesse, 2026-07-22).
 
 Worked: 6 passes in double mode → pig 1&2, rig-over, 3&4, rig-over, 5&6, rig-out = **2 rig-overs**.
 6 passes in triple mode → pig 1,2,3, rig-over, 4,5,6, rig-out = **1 rig-over**. 3 passes in triple
@@ -135,12 +136,12 @@ pigged to completion in sequence."
 **D — Rig-in/out tier scale.** `SKILL.md:37`, `estimating-pricing.md:33`, `estimating-approach.md:15`:
 replace "6 hrs default, adjust per access" with the tier scale — "Rig-in tiers: Small 4 / Moderate
 6 / Large 8 / Very large 12 hr, set by heater size/height and hard-pipe run to reach the launchers;
-**rig-out matches rig-in**." (Pending the moderate-tier confirmation above.)
+**rig-out matches rig-in**."
 
 **E — Rig-over rule.** `SKILL.md:28/144`, `estimating-pricing.md:26/99`: the formula and task
 sequence already carry `Rig-Over`; add the rule — "rig-over count = `ceil(passes ÷ mode) − 1`
-(mode = passes cleaned per set: double 2, triple 3); ~1–2 hr each; last set ends in rig-out."
-(Pending the rig-over-duration confirmation above.)
+(mode = passes cleaned per set: double 2, triple 3); last set ends in rig-out. Duration ~1 hr if
+launchers/receivers are already on the added passes, ~2 hr if waiting on fitters to install them."
 
 **F — Build-up method.** All three: state the procedure explicitly — "cost one unlooped coil →
 decide looping → lay out sets by mode → add rig-overs → sum with rig-in/out." Currently only
@@ -156,8 +157,9 @@ only, do not build now.
 ## Decision
 
 Adopt the captured duration model above and apply gap-fills A–F (skill via drift branch, vault
-files direct). Two inline sub-confirmations: **moderate rig-in = 6 hr?** and **rig-over ≈ 1–2 hr,
-or job-dependent?** — answers fold into D and E before application.
+files direct). Both sub-confirmations resolved 2026-07-22: moderate rig-in = **6 hr**; rig-over is
+**job-dependent** (~1 hr with launchers/receivers pre-installed, ~2 hr waiting on fitters) — folded
+into D and E. What remains is Jesse's approval to apply.
 
 - [ ] Approved
 - [ ] Approved with edits
@@ -169,3 +171,4 @@ or job-dependent?** — answers fold into D and E before application.
 | Date | Action | By |
 |---|---|---|
 | 2026-07-22 | Note filed from session; model captured from Jesse, gap-fills proposed; no skill or canonical content modified | Claude (Opus 4.8) |
+| 2026-07-22 | Sub-confirmations answered by Jesse: moderate rig-in = 6 hr; rig-over job-dependent (1 hr pre-installed / 2 hr waiting on fitters). Folded into D and E. Main decision still open. | Claude (Opus 4.8) |

@@ -21,7 +21,7 @@ The single place every open decision lives. One row per open ask — not one not
 
 | id | opened | source | ask | risk | age (d) | status |
 |---|---|---|---|---|---|---|
-| DQ-002 | 2026-07-22 | [[2026-07-22-duration-model-capture]] | Adopt the captured duration model + apply gap-fills A–F to the 3 estimating sources (per-single-coil rate, vacuum/multi-size derates, rig-in 4/6/8/12 tier scale, `ceil(passes÷mode)−1` rig-over rule); confirm moderate rig-in = 6 h and rig-over ≈ 1–2 h | high | 0 | open |
+| DQ-002 | 2026-07-22 | [[2026-07-22-duration-model-capture]] | Approve applying gap-fills A–F to the 3 estimating sources (per-single-coil rate, vacuum/multi-size derates, rig-in 4/6/8/12 tier scale, `ceil(passes÷mode)−1` rig-over rule). Model + both sub-confirmations already settled with Jesse; only the apply step remains | high | 0 | open |
 
 **1 open row** as of 2026-07-22.
 
