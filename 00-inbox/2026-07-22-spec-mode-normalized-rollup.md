@@ -1,6 +1,6 @@
 ---
 type: spec
-status: open
+status: resolved
 created: 2026-07-22
 related:
   - "[[2026-07-22-duration-model-capture]]"
@@ -10,6 +10,12 @@ tags: [spec, estimating, tooling, schema, duration-model]
 ---
 
 # Spec — mode-normalized ft/hr in the actuals rollup
+
+> **Built 2026-07-22.** Implemented as specced: `Mode` appended (optional, backward-compatible) to
+> the Task Durations schema in the exemplar, template, and `usadebusk-vault-ingest`; `Mode` +
+> `ft/hr per pig (norm)` columns added to `tools/estimating_rollup.py`; `tools/vault_lint.py`
+> updated to accept the optional column; four cards backfilled (Valero H-102A/B = 3, HF Sinclair
+> H-19/H-20 = 1). Rollup now shows the Valero triple-mode jobs at ~13 ft/hr per pig vs ~40 elapsed.
 
 ## Why
 

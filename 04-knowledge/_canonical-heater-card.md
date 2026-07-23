@@ -198,7 +198,7 @@ DERIVED but hand-entered (no formula layer) — re-sum on any edit, do not trust
         into Pig. Add a Flow Test column only when a real receipt breaks the hours out.
   "–" = task confirmed did NOT occur (e.g. no smart pig on this job).
   "?" = task occurred-status unrecorded / unknown — distinct from "–".
-  CONDITION (last column) — what state the coil was in, because a decoke's hours are only
+  CONDITION (second-to-last column) — what state the coil was in, because a decoke's hours are only
         evidence for the NEXT decoke of the same condition. Vocabulary:
           `routine`  = normal service fouling, planned/TA scope.
           `crash`    = furnace was crashed/upset; significantly dirtier than routine.
@@ -212,10 +212,14 @@ DERIVED but hand-entered (no formula layer) — re-sum on any edit, do not trust
         recorded hours are the JOB total, not this heater's share — the same row then
         appears on each heater's card. Suppresses ft/hr in the rollup, which would
         otherwise charge the full combined hours against one heater's footage.
-        NEVER estimate a routine job from crash rows — see usadebusk-estimating. -->
-| Date | Job # | Rigs | Rig-In | Pig | Smart Pig | Rig-Over | Rig-Out | Stand-By | Total | Condition |
-|---|---|---|---|---|---|---|---|---|---|---|
-| | | | | | | | | | | |
+        NEVER estimate a routine job from crash rows — see usadebusk-estimating.
+  MODE (last column) = passes pigged SIMULTANEOUSLY during the Pig task: single 1 / double 2 /
+        triple 3, ×rigs if more than one pumper ran in parallel; a looped path counts as 1.
+        Blank = unrecorded. The estimating rollup divides ft/elapsed-hr by Mode to report a
+        single-pig travel rate comparable to the 100 ft/hr benchmark. -->
+| Date | Job # | Rigs | Rig-In | Pig | Smart Pig | Rig-Over | Rig-Out | Stand-By | Total | Condition | Mode |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| | | | | | | | | | | | |
 
 ---
 

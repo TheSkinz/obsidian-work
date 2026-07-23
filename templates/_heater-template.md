@@ -108,11 +108,12 @@ tags: [heater-card, <Client>, <heater-type>]
      Condition = routine | crash | first | unknown (a job's hours are evidence only for the
      next decoke of the SAME condition; "emergency" in the job details means crash).
      Append `, hours-blended` if task hours weren't cleanly separated in the source, and
-     `, combined-heaters` if the hours are a multi-heater job total. Full spec in
-     04-knowledge/_canonical-heater-card.md. -->
-| Date | Job # | Rigs | Rig-In | Pig | Smart Pig | Rig-Over | Rig-Out | Stand-By | Total | Condition |
-|---|---|---|---|---|---|---|---|---|---|---|
-| | | | | | | | | | | |
+     `, combined-heaters` if the hours are a multi-heater job total. Mode = passes pigged
+     simultaneously (single 1 / double 2 / triple 3; looped path = 1; blank = unrecorded). Full
+     spec in 04-knowledge/_canonical-heater-card.md. -->
+| Date | Job # | Rigs | Rig-In | Pig | Smart Pig | Rig-Over | Rig-Out | Stand-By | Total | Condition | Mode |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| | | | | | | | | | | | |
 
 ---
 

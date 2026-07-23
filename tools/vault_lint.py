@@ -101,8 +101,11 @@ ORPHAN_DIRS = ("04-knowledge", "06-insights", "07-llms", "08-systems", "09-inter
 # ever changes, change it in the exemplar and here in the same commit.
 DURATIONS_HEADER = (
     "Date", "Job #", "Rigs", "Rig-In", "Pig", "Smart Pig",
-    "Rig-Over", "Rig-Out", "Stand-By", "Total", "Condition",
+    "Rig-Over", "Rig-Out", "Stand-By", "Total", "Condition", "Mode",
 )
+# `Mode` is an optional trailing column (added 2026-07-22): cards predating it
+# carry 11 columns and stay valid, so the check accepts the header with or
+# without the trailing `Mode`.
 # The header lives under a `## Task Durations` heading in each heater card. Anchor
 # on that heading rather than on any token like "Rig-In", which also appears in
 # proposal cost tables, rate tables, and prose all over the vault.
@@ -353,7 +356,8 @@ def check_superseded(root: Path, notes: dict[Path, str]) -> list[Finding]:
 
 def check_durations_header(root: Path, notes: dict[Path, str]) -> list[Finding]:
     """DURATIONS-HEADER: heater-card Task-Durations header must match the
-    canonical 11-column schema exactly (column set and order).
+    canonical schema exactly (column set and order); the trailing `Mode`
+    column is optional, so 11- and 12-column headers both pass.
 
     This locks a drift that actually happened — a stale copy dropped the
     trailing `Condition` column and diverged from the exemplar (see the
@@ -365,6 +369,7 @@ def check_durations_header(root: Path, notes: dict[Path, str]) -> list[Finding]:
     stop-the-line.
     """
     canon = tuple(c.casefold() for c in DURATIONS_HEADER)
+    canon_no_mode = canon[:-1]  # Mode optional — accept the pre-Mode 11-col header too
     findings = []
     for path, text in notes.items():
         in_section = False
@@ -379,10 +384,12 @@ def check_durations_header(root: Path, notes: dict[Path, str]) -> list[Finding]:
                 continue
             # first real table row under the heading is the header row
             cells = split_table_row(line)
-            if tuple(c.casefold() for c in cells) != canon:
+            got = tuple(c.casefold() for c in cells)
+            if got != canon and got != canon_no_mode:
                 findings.append(Finding("DURATIONS-HEADER", path,
                     f"Task-Durations header does not match canonical schema: "
-                    f"got {cells}, expected {list(DURATIONS_HEADER)}"))
+                    f"got {cells}, expected {list(DURATIONS_HEADER)} "
+                    f"(trailing 'Mode' optional)"))
             in_section = False  # only the header row matters; done with this card
     return findings
 
