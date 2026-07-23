@@ -31,7 +31,7 @@ tags: [facility, Marathon]
 |---|---|
 | Crane | (not recorded) |
 | Filter press | (not recorded) |
-| Water supply | 1.5" fire hose with Y-connection |
+| Water supply | Low chloride water — source unconfirmed; likely frac tanks filled from a low-chloride source, not firewater (chloride matters for the stainless-tubed Unit 210). Min 2" fire hose for volume — the RFQ boilerplate's 1½" is insufficient and Marathon is not a volume-constrained exception (Jesse 2026-07-23). |
 | Metallurgy | **Unit 210 is stainless-tubed throughout** (all four heaters — the 1401A/1402B crude + 1403A/1404B vacuum), per Jesse 2026-07-23. |
 | Soda ash neutralization | Required — provided by Marathon (customer scope; USADeBusk does not provide or mix it). Consistent with the default stainless→soda-ash expectation since Unit 210 is stainless-tubed. Governing method is always the customer's RFQ/bid instructions. |
 
