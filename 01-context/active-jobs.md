@@ -15,7 +15,7 @@
 | Job # | Facility | Heater(s) | Completed | Notes |
 |---|---|---|---|---|
 | USA26038 | HF Sinclair Navajo, Artesia NM | H-19, H-20 | 2026-07-17 | Emergency decoke, 2 TriMax units, PM Dacorey Slater. Crash condition. Job report + actuals filed → [[USA26038-job-report]]; actuals on [[H19]]/[[H20]]. |
-| USA26025 | Valero Port Arthur | — | Complete | Reference only. Dual-rig dual-shift coker. |
+| USA26025 | Valero Port Arthur | H-102A, H-102B | Complete | Reference only. Dual-rig dual-shift vacuum heaters (corrected from "coker" 2026-07-22). |
 
 ---
 

@@ -28,6 +28,8 @@ verified: never
 
 > **Note:** This is the two-pumper option. Confirm this is the version P66 is working from before award.
 
+> **Status (2026-07-22):** Outcome unrecorded. Quote validity expired 2026-06-04 with no award, loss, or extension noted in the vault — record the outcome when known.
+
 ## Scope
 
 Mechanical decoke of H-28 & H-29 Coker Heaters using (2) TriMax Pumpers, filtration, and 4x3 diesel pump during the May 2026 turnaround. Both heaters pigged simultaneously with all 6 passes in conjunction.
