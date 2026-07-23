@@ -1,7 +1,9 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-07-19
+related:
+  - [[2026-07-23-idea-research-workup-to-proposal-generator]]
 tags: [idea, estimating, automation, cross-cutting]
 ---
 
