@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -48,13 +48,13 @@ One correction to the seed's own framing: the "stalled thesis experiment" alread
 
 ## Decision
 
-- [ ] Build now — run the full portfolio pass immediately
-- [ ] Approved with edits — do the cheap leverage/stash cleanup now, defer the full pass
-- [ ] Park — revisit at a later checkpoint
-- [ ] Drop
+- [ ] ~~Build now — run the full portfolio pass immediately~~
+- [x] **Approved with edits — do the cheap leverage/stash cleanup now, defer the full pass** — Jesse, 2026-07-22
+- [ ] ~~Park — revisit at a later checkpoint~~
+- [ ] ~~Drop~~
 
 ## Apply Log
 
 | Date | Action | By | Notes |
 |---|---|---|---|
-|  |  |  |  |
+| 2026-07-22 | Cheap cleanup done; full pass deferred (Jesse) | Claude | (1) Reconciled `leverage/packets/queued/` → `packets/done/`: all five packets (atp-validator, decision-scripts, extraction-gate, gate-runner, thesis-experiment) confirmed built on disk and `git mv`'d to `done/`; queue now empty. Committed locally in the leverage repo (not pushed). (2) Corrected the two stale memories: `project-knowledge-loop-os` (3 Fable-branch stashes confirmed gone via empty `git stash list`) and `project-leverage-repo` (all 5 packets built + moved). Full ~1-hr portfolio pass (re-verify Knowledge Loop OS C/D/F, decide thesis-result meaning) deferred. Noted separately: pre-existing uncommitted work sits in `leverage/experiments/thesis/*` — left untouched. |

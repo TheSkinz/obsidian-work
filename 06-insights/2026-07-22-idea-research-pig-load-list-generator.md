@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -38,13 +38,13 @@ Scheduled nightly run of the Vault Idea Research Loop. Three idea-seeds were sti
 
 ## Decision
 
-- [ ] Build now — backfill + rollup script as scoped above
-- [ ] Approved with edits
-- [ ] Park — revisit once more cards have populated Pig Specifications data
-- [ ] Drop
+- [ ] ~~Build now — backfill + rollup script as scoped above~~
+- [ ] ~~Approved with edits~~
+- [x] **Park — revisit once more cards have populated Pig Specifications data** — Jesse, 2026-07-22
+- [ ] ~~Drop~~
 
 ## Apply Log
 
 | Date | Action | By | Notes |
 |---|---|---|---|
-|  |  |  |  |
+| 2026-07-22 | Parked (Jesse) | Claude | Not a current priority. Input side is half-built (23 cards carry the `Pig Specifications` table, 9 populated), so revisit once more cards populate. If resumed: scoped-down two-step — backfill the table from Field Notes prose (H-28/H-29 first), then fork `tools/estimating_rollup.py` into `pig_usage_rollup.py`; keep the sizing-inference engine parked until the actuals dataset is much larger than 9 cards. |
