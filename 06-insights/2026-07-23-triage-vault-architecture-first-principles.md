@@ -80,7 +80,7 @@ The overlap is real but already owned by the consolidate-memory skill and the ha
 
 - [x] Build ideas 1 + 2 (trigger registry + pipeline vitals) — approved by Jesse and built same session, 2026-07-23
 - [ ] Build idea 6 (staged-count hook, config repo — gated)
-- [ ] Run test 3 (retrieval-eval session — needs a fresh session answering cold, not this one)
+- [x] Run test 3 (retrieval-eval session) — ran cold 2026-07-23, 10/10 pass, 0 failures. Criterion → **stop**: retrieval isn't the constraint at this vault size. Idea 4 stays parked (gate not met). See [[2026-07-23-retrieval-eval-run]].
 - [x] Run test 5 (OneDrive placeholder spike) — ran same session; both criteria passed, POINTER-DEAD rule built with fixture
 - [ ] Reject / adjust any of the above (note which)
 
@@ -92,3 +92,4 @@ The overlap is real but already owned by the consolidate-memory skill and the ha
 | 2026-07-23 | Jesse approved building in-session. Ideas 1+2 applied: `vault_health.py` gains Commercial pipeline + Dormant triggers sections and two metric rows; `valid-through:` backfilled on all six quote notes (DSP26030 normalized to `type: quote, status: pending`); `revisit-trigger:` backfilled on the three known prose triggers; intake-check line added to [[rfq-intake-protocol]] | Claude (Fable 5) |
 | 2026-07-23 | First run caught real exposure: DSP26030 expired 49 d ago with outcome unrecorded (standing FAIL row until resolved); rollup trigger reads 6 of 12 quote notes | Claude (Fable 5) |
 | 2026-07-23 | Test 5 executed, both criteria passed; POINTER-DEAD rule added to `vault_lint.py` (warn-only, base-gated, runtime fixture; self-test 11 rules). First run: 4 of 6 recorded source paths dead (estate reorg `Desktop\` → `Desktop\Facilities\`). DSP26080 re-pointed — its estate folder carried a trailing U+00A0, renamed off (OneDrive) — 3 warnings stand as the re-pointing to-do | Claude (Fable 5) |
+| 2026-07-23 | Test 3 (retrieval-eval) ran cold in a fresh session: all 10 KS/USA questions answered against pass criteria, 10/10 pass, 0 hard failures. Two shallow passes flagged (USA-005 stale-lead-paragraph risk; KS-004 scan-not-lookup). Criterion (≤1 failure) → stop; no sixth loop, no quarterly pass. Idea 4 stays parked. Eval note `last_reviewed` → 2026-07-23. Result note [[2026-07-23-retrieval-eval-run]] filed | Claude (Opus 4.8) |

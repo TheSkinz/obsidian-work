@@ -4,7 +4,7 @@ status: active
 source_authority: primary
 confidence: high
 created: 2026-06-26
-last_reviewed: 2026-06-26
+last_reviewed: 2026-07-23
 review_after: 2026-09-26
 tags: [knowledge-system, evaluation, retrieval]
 ---
