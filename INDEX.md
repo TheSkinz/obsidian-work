@@ -110,6 +110,7 @@
 - [[2026-07-20-harness-map]] — Harness Map — 2026-07-20
 - [[2026-07-20-idea-research-hardened-extraction-corpus-vision-arm]] — Idea Research — Hardened Extraction Corpus + Vision Arm
 - [[2026-07-21-idea-research-portfolio-revival-pass]] — Idea Research — One-Shot Portfolio Revival Pass
+- [[2026-07-22-duration-model-capture]] — Review — Duration model captured from Jesse; propose gap-fills to the three sources
 - [[2026-07-22-idea-research-pig-load-list-generator]] — Idea Research — Pig Load List Generator from Heater Cards
 
 ## LLMs

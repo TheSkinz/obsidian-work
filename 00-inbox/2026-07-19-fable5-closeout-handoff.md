@@ -72,6 +72,12 @@ report (Lane 1), not auto-fix.
 
 ## (c) Duration-model adjudication brief (Lane 4 memo for Jesse)
 
+> **DONE 2026-07-22.** Picked up this session. Jesse stated the duration model directly, which
+> dissolved the adjudication (the 82-vs-128 "paradox" is one per-coil rate near 100 that only
+> differs after looping/service/bore). Captured in `06-insights/2026-07-22-duration-model-capture.md`
+> with proposed gap-fills A–F to the three estimating sources; queued as `DQ-002` for Jesse's call.
+> The generator's combined-heaters defect noted below was already fixed before this pass (emits `-`).
+
 Question to settle: what does the 100 ft/hr benchmark actually apply to —
 total coil footage as one number (the skill's worked example) or per-pass with
 parallelism across TriMax assemblies (the benchmark's own phrasing)? The two
