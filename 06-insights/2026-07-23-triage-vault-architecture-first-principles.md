@@ -78,10 +78,10 @@ The overlap is real but already owned by the consolidate-memory skill and the ha
 
 ## Decision
 
-- [ ] Build ideas 1 + 2 (trigger registry + pipeline vitals, one vault_health.py session)
+- [x] Build ideas 1 + 2 (trigger registry + pipeline vitals) — approved by Jesse and built same session, 2026-07-23
 - [ ] Build idea 6 (staged-count hook, config repo — gated)
-- [ ] Run test 3 (retrieval-eval session)
-- [ ] Run test 5 (OneDrive placeholder spike)
+- [ ] Run test 3 (retrieval-eval session — needs a fresh session answering cold, not this one)
+- [x] Run test 5 (OneDrive placeholder spike) — ran same session; both criteria passed, POINTER-DEAD rule built with fixture
 - [ ] Reject / adjust any of the above (note which)
 
 ## Apply Log
@@ -89,3 +89,6 @@ The overlap is real but already owned by the consolidate-memory skill and the ha
 | Date | Action | By |
 |---|---|---|
 | 2026-07-23 | Note filed from brainstorm session; seed [[idea-llm-navigable-vault-map]] created; nothing built, no canonical content modified | Claude (Fable 5) |
+| 2026-07-23 | Jesse approved building in-session. Ideas 1+2 applied: `vault_health.py` gains Commercial pipeline + Dormant triggers sections and two metric rows; `valid-through:` backfilled on all six quote notes (DSP26030 normalized to `type: quote, status: pending`); `revisit-trigger:` backfilled on the three known prose triggers; intake-check line added to [[rfq-intake-protocol]] | Claude (Fable 5) |
+| 2026-07-23 | First run caught real exposure: DSP26030 expired 49 d ago with outcome unrecorded (standing FAIL row until resolved); rollup trigger reads 6 of 12 quote notes | Claude (Fable 5) |
+| 2026-07-23 | Test 5 executed, both criteria passed; POINTER-DEAD rule added to `vault_lint.py` (warn-only, base-gated, runtime fixture; self-test 11 rules). First run: 4 of 6 recorded source paths dead (estate reorg `Desktop\` → `Desktop\Facilities\`). DSP26080 re-pointed — its estate folder carried a trailing U+00A0, renamed off (OneDrive) — 3 warnings stand as the re-pointing to-do | Claude (Fable 5) |

@@ -2,6 +2,7 @@
 type: idea-seed
 status: researched
 created: 2026-07-07
+revisit-trigger: "A real mobilization or bid shows manual context-gathering friction (parked 2026-07-18) — event: check at job mobilization"
 related:
   - [[2026-07-09-idea-research-context-packet-builder-skill]]
 tags: [idea, skills, claude-config, future]

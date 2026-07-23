@@ -68,6 +68,24 @@ LOOP_HEARTBEATS = [
 
 LEDGER_REL = "50-dashboards/.loop-runs.json"
 
+# Dormant triggers: any note carrying a `revisit-trigger:` frontmatter field is
+# a recorded wake-up condition (parked idea, deferred build, rejected-with-
+# revisit decision). The field's presence — regardless of the note's status,
+# since a resolved review's trigger outlives its resolution — puts it on the
+# dashboard. Retire a trigger by removing the field when it fires and is acted
+# on. Machine-checkable conditions embed a token the script evaluates; only
+# one exists so far: `[machine: quote-count>=N]` (count of `type: quote` notes).
+# Everything else is event-shaped and names the workflow step that checks it.
+TRIGGER_FIELD = "revisit-trigger"
+TRIGGER_QC_RE = re.compile(r"\[machine:\s*quote-count\s*>=\s*(\d+)\]")
+
+# Commercial pipeline: read from `type: quote` frontmatter. `valid-through`
+# and `date-execution` tolerate YYYY-MM-DD and YYYY-MM (month reads as the
+# 1st). FAIL only for a quote that expired while still `pending` — that is
+# silent commercial exposure; everything else is informational.
+PIPELINE_EXPIRY_WARN_DAYS = 30
+PIPELINE_HORIZON_DAYS = 90
+
 # A run older than this with "fired" but no "completed" is presumed dead,
 # not still working. Generous: no loop run legitimately takes 6 hours.
 RUN_DEAD_HOURS = 6
@@ -225,6 +243,82 @@ def loop_heartbeats(root: Path):
     return rows, any_overdue
 
 
+def parse_day(raw: str | None) -> date | None:
+    """Tolerant date parse: YYYY-MM-DD, or YYYY-MM (reads as the 1st)."""
+    if not raw:
+        return None
+    for fmt in ("%Y-%m-%d", "%Y-%m"):
+        try:
+            return datetime.strptime(raw, fmt).date()
+        except ValueError:
+            continue
+    return None
+
+
+def collect_quotes(notes: dict) -> list[tuple[Path, dict]]:
+    out = []
+    for path, text in notes.items():
+        fm = vault_lint.parse_frontmatter(text)
+        if fm.get("type") == "quote":
+            out.append((path, fm))
+    return sorted(out, key=lambda t: t[0].stem)
+
+
+def pipeline_rows(notes: dict):
+    """Return (rows, expired_count). One row per pending quote plus any quote
+    inside the execution horizon. Row: (quote, status, valid, execution, signal)."""
+    today = date.today()
+    rows = []
+    expired = 0
+    for path, fm in collect_quotes(notes):
+        q = fm.get("quote-number") or path.stem
+        link = f"[[{q}]]" if q == path.stem else f"[[{path.stem}|{q}]]"
+        status = fm.get("status", "?")
+        vt = parse_day(fm.get("valid-through"))
+        ex = parse_day(fm.get("date-execution"))
+        signal = None
+        if status == "pending":
+            if vt is None:
+                signal = "no validity date recorded"
+            elif vt < today:
+                signal = f"EXPIRED {(today - vt).days} d ago — record outcome or extension"
+                expired += 1
+            elif (vt - today).days <= PIPELINE_EXPIRY_WARN_DAYS:
+                signal = f"expires in {(vt - today).days} d"
+            else:
+                signal = "ok"
+        if ex and status in ("pending", "awarded") and today <= ex \
+                and (ex - today).days <= PIPELINE_HORIZON_DAYS:
+            note = f"execution in {(ex - today).days} d"
+            signal = f"{signal}; {note}" if signal and signal != "ok" else note
+        if signal:
+            rows.append((link, status, fm.get("valid-through") or "-",
+                         fm.get("date-execution") or "-", signal))
+    return rows, expired
+
+
+def trigger_rows(notes: dict):
+    """Return (rows, fired_count). Row: (source stem, condition, check result)."""
+    quote_count = len(collect_quotes(notes))
+    rows = []
+    fired = 0
+    for path, text in sorted(notes.items()):
+        fm = vault_lint.parse_frontmatter(text)
+        raw = fm.get(TRIGGER_FIELD)
+        if not raw:
+            continue
+        m = TRIGGER_QC_RE.search(raw)
+        if m:
+            threshold = int(m.group(1))
+            hit = quote_count >= threshold
+            check = f"quote notes: {quote_count} of {threshold}" + (" — **FIRED**" if hit else "")
+            fired += 1 if hit else 0
+        else:
+            check = "event — checked at the step the condition names"
+        rows.append((path.stem, raw.replace("|", "\\|"), check))
+    return rows, fired
+
+
 def build(root: Path) -> str:
     findings = vault_lint.run_lint(root)
     errors = sum(1 for f in findings if f.severity == "error")
@@ -235,6 +329,9 @@ def build(root: Path) -> str:
     inbox_n, inbox_med, inbox_max = inbox_stats(root)
     since = days_since_last_commit(root)
     hb_rows, hb_overdue = loop_heartbeats(root)
+    notes = vault_lint.collect_notes(root)
+    pipe_rows, expired = pipeline_rows(notes)
+    trig_rows, fired = trigger_rows(notes)
 
     def flag(ok: bool) -> str:
         return "ok" if ok else "FAIL"
@@ -260,6 +357,8 @@ def build(root: Path) -> str:
         f"| Inbox oldest item | {inbox_max_s} | < 30 d | {flag(inbox_max is None or inbox_max < 30)} |",
         f"| Days since last commit | {since_s} | {dash} | {flag(True)} |",
         f"| Loop heartbeats overdue | {'yes' if hb_overdue else 'no'} | no | {flag(not hb_overdue)} |",
+        f"| Pending quotes expired | {expired} | 0 | {flag(expired == 0)} |",
+        f"| Dormant triggers fired | {fired} | 0 | {flag(fired == 0)} |",
         "",
         "## Loop heartbeats",
         "",
@@ -277,6 +376,36 @@ def build(root: Path) -> str:
         "|---|---|---|---|---|",
     ]
     lines += [f"| {label} | {fired} | {hb} | {cad} | {st} |" for label, fired, hb, cad, st in hb_rows]
+    lines += [
+        "",
+        "## Commercial pipeline",
+        "",
+        "One row per pending quote, plus any quote whose execution date is within "
+        f"{PIPELINE_HORIZON_DAYS} days. Read from `type: quote` frontmatter "
+        "(`status`, `valid-through`, `date-execution`). A pending quote past its "
+        "validity is the FAIL condition — record the outcome (awarded / lost / "
+        "expired / extension) on the quote note to clear it.",
+        "",
+        "| Quote | Status | Valid through | Execution | Signal |",
+        "|---|---|---|---|---|",
+    ]
+    lines += [f"| {q} | {st} | {vt} | {ex} | {sig} |" for q, st, vt, ex, sig in pipe_rows] \
+        or ["| _no pending quotes or upcoming executions_ | | | | |"]
+    lines += [
+        "",
+        "## Dormant triggers",
+        "",
+        "Every recorded wake-up condition (`revisit-trigger:` frontmatter) — parked "
+        "ideas, deferred builds, rejected-with-revisit decisions. Machine-checkable "
+        "conditions carry a `[machine: …]` token the script evaluates; event-shaped "
+        "ones name the workflow step that checks them. A trigger retires when the "
+        "field is removed from its note (fire → act → remove).",
+        "",
+        "| Source | Condition | Check |",
+        "|---|---|---|",
+    ]
+    lines += [f"| [[{s}]] | {c} | {chk} |" for s, c, chk in trig_rows] \
+        or ["| _no dormant triggers recorded_ | | |"]
     lines += [
         "",
         "## Notes",

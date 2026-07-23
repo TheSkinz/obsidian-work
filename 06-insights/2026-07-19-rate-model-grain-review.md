@@ -6,6 +6,7 @@ source_authority: inferred
 confidence: medium
 created: 2026-07-19
 review_after: 2026-08-19
+revisit-trigger: "First bid under a multi-year or master agreement -> build the contract-note type (proposal C, rejected 2026-07-19) — event: check at RFQ intake"
 related:
   - rfq-intake-protocol
   - quote-lifecycle

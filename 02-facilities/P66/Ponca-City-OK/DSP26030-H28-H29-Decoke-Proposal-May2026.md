@@ -9,6 +9,12 @@ job_number: null
 unit_id: H-28, H-29
 service: other
 doc_type: proposal
+type: quote
+quote-number: DSP26030
+status: pending
+date-submitted: 2026-03-06
+date-execution: 2026-05-04
+valid-through: 2026-06-04
 routing: resolved
 routing_note: DSP#26030 and P66 Ponca City in filename; Ponca-City-OK folder confirmed in vault; no USA# — placed at facility level as proposal document
 tags: [proposal, decoke, coker, two-pumper]

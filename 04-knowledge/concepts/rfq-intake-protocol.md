@@ -5,6 +5,7 @@ source_authority: secondary
 confidence: medium
 created: 2026-07-19
 last_reviewed: 2026-07-19
+revisit-trigger: "About 12 quote notes under a settled rate-table heading convention -> build the cross-quote rate-history rollup [machine: quote-count>=12]"
 tags: [workflow, quotes, estimating]
 ---
 
@@ -34,7 +35,7 @@ Read, in this order: the site's `_facility.md` for access, site constraints, and
 
 **Rates do not come from the facility card.** They are a property of the contract, and one site can carry several concurrent contracts at different rates — see the frontmatter fields in [[quote-lifecycle]]. Read prior quote notes at that site for what was charged before, treating each as one contract's rates rather than the site's rates, and take the governing figures from the contract or bid instructions for this opportunity. Where facility cards do carry a rates block, it is labeled with the specific quote it came from and should be read that way.
 
-Two findings back this, both from 2026-07-06 and preserved here from the retired `pricing/Rate Reference.md`. A SharePoint search for a standalone company-wide or base rate schedule found none — only per-quote contracted rates exist. And a QuickBooks ticket-breakdown pull across three jobs showed billed rates diverging from quoted rates *within the same job*: Valero Port Arthur billed TriMax pigging at $550/hr against $500/hr quoted, and ExxonMobil billed the PM role at the Day Supervisor rate. A model assuming one stable rate per facility cannot represent either observation. Reconcile quoted against billed at invoice review, not only at proposal time. A repeat heater with recorded Task Durations means durations come from that heater's actuals, not from the 6/6/4 generic defaults — verified numbers govern. Consult `INDEX.md` before concluding a facility or heater isn't already in the vault.
+Two findings back this, both from 2026-07-06 and preserved here from the retired `pricing/Rate Reference.md`. A SharePoint search for a standalone company-wide or base rate schedule found none — only per-quote contracted rates exist. And a QuickBooks ticket-breakdown pull across three jobs showed billed rates diverging from quoted rates *within the same job*: Valero Port Arthur billed TriMax pigging at $550/hr against $500/hr quoted, and ExxonMobil billed the PM role at the Day Supervisor rate. A model assuming one stable rate per facility cannot represent either observation. Reconcile quoted against billed at invoice review, not only at proposal time. A repeat heater with recorded Task Durations means durations come from that heater's actuals, not from the 6/6/4 generic defaults — verified numbers govern. Consult `INDEX.md` before concluding a facility or heater isn't already in the vault. Also check the health dashboard's **Dormant triggers** section for intake-scoped triggers — e.g., the first bid arriving under a multi-year or master agreement fires the contract-note revisit from [[2026-07-19-rate-model-grain-review]].
 
 ### 4. Extract drawings into the heater card, not the proposal
 

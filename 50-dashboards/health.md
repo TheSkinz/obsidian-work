@@ -7,12 +7,14 @@
 | Open decision rows | 0 | <= 10 | ok |
 | Review notes awaiting decision | 1 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 35 | (backlog) | ok |
+| Lint warnings | 37 | (backlog) | ok |
 | Inbox items | 26 | - | ok |
 | Inbox median age | 3 d | < 14 d | ok |
 | Inbox oldest item | 5 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
+| Pending quotes expired | 1 | 0 | FAIL |
+| Dormant triggers fired | 0 | 0 | ok |
 
 ## Loop heartbeats
 
@@ -23,6 +25,26 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 | Capture loop | 2026-07-20 (3 d ago) | 2026-07-20 (3 d ago) | 7 d | ok |
 | Idea-research loop | 2026-07-23 (0 d ago) | 2026-07-23 (0 d ago) | 30 d | ok |
 | Consolidation loop | 2026-07-19 (4 d ago) | 2026-07-18 (5 d ago) | 31 d | ok |
+
+## Commercial pipeline
+
+One row per pending quote, plus any quote whose execution date is within 90 days. Read from `type: quote` frontmatter (`status`, `valid-through`, `date-execution`). A pending quote past its validity is the FAIL condition — record the outcome (awarded / lost / expired / extension) on the quote note to clear it.
+
+| Quote | Status | Valid through | Execution | Signal |
+|---|---|---|---|---|
+| [[DSP26030-H28-H29-Decoke-Proposal-May2026|DSP26030]] | pending | 2026-06-04 | 2026-05-04 | EXPIRED 49 d ago — record outcome or extension |
+| [[DSP26039]] | pending | 2027-04-07 | 2027-01 | ok |
+| [[DSP26080]] | pending | - | 2027-02 | no validity date recorded |
+
+## Dormant triggers
+
+Every recorded wake-up condition (`revisit-trigger:` frontmatter) — parked ideas, deferred builds, rejected-with-revisit decisions. Machine-checkable conditions carry a `[machine: …]` token the script evaluates; event-shaped ones name the workflow step that checks them. A trigger retires when the field is removed from its note (fire → act → remove).
+
+| Source | Condition | Check |
+|---|---|---|
+| [[idea-context-packet-builder-skill]] | A real mobilization or bid shows manual context-gathering friction (parked 2026-07-18) — event: check at job mobilization | event — checked at the step the condition names |
+| [[rfq-intake-protocol]] | About 12 quote notes under a settled rate-table heading convention -> build the cross-quote rate-history rollup [machine: quote-count>=12] | quote notes: 6 of 12 |
+| [[2026-07-19-rate-model-grain-review]] | First bid under a multi-year or master agreement -> build the contract-note type (proposal C, rejected 2026-07-19) — event: check at RFQ intake | event — checked at the step the condition names |
 
 ## Notes
 
