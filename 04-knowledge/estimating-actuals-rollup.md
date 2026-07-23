@@ -10,16 +10,25 @@ Benchmarks as stated in `usadebusk-estimating`: **100 ft/hr** pigging (nominal f
 
 | Heater | Client | Date | Job # | Condition | Rigs | Mode | Rig-In | Pig | Smart Pig | Rig-Out | Stand-By | Total | Heater footage (ft) | ft / elapsed pig-hr | ft/hr per pig (norm) |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| F-802 | ExxonMobil | 2026-04-28 | USA26022 | unknown | 2 | ? | 4 | 55 | 6 | 20 | 49 | 85 | (not recorded) | - | - |
+| HF-0011 | CHS | 2025-03-29 | USA25025 | routine, hours-blended | 1 | ? | 6 | 96 | 18 | 3 | 51 | 123 | 5,004 | 52 | - |
+| HF-0012 | CHS | 2025-03-24 | USA25025 | routine | 1 | 3 | 11 | 85 | 10.5 | 6 | 28.5 | 114.5 | 12,036 | 142 | 47 |
+| HF-009A | CHS | 2025-03-23 | USA25025 | routine, combined-heaters | 1 | 2 | 16 | 77.5 | 12 | 7 | ? | 112.5 | 7,812 | - | - |
+| HF-009B | CHS | 2025-03-23 | USA25025 | routine, combined-heaters | 1 | 2 | 16 | 77.5 | 12 | 7 | ? | 112.5 | 7,812 | - | - |
+| HP-0002 | CHS | 2025-04-02 | USA25025 | routine | 1 | 1 | 2 | 13 | 3 | 6 | ? | 24 | 1,100 | 85 | 85 |
+| HP-0003 | CHS | 2025-04-01 | USA25025 | routine, combined-heaters | 1 | ? | 6 | 26 | – | ? | ? | 32 | 1,188 | - | - |
+| HP-0006 | CHS | 2025-04-01 | USA25025 | routine, combined-heaters | 1 | ? | 6 | 26 | 4 | ? | ? | 36 | 616 | - | - |
+| HP-0007 | CHS | 2025-03-30 | USA25025 | routine | 1 | 1 | ? | 15 | 4 | 5 | ? | 24 | 765 | 51 | 51 |
+| HP-0025 | CHS | 2025-03-31 | USA25025 | routine | 1 | 1 | 6 | 9 | 3 | 6 | ? | 24 | 2,328 | 259 | 259 |
+| F-802 | ExxonMobil | 2026-04-28 | USA26022 | routine | 2 | 5 | 4 | 55 | 6 | 20 | 49 | 85 | 14,280 | 260 | 52 |
 | H-19 | HF Sinclair | 2025-08-17 | USA25051 | crash | 1 | 1 | 10 | 103 | – | 30 | 41 | 143 | 4,934 | 48 | 48 |
 | H-19 | HF Sinclair | 2026-07-13 | USA26038 | crash | 1 | 1 | 7 | 74 | 6 | 2 | 55 | 89 | 4,934 | 67 | 67 |
 | H-20 | HF Sinclair | 2025-08-17 | USA25051 | crash | 1 | 1 | 22 | 69 | – | 38 | 63 | 129 | 2,868 | 42 | 42 |
-| H-20 | HF Sinclair | 2026-07-11 | USA26038 | crash | 1 | 1 | 5 | 98 | – | 13.5 | 19 | 118 | 2,868 | 29 | 29 |
+| H-20 | HF Sinclair | 2026-07-11 | USA26038 | crash | 1 | 2 | 5 | 98 | – | 13.5 | 19 | 118 | 2,868 | 29 | 15 |
 | H-28 | P66 | 2024-01-20 | 24012 | crash, combined-heaters | 1 | ? | 14 | 143 | – | 15 | 31 | 172 | 1,865 | - | - |
 | H-28 | P66 | 2025-05-10 | USA25041 | routine, combined-heaters | 1 | ? | 5 | 117 | – | 9 | 1 | 131 | 1,865 | - | - |
 | H-29 | P66 | 2024-01-20 | 24012 | crash, combined-heaters | 1 | ? | 14 | 143 | – | 15 | 31 | 172 | 2,373 | - | - |
 | H-29 | P66 | 2025-05-10 | USA25041 | routine, combined-heaters | 1 | ? | 5 | 117 | – | 9 | 1 | 131 | 2,373 | - | - |
-| 7-1 F-1 | Syncrude | 2025-09-11 | CND25004 | unknown | 2 | ? | ? | ? | ? | ? | ? | ? | 2,311 | - | - |
+| 7-1 F-1 | Syncrude | 2025-09-11 | CND25004 | routine | 2 | ? | ? | ? | ? | ? | ? | ? | 2,311 | - | - |
 | H-102A | Valero | 2026-03-26 | USA26025 | crash | 1 | 3 | 27* | 232 | 16 | –* | 176 | 275 | 9,248 | 40 | 13 |
 | H-102B | Valero | 2026-03-26 | USA26025 | crash | 1 | 3 | 34.5* | 242.5 | 31 | –* | 179 | 308 | 9,248 | 38 | 13 |
 
@@ -29,21 +38,13 @@ Mode-normalized per-pig rates (elapsed ÷ Mode), so jobs run in different modes 
 
 | Condition | Rows w/ norm rate | Range (ft/hr per pig) | Mean |
 |---|---|---|---|
-| crash | 6 | 13–67 | 35 |
+| crash | 6 | 13–67 | 33 |
+| routine | 5 | 47–259 | 99 |
 
-> ⚠ **No routine-condition actuals carry a ft/hr figure.** Every usable rate above comes from a non-routine job, so the 100 ft/hr benchmark currently has zero routine actuals either supporting or contradicting it. Do not read a low crash rate as evidence the benchmark is too high.
+> 1 row(s) carry an elapsed rate but no `Mode`, so they are excluded from these per-pig means — add `Mode` to those Task Durations rows to include them.
 
 ## Coverage gaps
 
-- HF-0011 (CHS) — no Task Durations actuals yet
-- HF-0012 (CHS) — no Task Durations actuals yet
-- HF-009A (CHS) — no Task Durations actuals yet
-- HF-009B (CHS) — no Task Durations actuals yet
-- HP-0002 (CHS) — no Task Durations actuals yet
-- HP-0003 (CHS) — no Task Durations actuals yet
-- HP-0006 (CHS) — no Task Durations actuals yet
-- HP-0007 (CHS) — no Task Durations actuals yet
-- HP-0025 (CHS) — no Task Durations actuals yet
 - F-301 (ExxonMobil) — no Task Durations actuals yet
 - F-371A (ExxonMobil) — no Task Durations actuals yet
 - H-2421 (HF Sinclair) — no Task Durations actuals yet
@@ -61,5 +62,5 @@ Mode-normalized per-pig rates (elapsed ÷ Mode), so jobs run in different modes 
 
 ## Reading this
 
-- With **12** actual job row(s), this is a growing dataset, not a calibrated model. Treat per-job ft/hr as anecdotes until several same-service jobs accumulate.
+- With **21** actual job row(s), this is a growing dataset, not a calibrated model. Treat per-job ft/hr as anecdotes until several same-service jobs accumulate.
 - Rig-In/Rig-Out actuals well off the 6/6 hr defaults, or ft/hr consistently off 100, are the signal to revisit the Duration Model — raise it with Jesse rather than editing the skill from here.
