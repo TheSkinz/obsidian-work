@@ -27,6 +27,17 @@ The vault is the index, OneDrive is the store. What makes this work is not the f
 
 **Canonical local store (verified 2026-07-23):** the reliably-present tree is `C:\Users\Jwuts\OneDrive\USADeBusk\Facilities\<Client City ST>\` with `Bids\`, `Jobs\`, `Reference\`, and `_History\` subfolders (SharePoint remains canonical-of-record per the 2026-07-22 audit; this is its local hydrated mirror). Record `## Source Files` paths against **this** tree, not `Desktop\` — the vault historically recorded `Desktop\…` working-copy paths, and three of them (DSP25084, DSP26039, DSP26058) went dead when those copies were cleaned up, then were re-pointed here. The new POINTER-DEAD lint rule (`tools/vault_lint.py`) now catches this class of breakage on every run. **Gotcha:** folder names can end in an invisible non-breaking space (U+00A0) that breaks any retyped path — DSP26080's did.
 
+#### Estate naming & foldering convention (going forward — do not retrofit)
+
+Every rule below traces to a concrete failure that cost most of a session on 2026-07-23. Apply to **new** bid and job folders only; leave existing folders as they are until something touches them — POINTER-DEAD flags any pointer that actually breaks, and that one flag is the signal to fix that one folder. Retrofitting the whole estate is the unbounded-policing pattern already rejected (triage idea 11).
+
+- **Client folder = the vault's spelling.** Name the estate client folder to match `02-facilities/<Client>/<City-ST>/` exactly (`Marathon Garyville LA`, never `Garryville`). One spelling per client kills the search-miss.
+- **State lives in the folder tier.** `Bids\` = quoted, not yet awarded · `Jobs\` = awarded/executed · `Reference\` = drawings & datasheets · `_History\` = concluded (won-and-closed or lost). When a bid's outcome lands, move its folder to the matching tier so location always reflects state.
+- **Lead every filename with the DSP token in one fixed form:** `DSP#NNNNN_…` (with the `#`, five digits, no space). Makes the estate greppable and sortable by quote. (Vault quote-note frontmatter deliberately uses the bare `DSPNNNNN` — that's a different system; this rule is about filenames.)
+- **Revisions carry the rev in the name; supersede by prefix, not by leaving twins.** Current version keeps the clean name; the superseded one gets an `OLD_` prefix (already done in places) or is deleted. Never leave `Rev 1` and `Rev 2` side by side with no signal for which is current.
+- **No opaque IDs as a document's only name.** A file renamed to its scan/email ID (`AM4411442151.pdf` — that one was a PO) is invisible to search and to the next reader. Keep a descriptive name.
+- **No trailing spaces or non-breaking spaces (U+00A0) in folder names.** Invisible, and they break every retyped path — one such character cost half an hour on 2026-07-23.
+
 ### 2. Assign the DSP# and open the quote note
 
 DSP##### = DSP + YYNNN, assigned at proposal start, before any work product exists. Create `02-facilities/<Client>/<City-ST>/DSP#####.md` immediately with `status: pending` and the frontmatter block from [[quote-lifecycle]]'s numbering section. Everything downstream keys off this number. If the facility folder doesn't exist yet, create it from `04-knowledge/_facility-template.md`.
