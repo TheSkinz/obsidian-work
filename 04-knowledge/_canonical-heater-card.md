@@ -25,7 +25,7 @@ in the exemplar and are stripped (or left as guidance comments) when a real card
 from this template — Jesse's call on whether comments survive into real cards or are removed
 at creation time.
 
-STATUS: DRAFT — Phase 2.0, pending Jesse's review and field-set approval.
+STATUS: APPROVED — Phase 2.0 field set approved by Jesse 2026-07-22 (config/skill-system audit). This file is the governing schema authority; treat its field set as settled, not tentative.
 Validated against: F-802, 210-1401A, 210-1402B, 210-1403A, 210-1404B, F-301, F-371A.
 
 FOLDER STRUCTURE (locked 2026-06-22):
@@ -101,9 +101,10 @@ an unfilled-in card.
 ## Config Rollup — Estimating Reference
 
 <!--
-DERIVED, NEVER HAND-ENTERED. This section expresses the heater's FIXED physical loop
-arrangement at two scales, not a "current job configuration" — corrected 2026-06-22 after
-F-802 migration surfaced the wrong model.
+DERIVED FROM TUBE GEOMETRY — hand-entered (no formula layer), so re-derive on any edit and
+never invent a value Tube Geometry can't back. This section expresses the heater's FIXED
+physical loop arrangement at two scales, not a "current job configuration" — corrected
+2026-06-22 after F-802 migration surfaced the wrong model.
 
 CORRECTED MODEL: A heater's coil/loop arrangement (e.g. "10 coils looped to 5 passes") is a
 PERMANENT physical fact about the heater, not something that changes per job. It is set once,
