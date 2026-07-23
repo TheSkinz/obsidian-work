@@ -28,6 +28,7 @@ Benchmarks as stated in `usadebusk-estimating`: **100 ft/hr** pigging (nominal f
 | H-28 | P66 | 2025-05-10 | USA25041 | routine, combined-heaters | 1 | ? | 5 | 117 | – | 9 | 1 | 131 | 1,865 | - | - |
 | H-29 | P66 | 2024-01-20 | 24012 | crash, combined-heaters | 1 | ? | 14 | 143 | – | 15 | 31 | 172 | 2,373 | - | - |
 | H-29 | P66 | 2025-05-10 | USA25041 | routine, combined-heaters | 1 | ? | 5 | 117 | – | 9 | 1 | 131 | 2,373 | - | - |
+| 7-1 F-1 | Syncrude | 2024-04-05 | CND24002 | routine, hours-blended | 2 | ? | 9.5 | 68.5 | 9 | 7.5 | 36 | 96 | 2,311 | 34 | - |
 | 7-1 F-1 | Syncrude | 2025-09-07 | CND25004 | routine, hours-blended | 2 | ? | 14 | 119 | 18 | 13 | 192 | 164 | 2,311 | 19 | - |
 | H-102A | Valero | 2026-03-26 | USA26025 | crash | 1 | 3 | 27* | 232 | 16 | –* | 176 | 275 | 9,248 | 40 | 13 |
 | H-102B | Valero | 2026-03-26 | USA26025 | crash | 1 | 3 | 34.5* | 242.5 | 31 | –* | 179 | 308 | 9,248 | 38 | 13 |
@@ -41,7 +42,7 @@ Mode-normalized per-pig rates (elapsed ÷ Mode), so jobs run in different modes 
 | crash | 6 | 13–67 | 33 |
 | routine | 5 | 47–259 | 99 |
 
-> 2 row(s) carry an elapsed rate but no `Mode`, so they are excluded from these per-pig means — add `Mode` to those Task Durations rows to include them.
+> 3 row(s) carry an elapsed rate but no `Mode`, so they are excluded from these per-pig means — add `Mode` to those Task Durations rows to include them.
 
 ## Coverage gaps
 
@@ -62,5 +63,5 @@ Mode-normalized per-pig rates (elapsed ÷ Mode), so jobs run in different modes 
 
 ## Reading this
 
-- With **21** actual job row(s), this is a growing dataset, not a calibrated model. Treat per-job ft/hr as anecdotes until several same-service jobs accumulate.
+- With **22** actual job row(s), this is a growing dataset, not a calibrated model. Treat per-job ft/hr as anecdotes until several same-service jobs accumulate.
 - Rig-In/Rig-Out actuals well off the 6/6 hr defaults, or ft/hr consistently off 100, are the signal to revisit the Duration Model — raise it with Jesse rather than editing the skill from here.
