@@ -11,7 +11,8 @@ service: other
 doc_type: proposal
 type: quote
 quote-number: DSP26030
-status: pending
+status: awarded
+awarded-as:
 date-submitted: 2026-03-06
 date-execution: 2026-05-04
 valid-through: 2026-06-04
@@ -32,9 +33,9 @@ verified: never
 **Basis:** Time & Material — Mob/Demob lump sum
 **Execution:** May 4, 2026
 
-> **Note:** This is the two-pumper option. Confirm this is the version P66 is working from before award.
+> **Note:** This is the two-pumper option.
 
-> **Status (2026-07-22):** Outcome unrecorded. Quote validity expired 2026-06-04 with no award, loss, or extension noted in the vault — record the outcome when known.
+> **Status (2026-07-23):** **AWARDED** (Jesse, 2026-07-23). Work executed on the May 2026 turnaround per the plan below. The USA job number it was awarded as is not yet recorded — backfill `awarded-as` and, if actuals are wanted, create a job record. Supersedes the 2026-07-22 "outcome unrecorded" note.
 
 ## Scope
 

@@ -7,13 +7,13 @@
 | Open decision rows | 0 | <= 10 | ok |
 | Review notes awaiting decision | 1 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 37 | (backlog) | ok |
+| Lint warnings | 36 | (backlog) | ok |
 | Inbox items | 27 | - | ok |
 | Inbox median age | 3 d | < 14 d | ok |
 | Inbox oldest item | 5 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
-| Pending quotes expired | 1 | 0 | FAIL |
+| Pending quotes expired | 0 | 0 | ok |
 | Dormant triggers fired | 0 | 0 | ok |
 
 ## Loop heartbeats
@@ -32,7 +32,6 @@ One row per pending quote, plus any quote whose execution date is within 90 days
 
 | Quote | Status | Valid through | Execution | Signal |
 |---|---|---|---|---|
-| [[DSP26030-H28-H29-Decoke-Proposal-May2026|DSP26030]] | pending | 2026-06-04 | 2026-05-04 | EXPIRED 49 d ago — record outcome or extension |
 | [[DSP26039]] | pending | 2027-04-07 | 2027-01 | ok |
 | [[DSP26080]] | pending | - | 2027-02 | no validity date recorded |
 
