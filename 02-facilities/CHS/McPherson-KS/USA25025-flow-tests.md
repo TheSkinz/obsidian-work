@@ -12,8 +12,8 @@ tags: [flow-test, CHS, McPherson-Refinery, USA25025]
 
 # USA25025 — Flow Tests
 
-Transcribed 2026-07-23 from the 15 field Decoking Data Sheets and rendered into the customer job
-report (`USA25025-CHS-McPherson-Plant Wide TA-Job Report.pdf`, REV 1). Companion to
+Transcribed 2026-07-23 from the 15 field Decoking Data Sheets and rendered into the job report
+(`USA25025-CHS-McPherson-Plant Wide TA-Job Report.pdf`), which has not been sent to CHS. Companion to
 [[USA25025-job-record]]. This note is the structured source — read it instead of re-reading the scans.
 
 Each sheet records four GPM steps with RPM and PSI before and after the decoke. The crews filled

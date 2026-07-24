@@ -1,6 +1,6 @@
 ---
 type: triage-note
-status: for-review
+status: resolved
 source_authority: inferred
 confidence: medium
 created: 2026-07-23
@@ -82,7 +82,7 @@ The overlap is real but already owned by the consolidate-memory skill and the ha
 - [x] Build idea 6 (staged-count hook, config repo) — built 2026-07-23: `~/.claude/hooks/usadebusk-staged-count-guard.mjs` (PreToolUse, sibling of git-guard), registered in `settings.json`, 21-case test suite. Backstop only: gates commits staging >12 files in the vault/config repos; fails open; `# staged-ok` escape. Config commit b620881 (push pending Jesse).
 - [x] Run test 3 (retrieval-eval session) — ran cold 2026-07-23, 10/10 pass, 0 failures. Criterion → **stop**: retrieval isn't the constraint at this vault size. Idea 4 stays parked (gate not met). See [[2026-07-23-retrieval-eval-run]].
 - [x] Run test 5 (OneDrive placeholder spike) — ran same session; both criteria passed, POINTER-DEAD rule built with fixture
-- [ ] Reject / adjust any of the above (note which)
+- [x] Reject / adjust any of the above — nothing rejected; Jesse closed the note 2026-07-23 with all EXECUTE/TEST items done (config push landed same day)
 
 ## Apply Log
 
