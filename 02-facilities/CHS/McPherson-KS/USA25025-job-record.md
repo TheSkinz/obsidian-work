@@ -176,7 +176,9 @@ TriMax hourly rates are crew-inclusive or labor was never entered. Unresolved.
 > project is closed; the analysis above stays as the record. The [[HF-0011]] TriMax 1 receipts (8792–8796)
 > were located 2026-07-20.
 
-- ~~Obtain Decoking Data Sheets (flow tests)~~ **RESOLVED 2026-07-22** — 15 handwritten Decoking Data
+- ~~Obtain Decoking Data Sheets (flow tests)~~ **RESOLVED 2026-07-22, transcribed and shipped
+  2026-07-23** — all 15 sheets are now transcribed to [[USA25025-flow-tests]] (the structured source)
+  and rendered into the customer job report as its Flow Tests section, REV 1. 15 handwritten Decoking Data
   Sheets located, filed to `OneDrive/Desktop/Facilities/CHS Mcpherson/2025-03 Flow Tests - USA25025 CHS
   McPherson Plant Wide TA.pdf`. Coverage: [[HF-0012]] Coker 6 passes (pipe ID
   reads 3.7"/3.232"/3.732" tube+3.604" U-bend across sheets — consistent with the 3.7" measured-vs-3.232"
