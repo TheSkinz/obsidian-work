@@ -31,6 +31,7 @@ Total duration = Rig-In + Pigging Hours + Rig-Out ± Rig-Over + Stand-By
 - Vacuum heaters run long as a rule — multiple tube sizes + hard coke + pigging the larger tube sizes from the larger outlet launcher
 - Adjust using: prior cleaning data for same heater when available, job walk observations, coil loop configuration
 - Build-up method: cost one unlooped coil → decide looping → lay out pass sets by equipment mode → add rig-overs → sum with rig-in/rig-out
+- **Per-pig, not heater-total** (ruled 2026-07-24): heater-total footage ÷ 100 is wrong — it double-counts circuits pigged simultaneously. Elapsed time for a pass set is one coil's time, however many circuits it carries. Round the per-coil figure up to the next whole hour, once, at the coil level. No fixed parallel-friction factor exists; check the actuals rollup's multi-pass rows and state the allowance applied, including "none"
 
 Rig-In / Rig-Out: Fixed events; **rig-out matches rig-in**. Tier by heater size/height and the hard-pipe run to reach the launchers: Small 4 / Moderate 6 (majority) / Large 8 / Very large 12 hrs. Rig-Over between pass sets = `ceil(passes ÷ mode) − 1` (mode = passes cleaned per set: double 2, triple 3), ~1 hr with launchers/receivers pre-installed on the added passes else ~2 hr. Smart Pig: 4 hrs when applicable.
 
