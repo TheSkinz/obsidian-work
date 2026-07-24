@@ -16,9 +16,28 @@ tags: [spec, estimating, automation, cross-cutting, workup-to-proposal]
 
 Specification produced 2026-07-23 from [[2026-07-23-idea-research-workup-to-proposal-generator]]
 (approved, back-tested) and the deferred build brief [[2026-07-23-deferred-workup-proposal-build-spec]].
-Mirrors [[job-report-generator-build-spec]]. **Scope of this session: the validated mapping only —
-no generator was built** (Jesse's scope call, 2026-07-23). The mapping below is proven against three
-structurally different real pairs; it is ready for a separate generator-build session.
+Mirrors [[job-report-generator-build-spec]]. The mapping below is proven against three
+structurally different real pairs.
+
+> [!done] Built and validated 2026-07-24. The generator lives in
+> `~/.claude/skills/usadebusk-estimating/scripts/` (`extract_workup.py` mapping front-end +
+> `render_proposal.py` branded-docx renderer + `proposal_input_template.py` optional config +
+> `backtest_workup.py` regression harness), wired into the `usadebusk-estimating` SKILL.
+> **Regression PASSED:** all three submitted totals reproduced EXACTLY, line-item by line-item and
+> Pricing-Summary-box row by row — DSP26071.2 $60,287.42, DSP26085 $40,477.08, DSP26068.1
+> $112,642.23 — read against the submitted PDFs (DSP26085 rendered docx→PDF via LibreOffice). A
+> fourth workup (DSP26075, Fixed Price + Training + `Decoke Only:` subtotal) validated the
+> reconciliation path as a bonus. Rendered drafts were visually confirmed against the submitted
+> quotations (branding, line items, hour-breakdown sub-line, Pricing Summary box all match).
+> All four open decisions below are resolved. See the resolution notes inline.
+>
+> **Key architecture discovery:** the `Insert Quote` tab is the pre-built customer quotation,
+> **fully formula-linked to the work tab** — it carries the line-item prose, the Pricing Summary
+> box (already resolved to values), prepared-by, bill-to, special instructions and footer. The
+> generator reads amounts from the work-tab Project Financials block (the spec's proven mapping)
+> and prose/box/header from the `Insert Quote` tab, then reconciles the two — catching any desync
+> (and the stale-paste errors frozen into the old image-pasted quotations, e.g. DSP26085's
+> submitted image shows quote # "26000" while the live workup is 26085).
 
 ## Why
 
@@ -125,18 +144,25 @@ date, markup confirmation — plus Section 3 scope prose (templated but reviewab
 technical/as-built confirmation (from the card). Everything tagged WU-* / ⚙ is mechanical, because
 the finished workup already contains every pricing decision Jesse made.
 
-## Open sub-mapping (flagged, non-blocking) — Pricing Summary box
+## Pricing Summary box — RESOLVED (open decision #1)
 
-The Section 7 **Pricing Summary box** (Equipment · Manpower · Materials · [Training] · Total) does
-**not** derive from the six line items by a consistent formula:
+The Section 7 **Pricing Summary box** (Equipment · Manpower · Materials · [Training] · Total) is
+**always present in the `Insert Quote` tab**, already resolved to plain values (col D labels, col E
+values, ending in a `Total` row). Two derivation styles exist under the hood, which is why it does
+not reduce to one formula over the six line items:
 
-- DSP26085: Equipment $27,138.72 = Mob + Equip; Manpower $11,268.36 = Labor + Per Diem + Demob;
-  Materials $2,070 = Materials. (Mob and Demob split into different boxes.)
-- DSP26068.1: Equipment $75,188 does **not** equal Mob + Equip ($74,848) — a different bucketing.
+- **Old style (DSP26071.2, DSP26085):** the box is computed from the quotation line items —
+  Equipment = Mob + Equip; Manpower = Labor + Per Diem + Demob; Materials = Materials. (Mob groups
+  with Equipment, Demob groups with Manpower — odd but consistent.)
+- **New style (DSP26068.1):** the box reads a genuine per-resource-type **cost rollup** on the work
+  tab (`I80:J82`) — Equipment $75,188 (≠ Mob + Equip; e.g. Filter and Rig-in equipment bucketed in)
+  — plus a Training row. Note the work-tab rollup even *mislabels* the 4th row "Third Party" while
+  holding the Training value; the `Insert Quote` box fixes the label to "Training".
 
-So the box is computed from its own workup region (per-resource-type rollup), not from the H-K block.
-The generator build session must locate that region per-workup; until then the box is a flagged
-sub-mapping. **This does not block the line-item core**, which is exact on all three pairs.
+**Resolution: read the box straight from the `Insert Quote` tab and reconcile its Total to the grand
+Total — do not re-derive the varying bucketing.** This is version-agnostic and trivial (the box is
+already computed there). The generator falls back to the old-style line-item derivation only if the
+`Insert Quote` box is absent, and flags that. Reconciled exactly on all four workups.
 
 ## Back-test results (this session)
 
@@ -161,15 +187,41 @@ active use (four confirmed live instances). Treat `Workup-Template-v1.xlsx` (sin
 unfinished) as a parallel input-cleanup track Jesse finishes on his own timeline. Do not block the
 generator on a template rewrite.
 
-## Open decisions for the generator-build session
+## Open decisions — ALL RESOLVED (2026-07-24 build session)
 
-1. **Pricing Summary box source region** — locate the per-resource-type rollup in the workup that
-   produces Equipment/Manpower/Materials, per the flagged sub-mapping above.
-2. **Multi-heater line items** — all three back-test pairs are single-heater. The old-style workup
-   repeats heater blocks on a ~15-column stride; confirm the per-heater Mechanical-Decoke line
-   splits correctly on a genuine multi-heater workup before trusting that path (mirror the
-   job-report spec's per-heater-vs-project-total boundary).
-3. **Equipment-list prose** in the Mobilize/Demobilize lines — derive from the workup resource plan
-   vs. carry as a J field.
-4. **Authoring vs operating** — Fable/Opus-authored mapping (this doc) then Sonnet/Codex-operated
-   per job, as with the job-report generator.
+1. **Pricing Summary box source region — RESOLVED.** Read the already-resolved box from the
+   `Insert Quote` tab; reconcile its Total to the grand Total; fall back to old-style line-item
+   derivation (flagged) only if the box is absent. See the Pricing Summary box section above.
+
+2. **Multi-heater line items — DETECT-AND-FLAG (split path deferred).** All three back-test pairs
+   are single-heater; no genuine multi-heater workup exists in the Facilities tree today (the
+   closest, DSP25156's `OLD_` tab, is multi-*event* same-heater and superseded, its `Insert Quote`
+   unwired). The generator **detects** a multi-heater workup (duration strip carrying >1 furnace)
+   and **flags** it for manual review rather than emitting a single mis-scoped Mechanical-Decoke
+   line — mirroring the job-report extractor's UNMAPPED-rather-than-misallocate discipline. The
+   per-heater split path (one Mechanical-Decoke line per furnace, read from the `Insert Quote`
+   Financial-Summary rows) is designed but stays unvalidated until a real multi-heater workup is
+   available. This does not block single-heater jobs (the overwhelming majority of bids).
+
+3. **Mobilize/Demobilize equipment-list prose — RESOLVED.** It is a hardcoded string in the
+   `Insert Quote` description column (e.g. "(Lump Sum) Mobilize (1) Trimax Pumper, (1) Support Unit,
+   Filtration, Manpower, & Launchers." / "Lump Sum: Mob: (1) Pumping Unit, (1) Support Unit, (1)
+   Filter, (1) 4x3 Pump"). The generator reads it verbatim (Mobilize = a description with "mob" but
+   not "demob"; Demobilize = has "demob") and falls back to a flagged placeholder if absent. Not a
+   J field — the workup already carries it.
+
+4. **Authoring vs operating — RESOLVED: yes.** Mapping authored once (this build, Opus); per-job
+   operation is mechanical — `python render_proposal.py <workup.xlsx> <out.docx> [quote#]` — and can
+   be driven by a cheaper model (Sonnet/Codex), as with the job-report generator. No config is
+   required; the "REVIEW BEFORE SENDING" box carries every human-input decision to Jesse.
+
+## Additional variations found during the build (beyond the 3-pair back-test)
+
+The reconciliation-driven line placement (place the canonical roles, verify they sum to Total, then
+any leftover nonzero label is a subtotal/dupe to flag) was hardened against extra financials-block
+labels seen in a 4th workup (DSP26075) and DSP25156's tab: `Decoke Only:` (a Total − Training
+subtotal), `Third Party:`, `SteadyFlux:`, and quantity-prefixed `(2) Mob:` / `(2) Demob:`. Header
+fields are read by label (the `Date:` vs `Due Date:` variation, and the `Scope:` label sitting in
+column A with its value in C while B is blank). The Section 9 rate table is variable-length and read
+by label-scan (DSP26068.1 has a single `Supervisor` not Day/Night, adds a `750 CFM Compressor` line,
+and lands `Mark-up` on a different row).
