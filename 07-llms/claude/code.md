@@ -58,6 +58,10 @@ The git-guard hook recommended in the same review has since been implemented (se
 
 A curated *usage* lookup for the full command/skill surface — which one to reach for, when, and how to fire it — now lives in [[command-reference]]. It covers native built-ins past the knowledge cutoff (`/goal`, `/rewind`, `/context`, etc.) that never show up in the skills list because the harness binary implements them, not `~/.claude`.
 
+## Model
+
+Claude Opus 5 became the default model for coding in Claude Code on 2026-07-24, replacing Opus 4.8, and is the default on Claude Max. Release facts, the two breaking API changes, and the behavioral shifts that affect skill and prompt tuning are captured in [[opus-5]].
+
 ## Durable capture of post-cutoff Claude knowledge
 
 My built-in knowledge is frozen at Jan 2026, and the CLI drifts (version churn logged across 2.1.14x–2.1.21x). In-session web-search results do not persist across sessions unless written down — which is why domain knowledge compounds (it's in the vault) but Claude/Anthropic update knowledge kept getting re-searched cold every time.
