@@ -1,11 +1,22 @@
 ---
 type: note
-status: inbox
+status: resolved
 created: 2026-07-23
+resolved: 2026-07-23
+related:
+  - [[workup-to-proposal-generator-build-spec]]
 tags: [inbox, estimating, automation, deferred, build-spec]
 ---
 
 # Deferred — workup-to-proposal generator build-spec session
+
+> [!done] Resolved 2026-07-23. The mapping build-spec was written and validated:
+> [[workup-to-proposal-generator-build-spec]]. Full cell-region → proposal-line mapping
+> written; back-tested exact on all three pairs (DSP26071.2 $60,287.42, DSP26085
+> $40,477.08, DSP26068.1 $112,642.23 — T&M and Fixed Price, 6-line and 7-line). Source
+> question settled (build against the old-style workup; v1 is a parallel track). What
+> remains is the **generator build itself**, carried as open decisions in the spec — not
+> this note.
 
 The [[2026-07-23-idea-research-workup-to-proposal-generator]] review was
 **approved** on 2026-07-23: feasibility fork resolved (workups are structurally

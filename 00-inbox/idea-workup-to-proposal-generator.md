@@ -1,9 +1,10 @@
 ---
 type: idea-seed
-status: researched
+status: spec-complete
 created: 2026-07-19
 related:
   - [[2026-07-23-idea-research-workup-to-proposal-generator]]
+  - [[workup-to-proposal-generator-build-spec]]
 tags: [idea, estimating, automation, cross-cutting]
 ---
 
