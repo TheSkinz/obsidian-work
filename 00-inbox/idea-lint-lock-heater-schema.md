@@ -1,7 +1,9 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-07-20
+related:
+  - [[2026-07-24-idea-research-lint-lock-heater-schema]]
 tags: [idea, vault-system, future]
 ---
 
