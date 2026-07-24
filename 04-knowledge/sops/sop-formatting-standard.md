@@ -41,6 +41,8 @@ USADeBusk        | Execution SOP       | Jesse Utsey      | [Month Year]
 
 Header table: label row cells = dark charcoal fill, white bold text. Value row cells = white background, normal weight.
 
+The DOCUMENT NO. cell carries the **short form only** (`SOP-DCK-[HeaterTag]-[NNN]`), not the full document name. Revision lives in its own cell beside it, so repeating `-REV0` inside the number is redundant. The full `USAD-[Client Abbrev]-SOP-DCK-[HeaterTag]-[NNN]-REV[N]` appears in the running header, the controlled-document footer, and the filename.
+
 ---
 
 ## Section structure
@@ -91,7 +93,8 @@ For ExxonMobil / major operator jobs with oily water or hydrocarbon deinventory:
 ### 9. Definitions
 - Two-column table: Term / Definition
 - Include job-specific terms and abbreviations (facility-specific ones like CV Station, WNRTJ, etc.)
-- Standard terms always included: Pig, Foam Pig, TC Pig, Circuit/Pass, Launcher, Receiver, Diverter, Effluent, Fig. 200, Triple Mode (when applicable), TriMax Pumper, PTW, RFWN
+- Standard terms always included: Pig, Foam Pig, TC Pig, Circuit/Pass, Launcher, Receiver, Diverter, Effluent, Fig. 200, TriMax Pumper, PTW
+- Conditional terms, included only when the SOP body actually uses them: Triple Mode, RFWN, Swab, Rig-Over, and any facility-specific term. RFWN in particular is a flange-type descriptor: include it when the connection spec names the flange type (e.g. `6" 300# RFWN`), omit it when the job gives size and rating only (e.g. `4" 300#`). Do not define a term the document never uses.
 
 ---
 
