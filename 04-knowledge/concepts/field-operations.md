@@ -50,6 +50,19 @@ Purpose: source for invoice generation. All service receipt data feeds here.
 | Third Party | Third Party | N hrs | Cost + markup (contract-specific, confirm each job — some facilities as low as 5%) |
 | Plant Down Time | Stand-by | N hrs | Billed via the TriMax Pumper / Filter Press stand-by rates only — no generic stand-by line |
 
+## Demob — which one the vault records
+
+There are two distinct demobs, and they are routinely conflated:
+
+1. **Facility demob** — equipment comes off the unit and leaves the customer's facility. This coincides with crew demob, and it is where the job ends: **there are no additional charges after this point.**
+2. **Fleet return** — equipment travels from wherever it staged back to Deer Park, TX (fleet HQ).
+
+**The vault records concept 1 only, and "demob" with no qualifier always means concept 1.** A job's demob date is its crew-demob date.
+
+Never record, infer, or ask about concept 2. Equipment is frequently staged near a facility for weeks because a separate upcoming project will execute there, so fleet return has no fixed relationship to job end and is not USADeBusk-controlled in any way the vault could track. Assume the project leaves with the crew. If a source document gives a later equipment-return date, that is concept 2 — do not promote it to the job's demob date. This is the same rule as filter-press availability: logistics is Jesse's, not the vault's.
+
+Caught 2026-07-25: the `usadebusk-fieldpm` dormancy banner had recorded USA26038 as "demobbed 2026-07-20", which was the fleet-return date, against a job that completed 2026-07-17.
+
 ## Plant Down Time (PDT)
 
 Facility-caused downtime (not USADeBusk-caused). Always flag on receipt as potentially billable at stand-by rate. Distinguish clearly from USADeBusk-caused delays in shift summary.
