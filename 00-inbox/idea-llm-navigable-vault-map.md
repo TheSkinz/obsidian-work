@@ -1,7 +1,9 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-07-23
+related:
+  - [[2026-07-25-idea-research-llm-navigable-vault-map]]
 tags: [idea, vault-system, future]
 ---
 
