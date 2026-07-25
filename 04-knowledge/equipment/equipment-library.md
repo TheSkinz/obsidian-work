@@ -178,7 +178,7 @@ Each TriMax dirty tank → 3" camlock → Coke Pit Drain / Oily Water Sewer
 Frac tank → TriMax clean tank(s)
 Dirty tank → 4×3 trash pump → filter press → clean tank
 ```
-No hydrant. 1× or 2× TriMax variant. 2× = 2 filter presses, 2 trash pumps (shared or mirrored).
+No hydrant. 1× or 2× TriMax variant. On 2×, filtration scales conditionally — see the Second TriMax section above.
 
 **Physical left-to-right layout (roughly):**
 Frac Tank (Option B only) | TriMax unit(s) | Heater | Coke Pit / OWS drain terminus

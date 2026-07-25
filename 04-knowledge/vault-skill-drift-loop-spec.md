@@ -3,8 +3,8 @@ type: governance
 status: active
 source_authority: primary
 created: 2026-07-07
-last_reviewed: 2026-07-07
-review_after: 2026-10-07
+last_reviewed: 2026-07-25
+review_after: 2026-10-25
 related:
   - [[vault-capture-loop-spec]]
   - [[vault-idea-loop-spec]]
@@ -25,13 +25,22 @@ Vault Skill-Drift Loop
 
 ## Trigger
 
-**On-demand only** — say "run the Skill-Drift Loop" in a session. Runbook prompt: `~/.claude/scheduled-tasks/vault-skill-drift-loop/SKILL.md` (the task is registered but disabled, so it can still be started manually).
+**Scheduled monthly** — `0 3 1 * *`, day 1 of the month, task id `vault-skill-drift-loop`, `enabled: true`. Runbook prompt: `~/.claude/scheduled-tasks/vault-skill-drift-loop/SKILL.md`. It can still be started on demand by saying "run the Skill-Drift Loop" in a session. Because it is scheduled, it **is** heartbeat-tracked in `tools/vault_health.py` (ledger id `vault-skill-drift-loop`, commit prefix `skill-drift:`) — a silent scheduler here is a FAIL like any other loop.
 
-**Why not scheduled (2026-07-19).** This loop is the only one that must write outside the vault: it creates a `drift/YYYY-MM` branch in the config repo, edits files under `~/.claude/skills/`, and commits and pushes there. Git mutation authority is deliberately scoped to the vault (see `change-log.md`, 2026-07-19), and Claude Code permission rules match on command strings and file paths — they cannot be scoped to a branch. Pre-granting what this loop needs would also let any interactive session commit to the config repo and edit skill files on `main` without a prompt, which is where Lane 4 domain truth (pricing, safety, SOP values) lives. Running it manually keeps that gate intact at the cost of one deliberate invocation a month. Because it is no longer scheduled, it is not heartbeat-tracked in `tools/vault_health.py` — a silent scheduler is not a failure for an on-demand loop.
+**Why the 2026-07-19 "keep it manual" reasoning no longer holds (corrected 2026-07-25).** That paragraph argued the loop must stay on-demand because it writes outside the vault — branch, commit and push in the config repo — and because "git mutation authority is deliberately scoped to the vault," so an unattended run would stall on a permission prompt. **The premise was false.** `~/.claude/settings.json` sets `"defaultMode": "auto"` and its `allow` list contains only read verbs plus `git status/diff/log/branch/show/remote`; `git add`, `git commit` and `git push` appear in neither `allow` nor `deny`, so `auto` mode permits them unprompted. The `usadebusk-git-guard.mjs` PreToolUse hook only matches paths containing `USADEBUSK[\\/]`, which does not cover `C:\Users\Jwuts\.claude`. The gate the spec believed it was preserving never existed as a permission rule — which is exactly why the 2026-07-25 run fired unattended and pushed `drift/2026-07b` successfully instead of stalling.
+
+The real containment is procedural, not permissional, and it is worth stating plainly: the loop never merges its own branch, never edits skills on `main`, and never edits vault content or memory. Those are properties of the runbook prompt, and they are the only thing standing between an automated run and Lane 4 domain truth. If that containment is ever judged insufficient, the fix is a `deny` rule on config-repo writes — not a belief that one is already in place.
 
 ## Scope
 
-Reads: every `SKILL.md` and reference file under `~/.claude/skills/`; vault knowledge layers (`04-knowledge/`, `06-insights/`, `07-llms/`, `08-systems/`); `04-knowledge/estimating-actuals-rollup.md`; the two CLAUDE.md files; git log of the config repo since the last run; **the agent memory directory** (`~/.claude/projects/C--Users-Jwuts-obsidian-work/memory/` — index + topic files), audited as a drift surface only, never edited by this loop.
+Reads: every `SKILL.md` and reference file under `~/.claude/skills/`; vault knowledge layers (`04-knowledge/`, `06-insights/`, `07-llms/`, `08-systems/`); `04-knowledge/estimating-actuals-rollup.md`; the two CLAUDE.md files; git log of the config repo since the last run; **the agent memory directory** (`~/.claude/projects/C--Users-Jwuts-obsidian-work/memory/` — index + topic files), audited as a drift surface only, never edited by this loop; and **the regression suite** (`~/.claude/regression/` — `README.md`, `fixtures/`, and the `frontmatter` of every file in `frozen/`).
+
+**On `~/.claude/regression/` (added 2026-07-25).** This surface demonstrably drifts, and it drifts silently in the one direction that matters: the regression suite is the instrument that detects skill degradation, so when it goes stale the detector is broken and nothing reports it. Two confirmed instances on 2026-07-25 alone — the `README.md` was wrong about the provenance of all six frozen fixtures, and F6's frozen output recommended equipment that no longer exists in `04-knowledge/equipment/equipment-library.md`. A frozen output encoding a retired rule does not fail loudly; it silently redefines a regression as the standard.
+
+Audit rules for this surface, which differ from the skills surface:
+- Check the `README.md`'s per-fixture claims (which model, which config commit, which skills) against each frozen file's own `model:` / `captured:` / `skills:` frontmatter. Frontmatter wins; the README is the restatement and is the thing that drifts.
+- Check every fixture's and frozen output's domain references — equipment names, rate-table line labels, pig types, doc-type enums — against current vault truth, and flag any that no longer exist.
+- **Never propose an edit to anything under `frozen/`.** Re-cutting a baseline is Jesse's call and requires a judged clean replay first (see the suite's own "When to re-cut frozen/"). A stale frozen output is reported as a finding with its evidence, never fixed by this loop. `README.md` prose and fixture-side staleness are ordinary proposals and may go on the branch.
 
 Writes:
 
@@ -47,6 +56,7 @@ Never edits skills on `main`. Never touches vault operational content, pricing v
 3. A skill referencing a file, folder, plugin, tool, or workflow that no longer exists.
 4. A correction applied to one home of a fact while a pointer or restatement elsewhere still carries the old version.
 5. An agent-memory file asserting state the vault, skills, or filesystem contradict (retired tools still listed as live, renamed files, "not yet done" claims with completion evidence in git). Memory findings are *flagged only* — the review note recommends a `/consolidate-memory` pass; this loop never edits memory files itself.
+6. A regression-suite surface contradicting itself or current vault truth — `README.md` claims disagreeing with a frozen file's own frontmatter, or a fixture or frozen output referencing equipment, rates, labels or enum values that no longer exist. `frozen/` findings are *flagged only* (see Scope); README and fixture findings may be proposed on the branch.
 
 ## Ceremony Level
 
@@ -57,11 +67,11 @@ Low for detection, zero authority for application. Every proposed edit is a diff
 **Run ledger (every run, first and last action):** Before anything else, update `50-dashboards/.loop-runs.json` in the vault (local, gitignored — create if missing): set this loop's entry (`vault-skill-drift-loop`) to `{"fired": "<now, UTC ISO-8601>", "completed": null, "result": "running"}`, merging without touching other loops' entries. As the run's very last action — after the final push, or immediately on deciding the run is a no-op or hitting a fatal problem — set `completed` to now and `result` to `committed`, `no-op`, or `error: <one line>`. Use Write/Edit tools, never shell editors. `tools/vault_health.py` reads this file to tell a dead scheduler from a quiet loop; a run that skips it surfaces as a monitoring FAIL.
 
 1. `git -C ~/.claude fetch` and confirm a clean working tree on `main`; stop if ambiguous.
-2. Read all skills; read vault layers changed since the last `skill-drift:` heartbeat (git log date-bounded); read the actuals rollup.
-3. Detect drift per the four classes above. Quote exact lines — no finding without a quote (audit discipline).
+2. Read all skills; read vault layers changed since the last `skill-drift:` heartbeat (git log date-bounded); read the actuals rollup; read the regression suite's `README.md`, fixtures, and `frozen/` frontmatter.
+3. Detect drift per the six classes above. Quote exact lines — no finding without a quote (audit discipline).
 4. If nothing found: write nothing, commit nothing, report a clean no-op, stop.
 5. Write the review note in `06-insights/`: per finding — severity, file:line, current text, proposed text, evidence, lane classification. Decision checkboxes for Jesse. Apply Log empty.
-6. Create branch `drift/YYYY-MM` from `main` in the config repo, apply the proposed edits, commit (one commit per skill touched, staged-file count checked), push the branch. Do not open a PR automatically and do not merge.
+6. Create branch `drift/YYYY-MM` from `main` in the config repo, apply the proposed edits, commit (one commit per skill touched, staged-file count checked), push the branch. Do not open a PR automatically and do not merge. If `drift/YYYY-MM` already exists (a second run in the same calendar month), suffix a letter — `drift/YYYY-MMb`, then `c` — and say so in the review note's Trigger section rather than reusing or force-updating the existing branch.
 7. Run `py -3 tools/vault_lint.py` (0 errors required), then commit and push the vault review note: `skill-drift: <YYYY-MM> — N findings, branch drift/YYYY-MM` (or no commit on a no-op). The `skill-drift:` prefix is the heartbeat.
 
 ## Allowed Without Additional Approval

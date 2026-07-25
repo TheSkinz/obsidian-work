@@ -48,11 +48,14 @@ INBOX_SKIP_SUBDIRS = ("preserved-dsps",)
 #      (fired without completed) from a quiet no-op (completed, no commit).
 #   2. The git heartbeat (commit-subject prefix): proof a run finished with
 #      output. Kept as fallback for loops with no ledger telemetry yet.
-# The review/agent and skill-drift loops are on-demand by design and not
-# listed at all. Skill-drift became on-demand 2026-07-19: its run needs
-# branch/commit/push authority in the config repo, which is deliberately NOT
-# pre-granted (git mutation is scoped to the vault), so an unattended run
-# would stall on a permission prompt. Run it manually instead.
+# The review/agent loop is on-demand by design and not listed at all.
+# Skill-drift IS listed as of 2026-07-25. It was delisted 2026-07-19 on the
+# belief that an unattended run would stall for lack of config-repo write
+# authority; that premise was false (settings.json runs defaultMode "auto"
+# and neither allows nor denies git add/commit/push, and the git-guard hook
+# only matches USADEBUSK paths), and the task has been enabled and firing
+# monthly the whole time. An enabled loop with no heartbeat row is the exact
+# blind spot the ledger exists to close.
 #
 # Tuples: (label, ledger task_id, commit prefix, hb_cadence_days, fired_stale_days).
 # fired_stale_days is 2x the loop's run cadence (with slack for a machine that
@@ -64,6 +67,10 @@ LOOP_HEARTBEATS = [
     # ledger staleness is tight (3 d) — nightly firing should never be older.
     ("Idea-research loop", "vault-idea-research-loop", "vault-idea-research:", 30, 3),
     ("Consolidation loop", "vault-consolidation-loop", "vault-consolidate:", 31, 62),
+    # Skill-drift fires monthly (0 3 1 * *) but commits only when it finds
+    # drift, so its git heartbeat cadence carries the same slack as the idea
+    # loop's: 62 d monitoring-grade, not its 31 d run cadence.
+    ("Skill-drift loop", "vault-skill-drift-loop", "skill-drift:", 62, 62),
 ]
 
 LEDGER_REL = "50-dashboards/.loop-runs.json"
@@ -368,9 +375,9 @@ def build(root: Path) -> str:
         "proves a run finished with output. `FAIL: started, never finished` = a run fired but "
         "never closed out (crash or interrupted). `FAIL: scheduler silent` = no firing within "
         "the staleness window — the task is disabled, deregistered, or the machine was off. "
-        "**pending** = no data yet. The review/agent and skill-drift loops are on-demand by "
-        "design and not listed — skill-drift needs config-repo write authority that is "
-        "deliberately not pre-granted, so it is run manually rather than on a schedule.",
+        "**pending** = no data yet. The review/agent loop is on-demand by design and not "
+        "listed. The skill-drift loop is scheduled monthly and tracked here as of 2026-07-25; "
+        "it commits only when it finds drift, so its heartbeat window is deliberately loose.",
         "",
         "| Loop | Last fired | Last heartbeat | Cadence | Status |",
         "|---|---|---|---|---|",

@@ -14,7 +14,7 @@ Operating base: Deer Park, TX (corporate fleet and equipment staging). Primary m
 
 ## Key people
 
-- **Jesse Utsey (jutsey@usadebusk.com):** Technical sales, project management, proposal development, cost estimation, field ops support
+- **Jesse Utsey (jutsey@usadebusk.com):** Technical specialist — technical sales, proposal development, cost estimation, engineering-document analysis, field ops
 
 ## Document numbering
 
