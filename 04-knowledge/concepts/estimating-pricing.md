@@ -65,7 +65,7 @@ Third-party markup: 5%, 10%, or 15% per the specific facility/project contract â
 | Mob/Equipment | TriMax Travel | $3.00 | Mile |
 | Mob/Equipment | Support Travel | $3.00 | Mile |
 | Mob/Equipment | Crew Truck Travel | $3.00 | Mile |
-| Mob/Labor | Driver Travel | $58.00 | Hour |
+| Mob/Labor | Crew Travel (non-driver) | $58.00 | Hour |
 | Per Diem | Per Diem | $150.00 | Day |
 | Equipment | Pumper: Rigging | $500.00 | Hour |
 | Equipment | Pumper: Pig | $500.00 | Hour |
