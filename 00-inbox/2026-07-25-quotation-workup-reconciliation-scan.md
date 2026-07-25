@@ -63,7 +63,12 @@ warns it would strip the file's conditional-formatting extensions. Verified: 36 
 and after, only `sharedStrings.xml` and `worksheets/sheet2.xml` differ, the G6 formula is intact,
 and both cells now read `DSP#: 26026`. Pre-fix backup in the session scratchpad.
 
-**Still open — the workup is scoped wider than what was submitted.** With the number fixed the
+**CLOSED 2026-07-25 — Jesse: the quote and PDF are correct, nothing was quoted short.** The scope
+narrowing inferred below is the right reading; no action. Detail retained because the reconciliation
+method needs it: a legitimate scope narrowing produces a large non-mob/demob gap, so a totals
+mismatch is not by itself evidence of a defect.
+
+*(detail)* With the number fixed the
 extractor reaches the tab for the first time and reads **$153,715.40**, against the submitted
 quotation's **$114,167.24** — a gap of $39,548.16 that is *not* a multiple of the $24,900 mob/demob
 unit, so it is not the lump-sum signature. The submitted quotation covers the **70H1 Coker only**
