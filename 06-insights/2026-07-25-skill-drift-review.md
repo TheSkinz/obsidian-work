@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: decided-blocked
 review_type: skill-drift
 source_authority: primary
 confidence: high
@@ -196,13 +196,15 @@ Both findings sit in the same file, `~/.claude/projects/C--Users-Jwuts-obsidian-
 
 ## Decision
 
-- [ ] **F1–F6:** merge `drift/2026-07b` as-is
-- [ ] **F1–F6:** merge partially — note which findings to drop in the Apply Log
-- [ ] **F4 held back** (Lane 4 — answer open question 1 first), rest merged
-- [ ] Discard the branch — reason in the Apply Log
-- [ ] **V1:** resolution 1 (keep scheduled, add heartbeat + fix spec) / resolution 2 (disable the task)
-- [ ] **V2–V4:** approve the vault-side fixes as proposed
-- [ ] **M1–M2:** run `/consolidate-memory`
+- [ ] ~~**F1–F6:** merge `drift/2026-07b` as-is~~ — rejected; two findings did not survive verification
+- [x] **F1–F6:** merge partially — F1, F2, F5, F6 applied to `main` by hand; **F3 rejected**, **F4 held**. Details in the Apply Log.
+- [x] **F4 held back** (Lane 4 — answer open question 1 first), rest merged
+- [ ] ~~Discard the branch~~ — branch retained, unmerged, as the record of what was proposed
+- [x] **V1:** resolution 1 (keep scheduled, add heartbeat + fix spec) — *and* the stated reason for resolution 2 was found to be factually false; see Apply Log
+- [x] **V2–V4:** approve the vault-side fixes as proposed — V2 and V4 applied; **V3 held as Lane 4** (pricing-table label)
+- [x] **M1–M2:** ~~run `/consolidate-memory`~~ — corrected directly instead; both were single-line factual fixes
+
+**Adjudicated 2026-07-25 by Claude (Opus 5), in session, against live files.** Every "current text" quote in Part 1 was re-read on `main` before its proposal was considered; all six matched verbatim, as did every piece of supporting vault evidence. Nothing was accepted on the note's word alone.
 
 ---
 
@@ -210,4 +212,32 @@ Both findings sit in the same file, `~/.claude/projects/C--Users-Jwuts-obsidian-
 
 | Date | Action | By | Notes |
 |---|---|---|---|
-| | | | |
+| 2026-07-25 | **F1 + F5 applied** to config `main` (`9c8068a`) | Claude | Cherry-picked `32b96e5` whole — the only branch commit accepted unchanged. Job-sheet `doc_type` + enum, and the state-or-province rule. |
+| 2026-07-25 | **F2 applied** to config `main` (`dad1c06`) | Claude | Hand-applied, not cherry-picked: branch commit `7ab4ee5` carried F2 and F4 together and F4 is held. Billing-math block repointed to `_canonical-job-sheet.md`; filtration-election rule added. |
+| 2026-07-25 | **F6 applied partially** to config `main` (`9c020bd`) | Claude | Role line applied as proposed. The branch commit also appended a sentence disambiguating the field-PM role — never proposed in the note, and contrary to its own scope guard ("Only the Jesse line changes"). Dropped. |
+| 2026-07-25 | **F3 REJECTED** | Claude | Not verifiable from files. The vault gives last shift and job completion (both 07-17); the physical equipment-return date appears nowhere. The finding's own open question 2 said as much and warned against a silent change — the branch made one anyway. Moved back to an open question for Jesse. |
+| 2026-07-25 | **F4 HELD — Lane 4** | Claude | Filter-press fleet count is domain truth. Not applied, not reworded. Remains on the branch only. |
+| 2026-07-25 | **V2 + V4 applied** to vault (`a0d6591`) | Claude | V2 repointed line 181 to the Second TriMax section instead of restating the rule, so it holds under either answer to open question 1. V4 title matched to global CLAUDE.md. |
+| 2026-07-25 | **V3 HELD — Lane 4** | Claude | Renaming the `$58.00` row in `estimating-pricing.md` touches the pricing table. Evidence is sound and the double-bill risk is real, but pricing is Jesse's lane. Flagged, not applied. |
+| 2026-07-25 | **V1 resolved — resolution 1** (`a0d6591`) | Claude | Spec Trigger rewritten to scheduled-monthly; `vault_health.py` now tracks the loop (62 d heartbeat, loose because it commits only on findings); `health.md` regenerated, 4 loop rows, all ok; scheduled-task description updated. |
+| 2026-07-25 | **V1 premise found false** | Claude | The spec's reason for staying manual — config-repo write authority "deliberately not pre-granted" — never existed. `settings.json` runs `defaultMode: auto`; `git add`/`commit`/`push` are in neither `allow` nor `deny`; the git-guard hook matches only `USADEBUSK[\\/]`, not `C:\Users\Jwuts\.claude`. That is why the unattended run pushed successfully instead of stalling. Recorded in the spec; the containment is procedural, not permissional. |
+| 2026-07-25 | **Loop Scope extended** (`a0d6591`) | Claude | Added `~/.claude/regression/` as drift class 6, with `frozen/` explicitly flag-only — re-cutting a baseline stays Jesse's call and requires a judged clean replay first. Also recorded the `drift/YYYY-MMb` second-run branch-naming convention this run had to improvise. |
+| 2026-07-25 | **M1 + M2 corrected** | Claude | `project-vault-five-loop-system.md`: heartbeat count now four and self-describing; lint-rule count dropped rather than updated, per the vault CLAUDE.md rule against carrying it outside the script. |
+| 2026-07-25 | **Regression battery replayed** — 5 of 6 pass | Claude | Core changed, so all six ran, fresh-context subagents with frozen output and expected numbers withheld. F2/F3/F4/F5/F6 pass on their own diff keys. **F1 fails diff key 4.** Frozen `frontmatter` note filed below. `frozen/` NOT re-cut. |
+
+## Regression battery — 2026-07-25 post-adjudication
+
+Method per `~/.claude/regression/README.md`: one fresh-context subagent per fixture, regression framing given, `frozen/` and expected numbers withheld, judged against each frozen file's own `notes:` diff keys rather than word identity.
+
+| Fixture | Skills | Verdict | Basis |
+|---|---|---|---|
+| F1 | estimating, core | **FAIL** | Diff key 4 missed — see below |
+| F2 | vault-ingest, core | PASS (1 divergence) | Config Rollup on 6 circuits not 3 passes (60/2,280, 72/2,736, 5,016 ft) exact; max pig OD 4.276; Job # blank; Task Durations left blank per actuals-only; passivation omitted. Job-sheet guard correctly evaluated and *not* matched on a DSP — the F1 skill change behaves. `Borger-TX` normalized cleanly. **Divergence:** derived wall 0.237" was written to the card (marked "(derived)" and flagged) where the baseline requires it deliberately not written. Not caused by this adjudication. |
+| F3 | fieldpm, core | PASS | All five diff keys hold — both roster corrections, the 4.1→4.125 autocorrect, the Clean ID conflict surfaced not silently resolved, missing customer signature, refusal to guess the illegible operator. All three required new behaviors present (per-pass split, standby overrun flag, hours reconciliation with math shown). |
+| F4 | sop, core, equipment | PASS | All seven diff keys. RFWN correctly omitted per the amended standard. Phase III named "Pass 4 Rig-Over" — permitted; no smart-pig phase inserted. Em-dashes only in the phase headings the standard prescribes. |
+| F5 | equipment, core | PASS | Both ID computations exact (5.047", 6.065"); governing ID 5.047"; max OD 5.297" computed and rounded to the stocked 5.250"; two-section ladder split; six judgment calls flagged. Footages 336/610/946/3,784/1,892 all match. |
+| F6 | estimating, core | PASS | Mode 6 derived, sets 1, rig-overs 0, per-coil 900/75 with the 5,400/75 serial figure explicitly rejected, friction allowance stated and reasoned, smart pig as one event, per-diem `ceil(2/10)=1`, demob mirrors mob, contradicting actuals flagged not substituted. **Non-driver travel came out at $64.00 → Mob/Demob $3,774.00 each — which the frozen frontmatter's `rate_precedence_correction` states is the correct answer**; the frozen body's $3,738 is preserved-but-wrong. Rig tier Large (8 hrs) vs the baseline's Moderate (6 hrs) remains the open adjudication already tracked in `00-inbox/2026-07-25-f6-divergences-awaiting-adjudication.md`. The 38-vs-31 hour delta is fully accounted for by that tier question plus the permitted friction-figure variance. |
+
+**F1 failure detail.** Intake item 15 enumerates six equipment items (TriMax, support unit, filter press, 4×3 pump, two crew trucks) while stating "(5 pieces traveling)", and the crew note sets drivers equal to pieces at five. Six enumerated against five stated cannot all be true. The frozen baseline catches this, reconciles it (the 4×3 pump rides on the support unit as a skid), prices mob/demob at five pieces, and states the swing if that assumption is wrong ($450 per direction, $900 across both). This replay wrote "No internal inconsistency in the supplied data. All 17 intake items are present" and priced five pieces without noticing the contradiction — absorbing it silently, which is the specific behavior diff key 4 exists to catch. Everything else on F1 matched, including the headline arithmetic exactly (31 pigging hrs, 45 project hrs, 4 shifts) and the serial-basis rejection.
+
+**Not attributable to this adjudication.** The only changes to `usadebusk-estimating` or `usadebusk-core` since F1's baseline commit `bb78eb8` are this run's two edits — the role line and the billing-math pointer — neither of which touches RFQ intake validation. This reads as model variance against an implicit rule. Per the README's own guidance the fix is to make the implicit rule explicit in the skill text, but that is a new commercial-skill edit rather than drift remediation, so it is **left for Jesse's call, not applied here**. `frozen/` was not re-cut.
