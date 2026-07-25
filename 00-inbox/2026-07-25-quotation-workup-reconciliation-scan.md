@@ -51,6 +51,29 @@ quotation-vs-workup reconciliation. A gap that equals a whole number of mob/demo
 expected signature of a contract-capped lump sum, not a finding. Reconcile the execution lines
 (decoke, labor & per diem, materials) and treat mob/demob as contract-governed.
 
+## DSP26026 Marathon Detroit — quote number fixed; a scope gap remains open
+
+**Resolved 2026-07-25.** Jesse: the `26027` was a mistake. Confirmed safe to change — **no DSP26027
+exists anywhere**: no quotation, no workup, no vault reference. The number was never issued.
+
+Fixed in the workup at `Marathon Detroit MI\DSP# 26026 RFQ - 3Q26 Coker Heater Pigging Sept 2026 T&M.xlsx`:
+`TA Heaters !C3` held the literal `DSP#: 26027`, and `Insert Quote !G6` is `='TA Heaters '!$C$3`, so
+both read wrong. Patched the XML inside the workbook rather than re-saving through openpyxl, which
+warns it would strip the file's conditional-formatting extensions. Verified: 36 zip entries before
+and after, only `sharedStrings.xml` and `worksheets/sheet2.xml` differ, the G6 formula is intact,
+and both cells now read `DSP#: 26026`. Pre-fix backup in the session scratchpad.
+
+**Still open — the workup is scoped wider than what was submitted.** With the number fixed the
+extractor reaches the tab for the first time and reads **$153,715.40**, against the submitted
+quotation's **$114,167.24** — a gap of $39,548.16 that is *not* a multiple of the $24,900 mob/demob
+unit, so it is not the lump-sum signature. The submitted quotation covers the **70H1 Coker only**
+(6 Hrs. Rig-in / 24 Pig / 6 Rig-out, decoke $58,287.24); the workup's `TA Heaters` row carries
+**12 / 36 / 12** and $75,240.00 of equipment. The likely reading is an ordinary narrowing — the
+workup was built for a wider turnaround scope and the bid went out for the single coker — but that
+is inference, not verified. Worth one look to confirm nothing was quoted short.
+
+*(original finding below)*
+
 ## DSP26026 Marathon Detroit — cannot select a work tab
 
 `extract_workup` picks the `Rate Sheet` tab (quote "81.73" — a rate value misread as a quote number)
@@ -61,17 +84,29 @@ again, one number off) or the numbering is intentional. Worth one look.
 
 ## Two process findings, both bigger than any single file
 
-**1. The old `OneDrive\Desktop\Facilities` tree is still live and not a subset of the canonical
-store.** `rfq-intake-protocol` step 1 records `OneDrive\USADeBusk\Facilities\` as the canonical
-store. But DSP26068.1 (Formosa VR-401G) and DSP26075 (Formosa VR-401C) exist **only** under
-`Desktop\Facilities` — they are absent from the canonical tree. Both were used as back-test
-evidence for the generator. So the canonical-store rule is currently false in practice, and any
-audit scoped to the canonical tree silently misses two live bids.
+**1. The old `Desktop\Facilities` tree held bids the canonical store did not — RESOLVED 2026-07-25.**
+`rfq-intake-protocol` step 1 records `OneDrive\USADeBusk\Facilities\` as the canonical store, but
+DSP26068.1 (Formosa VR-401G) and DSP26075 (Formosa VR-401C) existed **only** under
+`Desktop\Facilities`, so the rule was false in practice and any audit scoped to the canonical tree
+silently missed two live bids — both of which had been used as back-test evidence for the generator.
+Jesse's call: move them. Both bid folders (16 files, drawings and bid packages included) were moved
+whole into `Formosa Point Comfort TX\Bids\`. The Desktop Formosa folder is now empty and the
+canonical-store rule is true again.
 
-**2. `backtest_workup.py` hard-codes the stale path.** `FAC = r"C:\Users\Jwuts\OneDrive\Desktop\Facilities"`
-at the top of `usadebusk-estimating/scripts/backtest_workup.py`. It still runs only because the
-Desktop tree happens to survive. When that tree is cleaned up, the generator's regression suite
-breaks. Fix alongside finding 1, since the right path depends on where those two Formosa bids land.
+**2. `backtest_workup.py` was not fragile — it was already broken. RESOLVED 2026-07-25.** It
+hard-coded `FAC = …\Desktop\Facilities`, and its two Exxon paths had *already* gone dead when those
+files moved to the canonical store, so the suite had been silently unrunnable and the generator's
+"proven" back-test was not actually being run. Repointed to the canonical store; with the Formosa
+move above, the legacy root is gone entirely and all three pairs reproduce exactly again. A comment
+now warns against reintroducing a second root: an unreachable case is a storage bug to fix, not a
+path to special-case.
+
+**3. A latent crash, surfaced by fixing the DSP26026 number.** With the right tab finally reachable,
+`read_duration` hit that workup's row 24 — a **header** row reading
+`Furnace | Labor | Equipment | Materials | Perdiem | Mob | Demob` — and fed those labels into the
+hour fields, where `hour_breakdown`'s numeric format raised `ValueError` and took the whole
+extraction down. Non-numeric duration rows are now skipped. Worth noting the shape: the crash was
+latent behind a *different* defect, and fixing one defect is what exposed it.
 
 ## Two generator defects this ruling exposes — NOT applied, Lane 4, awaiting Jesse
 
