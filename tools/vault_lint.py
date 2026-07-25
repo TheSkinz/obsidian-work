@@ -65,8 +65,18 @@ ALLOWED_STATUS = {
     "resolved", "unresolved", "pending", "superseded",
     "decided-blocked", "approved-blocked", "awarded", "lost",
     # research
-    "unexplored", "researched",
+    "unexplored", "researched", "gated",
 }
+
+# An idea-seed whose own stated gate is not yet met. The idea-research loop
+# skips these when picking a seed instead of burning a research cycle
+# rediscovering a closed gate (added 2026-07-25 after two consecutive seeds
+# were queued with gates that were already shut). A gated seed is NOT
+# terminal and NOT researched — it is live and waiting. It stays visible via
+# its `revisit-trigger:` field, which the health dashboard's dormant-trigger
+# registry already renders, and INBOX-AGE skips it so a legitimately-parked
+# seed does not decay into permanent lint noise.
+GATED_STATUS = "gated"
 
 # Terminal statuses: a note in one of these is resolved and is *meant* to sit
 # past its review_after date — REVIEW-OVERDUE skips them, and the health
@@ -257,6 +267,15 @@ def check_inbox_age(root: Path) -> list[Finding]:
         rel = p.relative_to(inbox).as_posix()
         if any(rel.startswith(s + "/") for s in INBOX_SKIP_SUBDIRS):
             continue
+        # A gated idea-seed is meant to sit until its trigger fires; it is
+        # tracked by the dormant-trigger registry, not by inbox age.
+        if p.suffix == ".md":
+            try:
+                if parse_frontmatter(p.read_text(encoding="utf-8", errors="replace")
+                                     ).get("status") == GATED_STATUS:
+                    continue
+            except OSError:
+                pass
         d = git_last_commit_date(root, p)
         if d is None:
             findings.append(Finding("INBOX-AGE", p, "untracked in git — file it or commit it"))

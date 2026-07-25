@@ -4,8 +4,8 @@ status: active
 source_authority: primary
 confidence: high
 created: 2026-06-30
-last_reviewed: 2026-06-30
-review_after: 2026-09-30
+last_reviewed: 2026-07-25
+review_after: 2026-10-25
 related:
   - [[vault-capture-loop-spec]]
   - [[vault-agent-loop-spec]]
@@ -52,14 +52,20 @@ Low, but not silent. Every run either produces one evidence-gathering artifact (
 
 **Run ledger (every run, first and last action):** Before anything else, update `50-dashboards/.loop-runs.json` (local, gitignored — create if missing): set this loop's entry (`vault-idea-research-loop`) to `{"fired": "<now, UTC ISO-8601>", "completed": null, "result": "running"}`, merging without touching other loops' entries. As the run's very last action — after the final push, or immediately on deciding the run is a no-op or hitting a fatal problem — set `completed` to now and `result` to `committed`, `no-op`, or `error: <one line>`. Use Write/Edit tools, never shell editors. `tools/vault_health.py` reads this file to tell a dead scheduler from a quiet loop; a run that skips it surfaces as a monitoring FAIL. This matters most for this loop: it no-ops on most nights, and the ledger is the only signal separating "no seeds to research" from "scheduler stopped firing."
 
-1. Scan `00-inbox/` for files with `type: idea-seed` and `status: unexplored`. If none exist, report a clean no-op and stop — do not manufacture work.
-2. Pick the oldest unexplored idea-seed (by `created` frontmatter date). Process exactly one per run — same one-item discipline as [[vault-agent-loop-spec]]'s Selection Rule.
-3. Read the seed's "Tentative read" and "To explore" sections as the research brief.
-4. Research: web search for prior art, existing tools, or power-user solutions to the problem the idea describes. Also check what's already built in this vault (`04-knowledge/`, `06-insights/`) and in the deployed skills (`~/.claude/skills/`) that might already cover the idea, partially or fully — many ideas turn out to be already-solved or already-partially-built, and that's a valid, valuable finding.
-5. Write a review note in `06-insights/` (filename pattern `YYYY-MM-DD-idea-research-<slug>.md`) using the standard template: Trigger (why this seed was picked), Evidence (sources found, with links), Interpretation (sound / trap / premature / already covered, and why), Recommended Action (build now / bounded one-shot investigation / park / drop), Decision (empty checkboxes for Jesse), Apply Log (empty, filled in after Jesse acts).
-6. Update the idea-seed: `status: researched`, add `related: [[<new review note>]]`.
-7. Run `python tools/vault_lint.py` (use `py -3` if `python` is not on PATH); it must report **0 errors** before committing. Fix any error the run introduced — warnings are acceptable. Do **not** append a run summary to `change-log.md`: per the 2026-07-05 narrowing rule, `change-log.md` is decisions-only and the run record lives in the commit message and git log.
-8. Commit and push: `git add` only this run's touched paths (the review note and the idea-seed file), commit message `vault-idea-research: <YYYY-MM-DD> — researched <slug>`, push to `origin`. **This `vault-idea-research:` subject prefix is the loop's heartbeat.** Because the loop only commits when a seed exists (empty-queue nights are silent no-ops), `tools/vault_health.py` tracks it at a monitoring cadence of 30 days, not the nightly run cadence — a FAIL means the scheduler died or the seed queue has been empty for 60+ days, not that one night was missed. Keep the prefix exact.
+1. Scan `00-inbox/` for files with `type: idea-seed` and `status: unexplored`. Seeds already at `status: gated` are **not** candidates — their gate is known shut. If no `unexplored` seeds exist, report a clean no-op and stop — do not manufacture work.
+2. Pick the oldest unexplored idea-seed (by `created` frontmatter date).
+3. **Gate check — before any research.** Read the seed's `**Gate:**` line, and any gating condition stated in its "To explore" text even if it is not on a `**Gate:**` line (older seeds pre-date the convention and bury it in prose — "gating condition:", "not until", "the trigger is", "only once" are the usual phrasings). Then try to settle that condition **from files only** — the triage or review note that was supposed to run it, the data the seed is waiting on, the build it depends on. Three outcomes:
+   - **Gate verifiably unmet:** do not research. Set the seed to `status: gated`, add or refresh a `revisit-trigger:` frontmatter field stating the condition in the dormant-trigger registry's format, and write a short review note (Interpretation: "gated — not researched") recording the gate, the evidence that it is shut, and what would re-open it. Then **return to step 2 and pick the next-oldest unexplored seed**, so a shut gate costs one file read rather than a whole run. Process at most one *researched* seed per run; gate-closures do not count against that budget.
+   - **Gate verifiably met, or no gate stated:** proceed to step 4 and research normally.
+   - **Gate stated but not settleable from files:** research normally, and name the unresolved gate in the review note's Interpretation. Do not guess it shut — an unverifiable gate is not a reason to skip work, only a caveat on the finding.
+
+   The rule this encodes: a seed that ships with its own test-before-build condition has already told you what to check first, and checking it costs a minute against a research cycle. This was added 2026-07-25 after the LLM-navigable-vault-map seed consumed a full run rediscovering a gate that had closed two days earlier, with the next seed in the queue gated the same way.
+4. Read the seed's "Tentative read" and "To explore" sections as the research brief.
+5. Research: web search for prior art, existing tools, or power-user solutions to the problem the idea describes. Also check what's already built in this vault (`04-knowledge/`, `06-insights/`) and in the deployed skills (`~/.claude/skills/`) that might already cover the idea, partially or fully — many ideas turn out to be already-solved or already-partially-built, and that's a valid, valuable finding.
+6. Write a review note in `06-insights/` (filename pattern `YYYY-MM-DD-idea-research-<slug>.md`) using the standard template: Trigger (why this seed was picked), Evidence (sources found, with links), Interpretation (sound / trap / premature / already covered, and why), Recommended Action (build now / bounded one-shot investigation / park / drop), Decision (empty checkboxes for Jesse), Apply Log (empty, filled in after Jesse acts).
+7. Update the idea-seed: `status: researched`, add `related: [[<new review note>]]`.
+8. Run `python tools/vault_lint.py` (use `py -3` if `python` is not on PATH); it must report **0 errors** before committing. Fix any error the run introduced — warnings are acceptable. Do **not** append a run summary to `change-log.md`: per the 2026-07-05 narrowing rule, `change-log.md` is decisions-only and the run record lives in the commit message and git log.
+9. Commit and push: `git add` only this run's touched paths (the review note and the idea-seed file), commit message `vault-idea-research: <YYYY-MM-DD> — researched <slug>` (or `— gated <slug>` when the run only closed gates), push to `origin`. **This `vault-idea-research:` subject prefix is the loop's heartbeat.** Because the loop only commits when a seed exists (empty-queue nights are silent no-ops), `tools/vault_health.py` tracks it at a monitoring cadence of 30 days, not the nightly run cadence — a FAIL means the scheduler died or the seed queue has been empty for 60+ days, not that one night was missed. Keep the prefix exact.
 
 ## Allowed Without Additional Approval
 
@@ -68,8 +74,9 @@ Low, but not silent. Every run either produces one evidence-gathering artifact (
 | Read any vault note, skill file, or the web | Read-only. |
 | Create one review note per run in `06-insights/` | Must use the standard template; must cite sources. |
 | Update the processed idea-seed's `status` and `related:` frontmatter | Frontmatter only; never rewrite its body. |
+| Set a seed to `status: gated` and add its `revisit-trigger:` | Only when the seed's own stated gate is verified shut **from files**. Frontmatter only. Never invent a gate the seed does not state, and never gate a seed to avoid hard research. |
 | Run `tools/vault_lint.py` before committing | Pre-commit gate; must be 0 errors. Read-only check. |
-| Commit and push this run's touched paths | Per Loop Steps step 8. The commit message is the run record — no `change-log.md` entry (decisions-only since 2026-07-05). |
+| Commit and push this run's touched paths | Per Loop Steps step 9. The commit message is the run record — no `change-log.md` entry (decisions-only since 2026-07-05). |
 
 ## Blocked Without Specific Approval
 
