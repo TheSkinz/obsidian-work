@@ -37,7 +37,9 @@ structurally different real pairs.
 > generator reads amounts from the work-tab Project Financials block (the spec's proven mapping)
 > and prose/box/header from the `Insert Quote` tab, then reconciles the two — catching any desync
 > (and the stale-paste errors frozen into the old image-pasted quotations, e.g. DSP26085's
-> submitted image shows quote # "26000" while the live workup is 26085).
+> pricing metafile showed quote # "26000" while the live workup is 26085 — corrected in place
+> 2026-07-25; that version was **never sent to the customer**, so it is a working-copy defect,
+> not a submitted one).
 
 ## Why
 
