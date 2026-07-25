@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: complete
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -40,13 +40,25 @@ Scheduled nightly run of the Vault Idea Research Loop. Two idea-seeds were `unex
 
 ## Decision
 
-- [ ] Build now
-- [ ] Approved with edits
-- [ ] Park (confirm continued parked status)
-- [ ] Drop entirely
+- [ ] ~~Build now~~
+- [ ] ~~Approved with edits~~
+- [x] **Park (confirm continued parked status)** — the seed's own gate is still shut and nothing has moved it
+- [ ] ~~Drop entirely~~ — not dropped; the re-trigger criterion is real and worth keeping
+
+**Adjudicated 2026-07-25 by Claude (Opus 5), in session.** Every internal claim re-verified against live files before the recommendation was accepted: the seed's gating sentence matches verbatim, `2026-07-23-triage-vault-architecture-first-principles.md:83` records "Idea 4 stays parked (gate not met)" against a 10/10 / 0-failure eval, and the vault now holds 131 notes against the note's 129 — immaterial drift, same side of the threshold. The three external URLs were **not** re-fetched; the MOC-over-description-hooks lean is therefore recorded as a soft prior, not a verified finding. It carries no weight in this decision, which is null-action either way.
 
 ## Apply Log
 
 | Date | Action | By | Notes |
 |---|---|---|---|
-|  |  |  |  |
+| 2026-07-25 | **Parked — confirmed, no action** | Claude | Recommendation accepted as written. The seed shipped with an explicit test-before-build gate; the retrieval-eval ran 2026-07-23 and returned 0 failures against a ≤1 criterion, so the gate is shut. Re-opens only on a future eval logging 2+ failures — that criterion already lives in the triage note and needs no new trigger. |
+| 2026-07-25 | No edit to the seed | Claude | The MOC-vs-description-hooks prior art is reachable from the seed's existing `related:` link. The seed's own inline convention says not to hand-edit research findings into it, so it was left alone rather than annotated. |
+| 2026-07-25 | **Process finding raised — loop selects before checking gates** | Claude | Not a defect in this note; a defect in the loop that produced it. See below. |
+
+## Process finding — the loop researches gated seeds
+
+This review is correct and well-argued, and it should never have cost a research cycle to produce. `vault-idea-loop-spec.md:55-56` selects the oldest `unexplored` seed and proceeds straight to bounded web research. Nothing in the selection rule reads the seed's own gating condition first. This seed stated its gate in plain text — "if the eval shows zero retrieval failures, this solves a problem that doesn't exist yet and should stay parked" — and that gate had closed two days before the loop picked it up, a fact fully verifiable from files in about a minute. The loop instead ran external research on prior art the seed had already said not to bother with, then wrote a note whose own Interpretation opens "the seed's own gate closed it, before this loop even picked the seed up."
+
+**This is not a one-off.** The next seed in the queue, `00-inbox/idea-pig-actuals-maturation.md`, is gated the same way — its stated trigger is data volume, "three or four heaters carrying real counts," and the vault currently holds exactly one usable data point (HF-0012, ~180 pigs over 12,036 ft). On the current selection rule the next scheduled run researches it and reaches the same "park until more data" conclusion.
+
+Left for Jesse — the fix touches the loop's queue semantics, which is more than a content edit, and two shapes are viable. Recorded here rather than acted on.
