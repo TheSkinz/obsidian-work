@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: complete
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -39,13 +39,13 @@ Scheduled nightly run of the Vault Idea Research Loop. Two idea-seeds were `unex
 
 ## Decision
 
-- [ ] Approved — close as already-built, no action
-- [ ] Approved with edits — also do the runtime-parse refactor
-- [ ] Park
-- [ ] Drop
+- [x] **Approved — close as already-built, no action** — Jesse, 2026-07-24
+- [ ] ~~Approved with edits — also do the runtime-parse refactor~~
+- [ ] ~~Park~~
+- [ ] ~~Drop~~
 
 ## Apply Log
 
 | Date | Action | By | Notes |
 |---|---|---|---|
-| | | | |
+| 2026-07-24 | Closed as already-built | Jesse | `DURATIONS-HEADER` shipped 2026-07-20 in `b7f5df3` with the failing fixture at `tools/fixtures/02-facilities/TestClient/Test-City-TX/T-200.md`. Seed's core ask fully satisfied; seed already carries `status: researched`. Hard-coded `DURATIONS_HEADER` tuple left as-is — the accepted tradeoff is documented in the code comment, and the exemplar has drifted once in the vault's history, so runtime-parsing would trade manual-sync risk for parsing fragility. Not revisited unless the exemplar's column set starts moving. |
