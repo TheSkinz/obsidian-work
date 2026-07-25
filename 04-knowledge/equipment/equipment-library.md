@@ -66,7 +66,9 @@ When running 2x TriMax simultaneously:
 
 ## Filter Press
 
-USADeBusk Filter Press #1 specs:
+**Fleet: three presses of this model, with a rare option to rent a fourth (confirmed by Jesse 2026-07-25).** There is no larger-capacity model — more filtration capacity means another press, not a bigger one. **Which presses are free for a given job is Jesse's logistics call and is deliberately not tracked in the vault** — do not reason about availability from these notes, and do not build anything that tries to.
+
+USADeBusk Filter Press #1 specs (all three are this model):
 - Dimensions: 44'-3" L × 8'-7" W, trailer-mounted
 - 73 polypropylene plates, 1,000 mm plate size
 - Surface area: 1,243.4 ft²
