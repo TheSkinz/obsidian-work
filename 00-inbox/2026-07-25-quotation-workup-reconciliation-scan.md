@@ -27,26 +27,29 @@ quotation's rendered pricing block.
 | DSP26068.1 Formosa VR-401G | $112,642.23 | matches | reconciles |
 | DSP26075 Formosa VR-401C | $69,396.75 | matches | reconciles |
 | DSP25142 Sinclair Rawlins | $151,703.70 | matches | reconciles |
-| **DSP26058 Marathon Garyville** | **$460,516.10** | **$470,118.10** | **open — +$9,602.00** |
+| DSP26058 Marathon Garyville | $460,516.10 | $470,118.10 | not a defect — see below |
 | DSP26026 Marathon Detroit | — | — | not reconcilable, see below |
 
 DSP#24021.2 (Marathon Catlettsburg) has a quotation but **no workup xlsx** in either tree, so it
 cannot be reconciled at all.
 
-## The one open item — DSP26058, +$9,602.00
+## DSP26058's +$9,602.00 — CLOSED, not a defect (Jesse 2026-07-25)
 
 Truck 1 quotes $226,794.00 and Truck 2 quotes $243,324.10, summing $9,602.00 above the workup's
-$460,516.10. That gap is exactly **2 × $4,801.00** — the mob and the demob lump sum, each of which
-appears on *both* truck pages while the workup counts them once.
+$460,516.10 — exactly 2 × the $4,801.00 mob/demob. `extract_workup` separately flagged the workup's
+own lines summing $4,801.00 above its stated Total.
 
-Independently, `extract_workup` flags the workup's own internal inconsistency: its line items sum
-to $465,317.10 against a stated Total of $460,516.10, a gap of exactly $4,801.00 — one more mob/demob
-unit.
+**Jesse's ruling: a mob/demob mismatch between workup and quotation is expected and does not need
+to reconcile.** Mob and demob are billed as a **lump sum — a flat fee regardless of what actually
+happens during the mobilization.** Where the two figures diverge, it is because *the contract caps
+what can be billed*. The workup is a template used across all facilities, and its mobilization
+build-up is still performed — but for **internal cost/profit visibility**, not to derive the
+quoted number. The contract governs what is quoted.
 
-**This is not settleable from the files and needs Jesse.** Two trucks plausibly mob and demob
-separately, in which case the quotation is right and the workup under-counts. Or the lump sum is
-per-job and the quotation double-bills it. The quotation is the *higher* number, so if it is wrong
-it is an over-quote to Marathon, not lost recovery.
+**Consequence for this audit method:** mob and demob lines must be **excluded** from
+quotation-vs-workup reconciliation. A gap that equals a whole number of mob/demob units is the
+expected signature of a contract-capped lump sum, not a finding. Reconcile the execution lines
+(decoke, labor & per diem, materials) and treat mob/demob as contract-governed.
 
 ## DSP26026 Marathon Detroit — cannot select a work tab
 
@@ -69,6 +72,27 @@ audit scoped to the canonical tree silently misses two live bids.
 at the top of `usadebusk-estimating/scripts/backtest_workup.py`. It still runs only because the
 Desktop tree happens to survive. When that tree is cleaned up, the generator's regression suite
 breaks. Fix alongside finding 1, since the right path depends on where those two Formosa bids land.
+
+## Two generator defects this ruling exposes — NOT applied, Lane 4, awaiting Jesse
+
+Both are in `usadebusk-estimating/scripts/`, which produces client-facing proposal drafts.
+
+**1. `extract_workup.py:431` treats the workup's mob amount as the quotable figure.** It sets
+`"amount": roles["mob"]` (and `roles["demob"]` at :459) directly onto the quotation line, so the
+generator emits the internal cost/profit build-up as the customer-facing lump sum. Per the ruling
+above that number is *not* authoritative — the contract's capped flat fee is. The generator carries
+no flag telling the reviewer to confirm those two lines against the contract, unlike the `(J field)`
+CONFIRM prompts it already emits for prepared-by, valid-until, and third-party markup. Proposed fix:
+add mob and demob to the CONFIRM set rather than presenting them as derived.
+
+**2. The `LINE ITEMS DO NOT RECONCILE … Do not send until resolved` flag will fire on normal jobs.**
+It triggers whenever lines fail to sum to the financials Total, which is precisely what a
+contract-capped mob/demob produces. DSP26058 tripped it legitimately-looking and was a false
+positive. A hard "do not send" that fires on healthy jobs trains the reviewer to ignore it — the
+worst failure mode for a safety flag. Proposed fix: exclude mob/demob from that sum and, if the
+residual gap is a whole multiple of the mob/demob unit, report it as expected rather than blocking.
+
+Neither is applied. Both touch pricing behavior in a deliverable-producing tool.
 
 ## Minor
 
