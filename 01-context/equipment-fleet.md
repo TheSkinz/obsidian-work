@@ -24,6 +24,14 @@ Deer Park, TX — all US equipment stages here unless assigned to a job.
 | Double 1 | Sea-Can Double Pumper | None           | Special/overseas jobs only — ~1x/year |
 | Double 2 | Sea-Can Double Pumper | None           | Special/overseas jobs only — ~1x/year |
 
+## Filtration
+
+| Qty | Type | Notes |
+| --- | ---- | ----- |
+| 3 | Trailer-mounted filter press | All three are the same model. Specs in `04-knowledge/equipment/equipment-library.md` (the spec sheet on file is Press #1); canonical in `usadebusk-equipment`. |
+
+A fourth press can be rented, but the complications make it a last resort USADeBusk avoids — never plan or price a rental as the fallback when the fleet is committed (Jesse, 2026-07-25). This table records what exists, not what is free: availability across concurrent jobs is Jesse's logistics call and is deliberately not tracked in the vault.
+
 ## Notes
 
 Mob distance for any job is measured from Deer Park, TX unless a unit is already staged elsewhere.
