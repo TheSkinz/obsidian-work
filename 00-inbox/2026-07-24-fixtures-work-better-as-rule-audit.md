@@ -27,6 +27,25 @@ Why this happens: a fixture forces a rule to be *executed* rather than read. Rul
 merely implicit, internally inconsistent, or contradicted by a real actual survive any number of
 readings and fail the moment something has to produce a number from them.
 
+**ADOPTED 2026-07-25.** Jesse took the proposal: fixtures now replay after any substantive skill
+edit, not only on model change. Recorded in `~/.claude/regression/README.md` under "Two triggers,
+not one" (config `c961ad5`), with a *substantive* edit defined as one that changes what a number
+comes out as, adds or removes a rule, or resolves an ambiguity — not a typo, a pointer, or a
+reword carrying no rule. The README also now carries the harness-verification rule, after
+`backtest_workup.py` was found already broken on 2026-07-25 while its back-test was being
+described as proven: a green result you did not watch produce is not a result.
+
+**It paid on its first run.** The 2026-07-25 rule-writing pass replayed F1, F2 and F6 against three
+newly written rules. F2 closed clean. F6 corrected mob/demob to the figure its own frozen file
+already flagged as right. And F1 — replayed only to check the new intake rule fired — caught a
+$1,680 defect in **its own baseline**: frozen bills a Project Manager 45 hrs where the only real
+job sheet with a billable PM bills day-side hours. See [[2026-07-25-pm-billable-hours-open]]. That
+is a fifth fixture-exposed defect in the thing being measured against, found by a replay that was
+run for an unrelated reason, which is the argument for the trigger stated better than the note
+below states it.
+
+*(original proposal)*
+
 **Worth considering.** The battery is currently framed and scheduled as a model-transition
 artifact — it runs when a new model lands. That is the wrong trigger for its most valuable
 output. A fixture replay is also the cheapest available audit of whether a *skill edit* actually
