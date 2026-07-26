@@ -57,10 +57,16 @@ seeing the spread, spotting an outlier, and knowing your own history going into 
 negotiation. **It is not a rate schedule and nothing here can be quoted from.** The rates
 for the next Baytown bid come from that bid's own contract or bid instructions.
 
-The one case that would change this is a long-term maintenance agreement, where a
-multi-year contract sets base rates that any scope inside the term inherits. None is
-recorded on this site. See [[quote-lifecycle]] for the contract-type model and the
-`contract-type` / `rate-basis` / `billing-basis` fields on each quote note.
+**Read a divergence as a flag, not as a Baytown regime.** USADeBusk prefers the same rates
+at every facility, so the House standard column is the intended figure and most cells
+should match it. Where one doesn't, the cause is usually either that the contract froze an
+older figure or that the RFQ was contested and rates were cut to win it — not that this
+site prices differently by policy.
+
+The one case that would change all of this is a long-term maintenance agreement, where a
+multi-year contract sets base rates any scope inside the term inherits. None on this site,
+and none on Jesse's accounts as of 2026-07-26. See [[quote-lifecycle]] for the
+contract-type model and the `contract-type` / `rate-basis` / `billing-basis` fields.
 
 | Line Item | DSP25084 (F-802, 2025-07-15) — **expired** | DSP25123 (F-901, 2026-04-06) — **expired** | DSP26039 (F-301/F-371A, 2026-04-07) — **pending** | House standard |
 |---|---|---|---|---|

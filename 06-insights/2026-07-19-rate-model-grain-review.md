@@ -58,6 +58,8 @@ Only where a rate schedule genuinely spans many future bids. One note per contra
 
 **Rejected 2026-07-19 — not on merit.** Jesse confirmed multi-year agreements exist in the industry but none are on the accounts he currently works. Building the note type now would be structure for a hypothetical. **Revisit trigger:** the first bid that arrives under a multi-year or master agreement. Until then `rate-basis: quote-specific` covers every quote.
 
+**Re-confirmed 2026-07-26 — still no live long-term agreement on Jesse's accounts.** Asked directly while working the F-901 ingest; answer was none that he knows of, and that other facilities outside his accounts may carry them. Trigger unchanged and still unfired. Recorded here so the question isn't re-litigated at the next rate discussion — the answer has now been the same twice, a week apart.
+
 - [ ] Approved
 - [ ] Approved with edits
 - [x] Rejected
