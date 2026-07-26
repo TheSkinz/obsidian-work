@@ -41,4 +41,31 @@ Already computable, never computed: 13 multi-ID vs 19 single-ID heaters · smart
 
 **Framing from Jesse, 2026-07-26, that should shape the whole exploration:** automation has been pushed ahead of system and data maturity, and the system should be built up first. Current working mode is discrete tasks — analyze drawings → build a heater card, done; build a job report, done — and that is the right altitude for now. Nothing gets built without Jesse ruling on it.
 
+---
+
+## Triage done with Jesse at end of session, 2026-07-26
+
+He asked for exactly this — explore the ideas, keep the good, toss the bad. Recorded so the fresh session starts from the verdict rather than re-running it.
+
+**Keep.**
+
+- **Validation — using stats to check whether a value makes sense.** Strongest idea raised. Works at current data volume because catching an outlier needs one distribution, not a hundred points. Best value per unit of effort of anything discussed.
+- **Tube geometry stats.** 32/32 coverage, nothing reads it, no new capture required. Cheapest real value available.
+- **Per-facility and per-job as the aggregation grain.** Matches how Jesse actually bids.
+- **Tracking what the field doesn't track — ranked above the tooling question.** If nobody in this niche records pig consumption against tube ID, or ft/hr by coil condition, and Jesse does, that is a durable asset for bidding and for defending a number to a customer. It outlives whatever tool gets built. Under-weighted during the session; it should probably lead the next one.
+
+**Toss.**
+
+- **Filter press / specific TriMax unit / flow test stats.** The data doesn't exist, and capturing it is permanent friction on every future ingest for dimensions never once needed. Revisit only when something concrete asks.
+- **A single combined dashboard.** The deciding reason is not evidentiary hygiene — it is that a dashboard must be remembered and opened. Jesse's stated pattern is that he does not track triggers, which is why the health dashboard surfaces at session start rather than waiting. Anything requiring him to go look will go unread.
+- **Stats reducing how often Claude must stop and ask.** Mostly wishful. Of the interruptions in this session, only one of four was a data question; the rest were judgment and world-knowledge. Expect maybe a third fewer, not most.
+
+**Genuinely uncertain — needs Jesse, not analysis.** Whether the smart-pig vs non-smart-pig and multi-ID vs single-ID splits would ever actually get used. Both computable today.
+
+## Finding that arrived after this seed was first written
+
+**All five defects were caught by checking a value against a rule, not by reading a distribution.** A pig OD exceeding tube ID + 0.250 · a tube count × length not equalling stated footage · a diameter column holding a length · two spellings of one alloy · a rate not matching its siblings. That is lint, not statistics — which suggests the validation half belongs in `tools/vault_lint.py`, something that already runs unprompted and reports without being asked, rather than in a page someone must open.
+
+**Prerequisite if that route is taken:** the linter currently has noise that would blunt it. Roughly 15 of its 36 warnings come from rule design rather than from anything wrong in the vault. Verified: `vault_lint.py` omits the `sys.stdout.reconfigure(encoding="utf-8")` its three sibling tools all have, so output carries mojibake and bytes that break `grep` and `sort`; `vault_health.py:361` hardcodes the lint-warning row to `flag(True)`, so the count can never signal drift; DEAD-LINK cannot distinguish a wikilink from prose *about* one, producing false positives in `change-log.md`. Design-level: ORPHAN's premise that value equals inbound wikilinks fails for concept files referenced from skills outside the vault (it currently advises archiving `equipment-library.md`) and for terminal artifacts like completed review notes; STATUS-VOCAB rejects five values people naturally reach for, with `closed-unactioned` valid but bare `closed` not. Jesse dropped the fix thread in session — recorded as context, not as a task.
+
 Related: [[idea-pig-actuals-maturation]] (closed — the pig half shipped as `pig_usage_rollup.py`), [[rfq-intake-protocol]] (the deferred cross-quote rate-history rollup, 7 of ~12 quote notes), [[quote-lifecycle]] (why rates get no aggregate stat).
