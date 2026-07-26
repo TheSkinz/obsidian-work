@@ -1,7 +1,9 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-07-25
+related:
+  - "[[2026-07-26-idea-research-pig-actuals-maturation]]"
 tags: [idea, vault-system, future, estimating, schema]
 ---
 
