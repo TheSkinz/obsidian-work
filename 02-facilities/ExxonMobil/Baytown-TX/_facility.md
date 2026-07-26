@@ -48,12 +48,21 @@ to all three Baytown quotes is what exposed DSP25123's bad filtration standby ro
 "no rate schedule found for DSP26039" line is retired: DSP26039 does carry a full schedule. -->
 
 
-**Rates at this site are per-bid, not per-facility.** Baytown bids go through different
-groups and divisions, and competitive pressure varies by bid, so no single row here is
-"the Baytown rate." Each quote note is authoritative for the bid it records; this table
-exists to show the spread and flag outliers, not to be quoted from.
+**These rates are expired, not available.** Two of the three quotes below were short-form
+scope contracts: rates were negotiated for one identified scope, billed during execution,
+and **the contract ended when the scope completed** (Jesse, 2026-07-26). DSP25084's rates
+died with the F-802 turnaround; DSP25123's died with F-901. Only DSP26039 is live, and it
+is still pending. So this table is a record of what was charged and when — useful for
+seeing the spread, spotting an outlier, and knowing your own history going into a
+negotiation. **It is not a rate schedule and nothing here can be quoted from.** The rates
+for the next Baytown bid come from that bid's own contract or bid instructions.
 
-| Line Item | DSP25084 (F-802, 2025-07-15, awarded) | DSP25123 (F-901, 2026-04-06, awarded) | DSP26039 (F-301/F-371A, 2026-04-07, pending) | House standard |
+The one case that would change this is a long-term maintenance agreement, where a
+multi-year contract sets base rates that any scope inside the term inherits. None is
+recorded on this site. See [[quote-lifecycle]] for the contract-type model and the
+`contract-type` / `rate-basis` / `billing-basis` fields on each quote note.
+
+| Line Item | DSP25084 (F-802, 2025-07-15) — **expired** | DSP25123 (F-901, 2026-04-06) — **expired** | DSP26039 (F-301/F-371A, 2026-04-07) — **pending** | House standard |
 |---|---|---|---|---|
 | TriMax Triple — Pigging | $800/hr | $800/hr | $800/hr | $800/hr |
 | TriMax Double — Pigging | $650/hr | $650/hr | — | $650/hr |
@@ -77,12 +86,12 @@ row pulled its $35 up into the filtration standby cell, taking the PM row with i
 $150/hr governs. Filtration was declined before execution, so it never reached an
 invoice. Detail on [[DSP25123]].
 
-**Support Unit $35 on DSP25084 stands as what that awarded contract carried.** $30/hr is
+**Support Unit $35 on DSP25084 stands as what that expired contract carried.** $30/hr is
 the house standard (`04-knowledge/pricing/_cost-model.md`, `usadebusk-estimating`) and is
-what the newer DSP26039 carries. Per Jesse 2026-07-26, $30 will be right for the majority
-of bids, but Baytown is not one buyer — different groups and divisions, different
-competitive positions. Confirm against the governing contract per bid; do not treat any
-row above as a default.
+what DSP26039 carries. Per Jesse 2026-07-26, $30 will be right for the majority of bids —
+but the divergence needs no reconciling, because each figure belonged to a contract that
+set its own rates and then ended. Start from the house standard and take the governing
+figure from this bid's contract or bid instructions.
 
 **4×3 pump basis changed** between DSP25084/25123 ($1,016/shift) and DSP26039 ($85/hr).
 Not reconciled — check which basis the governing contract uses before pricing it.
