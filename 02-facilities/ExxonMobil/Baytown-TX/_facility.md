@@ -4,7 +4,7 @@ facility-id: ExxonMobil-Baytown-TX
 client: ExxonMobil
 city: Baytown
 state: TX
-last-updated: 2026-06-22
+last-updated: 2026-07-26
 tags: [facility, ExxonMobil]
 ---
 
@@ -54,6 +54,21 @@ tags: [facility, ExxonMobil]
 Contracted specifically for PS8 F-802. No rate schedule found for DSP26039
 (F-301/F-371A) — confirm applicability before quoting that job at these rates.
 
+## Contracted Rates — PS8 F-901 (DSP25123 Rev 2, 2026-04-06)
+
+Same schedule as F-802 above, with three differences — all of which look like workbook
+defects rather than deliberate repricing, and none of which should be reused as a rate
+basis until Jesse confirms them:
+
+| Line Item | F-802 (DSP25084) | F-901 (DSP25123) | Read |
+|---|---|---|---|
+| Filtration Standby | $150/hr | $35/hr | ⚠ $115/hr exposure if $35 is wrong |
+| Support Unit | $35/hr | (row absent) | Looks like a deleted row that pulled $35 up into Filtration Standby |
+| Pigging Project Manager | $94.75/hr | (row absent) | Note the facility already bills PM at the Day Supervisor rate — see Labor Rates below |
+
+DSP25123 is the most recent Baytown rate sheet, so it is the one most likely to be
+copied forward. Detail and source lines on [[DSP25123]].
+
 ## Labor Rates — PS8 F-802 (USA26022, quoted vs. actual billed)
 
 | Role               | Quoted ($/hr) | Actual Billed ($/hr) | Notes                                                                                                     |
@@ -76,6 +91,7 @@ standby (98 hrs combined) was not planned in the quote at all.
 ## Heaters at This Facility
 
 - [[F-802]]
+- [[F-901]]
 - [[F-301]]
 - [[F-371A]]
 
