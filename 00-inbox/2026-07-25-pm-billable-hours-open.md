@@ -1,6 +1,6 @@
 ---
 type: note
-status: open
+status: partially-resolved
 created: 2026-07-25
 tags: [inbox, estimating, regression, pricing, lane-4, awaiting-decision]
 related:
@@ -9,6 +9,12 @@ related:
 ---
 
 # How many hours does a billable Project Manager bill? — F1 baseline is wrong, and the vault says so
+
+**RULED 2026-07-25 — Jesse: "A PM is always on dayshift, so it's like any other dayshift employee. Day side."** Written into `usadebusk-estimating` (config `e396ddf`) next to the per-diem-exclusion line, with USA26038's H-20 row as the worked actual and the $1,680 over-quote named so it does not drift back. Verified by replay: the run billed `1 × 24 hrs @ $80.00 = $1,920.00` and stated the rule unprompted.
+
+**F1's frozen baseline is still NOT re-cut, and still bills the PM at 45 hrs.** It could not be promoted on that run, for an unrelated reason: the run rounds the pigging build-up twice (`13.2 → 14`, then `14 × 1.25 = 17.5 → 18`), which `usadebusk-estimating` already forbids — *"round once, at the coil level — do not re-round downstream."* One more ruling closes it. **Does the parallel-friction allowance apply before or after the coil-level round-up?** Frozen applies it to the raw quotient and rounds once (`13.18 × 1.25 = 16.47 → 17`), which never produces a fractional figure needing a second rounding. Recommend writing that order in explicitly. Then one more F1 run, and the re-cut moves the PM line, the max pig OD line, the labor subtotal and the project total together. Detail in `~/.claude/regression/runs/claude-opus-5/f1-proposal-2026-07-25-final.md`.
+
+*(original finding below)*
 
 Surfaced by the F1 replay on 2026-07-25, the first run under the new replay-on-skill-edit trigger.
 Not caused by any rule written that day; the replay just executed a rule nobody had written.
