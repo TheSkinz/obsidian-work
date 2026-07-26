@@ -1,6 +1,6 @@
 ---
 type: idea-seed
-status: researched
+status: complete
 created: 2026-07-25
 related:
   - "[[2026-07-26-idea-research-pig-actuals-maturation]]"
@@ -20,3 +20,19 @@ The second is a **ft-per-pig rollup**, the pig equivalent of `tools/estimating_r
 **To explore:** the trigger is data volume, so the first question is when to look again — the rough figure discussed was three or four heaters carrying real counts, which will accumulate on their own now that ingest writes them. Then: does the ft-per-pig ratio actually hold across bore sizes, or does a 4" coil consume proportionally more or fewer pigs per foot than a 6"? Does condition move it as much as it moves duration? Is a rollup script warranted at all, or does a handful of rows read directly off the cards do the same job without another generated artifact to maintain? And the honest prior question: pig cost ran about 6% of the F1 quote on a line that trues up at invoice, so establish that tightening it clears the ROI bar before building anything.
 
 Background on why the method is deliberately crude, and the two-consumer split between the estimate's 1/4" cost granularity and the field pig load list's 1/8" increments, is in `usadebusk-estimating` under Pig Quantity Estimating. Related: [[idea-orphaned-equipment-rules-proposal-path]].
+
+
+---
+
+**Closed 2026-07-26.** Half of this seed shipped: the ft-per-pig rollup is built as
+`tools/pig_usage_rollup.py` → `04-knowledge/pig-usage-rollup.md`, raw aggregation only —
+no pooled or fitted rate, per Jesse. The seed's own worry ("a formula off one point is a
+formula pretending to be evidence") is answered by not writing a formula: the page shows
+counts and ranges and says what it cannot support. See
+[[2026-07-26-idea-research-pig-actuals-maturation]] for the decision and what the first run
+revealed — condition separates, bore does not, and the two are confounded.
+
+**Still parked, deliberately:** the `Condition` column on Pig Specifications. Its own
+ride-along trigger (next time the card schema is opened for an unrelated reason) is still
+unmet, and the rollup made it less urgent by joining condition from Task Durations on Job #
+instead — same segmentation, no Lane 4 schema change.

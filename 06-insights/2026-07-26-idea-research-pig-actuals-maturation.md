@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -47,10 +47,29 @@ Scheduled nightly run of the Vault Idea Research Loop. Three idea-seeds were `un
 
 ## Decision
 
-- [ ] Approved — build the combined rollup now
-- [ ] Approved with edits
-- [ ] Park — revisit later (state new trigger)
-- [ ] Drop
+- [x] **Approved with edits — raw rollup only, built 2026-07-26** — Jesse
+- [ ] ~~Approved — build the combined rollup now~~
+- [ ] ~~Park — revisit later (state new trigger)~~
+- [ ] ~~Drop~~
+
+**Edit to the recommendation:** step (3), the empirical-Bayes/shrinkage rate by bore and
+condition, was **not** built. Jesse's call was the raw aggregation only — show the data,
+fit nothing — so `tools/pig_usage_rollup.py` computes per-job `ft / pig` as visible
+division and reports counts and ranges by bore and by condition, with no mean and no
+pooled estimate anywhere. Whether shrinkage is worth it is now a better-informed separate
+decision, because the shape of the data is finally visible.
+
+**What the first run shows** (78 actual rows, 14 cards, 4 jobs): condition separates
+cleanly — crash 15–43 ft/pig against routine 41–212 — while bore does not order at all,
+with 6.065" alone spanning 43–212. But the two are **confounded**: the only crash points
+are H-19 and H-20 and both sit at 3.068" bore, so the apparent small-bore effect and the
+crash effect are the same two rows counted twice. Separating them needs a crash job at a
+large bore or a routine job at a small one. That is the real gate on any rate model, and
+it is a data gate, not a method gate.
+
+Steps (1), (2) and (4) went as recommended: the sibling park decision is closed below,
+the script is a fork of `estimating_rollup.py` reusing its parsers, and the Condition
+column stays parked on its own schema-timing trigger.
 
 ## Apply Log
 

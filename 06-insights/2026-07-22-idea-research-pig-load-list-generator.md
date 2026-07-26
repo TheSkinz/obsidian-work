@@ -40,7 +40,14 @@ Scheduled nightly run of the Vault Idea Research Loop. Three idea-seeds were sti
 
 - [ ] ~~Build now — backfill + rollup script as scoped above~~
 - [ ] ~~Approved with edits~~
-- [x] **Park — revisit once more cards have populated Pig Specifications data** — Jesse, 2026-07-22
+- [x] ~~**Park — revisit once more cards have populated Pig Specifications data** — Jesse, 2026-07-22~~
+- [x] **Trigger met and closed 2026-07-26.** Population reached 78 job-sourced pig rows
+  across 14 cards. Decided together with [[2026-07-26-idea-research-pig-actuals-maturation]]
+  exactly as that review advised, so the rollup script was not built twice under two names.
+  This review's own recommended next step — fork `estimating_rollup.py` into a usage rollup
+  over raw `## Pig Specifications` rows — is what shipped: `tools/pig_usage_rollup.py` →
+  `04-knowledge/pig-usage-rollup.md`. The sizing-inference engine this review ruled out was
+  not built and remains ruled out.
 - [ ] ~~Drop~~
 
 ## Apply Log
