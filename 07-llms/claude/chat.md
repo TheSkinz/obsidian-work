@@ -35,3 +35,11 @@ Claude.ai has a native memory layer (separate from the vault memory system). It 
 ## Past-chat search
 
 claude.ai does not have robust search across conversation history. Anything worth keeping from a chat session should be saved to the vault explicitly — either via the `/save` skill or manually.
+
+## The claude.ai skill library is a disconnected second copy
+
+Skills uploaded to the claude.ai skill library (Settings > Capabilities, or Customize > Skills) are a separate upload, not a view onto `~/.claude/skills/` — there is no sync mechanism in either direction. `usadebusk-core` is confirmed active there as of 2026-07-20. This means skill content lives in two disconnected places: the config repo (`~/.claude/skills/usadebusk-*`, maintained, version-controlled, the target of the monthly Skill-Drift Loop) and the claude.ai library (a frozen copy of whatever was uploaded, whenever). A Skill-Drift Loop correction lands in the config repo copy only — if the claude.ai upload predates it, chat/Cowork keeps answering from the stale value, and the loop reports success regardless. The exposure is worse in cloud Cowork specifically: desktop sessions run locally and can cross-check the skill against the vault, cloud sessions have no vault access at all, so a stale skill there just sounds fluent with no vault to catch it.
+
+Nobody has verified how stale the current upload is — that's the first thing to check before designing a fix, since if the upload postdates the most recent drift run this is theoretical. Three unevaluated shapes if it turns out to matter: (1) add a re-upload step to the Skill-Drift Loop's follow-through, (2) treat claude.ai as deliberately thin — upload only `usadebusk-core` as a vocabulary layer, never a source of numbers (the profile instructions already carry a guard along these lines), (3) don't upload skills to claude.ai at all and run chat/Cowork on profile instructions alone. Option 2 is closest to what's live now and needs no new machinery.
+
+Source: Claude Code session, 2026-07-20.

@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — knowledge-system-governance/decision-queue and leverage-repo work owed to the on-demand Agent-Review loop (04-knowledge, 50-dashboards scope). Capture loop cannot write this content. -->
 ---
 type: note
 status: inbox

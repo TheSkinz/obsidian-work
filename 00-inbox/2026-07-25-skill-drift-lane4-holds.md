@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — skill-drift Lane 4 items held for Jesse (04-knowledge, usadebusk-* skill scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: note
 status: open

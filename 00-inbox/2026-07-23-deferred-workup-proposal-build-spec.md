@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — estimating/proposal-generator build-spec handoff (04-knowledge, usadebusk-estimating scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: note
 status: resolved

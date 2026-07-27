@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — quote-note source-file pointer fixes (02-facilities, rfq-intake-protocol scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: task
 status: resolved

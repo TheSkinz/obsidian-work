@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — quote-file pricing-block defect and fix record (02-facilities, estimating scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: capture
 status: resolved

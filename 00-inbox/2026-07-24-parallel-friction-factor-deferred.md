@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — duration-model pricing question, Lane 4 (04-knowledge scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: note
 status: inbox

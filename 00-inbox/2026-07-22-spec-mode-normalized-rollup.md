@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — estimating rollup / heater-card schema change record (04-knowledge, Lane 4 scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: spec
 status: resolved

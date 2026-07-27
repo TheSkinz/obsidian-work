@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — estimating-actuals-rollup observations and open audit threads (04-knowledge scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: note
 status: inbox

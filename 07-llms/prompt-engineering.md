@@ -20,6 +20,10 @@ Principles and patterns for getting reliable, high-quality output from LLMs. Thi
 
 **LLMs cannot reliably audit their own output.** This is the confabulation finding from [[gem-drawing-extraction]] but it applies universally: asking a model to check its own work produces confident explanations of what it *should* have done, not accurate descriptions of what it *did* do. Human review or a separate model pass is the only reliable check.
 
+**Verify inputs, not outputs — the two "double-check" shapes are not the same redundancy.** A stronger model's tendency to reconcile its own arithmetic unprompted makes an instruction like "re-check your own output" genuinely redundant — but it does *not* make "verify a premise against its authoritative source" redundant, because that is checking an input, not re-doing already-completed work. A 2026-07-24 review of two skills (`adversarial-review`, `idea-triage`) that were flagged as carrying redundant self-verification scaffolding found neither actually did — both carried input-verification and honesty-guard instructions (a VERIFIED/ASSERTED tagging discipline against agreement-mistaken-for-verification, a prior-art check before dismissal, an anti-fabrication guard), none of which a stronger model's self-correction touches. The review that raised the original flag was itself an instance of the failure it described — a confident summary written *about* the skills rather than derived from reading them, and wrong. Drop "verify your output," keep "verify your inputs."
+
+Source: Claude Code session, 2026-07-24.
+
 ## Pattern catalog
 
 **Dependency-tree interview pattern** (analyzed via the `grilling` skill from aihero.dev, not built here). A clarifying-questions instruction degenerates into either a wall of questions or premature agreement unless it's constrained by two specific splits: (1) primitive vs. wrapper — one battle-tested interrogation skill that thin, purpose-specific wrappers invoke, so the technique isn't reinvented per use case; (2) verify vs. ask — the agent checks anything it can confirm itself from available context and only asks about genuine decisions. On top of that: one question at a time (not a batch), the plan modeled as a dependency tree so an early answer reshapes later questions, every question shipped with the agent's own recommended answer (so obvious ones get rubber-stamped and only real disagreements slow things down), and a hard gate — no implementation until shared understanding is confirmed. Candidate fit for USADeBusk work: locking an RFQ/heater-card scope or an SOP's decision branches before drafting, both dependency-tree-shaped problems where premature agreement is the known failure mode.
@@ -35,6 +39,10 @@ Source: Claude Code session a28ed43f, 2026-07-20; corrected same-day after check
 ## Anti-patterns
 
 (Placeholder — add observed failure modes here. Format: what goes wrong, why, what to do instead.)
+
+**Regression fixtures find more value as a rule audit than a drift detector.** A fixture battery built to answer "did the new model break anything" (a model-transition trigger) turned out to be far more valuable at exposing defects in the rules being tested against than in the model — four of six fixtures in one battery caught a rule that was implicit, internally inconsistent, or contradicted by a real actual, none of them model regressions: a rule the skill already stated but the frozen baseline violated, a benchmark being read at the wrong granularity by the whole suite, and a wording precedence defect introduced by an unrelated same-day fix. Why this happens: a fixture forces a rule to be *executed* rather than read, and rules that survive any number of readings fail the moment something has to produce a number from them. The implication for trigger design: replay fixtures after any substantive skill edit (one that changes an output number, adds/removes a rule, or resolves an ambiguity — not a typo or reword), not only on model change — a replay run for an unrelated reason caught a real defect in its own baseline on first use under this trigger.
+
+Source: Claude Code session, 2026-07-24, adopted 2026-07-25.
 
 ## Decision rules
 

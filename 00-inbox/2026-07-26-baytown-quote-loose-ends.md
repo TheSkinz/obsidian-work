@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — Baytown quote-note field backfill and rate-basis reconciliation (02-facilities scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: note
 status: open

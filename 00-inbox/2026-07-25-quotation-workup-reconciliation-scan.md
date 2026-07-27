@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — quotation-vs-workup reconciliation audit and generator defects, Lane 4 (02-facilities, usadebusk-estimating scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: note
 status: open

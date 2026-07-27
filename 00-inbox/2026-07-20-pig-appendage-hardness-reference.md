@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — pig-equipment reference data, candidate home usadebusk-equipment (04-knowledge scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: note
 status: unfiled

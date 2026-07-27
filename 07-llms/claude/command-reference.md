@@ -56,6 +56,12 @@ next turn** and **what stops it**. Pick by that.
 - **Scheduled tasks / `schedule` skill** — your five vault loops. Use when the work
   should run with no terminal open at all.
 
+## 1b. Brainstorm before building, without leaving Claude Code
+
+**Plan Mode** is a built-in permission mode that physically disables file edits — Claude can read, search, and reason, but not write, until you approve a presented plan. Cycle to it with **Shift+Tab** (it rotates through the permission modes until "plan mode" shows). This is the concrete answer to "I want to fully strategize/brainstorm before any code touches disk" — a stronger guarantee than just framing a session as "brainstorm only," because the tool can't jump to implementation even if it leans that way by default. Pairs with the global CLAUDE.md instruction to infer session mode silently — naming the mode explicitly (or entering Plan Mode) makes it firm instead of inferred.
+
+Source: Claude Code session, 2026-07-22.
+
 ## 2. Vault maintenance
 
 - **`consolidate-memory`** (skill) — cleans the `~/.claude` **memory index** (merge
@@ -74,7 +80,15 @@ Skills auto-fire when a matching file type is the input/output; you rarely invok
 
 - **`docx` / `xlsx` / `pdf` / `pptx`** — Word / Excel / PDF / PowerPoint. Windows
   gotcha: build with `NODE_PATH=<global>`; call `soffice.exe` directly (the skill's
-  `soffice.py` wrapper crashes on Windows). See the docx memory.
+  `soffice.py` wrapper crashes on Windows). See the docx memory. Root cause: the
+  wrapper's `run_soffice()`/`get_soffice_env()` helper probes `socket.AF_UNIX` to
+  decide whether it needs an `LD_PRELOAD` shim for blocked Unix sockets — a
+  Linux-sandbox-only code path. On Windows `socket` has no `AF_UNIX` attribute, so
+  it throws immediately, before `soffice` ever runs, with no fallback. Confirmed
+  vendored plugin code (anthropic-agent-skills), not vault/claude-config content —
+  not obviously ours to patch; report upstream if it starts silently skipping
+  document verification rather than patch locally. See [[windows-config]] for the
+  Poppler/LibreOffice/Pandoc toolchain this was found while installing.
 - **`dataviz`** — read before writing *any* chart/graph/dashboard, in any medium.
 - **`theme-factory`** — apply a consistent theme to an artifact (slides, docs, HTML).
 

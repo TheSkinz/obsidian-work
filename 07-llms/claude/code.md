@@ -110,6 +110,12 @@ A skill's `description:` field is resident in every session's skill listing rega
 
 Source: `/doctor` pass, 2026-07-19.
 
+## Clean bill of health, one dead plugin
+
+A follow-up `/doctor` pass (2026-07-24, scan window 50 sessions / 5.6 days) found the setup otherwise clean: single npm-global install, no duplicate launchers, all config parses, auto mode already default, ~1.7k resident tokens across all always-loaded memory/skills. The one actionable item — the `document-skills` plugin was installed but had a single lifetime use and zero uses in the scan window — was removed the same session (`installed_plugins.json` emptied, the stale `enabledPlugins` entry in `settings.json` cleaned up). The `anthropic-agent-skills` marketplace stays registered, so the plugin is one `claude plugin install document-skills@anthropic-agent-skills` away if needed again.
+
+Source: `/doctor` pass, 2026-07-24.
+
 ## Links
 
 - Config repo: https://github.com/TheSkinz/claude-config
