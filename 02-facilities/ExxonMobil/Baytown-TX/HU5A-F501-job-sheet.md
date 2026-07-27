@@ -113,14 +113,11 @@ Operator / Night Operator Amt is combined man-hours (Qty × per-person shift hou
 **Three things to watch on the receipts:**
 
 1. **Filter Unit is quoted 24 hrs active + 24 hrs stand-by**, not 48 hrs active. Key filtration
-   hours to the right line — active $200/hr, stand-by is quoted at $35/hr (see the flag below).
+   hours to the right line — active $200/hr, stand-by **$35/hr**. That $35 is the awarded contract
+   rate on this job, not the house $150 — bill it as written.
 2. **Crew Truck bills at qty 1 / 48 hrs** even though the execution plan mobilizes 2 crew trucks.
    That is what was quoted; a second truck's hours are not covered.
 3. **DEF is quoted at qty 0** — it appears in the line description but is not billed on this scope.
-
-⚠ **Filter Stand-by is quoted at $35/hr; house standard is $150/hr.** Same template error
-documented on [[_facility]] for DSP25123. Over 24 quoted standby hours that is $840 instead of
-$3,600 — a $2,760 gap. If filtration standby actually gets billed, raise it before it invoices.
 
 ---
 
@@ -152,6 +149,14 @@ Full tube geometry, config rollup, circuit mapping, and SOP detail: [[F-501]].
 | 1 | A + B (conv + rad) | Radiant outlets A & B | ~1,576 ft | Left |
 | 2 | C + D (conv + rad) | Radiant outlets C & D | ~1,576 ft | Center |
 | 3 | Treat Gas | TG inlet & outlet | 301 ft | Right |
+
+**All three circuits are cleaned simultaneously** — one TriMax in triple mode, one pump per
+circuit, running concurrently. Not sequential.
+
+⚠ The SOP PDF in `Job docs\` is **REV 1 and describes Phase II as sequential** — that language
+is left over from a superseded scope and is wrong. REV 2 is pending. If the crew is working from
+the REV 1 PDF, tell them the sequencing prose is stale; the circuit mapping and pump assignments
+in it are correct.
 
 ---
 
