@@ -102,6 +102,14 @@ figure from this bid's contract or bid instructions.
 **4×3 pump basis changed** between DSP25084/25123 ($1,016/shift) and DSP26039 ($85/hr).
 Not reconciled — check which basis the governing contract uses before pricing it.
 
+**DSP26071.2 (HU5A F-501) is won and live as of 2026-07-27** — the first live rate set on this
+site. Not yet added as a column above; that widening is pending. Its schedule matches the house
+standard on every line except one: **Filter Stand-by is quoted at $35/hr again.** This is the
+same error diagnosed on DSP25123 and it recurred on a bid that has now been awarded, so it is
+live in a client-facing rate table rather than dead with a declined option. 24 standby hours are
+quoted — $840 at $35 vs $3,600 at the $150 house standard. See [[DSP26071]]. The recurrence
+means the source template still carries the bad cell; fixing the template is the durable fix.
+
 ## Labor Rates — PS8 F-802 (USA26022, quoted vs. actual billed)
 
 | Role               | Quoted ($/hr) | Actual Billed ($/hr) | Notes                                                                                                     |
@@ -127,6 +135,7 @@ standby (98 hrs combined) was not planned in the quote at all.
 - [[F-901]]
 - [[F-301]]
 - [[F-371A]]
+- [[F-501]] — HU5A
 
 ---
 
