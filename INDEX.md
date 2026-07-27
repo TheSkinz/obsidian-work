@@ -67,6 +67,8 @@
 - [[_facility]] — Valero — Port Arthur, TX `(Valero/Port-Arthur-TX)`
 - [[H-102A]] — H-102A Vacuum Heater — Valero Port Arthur, TX `(Valero/Port-Arthur-TX)`
 - [[H-102B]] — H-102B Vacuum Heater — Valero Port Arthur, TX `(Valero/Port-Arthur-TX)`
+- [[_facility]] — Westlake South — Westlake, LA `(Westlake South/Westlake-LA)`
+- [[TE-II]] — TE-II EDC Pyrolysis Furnace — Westlake South, Westlake, LA `(Westlake South/Westlake-LA)`
 
 ## Knowledge
 
