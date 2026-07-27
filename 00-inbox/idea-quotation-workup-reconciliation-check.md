@@ -1,8 +1,10 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-07-25
 tags: [idea, estimating, data-quality, audit, future]
+related:
+  - "[[2026-07-27-idea-research-quotation-workup-reconciliation-check]]"
 ---
 
 # Standing quotation-vs-workup reconciliation check
