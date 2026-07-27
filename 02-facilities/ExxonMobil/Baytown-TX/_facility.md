@@ -37,6 +37,21 @@ tags: [facility, ExxonMobil]
 
 ## Site Safety and Procedures
 
+**SOPs are a bid-stage deliverable only.** ExxonMobil Baytown requires the execution SOP as part
+of the bid package, where its purpose is to give their engineers enough detail to evaluate the
+approach. Once the bid is awarded, **the SOP does not need to be reissued** — scope changes that
+land after award do not obligate a REV 2. (Jesse, 2026-07-27, on HU5A F-501: the awarded scope
+moved to simultaneous triple-mode cleaning after SOP REV 1 went out describing sequential
+execution, and no revision was required.)
+
+Consequence worth knowing: a Baytown SOP in `Job docs\` can legitimately describe a superseded
+scope. Do not read it as the execution authority, and do not treat a stale SOP here as an open
+action item. Verify the config against the job sheet and heater card instead.
+
+**PSSR training is required on some Baytown jobs and is held inside the gate** — a site badge
+must be issued before crew can attend. Sequence: badge → gate access → PSSR → work. Confirm per
+job whether PSSR applies; it is on top of the standard site-specific training.
+
 ---
 
 ## Rate History — Baytown

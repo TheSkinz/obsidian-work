@@ -153,10 +153,11 @@ Full tube geometry, config rollup, circuit mapping, and SOP detail: [[F-501]].
 **All three circuits are cleaned simultaneously** — one TriMax in triple mode, one pump per
 circuit, running concurrently. Not sequential.
 
-⚠ The SOP PDF in `Job docs\` is **REV 1 and describes Phase II as sequential** — that language
-is left over from a superseded scope and is wrong. REV 2 is pending. If the crew is working from
-the REV 1 PDF, tell them the sequencing prose is stale; the circuit mapping and pump assignments
-in it are correct.
+⚠ The SOP PDF in `Job docs\` is **REV 1 and describes Phase II as sequential** — left over from a
+superseded scope. It is a bid deliverable that Baytown does not require reissued after award, so
+it stays as-is. **This job sheet and [[F-501]] are the execution authority on configuration, not
+the SOP.** If anyone is working from the REV 1 PDF, tell them the sequencing prose is stale; the
+circuit mapping, pump assignments, travel paths, and operating parameters in it are all correct.
 
 ---
 
