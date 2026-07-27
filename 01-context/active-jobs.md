@@ -29,5 +29,6 @@
 
 | Quote # | Facility | Scope | Value | Submitted | Valid Through |
 |---------|----------|-------|-------|-----------|---------------|
+| [[DSP26095]] | Westlake South, Westlake LA | Sept. 2026 decoke — H-101 (TE II) EDC furnace, 2 passes; 1 TriMax, filtration | Not yet priced — no rates on file | Not submitted | Not set |
 | [[DSP26080]] | HF Sinclair Navajo, Artesia NM | Feb. 2027 outage — H-2421, H-30 & H-2501; 1 Trimax, filtration, 4×3 diesel pump | T&M + LS mob/demob; no total quoted | Date not recorded | Not recorded |
 | DSP26039 | ExxonMobil Baytown, TX | 2027 TA — HU9 F-301 & F-371A, 1 truck, T&M | $76,873.00 | 2026-04-07 | 2027-04-07 |

@@ -77,8 +77,8 @@ and recorded on the quote note that uses them.
 ## Notes
 
 **2026-07-27 — RFQ received.** Furnace decoke, TE-II (plant equipment no. 71-1686), Tri-Ethane
-unit. Execution window flexible, 2026-08-31 to 2026-09-07. Quote # pending — assigned by the
-quote-log owner, not derived here.
+unit. Execution window flexible, 2026-08-31 to 2026-09-07. Quoted as [[DSP26095]] (number
+assigned 2026-07-27 by the quote-log owner).
 
 Document set for this site, in order of authority (ruled by Jesse 2026-07-27):
 
