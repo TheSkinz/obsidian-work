@@ -76,9 +76,8 @@ sheet and must be added at execution.
 | Heater total | Radiant | 5.875 | 52 | 1,222.0 | 2 radiant coil assemblies, 1 per pass (drawing LH936-E102: "One Radiant Coil Assembly, 2 Req'd/Furnace") |
 | Heater total | **All sections** | 4.625 / 5.875 | **100** | **2,706.0** | 2 individual passes, no loop arrangement recorded |
 
-> **The estimating base is a subset of this table — see ⚠ Pigging Scope below.** Scope is
-> "the two process coils" (Jesse, 2026-07-27), which is fewer than all three sections. Do not
-> multiply off the All-sections rows until scope is pinned.
+> **Estimating base = the All-sections rows.** Scope confirmed 2026-07-27 as the two passes in
+> full, all three sections: 1,353.0 ft per circuit, 2,706.0 ft heater total.
 
 ---
 
@@ -90,7 +89,7 @@ sheet and must be added at execution.
 | Receiver flange | 6" 300# RFWN — same basis. |
 | USADeBusk-supplied spools | **4× 6" 300# × 6" 300# RFWN 90° spools, two per pass** (2024 bid note). Goes in the proposal's Section 8 provided-items list. |
 | Water supply source | (not recorded) |
-| Max pig OD (in) | Scope-dependent — **6.125"** if radiant only (5.875 + 0.250); **4.875"** if any 4.625" convection section is in the pig path (4.625 + 0.250). Both land exactly on a 1/8" size, no round-down needed. Resolve with Pigging Scope below. |
+| Max pig OD (in) | **4.875"** — governing ID is the 4.625" convection (4.625 + 0.250; lands exactly on a 1/8" size, no round-down). Radiant taken alone would allow **6.125"**, which is the basis of the under-sizing issue in Pigging Scope below. |
 
 **OEM data sheet says otherwise, and is superseded.** Sheet 3 line 129 records "Flange: size and
 rating — NONE" on all three sections, with all terminals bevelled and welded (radiant 6.5" ×
@@ -99,10 +98,10 @@ spool requirement is evidence the connections were flanged to 6" 300# RFWN somet
 Recorded both ways deliberately — the 1989 sheet is the source of record, the 2024 note is the
 later field evidence.
 
-**The 6"/6" symmetry is itself a scope clue.** A spool flanged 6" 300# on *both* ends fits the
-radiant terminals (6.5" OD, 5.875" derived ID) at both launch and receive. It does not fit a
-launch at the liquid preheat inlet, which the data sheet puts at 4" Sch 40. That points toward
-the pig path running radiant-only, or at least not starting at the liquid preheat — see below.
+**The 6"/6" symmetry does not reconcile with the 1989 terminal sizes.** A spool flanged 6" 300#
+at both ends fits the radiant terminals (6.5" OD) but not the liquid preheat inlet, which the
+sheet puts at 4" Sch 40 — and the confirmed scope launches there. See the connection-size note
+under Pigging Scope.
 
 **Crossover:** two per furnace, external, welded, Incoloy 800H, 5.25" × 5/16", no flange rating.
 Data sheet Note (6): *"Radiant inlet has concentric reducer from 5.25" OD crossover to 6.5" OD
@@ -111,25 +110,38 @@ size transition point in the pig path and it sits in **external piping**, not in
 
 ---
 
-## ⚠ Pigging Scope — UNRESOLVED
+## Pigging Scope — RESOLVED
 
-Jesse, 2026-07-27: **"We are only pigging the two process coils."** The restrictive *only* means
-this is a subset of the three coil sections, not all of them, so the heater-total footage above
-is not the estimating base. Three readings, and they differ by more than 2×:
+Jesse, 2026-07-27: **"the two process coils"** = the two passes **in full**. All three coil
+sections are in the pig path, in flow order — Liquid Preheat → Shock/Vaporization → crossover
+(concentric reducer) → Radiant.
 
-| Reading | Sections in pig path | Circuits | Ft / circuit | Total ft |
-|---|---|---|---|---|
-| A — radiant only | Radiant | 2 | 611.0 | **1,222.0** |
-| B — radiant + shock/vap | Shock/Vap → crossover → Radiant | 2 | 982.0 | **1,964.0** |
-| C — full pass | Liq Preheat → Shock/Vap → crossover → Radiant | 2 | 1,353.0 | **2,706.0** |
+**Estimating base: 2 circuits × 1,353.0 ft = 2,706.0 ft heater total.** This is the All-sections
+row of Config Rollup; use it directly.
 
-Reading A is best supported: 4 spools at 2 per pass = one launch and one receive per circuit,
-both flanged 6" 300#, which matches the 6.5" OD radiant terminals at both ends and does not
-match the 4" Sch 40 liquid preheat inlet. Reading A also keeps a single tube ID in the pig path,
-removing the size-transition sequencing at the crossover reducer.
+### ⚠ Two tube IDs on one continuous circuit — raise before pricing
 
-**Not resolved here — this sets footage, pig sizing, and duration, so it is an ask, not a
-derive.** The 2024 bid package will likely settle it outright; recover it before assuming.
+The path carries 4.625" ID for 742 ft (both convection sections), then steps up to 5.875" ID for
+611 ft (radiant) at the crossover reducer. That creates a cleaning problem, not just a
+sequencing one:
+
+- A pig sized for the convection maxes at **4.875" OD**. Run end-to-end, it arrives in the
+  radiant **~1" undersize** and will not clean the 5.875" bore.
+- Cleaning the radiant properly needs pigs up to **6.125" OD**, which cannot pass the convection.
+- So the radiant needs its own launch/receive at the crossover — but the 1989 sheet records the
+  crossover as **welded, not flanged** (Incoloy 800H, 5.25" × 5/16", external, no flange rating).
+
+Either the crossover has been flanged since 1989, or the radiant gets under-sized pigs, or the
+break happens somewhere else. **Unresolved — ask Westlake, and check the 2024 bid package.**
+This also bears on the spool count: 4 spools at 2 per pass covers one launch and one receive per
+circuit, which is a straight-through path with no crossover break. A crossover break would want
+8, not 4.
+
+### Connection-size inconsistency to confirm
+
+Launching at the liquid preheat inlet implies a 6" 300# RFWN connection there, but the 1989
+sheet puts that terminal at **4" Sch 40** (bevelled). Likely re-flanged, or the spool lands on
+larger inlet header piping upstream of the tube terminal. Confirm at the job walk.
 
 ---
 
@@ -245,8 +257,10 @@ has occurred. Do not infer a tier from heater size.
 
 ### Open items
 
-**Gating — pigging scope.** Which sections are in the pig path (readings A/B/C above). Sets
-footage, pig sizing, and duration. The 2024 bid package is the fastest route to an answer.
+**Gating — how the radiant gets full-size pigs.** Scope is settled (full pass, 2,706 ft), but
+the 4.625" → 5.875" ID step means a convection-legal 4.875" pig cannot clean the radiant. Needs
+a crossover break, a flanged crossover, or a customer decision to accept under-sized pigs in the
+radiant. See Pigging Scope. Drives spool count (4 vs. 8), pig load list, and hours.
 
 **Rates.** No active contract at this site. Jesse will construct rates and input them later
 (2026-07-27) — do not populate from the generic baseline table in the meantime, and do not
