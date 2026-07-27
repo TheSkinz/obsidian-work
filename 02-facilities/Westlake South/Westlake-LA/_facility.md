@@ -70,14 +70,25 @@ and recorded on the quote note that uses them.
 
 ## Heaters at This Facility
 
-- [[TE-II]]
+- [[H-101]] — H-101 TE II EDC Furnace (aka TE-II, 71-1686)
 
 ---
 
 ## Notes
 
 **2026-07-27 — RFQ received.** Furnace decoke, TE-II (plant equipment no. 71-1686), Tri-Ethane
-unit. Execution window flexible, 2026-08-31 to 2026-09-07. Received documents: 1989 Selas Fluid
-Processing fired heater data sheet (SFPC Job 89S-7016-0936, Rev. 2 4/12/89) plus convection and
-radiant coil arrangement drawings. Jesse confirmed 2026-07-27 that the coil is still as-built to
-this data sheet. Quote # pending — assigned by the quote-log owner, not derived here.
+unit. Execution window flexible, 2026-08-31 to 2026-09-07. Quote # pending — assigned by the
+quote-log owner, not derived here.
+
+Document set for this site, in order of authority (ruled by Jesse 2026-07-27):
+
+1. **Governing — Selas 1976 as-built drawings**, job 7603-4939, PPG equip. 69A-71-1686, both
+   stamped Certified for Construction: `LH936-E10 rev 3` (convection coil arrangement, includes
+   crossovers E10A/E101B) and `LH936-E2 rev 4` (radiant coil arrangement, 2 req'd per furnace).
+   Landed in the RFQ folder as `OneDrive_1_7-27-2026/`.
+2. **Superseded for geometry, retained as historical** — Selas fired heater data sheet
+   SFPC Job 89S-7016-0936 Rev. 2 (1989-04-12), a separate procurement under PO 524485.
+
+The two sets agree exactly on the convection and disagree only on the radiant, in a pattern that
+looks like a radiant-only re-tube. Detail is on [[H-101]] under *Document conflict* — read it
+before ordering pigs for this heater.
