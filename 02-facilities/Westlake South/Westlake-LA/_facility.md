@@ -10,10 +10,15 @@ tags: [facility, Westlake-South]
 
 # Westlake South — Westlake, LA
 
-> **New to this vault, not new to USADeBusk.** Prior Westlake work exists outside the vault
-> (SharePoint / OneDrive estate). Before pricing anything here, find the prior quotes — the
-> governing contract, rate basis, and third-party markup tier come from there, not from this
-> card and not from the generic baseline table.
+> **New to this vault, not new to USADeBusk.** USADeBusk bid TE-II here in **2024 and lost**.
+> That package sits outside the vault and has not been located — recovering it is the top
+> open action for this site.
+
+> **No active contract — rates are being constructed.** Jesse confirmed 2026-07-27 that there
+> is no live contract at Westlake South, so rates for the current bid will be built rather than
+> read off a contract, and will be input later. Do not populate from the generic baseline table,
+> and do not carry a third-party markup tier until Jesse sets one. Whatever rates the 2024 bid
+> carried are context for what lost, not a basis to reuse.
 
 > **Naming:** the customer rep's signature refers to this site as **Westlake South**, and that
 > is the canonical client spelling for both this vault and the OneDrive estate folder
