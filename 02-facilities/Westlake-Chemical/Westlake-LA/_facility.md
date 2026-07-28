@@ -25,6 +25,13 @@ tags: [facility, Westlake-South]
 > (`Westlake South Westlake LA`). Site was formerly PPG Industries Inc. — original OEM
 > documents are issued to PPG and to "Lake Charles, LA." Same site; do not create a second
 > facility record under PPG or Lake Charles.
+>
+> **Two tiers (added 2026-07-27, Jesse's call).** The company tier above this site is
+> **Westlake Chemical**, alongside Geismar LA and Plaquemine LA — in the vault at
+> `02-facilities/Westlake-Chemical/Westlake-LA/` and in the estate at
+> `Facilities\Westlake Chemical\Westlake South Westlake LA\`. The site spelling above is
+> unchanged and still canonical; only the parent was added. This is intentional, not drift —
+> `client:` stays **Westlake South** because that is what the customer rep signs with.
 
 ---
 

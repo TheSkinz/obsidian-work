@@ -80,9 +80,9 @@
 - [[_facility]] — Valero — Port Arthur, TX `(Valero/Port-Arthur-TX)`
 - [[H-102A]] — H-102A Vacuum Heater — Valero Port Arthur, TX `(Valero/Port-Arthur-TX)`
 - [[H-102B]] — H-102B Vacuum Heater — Valero Port Arthur, TX `(Valero/Port-Arthur-TX)`
-- [[_facility]] — Westlake South — Westlake, LA `(Westlake South/Westlake-LA)`
-- [[DSP26095]] — DSP26095 — Westlake South H-101 (TE II) EDC Furnace Decoke, September 2026 `(Westlake South/Westlake-LA)`
-- [[H-101]] — H-101 TE II EDC Furnace — Westlake South, Westlake, LA `(Westlake South/Westlake-LA)`
+- [[_facility]] — Westlake South — Westlake, LA `(Westlake-Chemical/Westlake-LA)`
+- [[DSP26095]] — DSP26095 — Westlake South H-101 (TE II) EDC Furnace Decoke, September 2026 `(Westlake-Chemical/Westlake-LA)`
+- [[H-101]] — H-101 TE II EDC Furnace — Westlake South, Westlake, LA `(Westlake-Chemical/Westlake-LA)`
 
 ## Knowledge
 

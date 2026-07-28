@@ -23,10 +23,10 @@ Follow-up investigation for the Syncrude job-number contradiction. The inbox not
 
 | Evidence | Supports | Notes |
 |---|---|---|
-| `OneDrive/USADeBusk/Facilities/Syncrude Fort McMurray AB/Jobs/CND25004 2025-09/` | CND25004 | Dedicated Syncrude job folder uses `CND25004 2025-09`. |
+| `OneDrive/USADeBusk/Facilities/Syncrude\Syncrude Fort McMurray AB/Jobs/CND25004 2025-09/` | CND25004 | Dedicated Syncrude job folder uses `CND25004 2025-09`. |
 | `CND25004 Syncrude Fort McMurray 7-2 F-1 Heater Job Report.docx` | CND25004 | Source DOCX filename uses CND25004. |
 | DOCX internal text search | CND25002 body defect | Bundled text extraction found `CND25004` 0 times and `CND25002` 1 time inside the document body. |
-| `OneDrive/USADeBusk/Facilities/NWR Redwater AB/CND25002 NWR Final Tickets.pdf` and related history files | CND25002 belongs to NWR | Separate NWR Redwater source trail uses CND25002. |
+| `OneDrive/USADeBusk/Facilities/North West Redwater\NWR Redwater AB/CND25002 NWR Final Tickets.pdf` and related history files | CND25002 belongs to NWR | Separate NWR Redwater source trail uses CND25002. |
 | Vault `change-log.md` line for 2026-05-21 | CND25004 routing | Existing ingest log says CND25004 was held in inbox because Syncrude was not scaffolded. |
 
 ## Interpretation
