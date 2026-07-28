@@ -89,12 +89,33 @@ Use it explicitly rather than leaving a cell blank, so a missing fact is disting
 an unfilled-in card.
 -->
 
-| Section | Arrangement | Metallurgy | OD (in) | Sched | Wall (in) | ID (in) | Tubes/Circuit | Avg Length (ft) | Length/Circuit (ft) | Return Bend Type | Notes |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| Convection | Horizontal | <e.g. A106 Gr.B> | | | | | | | | <e.g. 180° U-bend A234 WPB> | |
-| Radiant <add suffix if multi-segment, e.g. "Radiant — segment 1 of N"> | <Horizontal/Vertical — required> | | | | | | | | | | |
+| Section | Arrangement | Metallurgy | OD (in) | Sched | Wall (in) | ID (in) | Tubes/Circuit | Avg Length (ft) | Length/Circuit (ft) | Return Bend Type |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Convection | Horizontal | <e.g. A106 Gr.B> | | | | | | | | <e.g. 180° U-bend A234 WPB> |
+| Radiant <add suffix if multi-segment, e.g. "Radiant — segment 1 of N"> | <Horizontal/Vertical — required> | | | | | | | | | |
 
 <!-- Add additional Radiant rows in flow order for multi-segment radiant sections. -->
+
+**Tube geometry notes.**
+
+**<Section — exactly as written in the table's first column>.** <Provenance, confirmation
+reasoning, or dimensional caveat for that row.>
+
+<!--
+NO Notes COLUMN (changed 2026-07-27, Jesse). The table is 11 columns and carries atomic
+values only. Anything explanatory — how a tube count was confirmed, which drawing a length
+came from, why a schedule looks odd — goes in the keyed block directly above this comment,
+one paragraph per row, led by the Section name exactly as it appears in column 1.
+
+Why: a 12th prose column pushed the table past the render width, so it scrolled sideways and
+squeezed every numeric column. 75 notes across 39 cards were moved out on 2026-07-27; the
+text was relocated verbatim, not rewritten.
+
+This is NOT Field Notes. Field Notes is the per-job operational record (pigs ran, obstacles,
+facility procedures) and is scoped to a job number. Tube geometry notes are card-level facts
+about the tubing itself and do not belong there. Omit the block entirely when no row needs one.
+-->
+
 
 ---
 

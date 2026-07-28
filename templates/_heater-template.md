@@ -41,12 +41,19 @@ tags: [heater-card, <Client>, <heater-type>]
 
 <!-- One row per physical segment in flow order; per-circuit values, never totals.
      Metallurgy and Return Bend Type are PER-SECTION. Radiant arrangement has no default —
-     state explicitly or "(not recorded)". -->
+     state explicitly or "(not recorded)".
+     NO Notes column (2026-07-27) — atomic values only. Explanatory text goes in the keyed
+     block below, one paragraph per row, led by the Section name from column 1. Delete the
+     block if no row needs one. Not Field Notes: that is the per-job record. -->
 
-| Section | Arrangement | Metallurgy | OD (in) | Sched | Wall (in) | ID (in) | Tubes/Circuit | Avg Length (ft) | Length/Circuit (ft) | Return Bend Type | Notes |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| Convection | Horizontal | | | | | | | | | | |
-| Radiant | | | | | | | | | | | |
+| Section | Arrangement | Metallurgy | OD (in) | Sched | Wall (in) | ID (in) | Tubes/Circuit | Avg Length (ft) | Length/Circuit (ft) | Return Bend Type |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Convection | Horizontal | | | | | | | | | |
+| Radiant | | | | | | | | | | |
+
+**Tube geometry notes.**
+
+**<Section>.** <provenance / confirmation reasoning / dimensional caveat>
 
 ---
 
