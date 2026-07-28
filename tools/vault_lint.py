@@ -17,11 +17,15 @@ Rules (code | severity):
     SUPERSEDED      warning  note declares superseded_by but is still marked live
     DURATIONS-HEADER warning heater-card Task-Durations header off the canonical schema
     POINTER-DEAD    warning  recorded absolute source path no longer resolves
+    YAML-COMMENT    error    unquoted frontmatter value silently truncated by a ` #` comment
 
-Only SECRET and CONF-CONFLICT are errors (exit 1). Everything else is a
-warning so the vault is never "failing" for want of a bulk backfill —
-warnings are the to-do list, errors are the stop-the-line list. New lint
-rules require a fixture under tools/fixtures/ (no fixture, no rule).
+Only SECRET, CONF-CONFLICT and YAML-COMMENT are errors (exit 1). Everything
+else is a warning so the vault is never "failing" for want of a bulk backfill —
+warnings are the to-do list, errors are the stop-the-line list. YAML-COMMENT
+earns error status because it is silent data loss, not a backfill: the value
+is already gone from Obsidian and from every script, and the fix is one pair
+of quotes. New lint rules require a fixture under tools/fixtures/ (no fixture,
+no rule).
 
 Usage:
     python tools/vault_lint.py               lint the vault, print findings
@@ -132,7 +136,7 @@ MD_TABLE_SEP_RE = re.compile(r"^\|[\s|:\-]*-[\s|:\-]*$")  # the |---|---| divide
 POINTER_DIRS = ("02-facilities",)
 POINTER_RE = re.compile(r"`((?:[A-Za-z]:\\|/)[^`\n]{3,})`")
 
-ERROR_CODES = {"SECRET", "CONF-CONFLICT"}
+ERROR_CODES = {"SECRET", "CONF-CONFLICT", "YAML-COMMENT"}
 
 
 class Finding:
@@ -422,6 +426,67 @@ def check_durations_header(root: Path, notes: dict[Path, str]) -> list[Finding]:
     return findings
 
 
+def check_yaml_comment(root: Path, notes: dict[Path, str]) -> list[Finding]:
+    """YAML-COMMENT: an unquoted frontmatter value YAML will not read as written.
+
+    Two failure modes, both from writing prose into an unquoted scalar:
+
+      ` #`  truncates the value. YAML opens a comment at a `#` preceded by
+            whitespace, so `source: DSP #26035 Foo.pdf` silently ends at `DSP`.
+            Found 2026-07-27 on H-102A/H-102B (a whole source document lost)
+            plus five other notes.
+
+      `: `  breaks the whole block. A colon-space inside an unquoted scalar is
+            a nested mapping, which is illegal there — YAML raises and Obsidian
+            shows NO properties for the note, not merely a short one. Found the
+            same day on H-101 (`Not field-verified: launcher elevation`).
+
+    Nothing caught either because `parse_frontmatter` above is a line splitter,
+    not a YAML parser: the vault's own tooling read the full text while Obsidian
+    read a truncated value or nothing at all.
+
+    Detection is lexical rather than a real parse, keeping this module pure
+    stdlib. Quoted values are safe and skipped — the quote is exactly the fix.
+    Flow collections, block scalars and comment-only lines are skipped too; a
+    `#` opening a line is a genuine YAML comment, and a URL's `://` is not a
+    mapping. Reported as an error: this is silent data loss with a one-character
+    fix, not a backfill to defer.
+    """
+    findings = []
+    for path, text in notes.items():
+        lines = text.splitlines()
+        if not lines or lines[0].strip() != "---":
+            continue
+        for raw in lines[1:]:
+            if raw.strip() == "---":
+                break
+            m = re.match(r"^([A-Za-z0-9_-]+):[ \t]+(.*)$", raw)
+            if not m:
+                continue
+            key, value = m.group(1), m.group(2).rstrip()
+            if not value or value.startswith(("'", '"', "#", "[", "{", "|", ">", "&", "*", "!")):
+                continue
+            cut = re.search(r"[ \t]#", value)
+            if cut:
+                findings.append(Finding(
+                    "YAML-COMMENT", path,
+                    f"`{key}` truncates at '{value[:cut.start()].strip()}' — "
+                    f"YAML reads ' #' as a comment, dropping "
+                    f"'{value[cut.start():].strip()}'. Quote the value.",
+                ))
+            # `://` is a scheme separator, not a mapping — exempt it before
+            # judging, or every recorded URL trips this.
+            if re.search(r":[ \t]", re.sub(r"://", "", value)):
+                findings.append(Finding(
+                    "YAML-COMMENT", path,
+                    f"`{key}` contains an unquoted ': ' — YAML reads that as a "
+                    f"nested mapping and fails to parse the WHOLE frontmatter "
+                    f"block, so Obsidian shows no properties at all. "
+                    f"Quote the value.",
+                ))
+    return findings
+
+
 def check_pointer_dead(root: Path, notes: dict[Path, str]) -> list[Finding]:
     """POINTER-DEAD: a recorded absolute source-file path that no longer resolves.
 
@@ -503,6 +568,7 @@ def run_lint(root: Path, with_git: bool = True) -> list[Finding]:
     findings += check_superseded(root, notes)
     findings += check_durations_header(root, notes)
     findings += check_pointer_dead(root, notes)
+    findings += check_yaml_comment(root, notes)
     return findings
 
 
@@ -557,7 +623,7 @@ def self_test() -> int:
     expected = {"OP-FRONTMATTER", "DEAD-LINK", "SECRET", "STATUS-VOCAB",
                 "CONF-CONFLICT", "INBOX-AGE", "ORPHAN",
                 "REVIEW-OVERDUE", "SUPERSEDED", "DURATIONS-HEADER",
-                "POINTER-DEAD"}
+                "POINTER-DEAD", "YAML-COMMENT"}
     missing = expected - fired
     for f in findings:
         print(f"  fixture: {f}")

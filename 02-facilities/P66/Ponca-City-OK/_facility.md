@@ -50,9 +50,7 @@ tags: [facility, P66]
 | Filtration Unit | $200/hr | |
 | Filtration Stand-by | $150/hr | |
 
-DSP#26030 (2026-03-06, two-pumper option) priced these as lump-sum categories
-rather than hourly line items — the DSP25061 hourly rates above are the only
-extractable per-hour figures for this facility.
+DSP#26030 (2026-03-06, two-pumper option) priced these as lump-sum categories rather than hourly line items — the DSP25061 hourly rates above are the only extractable per-hour figures for this facility.
 
 ## Labor Rates — H-28 / H-29 (USA25041, quoted vs. actual billed)
 
@@ -62,15 +60,11 @@ extractable per-hour figures for this facility.
 | Supervisor (Day/Night) | 74.00 | 74.00 | Matches |
 | Operator | 64.00 | 64.00 | Matches |
 
-Quote and actual billed rates matched exactly on this job — unusual and worth
-noting; most facilities show drift between quoted and actual labor rates.
+Quote and actual billed rates matched exactly on this job — unusual and worth noting; most facilities show drift between quoted and actual labor rates.
 
-Source: DSP# 25061 P-66 Ponca City H-28 & H-29 May 2025.pdf (quoted); USA25041
-Ponca City H-28 and H-29 TriMax Ticket Breakdown Final.xlsx (actual QB Sheet).
+Source: DSP# 25061 P-66 Ponca City H-28 & H-29 May 2025.pdf (quoted); USA25041 Ponca City H-28 and H-29 TriMax Ticket Breakdown Final.xlsx (actual QB Sheet).
 
-**Quote vs. Actual Overage:** Quoted $132,184.33 total vs. actual billed
-$166,203.74 — $34,019.41 over (26% overrun). Actual pigging hours (117)
-exceeded combined quoted pig hours (H-28 40 + H-29 40 = 80).
+**Quote vs. Actual Overage:** Quoted $132,184.33 total vs. actual billed $166,203.74 — $34,019.41 over (26% overrun). Actual pigging hours (117) exceeded combined quoted pig hours (H-28 40 + H-29 40 = 80).
 
 ---
 

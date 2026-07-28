@@ -17,6 +17,7 @@ passing fixture.
 | `04-knowledge/bad-status.md` | STATUS-VOCAB | warning |
 | `06-insights/conf-conflict.md` | CONF-CONFLICT | error |
 | (created at self-test runtime in `00-inbox/`) | INBOX-AGE | warning |
+| `06-insights/yaml-comment-note.md` | YAML-COMMENT | error |
 
 The secret fixture uses AWS's documented example key — it is not a live
 credential.
