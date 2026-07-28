@@ -1,10 +1,11 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-07-25
 tags: [idea, vault-system, future, estimating, actuals, schema]
 related:
   - "[[idea-pig-actuals-maturation]]"
+  - "[[2026-07-28-idea-research-rollup-per-rig-coilset-grain]]"
 ---
 
 # Re-grain the actuals rollup to one row per rig-coilset
