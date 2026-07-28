@@ -7,9 +7,9 @@
 | Open decision rows | 0 | <= 10 | ok |
 | Review notes awaiting decision | 1 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 36 | (backlog) | ok |
-| Inbox items | 41 | - | ok |
-| Inbox median age | 1 d | < 14 d | ok |
+| Lint warnings | 38 | (backlog) | ok |
+| Inbox items | 42 | - | ok |
+| Inbox median age | 0 d | < 14 d | ok |
 | Inbox oldest item | 9 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
@@ -24,7 +24,7 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 |---|---|---|---|---|
 | Capture loop | 2026-07-27 (0 d ago) | 2026-07-27 (0 d ago) | 7 d | ok |
 | Idea-research loop | 2026-07-27 (0 d ago) | 2026-07-27 (0 d ago) | 30 d | ok |
-| Consolidation loop | 2026-07-19 (8 d ago) | 2026-07-18 (9 d ago) | 31 d | ok |
+| Consolidation loop | 2026-07-19 (9 d ago) | 2026-07-18 (9 d ago) | 31 d | ok |
 | Skill-drift loop | 2026-07-25 (2 d ago) | 2026-07-25 (2 d ago) | 62 d | ok |
 
 ## Commercial pipeline
