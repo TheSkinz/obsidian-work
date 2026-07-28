@@ -19,9 +19,9 @@ day back into a phantom action item on the August TA. Restored in `c63f0ac`.
 **Why it hid.** Rewrapping prose changes every line in a paragraph, so a reflow and a
 reflow-plus-reword look identical in a line diff. `git diff -w` does not help — it
 ignores whitespace *within* a line, but a reworded sentence moves words *across* lines
-and reads as genuine content change either way. See [[feedback-diff-w-before-committing-vault-edits]];
-this is the same family as the reverted tube-ID confirmation caught 2026-07-19, one
-level harder.
+and reads as genuine content change either way. This is the same family as the reverted
+tube-ID confirmation caught on 2026-07-19 (see `00-inbox/2026-07-19-stale-editor-buffer-overwrite-vector.md`),
+one level harder: `-w` caught that one, and cannot catch this one.
 
 **The check that works — word-multiset comparison.** Extract all words from the before
 and after blobs, compare as counted multisets, ignore line structure entirely. A pure
