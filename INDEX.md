@@ -143,6 +143,7 @@
 - [[2026-07-27-idea-research-quotation-workup-reconciliation-check]] — Idea Research — Standing Quotation-vs-Workup Reconciliation Check
 - [[2026-07-28-deferred-operational-prestaging-review]] — Review — The deferred-operational pile has no unattended path forward
 - [[2026-07-28-idea-research-rollup-per-rig-coilset-grain]] — Idea Research — Re-grain the Actuals Rollup to One Row per Rig-Coilset
+- [[2026-07-28-prestaged-stale-editor-buffer-guard]] — Review — Should the vault add a guard against silent content-reverting saves?
 
 ## LLMs
 
