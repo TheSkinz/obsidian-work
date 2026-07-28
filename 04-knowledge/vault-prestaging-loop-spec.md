@@ -71,7 +71,11 @@ Low to run, high in what it refuses to do. Every run either produces exactly one
 3. Pick the **oldest** candidate by filename date prefix, falling back to `created` frontmatter, falling back to git first-commit date.
 4. **Triage before drafting — the skip disposition.** Read the item and classify it:
    - **Execution correction** — a concrete fix with an obvious right answer and no open question (the worked example: `2026-07-24-dsp26085-submitted-wrong-quote-number.md` is a correction to make, not a decision to weigh). Mark it `<!-- vault-prestaged: skipped — execution correction, needs doing not deciding -->`, add **no** queue row and **no** review note, and report it in the run summary so it surfaces as a to-do rather than a decision. Then return to step 3 for the next-oldest candidate; skips do not count against the one-item budget.
-   - **Already covered** — the vault already holds the answer. Same treatment, marker reason `already covered by [[note]]`.
+   - **Already covered** — the answer already exists. Same treatment, marker reason `already covered by [[note]]`.
+
+     **Search implementation, not just prose — this is the failure the first run hit (2026-07-28).** That run searched `knowledge-system-governance.md`, found nothing, and proposed building a content-vs-formatting diff gate that had shipped the day before as lint rule `WORD-DELTA` plus a PreToolUse hook. A governance document is where a policy would be recorded, not where a tool lives. Before writing "genuinely unaddressed," check all four: `04-knowledge/` and `06-insights/` prose, **`tools/`** (grep the lint rules and scripts), **`~/.claude/hooks/`**, and **recent `git log`** — a thing built in the last week is exactly what a knowledge doc will not mention yet.
+
+     When a partial match turns up, do **not** silently drop the item. Write the note with the existing mechanism cited and the proposal narrowed to the genuine remaining gap — a partially-solved problem usually has a sharper question in it than an unexamined one.
    - **Genuine open question** — proceed to step 5.
 
    This step exists because the alternative is manufacturing ceremony: sixteen review notes for items where several need a two-minute fix is worse than sixteen raw inbox notes, because each one carries an implied claim of analysis.

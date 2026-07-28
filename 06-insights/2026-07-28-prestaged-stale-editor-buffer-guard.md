@@ -33,6 +33,20 @@ Pre-staging loop run 2026-07-28, processing the oldest unprocessed inbox item ca
 
 The stale-buffer hypothesis itself was never confirmed (the source note calls it "consistent with all the evidence, but not proven"), and confirming it would need editor-session history no longer available — that thread is likely dead. What remains live and decidable: given one observed silent-revert incident, camouflaged by Obsidian's table auto-formatting, should the vault add a mechanical safeguard beyond the manual `git diff -w` habit already adopted — either a diff-gate check or disabling auto-format outright — or is the manual habit sufficient given the incident's low observed frequency (one instance to date)?
 
+## Correction — added by session review, 2026-07-28
+
+**The loop's coverage check missed existing tooling, and proposal A is misframed as a result.** It searched `knowledge-system-governance.md` for prior art and concluded the question was "genuinely unaddressed." A content-vs-formatting gate had in fact shipped the day before, in commit `d65621c`: lint rule **`WORD-DELTA`** plus the **`usadebusk-word-delta-guard.mjs`** PreToolUse hook.
+
+A is **not** a duplicate, though — the overlap is partial in a way that sharpens the question rather than killing it:
+
+- `vault_lint.py`'s own header states WORD-DELTA "is a staged-diff rule, not a tree rule: it compares HEAD against the git index rather than reading the working tree." It only runs under `--staged`.
+- The hook gates on presentation-only commit-message vocabulary, deliberately, to hold its fire rate at 7% instead of 70%.
+- **The 2026-07-19 incident was an uncommitted, never-staged working-tree file.** Neither mechanism would have caught it.
+
+So read A as **"extend WORD-DELTA to the unstaged working tree / session start"**, not "build a diff gate." That is a much smaller change than A as written, and it targets exactly the gap the incident exposed. The rest of A's framing — a new from-scratch check over `02-facilities/` and `04-knowledge/` — is already served.
+
+This correction is a factual fix to the loop's evidence, not a disposition. A, B and C remain yours to decide.
+
 ## Proposed Change
 
 ### A. Build a content-vs-formatting diff gate (session-startup or pre-commit check)
