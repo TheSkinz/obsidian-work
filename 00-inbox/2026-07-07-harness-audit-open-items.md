@@ -1,4 +1,5 @@
 <!-- vault-loop: 2026-07-13 capture run — "Undocumented tasks/ directory" item harvested to 07-llms/claude/code.md. Remaining two items are operational/governance (vault five-loop scheduling, USADebusk skill formatting) and stay here for Jesse or the on-demand Agent-Review loop. -->
+<!-- vault-prestaged: skipped — already covered: Agent-Review on-demand-only is deliberate per [[vault-agent-loop-spec]] (line 33, and line 118 blocks scheduling it); format-split item's own revisit condition ("if inconsistency is observed") has not fired — branding rules remain single-sourced in usadebusk-core, heater-card schema single-sourced to _canonical-heater-card.md -->
 ---
 type: session-note
 created: 2026-07-07

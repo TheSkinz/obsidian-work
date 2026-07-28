@@ -1,4 +1,5 @@
 <!-- vault-loop: operational — heater-card/estimating/regression work orders (04-knowledge, 02-facilities scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
+<!-- vault-prestaged: skipped — execution correction, needs doing not deciding: this is a work-order backlog (build linter, cross-ref checker, regression diffs, trace harvest), not a decision to weigh. Item (c) already closed via DQ-002. Bonus P66 H-28/H-29 extraction already done (04-knowledge/ground-truth/h-28.md, h-29.md exist). Items (a), (b), (d), (e) remain undone — surfacing as to-do, not queuing. -->
 ---
 type: handoff
 created: 2026-07-19
