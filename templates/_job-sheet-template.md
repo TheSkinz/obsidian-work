@@ -74,7 +74,7 @@ tags: [job-sheet, <Client>, <USA#####>]
 
 | Qty | Item | Amt | Unit |
 |---|---|---|---|
-| 1 | TriMax Pumper | | Hrs |
+| 1 | Trimax Pumper | | Hrs |
 | 1 | Support Unit | | Hrs |
 | 1 | Filter Unit | | Hrs |
 | 1 | Crew Truck | | Hrs |

@@ -29,7 +29,7 @@ tags: [job-report, HF-Sinclair, USA26038]
 ## Summary
 
 Emergency mechanical decoke of H-19 (Crude Charge) and H-20 (Vertical Crude Hydro),
-July 10–17, 2026, two TriMax pumpers (3 & 5) with filtration. PM Dacorey Slater.
+July 10–17, 2026, two Trimax pumpers (3 & 5) with filtration. PM Dacorey Slater.
 Crash condition — actuals must not seed a routine-clean estimate.
 
 ## Actuals (per-heater, reconciled to the ticket breakdown)

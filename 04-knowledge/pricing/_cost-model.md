@@ -32,8 +32,8 @@ related:
 
 | Line | Cost | Unit |
 |---|---:|---|
-| TriMax Pumper — ops (rig-in / pig / smart pig) | 184.00 | $/hr |
-| TriMax Pumper — stand-by (and rig-out, see anomaly) | 100.00 | $/hr |
+| Trimax Pumper — ops (rig-in / pig / smart pig) | 184.00 | $/hr |
+| Trimax Pumper — stand-by (and rig-out, see anomaly) | 100.00 | $/hr |
 | Project Manager | 70.00 | $/hr |
 | Day Supervisor | 50.36 | $/hr |
 | Night Supervisor | 50.36 | $/hr |
@@ -120,7 +120,7 @@ Blended workup margin ranged 42.0%–54.5% across the six files, with DSP26058 a
 
 In rough order of value, and none of it derivable from the workbooks:
 
-1. **Real equipment cost per hour for the TriMax pumper.** It is the largest single cost line, carries the most apparent margin, and is the least validated number here. Fixing this one figure moves the model more than everything else combined.
+1. **Real equipment cost per hour for the Trimax pumper.** It is the largest single cost line, carries the most apparent margin, and is the least validated number here. Fixing this one figure moves the model more than everything else combined.
 2. **Actual burdened labor cost by role** — wages plus burden, rather than the assumed standard rate.
 3. **Real per-unit pig cost** from purchasing, against the catalog above.
 4. **Whether cost genuinely varies by facility or job type**, which the current uniform placeholders make impossible to see.

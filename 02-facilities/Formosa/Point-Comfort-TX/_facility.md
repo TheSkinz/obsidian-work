@@ -34,10 +34,10 @@ Bid was submitted and lost — no job has been executed at this site.
 | Resource | Detail |
 |---|---|
 | Crane / hoisting | Formosa scope — all crane/hoisting services and qualified operators, plus scaffold erection/removal and convection box cover and insulation removal/reinstall (DSP#26075 §1.2). |
-| Filter press | USADeBusk-supplied. |
+| Filter press | USADebusk-supplied. |
 | Water supply | Formosa-supplied clean process water plus passivated water for hydrotesting (§1.1). Chloride content not stated — matters, VR-401C is TP-347H stainless. |
 | Fuel | Formosa supplies ULSD for all mobilized equipment (§1.1). |
-| Compressor | 750 CFM for dewatering — **scope unresolved in DSP#26075.** §1.2 assigns it to Formosa, §2.1 assigns it to USADeBusk, and the equipment list carries none. Settle this before the next bid here. |
+| Compressor | 750 CFM for dewatering — **scope unresolved in DSP#26075.** §1.2 assigns it to Formosa, §2.1 assigns it to USADebusk, and the equipment list carries none. Settle this before the next bid here. |
 | Waste | Formosa provides drums/roll-offs and owns manifesting, transport, and disposal (§1.5). |
 | Spools and tie-ins | Formosa supplies and installs all inlet/outlet crossover spools, swing-ells, gaskets and bolt-ups for launcher/receiver tie-ins (§1.3). |
 | Safety training | Formosa training matrix — 6 crew × 8 hrs, quoted at $3,072 as a separate line. Budget it on any future bid here; it is not folded into mob. |

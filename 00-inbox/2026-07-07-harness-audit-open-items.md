@@ -1,4 +1,4 @@
-<!-- vault-loop: 2026-07-13 capture run — "Undocumented tasks/ directory" item harvested to 07-llms/claude/code.md. Remaining two items are operational/governance (vault five-loop scheduling, USADeBusk skill formatting) and stay here for Jesse or the on-demand Agent-Review loop. -->
+<!-- vault-loop: 2026-07-13 capture run — "Undocumented tasks/ directory" item harvested to 07-llms/claude/code.md. Remaining two items are operational/governance (vault five-loop scheduling, USADebusk skill formatting) and stay here for Jesse or the on-demand Agent-Review loop. -->
 ---
 type: session-note
 created: 2026-07-07

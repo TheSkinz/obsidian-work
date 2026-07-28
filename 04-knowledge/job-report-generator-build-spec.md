@@ -20,7 +20,7 @@ Specification produced from `00-inbox/idea-job-report-generator.md`, forks resol
 >
 > **USA25025 stress test PASSED (project level).** Every project total matches the job-record
 > exactly — rig 90, pigging 321.5, smart 54.5, stand-by 190, pigs 396, operating 466 — on a
-> structurally very different job (9 heaters, TriMax 1/2, triple+double-mode pigging, routine TA,
+> structurally very different job (9 heaters, Trimax 1/2, triple+double-mode pigging, routine TA,
 > 44 scope-suffixed tabs). The test caught and fixed two template-variation bugs the first cut
 > would have gotten wrong: (1) pigging split into "Triple Mode" + "Double Mode" rows — now
 > classified by row label, not fixed offset, and summed; (2) tab names suffixed with scope
@@ -184,7 +184,7 @@ confirmation, all Result paragraphs, all callouts, Images, Summary/Close prose, 
 - **USA25025 — input-structural stress only.** `02-facilities/CHS/McPherson-KS/USA25025-job-record.md`
   is an internal job-record: 9 heaters, routine TA, **flow-test data lost**, carries pricing. It
   cannot be an output golden-master. Use it to prove the mapping/aggregation survives the hard
-  shape — 9 heaters, multi-unit (TriMax 1/2) splits, 190 h stand-by across three causes, 396 pigs
+  shape — 9 heaters, multi-unit (Trimax 1/2) splits, 190 h stand-by across three causes, 396 pigs
   in 26 sizes — and validate the output *structurally* (no golden doc, no flow tests).
 
 ## Phase plan

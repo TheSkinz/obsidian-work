@@ -27,7 +27,7 @@ tags: [job-sheet, ExxonMobil, HU5A-F501]
 | Facility | ExxonMobil Baytown Refinery — 2800 Decker Drive, Baytown, TX 77520 |
 | Job # | *(pending — not yet issued)* |
 | Quote | [[DSP26071]] (DSP#26071.2 Rev002) |
-| Scope | Mechanical decoke — HU5A F-501 process coils (convection + radiant) & Treat Gas, (1) TriMax pumper in triple mode with filtration, Steady-Flux smart pig assist |
+| Scope | Mechanical decoke — HU5A F-501 process coils (convection + radiant) & Treat Gas, (1) Trimax pumper in triple mode with filtration, Steady-Flux smart pig assist |
 | Heaters | F-501 — HU5A process & treat gas heater |
 | Project Type | Planned turnaround (August 2026 HU5A TA) |
 | Equipment mobilization | **2026-08-08** |
@@ -55,14 +55,14 @@ change to scope, hours, or schedule.
 ## Turnaround Coordination
 
 **Daily turnaround meetings: 6:30 AM and 6:30 PM, every day.** Both shifts attend their
-respective meeting. These are TA-wide, not USADeBusk-specific — the shift supervisor is
+respective meeting. These are TA-wide, not USADebusk-specific — the shift supervisor is
 expected to be there.
 
 **Delays require an FCO.** Any delay — site readiness, permit hold, plant alarm, weather,
 other-contractor conflict, heater not prepared — requires an **FCO (ExxonMobil change order)**
 to be filled out and submitted to William Whitney for approval. File it when the delay starts,
 not at the end of the shift. An unapproved delay is an unbillable delay: the quoted rate
-schedule bills non-USADeBusk-caused standby at $500/hr pumper, but only against an approved FCO.
+schedule bills non-USADebusk-caused standby at $500/hr pumper, but only against an approved FCO.
 
 ---
 
@@ -75,13 +75,13 @@ schedule bills non-USADeBusk-caused standby at $500/hr pumper, but only against 
 
 | Rig | Supervisor | Operators |
 |---|---|---|
-| TriMax | | |
+| Trimax | | |
 
 **Night Shift**
 
 | Rig | Supervisor | Operators |
 |---|---|---|
-| TriMax | | |
+| Trimax | | |
 
 **Jesse Utsey is running this job** — customer-facing lead and final-decision authority.
 (The work-up names Travis Trenholm as Project Manager; that is superseded. No billable Project
@@ -95,7 +95,7 @@ Manager line is carried on the quote — the PM row is quoted at qty 0.)
 
 | Qty | Item | Amt | Unit |
 |---|---|---|---|
-| 1 | TriMax Pumper | 48 | Hrs |
+| 1 | Trimax Pumper | 48 | Hrs |
 | 1 | Support Unit | 48 | Hrs |
 | 1 | Filter Unit | 48 | Hrs |
 | 1 | Crew Truck | 48 | Hrs |
@@ -134,7 +134,7 @@ Metallurgy: A335 Gr P9 (9Cr-1Mo), all three sections. Pass config: 4 process pas
 standalone as Circuit 3. Connections: 6 launchers, all at grade — (4) at radiant outlets
 (5" 300# RFWN via 5"×6" 300# 90° reducers) and (2) at Treat Gas inlet/outlet (6" 300# RFWN
 direct, via 6" 90° temp offset spools). Effluent: fresh condensate from HU4, filtered through
-the DeBusk press on a 4×3 trash pump loop, recycled to the TriMax clean tank.
+the DeBusk press on a 4×3 trash pump loop, recycled to the Trimax clean tank.
 
 Max pig OD: **4.875"** (4.635" ID + 0.250"). Sizing increment 1/8" per successful pass.
 
@@ -142,7 +142,7 @@ Full tube geometry, config rollup, circuit mapping, and SOP detail: [[F-501]].
 
 ---
 
-## Circuit Assignments — TriMax Triple Mode
+## Circuit Assignments — Trimax Triple Mode
 
 | Circuit | Passes | Launcher location | Travel | Pump |
 |---|---|---|---|---|
@@ -150,7 +150,7 @@ Full tube geometry, config rollup, circuit mapping, and SOP detail: [[F-501]].
 | 2 | C + D (conv + rad) | Radiant outlets C & D | ~1,576 ft | Center |
 | 3 | Treat Gas | TG inlet & outlet | 301 ft | Right |
 
-**All three circuits are cleaned simultaneously** — one TriMax in triple mode, one pump per
+**All three circuits are cleaned simultaneously** — one Trimax in triple mode, one pump per
 circuit, running concurrently. Not sequential.
 
 ⚠ The SOP PDF in `Job docs\` is **REV 1 and describes Phase II as sequential** — left over from a
@@ -163,7 +163,7 @@ circuit mapping, pump assignments, travel paths, and operating parameters in it 
 
 ## Prerequisites Before Rig-In
 
-Verify these are complete on arrival. None are USADeBusk scope, and all three block the start:
+Verify these are complete on arrival. None are USADebusk scope, and all three block the start:
 
 - **Radiant plug headers (mule ears) removed by ExxonMobil** and replaced with temporary 180° bends.
 - **All temporary spools installed and pressure-tested** by ExxonMobil's pipefitting contractor —
@@ -172,7 +172,7 @@ Verify these are complete on arrival. None are USADeBusk scope, and all three bl
   to clear convection-inlet-zone obstructions.
 - **All six 6" 300# launchers installed** and connections confirmed per site permit.
 
-USADeBusk verifies every connection before operations commence but does not install them. Any
+USADebusk verifies every connection before operations commence but does not install them. Any
 lift is the lifting contractor's scope.
 
 ---

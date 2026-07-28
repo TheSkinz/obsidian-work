@@ -43,10 +43,10 @@ tags: [facility, P66]
 
 | Line Item | Rate | Notes |
 |---|---|---|
-| TriMax Unit: Rig-In/Out | $400/hr | |
-| TriMax Unit: Pigging | $500/hr | |
-| TriMax Unit: Smart Pig | $500/hr | |
-| TriMax Unit: Stand-by | $400/hr | |
+| Trimax Unit: Rig-In/Out | $400/hr | |
+| Trimax Unit: Pigging | $500/hr | |
+| Trimax Unit: Smart Pig | $500/hr | |
+| Trimax Unit: Stand-by | $400/hr | |
 | Filtration Unit | $200/hr | |
 | Filtration Stand-by | $150/hr | |
 

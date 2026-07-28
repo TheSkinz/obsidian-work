@@ -11,7 +11,7 @@
 2. Tube ID — pig sizing, launcher size, adapter requirements
 3. Total footage per pass — primary pigging duration driver
 4. Expected fouling type — standard coke vs. hard coke/pitch (coker/crude units)
-5. Equipment profile — 1x, 2x, or 3x TriMax
+5. Equipment profile — 1x, 2x, or 3x Trimax
 6. Travel distance — mob/demob mileage
 7. Crew size — headcount drives labor and per diem
 
@@ -41,7 +41,7 @@ SIMOPS (multi-heater jobs): Overlapping heater timeline visibility required — 
 
 | Category | Pricing type | Line items |
 |---|---|---|
-| Equipment | Hourly task-based | TriMax Pumper (rates vary: Rig-In / Pigging / Stand-By) |
+| Equipment | Hourly task-based | Trimax Pumper (rates vary: Rig-In / Pigging / Stand-By) |
 | Support equipment | Hourly fixed | 4×3 Trash Pump, Filter Press (pumping / non-pumping), Support Units, Crew Trucks |
 | Labor | Hourly (12-hr shifts) | Supervisor/Lead (Day/Night), Technician/Operator (Day/Night) |
 | Per Diem | Fixed daily allowance | 1 PD per 12-hour shift per person |
@@ -50,7 +50,7 @@ SIMOPS (multi-heater jobs): Overlapping heater timeline visibility required — 
 | Mob/Demob | Lump sum (95%) | Equipment (per mile), crew trucks (per mile), labor travel hours, per diem |
 
 **Filter Press billing — two rates:**
-- Pumping rate: when TriMax is actively pigging
+- Pumping rate: when Trimax is actively pigging
 - Non-pumping / stand-by rate: during rig-in, rig-out, stand-by
 
 ## Baseline rate table
@@ -62,7 +62,7 @@ Third-party markup: 5%, 10%, or 15% per the specific facility/project contract �
 | Category | Description | Rate | Unit |
 |---|---|---|---|
 | Third Party | Cost + markup | 5 / 10 / 15% | Per contract — no default; confirm the applicable rate |
-| Mob/Equipment | TriMax Travel | $3.00 | Mile |
+| Mob/Equipment | Trimax Travel | $3.00 | Mile |
 | Mob/Equipment | Support Travel | $3.00 | Mile |
 | Mob/Equipment | Crew Truck Travel | $3.00 | Mile |
 | Mob/Labor | Crew Travel (non-driver) | $58.00 | Hour |

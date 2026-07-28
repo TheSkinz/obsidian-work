@@ -6,7 +6,7 @@
 
 ## Identity
 
-Legal/operating name: USADeBusk (also written USA DeBusk). Customer-facing on some accounts: "DeBusk Services Group." USADeBusk is standard.
+Legal/operating name: USADebusk. **House spelling of the closed form is `USADebusk`** — not `USADeBusk`, which is a dead string (Jesse, 2026-07-27; this reverses the 2026-07-12 skill-drift ruling that went the other way). The spaced form `USA DeBusk` is the legal entity name and keeps its capital B: reproduce it verbatim on customer-facing documents, contracts, and signature blocks, where `USA DeBusk, LLC` is the correct rendering of the family surname. Customer-facing on some accounts: "DeBusk Services Group," also unchanged.
 
 Primary service: Furnace Decoking. Preferred terminology order: Furnace Decoking > Furnace Pigging/Decoking > Furnace Pigging.
 

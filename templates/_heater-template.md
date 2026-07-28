@@ -131,7 +131,7 @@ tags: [heater-card, <Client>, <heater-type>]
 
 **Facility Procedures:**
 
-**Per-rig split (multi-TriMax only):**
+**Per-rig split (multi-Trimax only):**
 
 ---
 

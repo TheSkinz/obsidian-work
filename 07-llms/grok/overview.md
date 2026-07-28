@@ -27,7 +27,7 @@ Grok Build CLI, skill-creator tooling, Zapier/Albato integrations, Gmail and Goo
 
 ## Account and credential separation
 
-Strict work/personal account separation: personal Gmail (not work email) is used exclusively for Grok/xAI accounts, API keys, and automations. This prevents credential linkage between USADeBusk systems and personal AI activity. Do not use the work email for any xAI account or API key registration.
+Strict work/personal account separation: personal Gmail (not work email) is used exclusively for Grok/xAI accounts, API keys, and automations. This prevents credential linkage between USADebusk systems and personal AI activity. Do not use the work email for any xAI account or API key registration.
 
 ## Grok Imagine
 

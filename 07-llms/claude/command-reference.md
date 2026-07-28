@@ -16,7 +16,7 @@ tags: [reference, claude-code, commands, skills, usage]
 The *"which command do I reach for, and how do I fire it"* lookup. Companion to
 [[2026-07-20-harness-map]] (which inventories what shapes a response) and [[code]]
 (how I use Claude Code). Organized by **when you'd reach for it**, not
-alphabetically. Curated to vault / USADeBusk / field work — not the full command
+alphabetically. Curated to vault / USADebusk / field work — not the full command
 dump.
 
 > **Provenance & freshness.** Built-in commands verified against
@@ -137,9 +137,9 @@ Past my Jan-2026 cutoff — sourced from the docs, not memory. The ones worth kn
 - **`skill-creator`** — create/optimize skills and run evals on them.
 - **`/init`** — generate a `CLAUDE.md` for a repo. **`/doctor`** — setup checkup.
 
-## 7. USADeBusk domain (mostly auto-load — know they exist)
+## 7. USADebusk domain (mostly auto-load — know they exist)
 
-`usadebusk-core` (always, for any USADeBusk task) + `usadebusk-equipment`,
+`usadebusk-core` (always, for any USADebusk task) + `usadebusk-equipment`,
 `usadebusk-estimating`, `usadebusk-fieldpm`, `usadebusk-ops`, `usadebusk-sop`,
 `usadebusk-vault-ingest`. They trigger on the matching task (proposal, estimate, SOP,
 field PM, receipts, doc ingest); you don't normally type them.

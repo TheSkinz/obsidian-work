@@ -30,7 +30,7 @@ tags: [facility, ExxonMobil]
 | Resource | Detail |
 |---|---|
 | Crane | ExxonMobil-controlled overhead crane — coordinate mobilization timing with ExxonMobil |
-| Filter press | Known capacity constraint on multi-TriMax jobs; consider larger or dual press on future bids |
+| Filter press | Known capacity constraint on multi-Trimax jobs; consider larger or dual press on future bids |
 | Water supply | (not recorded) |
 
 ---
@@ -72,7 +72,7 @@ seeing the spread, spotting an outlier, and knowing your own history going into 
 negotiation. **It is not a rate schedule and nothing here can be quoted from.** The rates
 for the next Baytown bid come from that bid's own contract or bid instructions.
 
-**Read a divergence as a flag, not as a Baytown regime.** USADeBusk prefers the same rates
+**Read a divergence as a flag, not as a Baytown regime.** USADebusk prefers the same rates
 at every facility, so the House standard column is the intended figure and most cells
 should match it. Where one doesn't, the cause is usually either that the contract froze an
 older figure or that the RFQ was contested and rates were cut to win it — not that this
@@ -85,11 +85,11 @@ contract-type model and the `contract-type` / `rate-basis` / `billing-basis` fie
 
 | Line Item | DSP25084 (F-802, 2025-07-15) — **expired** | DSP25123 (F-901, 2026-04-06) — **expired** | DSP26039 (F-301/F-371A, 2026-04-07) — **pending** | House standard |
 |---|---|---|---|---|
-| TriMax Triple — Pigging | $800/hr | $800/hr | $800/hr | $800/hr |
-| TriMax Double — Pigging | $650/hr | $650/hr | — | $650/hr |
-| TriMax Smart Pigging | $600/hr | $600/hr | $600/hr | $600/hr |
-| TriMax Rig-In / Out / Over | $500/hr | $500/hr | $500/hr | $500/hr |
-| TriMax Standby | $500/hr | $500/hr | $500/hr | $500/hr |
+| Trimax Triple — Pigging | $800/hr | $800/hr | $800/hr | $800/hr |
+| Trimax Double — Pigging | $650/hr | $650/hr | — | $650/hr |
+| Trimax Smart Pigging | $600/hr | $600/hr | $600/hr | $600/hr |
+| Trimax Rig-In / Out / Over | $500/hr | $500/hr | $500/hr | $500/hr |
+| Trimax Standby | $500/hr | $500/hr | $500/hr | $500/hr |
 | Filtration | $200/hr | $200/hr | $200/hr | $200/hr |
 | Filtration Standby | $150/hr | ~~$35/hr~~ → $150/hr | $150/hr | $150/hr |
 | Support Unit | $35/hr | (row absent) | $30/hr | $30/hr |
@@ -138,8 +138,8 @@ Source: DSP# 25084 Rev 2 PS8 F-802 Furnace Decoke 2 TriMax.pdf (quoted);
 USA26022 EXXONMOBIL F-802 TriMax Ticket Breakdown.xlsx (actual QB Sheet).
 
 **Quote vs. Actual Overage:** Quoted $211,730.36 vs. actual billed $274,508.25
-(change-order Rev 1 revised price) — $62,777.88 over. Actual combined TriMax
-pigging hours (110 = TriMax4 55 + TriMax6 55) exceeded quoted 60 project hours;
+(change-order Rev 1 revised price) — $62,777.88 over. Actual combined Trimax
+pigging hours (110 = Trimax4 55 + Trimax6 55) exceeded quoted 60 project hours;
 standby (98 hrs combined) was not planned in the quote at all.
 
 ---

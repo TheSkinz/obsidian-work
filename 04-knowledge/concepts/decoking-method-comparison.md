@@ -32,7 +32,7 @@ Reusable technical + sales positioning for the recurring question "why should we
 3. **Lower thermal risk** — no sustained in-tube combustion, so no hot-spot metallurgy exposure.
 4. **Inspection data, not just a clean** — the smart-pig / ILI UT wall-thickness run is the single hardest-to-argue differentiator; SAD produces no wall data. See `process-flow.md` (Smart pig / ILI) for velocities and vendors.
 5. **Lower emissions / permitting burden** — closed-loop water process vs. combustion off-gas.
-6. **Measurable, verifiable endpoint** — before/after flow test, effluent clarity/discharge-time, pig-condition tracking, final foam run + client sign-off (the USADeBusk 4-point verification protocol).
+6. **Measurable, verifiable endpoint** — before/after flow test, effluent clarity/discharge-time, pig-condition tracking, final foam run + client sign-off (the USADebusk 4-point verification protocol).
 7. **Frees plant staff** — self-contained specialist service; compatible firebox/maintenance work can proceed in parallel (subject to isolation/confined-space controls).
 
 ## Verified sources (web-verified 2026-07-22, direct fetch)

@@ -14,7 +14,7 @@
 
 | Job # | Facility | Heater(s) | Completed | Notes |
 |---|---|---|---|---|
-| USA26038 | HF Sinclair Navajo, Artesia NM | H-19, H-20 | 2026-07-17 | Emergency decoke, 2 TriMax units, PM Dacorey Slater. Crash condition. Job report + actuals filed → [[USA26038-job-report]]; actuals on [[H19]]/[[H20]]. |
+| USA26038 | HF Sinclair Navajo, Artesia NM | H-19, H-20 | 2026-07-17 | Emergency decoke, 2 Trimax units, PM Dacorey Slater. Crash condition. Job report + actuals filed → [[USA26038-job-report]]; actuals on [[H19]]/[[H20]]. |
 | USA26025 | Valero Port Arthur | H-102A, H-102B | Complete | Reference only. Dual-rig dual-shift vacuum heaters (corrected from "coker" 2026-07-22). |
 
 ---
@@ -29,7 +29,7 @@
 
 | Quote # | Facility | Scope | Value | Submitted | Valid Through |
 |---------|----------|-------|-------|-----------|---------------|
-| [[DSP26095]] | Westlake South, Westlake LA | Sept. 2026 decoke — H-101 (TE II) EDC furnace, 2 passes; 1 TriMax, filtration | Not yet priced — no rates on file | Not submitted | Not set |
+| [[DSP26095]] | Westlake South, Westlake LA | Sept. 2026 decoke — H-101 (TE II) EDC furnace, 2 passes; 1 Trimax, filtration | Not yet priced — no rates on file | Not submitted | Not set |
 | [[DSP26080]] | HF Sinclair Navajo, Artesia NM | Feb. 2027 outage — H-2421, H-30 & H-2501; 1 Trimax, filtration, 4×3 diesel pump | T&M + LS mob/demob; no total quoted | Date not recorded | Not recorded |
 | DSP26039 | ExxonMobil Baytown, TX | 2027 TA — HU9 F-301 & F-371A, 1 truck, T&M | $76,873.00 | 2026-04-07 | 2027-04-07 |
-| [[DSP26085]] | ExxonMobil Baytown, TX | Jan. 2027 — 27GF1A F-201 Treat Gas heater, 4 coils looped to 2 circuits; 1 TriMax, filtration, smart pig | $40,477.08 | Date not recorded | 2026-09-29 |
+| [[DSP26085]] | ExxonMobil Baytown, TX | Jan. 2027 — 27GF1A F-201 Treat Gas heater, 4 coils looped to 2 circuits; 1 Trimax, filtration, smart pig | $40,477.08 | Date not recorded | 2026-09-29 |

@@ -14,12 +14,12 @@ Primary interface for all implementation work: writing vault notes, building and
 
 The vault at `C:\Users\Jwuts\obsidian-work` is the working directory. Claude Code reads `CLAUDE.md` and `01-context/` on startup to load session context automatically.
 
-Skills drive specialized behavior. When a task touches USADeBusk work, the relevant skill(s) are loaded (via `/skill` or Cowork's auto-load). Skills live at `~/.claude/skills/`. The active set:
+Skills drive specialized behavior. When a task touches USADebusk work, the relevant skill(s) are loaded (via `/skill` or Cowork's auto-load). Skills live at `~/.claude/skills/`. The active set:
 
-- `usadebusk-core` — always loaded for USADeBusk tasks
+- `usadebusk-core` — always loaded for USADebusk tasks
 - `usadebusk-equipment`, `usadebusk-estimating`, `usadebusk-fieldpm`, `usadebusk-ops`, `usadebusk-sop` — domain-specific
 - `usadebusk-vault-ingest` — converts raw docs to vault notes
-- `adversarial-review`, `idea-triage` — general-purpose (non-USADeBusk) skills
+- `adversarial-review`, `idea-triage` — general-purpose (non-USADebusk) skills
 
 (The `claude-obsidian` plugin was dropped 2026-06-30 and fully uninstalled 2026-07-06 — its skills are no longer available.)
 

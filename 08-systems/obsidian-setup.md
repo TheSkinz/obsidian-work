@@ -10,7 +10,7 @@ tags: [obsidian, vault, sync, git]
 
 - **Path:** `C:\Users\Jwuts\obsidian-work`
 - **Name:** obsidian-work
-- **Scope:** USADeBusk operational knowledge + personal LLM/systems/interests layers (post-June 2026 expansion)
+- **Scope:** USADebusk operational knowledge + personal LLM/systems/interests layers (post-June 2026 expansion)
 
 ## Sync
 

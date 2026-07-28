@@ -7,10 +7,10 @@
 ## Full decoking sequence
 
 **Rig-In (fixed event; default 6 hrs, duration varies by pass count and access complexity — see Duration Model in `usadebusk-estimating`. The 12-hour simultaneous Day/Night framing belongs to Mob/Demob, a separate event.)**
-1. Position TriMax pumper, clean tank, dirty tank adjacent to heater
+1. Position Trimax pumper, clean tank, dirty tank adjacent to heater
 2. Install pig launchers on convection inlet flanges (adapters as required)
 3. Install pig receivers on radiant outlet flanges (adapters as required)
-4. Route Fig. 200 jetting hoses from TriMax rear ports to launcher/receiver connections
+4. Route Fig. 200 jetting hoses from Trimax rear ports to launcher/receiver connections
 5. Connect filtration circuit *(only when filtration is Elected — read the heater card Job Options)*: dirty tank → 4×3 pump → filter press → clean tank; otherwise effluent drains to coke pit / oily water sewer
 6. Fill system and pressure test
 7. Confirm valve manifold positions (direction of pig travel)
@@ -20,7 +20,7 @@
 1. Load pig into launcher, close and pressure up
 2. Open launch valve — water pressure propels pig through coil
 3. Pig exits at receiver, collected
-4. Return water enters TriMax via Fig. 200 port → ceiling pipe → diverter
+4. Return water enters Trimax via Fig. 200 port → ceiling pipe → diverter
 5. Operator monitors effluent: cloudy → divert to dirty tank; clear → clean tank
 6. Filtration loop runs concurrently *(only when filtration is Elected — otherwise effluent drains to coke pit / oily water sewer)*: dirty tank → 4×3 pump → filter press → clean tank
 7. Load next pig (same size or next size up), repeat
@@ -35,14 +35,14 @@
 ## Flow path — standard single pass (convection-to-radiant)
 
 ```
-TriMax Clean Tank → Waterous Pump → Fig.200 CONV port → Jetting Hose →
+Trimax Clean Tank → Waterous Pump → Fig.200 CONV port → Jetting Hose →
 Pig Launcher (Conv. Inlet Flange) → Convection Tubes (serpentine) →
 Cross-over → Radiant Tubes → Pig Receiver (Rad. Outlet Flange) →
 Jetting Hose → Fig.200 RAD port → Internal ceiling pipe →
 Diverter → Clean Tank (clear) or Dirty Tank (cloudy)
 ```
 
-For reversed direction (radiant-to-convection): return water comes back via CONV port. Valve manifold on TriMax controls direction — no manual hose swapping required.
+For reversed direction (radiant-to-convection): return water comes back via CONV port. Valve manifold on Trimax controls direction — no manual hose swapping required.
 
 **Filtration loop (concurrent — only when filtration is Elected; see the heater card Job Options):**
 ```
@@ -81,7 +81,7 @@ All three must be met before stopping:
 
 ## Smart pig / ILI inspection (post-decoking)
 
-Run after mechanical cleaning confirms tube walls are clean. USADeBusk provides water propulsion only — vendor controls tool.
+Run after mechanical cleaning confirms tube walls are clean. USADebusk provides water propulsion only — vendor controls tool.
 
 - Target velocity: 1.0–2.0 ft/s (slow, constant speed required for UT data quality)
 - For 4" ID pipe: approximately 40–70 GPM target range at inspection velocity
@@ -90,6 +90,6 @@ Run after mechanical cleaning confirms tube walls are clean. USADeBusk provides 
 
 ## Role boundaries
 
-- **USADeBusk:** All pigging equipment, surface connections, pig propulsion, filtration, service receipts, technical documentation
-- **Customer:** Isolation, blinds, PSV protection, permit-to-work, water supply to USADeBusk tanks, fabricated adapters when required
-- **Lifting contractor:** All rigging and lifting — USADeBusk does not perform lifts
+- **USADebusk:** All pigging equipment, surface connections, pig propulsion, filtration, service receipts, technical documentation
+- **Customer:** Isolation, blinds, PSV protection, permit-to-work, water supply to USADebusk tanks, fabricated adapters when required
+- **Lifting contractor:** All rigging and lifting — USADebusk does not perform lifts

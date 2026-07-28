@@ -14,10 +14,10 @@ Created 2026-07-27 from the DSP#25141 bid package (H-311 heater decoke + smart p
 Spring 2026 planned outage). Bid dated 2025-11-11; **outcome not recorded in the source files —
 confirm award status before treating anything here as executed history.**
 
-**USADeBusk is not the prime on this opportunity.** The bid is written as a third party under
+**USADebusk is not the prime on this opportunity.** The bid is written as a third party under
 **Steady-Flux**, who holds the relationship with PBF (DSP#25141 Technical Data, Special Notes,
 and the Requested Service closing paragraph). Any future scope here should confirm whether
-USADeBusk contracts through Steady-Flux again or directly with PBF — it changes who sets the
+USADebusk contracts through Steady-Flux again or directly with PBF — it changes who sets the
 rates, the markup tier, and the terms.
 
 ---
@@ -45,7 +45,7 @@ own naming (`Toledo-OH`). Do not create a second site record under Oregon-OH.
 | Resource | Detail |
 |---|---|
 | Crane / hoisting | PBF scope — pipefitting and scaffolding support for launcher and receiver installation (DSP#25141 §Requested/Provided) |
-| Filter press | USADeBusk-supplied. One press against one TriMax on DSP#25141 |
+| Filter press | USADebusk-supplied. One press against one Trimax on DSP#25141 |
 | Water supply | PBF-supplied "adequate supply of clean water, including one (1) 1½" fire hose with Y-connection." ⚠ Source not identified. If it is firewater, 1½" is insufficient volume — a 2" minimum fire hose must be specified. The 1½" figure is RFQ boilerplate and was carried into this bid unexamined |
 | Fuel | PBF supplies ULSD for all mobilized equipment |
 | Compressor | PBF supplies 750 CFM with 2" bull hose |
@@ -60,7 +60,7 @@ own naming (`Toledo-OH`). Do not create a second site record under Oregon-OH.
 
 ## Site Safety and Procedures
 
-Nothing site-specific recorded beyond USADeBusk standard terms. DSP#25141 carries the standard
+Nothing site-specific recorded beyond USADebusk standard terms. DSP#25141 carries the standard
 safe-access clause (launchers/receivers at grade or on a structurally safe deck, otherwise
 customer-provided scaffolding) — relevant here because both launcher elevations were left TBD.
 
@@ -78,7 +78,7 @@ customer-provided scaffolding) — relevant here because both launcher elevation
 
 | Quote | Date | Scope | Value | Outcome |
 |---|---|---|---|---|
-| DSP#25141 | 2025-11-11 (valid to 2026-06-01) | H-311 decoke + smart pig assist, 1× TriMax triple mode + filtration, Spring 2026 outage | $108,204.70 T&M | **Unknown — confirm** |
+| DSP#25141 | 2025-11-11 (valid to 2026-06-01) | H-311 decoke + smart pig assist, 1× Trimax triple mode + filtration, Spring 2026 outage | $108,204.70 T&M | **Unknown — confirm** |
 
 ### Rates — DSP#25141 only, not a facility rate schedule
 

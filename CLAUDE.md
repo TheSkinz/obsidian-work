@@ -1,6 +1,6 @@
 # CLAUDE.md — Vault Entry Point
 
-**Scope.** USADeBusk operational knowledge, expanding to include personal and LLM-knowledge layers. The vault is no longer USADeBusk-only — treat new top-level domains as expected, not anomalies.
+**Scope.** USADebusk operational knowledge, expanding to include personal and LLM-knowledge layers. The vault is no longer USADebusk-only — treat new top-level domains as expected, not anomalies.
 
 **Session startup.** Read `01-context/` before responding — every file except `system-workflow-reference.md` and `workflow-map.md`, which are reference and history (how the system fits together; paused/retired-project status), not per-response context: load those two on demand when a task actually needs them. Load `02-facilities/` and `04-knowledge/` on demand only when named. Do not auto-load `archive/`, `templates/`, or `tools/`. Check `50-dashboards/health.md` and surface any red (FAIL) rows — a lint error or an overdue loop heartbeat — before starting other work; if it shows review notes awaiting decision, mention them and offer to walk through them (Jesse doesn't track triggers — the dashboard is how pending work reaches him). `INDEX.md` is a generated one-line-per-note map of the vault — consult it before claiming something isn't in the vault.
 

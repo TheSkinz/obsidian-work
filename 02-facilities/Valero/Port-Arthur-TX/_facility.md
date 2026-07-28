@@ -59,13 +59,13 @@ tags: [facility, Valero]
 
 | Item | Quoted | Actual Billed | Notes |
 |---|---|---|---|
-| TriMax Pigging | $500/hr | $550/hr | Actual QB billed $50/hr above quote — confirm before quoting this facility again |
-| TriMax Smart Pig Support | $500/hr | $550/hr | Same $50/hr gap |
-| TriMax Rig-In/Rig-Over/Rig-Out/Standby | $400/hr | $400/hr | Matches |
+| Trimax Pigging | $500/hr | $550/hr | Actual QB billed $50/hr above quote — confirm before quoting this facility again |
+| Trimax Smart Pig Support | $500/hr | $550/hr | Same $50/hr gap |
+| Trimax Rig-In/Rig-Over/Rig-Out/Standby | $400/hr | $400/hr | Matches |
 
 Source: DSP #26035 Valero Port Arthur Decoke March 2026.pdf (quoted); Copy of USA26025 Valero PA 102A 102B TriMax Ticket Breakdown Rev 1.xlsx (actual QB Sheet, source of record).
 
-**Quote vs. Actual Overage:** Quoted $553,830.59 (360 project hrs: 24 rig-in + 180 pig + 108 smart pig + 24 rig-over + 24 rig-out) vs. actual billed $879,040.31 — $325,209.72 over (59% overrun), the largest overage of the three jobs cross-checked in this pull. Combined actual pigging hours (474.5 = TriMax5 242.5 + TriMax2 232) vs. quoted 180; combined actual standby (355 hrs) vs. 0 planned in the quote.
+**Quote vs. Actual Overage:** Quoted $553,830.59 (360 project hrs: 24 rig-in + 180 pig + 108 smart pig + 24 rig-over + 24 rig-out) vs. actual billed $879,040.31 — $325,209.72 over (59% overrun), the largest overage of the three jobs cross-checked in this pull. Combined actual pigging hours (474.5 = Trimax5 242.5 + Trimax2 232) vs. quoted 180; combined actual standby (355 hrs) vs. 0 planned in the quote.
 
 ---
 

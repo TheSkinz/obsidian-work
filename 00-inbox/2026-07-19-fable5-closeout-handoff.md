@@ -80,7 +80,7 @@ report (Lane 1), not auto-fix.
 
 Question to settle: what does the 100 ft/hr benchmark actually apply to —
 total coil footage as one number (the skill's worked example) or per-pass with
-parallelism across TriMax assemblies (the benchmark's own phrasing)? The two
+parallelism across Trimax assemblies (the benchmark's own phrasing)? The two
 readings diverge hard on multi-pass heaters (F6 fixture in the regression suite
 freezes the tension deliberately; H-2421's DSP26080 plan quotes 12 pig-hours for
 980 ft looped — 82 ft/hr single-path — while H-2501 quotes 48 hr for 6,167 ft =

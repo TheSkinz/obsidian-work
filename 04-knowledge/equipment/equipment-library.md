@@ -4,11 +4,11 @@
 
 ---
 
-## TriMax Pumper Unit
+## Trimax Pumper Unit
 
-USADeBusk's proprietary trailer-mounted pigging pumper. Transports cleaning pigs bi-directionally through furnace tubes using high-volume, low-pressure water.
+USADebusk's proprietary trailer-mounted pigging pumper. Transports cleaning pigs bi-directionally through furnace tubes using high-volume, low-pressure water.
 
-**Unit architecture — Triple:** One TriMax trailer contains 3 independent pumping assemblies (own engine, gearbox, pump, and valve manifold each), sharing ONE clean tank (3,000 gal) and ONE dirty tank (2,000 gal). Three operator stations in the control cab, one per assembly — left (pump 1), center (pump 2), right (pump 3). Each assembly cleans one circuit independently: direction, flow state, and progress are set per assembly; unused assemblies sit idle. Full detail is canonical in `usadebusk-equipment` — this entry carries the manufacturer spec-sheet data that skill doesn't (dimensions, engine, pump curve).
+**Unit architecture — Triple:** One Trimax trailer contains 3 independent pumping assemblies (own engine, gearbox, pump, and valve manifold each), sharing ONE clean tank (3,000 gal) and ONE dirty tank (2,000 gal). Three operator stations in the control cab, one per assembly — left (pump 1), center (pump 2), right (pump 3). Each assembly cleans one circuit independently: direction, flow state, and progress are set per assembly; unused assemblies sit idle. Full detail is canonical in `usadebusk-equipment` — this entry carries the manufacturer spec-sheet data that skill doesn't (dimensions, engine, pump curve).
 
 **Physical layout (left to right):**
 - Control cab (3 operator stations)
@@ -28,7 +28,7 @@ USADeBusk's proprietary trailer-mounted pigging pumper. Transports cleaning pigs
 **Rear connections:**
 - Two Fig. 200 (3") ports at rear of trailer, side by side — one CONV, one RAD
 - Both serve as either feed or return depending on selected pig travel direction
-- Valve manifold on TriMax controls direction from cab — no hose swapping
+- Valve manifold on Trimax controls direction from cab — no hose swapping
 
 **Operating note:** High-volume / low-pressure system. High volume is the distinguishing characteristic — pigs are propelled by flow, not pressure alone.
 
@@ -56,9 +56,9 @@ USADeBusk's proprietary trailer-mounted pigging pumper. Transports cleaning pigs
 - Braided flexible graphite (BFG) packing standard; self-adjusting mechanical seals optional
 - Transmission: C20 series, drive ratios 1.27–2.46, pneumatic in-cab shift with PUMP/ROAD lock
 
-## Second TriMax (2× TriMax Configuration)
+## Second Trimax (2× Trimax Configuration)
 
-When running 2x TriMax simultaneously:
+When running 2x Trimax simultaneously:
 - Each unit has its own clean tank (3,000 gal) and dirty tank (2,000 gal), plus its own 3 pump/engine assemblies — up to 6 simultaneous circuits total
 - Filtration scales conditionally: 2× filter presses + 2× 4×3 pumps when the customer requires it AND a 2nd press is available; otherwise 1× shared filter press + 1× shared 4×3 pump serving both units
 - When shared: T-connections with valve manifolds on both sides link each dirty tank outlet to shared pump suction; clean filtrate returns to respective clean tanks
@@ -68,7 +68,7 @@ When running 2x TriMax simultaneously:
 
 **Fleet: three presses of this model, with a rare option to rent a fourth (confirmed by Jesse 2026-07-25).** There is no larger-capacity model — more filtration capacity means another press, not a bigger one. **Which presses are free for a given job is Jesse's logistics call and is deliberately not tracked in the vault** — do not reason about availability from these notes, and do not build anything that tries to.
 
-USADeBusk Filter Press #1 specs (all three are this model):
+USADebusk Filter Press #1 specs (all three are this model):
 - Dimensions: 44'-3" L × 8'-7" W, trailer-mounted
 - 73 polypropylene plates, 1,000 mm plate size
 - Surface area: 1,243.4 ft²
@@ -90,10 +90,10 @@ USADeBusk Filter Press #1 specs (all three are this model):
 - Attached directly to convection inlet flanges (launcher) and radiant outlet flanges (receiver)
 - Same form factor — labeled by function and location
 - Flange size matches heater flange; customer fabricates adapters when flange rating/size differs
-- Fig. 200 hose connection at rear of TriMax connects to launcher/receiver via jetting hose
+- Fig. 200 hose connection at rear of Trimax connects to launcher/receiver via jetting hose
 
 **Inventory (standard across all furnace pigging companies):**
-- USADeBusk carries 10+ launchers of each size, sizes 3" through 12"
+- USADebusk carries 10+ launchers of each size, sizes 3" through 12"
 - 3", 4", 6", 8": 300# connections on barrel and valve
 - 10", 12": 150# connections on barrel and valve
 - This flange rating standard is consistent industry-wide
@@ -149,11 +149,11 @@ circuit.
 
 | Component | Type | Size | Notes |
 |---|---|---|---|
-| TriMax to launcher/receiver | Fig. 200 jetting hose | 3" | Connects rear TriMax ports to coil endpoints |
+| Trimax to launcher/receiver | Fig. 200 jetting hose | 3" | Connects rear Trimax ports to coil endpoints |
 | Filtration circuit (all legs) | Camlock | 3" | Dirty tank → pump → filter press → clean tank |
 | Dirty tank vac access | Camlock | 3" | T-branch on dirty tank outlet for vac truck access |
 
-**Fig. 200 hammer union spec (Kemper):** 2,000-psi NSCWP (non-shock cold working pressure), available 1" through 10", butt-weld Schedule 40/80, color-coded blue nut / gray subs, stainless steel subs available. Compact, popular for low-pressure rig piping; meets medium-pressure requirements for air/water/oil/gas service. Kemper's full union line spans other pressure classes (Fig. 100 through 2202, up to 22,500 psi) not currently used in USADeBusk's fleet — see source PDF if a job ever needs a different figure.
+**Fig. 200 hammer union spec (Kemper):** 2,000-psi NSCWP (non-shock cold working pressure), available 1" through 10", butt-weld Schedule 40/80, color-coded blue nut / gray subs, stainless steel subs available. Compact, popular for low-pressure rig piping; meets medium-pressure requirements for air/water/oil/gas service. Kemper's full union line spans other pressure classes (Fig. 100 through 2202, up to 22,500 psi) not currently used in USADebusk's fleet — see source PDF if a job ever needs a different figure.
 
 ## Support Equipment
 
@@ -170,20 +170,20 @@ circuit.
 
 **Option A — No filtration (fire hydrant supply, coke pit discharge):**
 ```
-Fire hydrant → fire hose → each TriMax clean tank
-Each TriMax dirty tank → 3" camlock → Coke Pit Drain / Oily Water Sewer
+Fire hydrant → fire hose → each Trimax clean tank
+Each Trimax dirty tank → 3" camlock → Coke Pit Drain / Oily Water Sewer
 ```
-1× or 2× TriMax variant.
+1× or 2× Trimax variant.
 
 **Option B — Closed loop with filtration (frac tank supply):**
 ```
-Frac tank → TriMax clean tank(s)
+Frac tank → Trimax clean tank(s)
 Dirty tank → 4×3 trash pump → filter press → clean tank
 ```
-No hydrant. 1× or 2× TriMax variant. On 2×, filtration scales conditionally — see the Second TriMax section above.
+No hydrant. 1× or 2× Trimax variant. On 2×, filtration scales conditionally — see the Second Trimax section above.
 
 **Physical left-to-right layout (roughly):**
-Frac Tank (Option B only) | TriMax unit(s) | Heater | Coke Pit / OWS drain terminus
+Frac Tank (Option B only) | Trimax unit(s) | Heater | Coke Pit / OWS drain terminus
 
 ---
 
@@ -194,8 +194,8 @@ Manufacturer/company spec sheets backing the figures above, kept at `04-knowledg
 | File                                              | Covers                                                                     |
 | ------------------------------------------------- | -------------------------------------------------------------------------- |
 | `Cummins TriMax.pdf`                              | Cummins QSL9 engine performance data (FR93996)                             |
-| `DEBUSK Pumper & Support Dims.pdf`                | TriMax pumper and support unit trailer dimensions                          |
-| `Filter Press # 1.pdf`                            | USADeBusk Filter Press #1 dimensions and specs                             |
+| `DEBUSK Pumper & Support Dims.pdf`                | Trimax pumper and support unit trailer dimensions                          |
+| `Filter Press # 1.pdf`                            | USADebusk Filter Press #1 dimensions and specs                             |
 | `Pump Curve CMUPigging.pdf`                       | Waterous CMU pump specifications and performance curves                    |
 | `USA PIG LAUNCHER Dim with flanges explained.pdf` | Pig launcher dimensions by size, flange notes                              |
 | `Fig 200 Spec sheets.pdf`                         | Kemper oilfield hammer union catalog (Fig. 200 and other pressure classes) |

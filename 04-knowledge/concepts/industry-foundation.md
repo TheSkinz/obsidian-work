@@ -20,7 +20,7 @@ Why refineries need it: coke reduces heat transfer efficiency, increases tube sk
 
 ## Coil sections
 
-**Convection section:** Upper section. Horizontal tube arrangement standard. Heated by flue gas convection only. Lower tube skin temps. Convection tube ID is the same size as or smaller than radiant tube ID on virtually all heaters USADeBusk services (confirmed across 23+ years of field experience — exceptions exist but are extremely rare, less than 1%).
+**Convection section:** Upper section. Horizontal tube arrangement standard. Heated by flue gas convection only. Lower tube skin temps. Convection tube ID is the same size as or smaller than radiant tube ID on virtually all heaters USADebusk services (confirmed across 23+ years of field experience — exceptions exist but are extremely rare, less than 1%).
 
 **⚠ FLAG BEHAVIOR:** If heater data shows convection tube ID *larger* than radiant tube ID, flag it immediately before proceeding with any SOP, proposal, or pig sizing work. Anomalous — must be confirmed before continuing.
 
@@ -53,7 +53,7 @@ Why refineries need it: coke reduces heat transfer efficiency, increases tube sk
 
 **Carbon steel:** Standard process, no modification needed.
 
-**Stainless steel:** Requires passivation. Soda ash solution circulated through coil after mechanical cleaning to restore passive oxide layer. Customer typically provides soda ash or pre-mixes. USADeBusk can supply if required. pH monitoring required throughout.
+**Stainless steel:** Requires passivation. Soda ash solution circulated through coil after mechanical cleaning to restore passive oxide layer. Customer typically provides soda ash or pre-mixes. USADebusk can supply if required. pH monitoring required throughout.
 - Target pH: maintained above ~10.0 during circulation
 - Circulation velocity: ~1–2 ft/s
 - Duration: typically 4–6 hours
@@ -84,8 +84,8 @@ Why refineries need it: coke reduces heat transfer efficiency, increases tube sk
 | Smart pig / ILI tool | Intelligent inspection pig — runs after mechanical cleaning to measure tube wall thickness |
 | Flow test | Before/after pump curve test (RPM vs PSI vs GPM) to verify cleaning effectiveness |
 | Effluent | Return water exiting receiver — clarity and duration indicate fouling removal progress |
-| Diverter | Operator-controlled valve on TriMax directing return water to dirty or clean tank |
-| Fig. 200 | Hose connection fitting type used at TriMax rear ports (3") |
+| Diverter | Operator-controlled valve on Trimax directing return water to dirty or clean tank |
+| Fig. 200 | Hose connection fitting type used at Trimax rear ports (3") |
 | Camlock | Quick-connect hose fitting used throughout filtration circuit (3" standard) |
 | Jumper spool | Temporary 180° loop spool connecting two radiant outlet flanges |
 | SIMOPS | Simultaneous operations — multi-heater jobs requiring resource overlap management |

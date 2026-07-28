@@ -18,7 +18,7 @@ tags: [capture, vault-system, knowledge, job-sheet, estimating]
 
 Captured 2026-07-11 for routing into `04-knowledge/` (near `01-context/estimating-approach` and the estimating rollup). Most of the USA26038 job-sheet session was spent re-deriving these distinctions from scratch — writing them down once prevents re-litigating them every job.
 
-## The three USADeBusk field-document types
+## The three USADebusk field-document types
 
 - **Job sheet** — static, created at bid-win from the quoted work-up. Crew-facing, printable. Holds the quoted resource plan and how to key service receipts. Never carries actuals, status, or timeline.
 - **Heater card** — persistent. The heater's fixed physical facts plus accumulated actuals (Task Durations, Field Notes) across all jobs on that unit.

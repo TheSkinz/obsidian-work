@@ -9,7 +9,7 @@ tags: [idea, vault-system, future, estimating, knowledge-system]
 
 Idea seed captured 2026-07-26 for a future exploration session. The read below is tentative — confirm intent with Jesse before designing.
 
-**Tentative read:** Jesse's ask is a way to see overall stats across the whole system rather than one card at a time — every job and per facility, covering equipment / TriMax, tube geometry, pigs by size against tube size and footage, filter press, smart-pig vs non-smart-pig jobs, multi-ID vs single-ID heaters, convection vs radiant, and task durations. The motivating context is that **none of this is tracked anywhere in the field**; the vault is the first place it has been consolidated, so there is no external source to fall back on and the return on querying what is already here is unusually high.
+**Tentative read:** Jesse's ask is a way to see overall stats across the whole system rather than one card at a time — every job and per facility, covering equipment / Trimax, tube geometry, pigs by size against tube size and footage, filter press, smart-pig vs non-smart-pig jobs, multi-ID vs single-ID heaters, convection vs radiant, and task durations. The motivating context is that **none of this is tracked anywhere in the field**; the vault is the first place it has been consolidated, so there is no external source to fall back on and the return on querying what is already here is unusually high.
 
 **The distinction that came out of the discussion, and the durable part of this seed:** descriptive and validation stats work fine on sparse data; predictive or fitted rates do not. Validation needs one distribution and one outlier, not volume — you do not need a hundred points to know a 5.5" pig in a 5.043" tube is out of family. Claude initially conflated the two and let a caution about *modelling* on thin data gate the entire *descriptive* idea, which was wrong and is recorded here so the next session does not repeat it. The only line worth holding is that a stat should not silently become a quoted number without Jesse ruling on it — that is about how a figure is used downstream, not about what gets counted.
 
@@ -35,7 +35,7 @@ Idea seed captured 2026-07-26 for a future exploration session. The read below i
 
 Already computable, never computed: 13 multi-ID vs 19 single-ID heaters · smart pigging 14 Elected / 7 Declined / 11 TBD · filtration 13 / 7 / 11 / 1 Optional · 19 one-rig jobs vs 3 two-rig.
 
-**Not captured in any structured form, so no stat can exist until they are:** filter press hours, which specific TriMax unit ran, flow test results. All prose-only today (18, 3 and 16 files respectively). Widening capture at ingest is a prerequisite for those dimensions, and is a Lane 4 card-schema decision.
+**Not captured in any structured form, so no stat can exist until they are:** filter press hours, which specific Trimax unit ran, flow test results. All prose-only today (18, 3 and 16 files respectively). Widening capture at ingest is a prerequisite for those dimensions, and is a Lane 4 card-schema decision.
 
 **To explore:** What is the right shape — more generated rollups on the proven `estimating_rollup.py` pattern, a spreadsheet, a dashboard, or something queried on demand rather than materialized? How much does a validation-oriented surface differ in design from an analysis-oriented one, given validation is the use case with the strongest evidence behind it? Which dimensions genuinely need new capture at ingest versus already sitting in the cards unread? Does a stats surface change the estimating workflow, or is its real job checking claims and data that do not make sense — Jesse's own framing, and the stronger argument? And how does it stay honest as it grows: keeping quoted separate from actual, sparse separate from dense, and physical relationships separate from negotiated ones like rates, which expire with their contract and have no meaningful aggregate.
 
@@ -56,7 +56,7 @@ He asked for exactly this — explore the ideas, keep the good, toss the bad. Re
 
 **Toss.**
 
-- **Filter press / specific TriMax unit / flow test stats.** The data doesn't exist, and capturing it is permanent friction on every future ingest for dimensions never once needed. Revisit only when something concrete asks.
+- **Filter press / specific Trimax unit / flow test stats.** The data doesn't exist, and capturing it is permanent friction on every future ingest for dimensions never once needed. Revisit only when something concrete asks.
 - **A single combined dashboard.** The deciding reason is not evidentiary hygiene — it is that a dashboard must be remembered and opened. Jesse's stated pattern is that he does not track triggers, which is why the health dashboard surfaces at session start rather than waiting. Anything requiring him to go look will go unread.
 - **Stats reducing how often Claude must stop and ask.** Mostly wishful. Of the interruptions in this session, only one of four was a data question; the rest were judgment and world-knowledge. Expect maybe a third fewer, not most.
 

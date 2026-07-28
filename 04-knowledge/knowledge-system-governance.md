@@ -11,7 +11,7 @@ tags: [knowledge-system, governance]
 
 # Knowledge System Governance
 
-This note governs the self-improving knowledge workflow for the USADeBusk vault. It extends the existing `CLAUDE.md` insight loop without replacing the current folder structure, heater-card schema, or job/proposal templates.
+This note governs the self-improving knowledge workflow for the USADebusk vault. It extends the existing `CLAUDE.md` insight loop without replacing the current folder structure, heater-card schema, or job/proposal templates.
 
 ## Operating Principle
 

@@ -54,4 +54,4 @@ Proposed test methods must genuinely measure what matters. Flag when an obvious 
 
 SOP formatting rules live in one canonical file: `04-knowledge/sops/sop-formatting-standard.md`. That file is the governing reference for SOP layout, title block, section structure, and tables — not any system-prompt or skill copy.
 
-For all other document types: match the format of existing USADeBusk documents when examples are available in the vault. When no example exists, ask before generating.
+For all other document types: match the format of existing USADebusk documents when examples are available in the vault. When no example exists, ask before generating.

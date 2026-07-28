@@ -21,7 +21,7 @@ tags: [job-sheet, HF-Sinclair, USA26038]
 |---|---|
 | Facility | HF Sinclair Navajo Refinery — Artesia, NM |
 | Job # | USA26038 |
-| Scope | Mechanical decoke — H19 & H20, (2) TriMax pumpers with filtration |
+| Scope | Mechanical decoke — H19 & H20, (2) Trimax pumpers with filtration |
 | Heaters | H19 Crude Charge Heater · H20 Vertical Crude Hydro Heater |
 | Project Type | Emergency turnaround project |
 | Training | Site Specific |
@@ -34,15 +34,15 @@ tags: [job-sheet, HF-Sinclair, USA26038]
 
 | Rig | Supervisor | Operators |
 |---|---|---|
-| TriMax 5 | Dacorey Slater | Dandrew Brown, Andre Madison |
-| TriMax 3 | Jesse Utsey | Blake Baugh |
+| Trimax 5 | Dacorey Slater | Dandrew Brown, Andre Madison |
+| Trimax 3 | Jesse Utsey | Blake Baugh |
 
 **Night Shift**
 
 | Rig | Supervisor | Operators |
 |---|---|---|
-| TriMax 5 | Samuel Mixon | Kailon Golston |
-| TriMax 3 | Daniel Harman | Joel Ruiz, James McDaniel |
+| Trimax 5 | Samuel Mixon | Kailon Golston |
+| Trimax 3 | Daniel Harman | Joel Ruiz, James McDaniel |
 
 Supervisors are fixed to a rig; which rig works H19 vs. H20 is a field decision. Operators may shift between rigs within their shift. Dacorey Slater is the customer-facing lead / final-decision authority and bills as Project Manager on the H-20 work-up (see billing below).
 
@@ -56,7 +56,7 @@ Pumper Amt shows the heater total; Rig-In / Pig / Rig-Out breakdown is in each h
 
 | Qty | Item | Amt | Unit |
 |---|---|---|---|
-| 1 | TriMax Pumper | 48 | Hrs |
+| 1 | Trimax Pumper | 48 | Hrs |
 | 1 | Support Unit | 48 | Hrs |
 | 1 | Filter Unit | 48 | Hrs |
 | 1 | Crew Truck | 48 | Hrs |
@@ -72,7 +72,7 @@ Pumper Amt shows the heater total; Rig-In / Pig / Rig-Out breakdown is in each h
 
 | Qty | Item | Amt | Unit |
 |---|---|---|---|
-| 1 | TriMax Pumper | 80 | Hrs |
+| 1 | Trimax Pumper | 80 | Hrs |
 | 1 | Support Unit | 80 | Hrs |
 | 1 | Filter Unit | 80 | Hrs |
 | 1 | Crew Truck | 80 | Hrs |

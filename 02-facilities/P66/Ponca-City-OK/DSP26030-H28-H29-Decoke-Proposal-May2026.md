@@ -39,7 +39,7 @@ verified: never
 
 ## Scope
 
-Mechanical decoke of H-28 & H-29 Coker Heaters using (2) TriMax Pumpers, filtration, and 4x3 diesel pump during the May 2026 turnaround. Both heaters pigged simultaneously with all 6 passes in conjunction.
+Mechanical decoke of H-28 & H-29 Coker Heaters using (2) Trimax Pumpers, filtration, and 4x3 diesel pump during the May 2026 turnaround. Both heaters pigged simultaneously with all 6 passes in conjunction.
 
 ## Execution Plan
 
@@ -50,7 +50,7 @@ Mechanical decoke of H-28 & H-29 Coker Heaters using (2) TriMax Pumpers, filtrat
 | 5/6/26 7:00 AM | 5/6/26 3:00 PM | 8 | Rig-out equipment, demobilize |
 | **TOTAL** | | **56** | **3 days / 5 shifts** |
 
-**Equipment:** (2) TriMax Triple Pumper, (2) Support Unit, (4) Crew Trucks, Filtration, 4x3 Diesel Pump
+**Equipment:** (2) Trimax Triple Pumper, (2) Support Unit, (4) Crew Trucks, Filtration, 4x3 Diesel Pump
 
 **Manpower:** (3) Day Supervisors, (4) Day Operators, (2) Night Supervisors, (4) Night Operators, Project Manager (Travis Trenholm)
 
@@ -69,4 +69,4 @@ Mechanical decoke of H-28 & H-29 Coker Heaters using (2) TriMax Pumpers, filtrat
 
 Equipment: $91,248.00 | Manpower: $47,310.00 | Materials: $6,442.00 | Third party: Cost +10%
 
-Basis: T&M. Mob/Demob lump sum. Stand-by time not caused by USADeBusk billed at delay rates. Pigs billed at cost +10%.
+Basis: T&M. Mob/Demob lump sum. Stand-by time not caused by USADebusk billed at delay rates. Pigs billed at cost +10%.

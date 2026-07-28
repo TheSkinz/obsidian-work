@@ -30,13 +30,13 @@ Examples:
 ```
 [Gold label, caps] MECHANICAL DECOKING OF
 [Large bold] HEATER TAG / FURNACE NAME
-[Italic] Operational SOP | USADeBusk | [Facility Name]
+[Italic] Operational SOP | USADebusk | [Facility Name]
 
 [2×4 grid table]
 PROJECT          | HEATER              | DOCUMENT NO.     | REVISION
 [Facility]       | [Heater tag + name] | [SOP-DCK-xxx]    | REV 0
 CONTRACTOR       | DOCUMENT TYPE       | PREPARED BY      | DATE
-USADeBusk        | Execution SOP       | Jesse Utsey      | [Month Year]
+USADebusk        | Execution SOP       | Jesse Utsey      | [Month Year]
 ```
 
 Header table: label row cells = dark charcoal fill, white bold text. Value row cells = white background, normal weight.
@@ -50,16 +50,16 @@ The DOCUMENT NO. cell carries the **short form only** (`SOP-DCK-[HeaterTag]-[NNN
 Sections are numbered. Subsections use decimal notation (2.1, 2.2). Order adapts to job complexity — the structure below is the baseline. Add, remove, or reorder based on what the job actually requires.
 
 ### 1. Purpose and Scope
-- Opening paragraph: establishes what this SOP covers, heater tag, facility, circuit count, key configuration facts (e.g., simultaneous pigging, TriMax mode, all connections size/rating)
+- Opening paragraph: establishes what this SOP covers, heater tag, facility, circuit count, key configuration facts (e.g., simultaneous pigging, Trimax mode, all connections size/rating)
 - **Heater and Coil Specifications table** (gold subheader): Section / Metallurgy / Tube ID / Passes (or Coils) / Footage per Pass / Circuit Configuration
 
 ### 2. Safety and PPE Requirements
 - Minimum PPE bullet list (ANSI/ASTM references, site-specific requirements)
-- Subsections for job-specific configuration: second TriMax allocation, launcher/receiver configuration, water supply and effluent disposal. Each subsection gets a table where applicable.
+- Subsections for job-specific configuration: second Trimax allocation, launcher/receiver configuration, water supply and effluent disposal. Each subsection gets a table where applicable.
 
 ### 3. System Configuration
 - Equipment list table: Item / Description / Qty
-- Includes TriMax Pumpers, Support Units, Crew Trucks, Launchers, Receivers, hoses, pigs
+- Includes Trimax Pumpers, Support Units, Crew Trucks, Launchers, Receivers, hoses, pigs
 
 ### 4. Operating Parameters
 - Table: one column per circuit when circuits have different parameters; single column when all circuits share the same parameters
@@ -74,9 +74,9 @@ Sections are numbered. Subsections use decimal notation (2.1, 2.2). Order adapts
 Phase-based subsections labeled "Phase I — [Name]", "Phase II — [Name]", etc. Not numbered within the section.
 
 Standard phases:
-- **Phase I — Rig-In**: pre-execution requirements checklist (PTW, JSA, customer-installed hardware), USADeBusk rig-in sequence
+- **Phase I — Rig-In**: pre-execution requirements checklist (PTW, JSA, customer-installed hardware), USADebusk rig-in sequence
 - **Phase II — Mechanical Decoking**: simultaneous circuit operation, pig loading/launching, effluent observation, sizing progression, completion trigger
-- **Phase III — Smart Pig Support** (when applicable): USADeBusk propulsion role only; vendor controls inspection; written approval gate before rig-out
+- **Phase III — Smart Pig Support** (when applicable): USADebusk propulsion role only; vendor controls inspection; written approval gate before rig-out
 
 For ExxonMobil / major operator jobs with oily water or hydrocarbon deinventory: add Phase I — Initial Flush & Pitch/Oily Water Removal before mechanical decoking phase.
 
@@ -93,7 +93,7 @@ For ExxonMobil / major operator jobs with oily water or hydrocarbon deinventory:
 ### 9. Definitions
 - Two-column table: Term / Definition
 - Include job-specific terms and abbreviations (facility-specific ones like CV Station, WNRTJ, etc.)
-- Standard terms always included: Pig, Foam Pig, TC Pig, Circuit/Pass, Launcher, Receiver, Diverter, Effluent, Fig. 200, TriMax Pumper, PTW
+- Standard terms always included: Pig, Foam Pig, TC Pig, Circuit/Pass, Launcher, Receiver, Diverter, Effluent, Fig. 200, Trimax Pumper, PTW
 - Conditional terms, included only when the SOP body actually uses them: Triple Mode, RFWN, Swab, Rig-Over, and any facility-specific term. RFWN in particular is a flange-type descriptor: include it when the connection spec names the flange type (e.g. `6" 300# RFWN`), omit it when the job gives size and rating only (e.g. `4" 300#`). Do not define a term the document never uses.
 
 ---

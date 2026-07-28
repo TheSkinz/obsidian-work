@@ -38,7 +38,7 @@ P.O. Box 2608, Corpus Christi, TX 78403.
 | Resource | Detail |
 |---|---|
 | Crane | (not recorded) |
-| Filter press | USADeBusk-supplied (Press 2 on USA26005) — no site press used |
+| Filter press | USADebusk-supplied (Press 2 on USA26005) — no site press used |
 | Water supply | (not recorded) |
 
 ---
@@ -74,6 +74,6 @@ rate schedule.
 
 ## Notes
 
-Both heaters were decoked back-to-back on a single mobilization (USA26005, one TriMax), with
+Both heaters were decoked back-to-back on a single mobilization (USA26005, one Trimax), with
 the equipment rigged over directly from 01-BA-105 to 02-BA-201 rather than rigged out and
 back in.

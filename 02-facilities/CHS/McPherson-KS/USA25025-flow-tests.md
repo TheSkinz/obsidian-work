@@ -93,7 +93,7 @@ HP-0003 or HP-0006** — those heaters are simply absent from the report's Flow 
 
 ## HF-0012 — Coker Pass 6
 
-2025-03-25 · pumper TriMax 1 (Left) · footage 2,006 ft · pipe ID 3.732" pipe / 3.624" U-bends · scan page 13 · PSI column pre PF / post PF · test operator pre initials only, post initials only
+2025-03-25 · pumper Trimax 1 (Left) · footage 2,006 ft · pipe ID 3.732" pipe / 3.624" U-bends · scan page 13 · PSI column pre PF / post PF · test operator pre initials only, post initials only
 
 | GPM | Before RPM | Before PSI | After RPM | After PSI | Δ PSI |
 |---|---|---|---|---|---|
@@ -106,7 +106,7 @@ HP-0003 or HP-0006** — those heaters are simply absent from the report's Flow 
 
 ## HF-009A — Crude Charge West
 
-2025-03-24 · pumper TriMax 2 (Right) · footage 7,812 ft · pipe ID 4.813" · scan page 4 · PSI column pre DIG / post DIG · test operator pre Damian Charles, post Kyle Davis
+2025-03-24 · pumper Trimax 2 (Right) · footage 7,812 ft · pipe ID 4.813" · scan page 4 · PSI column pre DIG / post DIG · test operator pre Damian Charles, post Kyle Davis
 
 | GPM | Before RPM | Before PSI | After RPM | After PSI | Δ PSI |
 |---|---|---|---|---|---|
@@ -145,7 +145,7 @@ HP-0003 or HP-0006** — those heaters are simply absent from the report's Flow 
 
 ## HF-0011 — Vacuum Pass 2
 
-2025-03-31 · pumper TriMax 1 (Middle) · footage — · pipe ID 6.065" / 7.981" / 10.02" · scan page 2 · PSI column pre PF / post PF · test operator pre P. Campbell, post JU
+2025-03-31 · pumper Trimax 1 (Middle) · footage — · pipe ID 6.065" / 7.981" / 10.02" · scan page 2 · PSI column pre PF / post PF · test operator pre P. Campbell, post JU
 
 | GPM | Before RPM | Before PSI | After RPM | After PSI | Δ PSI |
 |---|---|---|---|---|---|
@@ -171,7 +171,7 @@ HP-0003 or HP-0006** — those heaters are simply absent from the report's Flow 
 
 ## HF-0011 — Vacuum Pass 4
 
-2025-03-31 · pumper TriMax 1 (Right) · footage — · pipe ID 6.065" / 7.981" / 10.02" · scan page 7 · PSI column pre PF / post PF · test operator pre P. Campbell, post P. Campbell
+2025-03-31 · pumper Trimax 1 (Right) · footage — · pipe ID 6.065" / 7.981" / 10.02" · scan page 7 · PSI column pre PF / post PF · test operator pre P. Campbell, post P. Campbell
 
 | GPM | Before RPM | Before PSI | After RPM | After PSI | Δ PSI |
 |---|---|---|---|---|---|

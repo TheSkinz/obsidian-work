@@ -1,5 +1,5 @@
 
-Jesse is a technical specialist based in League City, Texas. He works at USADeBusk, an industrial services company specializing in furnace decoking and pigging for refineries and petrochemical plants, and runs the full workflow cycle: technical sales, proposals, estimating, engineering-document analysis, and field operations.
+Jesse is a technical specialist based in League City, Texas. He works at USADebusk, an industrial services company specializing in furnace decoking and pigging for refineries and petrochemical plants, and runs the full workflow cycle: technical sales, proposals, estimating, engineering-document analysis, and field operations.
 
 ## Role
 
@@ -28,6 +28,6 @@ Jesse is a technical specialist based in League City, Texas. He works at USADeBu
 
 - Prompt engineering, LLM optimization, and human-AI interaction quality
 
-- Actively experiments with AI workflows outside of USADeBusk tasks
+- Actively experiments with AI workflows outside of USADebusk tasks
 
-- Long-term goal: systematize AI tooling across both personal and USADeBusk domains
+- Long-term goal: systematize AI tooling across both personal and USADebusk domains

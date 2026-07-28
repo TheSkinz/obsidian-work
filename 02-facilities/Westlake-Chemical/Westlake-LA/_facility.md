@@ -10,7 +10,7 @@ tags: [facility, Westlake-South]
 
 # Westlake South — Westlake, LA
 
-> **New to this vault, not new to USADeBusk.** USADeBusk bid TE-II here in **2024 and lost**.
+> **New to this vault, not new to USADebusk.** USADebusk bid TE-II here in **2024 and lost**.
 > That package sits outside the vault and has not been located — recovering it is the top
 > open action for this site.
 
@@ -52,7 +52,7 @@ tags: [facility, Westlake-South]
 
 | Resource | Detail |
 |---|---|
-| Crane | (not recorded) — USADeBusk performs no lifts; customer lifting contractor scope |
+| Crane | (not recorded) — USADebusk performs no lifts; customer lifting contractor scope |
 | Filter press | (not recorded) |
 | Water supply | (not recorded) — outstanding intake item |
 
@@ -68,7 +68,7 @@ tags: [facility, Westlake-South]
 
 <!--
 Deliberately absent per 04-knowledge/_facility-template.md. Rates belong to a contract, not a
-facility. For Westlake South specifically: prior USADeBusk work at this site predates the vault,
+facility. For Westlake South specifically: prior USADebusk work at this site predates the vault,
 so the governing contract and rate basis must be recovered from the SharePoint/OneDrive estate
 and recorded on the quote note that uses them.
 -->

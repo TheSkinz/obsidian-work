@@ -28,8 +28,8 @@ Skills live at `~/.claude/skills/`, no separate deploy step. `usadebusk-core` lo
 
 | Skill | For | Trigger words / task types | Load alongside |
 |---|---|---|---|
-| **usadebusk-core** | Foundational context for any USADeBusk task | Any proposal, SOP, estimating, field ops, or technical-doc question; furnace decoking, pigging, fired heaters | Always, with any other skill below |
-| **usadebusk-equipment** | Physical equipment specs | Pig sizing, launcher/receiver sizing, hose connections, TriMax pumper, filter press specs, hardware selection | usadebusk-core |
+| **usadebusk-core** | Foundational context for any USADebusk task | Any proposal, SOP, estimating, field ops, or technical-doc question; furnace decoking, pigging, fired heaters | Always, with any other skill below |
+| **usadebusk-equipment** | Physical equipment specs | Pig sizing, launcher/receiver sizing, hose connections, Trimax pumper, filter press specs, hardware selection | usadebusk-core |
 | **usadebusk-estimating** | Proposals, pricing, bids | New RFQ, bid package, scope pricing, heater card development, mob/demob, TA scope, emergency decoke | usadebusk-core |
 | **usadebusk-fieldpm** | Field project management — **dormant** (reactivates on job mobilization) | `/setup`, `/extract`, `/log`, `/email`, `/status`, `/report`; service receipts, shift notes, payroll, job progress | usadebusk-core; usadebusk-equipment mid-job if pig sizing comes up |
 | **usadebusk-ops** | Field ops admin/paperwork | Service receipts, ticket breakdowns, invoice prep, field documentation | usadebusk-core |
@@ -38,7 +38,7 @@ Skills live at `~/.claude/skills/`, no separate deploy step. `usadebusk-core` lo
 | **adversarial-review** | High-fidelity multi-agent review | "adversarial review", production or security-sensitive code review | Standalone |
 | **idea-triage** | Brain-dump triage | "brain dump", "/triage", pasting an unstructured mix of ideas to disposition (execute / test / park / kill) | Standalone |
 
-**Ideal invocation timing:** load `usadebusk-core` at the start of any USADeBusk-flavored session, add the domain skill as soon as the task's shape is clear (don't wait until you're deep into it — skills change how the early exploration gets framed too).
+**Ideal invocation timing:** load `usadebusk-core` at the start of any USADebusk-flavored session, add the domain skill as soon as the task's shape is clear (don't wait until you're deep into it — skills change how the early exploration gets framed too).
 
 ---
 

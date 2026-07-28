@@ -29,16 +29,16 @@ tags: [job-record, CHS, McPherson-Refinery, USA25025, po-overrun]
 | Quote | [[DSP24005]] |
 | Dates | 2025-03-21 → 2025-04-06 (17 calendar days) |
 | PM | Jesse Utsey |
-| Day supervisor | Peter Campbell (also Jesse Utsey on TriMax 2) |
+| Day supervisor | Peter Campbell (also Jesse Utsey on Trimax 2) |
 | Night supervisors | JC McDaniel · Max Mercado |
 | Crew | 13 mobilized from Deer Park, TX (10 hrs mob, 4 flights) |
-| Equipment | TriMax 1 + TriMax 2 · 2 support units · 4 crew trucks (Black F350, White F250, Durango, Tahoe) · filter press |
+| Equipment | Trimax 1 + Trimax 2 · 2 support units · 4 crew trucks (Black F350, White F250, Durango, Tahoe) · filter press |
 | Customer contacts | Chris Strawn (3/21–3/29) · Clint Janzen (3/30–4/3) |
 | Condition | **Routine** — planned turnaround, no crashed or upset furnace |
 
 ## Actual Hours
 
-| Task | TriMax 1 | TriMax 2 | Total |
+| Task | Trimax 1 | Trimax 2 | Total |
 |---|---|---|---|
 | Rig in | 17.0 | 30.0 | 47.0 |
 | Rig over | 2.0 | 0.0 | 2.0 |
@@ -53,7 +53,7 @@ Filtration unit: 348.5 operating + 287.5 standby. Support units: 348 / 300. Crew
 
 **Quoted 314 hrs / 13.08 days → actual 656 pumper hrs / 17 days (209%).**
 
-TriMax 2 billed **zero** triple-mode hours despite the quote being built on two triple pumpers — all its
+Trimax 2 billed **zero** triple-mode hours despite the quote being built on two triple pumpers — all its
 pigging ran double mode. Confirm whether that was the operating reality or a workbook coding habit.
 
 ## Pigs — 396 total
@@ -83,9 +83,9 @@ and 6.125" on [[HP-0002]]. A TC-only plan did not clear either.
 | 03-30 | [[HP-0007]] | Complete in one 24-hr cycle incl. smart pig and rig-out |
 | 03-31 | [[HP-0025]] | Complete in one 24-hr cycle |
 | 04-01 → 04-02 | [[HP-0003]] + [[HP-0006]] concurrent | Stuck pig in HP-0003 reducer; HP-0006 ID discrepancy found |
-| 04-02 → 04-03 | [[HP-0002]] | TriMax 2 heaters complete; demob 3am 04-03 |
-| 03-31 → 04-06 | [[HF-0011]] Vacuum — TriMax 1, concurrent | Ran alone while TriMax 2 cycled the smaller heaters |
-| 04-04 → 04-06 | TriMax 1 completion + demob | Task hours in breakdown; receipts absent |
+| 04-02 → 04-03 | [[HP-0002]] | Trimax 2 heaters complete; demob 3am 04-03 |
+| 03-31 → 04-06 | [[HF-0011]] Vacuum — Trimax 1, concurrent | Ran alone while Trimax 2 cycled the smaller heaters |
+| 04-04 → 04-06 | Trimax 1 completion + demob | Task hours in breakdown; receipts absent |
 
 ## Duration by Heater
 
@@ -107,9 +107,9 @@ mode) ran the Crude 009A/B, concurrently 03-24 → 03-29. Early rig-in (03-23 �
 heaters and is split by unit. Coker rig excludes the 6-hr Vacuum rig-in on 03-29 (that belongs to
 [[HF-0011]]). Crude pigging is directly documented only on receipt 9282; the balance is on the billing
 breakdown.
-² Task hours from the breakdown; TriMax 1 physical receipts 8792–8796 now located — see [[HF-0011]].
+² Task hours from the breakdown; Trimax 1 physical receipts 8792–8796 now located — see [[HF-0011]].
 ³ Rigged and pigged concurrently on shared shifts; billed together.
-⁴ Rig includes the 04-03 night TriMax 2 demobilization (8 hrs), which the breakdown bills as Rig Out.
+⁴ Rig includes the 04-03 night Trimax 2 demobilization (8 hrs), which the breakdown bills as Rig Out.
 
 ## Stand-By by Cause — 190 hrs
 
@@ -117,10 +117,10 @@ breakdown.
 |---|---|---|
 | Site readiness — heater prep, blinds, TI removal | 03-22 → 03-24 | 110.5 |
 | In-progress hold — Coker cell prep and pig recovery | 03-26 → 03-28 | 28.5 |
-| Second unit idle — TriMax 1 awaiting heater availability | 03-29 → 04-06 | 51.0 |
+| Second unit idle — Trimax 1 awaiting heater availability | 03-29 → 04-06 | 51.0 |
 | **Total** | | **190.0** |
 
-All of TriMax 2's 79.5 standby hours fall in the first two buckets. The entire third bucket is TriMax 1.
+All of Trimax 2's 79.5 standby hours fall in the first two buckets. The entire third bucket is Trimax 1.
 
 ## Key Technical Findings
 
@@ -155,7 +155,7 @@ completed *before* the PO is exhausted. **No change order covering the overrun i
 **All labor hours in the workbook are zero.** Every daily tab shows ST/Standby/OT at 0 for all 16 named
 crew; only per diem was billed ($4,845 supervisors + $12,445 operators). The receipts document 10–13
 people at 10–12 hrs/shift for 15 days, and the quote carried $107,606 of manpower separately. Either the
-TriMax hourly rates are crew-inclusive or labor was never entered. Unresolved.
+Trimax hourly rates are crew-inclusive or labor was never entered. Unresolved.
 
 ### What drove the overrun
 1. **Standby — 190 pumper hrs (29% of all pumper hours) + 287.5 filtration standby hrs.** Every block is
@@ -166,14 +166,14 @@ TriMax hourly rates are crew-inclusive or labor was never entered. Unresolved.
    matching quoted decoking line.
 4. **Unbilled rig-out — ticket 8796.** The 04-05 night [[HF-0011]] rig-out shift (8 hrs rig-out + support
    + crew truck) is customer-signed but absent from the billing workbook (NIGHT (16) empty). Documented
-   TriMax 1 work that was never billed — a lost-revenue item, distinct from the overrun above.
+   Trimax 1 work that was never billed — a lost-revenue item, distinct from the overrun above.
 
 ## Open Items
 
 > [!note] Commercial/audit items closed 2026-07-22 — project complete
 > The change-order search, the zero-labor-hours workbook question, the DSP# 24005.1-vs-.2 quote-version
 > confirmation, and the ticket-8796 unbilled-hours recovery are dropped as no-longer-actionable. The
-> project is closed; the analysis above stays as the record. The [[HF-0011]] TriMax 1 receipts (8792–8796)
+> project is closed; the analysis above stays as the record. The [[HF-0011]] Trimax 1 receipts (8792–8796)
 > were located 2026-07-20.
 
 - ~~Obtain Decoking Data Sheets (flow tests)~~ **RESOLVED 2026-07-22, transcribed 2026-07-23** — all

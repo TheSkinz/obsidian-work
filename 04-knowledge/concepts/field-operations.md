@@ -10,7 +10,7 @@ Handwritten daily document completed by Project Manager for each 12-hour shift.
 
 **Key fields:**
 - Date, shift (Day/Night), job number (USA#)
-- Equipment mobilized and hours (TriMax, filter press, 4×3 pump, crew trucks, support units)
+- Equipment mobilized and hours (Trimax, filter press, 4×3 pump, crew trucks, support units)
 - Labor headcount and hours (Supervisor, Operators)
 - Per diem count
 - Materials used (pigs by type and size, DEF)
@@ -26,7 +26,7 @@ Handwritten daily document completed by Project Manager for each 12-hour shift.
 
 Most important per-job operational document.
 
-Naming: `USA[YYNNN] [Facility Name] [Scope] TriMax Ticket Breakdown`
+Naming: `USA[YYNNN] [Facility Name] [Scope] Trimax Ticket Breakdown`
 
 Contents: all billable resources mobilized, durations on project, billing rates, running totals.
 
@@ -36,7 +36,7 @@ Purpose: source for invoice generation. All service receipt data feeds here.
 
 | Line Item | Category | Hours/Qty | Rate Basis |
 |---|---|---|---|
-| TriMax Pumper | Equipment | N hrs | Hourly task-based |
+| Trimax Pumper | Equipment | N hrs | Hourly task-based |
 | Filter Press | Equipment | N hrs | Pumping / non-pumping |
 | 4×3 Pump | Equipment | N hrs | Hourly |
 | Support Unit | Equipment | N hrs | Hourly |
@@ -48,7 +48,7 @@ Purpose: source for invoice generation. All service receipt data feeds here.
 | DEF | Materials | N shifts | Per shift |
 | Pigs | Materials | qty/type | Unit rate |
 | Third Party | Third Party | N hrs | Cost + markup (contract-specific, confirm each job — some facilities as low as 5%) |
-| Plant Down Time | Stand-by | N hrs | Billed via the TriMax Pumper / Filter Press stand-by rates only — no generic stand-by line |
+| Plant Down Time | Stand-by | N hrs | Billed via the Trimax Pumper / Filter Press stand-by rates only — no generic stand-by line |
 
 ## Demob — which one the vault records
 
@@ -59,13 +59,13 @@ There are two distinct demobs, and they are routinely conflated:
 
 **The vault records concept 1 only, and "demob" with no qualifier always means concept 1.** A job's demob date is its crew-demob date.
 
-Never record, infer, or ask about concept 2. Equipment is frequently staged near a facility for weeks because a separate upcoming project will execute there, so fleet return has no fixed relationship to job end and is not USADeBusk-controlled in any way the vault could track. Assume the project leaves with the crew. If a source document gives a later equipment-return date, that is concept 2 — do not promote it to the job's demob date. This is the same rule as filter-press availability: logistics is Jesse's, not the vault's.
+Never record, infer, or ask about concept 2. Equipment is frequently staged near a facility for weeks because a separate upcoming project will execute there, so fleet return has no fixed relationship to job end and is not USADebusk-controlled in any way the vault could track. Assume the project leaves with the crew. If a source document gives a later equipment-return date, that is concept 2 — do not promote it to the job's demob date. This is the same rule as filter-press availability: logistics is Jesse's, not the vault's.
 
 Caught 2026-07-25: the `usadebusk-fieldpm` dormancy banner had recorded USA26038 as "demobbed 2026-07-20", which was the fleet-return date, against a job that completed 2026-07-17.
 
 ## Plant Down Time (PDT)
 
-Facility-caused downtime (not USADeBusk-caused). Always flag on receipt as potentially billable at stand-by rate. Distinguish clearly from USADeBusk-caused delays in shift summary.
+Facility-caused downtime (not USADebusk-caused). Always flag on receipt as potentially billable at stand-by rate. Distinguish clearly from USADebusk-caused delays in shift summary.
 
 ## Invoice readiness check
 

@@ -69,7 +69,7 @@ Options decision on the heater card), so state it as elected scope here, never a
 |---|---|
 | Facility | <Facility name — City, ST> |
 | Job # | <USA#####> |
-| Scope | <e.g. Mechanical decoke — H19 & H20, (2) TriMax pumpers with filtration> |
+| Scope | <e.g. Mechanical decoke — H19 & H20, (2) Trimax pumpers with filtration> |
 | Heaters | <Tag + service, separated by ·> |
 | Project Type | <Emergency turnaround project / Planned TA / Routine decoke> |
 | Training | <e.g. Site Specific> |
@@ -92,13 +92,13 @@ on a heater's work-up (that drives a billing line — see Billing Reference).
 
 | Rig | Supervisor | Operators |
 |---|---|---|
-| <TriMax #> | <name> | <names> |
+| <Trimax #> | <name> | <names> |
 
 **Night Shift**
 
 | Rig | Supervisor | Operators |
 |---|---|---|
-| <TriMax #> | <name> | <names> |
+| <Trimax #> | <name> | <names> |
 
 <One-paragraph note: who is customer-facing lead / final-decision authority, and any billing role
 that person carries.>
@@ -117,7 +117,7 @@ One `###` block per heater. Heading carries the heater total and its task split:
 WORK-UP BILLING MATH (authoritative — derived from the USA26038 work-up, 2026-07-11):
   - Shift basis: (day-shifts × 12h, last may be partial) + (night-shifts × 12h) = the heater's
     total pumper hours. That total is the heading figure and the equipment Amt.
-  - Equipment — TriMax Pumper, Support Unit, Filter Unit, Crew Truck — bills at the heater's
+  - Equipment — Trimax Pumper, Support Unit, Filter Unit, Crew Truck — bills at the heater's
     pumper total hours. Qty 1 each; Amt = heater total.
   - Labor Amt is COMBINED MAN-HOURS, not per-person hours: Amt = Qty × per-person shift hours.
     (2 Day Operators at 44 h/person = 88.) This is the single easiest line to get wrong.
@@ -136,7 +136,7 @@ than carrying it at zero.
 
 | Qty | Item | Amt | Unit |
 |---|---|---|---|
-| 1 | TriMax Pumper | <heater total> | Hrs |
+| 1 | Trimax Pumper | <heater total> | Hrs |
 | 1 | Support Unit | <heater total> | Hrs |
 | 1 | Filter Unit | <heater total> | Hrs |
 | 1 | Crew Truck | <heater total> | Hrs |

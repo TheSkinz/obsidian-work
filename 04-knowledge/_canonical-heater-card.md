@@ -189,7 +189,7 @@ cost, billed how, sourced from which quote.
 <!-- Wall-clock ELAPSED hours per decoke, one row per job (Date = job START, YYYY-MM-DD;
 multi-day span lives in Job History). ACTUALS ONLY — what the job really took, keyed by
 Job #; estimates live in the estimating workflow, never as a row here. Rigs = number of
-TriMax on the job; task hours are ELAPSED, so labor ≈ task hrs × Rigs (per-rig split stays
+Trimax on the job; task hours are ELAPSED, so labor ≈ task hrs × Rigs (per-rig split stays
 in Field Notes, never averaged into this table). Stand-By is tracked but EXCLUDED from Total
 (Total = productive task hours: Rig-In + Pig + Smart Pig + Rig-Over + Rig-Out). Total is
 DERIVED but hand-entered (no formula layer) — re-sum on any edit, do not trust a stale Total.
@@ -233,7 +233,7 @@ DERIVED but hand-entered (no formula layer) — re-sum on any edit, do not trust
 ## Field Notes
 
 <!--
-Per-job operational record: pigs ran, obstacles, facility procedures learned, and (multi-TriMax
+Per-job operational record: pigs ran, obstacles, facility procedures learned, and (multi-Trimax
 jobs only) the per-rig split backing the Task Durations table. Never restate the Task Durations
 table's numbers here as prose — the table carries the numbers, Field Notes carries the "why."
 "Difficulty"/challenges content (formerly a frontmatter key, dropped 2026-06-22) belongs here,
@@ -248,7 +248,7 @@ scoped to the job it occurred on — not as a card-level rating.
 
 **Facility Procedures:**
 
-**Per-rig split (multi-TriMax only):**
+**Per-rig split (multi-Trimax only):**
 
 ---
 

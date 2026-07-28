@@ -31,7 +31,7 @@ Leave a field blank rather than guessing. On older quotes the bid instructions m
 
 ### The default posture is uniform rates
 
-Before the distinctions below: **USADeBusk prefers to run the same rates at every facility** (Jesse, 2026-07-26). The house standard in `usadebusk-estimating` and `_cost-model.md` is the intended rate, and most bids should land on it. A quote that diverges has a reason — most often that the RFQ was contested and rates were cut to win it — and that reason is worth a line on the quote note, because it cannot be reconstructed from the rate table afterwards. Read divergence as a flag, not as evidence that each site has its own regime.
+Before the distinctions below: **USADebusk prefers to run the same rates at every facility** (Jesse, 2026-07-26). The house standard in `usadebusk-estimating` and `_cost-model.md` is the intended rate, and most bids should land on it. A quote that diverges has a reason — most often that the RFQ was contested and rates were cut to win it — and that reason is worth a line on the quote note, because it cannot be reconstructed from the rate table afterwards. Read divergence as a flag, not as evidence that each site has its own regime.
 
 ### Contract type is about term; billing basis is about structure
 

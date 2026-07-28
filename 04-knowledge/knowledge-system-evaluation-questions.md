@@ -19,7 +19,7 @@ Use these questions to test whether the vault is becoming easier to retrieve fro
 |---|---|---|---|
 | KS-001 | What is the current source hierarchy when two notes disagree? | `04-knowledge/knowledge-system-governance.md` | Names the hierarchy and says to create a contradiction note when authority is unclear. |
 | KS-002 | What is the current heater-card schema authority? | `04-knowledge/_canonical-heater-card.md`, `CLAUDE.md` | Identifies the canonical heater card and does not infer heater facts from jobs alone. |
-| KS-003 | What is the standard SOP formatting authority for USADeBusk documents? | `CLAUDE.md`, `04-knowledge/sops/sop-formatting-standard.md` | Names the governing note and preserves USADeBusk formatting constraints. |
+| KS-003 | What is the standard SOP formatting authority for USADebusk documents? | `CLAUDE.md`, `04-knowledge/sops/sop-formatting-standard.md` | Names the governing note and preserves USADebusk formatting constraints. |
 | KS-004 | Which inbox items are unprocessed or need routing? | `00-inbox`, dashboard | Lists inbox notes by status/type and flags routing gaps. |
 | KS-005 | Which active or stale items need review? | dashboard, frontmatter fields | Uses status/review fields instead of guessing from note age only. |
 
@@ -27,7 +27,7 @@ Use these questions to test whether the vault is becoming easier to retrieve fro
 
 | ID | Question | Expected Source Area | Pass Criteria |
 |---|---|---|---|
-| USA-001 | What is the preferred terminology for furnace decoking and TriMax equipment? | `CLAUDE.md`, USADeBusk core references | Uses Furnace Decoking/Pigging correctly and avoids banned dual-pumper wording. |
+| USA-001 | What is the preferred terminology for furnace decoking and Trimax equipment? | `CLAUDE.md`, USADebusk core references | Uses Furnace Decoking/Pigging correctly and avoids banned dual-pumper wording. |
 | USA-002 | For a heater with stainless metallurgy, what special passivation issue must be considered? | heater cards, `04-knowledge/_canonical-heater-card.md`, SOP guidance | Mentions soda ash/passivation only when metallurgy supports it. |
 | USA-003 | What facts belong on a heater card versus job-specific options? | `04-knowledge/_canonical-heater-card.md` | Separates heater facts from customer/job decisions like filtration or smart pigging. |
 | USA-004 | What information is needed before drafting an SOP? | SOP guidance, heater card schema | Does not assume metallurgy, water source, pass count, flange details, or customer standards. |

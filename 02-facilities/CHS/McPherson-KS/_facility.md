@@ -89,7 +89,7 @@ pumper decontamination · hose crossings and barricades · plant radio · light 
 
 | Job | Quote | Dates | Scope | Record |
 |---|---|---|---|---|
-| USA25025 | [[DSP24005]] | 2025-03-21 → 2025-04-06 | Plant-wide TA, 2 TriMax pumpers + filtration + smart pigging | [[USA25025-job-record]] |
+| USA25025 | [[DSP24005]] | 2025-03-21 → 2025-04-06 | Plant-wide TA, 2 Trimax pumpers + filtration + smart pigging | [[USA25025-job-record]] |
 
 Prior CHS pigging history exists for a **2022 turnaround** (referenced by Randy Lenhart: CHS Mechanical,
 Process and Operations engineers signed off initial and final flow tests). Those records are not in the
