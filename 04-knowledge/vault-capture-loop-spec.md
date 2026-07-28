@@ -26,7 +26,7 @@ Vault Capture Loop
 
 ## Trigger
 
-A local **desktop scheduled task** (weekly is plenty). It runs against the local working tree and harvests Claude Code session transcripts (plain JSONL under `~/.claude/projects/`, which are not in git), so it cannot run in the cloud. If the machine is asleep or the app closed at trigger time, it runs on next launch. There is no in-session cron variant — the scheduled task is the single mechanism.
+A local **desktop scheduled task**, daily at ~08:00 local (was weekly/Mondays until 2026-07-28; moved to daily to cut worst-case inbox latency from 7 days to 1). A run with nothing new is a clean no-op and produces no commit — that is the expected majority case at daily cadence, and the dashboard reads it as healthy. It runs against the local working tree and harvests Claude Code session transcripts (plain JSONL under `~/.claude/projects/`, which are not in git), so it cannot run in the cloud. If the machine is asleep or the app closed at trigger time, it runs on next launch. There is no in-session cron variant — the scheduled task is the single mechanism.
 
 ## Scope
 
@@ -99,6 +99,21 @@ Write knowledge, not conversation: "X works by Y" not "the user asked about X." 
 
 If `00-inbox/` holds 3+ untagged notes on one theme with no existing home, propose a hub note (suggested filename, target folder, one-line scope). Propose only — do not create the hub or move items without approval.
 
+## Terminal-Seed Sweep
+
+Added 2026-07-28. A finished idea-seed left in `00-inbox/` is noise that inflates the inbox count and buries live items. At the end of inbox ingestion, move any `type: idea-seed` file whose `status` is in this **exact allowlist** to `archive/`:
+
+`executed` · `resolved` · `complete` · `superseded` · `spec-complete`
+
+Rules that make this safe:
+
+- **Never sweep `researched` or `unexplored`.** `researched` means the Idea Research Loop is done but *Jesse has not decided* — sweeping it would silently discard a pending decision. `unexplored` is the loop's own input queue.
+- **Never rename.** Inbound wikilinks resolve by basename and `vault_lint.py` includes `archive/` in its resolution set (deliberately, per the script), so a plain move keeps every link green. Renaming breaks them — the initial sweep found 19 inbound links across 7 seeds.
+- **Never sweep a seed carrying `revisit-trigger:`** — that field is a live dormant trigger the health dashboard reports on, regardless of the seed's status.
+- Status values outside the allowlist are left alone and reported, not guessed at.
+
+Report the sweep in the run summary (`N swept`). The move is recoverable rather than destructive, but the reason is subtler than it looks: **`archive/` is listed in `.gitignore`**, and `.gitignore` governs only *untracked* files. A seed that was already tracked in `00-inbox/` stays tracked when moved (git records it as a rename — the first sweep staged all 7 as `R100`), so its history survives. A file that was **never committed** would become invisible to git the moment it lands in `archive/`. Therefore: **only sweep a seed that `git ls-files` already shows as tracked.** An untracked seed is left in place and reported, never swept.
+
 ## Delta Tracking
 
 (Mined from wiki-ingest `.manifest.json`.) State lives at `00-inbox/.capture-state.json`. Documented schema:
@@ -127,7 +142,7 @@ If `00-inbox/` holds 3+ untagged notes on one theme with no existing home, propo
 
 OneDrive sync has been removed; git is the only backup and the single source of truth. The run therefore ends by committing its writes and pushing to the `obsidian-work` remote:
 
-- Commit message: `vault-capture: <YYYY-MM-DD> run — N ingested, M harvested`. **This `vault-capture:` subject prefix is the loop's heartbeat** — `tools/vault_health.py` reads the most recent one and flags the loop overdue in `50-dashboards/health.md` if it is older than 14 days (2x the weekly cadence). Keep the prefix exact.
+- Commit message: `vault-capture: <YYYY-MM-DD> run — N ingested, M harvested`. **This `vault-capture:` subject prefix is the loop's heartbeat** — `tools/vault_health.py` reads the most recent one and flags the loop overdue in `50-dashboards/health.md` if it is older than 14 days. That 14-day window is deliberately monitoring-grade rather than 2x the daily run cadence, because a no-op run commits nothing; the tight daily signal is the run ledger, whose staleness threshold is 3 days. Keep the prefix exact.
 - Push to `origin`. The git-guard hook does not block `obsidian-work` paths (it gates only `USADEBUSK\` paths), so the push proceeds without confirmation.
 - If the working tree has unrelated uncommitted changes, commit only the loop's own touched paths (`00-inbox/`, `07-llms/`, `08-systems/`, `09-interests/`); do not sweep unrelated edits into the commit.
 
@@ -138,6 +153,7 @@ OneDrive sync has been removed; git is the only backup and the single source of 
 | Read any vault note and any session transcript | Read-only. |
 | Append to / create notes in `00-inbox/`, `07-llms/`, `08-systems/`, `09-interests/` | Content layer only. Must read cold; must cite source. |
 | Add the no-home comment to an inbox file | Comment only; no content change. |
+| Move a terminal-status idea-seed from `00-inbox/` to `archive/` | Terminal-Seed Sweep only; exact status allowlist; never renamed. |
 | Update `00-inbox/.capture-state.json` | State tracking only; merge, never blank-overwrite. |
 | Run `tools/vault_lint.py` before committing | Pre-commit gate; must be 0 errors. Read-only check. |
 | Commit and push the loop's own touched paths | Durability close, per Durability. The commit message is the run record — no `change-log.md` entry (decisions-only since 2026-07-05). |
@@ -146,7 +162,8 @@ OneDrive sync has been removed; git is the only backup and the single source of 
 
 | Action | Reason |
 |---|---|
-| Delete or move any file | Data loss / routing impact. |
+| Delete any file | Data loss. |
+| Move any file, **except** a terminal-status idea-seed under the Terminal-Seed Sweep | Routing impact. The sweep is the single sanctioned move; everything else is proposed, not executed. |
 | Write to `02-facilities/`, `04-knowledge/`, or any operational content | Owned by [[vault-agent-loop-spec]]. |
 | Create or move a clustering hub note | Restructures the vault. |
 | Commit paths outside the content layer | Keeps the loop's commits scoped and reviewable. |

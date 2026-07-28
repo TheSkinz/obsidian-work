@@ -61,7 +61,11 @@ INBOX_SKIP_SUBDIRS = ("preserved-dsps",)
 # fired_stale_days is 2x the loop's run cadence (with slack for a machine that
 # is off at fire time — the app catches up missed runs on wake).
 LOOP_HEARTBEATS = [
-    ("Capture loop", "vault-capture-loop", "vault-capture:", 7, 14),
+    # Capture runs daily as of 2026-07-28 (was Mondays). Like the idea loop it
+    # commits only when a run has something to file, so its git heartbeat stays
+    # monitoring-grade (7 d -> flagged at 14 d), not its 1 d run cadence. Ledger
+    # staleness tightens to 3 d: daily firing should never be older than that.
+    ("Capture loop", "vault-capture-loop", "vault-capture:", 7, 3),
     # Idea loop runs nightly but only commits when a seed exists, so its git
     # heartbeat cadence is monitoring-grade (30 d), not its run cadence. Its
     # ledger staleness is tight (3 d) — nightly firing should never be older.
