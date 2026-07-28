@@ -1,11 +1,33 @@
 ---
 type: note
-status: open
+status: resolved
 created: 2026-07-28
-tags: [regression, estimating, handoff, open-item]
+resolved: 2026-07-28
+tags: [regression, estimating, handoff]
 ---
 
 # F1 / F6 re-baseline handoff
+
+> **RESOLVED 2026-07-28.** Both fixtures replayed against HEAD, judged, the skill patched on
+> two rulings from Jesse, and both re-run clean. Config commits `ccf20ad` (replay + judgment)
+> and `71efec5` (rulings + patch + re-runs).
+>
+> - **0f058dd verified** — twice. Section 8 carries the 2" minimum *and* the 1½" rejection,
+>   in the provided-items list, absent from open items.
+> - **Friction allowance** is now a written **25–40% band** with the run stating where in it
+>   it sat and why. It was fully open, which produced 15/25/40 across three runs.
+> - **Pipefitter adder** does not apply on a silent RFQ, and rig-over now takes the 1-hr
+>   silence figure to match — the F1 baseline had read the same unknown two ways in two
+>   adjacent lines.
+> - Two further defects the replay exposed are now written rules: the piece-count swing is
+>   $552 not $1,200 (crew total is fixed, so a piece *converts* a non-driver), and the
+>   hard-pig / foam-swab boundary must be stated where the quantity is.
+> - Diff key 10's stale "firewater trigger" wording is fixed, and the README's per-fixture
+>   commit table was found naming the superseded predecessors for both F1 and F6.
+>
+> **Still open, and it is Jesse's alone:** promotion. Both candidates are cut and sitting at
+> `runs/claude-opus-5/f1-rebaseline-2026-07-28-postpatch.md` and
+> `f6-rebaseline-2026-07-28-postpatch.md`. Neither frozen file has been re-cut.
 
 Deliberately not attempted 2026-07-28 — it is a merits review of a 14-section proposal
 against three un-replayed rule changes, which needed a fresh session rather than the tail
