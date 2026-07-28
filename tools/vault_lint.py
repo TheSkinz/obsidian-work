@@ -18,6 +18,7 @@ Rules (code | severity):
     DURATIONS-HEADER warning heater-card Task-Durations header off the canonical schema
     POINTER-DEAD    warning  recorded absolute source path no longer resolves
     YAML-COMMENT    error    unquoted frontmatter value silently truncated by a ` #` comment
+    WORD-DELTA      warning  words left a staged note (--staged only; see below)
 
 Only SECRET, CONF-CONFLICT and YAML-COMMENT are errors (exit 1). Everything
 else is a warning so the vault is never "failing" for want of a bulk backfill —
@@ -27,11 +28,27 @@ is already gone from Obsidian and from every script, and the fix is one pair
 of quotes. New lint rules require a fixture under tools/fixtures/ (no fixture,
 no rule).
 
+WORD-DELTA is a staged-diff rule, not a tree rule: it compares HEAD against the
+git index rather than reading the working tree, so it only runs under --staged
+and never appears in a normal lint pass or in the generated report.
+
 Usage:
     python tools/vault_lint.py               lint the vault, print findings
     python tools/vault_lint.py --report      also write 50-dashboards/lint-report.md
+    python tools/vault_lint.py --staged      WORD-DELTA only: what left the staged notes
     python tools/vault_lint.py --self-test   verify every rule fires on its fixture
     python tools/vault_lint.py --root PATH   lint a different tree (used by self-test)
+
+--staged reports every staged note that lost words, unfiltered — you asked, so
+you get all of it. The unprompted path is the PreToolUse commit hook in
+~/.claude/hooks/, which gates on the commit message first and only runs this
+when a commit *claims* a presentation-only scope (format / reflow / whitespace /
+typo / house style). That gate is the whole design: measured across 120 commits,
+firing on any word loss would have hit 70% of them and firing on lost
+numbers/rulings still hit 50%, because this vault legitimately rewrites numbers
+constantly. Gating on the declared scope drops it to 7% while still catching the
+render-drift commit that motivated the rule. The signal is not the shape of the
+diff — it is a session claiming it only touched presentation while content moved.
 
 Windows: `py tools/vault_lint.py` if `python` is not on PATH.
 
@@ -41,6 +58,7 @@ Exit codes: 0 = no errors (warnings allowed), 1 = errors found, 2 = self-test fa
 from __future__ import annotations
 
 import argparse
+import collections
 import re
 import subprocess
 import sys
@@ -135,6 +153,15 @@ MD_TABLE_SEP_RE = re.compile(r"^\|[\s|:\-]*-[\s|:\-]*$")  # the |---|---| divide
 # and relative fragments (`OneDrive/Desktop/…`) never match.
 POINTER_DIRS = ("02-facilities",)
 POINTER_RE = re.compile(r"`((?:[A-Za-z]:\\|/)[^`\n]{3,})`")
+
+# WORD-DELTA: a token is anything that can carry a fact. Interior punctuation is
+# kept because it is load-bearing here — `4.026`, `A106`, `Gr.B`, `ft/hr`,
+# `DSP26039` are all single tokens. Trailing punctuation is stripped: without
+# that, reflowing a paragraph so a period lands on a different word reports
+# `3.` lost and `3` gained, which is pure noise in a rule whose whole job is to
+# be silent on pure reformats.
+WORD_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9._#/'-]*")
+TRAILING_PUNCT = ".,;:'-"
 
 ERROR_CODES = {"SECRET", "CONF-CONFLICT", "YAML-COMMENT"}
 
@@ -487,6 +514,76 @@ def check_yaml_comment(root: Path, notes: dict[Path, str]) -> list[Finding]:
     return findings
 
 
+def tokenize(text: str) -> list[str]:
+    """Fact-bearing tokens, with trailing punctuation trimmed."""
+    out = []
+    for w in WORD_RE.findall(text):
+        w = w.rstrip(TRAILING_PUNCT)
+        if w:
+            out.append(w)
+    return out
+
+
+def word_delta(before: str, after: str) -> tuple[dict[str, int], dict[str, int]]:
+    """Words lost and gained between two revisions, ignoring line structure.
+
+    The whole point of the rule. Rewrapping a paragraph changes every line, so a
+    line diff cannot tell a reflow from a reflow that also dropped a sentence —
+    and `git diff -w` does not help, because it ignores whitespace *within* a
+    line while a reworded sentence moves words *across* lines. Comparing counted
+    multisets throws line structure away entirely, so a pure reformat nets to
+    zero lost and zero gained and only real content changes survive.
+    """
+    b = collections.Counter(tokenize(before))
+    a = collections.Counter(tokenize(after))
+    return dict(b - a), dict(a - b)
+
+
+def format_delta(lost: dict[str, int], cap: int = 40) -> str:
+    items = sorted(lost.items())
+    shown = " ".join(f"{w}" if n == 1 else f"{w}x{n}" for w, n in items[:cap])
+    return shown + (f" ... (+{len(items) - cap} more)" if len(items) > cap else "")
+
+
+def check_word_delta(root: Path) -> list[Finding]:
+    """Words that left a pre-existing note between HEAD and the staged index.
+
+    Additions are never reported: a note that only gains words has lost nothing,
+    and this vault mostly accretes. Newly added files are skipped for the same
+    reason — there is no prior revision to lose anything from.
+    """
+    findings: list[Finding] = []
+    try:
+        out = subprocess.run(
+            ["git", "diff", "--cached", "--name-only", "--diff-filter=M", "--", "*.md"],
+            cwd=root, capture_output=True, text=True, timeout=60,
+        )
+        if out.returncode != 0:
+            return findings  # not a git repo / no HEAD yet — fail open
+        staged = [f.strip() for f in out.stdout.splitlines() if f.strip()]
+    except Exception:
+        return findings  # a lint rule must never wedge a commit
+
+    for rel in staged:
+        try:
+            before = subprocess.run(["git", "show", f"HEAD:{rel}"], cwd=root,
+                                    capture_output=True, timeout=30)
+            after = subprocess.run(["git", "show", f":{rel}"], cwd=root,
+                                   capture_output=True, timeout=30)
+        except Exception:
+            continue
+        if before.returncode != 0 or after.returncode != 0:
+            continue
+        lost, _ = word_delta(before.stdout.decode("utf-8", "replace"),
+                             after.stdout.decode("utf-8", "replace"))
+        if lost:
+            findings.append(Finding(
+                "WORD-DELTA", root / rel,
+                f"{sum(lost.values())} word(s) left this note — "
+                f"confirm each was meant to go: {format_delta(lost)}"))
+    return findings
+
+
 def check_pointer_dead(root: Path, notes: dict[Path, str]) -> list[Finding]:
     """POINTER-DEAD: a recorded absolute source-file path that no longer resolves.
 
@@ -619,11 +716,28 @@ def self_test() -> int:
             fixtures, {pd_note: pd_note.read_text(encoding="utf-8")})
     finally:
         pd_note.unlink(missing_ok=True)
+    # WORD-DELTA compares two revisions rather than reading the tree, so its
+    # fixture is a before/after pair fed straight to the comparison — the same
+    # reason INBOX-AGE and POINTER-DEAD build theirs outside run_lint. The pair
+    # is a reflow that also reworded: every line rewraps (so a line diff is
+    # useless) while "concurrently", "Mode = 3" and a closed ruling vanish.
+    wd = Path(__file__).resolve().parent / "fixtures" / "word-delta"
+    lost, _ = word_delta(wd.joinpath("before.md").read_text(encoding="utf-8"),
+                         wd.joinpath("after.md").read_text(encoding="utf-8"))
+    for token in ("3", "concurrently", "simultaneously"):
+        if token not in lost:
+            print(f"SELF-TEST FAILED — WORD-DELTA fixture no longer drops {token!r}")
+            return 2
+    if lost:
+        findings.append(Finding("WORD-DELTA", wd / "after.md",
+                                f"{sum(lost.values())} word(s) left this note — "
+                                f"confirm each was meant to go: {format_delta(lost)}"))
+
     fired = {f.code for f in findings}
     expected = {"OP-FRONTMATTER", "DEAD-LINK", "SECRET", "STATUS-VOCAB",
                 "CONF-CONFLICT", "INBOX-AGE", "ORPHAN",
                 "REVIEW-OVERDUE", "SUPERSEDED", "DURATIONS-HEADER",
-                "POINTER-DEAD", "YAML-COMMENT"}
+                "POINTER-DEAD", "YAML-COMMENT", "WORD-DELTA"}
     missing = expected - fired
     for f in findings:
         print(f"  fixture: {f}")
@@ -638,6 +752,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--root", type=Path, default=None)
     ap.add_argument("--report", action="store_true")
+    ap.add_argument("--staged", action="store_true")
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
 
@@ -648,6 +763,14 @@ def main() -> int:
     if not (root / "CLAUDE.md").exists():
         print(f"ERROR: {root} does not look like the vault root (no CLAUDE.md).")
         return 1
+
+    if args.staged:
+        staged = check_word_delta(root)
+        for f in staged:
+            print(f)
+        print(f"\n{len(staged)} staged note(s) lost words."
+              if staged else "\nNo staged note lost words.")
+        return 0  # advisory only — never blocks a commit
 
     findings = run_lint(root)
     for f in findings:
