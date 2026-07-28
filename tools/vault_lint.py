@@ -18,7 +18,7 @@ Rules (code | severity):
     DURATIONS-HEADER warning heater-card Task-Durations header off the canonical schema
     POINTER-DEAD    warning  recorded absolute source path no longer resolves
     YAML-COMMENT    error    unquoted frontmatter value silently truncated by a ` #` comment
-    WORD-DELTA      warning  words left a staged note (--staged only; see below)
+    WORD-DELTA      warning  words left a note (--staged / --worktree only; see below)
 
 Only SECRET, CONF-CONFLICT and YAML-COMMENT are errors (exit 1). Everything
 else is a warning so the vault is never "failing" for want of a bulk backfill —
@@ -28,14 +28,28 @@ is already gone from Obsidian and from every script, and the fix is one pair
 of quotes. New lint rules require a fixture under tools/fixtures/ (no fixture,
 no rule).
 
-WORD-DELTA is a staged-diff rule, not a tree rule: it compares HEAD against the
-git index rather than reading the working tree, so it only runs under --staged
-and never appears in a normal lint pass or in the generated report.
+WORD-DELTA is a diff rule, not a tree rule: it always compares against HEAD, so
+it runs only under --staged or --worktree and never appears in a normal lint
+pass or in the generated report.
+
+    --staged    HEAD vs the git index — the pre-commit shape, what is about to
+                be committed. Driven unprompted by the PreToolUse commit hook.
+    --worktree  HEAD vs the files on disk, staged or not. Added 2026-07-28.
+
+The two modes exist because the index and the working tree fail differently.
+--staged was the original rule and it could not see the incident that motivated
+the whole idea: on 2026-07-19 B-101.md sat *dirty in the working tree* carrying
+an exact content reversal, never staged, camouflaged by table auto-formatting.
+Nothing staged, nothing to compare, no finding. --worktree is that gap closed —
+run it at session start to catch a revert that is sitting on disk right now.
+(Jesse's approval of proposal A, 06-insights/2026-07-28-prestaged-stale-editor-
+buffer-guard.md.)
 
 Usage:
     python tools/vault_lint.py               lint the vault, print findings
     python tools/vault_lint.py --report      also write 50-dashboards/lint-report.md
     python tools/vault_lint.py --staged      WORD-DELTA only: what left the staged notes
+    python tools/vault_lint.py --worktree    WORD-DELTA only: what left uncommitted notes
     python tools/vault_lint.py --self-test   verify every rule fires on its fixture
     python tools/vault_lint.py --root PATH   lint a different tree (used by self-test)
 
@@ -545,41 +559,60 @@ def format_delta(lost: dict[str, int], cap: int = 40) -> str:
     return shown + (f" ... (+{len(items) - cap} more)" if len(items) > cap else "")
 
 
-def check_word_delta(root: Path) -> list[Finding]:
-    """Words that left a pre-existing note between HEAD and the staged index.
+def check_word_delta(root: Path, mode: str = "staged") -> list[Finding]:
+    """Words that left a pre-existing note, HEAD -> staged index or working tree.
 
     Additions are never reported: a note that only gains words has lost nothing,
     and this vault mostly accretes. Newly added files are skipped for the same
     reason — there is no prior revision to lose anything from.
+
+    Two modes, because the index and the working tree fail differently:
+
+    - "staged"   HEAD vs the git index. The pre-commit shape: what is about to
+                 be committed.
+    - "worktree" HEAD vs the files on disk, staged or not. This is the shape the
+                 2026-07-19 B-101 incident actually took — a note sat dirty in
+                 the working tree carrying a content reversal, never staged, so
+                 the staged-only rule could not see it. Added 2026-07-28 on
+                 Jesse's approval of proposal A in
+                 06-insights/2026-07-28-prestaged-stale-editor-buffer-guard.md.
     """
     findings: list[Finding] = []
+    listing = (["git", "diff", "--cached", "--name-only", "--diff-filter=M", "--", "*.md"]
+               if mode == "staged" else
+               ["git", "diff", "HEAD", "--name-only", "--diff-filter=M", "--", "*.md"])
     try:
-        out = subprocess.run(
-            ["git", "diff", "--cached", "--name-only", "--diff-filter=M", "--", "*.md"],
-            cwd=root, capture_output=True, text=True, timeout=60,
-        )
+        out = subprocess.run(listing, cwd=root, capture_output=True, text=True, timeout=60)
         if out.returncode != 0:
             return findings  # not a git repo / no HEAD yet — fail open
-        staged = [f.strip() for f in out.stdout.splitlines() if f.strip()]
+        changed = [f.strip() for f in out.stdout.splitlines() if f.strip()]
     except Exception:
         return findings  # a lint rule must never wedge a commit
 
-    for rel in staged:
+    for rel in changed:
         try:
             before = subprocess.run(["git", "show", f"HEAD:{rel}"], cwd=root,
                                     capture_output=True, timeout=30)
-            after = subprocess.run(["git", "show", f":{rel}"], cwd=root,
-                                   capture_output=True, timeout=30)
+            if before.returncode != 0:
+                continue
+            before_text = before.stdout.decode("utf-8", "replace")
+            if mode == "staged":
+                after = subprocess.run(["git", "show", f":{rel}"], cwd=root,
+                                       capture_output=True, timeout=30)
+                if after.returncode != 0:
+                    continue
+                after_text = after.stdout.decode("utf-8", "replace")
+            else:
+                # Read the working tree itself — the whole point of this mode.
+                after_text = (root / rel).read_text(encoding="utf-8", errors="replace")
         except Exception:
             continue
-        if before.returncode != 0 or after.returncode != 0:
-            continue
-        lost, _ = word_delta(before.stdout.decode("utf-8", "replace"),
-                             after.stdout.decode("utf-8", "replace"))
+        lost, _ = word_delta(before_text, after_text)
         if lost:
+            where = "staged note" if mode == "staged" else "note (working tree, uncommitted)"
             findings.append(Finding(
                 "WORD-DELTA", root / rel,
-                f"{sum(lost.values())} word(s) left this note — "
+                f"{sum(lost.values())} word(s) left this {where} — "
                 f"confirm each was meant to go: {format_delta(lost)}"))
     return findings
 
@@ -753,6 +786,7 @@ def main() -> int:
     ap.add_argument("--root", type=Path, default=None)
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--staged", action="store_true")
+    ap.add_argument("--worktree", action="store_true")
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
 
@@ -764,12 +798,14 @@ def main() -> int:
         print(f"ERROR: {root} does not look like the vault root (no CLAUDE.md).")
         return 1
 
-    if args.staged:
-        staged = check_word_delta(root)
-        for f in staged:
+    if args.staged or args.worktree:
+        mode = "worktree" if args.worktree else "staged"
+        hits = check_word_delta(root, mode)
+        for f in hits:
             print(f)
-        print(f"\n{len(staged)} staged note(s) lost words."
-              if staged else "\nNo staged note lost words.")
+        noun = "staged note" if mode == "staged" else "uncommitted note"
+        print(f"\n{len(hits)} {noun}(s) lost words."
+              if hits else f"\nNo {noun} lost words.")
         return 0  # advisory only — never blocks a commit
 
     findings = run_lint(root)

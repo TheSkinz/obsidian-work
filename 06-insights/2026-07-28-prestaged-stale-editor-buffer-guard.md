@@ -1,7 +1,8 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: pre-staged
+revisit-trigger: "Obsidian table auto-format still on -> switch Settings > Editor > Default editing mode to Source mode (proposal B, approved 2026-07-28, manual toggle not yet applied) — event: check next time table reformat noise appears in a diff"
 source_authority: inferred
 confidence: medium
 created: 2026-07-28
@@ -91,3 +92,7 @@ Open — awaiting Jesse's disposition on A/B/C above.
 | Date | Action | By |
 |---|---|---|
 | 2026-07-28 | Note filed by pre-staging loop from `00-inbox/2026-07-19-stale-editor-buffer-overwrite-vector.md`; no vault content modified beyond the source marker | Claude (pre-staging loop) |
+| 2026-07-28 | Correction added by session review: A was misframed, WORD-DELTA + the word-delta guard hook already existed | Claude (Opus 5) |
+| 2026-07-28 | **Jesse approved A and B; C dropped.** Jesse initially checked all three — flagged as contradictory (C means "no new mechanism") and re-answered as A+B. | Claude (Opus 5) |
+| 2026-07-28 | **A applied, in its narrowed form:** `vault_lint.py` WORD-DELTA gains a `--worktree` mode comparing HEAD against files on disk, staged or not. Verified positively — a simulated silent deletion in an uncommitted note fired the rule and named the 9 lost words; self-test still 13/13; whitespace-only churn correctly does **not** fire. | Claude (Opus 5) |
+| 2026-07-28 | **B not applied — handed to Jesse.** There is no discrete "table auto-format" switch; the reformatting comes from Live Preview's table editor, so B necessarily means `Settings > Editor > Default editing mode > Source mode`. The `app.json` key was not guessed at, because a wrong key fails silently. Recorded as a `revisit-trigger:` so it surfaces on the health dashboard. | Claude (Opus 5) |

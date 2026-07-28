@@ -21,9 +21,15 @@ The single place every open decision lives. One row per open ask — not one not
 
 | id | opened | source | ask | risk | age (d) | status |
 |---|---|---|---|---|---|---|
-| DQ-003 | 2026-07-28 | [[2026-07-28-prestaged-stale-editor-buffer-guard]] | Given the 2026-07-19 silent-revert incident on B-101.md, add a mechanical diff-gate or disable Obsidian auto-format, or is the adopted `git diff -w` habit sufficient? | med | 0 | open |
+| _(none)_ | | | | | | |
 
-**1 open row** as of 2026-07-28.
+**0 open rows** as of 2026-07-28.
+
+## Closed
+
+| id | opened | closed | source | ask | outcome |
+|---|---|---|---|---|---|
+| DQ-003 | 2026-07-28 | 2026-07-28 | [[2026-07-28-prestaged-stale-editor-buffer-guard]] | Given the 2026-07-19 silent-revert incident on B-101.md, add a mechanical diff-gate or disable Obsidian auto-format, or is the adopted `git diff -w` habit sufficient? | **A + B approved, C dropped.** A applied narrowed — WORD-DELTA gains `--worktree`, since the incident file was never staged and the staged-only rule could not see it. B (Source mode) is a manual toggle left with Jesse and carried as a `revisit-trigger:` on the source note. |
 
 ## Why the queue is empty at launch
 
