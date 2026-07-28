@@ -62,6 +62,21 @@ A curated *usage* lookup for the full command/skill surface — which one to rea
 
 Claude Opus 5 became the default model for coding in Claude Code on 2026-07-24, replacing Opus 4.8, and is the default on Claude Max. Release facts, the two breaking API changes, and the behavioral shifts that affect skill and prompt tuning are captured in [[opus-5]].
 
+## Ablation as the model-transition discipline
+
+Anthropic's own maintenance move on each model release is subtractive: delete the system
+prompt, use the product on real work, and add a line back only after watching the model fail
+the same way repeatedly — on the reasoning that the model reads every instruction on every
+turn, so an unnecessary one is a permanent tax. They deleted ~80% of Claude Code's system
+prompt for Opus 5 and report the model measuring slightly *more* capable unscaffolded.
+
+That is a claim about *corrective* instructions, not about data, and it does not transfer
+uncritically here: this vault's always-resident surface is already small (~1.7k tokens as of
+the 2026-07-24 doctor pass, both CLAUDE.md files together are 7.4 KB), while the weight sits
+in skill bodies that load on demand. The measured version of the question is the F5
+instruction-density arm test — see [[dynamic-workflows]] for the surrounding capture and
+`~/.claude/regression/` for the runs.
+
 ## Durable capture of post-cutoff Claude knowledge
 
 My built-in knowledge is frozen at Jan 2026, and the CLI drifts (version churn logged across 2.1.14x–2.1.21x). In-session web-search results do not persist across sessions unless written down — which is why domain knowledge compounds (it's in the vault) but Claude/Anthropic update knowledge kept getting re-searched cold every time.

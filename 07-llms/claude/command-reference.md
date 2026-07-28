@@ -117,7 +117,11 @@ Past my Jan-2026 cutoff — sourced from the docs, not memory. The ones worth kn
 - **`/background [prompt]` + `/tasks` + `/status`** — detach work to a background agent
   and free the terminal. Fits idle-capacity automation.
 - **`/deep-research <question>`** — fan out web searches, fetch sources, synthesize a
-  cited report. Overlaps the idea-research loop for industry questions.
+  cited report. Overlaps the idea-research loop for industry questions. This is a **bundled
+  dynamic workflow**, not an ordinary command — it orchestrates subagents from a script, and
+  the same machinery is available for your own tasks via `ultracode` / "use a workflow".
+  See [[dynamic-workflows]] for the caps, the invocation routes, and why the five loops
+  cannot use it.
 - **`/advisor [model|off]`** — consult a second model for guidance; suits a verification bent.
 - **`/diff`** — interactive diff viewer for uncommitted changes; native alternative to
   eyeballing `git diff -w`.

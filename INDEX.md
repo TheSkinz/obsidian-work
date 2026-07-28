@@ -154,6 +154,7 @@
 - [[command-reference]] — Claude Code — Command Usage Reference `(claude)`
 - [[cowork]] — Cowork (Claude Code Scheduled / Auto-Context) `(claude)`
 - [[design]] — Claude Design `(claude)`
+- [[dynamic-workflows]] — Claude Code — Dynamic Workflows `(claude)`
 - [[opus-5]] — Claude Opus 5 — Release Capture `(claude)`
 - [[prefs-signal-log]] `(claude)`
 - [[heater-extraction-agent]] — Copilot Heater Extraction Agent `(copilot)`

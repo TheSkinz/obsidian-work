@@ -36,6 +36,28 @@ Checked against `usadebusk-estimating` (2026-07-20) on the hypothesis that propo
 
 Source: Claude Code session a28ed43f, 2026-07-20; corrected same-day after checking the skill file directly.
 
+**Agent fan-out pays only where a machine, not a model, can say "correct."** Reconciling the
+publicly-described long-horizon agent runs (an 11-day Zig→Rust rewrite of the bun runtime, a
+multi-week Electron→Swift port) against this system's own measured result resolves an apparent
+contradiction. Both public successes had a **hard external verifier** the agents could not
+argue with — bun's and Node.js's existing test suites in one case, pixel-by-pixel screenshot
+comparison against the running original in the other. The local arm test that found a
+three-agent adversarial chain scoring 3/6 against a single agent's 5/6 at 3.31× the tokens had
+**no verifier at all**, only judgment. Scale multiplied noise because nothing could reject it.
+The rule: before fanning work out across many agents, name the thing that will mechanically
+reject a wrong answer. If it is a test suite, a diff against a frozen output, a schema, or an
+arithmetic check, fan out freely. If it is "another model reads it and decides," expect the
+extra agents to cost more and find less. Corollary for the vault: the regression battery's
+"numerics must match exactly" bar is precisely such a verifier, which is why fixture replay
+scales where reviewer stacking does not.
+
+Note also that the same talk's "thousands of agents" figure exceeds Claude Code's documented
+1,000-agent-per-run ceiling (16 concurrent) — see [[dynamic-workflows]]. Plan against the
+documented caps, not the anecdote.
+
+Source: Claude Code session, 2026-07-28 (Boris Cherny Opus 5 launch talk, reconciled against
+`~/.claude/regression/adversarial-review-arm-test-2026-07-24.md`).
+
 ## Anti-patterns
 
 (Placeholder — add observed failure modes here. Format: what goes wrong, why, what to do instead.)
