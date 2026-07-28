@@ -122,6 +122,10 @@ Past my Jan-2026 cutoff — sourced from the docs, not memory. The ones worth kn
 - **`/diff`** — interactive diff viewer for uncommitted changes; native alternative to
   eyeballing `git diff -w`.
 - **`/btw [question]`** — quick side question that doesn't pollute the conversation.
+- **`/design-sync`** (+ **`/design-login`**) — two-way bridge to Claude Design: pull a
+  design system into the repo, or push components back. Verified 2026-07-28. Not vault
+  work — parked here so it's findable if a browser-based internal tool ever gets built.
+  Detail and the write-gating mechanics in [[design]].
 - **`/memory`** — edit CLAUDE.md files and manage auto-memory.
 - **`/rewind`**, **`/teleport` / `/desktop` / `/remote-control`** — pull/continue a
   session across terminal, desktop app, and other devices.
