@@ -21,12 +21,12 @@ Manual Vault Review Loop run selected `00-inbox/prefs-signal-log.md` as the safe
 
 ## Evidence
 
-| Evidence | Source | Authority | Notes |
-|---|---|---|---|
-| Session is titled `Prefs audit + redesign`. | `00-inbox/prefs-signal-log.md` | Source note body. | This is about AI/user preference design, not a customer, facility, job, proposal, SOP, or field execution item. |
-| The note says the signal log target was `00-inbox`, then move to permanent vault after stabilization. | `00-inbox/prefs-signal-log.md` | Source note body. | The note itself says its current location is temporary. |
-| Next actions reference user preferences, `/close`, weekly audit prompt, and a closeout skill. | `00-inbox/prefs-signal-log.md` | Source note body. | Better fit for a personal/AI tooling vault than the USADeBusk work vault. |
-| Current vault source-of-truth guardrail defines this vault as USADeBusk operational knowledge. | [[vault-source-of-truth]] and [[knowledge-system-governance]] | Governance notes. | Moving across vaults requires approval; this loop should only create a review artifact. |
+| Evidence                                                                                              | Source                                                        | Authority         | Notes                                                                                                           |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ----------------- | --------------------------------------------------------------------------------------------------------------- |
+| Session is titled `Prefs audit + redesign`.                                                           | `00-inbox/prefs-signal-log.md`                                | Source note body. | This is about AI/user preference design, not a customer, facility, job, proposal, SOP, or field execution item. |
+| The note says the signal log target was `00-inbox`, then move to permanent vault after stabilization. | `00-inbox/prefs-signal-log.md`                                | Source note body. | The note itself says its current location is temporary.                                                         |
+| Next actions reference user preferences, `/close`, weekly audit prompt, and a closeout skill.         | `00-inbox/prefs-signal-log.md`                                | Source note body. | Better fit for a personal/AI tooling vault than the USADeBusk work vault.                                       |
+| Current vault source-of-truth guardrail defines this vault as USADeBusk operational knowledge.        | [[vault-source-of-truth]] and [[knowledge-system-governance]] | Governance notes. | Moving across vaults requires approval; this loop should only create a review artifact.                         |
 
 ## Proposed Action
 
