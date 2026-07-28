@@ -1,24 +1,29 @@
 # System Workflow Reference
 **Layer:** 01-context — load on demand (reference, not per-response context)
-**Purpose:** How the vault + skill system actually works, in one place: the five loops, which skill triggers on what, and how to add or ingest things manually. Read this when you forget how a piece fits together — it's not a status tracker (see [[workflow-map]] for that). **You don't need to remember any triggers:** three loops run on schedules, and every session starts by reading `50-dashboards/health.md`, which surfaces anything awaiting you. Two loops (review/agent and skill-drift) are on-demand by design — say the word and they run.
+**Purpose:** How the vault + skill system actually works, in one place: the six loops, which skill triggers on what, and how to add or ingest things manually. Read this when you forget how a piece fits together — it's not a status tracker (see [[workflow-map]] for that). **You don't need to remember any triggers:** four loops run on schedules, and every session starts by reading `50-dashboards/health.md`, which surfaces anything awaiting you. Two loops (review/agent and skill-drift) are on-demand by design — say the word and they run.
 
 ---
 
-## The Five Loops
+## The Six Loops
 
 | Loop | Trigger | Scope | What it does | Ceremony |
 |---|---|---|---|---|
-| **Capture Loop** | Scheduled, Mondays ~8am local (`vault-capture-loop`) | `00-inbox/` routing + session-transcript harvest → `07-llms/`, `08-systems/`, `09-interests/`; refreshes `INDEX.md` + health dashboard | Files what you dropped in the inbox, harvests durable findings from recent Claude Code sessions. Never touches operational content. | Low — runs unattended, no approval gate. |
+| **Capture Loop** | Scheduled, daily ~5am local (`vault-capture-loop`) | `00-inbox/` routing + session-transcript harvest → `07-llms/`, `08-systems/`, `09-interests/`; refreshes `INDEX.md` + health dashboard | Files what you dropped in the inbox, harvests durable findings from recent Claude Code sessions. Never touches operational content. | Low — runs unattended, no approval gate. |
 | **Agent / Review Loop** | On-demand only — you say "run the Vault Review Loop" | Operational core: `02-facilities/`, `04-knowledge/`, pricing/SOP/safety/field-execution content | Picks one item, writes a review/contradiction/question note with a Decision checklist. Never edits canonical content without your approval. | High — manual, you're present, propose-only. |
 | **Idea Research Loop** | Scheduled, nightly ~2am local (`vault-idea-research-loop`) | `00-inbox/*.md` with `type: idea-seed` only | Picks one unexplored idea, researches prior art / power-user solutions, writes findings as a review note in `06-insights/`. Never builds, never decides. | Low — unattended, but only ever proposes. |
+| **Pre-Staging Loop** | Scheduled, daily ~6am local (`vault-prestaging-loop`) | `00-inbox/` items carrying the defer marker → review note in `06-insights/` + a `decision-queue.md` row | Prepares the decisions the Capture Loop defers, so you arrive to approve/reject rather than to read and analyse. Proposes only; never writes operational content. | Low — unattended, bounded by the 10-row queue cap, one item per run. |
 | **Skill-Drift Loop** | On-demand only — you say "run the Skill-Drift Loop" (schedule disabled 2026-07-19) | Reads `~/.claude/skills/` + vault; writes one review note + a `drift/YYYY-MM` config-repo branch | Detects skills contradicting vault truth, each other, or reality; packages fixes as an unmerged proposal branch. You merge or discard. | Medium — manual, because its run needs config-repo branch/commit/push authority that is deliberately not pre-granted. |
 | **Consolidation Loop** | Scheduled, 15th of month ~3am (`vault-consolidation-loop`) | `07-llms/`, `08-systems/`, `09-interests/` + regenerates INDEX.md, actuals rollup, health | Merges duplicate notes, rewrites append-piles into clean articles, links orphans — the iterative-rewriting half of the wiki strategy. | Low — Lane 1 only, archive-never-delete, bounded per run. |
 
-Full specs: [[vault-capture-loop-spec]], [[vault-agent-loop-spec]], [[vault-idea-loop-spec]], [[vault-skill-drift-loop-spec]], [[vault-consolidation-loop-spec]].
+Full specs: [[vault-capture-loop-spec]], [[vault-agent-loop-spec]], [[vault-idea-loop-spec]], [[vault-prestaging-loop-spec]], [[vault-skill-drift-loop-spec]], [[vault-consolidation-loop-spec]].
 
 **Two monitoring rules:** every run — scheduled or manual — writes the run ledger (`50-dashboards/.loop-runs.json`, local) as its first and last action, and a manual pass of a scheduled loop must use the loop's exact heartbeat commit prefix (`vault-capture:`, not `[auto]`) — otherwise the run is invisible to `vault_health.py` and the dashboard reports a loop failure that didn't happen, or misses one that did.
 
-**Why five, not one:** they differ on two axes — how risky the content is (content layer vs. operational core vs. speculative vs. skills) and how much judgment the write requires (mechanical filing vs. approval-gated change vs. bounded research vs. propose-only detection). The capture loop fills the vault; the consolidation loop keeps it a wiki instead of a log pile; the skill-drift loop is the return path that pushes vault truth back into the skills every session loads.
+**Why six, not one:** they differ on two axes — how risky the content is (content layer vs. operational core vs. speculative vs. skills) and how much judgment the write requires (mechanical filing vs. approval-gated change vs. bounded research vs. propose-only detection). The capture loop fills the vault; the consolidation loop keeps it a wiki instead of a log pile; the skill-drift loop is the return path that pushes vault truth back into the skills every session loads.
+
+**Why the sixth exists (added 2026-07-28):** capture defers everything operational, and the review/agent loop — the only consumer of those deferrals — fires only when Jesse says so. Measured that day: 41 `defer` dispositions against 9 `harvested`, 16 inbox notes waiting, and the decision queue at 0 of 10. The analysis machinery was idle while the pile grew. The pre-staging loop closes that gap without touching the Lane 4 gate, because **deciding stays with Jesse; preparing the decision does not.**
+
+**Loop ordering matters:** capture fires at ~5am and applies the defer markers; pre-staging fires at ~6am and reads them. Both sit before working hours, after an 8am capture run collided with a live session on 2026-07-28.
 
 ---
 

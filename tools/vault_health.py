@@ -70,6 +70,11 @@ LOOP_HEARTBEATS = [
     # heartbeat cadence is monitoring-grade (30 d), not its run cadence. Its
     # ledger staleness is tight (3 d) — nightly firing should never be older.
     ("Idea-research loop", "vault-idea-research-loop", "vault-idea-research:", 30, 3),
+    # Pre-staging runs daily at 06:00 (an hour behind capture, which applies the
+    # defer markers it reads) but is silent whenever the decision queue is at cap
+    # or the pile is empty, so its git heartbeat is monitoring-grade (30 d) like
+    # the idea loop's. Ledger staleness 3 d: daily firing should never be older.
+    ("Pre-staging loop", "vault-prestaging-loop", "vault-prestage:", 30, 3),
     ("Consolidation loop", "vault-consolidation-loop", "vault-consolidate:", 31, 62),
     # Skill-drift fires monthly (0 3 1 * *) but commits only when it finds
     # drift, so its git heartbeat cadence carries the same slack as the idea

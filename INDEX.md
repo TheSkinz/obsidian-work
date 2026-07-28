@@ -109,6 +109,7 @@
 - [[vault-capture-loop-spec]] — Vault Capture Loop Spec
 - [[vault-consolidation-loop-spec]] — Vault Consolidation Loop Spec
 - [[vault-idea-loop-spec]] — Vault Idea Research Loop Spec
+- [[vault-prestaging-loop-spec]] — Vault Pre-Staging Loop Spec
 - [[vault-skill-drift-loop-spec]] — Vault Skill-Drift Loop Spec
 - [[vault-source-of-truth]] — Vault Source Of Truth
 - [[workup-to-proposal-generator-build-spec]] — Workup-to-Proposal Generator — Build Spec

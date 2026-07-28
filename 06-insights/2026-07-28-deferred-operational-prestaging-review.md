@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: proposal
 source_authority: inferred
 confidence: medium
@@ -44,7 +44,7 @@ A new bounded loop (or an added phase on the capture loop) that reads inbox item
 
 Jesse then arrives to approve or reject rather than to read and analyze.
 
-- [ ] Approved
+- [x] Approved
 - [ ] Approved with edits
 - [ ] Rejected
 - [ ] Needs more research
@@ -55,7 +55,7 @@ Governance already pauses proposal-generating loops at 10 open decision rows. Th
 
 This is the specific reason the proposal is bounded-propose-only rather than the unbounded policing pattern Jesse has previously rejected.
 
-- [ ] Approved
+- [x] Approved
 - [ ] Approved with edits
 - [ ] Rejected
 - [ ] Needs more research
@@ -64,7 +64,7 @@ This is the specific reason the proposal is bounded-propose-only rather than the
 
 Matching the Idea Research Loop's proven shape rather than batch-processing the backlog. Keeps each run cheap, keeps output reviewable, and means a bad pass damages one note instead of sixteen. At the current pile of 16 and a daily cadence, the backlog clears in about two weeks without Jesse touching it.
 
-- [ ] Approved
+- [x] Approved
 - [ ] Approved with edits
 - [ ] Rejected
 - [ ] Needs more research
@@ -90,3 +90,4 @@ Per-proposal checkboxes above. This note is open until A–C are dispositioned. 
 | Date | Action | By |
 |---|---|---|
 | 2026-07-28 | Note filed from session; no loop built, no operational content modified | Claude (Opus 5) |
+| 2026-07-28 | **A, B, C all approved by Jesse, no edits.** Built as [[vault-prestaging-loop-spec]] + scheduled task `vault-prestaging-loop`, daily 06:00. Design fork in (A) — separate loop vs. a phase on capture — resolved to **separate loop** under Lane 2: bolting proposal-writing onto a Lane 1 mechanical-filing job would widen capture's blast radius and couple ingestion to it, so a pre-staging failure would take ingestion down too. Separate task gets its own heartbeat, cadence and kill switch. The skip disposition raised in Risks is spec'd as step 4 (execution-correction / already-covered / genuine question). | Claude (Opus 5) |
