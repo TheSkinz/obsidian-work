@@ -26,7 +26,7 @@ Vault Capture Loop
 
 ## Trigger
 
-A local **desktop scheduled task**, daily at ~08:00 local (was weekly/Mondays until 2026-07-28; moved to daily to cut worst-case inbox latency from 7 days to 1). A run with nothing new is a clean no-op and produces no commit — that is the expected majority case at daily cadence, and the dashboard reads it as healthy. It runs against the local working tree and harvests Claude Code session transcripts (plain JSONL under `~/.claude/projects/`, which are not in git), so it cannot run in the cloud. If the machine is asleep or the app closed at trigger time, it runs on next launch. There is no in-session cron variant — the scheduled task is the single mechanism.
+A local **desktop scheduled task**, daily at ~05:00 local (`0 5 * * *`). Was weekly/Mondays until 2026-07-28, when it moved to daily to cut worst-case inbox latency from 7 days to 1. The **05:00 fire time is deliberate**: the first daily setting used 08:00, which sits inside Jesse's working hours, and its very first run landed concurrently with a live session mid-edit. A pre-working-hours fire keeps the loop clear of interactive sessions and the git index contention that comes with them. A run with nothing new is a clean no-op and produces no commit — that is the expected majority case at daily cadence, and the dashboard reads it as healthy. It runs against the local working tree and harvests Claude Code session transcripts (plain JSONL under `~/.claude/projects/`, which are not in git), so it cannot run in the cloud. If the machine is asleep or the app closed at trigger time, it runs on next launch. There is no in-session cron variant — the scheduled task is the single mechanism.
 
 ## Scope
 
