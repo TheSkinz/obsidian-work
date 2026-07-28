@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — vault_lint.py WORD-DELTA rule and the usadebusk-word-delta-guard.mjs hook, a tooling/governance decision record (tools/, 04-knowledge scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: insight
 status: resolved

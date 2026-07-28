@@ -140,6 +140,7 @@
 - [[2026-07-25-skill-drift-review]] — Skill-Drift Review — 2026-07-25 (Second Run)
 - [[2026-07-26-idea-research-pig-actuals-maturation]] — Idea Research — Maturing Pig Actuals (Condition Column + ft-per-Pig Rollup)
 - [[2026-07-27-idea-research-quotation-workup-reconciliation-check]] — Idea Research — Standing Quotation-vs-Workup Reconciliation Check
+- [[2026-07-28-deferred-operational-prestaging-review]] — Review — The deferred-operational pile has no unattended path forward
 - [[2026-07-28-idea-research-rollup-per-rig-coilset-grain]] — Idea Research — Re-grain the Actuals Rollup to One Row per Rig-Coilset
 
 ## LLMs

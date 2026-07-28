@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — heater-card/facility table-schema and lint-rule decisions (02-facilities, 04-knowledge scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: idea
 status: unexplored
