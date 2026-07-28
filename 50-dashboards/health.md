@@ -7,9 +7,9 @@
 | Open decision rows | 0 | <= 10 | ok |
 | Review notes awaiting decision | 1 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 34 | (backlog) | ok |
+| Lint warnings | 36 | (backlog) | ok |
 | Inbox items | 41 | - | ok |
-| Inbox median age | 4 d | < 14 d | ok |
+| Inbox median age | 1 d | < 14 d | ok |
 | Inbox oldest item | 9 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
@@ -22,10 +22,10 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 
 | Loop | Last fired | Last heartbeat | Cadence | Status |
 |---|---|---|---|---|
-| Capture loop | 2026-07-27 (0 d ago) | 2026-07-20 (7 d ago) | 7 d | running |
+| Capture loop | 2026-07-27 (0 d ago) | 2026-07-27 (0 d ago) | 7 d | ok |
 | Idea-research loop | 2026-07-27 (0 d ago) | 2026-07-27 (0 d ago) | 30 d | ok |
 | Consolidation loop | 2026-07-19 (8 d ago) | 2026-07-18 (9 d ago) | 31 d | ok |
-| Skill-drift loop | 2026-07-25 (1 d ago) | 2026-07-25 (2 d ago) | 62 d | ok |
+| Skill-drift loop | 2026-07-25 (2 d ago) | 2026-07-25 (2 d ago) | 62 d | ok |
 
 ## Commercial pipeline
 
@@ -34,7 +34,10 @@ One row per pending quote, plus any quote whose execution date is within 90 days
 | Quote | Status | Valid through | Execution | Signal |
 |---|---|---|---|---|
 | [[DSP26039]] | pending | 2027-04-07 | 2027-01 | ok |
+| [[DSP26071|DSP26071.2]] | awarded | 2026-08-31 | 2026-08 | execution in 5 d |
 | [[DSP26080]] | pending | - | 2027-02 | no validity date recorded |
+| [[DSP26085]] | pending | 2026-09-29 | 2027-01 | ok |
+| [[DSP26095]] | pending | - | 2026-09 | no validity date recorded; execution in 36 d |
 
 ## Dormant triggers
 
@@ -43,7 +46,7 @@ Every recorded wake-up condition (`revisit-trigger:` frontmatter) — parked ide
 | Source | Condition | Check |
 |---|---|---|
 | [[idea-context-packet-builder-skill]] | A real mobilization or bid shows manual context-gathering friction (parked 2026-07-18) — event: check at job mobilization | event — checked at the step the condition names |
-| [[rfq-intake-protocol]] | About 12 quote notes under a settled rate-table heading convention -> build the cross-quote rate-history rollup [machine: quote-count>=12] | quote notes: 7 of 12 |
+| [[rfq-intake-protocol]] | About 12 quote notes under a settled rate-table heading convention -> build the cross-quote rate-history rollup [machine: quote-count>=12] | quote notes: 11 of 12 |
 | [[2026-07-19-rate-model-grain-review]] | First bid under a multi-year or master agreement -> build the contract-note type (proposal C, rejected 2026-07-19) — event: check at RFQ intake | event — checked at the step the condition names |
 
 ## Notes

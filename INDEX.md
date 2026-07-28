@@ -32,10 +32,21 @@
 - [[DSP25084]] — DSP25084 — ExxonMobil Baytown PS8 F-802 Crude Heater Decoke `(ExxonMobil/Baytown-TX)`
 - [[DSP25123]] — DSP25123 — ExxonMobil Baytown PS8 F-901 Kerosene Furnace Decoke & Smart Pigging `(ExxonMobil/Baytown-TX)`
 - [[DSP26039]] — DSP26039 — ExxonMobil Baytown HU9 F-301 & F-371A 2027 TA `(ExxonMobil/Baytown-TX)`
+- [[DSP26071]] — DSP26071.2 — ExxonMobil Baytown HU5A F-501 August 2026 TA `(ExxonMobil/Baytown-TX)`
+- [[DSP26085]] — DSP26085 — ExxonMobil Baytown 27GF1A F-201 Treat Gas Heater, January 2027 `(ExxonMobil/Baytown-TX)`
+- [[F-201]] — 27GF1A F-201 Treat Gas Heater — ExxonMobil Baytown, TX `(ExxonMobil/Baytown-TX)`
 - [[F-301]] — HU9 F-301 Splitter Reboiler — ExxonMobil Baytown, TX `(ExxonMobil/Baytown-TX)`
 - [[F-371A]] — HU9 F-371A Stabilizer Reboiler — ExxonMobil Baytown, TX `(ExxonMobil/Baytown-TX)`
+- [[F-501]] — HU5A F-501 Process & Treat Gas Coils — ExxonMobil Baytown, TX `(ExxonMobil/Baytown-TX)`
 - [[F-802]] — PS8 F-802 Crude Heater — ExxonMobil Baytown, TX `(ExxonMobil/Baytown-TX)`
 - [[F-901]] — PS8 F-901 Kerosene Furnace — ExxonMobil Baytown, TX `(ExxonMobil/Baytown-TX)`
+- [[HU5A-F501-job-sheet]] — HU5A F-501 — ExxonMobil Baytown Refinery, Baytown, TX `(ExxonMobil/Baytown-TX)`
+- [[01-BA-105]] — 01-BA-105 Raw Oil Charge Preheater — Flint Hills Resources, Corpus Christi, TX `(Flint-Hills/Corpus-Christi-TX)`
+- [[02-BA-201]] — 02-BA-201 Debutanizer Reboiler — Flint Hills Resources, Corpus Christi, TX `(Flint-Hills/Corpus-Christi-TX)`
+- [[_facility]] — Flint Hills Resources — Corpus Christi, TX `(Flint-Hills/Corpus-Christi-TX)`
+- [[DSP26006]] — DSP# 26006 — Flint Hills Corpus Christi Emergency Decoke, January 2026 `(Flint-Hills/Corpus-Christi-TX)`
+- [[_facility]] — Formosa Plastics Corporation, Texas — Point Comfort, TX `(Formosa/Point-Comfort-TX)`
+- [[VR-401C]] — MM2 VR-401C — Formosa Point Comfort, TX `(Formosa/Point-Comfort-TX)`
 - [[_facility]] — HF Sinclair — Navajo Refinery, Artesia, NM `(HF-Sinclair/Artesia-NM)`
 - [[DSP26080]] — DSP26080 — HF Sinclair Navajo Refinery February 2027 Outage `(HF-Sinclair/Artesia-NM)`
 - [[H-2421]] — H-2421 HDU Charge Heater — HF Sinclair Navajo Refinery `(HF-Sinclair/Artesia-NM)`
@@ -55,6 +66,8 @@
 - [[DSP26030-H28-H29-Decoke-Proposal-May2026]] — P66 Ponca City H-28 & H-29 Coker Decoke Proposal — May 2026 `(P66/Ponca-City-OK)`
 - [[H-28]] — H-28 Coker — Phillips 66 Ponca City, OK `(P66/Ponca-City-OK)`
 - [[H-29]] — H-29 Coker — Phillips 66 Ponca City, OK `(P66/Ponca-City-OK)`
+- [[_facility]] — PBF Energy — Toledo Refinery, Toledo, OH `(PBF/Toledo-OH)`
+- [[H-311]] — H-311 — PBF Energy Toledo, OH `(PBF/Toledo-OH)`
 - [[_facility]] — Suncor Énergie — Montreal, QC (Raffinerie de Montréal) `(Suncor/Montreal-QC)`
 - [[_walkdown-summary]] — Suncor Montreal — Field Walk-Down Summary (5 Heaters) `(Suncor/Montreal-QC)`
 - [[B-1001]] — B-1001 Crude Oil Heater — Suncor Montreal, QC `(Suncor/Montreal-QC)`
