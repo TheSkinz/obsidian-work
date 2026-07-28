@@ -19,6 +19,7 @@ Rules (code | severity):
     POINTER-DEAD    warning  recorded absolute source path no longer resolves
     YAML-COMMENT    error    unquoted frontmatter value silently truncated by a ` #` comment
     WORD-DELTA      warning  words left a note (--staged / --worktree only; see below)
+    CHECKBOX-DELTA  warning  a decision box moved on an already-closed note (ditto)
 
 Only SECRET, CONF-CONFLICT and YAML-COMMENT are errors (exit 1). Everything
 else is a warning so the vault is never "failing" for want of a bulk backfill —
@@ -28,9 +29,18 @@ is already gone from Obsidian and from every script, and the fix is one pair
 of quotes. New lint rules require a fixture under tools/fixtures/ (no fixture,
 no rule).
 
-WORD-DELTA is a diff rule, not a tree rule: it always compares against HEAD, so
-it runs only under --staged or --worktree and never appears in a normal lint
-pass or in the generated report.
+WORD-DELTA and CHECKBOX-DELTA are diff rules, not tree rules: they compare
+against HEAD, so they run only under --staged or --worktree and never appear in
+a normal lint pass or in the generated report.
+
+CHECKBOX-DELTA covers what WORD-DELTA structurally cannot. Ticking a box *adds*
+an "x", and WORD-DELTA reports only losses — so a silently recorded decision was
+invisible to every guard the vault had. It fires only when the note's status was
+ALREADY resolved or superseded before the edit: closing a review note means
+ticking its boxes and setting the status in one go, which is the workflow, not a
+defect. A record that was already closed changing its mind is the anomaly.
+Added 2026-07-28 after a stray Live Preview click ticked "Approve CND25004.md as
+first pilot item" on a superseded note and --worktree passed it clean.
 
     --staged    HEAD vs the git index — the pre-commit shape, what is about to
                 be committed. Driven unprompted by the PreToolUse commit hook.
@@ -559,7 +569,40 @@ def format_delta(lost: dict[str, int], cap: int = 40) -> str:
     return shown + (f" ... (+{len(items) - cap} more)" if len(items) > cap else "")
 
 
-def check_word_delta(root: Path, mode: str = "staged") -> list[Finding]:
+CHECKBOX_RE = re.compile(r"^[ \t]*[-*][ \t]+\[([ xX])\][ \t]*(.*?)[ \t]*$", re.M)
+CLOSED_STATUSES = {"resolved", "superseded"}
+
+
+def checkbox_delta(before: str, after: str) -> list[str]:
+    """Decision boxes that changed state between two revisions.
+
+    Exists because WORD-DELTA structurally cannot see this: ticking a box adds
+    an "x", and WORD-DELTA reports only losses. In a vault whose governance runs
+    on decision checkboxes, a silently *recorded* decision is at least as bad as
+    a silently reverted sentence. Found 2026-07-28 when a stray Live Preview
+    click ticked "Approve CND25004.md as first pilot item" on an already-
+    superseded note and every existing guard passed it clean.
+
+    Labels repeat — a review note with proposals A/B/C carries three identical
+    "Approved" lines — so comparison is positional, not label-keyed. When the
+    checkbox structure itself changes (lines added or removed) positions no
+    longer correspond, so the check falls back to reporting the tick count.
+    """
+    b = [(m.group(2), m.group(1).lower() == "x") for m in CHECKBOX_RE.finditer(before)]
+    a = [(m.group(2), m.group(1).lower() == "x") for m in CHECKBOX_RE.finditer(after)]
+    if not b and not a:
+        return []
+    if len(b) == len(a) and [x[0] for x in b] == [x[0] for x in a]:
+        return [f"{lbl!r} {'[ ]->[x]' if now else '[x]->[ ]'}"
+                for (lbl, was), (_, now) in zip(b, a) if was != now]
+    b_ticked, a_ticked = sum(1 for _, s in b if s), sum(1 for _, s in a if s)
+    if b_ticked != a_ticked or len(b) != len(a):
+        return [f"checkbox structure changed ({len(b)} boxes/{b_ticked} ticked "
+                f"-> {len(a)} boxes/{a_ticked} ticked)"]
+    return []
+
+
+def check_diff_rules(root: Path, mode: str = "staged") -> list[Finding]:
     """Words that left a pre-existing note, HEAD -> staged index or working tree.
 
     Additions are never reported: a note that only gains words has lost nothing,
@@ -614,6 +657,18 @@ def check_word_delta(root: Path, mode: str = "staged") -> list[Finding]:
                 "WORD-DELTA", root / rel,
                 f"{sum(lost.values())} word(s) left this {where} — "
                 f"confirm each was meant to go: {format_delta(lost)}"))
+
+        # CHECKBOX-DELTA gates on the *prior* status, not the current one:
+        # closing a review note legitimately means ticking its boxes and setting
+        # status to resolved in the same edit. What is anomalous is a record that
+        # was ALREADY closed changing its mind.
+        if parse_frontmatter(before_text).get("status", "").strip().lower() in CLOSED_STATUSES:
+            moved = checkbox_delta(before_text, after_text)
+            if moved:
+                findings.append(Finding(
+                    "CHECKBOX-DELTA", root / rel,
+                    f"decision box changed on an already-closed note — "
+                    f"{'; '.join(moved)}"))
     return findings
 
 
@@ -766,11 +821,30 @@ def self_test() -> int:
                                 f"{sum(lost.values())} word(s) left this note — "
                                 f"confirm each was meant to go: {format_delta(lost)}"))
 
+    # CHECKBOX-DELTA is a diff rule like WORD-DELTA, so its fixture is also a
+    # before/after pair. The pair loses no words — that is the point: it proves
+    # the two rules cover different failures rather than one shadowing the other.
+    cb = Path(__file__).resolve().parent / "fixtures" / "checkbox-delta"
+    cb_before = cb.joinpath("before.md").read_text(encoding="utf-8")
+    cb_after = cb.joinpath("after.md").read_text(encoding="utf-8")
+    moved = checkbox_delta(cb_before, cb_after)
+    if len(moved) != 1 or "[ ]->[x]" not in moved[0]:
+        print(f"SELF-TEST FAILED — CHECKBOX-DELTA fixture no longer yields one tick: {moved}")
+        return 2
+    cb_lost, _ = word_delta(cb_before, cb_after)
+    if cb_lost:
+        print(f"SELF-TEST FAILED — CHECKBOX-DELTA fixture should lose no words: {cb_lost}")
+        return 2
+    if parse_frontmatter(cb_before).get("status", "").strip().lower() in CLOSED_STATUSES:
+        findings.append(Finding("CHECKBOX-DELTA", cb / "after.md",
+                                f"decision box changed on an already-closed note — "
+                                f"{'; '.join(moved)}"))
+
     fired = {f.code for f in findings}
     expected = {"OP-FRONTMATTER", "DEAD-LINK", "SECRET", "STATUS-VOCAB",
                 "CONF-CONFLICT", "INBOX-AGE", "ORPHAN",
                 "REVIEW-OVERDUE", "SUPERSEDED", "DURATIONS-HEADER",
-                "POINTER-DEAD", "YAML-COMMENT", "WORD-DELTA"}
+                "POINTER-DEAD", "YAML-COMMENT", "WORD-DELTA", "CHECKBOX-DELTA"}
     missing = expected - fired
     for f in findings:
         print(f"  fixture: {f}")
@@ -800,12 +874,16 @@ def main() -> int:
 
     if args.staged or args.worktree:
         mode = "worktree" if args.worktree else "staged"
-        hits = check_word_delta(root, mode)
+        hits = check_diff_rules(root, mode)
         for f in hits:
             print(f)
-        noun = "staged note" if mode == "staged" else "uncommitted note"
-        print(f"\n{len(hits)} {noun}(s) lost words."
-              if hits else f"\nNo {noun} lost words.")
+        noun = "staged" if mode == "staged" else "uncommitted"
+        lost = sum(1 for f in hits if f.code == "WORD-DELTA")
+        ticked = sum(1 for f in hits if f.code == "CHECKBOX-DELTA")
+        print(f"\n{lost} {noun} note(s) lost words; "
+              f"{ticked} changed a decision box on an already-closed note."
+              if hits else
+              f"\nNo {noun} note lost words or moved a closed decision box.")
         return 0  # advisory only — never blocks a commit
 
     findings = run_lint(root)
