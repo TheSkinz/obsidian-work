@@ -4,11 +4,12 @@ status: active
 source_authority: primary
 confidence: high
 created: 2026-06-30
-last_reviewed: 2026-06-30
-review_after: 2026-07-30
+last_reviewed: 2026-07-29
+review_after: 2026-10-29
 related:
   - [[vault-agent-loop-spec]]
   - [[vault-idea-loop-spec]]
+  - [[vault-prestaging-loop-spec]]
   - [[knowledge-system-governance]]
   - [[vault-source-of-truth]]
 tags: [knowledge-system, agent-loop, capture, governance]
@@ -36,6 +37,10 @@ Governs the **content layer** only:
 - `07-llms/`, `08-systems/`, `09-interests/` — destination content layers
 
 Never touches `02-facilities/`, `04-knowledge/`, pricing, SOP, safety, field-execution, customer-facing content, or heater-card facts. Those belong to [[vault-agent-loop-spec]]. If a harvested finding or an inbox item is operational, this loop leaves it in `00-inbox/` with a one-line routing note and stops — it does not write the operational core.
+
+**The defer marker is a handoff, not a dead end (documented 2026-07-29).** The `<!-- vault-loop: -->` comment this loop writes is the **only input queue** [[vault-prestaging-loop-spec]] watches — that loop fires an hour behind this one at 06:00 precisely so it reads the current day's deferrals. Two consequences worth stating on this side of the coupling, because until now it was documented only on the other: the marker's comment form is load-bearing and must not be changed casually, and a deferred item is not abandoned — it is scheduled for analysis. Items carrying `<!-- vault-prestaged: -->` have already been through that loop and are not re-deferred.
+
+`02-facilities/` deserves a note. The 2026-07-06 facility-data ruling in [[knowledge-system-governance]] made heater-card and facility content **Lane 1 in full**, and that policy's own area map says inbox filing in all domains is Lane 1 with operational docs filed **as drafts, not deferred** — so this loop's blanket refusal is stricter than governance requires. It is kept deliberately: the difference is that Lane 1 contemplates an interactive session, and this loop runs unattended at 05:00 with no one reading the result. Widening an unattended loop's write scope into operational folders is its own decision, not a consequence of the Lane 1 ruling. Audited 2026-07-29 and the restriction is currently costing nothing — every deferred item then in the inbox was estimating, pricing, tooling, or governance content that is Lane 4 regardless.
 
 ## Ceremony Level
 
@@ -111,6 +116,8 @@ Rules that make this safe:
 - **Never rename.** Inbound wikilinks resolve by basename and `vault_lint.py` includes `archive/` in its resolution set (deliberately, per the script), so a plain move keeps every link green. Renaming breaks them — the initial sweep found 19 inbound links across 7 seeds.
 - **Never sweep a seed carrying `revisit-trigger:`** — that field is a live dormant trigger the health dashboard reports on, regardless of the seed's status.
 - Status values outside the allowlist are left alone and reported, not guessed at.
+
+**Known gap, measured 2026-07-29 — the sweep is `type: idea-seed` only.** A scan of the 49-item inbox found 19 terminal-status notes: 9 are `researched` idea-seeds the allowlist correctly protects, and **10 are terminal-status notes of other types** (`resolved` / `complete` / `closed`, across `type: note`, `task`, `capture`, `spec`, `insight`) that no sweep touches. All 10 are git-tracked, so the safety rule already holds for them. Six also carry a defer marker, meaning the Pre-Staging Loop will spend runs analyzing questions that are already closed — `2026-07-23-three-dead-source-pointers.md` is the clearest case: `status: resolved`, body headed RESOLVED, closed the same day it opened, still queued. Extending the allowlist to non-seed types is a scope change to an unattended loop's move authority and is **not** applied here; it is Jesse's call.
 
 Report the sweep in the run summary (`N swept`). The move is recoverable rather than destructive, but the reason is subtler than it looks: **`archive/` is listed in `.gitignore`**, and `.gitignore` governs only *untracked* files. A seed that was already tracked in `00-inbox/` stays tracked when moved (git records it as a rename — the first sweep staged all 7 as `R100`), so its history survives. A file that was **never committed** would become invisible to git the moment it lands in `archive/`. Therefore: **only sweep a seed that `git ls-files` already shows as tracked.** An untracked seed is left in place and reported, never swept.
 
