@@ -7,9 +7,15 @@ tags: [claude-code, mobile, field, remote-control, dispatch, workflow]
 # Mobile / Field Access
 
 How to reach the vault and put information into it from the iPhone while out in the field.
-Written 2026-07-29 against Claude Code CLI 2.1.143 and the Claude iOS app; version-sensitive
-details should be re-verified against `code.claude.com/docs` per the standing rule in
-[[code]].
+Written 2026-07-29 against the Claude iOS app; version-sensitive details should be re-verified
+against `code.claude.com/docs` per the standing rule in [[code]].
+
+**Check which binary you are starting.** On 2026-07-29 the npm global install on PATH was
+2.1.143 while the Desktop app carried its own 2.1.219 — so `claude remote-control` from a
+terminal ran a build below the 2.1.202 fix for caption-less phone attachments, and the same
+session started from the Desktop app did not. `npm ls -g @anthropic-ai/claude-code` is the check
+that answers "am I current"; `npm view` only reports the registry's latest. See the two-installs
+table in [[code]].
 
 ## The constraint that decides everything
 

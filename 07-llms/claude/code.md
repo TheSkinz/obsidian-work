@@ -98,7 +98,21 @@ Two asymmetries drive every routing decision. **Skills:** cloud and Cowork sessi
 
 Practical consequences: Remote Control is the default for anything vault- or USADebusk-shaped from the phone; a Dispatch message should say "open a Claude Code session" explicitly; a cloud session's domain answers are unverified by construction. Remote Control also downloads phone attachments to the machine and passes them as `@` file references, which is what makes photo capture work. Mobile permission modes are Manual / Accept edits / Plan for Remote Control and Accept edits / Plan / Auto for cloud — **no Bypass from mobile on either**, so the `.claude/settings.json` allowlist is what keeps a one-handed session from stalling. Full runbook: [[mobile-field-access]].
 
-Version floors worth knowing, all above the installed 2.1.143: **2.1.202** (before it, a phone attachment sent *without a caption* could be dropped before reaching the session — exactly the photo-capture case), 2.1.200 (`remote-control --continue` / `--session-id`), 2.1.181 (`/config key=value` from mobile), 2.1.166 (`/mcp` from mobile), 2.1.207–2.1.208 (subagent/workflow progress on connected devices, long-turn "check in from your phone" reminders).
+Version floors worth knowing for the mobile path: **2.1.202** (before it, a phone attachment sent *without a caption* could be dropped before reaching the session — exactly the photo-capture case), 2.1.200 (`remote-control --continue` / `--session-id`), 2.1.181 (`/config key=value` from mobile), 2.1.166 (`/mcp` from mobile), 2.1.207–2.1.208 (subagent/workflow progress on connected devices, long-turn "check in from your phone" reminders).
+
+### Two CLI installs, two different versions (found 2026-07-29)
+
+There is not one Claude Code on this machine, there are two, and the terminal gets the older one:
+
+| Install | Path | Version on 2026-07-29 |
+|---|---|---|
+| npm global — what `claude` on PATH resolves to | `%APPDATA%\npm\claude` | **2.1.143** |
+| Desktop app's own builds | `%APPDATA%\Claude\claude-code\{2.1.217, 2.1.219}\claude.exe` | **2.1.219** |
+| Desktop VM copy | `%APPDATA%\Claude\claude-code-vm\2.1.215` | 2.1.215 |
+
+npm registry latest was 2.1.220. **`npm view … version` reports the registry's latest, not what is installed** — the check that answers "am I current" is `npm ls -g @anthropic-ai/claude-code`, and it said 2.1.143. The Desktop app updates itself on its own cadence, which is why the two drifted apart without either looking wrong.
+
+The consequence is specific: `claude remote-control` started from PowerShell or Git Bash runs 2.1.143, below the 2.1.202 attachment fix, so a caption-less phone photo can be silently dropped. The same session started from the Desktop app does not have that problem. Upgrade the npm install (`npm i -g @anthropic-ai/claude-code@latest`) with no `claude` process running — Windows file locking will fail or half-apply the install otherwise.
 
 ## Dispatch vs. local sessions — collision risk
 
