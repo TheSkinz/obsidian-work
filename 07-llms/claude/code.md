@@ -119,6 +119,20 @@ Pruning is not a fix, it's a reset of a counter that climbs again under auto mod
 
 Source: `/doctor` pass, 2026-07-19.
 
+## The drift rate is ~2 rules/day, and a hook is the only fix that holds
+
+The 2026-09-19 re-check above resolved seven weeks early. On 2026-07-29 the vault allow list was back at **59 rules** — ten days after the prune to 36, so roughly two rules per day, saturating in under three weeks rather than the assumed two months. The returning entries included `Bash(python -c ' *)` and `Bash(python -)` verbatim, the exact hazards the prior pass removed, plus a new `Bash(gh repo *)` covering `delete`, `create`, and `edit --visibility public`. Drift is hazardous, not cosmetic: the hazard and the convenience are the same keystroke, so any session doing harness work re-approves the same wildcards.
+
+**Deny rules do not fix this.** They are glob matches against the command string and are documented-leaky — `git commit*` misses `git -C <path> commit`, and anything denied stays reachable through `python -c`. Anthropic's docs give the correct pattern in the hooks section: a PreToolUse hook exiting 2 stops the call *before* permission rules are evaluated, so it overrides allow rules. The documented recommendation for exactly this case is to allow Bash broadly and reject specific commands in a hook.
+
+Verified end-to-end on 2026-07-29: after `usadebusk-exec-guard.mjs` was registered, auto mode re-added an explicit `Bash(python -c "…")` allow rule mid-session, and that exact command was still blocked. An allow rule cannot beat a hook. This is the general lever — anything that must hold regardless of allow-list state belongs in a PreToolUse hook, not in `permissions.deny`.
+
+Sandboxing is the stronger OS-level layer and is **unavailable here**: it runs on macOS, Linux, and WSL2 only, and native Windows is explicitly unsupported.
+
+Consequence: auto mode stays on, the allow list is allowed to grow, and no recurring prune is scheduled. See [[2026-07-19-auto-mode-permission-drift]] for the full resolution and `~/.claude/hooks/usadebusk-exec-guard.mjs` (config `529ba04`) for the gate.
+
+Source: `/doctor` follow-up + power-user prior-art search, 2026-07-29.
+
 ## Skill description length is a per-session token cost, and a stale job-specific banner is worse than none
 
 A skill's `description:` field is resident in every session's skill listing regardless of whether the project is relevant — length there is a real, ongoing token cost, not a one-time authoring cost. A 2026-07-19 audit found `usadebusk-fieldpm`'s description carrying a job-specific "ACTIVE for USA26038... re-dormant at demob" banner at 769 characters (~196 tokens), the longest of any skill's description. The same audit found the skill's usage counter at zero lifetime (absent from `skillUsage` in `~/.claude.json`, no `Skill` dispatch for it in the 50 most recent transcripts) despite nine days into the job it names as active — an unresolved open question (real workflow gap vs. workflow happening outside Claude Code) rather than a confirmed bug. The actionable lesson independent of that question: a job-specific ACTIVE banner needs its own demob trigger, since a stale banner pointing a live-job routing hint at a finished job is worse than a plain dormant one-liner, and reverting it recovers most of the token cost too.
