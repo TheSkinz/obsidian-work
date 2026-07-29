@@ -9,9 +9,11 @@ last-updated: 2026-07-27
 tags: [job-sheet, ExxonMobil, HU5A-F501]
 ---
 
-<!-- Job number not yet issued. On receipt: set `job-number`, add USA##### to the tags list,
-     fill the Job # row in Project Details, and rename this file to <USA#####>-job-sheet.md
-     per the canonical naming convention. -->
+<!-- Job number is the ops manager's to create, on his own schedule (Jesse, 2026-07-29). This is
+     not an open item and is not to be flagged, chased, or raised as a mobilization risk — Jesse
+     brings the number to the session the moment it exists. On receipt: set `job-number`, add
+     USA##### to the tags list, fill the Job # row in Project Details, and rename this file to
+     <USA#####>-job-sheet.md per the canonical naming convention. -->
 
 # HU5A F-501 — ExxonMobil Baytown Refinery, Baytown, TX
 
@@ -71,8 +73,10 @@ schedule bills non-USADebusk-caused standby at $500/hr pumper, but only against 
 
 ## Crew Assignment — By Rig & Shift
 
-<!-- Crew not yet assigned as of 2026-07-27. Supervisors are fixed to a rig; operators are a
-     shared pool by shift. Fill before mobilization. -->
+<!-- Crew assignment and badging are owned elsewhere and arrive on their own schedule (Jesse,
+     2026-07-29) — same standing as the job number above. Not an open item, not a risk to
+     surface. Supervisors are fixed to a rig; operators are a shared pool by shift. Fill in when
+     the names come through. -->
 
 **Dayshift**
 
