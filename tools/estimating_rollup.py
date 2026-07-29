@@ -42,9 +42,18 @@ TD_COLS = ["Date", "Job #", "Rigs", "Rig-In", "Pig", "Smart Pig",
 def parse_frontmatter(text: str) -> dict[str, str]:
     fm: dict[str, str] = {}
     lines = text.splitlines()
-    if not lines or lines[0].strip() != "---":
+    # Leading blank lines and full-line HTML comments precede the fence on
+    # loop-marked notes; see frontmatter_start() in vault_lint.py.
+    start = None
+    for i, line in enumerate(lines):
+        s = line.strip()
+        if not s or (s.startswith("<!--") and s.endswith("-->")):
+            continue
+        start = i if s == "---" else None
+        break
+    if start is None:
         return fm
-    for line in lines[1:]:
+    for line in lines[start + 1:]:
         if line.strip() == "---":
             break
         m = re.match(r"^([A-Za-z0-9_-]+):\s*(.*)$", line)

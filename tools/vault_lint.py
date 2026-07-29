@@ -203,13 +203,34 @@ class Finding:
 
 # --- helpers ------------------------------------------------------------------
 
+def frontmatter_start(lines: list[str]) -> int | None:
+    """Index of the opening `---`, or None if the note has no frontmatter.
+
+    Tolerates leading blank lines and full-line HTML comments. That tolerance
+    is not cosmetic: the capture loop writes `<!-- vault-loop: -->` and the
+    pre-staging loop writes `<!-- vault-prestaged: -->` as the *first* line of
+    an inbox note, and Obsidian still renders the properties below them. A
+    strict line-0 check made 26 of the vault's 202 notes invisible to every
+    frontmatter rule — STATUS-VOCAB, REVIEW-OVERDUE, SUPERSEDED, OP-FRONTMATTER
+    and CONF-CONFLICT (an *error* rule) all silently skipped exactly the notes
+    the loops touch most. Found 2026-07-29 auditing the capture loop spec.
+    """
+    for i, line in enumerate(lines):
+        s = line.strip()
+        if not s or (s.startswith("<!--") and s.endswith("-->")):
+            continue
+        return i if s == "---" else None
+    return None
+
+
 def parse_frontmatter(text: str) -> dict[str, str]:
     """Minimal YAML-subset parser: top-level `key: value` between --- fences."""
     fm: dict[str, str] = {}
     lines = text.splitlines()
-    if not lines or lines[0].strip() != "---":
+    start = frontmatter_start(lines)
+    if start is None:
         return fm
-    for line in lines[1:]:
+    for line in lines[start + 1:]:
         if line.strip() == "---":
             break
         m = re.match(r"^([A-Za-z0-9_-]+):\s*(.*)$", line)
@@ -506,9 +527,10 @@ def check_yaml_comment(root: Path, notes: dict[Path, str]) -> list[Finding]:
     findings = []
     for path, text in notes.items():
         lines = text.splitlines()
-        if not lines or lines[0].strip() != "---":
+        start = frontmatter_start(lines)
+        if start is None:
             continue
-        for raw in lines[1:]:
+        for raw in lines[start + 1:]:
             if raw.strip() == "---":
                 break
             m = re.match(r"^([A-Za-z0-9_-]+):[ \t]+(.*)$", raw)

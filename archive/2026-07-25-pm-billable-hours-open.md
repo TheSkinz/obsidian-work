@@ -1,7 +1,7 @@
 <!-- vault-loop: operational — PM billable-hours pricing ruling and F1 baseline record, Lane 4 (04-knowledge, usadebusk-estimating scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: note
-status: closed
+status: complete
 created: 2026-07-25
 closed: 2026-07-25
 tags: [inbox, estimating, regression, pricing, lane-4, awaiting-decision]

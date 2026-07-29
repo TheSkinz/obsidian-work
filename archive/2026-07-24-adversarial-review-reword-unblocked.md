@@ -1,7 +1,7 @@
 <!-- ROUTED 2026-07-27 — content landed in 07-llms/prompt-engineering.md. Retained as the original capture record. -->
 ---
 type: note
-status: closed
+status: complete
 created: 2026-07-24
 closed: 2026-07-24
 tags: [inbox, skills, config-repo, closed]

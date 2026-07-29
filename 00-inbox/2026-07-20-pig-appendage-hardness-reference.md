@@ -1,7 +1,7 @@
 <!-- vault-loop: operational — pig-equipment reference data, candidate home usadebusk-equipment (04-knowledge scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: note
-status: unfiled
+status: inbox
 source: AlphaMet (Anderson Associates Consulting Engineers Inc., APEGA P2205) File No. 23890, Sept 2024; commissioned by Marshall Douglas
 created: 2026-07-20
 tags: [inbox, pig-appendages, hardness, reference]

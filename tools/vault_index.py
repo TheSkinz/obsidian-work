@@ -45,10 +45,19 @@ FM_TITLE_RE = re.compile(r"^title:\s*(.+)$", re.MULTILINE)
 
 def note_title(text: str, stem: str) -> str:
     lines = text.splitlines()
-    if lines and lines[0].strip() == "---":
+    # Skip leading blank lines and full-line HTML comments (loop markers) so a
+    # marked note's `title:` is still read; see frontmatter_start() in vault_lint.py.
+    fm_at = None
+    for i, line in enumerate(lines):
+        s = line.strip()
+        if not s or (s.startswith("<!--") and s.endswith("-->")):
+            continue
+        fm_at = i if s == "---" else None
+        break
+    if fm_at is not None:
         try:
-            end = lines[1:].index("---") + 1
-            fm = "\n".join(lines[1:end])
+            end = lines[fm_at + 1:].index("---") + fm_at + 1
+            fm = "\n".join(lines[fm_at + 1:end])
             m = FM_TITLE_RE.search(fm)
             if m:
                 return m.group(1).strip().strip("'\"")

@@ -7,8 +7,8 @@
 | Open decision rows | 0 | <= 10 | ok |
 | Review notes awaiting decision | 0 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 37 | (backlog) | ok |
-| Inbox items | 49 | - | ok |
+| Lint warnings | 36 | (backlog) | ok |
+| Inbox items | 39 | - | ok |
 | Inbox median age | 2 d | < 14 d | ok |
 | Inbox oldest item | 11 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
@@ -46,6 +46,7 @@ Every recorded wake-up condition (`revisit-trigger:` frontmatter) — parked ide
 
 | Source | Condition | Check |
 |---|---|---|
+| [[2026-07-24-parallel-friction-factor-deferred]] | Actuals rollup carries 3-4 routine multi-pass rows with a recorded Mode -> decide whether the Duration Model gets a mode-friction term — event: check when a multi-pass TA lands actuals | event — checked at the step the condition names |
 | [[idea-context-packet-builder-skill]] | A real mobilization or bid shows manual context-gathering friction (parked 2026-07-18) — event: check at job mobilization | event — checked at the step the condition names |
 | [[rfq-intake-protocol]] | About 12 quote notes under a settled rate-table heading convention -> build the cross-quote rate-history rollup [machine: quote-count>=12] | quote notes: 11 of 12 |
 | [[2026-07-19-rate-model-grain-review]] | First bid under a multi-year or master agreement -> build the contract-note type (proposal C, rejected 2026-07-19) — event: check at RFQ intake | event — checked at the step the condition names |

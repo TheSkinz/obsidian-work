@@ -104,20 +104,21 @@ Write knowledge, not conversation: "X works by Y" not "the user asked about X." 
 
 If `00-inbox/` holds 3+ untagged notes on one theme with no existing home, propose a hub note (suggested filename, target folder, one-line scope). Propose only — do not create the hub or move items without approval.
 
-## Terminal-Seed Sweep
+## Terminal-Note Sweep
 
-Added 2026-07-28. A finished idea-seed left in `00-inbox/` is noise that inflates the inbox count and buries live items. At the end of inbox ingestion, move any `type: idea-seed` file whose `status` is in this **exact allowlist** to `archive/`:
+Added 2026-07-28 as an idea-seed-only sweep; **extended to all note types 2026-07-29** (Jesse, in-session). A finished note left in `00-inbox/` is noise that inflates the inbox count and buries live items — and the type it happens to carry never made that more or less true. At the end of inbox ingestion, move any file whose `status` is in this **exact allowlist** to `archive/`:
 
 `executed` · `resolved` · `complete` · `superseded` · `spec-complete`
 
-Rules that make this safe:
+The extension was measured, not assumed: on 2026-07-29 a 49-item inbox held 19 terminal-status notes, of which the seed-only rule covered 9 and left **10** — `type: note`, `task`, `capture`, `spec`, `insight` — sitting indefinitely. Six of those ten also carried a defer marker, so the Pre-Staging Loop was queued to spend runs analyzing questions already closed. `2026-07-23-three-dead-source-pointers.md` was the worked case: opened and resolved the same day, body headed RESOLVED, still in the queue five days later.
 
-- **Never sweep `researched` or `unexplored`.** `researched` means the Idea Research Loop is done but *Jesse has not decided* — sweeping it would silently discard a pending decision. `unexplored` is the loop's own input queue.
+Rules that make this safe (all of them now apply to every type, not just seeds):
+
+- **Never sweep `researched` or `unexplored`.** `researched` means the Idea Research Loop is done but *Jesse has not decided* — sweeping it would silently discard a pending decision. `unexplored` is the loop's own input queue. Both statuses are idea-seed-specific in practice, but the prohibition is written on status, not type, so a `researched` note of any type is protected.
+- **Status must be read with the loop's own markers in mind.** A `<!-- vault-loop: -->` or `<!-- vault-prestaged: -->` comment sits *above* the frontmatter fence, and a naive line-0 frontmatter parser returns nothing for those files — which is exactly the 6-of-10 subset. `tools/vault_lint.py`'s `frontmatter_start()` handles this correctly (fixed 2026-07-29); use that behavior, not a fresh line-0 check. A parser that silently sees no status must **skip**, never sweep.
 - **Never rename.** Inbound wikilinks resolve by basename and `vault_lint.py` includes `archive/` in its resolution set (deliberately, per the script), so a plain move keeps every link green. Renaming breaks them — the initial sweep found 19 inbound links across 7 seeds.
 - **Never sweep a seed carrying `revisit-trigger:`** — that field is a live dormant trigger the health dashboard reports on, regardless of the seed's status.
 - Status values outside the allowlist are left alone and reported, not guessed at.
-
-**Known gap, measured 2026-07-29 — the sweep is `type: idea-seed` only.** A scan of the 49-item inbox found 19 terminal-status notes: 9 are `researched` idea-seeds the allowlist correctly protects, and **10 are terminal-status notes of other types** (`resolved` / `complete` / `closed`, across `type: note`, `task`, `capture`, `spec`, `insight`) that no sweep touches. All 10 are git-tracked, so the safety rule already holds for them. Six also carry a defer marker, meaning the Pre-Staging Loop will spend runs analyzing questions that are already closed — `2026-07-23-three-dead-source-pointers.md` is the clearest case: `status: resolved`, body headed RESOLVED, closed the same day it opened, still queued. Extending the allowlist to non-seed types is a scope change to an unattended loop's move authority and is **not** applied here; it is Jesse's call.
 
 Report the sweep in the run summary (`N swept`). The move is recoverable rather than destructive, but the reason is subtler than it looks: **`archive/` is listed in `.gitignore`**, and `.gitignore` governs only *untracked* files. A seed that was already tracked in `00-inbox/` stays tracked when moved (git records it as a rename — the first sweep staged all 7 as `R100`), so its history survives. A file that was **never committed** would become invisible to git the moment it lands in `archive/`. Therefore: **only sweep a seed that `git ls-files` already shows as tracked.** An untracked seed is left in place and reported, never swept.
 
@@ -160,7 +161,7 @@ OneDrive sync has been removed; git is the only backup and the single source of 
 | Read any vault note and any session transcript | Read-only. |
 | Append to / create notes in `00-inbox/`, `07-llms/`, `08-systems/`, `09-interests/` | Content layer only. Must read cold; must cite source. |
 | Add the no-home comment to an inbox file | Comment only; no content change. |
-| Move a terminal-status idea-seed from `00-inbox/` to `archive/` | Terminal-Seed Sweep only; exact status allowlist; never renamed. |
+| Move a terminal-status note of any type from `00-inbox/` to `archive/` | Terminal-Note Sweep only; exact status allowlist; tracked-only; never renamed. |
 | Update `00-inbox/.capture-state.json` | State tracking only; merge, never blank-overwrite. |
 | Run `tools/vault_lint.py` before committing | Pre-commit gate; must be 0 errors. Read-only check. |
 | Commit and push the loop's own touched paths | Durability close, per Durability. The commit message is the run record — no `change-log.md` entry (decisions-only since 2026-07-05). |
@@ -170,7 +171,7 @@ OneDrive sync has been removed; git is the only backup and the single source of 
 | Action | Reason |
 |---|---|
 | Delete any file | Data loss. |
-| Move any file, **except** a terminal-status idea-seed under the Terminal-Seed Sweep | Routing impact. The sweep is the single sanctioned move; everything else is proposed, not executed. |
+| Move any file, **except** a terminal-status note under the Terminal-Note Sweep | Routing impact. The sweep is the single sanctioned move; everything else is proposed, not executed. |
 | Write to `02-facilities/`, `04-knowledge/`, or any operational content | Owned by [[vault-agent-loop-spec]]. |
 | Create or move a clustering hub note | Restructures the vault. |
 | Commit paths outside the content layer | Keeps the loop's commits scoped and reviewable. |
