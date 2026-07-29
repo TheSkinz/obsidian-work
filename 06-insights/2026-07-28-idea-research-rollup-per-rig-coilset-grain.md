@@ -1,11 +1,12 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
 created: 2026-07-28
 review_after: 2026-08-28
+revisit-trigger: "Next time `_canonical-heater-card.md` is opened for a change carrying its own weight -> decide the structured per-coilset actuals sub-table, bundled with the parked Pig Specifications Condition column (parked 2026-07-29) — event: check at heater-card schema change"
 related:
   - "[[idea-rollup-per-rig-coilset-grain]]"
   - "[[idea-pig-actuals-maturation]]"
@@ -109,11 +110,25 @@ includes fill/flush time before it enters any service-class benchmark.
 
 - [ ] Approved — add structured per-coilset actuals table to canonical schema (Lane 4), bundle with Condition-column change
 - [ ] Approved with edits
-- [ ] Park — revisit next time the card schema is opened for another reason
+- [x] **Park — revisit next time the card schema is opened for another reason** — Jesse, 2026-07-29
 - [ ] Drop
+
+**Why parked rather than built.** The blocker is an undecided Lane 4 schema change, not thin data.
+The canonical card deliberately holds per-rig splits as freeform Field Notes prose, and the three
+sources that carry that field disagree on what it contains — 7-1-F-1 has a full per-coilset
+per-task breakdown, HF-0011 has hours-by-mode with no coilset or footage mapping, the ingest
+skill's example has only a per-rig total. Writing a parser across that recreates a documented
+maintenance-narrative extraction failure mode for two usable data points. When the schema is next
+opened for a reason that earns it, decide the structured sub-table and capture at ingest time
+going forward; hand-migrate 7-1-F-1 only. Bundled with the Pig Specifications `Condition` column
+from `idea-pig-actuals-maturation`, which rides the same trigger.
+
+**Separately, and not gating any of the above:** Jesse's read on whether the Syncrude ~6 ft/hr
+figure includes fill/flush time is still needed before that figure enters any service-class
+benchmark. Filed to `00-inbox/`.
 
 ## Apply Log
 
 | Date | Action | By | Notes |
 |---|---|---|---|
-| | | | |
+| 2026-07-29 | Parked to the heater-card schema trigger; bundled with the Condition-column change | Jesse (ruling) / Claude (Opus 5) | Walked through in session. No schema or script change made. Syncrude fill/flush question split out to `00-inbox/`. |

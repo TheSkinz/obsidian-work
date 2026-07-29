@@ -1,11 +1,12 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
 created: 2026-07-27
 review_after: 2026-08-27
+revisit-trigger: "A quotation-vs-workup gap appears that is NOT an exact mob/demob multiple (DSP26026-style scope narrowing) -> rule what distinguishes legitimate narrowing from an error, then the pre-send gate can run unattended (approved-with-edits 2026-07-29) — event: check at bid submission"
 related:
   - "[[idea-quotation-workup-reconciliation-check]]"
   - "[[2026-07-25-quotation-workup-reconciliation-scan]]"
@@ -50,12 +51,31 @@ is case (b): no gate blocks research, and the research itself is what the gate i
 ## Decision
 
 - [ ] Approved — build as event-triggered (post-script-edit + optional pre-send gate)
-- [ ] Approved with edits
+- [x] **Approved with edits** — Jesse, 2026-07-29
 - [ ] Park — revisit later (state new trigger)
 - [ ] Drop
+
+**The edit: split the build in two and ship only the half that can run unattended.**
+
+Build now — the **post-script-edit regression half**. Extend `backtest_workup.py` (or a thin
+sibling sharing `extract_workup.extract()`) to fire after any edit to
+`usadebusk-estimating/scripts/*`, mirroring the already-adopted fallback-regression-battery
+pattern. Read the quotation's tables via `python-docx` directly wherever a `.docx` source exists;
+reserve PDF text extraction for docx-less legacy submissions, and do not reintroduce the
+LibreOffice render step. Reuse the mob/demob exclusion and multi-block-per-page summation logic
+already in `extract_workup.py` rather than re-deriving them.
+
+Hold — the **pre-send gate stays manual**, invoked deliberately on a single pair, until the
+DSP26026-style scope-narrowing rule exists. A large non-mob/demob gap needs a human rule, not a
+size threshold, before anything gates a bid submission unattended. Carried as this note's
+`revisit-trigger`.
+
+Not carried forward: the two `extract_workup.py` defects this note's seed inherited from the
+2026-07-25 scan. Config commit `677d447` fixed both on 2026-07-25, 34 minutes before the seed was
+filed. They are closed and are not part of this build.
 
 ## Apply Log
 
 | Date | Action | By | Notes |
 |---|---|---|---|
-| | | | |
+| 2026-07-29 | Approved with edits — post-edit regression half approved to build; pre-send gate held manual pending the scope-narrowing rule | Jesse (ruling) / Claude (Opus 5) | Walked through in session. Cadence question settled by the `~/.claude/regression/` precedent — event-triggered, not scheduled. **Build not yet written** — filed to `00-inbox/` as a build task. |
