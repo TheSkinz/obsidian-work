@@ -6,7 +6,6 @@ source_authority: inferred
 confidence: medium
 created: 2026-07-27
 review_after: 2026-08-27
-revisit-trigger: "A quotation-vs-workup gap appears that is NOT an exact mob/demob multiple (DSP26026-style scope narrowing) -> rule what distinguishes legitimate narrowing from an error, then the pre-send gate can run unattended (approved-with-edits 2026-07-29) — event: check at bid submission"
 related:
   - "[[idea-quotation-workup-reconciliation-check]]"
   - "[[2026-07-25-quotation-workup-reconciliation-scan]]"
@@ -104,3 +103,4 @@ filed. They are closed and are not part of this build.
 |---|---|---|---|
 | 2026-07-29 | Approved with edits — post-edit regression half approved to build; pre-send gate held manual pending the scope-narrowing rule | Jesse (ruling) / Claude (Opus 5) | Walked through in session. Cadence question settled by the `~/.claude/regression/` precedent — event-triggered, not scheduled. **Build not yet written** — filed to `00-inbox/` as a build task. |
 | 2026-07-29 | **Regression half withdrawn before implementation — it already exists.** Recon of `backtest_workup.py` on Jesse's "should we build it?" found the reconciliation already implemented against all three pairs. Scope reduced to a hook map entry. | Claude (Opus 5) | No code written. The approval was acted on by checking the target first; the research note had not verified what the existing back-test already covered. |
+| 2026-07-29 | **Scope-narrowing rule ruled and written — `revisit-trigger` retired per fire → act → remove.** Compare scope before dollars: matched scope + totals gap blocks; narrower scope re-prices and passes with a one-line note; wider scope blocks unconditionally. Gap size is never the instrument. | Jesse (ruling) / Claude (Opus 5) | Written to `usadebusk-estimating` SKILL.md under the mob/demob reconciliation rules. Jesse also supplied the base rate: narrowing happens a few times a year, so the matched-scope path is the normal one. **The pre-send gate is now unblocked to build.** |

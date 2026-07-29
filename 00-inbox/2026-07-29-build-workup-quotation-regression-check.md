@@ -24,11 +24,22 @@ prompt a replay of the suite that covers it. Add the mapping and a runner branch
 The hook's own back-test discipline applies: it was gated at a 14% fire rate deliberately, so
 check the new mapping's fire rate over real history rather than assuming it is quiet.
 
-## Deliberately not in scope
+## Pre-send bid gate — unblocked 2026-07-29, not yet built
 
-The **pre-send bid gate** — reading a new, unsubmitted quotation and reconciling it live against
-its workup. That is the half with real commercial value, and it is where the `python-docx` direct
-read belongs, since a fresh quotation has no frozen expectation. It stays blocked on the
-DSP26026-style scope-narrowing rule. Carried as the review note's `revisit-trigger`.
+The half with real commercial value: read a new, unsubmitted quotation and reconcile it live
+against its workup before it goes to a customer. This is where the `python-docx` direct read
+belongs, since a fresh quotation has no frozen expectation to compare against.
+
+**No longer blocked.** Jesse ruled the scope-narrowing rule on 2026-07-29 and it is written into
+`usadebusk-estimating` SKILL.md under the mob/demob reconciliation rules: compare scope before
+dollars — matched scope with a totals gap blocks, narrower scope re-prices at the workup's own
+rates and passes with a one-line note, wider scope blocks unconditionally. Gap size is never the
+instrument. Narrowing runs a few times a year, so the matched-scope path is the normal one.
+
+Build notes when it is picked up: reuse `extract_workup.extract()` and the existing
+`_is_lump_sum_gap()` mob/demob exemption rather than re-deriving either; the scope comparison
+needs the quotation's task hours and heater list, which the Section 7 line descriptions carry
+("[N] Rig-in | [N] Pig | [N] Smart Pig | [N] Rig-out"); invoked deliberately on one pair at
+submission, never on a schedule.
 
 This is a config-repo change (`~/.claude`), not a vault change.

@@ -7,7 +7,7 @@
 | Open decision rows | 0 | <= 10 | ok |
 | Review notes awaiting decision | 0 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 40 | (backlog) | ok |
+| Lint warnings | 38 | (backlog) | ok |
 | Inbox items | 47 | - | ok |
 | Inbox median age | 2 d | < 14 d | ok |
 | Inbox oldest item | 11 d | < 30 d | ok |
@@ -49,7 +49,6 @@ Every recorded wake-up condition (`revisit-trigger:` frontmatter) — parked ide
 | [[idea-context-packet-builder-skill]] | A real mobilization or bid shows manual context-gathering friction (parked 2026-07-18) — event: check at job mobilization | event — checked at the step the condition names |
 | [[rfq-intake-protocol]] | About 12 quote notes under a settled rate-table heading convention -> build the cross-quote rate-history rollup [machine: quote-count>=12] | quote notes: 11 of 12 |
 | [[2026-07-19-rate-model-grain-review]] | First bid under a multi-year or master agreement -> build the contract-note type (proposal C, rejected 2026-07-19) — event: check at RFQ intake | event — checked at the step the condition names |
-| [[2026-07-27-idea-research-quotation-workup-reconciliation-check]] | A quotation-vs-workup gap appears that is NOT an exact mob/demob multiple (DSP26026-style scope narrowing) -> rule what distinguishes legitimate narrowing from an error, then the pre-send gate can run unattended (approved-with-edits 2026-07-29) — event: check at bid submission | event — checked at the step the condition names |
 | [[2026-07-28-idea-research-rollup-per-rig-coilset-grain]] | Next time `_canonical-heater-card.md` is opened for a change carrying its own weight -> decide the structured per-coilset actuals sub-table, bundled with the parked Pig Specifications Condition column (parked 2026-07-29) — event: check at heater-card schema change | event — checked at the step the condition names |
 
 ## Notes
