@@ -83,9 +83,28 @@ My built-in knowledge is frozen at Jan 2026, and the CLI drifts (version churn l
 
 **Standing rule:** a verified post-cutoff Claude/Anthropic/model fact is durable knowledge — capture it into `07-llms/claude/`, **dated and version-stamped** (e.g. "as of CLI 2.1.217, 2026-07-22"), the same as a domain fact. Because model/product facts go stale faster than domain facts, every such capture carries a "re-verify version-sensitive details against `code.claude.com/docs` before relying on them" caveat. Capture once, stamp it, re-verify only the version-sensitive slice — do not re-derive the whole answer each session. The failure mode to avoid: a stale version-stamped note trusted blindly (same class as a stale memory). [[command-reference]] is the first note built to this rule.
 
+## Four surfaces reach the vault, and two of them can't see the skills
+
+As of CLI 2.1.143 and the Claude iOS app, 2026-07-29. Verified against `code.claude.com/docs`; re-check the version-sensitive rows before relying on them.
+
+| Surface | Where it runs | Skills it loads | Vault access | Capture Loop harvests it |
+|---|---|---|---|---|
+| Remote Control (`claude remote-control` / `/rc`) | Local CLI process | `~/.claude/skills/` — all nine | Real working tree | Yes |
+| Dispatch, task stays in Cowork | Desktop app, Cowork tab | claude.ai account library only | Local files, if file access is on | No |
+| Dispatch, task spawns a Code session | Desktop app, Code tab | `~/.claude/skills/` — all nine | Real working tree | Yes |
+| Cloud session (`--cloud`, Code tab on web/mobile) | Anthropic infrastructure | Repo `.claude/skills/` — vault has none | Cloned repo, branch only | No |
+
+Two asymmetries drive every routing decision. **Skills:** cloud and Cowork sessions do not read `~/.claude/skills/`; cloud sessions read the cloned repo's `.claude/skills/` (the vault commits `settings.json` and `launch.json` only), and Cowork reads the claude.ai account library — the frozen second copy the Skill-Drift Loop can't reach. **Transcripts:** the Capture Loop harvests `~/.claude/projects/`, so anything reasoned out in a cloud or Cowork session is unharvestable and has to be written to a file during the session or it's gone.
+
+Practical consequences: Remote Control is the default for anything vault- or USADebusk-shaped from the phone; a Dispatch message should say "open a Claude Code session" explicitly; a cloud session's domain answers are unverified by construction. Remote Control also downloads phone attachments to the machine and passes them as `@` file references, which is what makes photo capture work. Mobile permission modes are Manual / Accept edits / Plan for Remote Control and Accept edits / Plan / Auto for cloud — **no Bypass from mobile on either**, so the `.claude/settings.json` allowlist is what keeps a one-handed session from stalling. Full runbook: [[mobile-field-access]].
+
+Version floors worth knowing, all above the installed 2.1.143: **2.1.202** (before it, a phone attachment sent *without a caption* could be dropped before reaching the session — exactly the photo-capture case), 2.1.200 (`remote-control --continue` / `--session-id`), 2.1.181 (`/config key=value` from mobile), 2.1.166 (`/mcp` from mobile), 2.1.207–2.1.208 (subagent/workflow progress on connected devices, long-turn "check in from your phone" reminders).
+
 ## Dispatch vs. local sessions — collision risk
 
-Claude Dispatch runs in an isolated cloud sandbox: no `claude-config` skills checkout, and no visibility into locally-running Claude Code sessions on the same machine. A local Code session and a parallel Dispatch run can both triage the same repo state independently and push divergent, unmerged branches without either side detecting the collision. Mitigation: `git fetch` before starting local vault work if Dispatch may have touched the repo recently.
+**Execution moved local (docs re-read 2026-07-29).** Dispatch now runs on the desktop with local files, connectors, plugins, and apps, and can spawn a Code session in the Desktop app's Code tab. The original observation below described an isolated cloud sandbox, which is what 2026-07-05 actually produced — the product changed rather than the note being wrong. What has *not* been re-tested is the collision itself: two agents pushing `obsidian-work` independently is still structurally possible, so the mitigation stands until proven unnecessary.
+
+Original, 2026-07-05: Claude Dispatch runs in an isolated cloud sandbox: no `claude-config` skills checkout, and no visibility into locally-running Claude Code sessions on the same machine. A local Code session and a parallel Dispatch run can both triage the same repo state independently and push divergent, unmerged branches without either side detecting the collision. Mitigation: `git fetch` before starting local vault work if Dispatch may have touched the repo recently.
 
 Source: Claude Code session 04d37db4, 2026-07-05 (discovered via a git-fork reconciliation between a local session and a Dispatch run on `obsidian-work`).
 

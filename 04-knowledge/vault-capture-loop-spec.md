@@ -76,6 +76,8 @@ This rule is what prevents the loop harvesting its own reasoning. It must be app
 
 **Relevance.** Breadth is intentional, but a transcript whose project cwd is clearly unrelated to the vault (e.g. a `system32` shell session) may be dispositioned `skip` without deep reading. mtime + Save-vs-Skip + this light relevance check are the only filters.
 
+**Coverage hole: only local sessions are harvestable (documented 2026-07-29).** The scope is `~/.claude/projects/`, which exists only for sessions running as a local Claude Code process. Cloud sessions (`claude --cloud`, the Code tab on web and mobile) keep their transcripts on Anthropic infrastructure, and Cowork/Dispatch tasks that stay in the Cowork tab are not Claude Code sessions at all — neither is reachable, and neither leaves a trace this loop can find. Remote Control is the exception that matters: it runs locally and is driven remotely, so a session steered from a phone harvests normally. The rule that follows for those two surfaces is that a durable finding must be **written to a file during the session**, because nothing downstream will catch it. See [[mobile-field-access]].
+
 ## Harvest: Save-vs-Skip Filter
 
 (Mined from claude-obsidian `save`.) Capture:

@@ -152,7 +152,7 @@
 - [[chat]] — Claude Chat (claude.ai) `(claude)`
 - [[code]] — Claude Code `(claude)`
 - [[command-reference]] — Claude Code — Command Usage Reference `(claude)`
-- [[cowork]] — Cowork (Claude Code Scheduled / Auto-Context) `(claude)`
+- [[cowork]] `(claude)`
 - [[design]] — Claude Design `(claude)`
 - [[dynamic-workflows]] — Claude Code — Dynamic Workflows `(claude)`
 - [[opus-5]] — Claude Opus 5 — Release Capture `(claude)`
@@ -171,6 +171,7 @@
 ## Systems
 
 - [[desktop-hardware]] — Desktop Hardware
+- [[mobile-field-access]] — Mobile / Field Access
 - [[obsidian-setup]] — Obsidian Setup
 - [[windows-config]] — Windows Configuration Notes
 

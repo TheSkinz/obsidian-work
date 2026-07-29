@@ -7,7 +7,7 @@
 | Open decision rows | 0 | <= 10 | ok |
 | Review notes awaiting decision | 0 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 38 | (backlog) | ok |
+| Lint warnings | 37 | (backlog) | ok |
 | Inbox items | 41 | - | ok |
 | Inbox median age | 2 d | < 14 d | ok |
 | Inbox oldest item | 11 d | < 30 d | ok |
