@@ -91,8 +91,9 @@ schedule bills non-USADebusk-caused standby at $500/hr pumper, but only against 
 | Trimax | | |
 
 **Jesse Utsey is running this job** — customer-facing lead and final-decision authority.
-(The work-up names Travis Trenholm as Project Manager; that is superseded. No billable Project
-Manager line is carried on the quote — the PM row is quoted at qty 0.)
+(The work-up names Travis Trenholm as Project Manager. That is the standing template default on
+every quotation, not an assignment — nothing to reconcile. No billable Project Manager line is
+carried on the quote; the PM row is quoted at qty 0.)
 
 ---
 
