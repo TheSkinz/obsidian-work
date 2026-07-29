@@ -57,13 +57,37 @@ is case (b): no gate blocks research, and the research itself is what the gate i
 
 **The edit: split the build in two and ship only the half that can run unattended.**
 
-Build now — the **post-script-edit regression half**. Extend `backtest_workup.py` (or a thin
+**Superseded same day — see the correction below. The regression half needed no build.**
+
+~~Build now — the **post-script-edit regression half**. Extend `backtest_workup.py` (or a thin
 sibling sharing `extract_workup.extract()`) to fire after any edit to
 `usadebusk-estimating/scripts/*`, mirroring the already-adopted fallback-regression-battery
 pattern. Read the quotation's tables via `python-docx` directly wherever a `.docx` source exists;
 reserve PDF text extraction for docx-less legacy submissions, and do not reintroduce the
 LibreOffice render step. Reuse the mob/demob exclusion and multi-block-per-page summation logic
-already in `extract_workup.py` rather than re-deriving them.
+already in `extract_workup.py` rather than re-deriving them.~~
+
+### Correction — 2026-07-29, before any code was written
+
+**`backtest_workup.py` already *is* the quotation-vs-workup reconciliation.** Its docstring states
+the expected values are "the SUBMITTED side, read from the submitted PDFs," and `check()` asserts
+the line items, the grand total, the Pricing Summary box, and that the lines sum to the total,
+exiting non-zero on divergence — across all three pairs. That is the diff this seed proposed
+building. Evidence point 3 above said "an extension, not a new build" and was right, but
+understated it: the extension is approximately nothing.
+
+**The frozen-constant design is also the better one here**, so the `python-docx` note does not
+apply to this half. Live-parsing the quotation on every run would make the regression depend on a
+docx parser that can itself break, and it cannot catch a workup and quotation that are wrong in
+the same direction. Golden-master wants frozen expectations. The `python-docx` finding stands for
+the **pre-send gate**, where the quotation has no frozen expectation yet — that is its correct
+home.
+
+**The one real gap is a hook map entry, not a tool.** `usadebusk-fixture-replay-guard.mjs` maps
+`usadebusk-estimating` to fixtures `f1` and `f6`, the estimating-judgment fixtures. Nothing maps a
+staged edit to `usadebusk-estimating/scripts/*` onto `backtest_workup.py`, so editing the
+extractor does not prompt a replay of the suite that covers it. That is a map entry and a runner
+branch.
 
 Hold — the **pre-send gate stays manual**, invoked deliberately on a single pair, until the
 DSP26026-style scope-narrowing rule exists. A large non-mob/demob gap needs a human rule, not a
@@ -79,3 +103,4 @@ filed. They are closed and are not part of this build.
 | Date | Action | By | Notes |
 |---|---|---|---|
 | 2026-07-29 | Approved with edits — post-edit regression half approved to build; pre-send gate held manual pending the scope-narrowing rule | Jesse (ruling) / Claude (Opus 5) | Walked through in session. Cadence question settled by the `~/.claude/regression/` precedent — event-triggered, not scheduled. **Build not yet written** — filed to `00-inbox/` as a build task. |
+| 2026-07-29 | **Regression half withdrawn before implementation — it already exists.** Recon of `backtest_workup.py` on Jesse's "should we build it?" found the reconciliation already implemented against all three pairs. Scope reduced to a hook map entry. | Claude (Opus 5) | No code written. The approval was acted on by checking the target first; the research note had not verified what the existing back-test already covered. |
