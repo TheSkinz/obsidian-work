@@ -3,13 +3,14 @@ type: governance
 status: active
 source_authority: primary
 created: 2026-07-07
-last_reviewed: 2026-07-25
-review_after: 2026-10-25
+last_reviewed: 2026-07-29
+review_after: 2026-10-29
 related:
   - [[vault-capture-loop-spec]]
   - [[vault-idea-loop-spec]]
   - [[knowledge-system-governance]]
   - [[estimating-actuals-rollup]]
+  - [[2026-07-25-skill-drift-review]]
 tags: [knowledge-system, agent-loop, skill-drift, governance]
 ---
 
@@ -90,11 +91,25 @@ Low for detection, zero authority for application. Every proposed edit is a diff
 | Editing anything on the config repo's `main` | The whole point is propose-only. |
 | Merging or deleting any branch | Merging is Jesse's act; branch deletion is hard-banned vault-wide. |
 | Changing vault content beyond the review note | Other loops own the vault layers. |
-| More than one drift branch outstanding | If last month's `drift/` branch is unmerged, fold new findings into a fresh review note but flag the stale branch instead of stacking a second one. |
+| More than one drift branch **awaiting decision** | If last month's `drift/` branch is still undecided, fold new findings into a fresh review note but flag the stale branch instead of stacking a second one. An unmerged-but-*decided* branch does not count — see Branch States below. |
+
+## Branch States — unmerged does not mean unactioned
+
+Added 2026-07-29, correcting a defect that would have degraded the 2026-08-01 run. The original stop condition treated "a prior `drift/` branch is unmerged" as proof of a backlog. The 2026-07-25 run created a third state the spec did not model: Jesse read the review note, applied F1/F2/F5/F6 to `main` **by hand**, rejected F3, held F4, and then deliberately kept the branch — [[2026-07-25-skill-drift-review]] records the choice explicitly, striking through "Discard the branch" in favour of "branch retained, unmerged, as the record of what was proposed." Nothing is pending on `drift/2026-07b`, yet a literal reading of the old rule would have made the next run skip branch creation and report a backlog that does not exist.
+
+Classify by the **review note's `status`**, never by the branch's merge state:
+
+| Review note status | Meaning | Loop's action |
+|---|---|---|
+| `open` (or unchecked Decision boxes) | Genuinely awaiting Jesse | Real backlog. Report findings, flag it, **skip** branch creation. |
+| Terminal — `decided-blocked`, `resolved`, `complete`, `superseded` | Decided; branch is a record | **Not** a backlog. Proceed normally and create this month's branch. |
+| No review note found for an existing `drift/` branch | Unknown | Treat as a backlog and say the note is missing — the conservative read. |
+
+A decided branch is never deleted (branch deletion is hard-banned vault-wide) and is never reused.
 
 ## Stop Conditions
 
-Stop and report when: config-repo working tree is dirty or mid-operation; a prior `drift/` branch is unmerged (report findings, flag the backlog, skip branch creation); a finding requires domain knowledge the loop cannot verify from files (list it as an open question in the review note rather than proposing a guess).
+Stop and report when: config-repo working tree is dirty or mid-operation; a prior `drift/` branch is **awaiting decision** per the Branch States table above (report findings, flag the backlog, skip branch creation); a finding requires domain knowledge the loop cannot verify from files (list it as an open question in the review note rather than proposing a guess).
 
 ## Success Criteria
 

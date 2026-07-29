@@ -4,11 +4,12 @@ status: active
 source_authority: primary
 confidence: high
 created: 2026-06-30
-last_reviewed: 2026-07-25
-review_after: 2026-10-25
+last_reviewed: 2026-07-29
+review_after: 2026-10-29
 related:
   - [[vault-capture-loop-spec]]
   - [[vault-agent-loop-spec]]
+  - [[vault-prestaging-loop-spec]]
   - [[knowledge-system-governance]]
 tags: [knowledge-system, agent-loop, idea-research, governance]
 ---
@@ -25,7 +26,7 @@ Vault Idea Research Loop
 
 ## Trigger
 
-**Scheduled nightly (~2 AM local) via `mcp__scheduled-tasks` as of 2026-07-07.** The original gate — "schedule only once the decision queue has a sustained track record of staying near-empty" — was judged passed on 2026-07-07: the queue has held at 0 open since the 2026-07-05 backlog clearance, and both prior research notes (07-01, 07-05) were reviewed and acted on. Runbook prompt: `~/.claude/scheduled-tasks/vault-idea-research-loop/SKILL.md`; its `scheduled` flag in `tools/vault_health.py` is `True`. If the queue stops draining (health dashboard shows review notes piling past their cap), de-scheduling this loop again is the correct pressure-relief valve.
+**Scheduled nightly (~2 AM local) via `mcp__scheduled-tasks` as of 2026-07-07.** The original gate — "schedule only once the decision queue has a sustained track record of staying near-empty" — was judged passed on 2026-07-07: the queue has held at 0 open since the 2026-07-05 backlog clearance, and both prior research notes (07-01, 07-05) were reviewed and acted on. Runbook prompt: `~/.claude/scheduled-tasks/vault-idea-research-loop/SKILL.md`; it is heartbeat-tracked in `tools/vault_health.py` as `("Idea-research loop", "vault-idea-research-loop", "vault-idea-research:", 30, 3)` — ledger id, commit prefix, 30-day monitoring cadence, 3-day ledger staleness. (Corrected 2026-07-29: this line previously claimed a `scheduled` flag set to `True`. No such flag exists — `LOOP_HEARTBEATS` is a list of 5-tuples and always was in the version this spec described.) If the queue stops draining (health dashboard shows review notes piling past their cap), de-scheduling this loop again is the correct pressure-relief valve.
 
 **History:** it was briefly scheduled nightly (deployed 2026-06-30, ran 07-01 and 07-02), then de-registered as collateral of the 2026-07-02 kernel-consolidation plan — a plan reversed on 2026-07-05 in favor of keeping the loops + the decision queue. Re-scheduling it is now a deliberate future step gated on the queue proving it drains, not an automatic restore.
 
@@ -36,6 +37,8 @@ This loop only needs git-tracked vault content and web search, so unlike the Cap
 Reads:
 
 - `00-inbox/*.md` files with frontmatter `type: idea-seed` — the only input queue this loop watches.
+
+**Exclusive ownership of `type: idea-seed` (recorded here 2026-07-29).** [[vault-prestaging-loop-spec]] skips every `idea-seed` file **even when it carries a `<!-- vault-loop: -->` defer marker**, precisely so the two loops never process one item. That rule was written only in the pre-staging spec; it is restated here because it constrains both sides and a reader of this spec alone could not have known it. The practical consequence: a defer marker on an idea-seed does **not** mean the item is queued elsewhere — this loop is still its only consumer.
 
 Writes:
 
@@ -86,8 +89,16 @@ Low, but not silent. Every run either produces one evidence-gathering artifact (
 | Editing any skill file under `~/.claude/skills/` | Skills are out of this loop's scope entirely. |
 | Writing to `02-facilities/`, `04-knowledge/` canonical content, pricing, SOP, safety, or field-execution content | Owned by [[vault-agent-loop-spec]]. |
 | Processing more than one idea-seed per run | Keeps each run small and reviewable. |
-| Deleting or archiving an idea-seed | Even a "dead" idea stays as a record; Jesse marks it, the loop doesn't remove it. |
+| Deleting or archiving an idea-seed | *This* loop never removes one — even a "dead" idea stays as a record. Not a vault-wide statement: the capture loop's Terminal-Note Sweep archives seeds at a terminal status, and deliberately protects `unexplored`, `researched` and `gated` from it. See the seed lifecycle below. |
 | Converting this loop's schedule to more frequent than nightly | Bounded cadence keeps token cost predictable on a constrained plan. |
+
+## Seed Lifecycle — who moves a seed, and when
+
+Added 2026-07-29. Three actors touch an idea-seed and none of them may skip a step, so the whole path is written in one place:
+
+`unexplored` → *(this loop researches, or closes a shut gate)* → `researched` **or** `gated` → *(Jesse decides)* → a terminal status → *(capture loop's Terminal-Note Sweep archives it)*
+
+The load-bearing part is the middle. `researched` means the research is done and **the decision is not** — the sweep's allowlist deliberately excludes it, so a researched seed sits in `00-inbox/` until Jesse acts. That is the intended pressure: an un-decided seed stays visible. `gated` is likewise excluded and additionally carries a `revisit-trigger:`, which puts it on the health dashboard's dormant-trigger registry. Neither status is a resting place the system will quietly clean up, and neither should be set to make a seed go away.
 
 ## Stop Conditions
 

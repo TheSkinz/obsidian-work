@@ -3,11 +3,13 @@ type: governance
 status: active
 source_authority: primary
 created: 2026-07-07
-last_reviewed: 2026-07-07
-review_after: 2026-10-07
+last_reviewed: 2026-07-29
+review_after: 2026-10-29
 related:
   - [[vault-capture-loop-spec]]
   - [[vault-skill-drift-loop-spec]]
+  - [[vault-idea-loop-spec]]
+  - [[vault-prestaging-loop-spec]]
   - [[knowledge-system-governance]]
 tags: [knowledge-system, agent-loop, consolidation, governance]
 ---
@@ -32,7 +34,9 @@ Operates on the content layers only: `07-llms/`, `08-systems/`, `09-interests/`.
 
 Also does generated-file housekeeping vault-wide: reruns `tools/vault_index.py`, `tools/estimating_rollup.py`, and `tools/vault_health.py` at the end of every run so INDEX.md, the actuals rollup, and the dashboard never go stale for more than a month.
 
-Never touches: `02-facilities/` (capture/session work owns it), `04-knowledge/` canonical content, `06-insights/` review-note bodies (Jesse's decision records — naming/frontmatter normalization only, content never), `01-context/`, pricing/SOP/safety content anywhere, skills.
+Never touches: `02-facilities/` (**no loop owns it** — the capture loop refuses it too; since the 2026-07-06 facility-data ruling it is Lane 1 for an interactive session, corrected here 2026-07-29), `04-knowledge/` canonical content, `06-insights/` review-note bodies (Jesse's decision records — naming/frontmatter normalization only, content never), `01-context/`, pricing/SOP/safety content anywhere, skills.
+
+**Scope vs. the orphan metric — measured 2026-07-29.** This loop's link pass and its "ORPHAN count down" success criterion are scoped to 07/08/09, but the vault's 12 current ORPHAN warnings break down as 6 in `04-knowledge/`, 5 in `06-insights/`, and **1** in `09-interests/`. Eleven of twelve are unreachable by the loop meant to drive the number down, so a run can succeed on its own terms while the dashboard figure barely moves. Read the metric per-folder, not as a total, and do not treat a flat orphan count as this loop failing. Whether `04-knowledge/` and `06-insights/` orphans should get a linking owner at all is an open question, not a defect — several are deliberately-terminal review notes that nothing will ever naturally link to.
 
 ## Ceremony Level
 
