@@ -21,7 +21,9 @@
 
 ## Awarded / Pre-Execution
 
-*None currently. Add when a job is awarded and execution date is confirmed.*
+| Job # | Facility | Heater(s) | Quote | Execution | Notes |
+|---|---|---|---|---|---|
+| *(pending)* | ExxonMobil Baytown, TX | F-501 (HU5A) | [[DSP26071\|DSP26071.2]] — $60,287.42 | Mob 2026-08-08, rig-in 2026-08-10 | PO 4411473422 / WO 20961590 received 2026-07-29, VP-approved. One PO ($256,250.56) covers the hydroblast and pigging scopes under the same agreement. ExxonMobil tags the heater `R501`. USA# not yet issued. Jesse running the job. |
 
 ---
 

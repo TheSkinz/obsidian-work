@@ -27,6 +27,9 @@ tags: [job-sheet, ExxonMobil, HU5A-F501]
 | Facility | ExxonMobil Baytown Refinery — 2800 Decker Drive, Baytown, TX 77520 |
 | Job # | *(pending — not yet issued)* |
 | Quote | [[DSP26071]] (DSP#26071.2 Rev002) |
+| PO # | 4411473422 |
+| WO # | 20961590 |
+| PO line | `26HU5A R501 CAT C/O – DEBUSK HYDROBLAST TM` — $256,250.56. One PO covers both the hydroblast and pigging scopes under the same agreement; VP-approved. `R501` is ExxonMobil's tag for F-501. Pigging bills at the [[DSP26071]] rate schedule. |
 | Scope | Mechanical decoke — HU5A F-501 process coils (convection + radiant) & Treat Gas, (1) Trimax pumper in triple mode with filtration, Steady-Flux smart pig assist |
 | Heaters | F-501 — HU5A process & treat gas heater |
 | Project Type | Planned turnaround (August 2026 HU5A TA) |
