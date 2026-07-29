@@ -7,8 +7,8 @@
 | Open decision rows | 0 | <= 10 | ok |
 | Review notes awaiting decision | 2 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 40 | (backlog) | ok |
-| Inbox items | 41 | - | ok |
+| Lint warnings | 38 | (backlog) | ok |
+| Inbox items | 44 | - | ok |
 | Inbox median age | 1 d | < 14 d | ok |
 | Inbox oldest item | 10 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
@@ -38,7 +38,7 @@ One row per pending quote, plus any quote whose execution date is within 90 days
 | [[DSP26071|DSP26071.2]] | awarded | 2026-08-31 | 2026-08 | execution in 4 d |
 | [[DSP26080]] | pending | - | 2027-02 | no validity date recorded |
 | [[DSP26085]] | pending | 2026-09-29 | 2027-01 | ok |
-| [[DSP26095]] | pending | - | 2026-09 | no validity date recorded; execution in 35 d |
+| [[DSP26095]] | pending | 2026-09-29 | 2026-09 | execution in 35 d |
 
 ## Dormant triggers
 
