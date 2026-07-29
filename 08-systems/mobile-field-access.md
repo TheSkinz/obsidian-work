@@ -7,15 +7,17 @@ tags: [claude-code, mobile, field, remote-control, dispatch, workflow]
 # Mobile / Field Access
 
 How to reach the vault and put information into it from the iPhone while out in the field.
-Written 2026-07-29 against the Claude iOS app; version-sensitive details should be re-verified
-against `code.claude.com/docs` per the standing rule in [[code]].
+Written 2026-07-29 against the Claude iOS app and CLI 2.1.220; version-sensitive details should
+be re-verified against `code.claude.com/docs` per the standing rule in [[code]].
 
-**Check which binary you are starting.** On 2026-07-29 the npm global install on PATH was
-2.1.143 while the Desktop app carried its own 2.1.219 — so `claude remote-control` from a
-terminal ran a build below the 2.1.202 fix for caption-less phone attachments, and the same
-session started from the Desktop app did not. `npm ls -g @anthropic-ai/claude-code` is the check
-that answers "am I current"; `npm view` only reports the registry's latest. See the two-installs
-table in [[code]].
+**The npm CLI and the Desktop app update independently — check both after any gap.** They were
+found 76 versions apart on 2026-07-29 (npm on 2.1.143, Desktop on 2.1.219) with nothing visibly
+wrong on either side; npm is now current at 2.1.220. `npm ls -g @anthropic-ai/claude-code` is
+the check that answers "am I current" — `npm view` only reports the registry's latest, not what
+you have. After running `npm i -g @anthropic-ai/claude-code@latest`, re-check the version rather
+than trusting the success message: the first attempt here reported "changed 2 packages" while a
+running `claude` process silently kept the old binary in place. Close all `claude` processes
+before upgrading. See the two-installs section in [[code]] for the full incident.
 
 ## The constraint that decides everything
 
