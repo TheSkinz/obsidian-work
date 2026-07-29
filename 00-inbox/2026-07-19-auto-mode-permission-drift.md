@@ -22,14 +22,19 @@ The same session set `permissions.defaultMode: "auto"`. Auto mode saves approval
 
 So the pruning is not a fix, it is a reset of a counter that will climb again. The open question is the rate.
 
-## The re-check
+## The re-check — RESOLVED 2026-07-29, seven weeks early
 
-Read the allow list around **2026-09-19** (two months). The rules are in `obsidian-work/.claude/settings.local.json` under `permissions.allow`; `/doctor` also reports the count.
+The 2026-09-19 date assumed drift was slow enough that two months was the right sampling interval. That assumption was wrong. A targeted read on **2026-07-29** found the list back at **59 rules** — ten days after the prune to 36, a rate of roughly two rules per day, saturating in under three weeks rather than two months.
 
-- Back near 60, with hazardous wildcards among them → auto mode costs more in permission drift than it saves in prompts. Turn it off, or pair it with a scheduled prune.
-- Grown modestly, all entries scoped and exact → auto mode is paying for itself; leave it.
+The first branch of the test fired: hazardous wildcards were among them. `Bash(python -c ' *)` and `Bash(python -)` had returned verbatim, both pruned by this very note's session, plus a new `Bash(gh repo *)` covering `delete`, `create`, and `edit --visibility public`. The drift is not cosmetic.
 
-The honest version of this is that nobody knows the rate yet — one data point (61 rules accumulated over an unknown period) is not a trend.
+Two further live demonstrations during the 2026-07-29 session: three rules were auto-added while investigating (including a `WebFetch` domain for a fetch that returned 403), and three more during a single verification command — one of them `Bash(node -e "…")`, another arbitrary-execution shape.
+
+**Resolution: neither branch.** Turning auto mode off pays a large prompt tax to fix a narrow problem, and a scheduled prune is a recurring chore that never converges. Instead the hazard class was moved to enforcement that does not depend on the allow list staying clean — `~/.claude/hooks/usadebusk-exec-guard.mjs`, registered as a PreToolUse Bash hook (config repo `529ba04`). A hook exiting 2 stops the call *before* permission rules are evaluated, so it overrides any allow rule auto mode restores. Auto mode stays on; its drift is now cosmetic rather than load-bearing.
+
+Deny rules were considered and rejected: they are glob matches on the command string and are documented-leaky, with `python -c` as the canonical bypass ([Steve Adams, "Your Claude Code Deny List Is Leaky"](https://steve-adams.me/claude-code-deny-list-is-leaky.html)). Sandboxing — the stronger OS-level layer — is unavailable, since native Windows is not supported.
+
+No new re-check date. The list will keep growing and that is now expected; what mattered was the hazard class, and that is gated independently.
 
 ## Note on the pruned rules
 
