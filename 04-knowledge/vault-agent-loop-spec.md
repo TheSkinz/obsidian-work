@@ -4,13 +4,16 @@ status: active
 source_authority: primary
 confidence: high
 created: 2026-06-26
-last_reviewed: 2026-06-27
-review_after: 2026-07-26
+last_reviewed: 2026-07-29
+review_after: 2026-10-29
 related:
   - [[knowledge-system-governance]]
   - [[vault-source-of-truth]]
   - [[knowledge-review-dashboard]]
   - [[vault-idea-loop-spec]]
+  - [[vault-capture-loop-spec]]
+  - [[vault-prestaging-loop-spec]]
+  - [[decision-queue]]
 tags: [knowledge-system, agent-loop, vault-review, governance]
 ---
 
@@ -30,7 +33,9 @@ On-demand only. Run manually after a batch of operational work, or whenever you 
 Run the Vault Review Loop on obsidian-work. Pick one safest item and create a review note only.
 ```
 
-This loop is deliberately **not** scheduled. It governs high-stakes operational content (pricing, SOPs, heater cards) that changes infrequently and should only be reviewed when you are present. The low-ceremony content layer is handled on a schedule by the Vault Capture Loop ([[vault-capture-loop-spec]]); this loop does not perform session harvest and does not run unattended. It runs locally against the working tree — no cloud routine, no separate clone.
+This loop is deliberately **not** scheduled. It governs high-stakes operational content (pricing, SOPs, safety, customer-facing material) that changes infrequently and should only be reviewed when you are present. The low-ceremony content layer is handled on a schedule by the Vault Capture Loop ([[vault-capture-loop-spec]]); this loop does not perform session harvest and does not run unattended. It runs locally against the working tree — no cloud routine, no separate clone.
+
+**What has changed underneath this loop since it was written (reconciled 2026-07-29).** Two things now do work this spec originally assigned to the loop itself. The Pre-Staging Loop ([[vault-prestaging-loop-spec]], added 2026-07-28) runs daily and *prepares* operational deferrals into evidence-backed proposals, so on most runs the analysis step is already done and waiting in [[decision-queue]] — this loop's job is increasingly to apply an approved proposal rather than to go hunting for an item. And `tools/vault_lint.py` now mechanically detects most of what the Staleness Check section below was written to catch by hand. Read both sections in that light.
 
 ## Scope
 
@@ -46,12 +51,13 @@ Before any write, verify the target path starts with the canonical vault path in
 
 This loop governs the **operational core** of the vault:
 
-- `02-facilities/` (heater cards, facility overviews)
 - `04-knowledge/` (canonical rules, governance, equipment, SOPs)
 - Pricing, SOP, safety, field-execution, and customer-facing content wherever it appears
 - `change-log.md`
 
-It does **not** govern `00-inbox/` content routing or the `07-llms/`, `08-systems/`, `09-interests/` content layers. Those are owned by the Vault Capture Loop ([[vault-capture-loop-spec]]). When a harvested item is operational, it routes here under this loop's approval boundaries regardless of which session produced it.
+**`02-facilities/` is no longer governed here.** The 2026-07-06 facility-data ruling in [[knowledge-system-governance]] moved heater-card and facility content to **Lane 1 in full** — creating, correcting, and resolving discrepancies in that content needs no approval and no contradiction note. This loop does not gate it and should not manufacture review notes for it. The one carve-out the ruling kept: a card actively feeding a *pending bid or customer-facing document right now* is customer-facing content, and that is in scope here.
+
+It does **not** govern `00-inbox/` content routing or the `07-llms/`, `08-systems/`, `09-interests/` content layers. Those are owned by the Vault Capture Loop ([[vault-capture-loop-spec]]). When a harvested item is operational, it routes here under this loop's approval boundaries regardless of which session produced it — in practice it now arrives pre-analyzed, via the Pre-Staging Loop, as a `review_type: pre-staged` note plus a [[decision-queue]] row. A pre-staged note is an unreviewed inference, not settled vault truth; verify its Source Material before applying anything from it.
 
 `change-log.md` is a **shared append-only history**. Both loops append their own dated entries; neither edits or removes the other's. This loop logs approved operational changes; the capture loop logs its scheduled run summaries. Single-writer-per-entry, never a shared edit.
 
@@ -75,11 +81,13 @@ Check these areas in order:
 
 | Order | Area | Purpose |
 |---:|---|---|
-| 1 | `00-inbox/` | Unprocessed source notes and routing candidates. |
-| 2 | `06-insights/` | Open reviews, contradictions, and prior loop notes. |
-| 3 | `04-knowledge/` | Governance, canonical rules, evaluation questions, stale/due notes. |
-| 4 | `02-facilities/` | Only when a specific facility/heater is needed for the selected item. |
-| 5 | `change-log.md` | Confirm history before writing or closing a loop. |
+| 1 | `50-dashboards/decision-queue.md` | Open rows waiting on Jesse. Work already prepared beats work still to be found. |
+| 2 | `50-dashboards/health.md` and the lint report | Mechanical signal — FAIL rows, overdue reviews, dead links. Read it instead of rescanning by hand. |
+| 3 | `06-insights/` | Open reviews (including `review_type: pre-staged`), contradictions, prior loop notes. |
+| 4 | `00-inbox/` | Unprocessed source notes and routing candidates. |
+| 5 | `04-knowledge/` | Governance, canonical rules, evaluation questions, stale/due notes. |
+| 6 | `02-facilities/` | Read-only context when the selected item needs a specific facility or heater. Not a review target — Lane 1. |
+| 7 | `change-log.md` | Confirm history before writing or closing a loop. |
 
 Never scan the whole vault deeply unless the selected item requires it.
 
@@ -91,7 +99,7 @@ Never scan the whole vault deeply unless the selected item requires it.
 | Conflicting claims | Contradiction note. |
 | Poor retrieval or missing source | Question note. |
 | Stale note or due review | Review note. |
-| Candidate facility/heater/job update | Review note first; draft scaffold only after approval or when explicitly low-risk and marked draft/source-derived. |
+| Candidate facility/heater update | Not this loop's work — Lane 1, just make the change. The exception is a card feeding a pending bid or customer document right now. |
 | Duplicate vault/source-of-truth concern | Review note; no file moves or deletion. |
 
 ## Allowed Without Additional Approval
@@ -111,8 +119,8 @@ Never scan the whole vault deeply unless the selected item requires it.
 |---|---|
 | Delete files or folders | Data loss risk. |
 | Archive or move source notes | Routing/source-of-truth impact. |
-| Mark draft heater cards as reviewed | Canonical fact promotion. |
-| Edit pricing, SOP, safety, field execution, customer-facing, or heater-card facts | Operational risk. |
+| Edit pricing, SOP, safety, field-execution, or customer-facing content | Operational risk. Heater-card and facility facts are **excluded** — Lane 1 since 2026-07-06. |
+| Close or check off a decision-queue row | Closing is human-gated by the queue's own rules; this loop applies what Jesse approved, it does not decide. |
 | Merge conflicting claims | Must preserve contradiction trail. |
 | Bulk edit metadata across many notes | Sync and regression risk. |
 | Convert this loop to an automated/unattended schedule | Operational core must stay manually triggered and reviewed while present. |
@@ -123,11 +131,14 @@ Pick one item per run. Prefer the smallest item that improves trust or retrieval
 
 Recommended priority:
 
-1. High-risk contradiction with clear source trail.
-2. Inbox item with obvious routing but no canonical edits needed.
-3. Open review waiting for evidence gathering.
-4. Stale/due governance or canonical note.
-5. Retrieval evaluation failure.
+1. An open [[decision-queue]] row Jesse is ready to decide — the analysis already exists and his presence is the scarce input.
+2. High-risk contradiction with clear source trail.
+3. Inbox item with obvious routing but no canonical edits needed.
+4. Open review waiting for evidence gathering.
+5. Stale/due governance or canonical note.
+6. Retrieval evaluation failure.
+
+Applying an *approved* decision-queue row is not "one item" against this budget — it is the payoff of a prior run and can be done alongside the run's one new item. Adding to the queue is bounded; draining it is not.
 
 ## Output Artifact Requirements
 
@@ -145,15 +156,17 @@ Every loop-created review artifact must include:
 
 ## Staleness Check Categories
 
-Mined from the claude-obsidian wiki-lint audit, filtered to operational content. Observe-only; flag in the review note, never auto-fix.
+Originally mined from the claude-obsidian wiki-lint audit as a manual scan. **Four of the five categories are now mechanical** — `tools/vault_lint.py` implements them as rules, and their current state is already in `50-dashboards/lint-report.md`. Do not re-scan by hand for these; read the report.
 
-| Category | What to flag |
-|---|---|
-| Dead links | Broken wiki-links or relative paths in `02-facilities/` / `04-knowledge/` notes pointing to renamed or deleted files. |
-| Frontmatter gaps | Operational notes missing required fields per `_canonical-heater-card.md` or governance frontmatter (type, status, source_authority, confidence). |
-| Stale reviews | `06-insights/` review notes past `review_after`, or with an unresolved Decision checklist older than 14 days. |
-| Stale claims | An operational claim contradicted by a newer source note. Create a contradiction note; do not merge. |
-| Orphan pages (informational only) | Operational notes with no inbound links. Report count only; do not propose deletion. |
+| Category | Now covered by | Loop's remaining job |
+|---|---|---|
+| Dead links | `DEAD-LINK` | None — read the report. |
+| Frontmatter gaps | `OP-FRONTMATTER` (operational `source`/`verified`) | None. This is the standing provenance-backfill warning list, not a per-run finding. |
+| Stale reviews | `REVIEW-OVERDUE` (fires on `review_after`, skips terminal-status notes) | None for detection. **Doing** the overdue review is a legitimate item to select. |
+| Orphan pages | `ORPHAN` | None. Informational; never propose deletion off an orphan warning. |
+| **Stale claims** | *nothing — this is the loop's own work* | An operational claim contradicted by a newer source note. Judgment, not pattern-matching. Create a contradiction note; do not merge. |
+
+That last row is the point of this section now. Lint finds broken *structure*; only a reading agent finds a claim that is well-formed and wrong. Spend the run there.
 
 Dropped as non-transferable: semantic tiling (requires ollama + wiki structure), DragonScale address validity, Dataview/canvas dashboard generation.
 
@@ -163,7 +176,7 @@ The scan may surface several issues at once; the loop still creates one review n
 
 Stop and report instead of continuing when:
 
-- The selected item touches safety, pricing, SOP execution, customer-facing content, or heater-card facts and approval has not been given.
+- The selected item touches safety, pricing, SOP execution, or customer-facing content and approval has not been given.
 - Source authority is unclear.
 - The path is outside the canonical vault.
 - The same class of failure happens twice.
