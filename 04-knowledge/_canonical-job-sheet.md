@@ -17,6 +17,19 @@ This file is the schema authority for all job sheets in the vault. It is never a
 actual job; it exists to stay stable while live job sheets mutate. templates/_job-sheet-template.md
 derives its structure FROM this file.
 
+TWO CLASSES OF RULE LIVE HERE — read the difference before adding one (convention added 2026-07-30,
+after a domain rule was written from inference and had to be corrected twice):
+  LAYOUT rules — page budget, table merges, the connbox, render pipeline, naming. Design decisions,
+    verifiable by rendering the page, safe to change on judgment. No attribution needed.
+  DOMAIN rules — billing, customer scope, equipment, pig sizing, crew structure, terminology. These
+    assert how USADebusk actually operates, they are SILENT when wrong, and they propagate into
+    heater cards and crew sheets. A domain rule MUST carry either `(Jesse, YYYY-MM-DD)` or a cited
+    source (skill section, DSP#, drawing). An unattributed domain rule is a HYPOTHESIS, not
+    authority: mark it [UNCONFIRMED], do not build on it, and ask.
+  The failure this prevents: a drawing notation ("scaffold req'd at A,B,C,D") was reasoned into a
+  general rule and written into H-2421's card as fact. It was boilerplate; that job has no
+  scaffolding. Source documents are evidence of what they say, not of what the job requires.
+
 STATUS: DRAFT — validated against TWO instances (USA26038, July 2026; USA26040, August 2026).
 The second won bid FORCED a change rather than confirming the first shape, which is what this
 exemplar was waiting to find out. USA26040 (Jesse, 2026-07-30) established that the job sheet is
@@ -34,7 +47,10 @@ THE JOB SHEET IS INTERNAL (core rule, USA26040):
   they cannot know without being told, and nothing else.
 
 OMISSION RULES (USA26040 — each one earned by a deletion):
-  - Don't state what is always true. Every job is a mechanical decoke; saying so is noise.
+  - Don't state what is always true. Within this vault's scope every job is a mechanical decoke or
+    cleaning, so naming the service is noise. (Jesse, 2026-07-30 — and the scope boundary is the
+    reason, not a claim that USADebusk only does decoking. Other divisions run separate scopes and
+    customers often share one PO across them; see usadebusk-core "Role Boundaries".)
   - Don't restate what another field already says. The C↔D jumper detail came off because Mode
     already reads "double mode."
   - Don't state mutually exclusive alternatives as if both apply. A given launcher group is at
@@ -155,8 +171,10 @@ and Manpower Allocation block at the bottom of that job's execution-plan page �
 authoritative billable list. No PM row there means no PM is billed, and the person running the
 job takes a supervisor slot. Read it per job; it is not a default either way.
 
-PER DIEM bills per DAY and rides the total row. Headcount excludes a billable PM when one exists.
-DEF bills per SHIFT — carry it in the note beneath, not as a table row.
+PER DIEM bills per DAY and rides the total row; headcount excludes a billable PM when one exists.
+DEF bills per SHIFT at the quoted shift count — carry it in the note beneath, not as a table row.
+(Both sourced: usadebusk-estimating §Billing Model and usadebusk-ops' line-item table. Placement on
+the sheet is a layout call; the billing units are not.)
 
 Operator names are commonly left BLANK at bid-win for the field to fill in; name the pool in the
 note instead. Supervisors are named.
@@ -184,14 +202,19 @@ and once as a physical mobilization list. One table now carries billable identit
 asset, and its status per row, which also makes the billable/non-billable split visible where two
 separate tables hid it.
 
-BILLABLE ROWS ONLY. A non-billable row (e.g. a Glider moving between yards) does not get a table
-row; if it carries a live action item, put it in the note beneath.
+BILLABLE ROWS ONLY (Jesse, 2026-07-30). A non-billable asset (e.g. a Glider moving between yards)
+does not get a table row; if it carries a live action item, put it in the note beneath. The table
+is a billing reference, so non-billable movement is a pre-mob action item, not a table entry.
 
 Hrs = the heater's total pumper hours, × Qty. Filter Unit appears only when filtration was
 elected — omit the row entirely on non-filtered jobs rather than carrying it at zero.
 
 Where more vehicles are on site than bill, say so inline: "F150 · Chevrolet 1500 · F350 (2 of 3
-bill)". The crew-truck pass allowance is a quote term and is worth knowing.
+bill)". The pass allowance is set BY THE QUOTE, per job — it is not a standing number. DSP26092
+item 16 grants passes for pigging equipment plus up to two (2) crew trucks, so USA26040's four
+requested passes are a courtesy grant, not a contractual right. Read the allowance off the quote
+for each job; do not carry a previous job's figure forward. (Source: the site _facility.md access
+row, which records the per-quote grant.)
 -->
 
 | Qty | Billable As | Asset | Hrs | Status |

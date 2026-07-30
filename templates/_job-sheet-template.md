@@ -11,6 +11,9 @@ tags: [job-sheet, <Client>, <USA#####>]
 
 <!-- Derived from 04-knowledge/_canonical-job-sheet.md — the schema authority.
      On any structural question, that exemplar governs; keep this template in sync with it.
+     Adding a rule? Layout rules are judgment calls; DOMAIN rules (billing, customer scope,
+     equipment, pig sizing, crew structure) need `(Jesse, date)` or a cited source — an
+     unattributed one is a hypothesis. See the exemplar's header for why.
      `facility` is the JOIN KEY — must exactly match the facility-id in the site's _facility.md.
 
      Save as 02-facilities/<Client>/<City-ST>/<USA#####>-job-sheet.md, alongside the heater cards.
