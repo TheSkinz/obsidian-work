@@ -1,7 +1,9 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-07-26
+related:
+  - "[[2026-07-30-idea-research-vault-stats-layer]]"
 tags: [idea, vault-system, future, estimating, knowledge-system]
 ---
 
