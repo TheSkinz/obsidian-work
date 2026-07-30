@@ -113,9 +113,12 @@ DEF <n> shifts. <Gate passes and other pre-mob action items.>
      INLETS and OUTLETS — never "nozzles".
      Final Pigs = orderable sizes only. Never the card's "Max pig OD" rule cap, never "final foam".
      Elevation goes inside the Launchers value, never on its own line. One group = one elevation,
-     but groups can differ on the same job (USA26038: convection 10' from grade, radiant at grade).
-     Customer scaffold for spool bolt-up at elevated nozzles is NOT our launcher elevation and does
-     not go on the sheet. -->
+     but groups can differ on the same heater (USA26038 H-20: convection 10' from grade, radiant at
+     grade).
+     Scaffolding is a SEPARATE test: required only when the location is elevated AND lacks a sturdy
+     deck with room to change pigs. Elevated on a good deck needs none. When required, say it inside
+     the Launchers value ("4 × 6" · 15' elevated, scaffold req'd"); otherwise stay silent. Customer
+     provides scaffolding and spools on nearly all jobs — a quote line item, never a flag. -->
 
 | Section | Coils | Pipe OD | Wall | Pipe ID | Tube Lgth | Tubes/Coil | Ft/Section | Metallurgy |
 |---|---|---|---|---|---|---|---|---|

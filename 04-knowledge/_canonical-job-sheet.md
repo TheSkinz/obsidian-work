@@ -39,7 +39,8 @@ OMISSION RULES (USA26040 — each one earned by a deletion):
     already reads "double mode."
   - Don't state mutually exclusive alternatives as if both apply. A given launcher group is at
     grade OR elevated, never both — say it once, inside Launchers. (Different groups on the same
-    job may sit at different elevations; see GRADE vs ELEVATION below.)
+    heater may sit at different elevations, and elevation does not imply scaffolding; see GRADE vs
+    ELEVATION below.)
   - Don't attribute a task to a shift. Both shifts are capable of every task, so which shift
     catches smart pigging is not information.
   - Don't print a computed value that looks like an orderable one. See the Final Pigs rule.
@@ -231,18 +232,29 @@ made in. The card is correct to record it as a rule cap; it must not propagate t
 where it reads as a size to grab.
 
 GRADE vs ELEVATION: elevation belongs INSIDE the Launchers spec value ("4 × 6" · at grade") and
-never gets a line of its own. Corrected 2026-07-30 — the rule was first written as "at grade OR on
-scaffolding, never both," which is wrong at the job level. A single launcher GROUP is at one
-elevation, but one job can carry groups at different ones: USA26038 ran "convection (4) 4"
-launchers, 10' from grade; radiant (2) 4" launchers at grade." When groups differ, say both, each
-with its own elevation.
+never gets a line of its own. A single launcher GROUP sits at one elevation, but one heater can
+carry groups at different ones — USA26038's H-20 ran convection (4) 4" launchers 10' from grade
+and radiant (2) 4" launchers at grade. When groups differ, give each its own elevation.
 
-SCAFFOLD IS NOT AN ELEVATION. Customer-scope scaffold for bolting up inlet/outlet spools at
-elevated nozzles says nothing about where OUR launcher sits, and the two get confused constantly.
-H-2421 is the worked example: the heater card records "scaffold req'd at A, B, C, D" (HF Sinclair's
-spool work, up at the nozzles) while the launchers themselves sit at grade, fed by risers — the
-drawing markup reads "PIG LAUNCHER PIPING — CONNECT TO A,B (RUN DOWN TO GRADE)". Both are true.
-Launchers reports OUR position; customer scaffold scope does not belong on the job sheet at all.
+SCAFFOLDING IS A SEPARATE TEST FROM ELEVATION (Jesse, 2026-07-30). Scaffolding is required only
+when the launcher/receiver location is elevated AND is not on a sturdy deck with enough working
+space to change pigs. Elevated on a good deck needs none — H-20's launchers were 10' up on the
+deck with no scaffolding; H-19's sat at grade at the control valve station. The test is CREW ACCESS
+FOR PIG CHANGES, nothing else.
+
+  When scaffolding IS required, say so inside the Launchers value — "4 × 6" · 15' elevated,
+  scaffold req'd". Never as its own line. When it isn't required, the sheet is silent on it.
+
+  The customer provides scaffolding, and the spool pieces, on nearly all projects; a counterexample
+  turns up maybe once in two or three years. So it is a provided-items line on the quote, never an
+  open item, a flag, or a thing to confirm. (Full rule in usadebusk-estimating §Section 8.)
+
+  This rule was WRONG in its first two versions and both errors are instructive. It was first
+  written as "at grade OR on scaffolding, never both" — false, because those are answers to
+  different questions. It was then rewritten as "scaffold is customer spool-bolt-up scope" — also
+  false, and worse, that reading got pushed into H-2421's heater card as fact before Jesse caught
+  it. H-2421 has NO scaffolding; its drawing's "scaffold req'd at A,B,C,D" is generic boilerplate.
+  Do not re-derive a scaffold rule from a drawing notation. Ask.
 -->
 
 | Section | Coils | Pipe OD | Wall | Pipe ID | Tube Lgth | Tubes/Coil | Ft/Section | Metallurgy |
