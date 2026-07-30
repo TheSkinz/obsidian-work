@@ -21,9 +21,9 @@ The single place every open decision lives. One row per open ask — not one not
 
 | id | opened | source | ask | risk | age (d) | status |
 |---|---|---|---|---|---|---|
-| _(none)_ | | | | | | |
+| DQ-004 | 2026-07-30 | [[2026-07-30-prestaged-portfolio-revival-still-worth-doing]] | Is the deferred full portfolio-revival pass (re-verify Knowledge Loop OS C/D/F, re-run thesis experiment under v2 scoring, route findings) still worth doing as-scoped, worth narrowing to just the thesis re-run, or worth dropping? | low | 0 | open |
 
-**0 open rows** as of 2026-07-28.
+**1 open row** as of 2026-07-30.
 
 ## Closed
 

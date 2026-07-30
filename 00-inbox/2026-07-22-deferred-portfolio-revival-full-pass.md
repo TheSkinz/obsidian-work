@@ -1,4 +1,5 @@
 <!-- vault-loop: operational — knowledge-system-governance/decision-queue and leverage-repo work owed to the on-demand Agent-Review loop (04-knowledge, 50-dashboards scope). Capture loop cannot write this content. -->
+<!-- vault-prestaged: 2026-07-30-prestaged-portfolio-revival-still-worth-doing.md -->
 ---
 type: note
 status: inbox
