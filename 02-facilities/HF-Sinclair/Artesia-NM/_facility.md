@@ -18,7 +18,7 @@ tags: [facility, HF-Sinclair]
 |---|---|
 | Address | 501 East Main, Artesia, NM 88210 (per DSP26092 bill-to) |
 | Gate / check-in | (not recorded) |
-| Badge / access requirements | Site-specific badge, issued per person. Crew badging carries over between jobs — verify currency rather than re-badging. Vehicle gate passes are submitted per job; DSP26092 item 16 grants passes for pigging equipment plus **up to two (2) crew trucks**. |
+| Badge / access requirements | Site-specific badge, issued per person. Crew badging carries over between jobs — verify currency rather than re-badging. Vehicle gate passes are submitted per job by admin; DSP26092 item 16 grants passes for pigging equipment plus **up to two (2) crew trucks**, so anything beyond two is a courtesy grant rather than a contractual right (four requested on USA26040). |
 | Lodging | Spark by Hilton Artesia |
 | Site contact | Travis Wilson — ⚠ verify. DSP26092 names Travis Trenholm as project manager; unclear whether these are the same person or this entry is stale. |
 | Site contact phone | (not recorded) |

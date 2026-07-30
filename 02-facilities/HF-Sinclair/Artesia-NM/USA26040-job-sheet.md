@@ -52,21 +52,23 @@ Lodging: Spark by Hilton Artesia — rooms booked.
 
 ## Crew Assignment — By Rig & Shift
 
-Roster: Danilo · Sam · Andre · Brandon · Blake B. · Jesse Utsey (PM)
+Roster: Jesse Utsey · Sam · Andre · Brandon · Blake B. (Danilo was on the original notice; Jesse replaces him.)
 
 **Dayshift**
 
 | Rig | Supervisor | Operators |
 |---|---|---|
-| Trimax 5 | (pending) | (pending) |
+| Trimax 5 | Jesse Utsey | 2 of {Andre, Brandon, Blake B.} — pending |
 
 **Night Shift**
 
 | Rig | Supervisor | Operators |
 |---|---|---|
-| Trimax 5 | (pending) | (pending) |
+| Trimax 5 | Sam | remainder of {Andre, Brandon, Blake B.} — pending |
 
-Day/night split not yet set — PM assignment pending. The quoted plan is 3 bodies per shift (1 supervisor + 2 operators); the six-person roster fills it exactly. Jesse Utsey is PM of record and customer-facing lead / final-decision authority.
+Jesse Utsey is PM of record, customer-facing lead, and final-decision authority. **The person running the project is always on dayshift** — standing rule. Operator day/night split assigned in the field.
+
+**Billing role:** DSP26092's Equipment and Manpower Allocation block carries no Project Manager row, so no PM is billed on this job — Jesse bills as **Day Supervisor**. The allocation block is the authoritative billable list; read it per job, since the running-the-project role bills as either billable PM or Day Supervisor depending on what that block shows.
 
 USA26038 precedent at this site: Samuel Mixon ran nights; Andre Madison and Blake Baugh ran days.
 
@@ -141,8 +143,8 @@ Full tube geometry, config rollup, and pig spec history: [[H-2421]].
 
 Mob/demob is quoted as "(2) Crew Truck & Manpower" only — no pumper mob line, consistent with the pumper, support unit, and press already being on site. The Glider pickup is not covered by a quoted mob line.
 
-> [!warning] Vehicle pass count
-> DSP26092 item 16 grants Sinclair-provided vehicle passes for the pigging equipment and **up to two (2) crew trucks**. Four vehicles are on the roster. Two have neither a pass basis nor a billing line — resolve with the site before Aug 4.
+> [!note] Vehicle passes — four submitted
+> Admin is submitting **four** gate passes, covering all four vehicles. Note that DSP26092 item 16 grants Sinclair-provided passes for the pigging equipment and **up to two (2) crew trucks** — the two beyond that are a courtesy grant, not a contractual right, and could be refused. Only two crew trucks carry a billing line.
 
 ---
 
@@ -165,7 +167,7 @@ Not-ready at 07:00 on Aug 5 is billable T&M delay under DSP26092 §A, "Site Read
 | 11 | Gaskets and bolt-up packages | HF Sinclair | Item 10. |
 | 12 | Vac truck for pumper decon + 24-hr wash pad access | HF Sinclair | Items 11, 15. |
 | 13 | Site radio, 110V/20A power, hose crossings, containment berms | HF Sinclair | Items 4, 8, 12, 14. |
-| 14 | Badges current + gate passes for crew trucks | Kelly | Crew badges pre-existing; passes to submit. |
+| 14 | Badges current + gate passes | Admin | Crew badges pre-existing — verify currency. Four vehicle passes being submitted. |
 | 15 | Smart pig / ILI vendor on site Aug 6 | HF Sinclair | DSP sells USADebusk **support** only — confirm who runs the tool. |
 
 Soda ash passivation of the 347 SS coil is customer scope, end to end.
@@ -183,6 +185,13 @@ Per DSP26092: operator-interface data (coke shows as a spike, technician can sto
 Printable deliverable: `USA26040-job-sheet.pdf` (source `USA26040-job-sheet.html`), alongside this file.
 
 Billing tables reflect the quoted work-up — a 6-person resource plan. Actual mobilized crew and timeline are recorded on the job report, not here.
+
+> [!warning] Known variance — mobilizing 5 against a 6-slot plan
+> The quote staffs six (1 day sup + 2 day op / 1 night sup + 2 night op). Five are mobilizing: Jesse and Sam take the two supervisor slots, leaving three operators for four operator slots. **Nightshift runs one operator, not two.** Expected shortfall against the quoted plan: 72 mobilized man-hours vs 84 (−12 night-operator hrs, −$699) and 8 per-diem days vs 9 (−$150).
+>
+> This is recorded here as a variance only — the billing table above is not adjusted, because a job sheet holds what was sold. The actuals belong on the job report.
+>
+> Operational flag: the 2-man nightshift covers the smart-pig window (Aug 6, 01:00–05:00) and the final gauge-foam run and customer sign-off, on a heater that has never been pigged.
 
 First execution of H-2421. The card was verified line-by-line against GA drawings J04917 CC1/RC1, the Navajo nozzle sheet, and the USAD Excel on 2026-07-19, so coil data going into this job is source-derived rather than field-estimated. Two residual documentation gaps carry into execution: the RC1B radiant-circuit drawing was never located (mirror geometry approved as working truth), and the C↔D jumper length is field-determined.
 
