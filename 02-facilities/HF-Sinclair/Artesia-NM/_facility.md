@@ -4,7 +4,7 @@ facility-id: HF-Sinclair-Artesia-NM
 client: HF Sinclair
 city: Artesia
 state: NM
-last-updated: 2026-07-06
+last-updated: 2026-07-30
 tags: [facility, HF-Sinclair]
 ---
 
@@ -16,10 +16,11 @@ tags: [facility, HF-Sinclair]
 
 | Field | Value |
 |---|---|
-| Address | (not recorded) |
+| Address | 501 East Main, Artesia, NM 88210 (per DSP26092 bill-to) |
 | Gate / check-in | (not recorded) |
-| Badge / access requirements | (not recorded) |
-| Site contact | Travis Wilson |
+| Badge / access requirements | Site-specific badge, issued per person. Crew badging carries over between jobs — verify currency rather than re-badging. Vehicle gate passes are submitted per job; DSP26092 item 16 grants passes for pigging equipment plus **up to two (2) crew trucks**. |
+| Lodging | Spark by Hilton Artesia |
+| Site contact | Travis Wilson — ⚠ verify. DSP26092 names Travis Trenholm as project manager; unclear whether these are the same person or this entry is stale. |
 | Site contact phone | (not recorded) |
 | Escort requirements | (not recorded) |
 
@@ -59,6 +60,8 @@ tags: [facility, HF-Sinclair]
 
 > [!note] Quote status
 > These are quote-specific rates, not contracted rates. DSP26080 is pending and has no recorded execution or actuals.
+
+**DSP26092 (July 2026, executing as [[USA26040-job-sheet|USA26040]])** carries this same rate schedule with one difference: no 4×3 trash pump line. DSP26092 puts the 4×3 diesel pump in customer scope (item 17), so it is not a USADebusk billing line on that job. Third-party markup 5% on both quotes.
 
 ---
 
