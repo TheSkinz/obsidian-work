@@ -21,7 +21,7 @@ tags: [job-report, HF-Sinclair, USA26038]
 
 ## Links
 
-- Facility: [[_facility|HF Sinclair Navajo Refinery, Artesia, NM]]
+- Facility: [[02-facilities/HF-Sinclair/Artesia-NM/_facility|HF Sinclair Navajo Refinery, Artesia, NM]]
 - Heater cards: [[H19]] · [[H20]]
 - Prior decoke: USA25051 (Aug 2025)
 - Job sheet (quoted plan): [[USA26038-job-sheet]]

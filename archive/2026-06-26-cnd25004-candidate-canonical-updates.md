@@ -31,8 +31,8 @@ This is not fully canonical yet. It is marked `status: draft`, `source_authority
 
 | Fact | Source | Proposed Destination | Approval Need |
 |---|---|---|---|
-| Facility is Syncrude Refinery - Mildred Lake / Wood Buffalo, AB. | CND25004 customer details. | [[_facility]] identity/notes. | Review naming preference: Fort McMurray vs Wood Buffalo vs Mildred Lake. |
-| Site training listed as CSO / Syncrude Site Specific. | CND25004 project details. | [[_facility]] site access/safety. | Low; still source-derived. |
+| Facility is Syncrude Refinery - Mildred Lake / Wood Buffalo, AB. | CND25004 customer details. | [[02-facilities/Syncrude/Fort-McMurray-AB/_facility]] identity/notes. | Review naming preference: Fort McMurray vs Wood Buffalo vs Mildred Lake. |
+| Site training listed as CSO / Syncrude Site Specific. | CND25004 project details. | [[02-facilities/Syncrude/Fort-McMurray-AB/_facility]] site access/safety. | Low; still source-derived. |
 | Hydrant / soda ash solution / chemical mixed in tank used on job. | CND25004 project details. | Facility constraints and heater card water source. | Medium; distinguish site standard from job-specific condition. |
 
 ## Candidate Heater Facts

@@ -56,6 +56,7 @@
 - [[H20]] — H-20 Vertical Crude Hydro Heater — HF Sinclair Navajo Refinery, Artesia, NM `(HF-Sinclair/Artesia-NM)`
 - [[USA26038-job-report]] — USA26038 — HF Sinclair Navajo Refinery Job Report (H-19 & H-20) `(HF-Sinclair/Artesia-NM)`
 - [[USA26038-job-sheet]] — USA26038 — HF Sinclair Navajo Refinery, Artesia, NM `(HF-Sinclair/Artesia-NM)`
+- [[USA26040-job-sheet]] — USA26040 — HF Sinclair Navajo Refinery, Artesia, NM `(HF-Sinclair/Artesia-NM)`
 - [[210-1401A]] — 210-1401A Crude Heater — Marathon Garyville, LA `(Marathon/Garyville-LA)`
 - [[210-1402B]] — 210-1402B Crude Heater — Marathon Garyville, LA `(Marathon/Garyville-LA)`
 - [[210-1403A]] — 210-1403A Vacuum Heater — Marathon Garyville, LA `(Marathon/Garyville-LA)`
@@ -144,7 +145,9 @@
 - [[2026-07-28-deferred-operational-prestaging-review]] — Review — The deferred-operational pile has no unattended path forward
 - [[2026-07-28-idea-research-rollup-per-rig-coilset-grain]] — Idea Research — Re-grain the Actuals Rollup to One Row per Rig-Coilset
 - [[2026-07-28-prestaged-stale-editor-buffer-guard]] — Review — Should the vault add a guard against silent content-reverting saves?
+- [[2026-07-30-exploration-coil-visualization-for-crews]] — Exploration — 2D Coil Visualization for Field Crews
 - [[2026-07-30-idea-research-vault-stats-layer]] — Idea Research — Vault-Wide Stats Layer
+- [[2026-07-30-prestaged-portfolio-revival-still-worth-doing]] — Review — Is the deferred full portfolio-revival pass still worth doing?
 
 ## LLMs
 
