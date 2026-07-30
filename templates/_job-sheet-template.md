@@ -16,92 +16,114 @@ tags: [job-sheet, <Client>, <USA#####>]
      Save as 02-facilities/<Client>/<City-ST>/<USA#####>-job-sheet.md, alongside the heater cards.
 
      A job sheet is STATIC: created at bid-win from the quoted work-up, never updated to match what
-     actually happened. Actuals and timeline go on the job report. -->
+     actually happened. Actuals and timeline go on the job report.
+
+     INTERNAL DOCUMENT. Goes to the crew, never the customer: no rates, no markup, no dollar
+     totals, no customer-proposal boilerplate.
+
+     OMISSION RULES — don't state what is always true (every job is a mechanical decoke), don't
+     restate what another field already says, don't state mutually exclusive options as if both
+     apply, don't attribute tasks to shifts, don't print computed values that look orderable.
+
+     TARGET: ONE PAGE in the printable. Six blocks fit. If you add a seventh, take one away. -->
 
 # <USA#####> — <Client> <Facility Name>, <City>, <ST>
 
 > Vault-native copy of the printable crew job sheet. The canonical printable version is
 > `<USA#####>-job-sheet.pdf` (rendered from `<USA#####>-job-sheet.html`). A job sheet is static —
 > created at bid-win from the quoted work-up. Actuals and timeline live on the job report, never here.
+>
+> **Internal crew document.** No rates, markup, or quoted totals — those live on the quote and the
+> ticket breakdown.
 
 ---
 
 ## Project Details
 
-| Field | Value |
-|---|---|
-| Facility | |
-| Job # | |
-| Scope | |
-| Heaters | |
-| Project Type | |
-| Training | |
+<!-- Scope = heater tag + service + customer elections (filtration / smart pigging) ONLY. Never
+     write "mechanical decoke" — always true. No separate Heaters row; Scope names them.
+     The field is `Mode`, not `Pigging Mode`. -->
 
----
-
-## Crew Assignment — By Rig & Shift
-
-<!-- Supervisors are fixed to a rig; operators are a shared pool by shift. Equipment is NOT
-     pre-assigned to a heater — which rig works which heater is a field decision. -->
-
-**Dayshift**
-
-| Rig | Supervisor | Operators |
-|---|---|---|
-| | | |
-
-**Night Shift**
-
-| Rig | Supervisor | Operators |
-|---|---|---|
-| | | |
-
-<Note who is customer-facing lead / final-decision authority, and any billing role they carry.>
-
----
-
-## Billing Reference — By Heater
-
-<!-- One ### block per heater. Billing math (see exemplar for the full rules):
-       - Equipment (Pumper, Support Unit, Filter Unit, Crew Truck) = heater total pumper hours.
-       - Labor Amt = COMBINED MAN-HOURS = Qty × per-person shift hours. Easiest line to get wrong.
-       - Per Diem bills per day; headcount EXCLUDES a billable Project Manager.
-       - DEF bills per shift — use the quoted shift count as given.
-       - Project Manager line only when the quote carries one. Not a default.
-       - Filter Unit row only when filtration was elected. -->
-
-### <TAG> <Service> — <N> Hrs Total (Rig-In <a> / Pig <b> / Rig-Out <c>)
-
-| Qty | Item | Amt | Unit |
+| Field | Value | Field | Value |
 |---|---|---|---|
-| 1 | Trimax Pumper | | Hrs |
-| 1 | Support Unit | | Hrs |
-| 1 | Filter Unit | | Hrs |
-| 1 | Crew Truck | | Hrs |
-| 1 | Day Supervisor | | Hrs |
-| | Day Operators | | Hrs |
-| 1 | Night Supervisor | | Hrs |
-| | Night Operators | | Hrs |
-| | Per Diem: Dayshift | | Days |
-| | Per Diem: Nightshift | | Days |
-| 1 | Materials: DEF | | Shifts |
-
-Operator / Night Operator Amt is combined man-hours (Qty × per-person shift hours). Quoted total
-across all heaters: <N> pumper hours.
+| Scope | <TAG + service — w/ Filtration + Smart Pigging> | Job # | <USA#####> |
+| Facility | <Facility name — City, ST> | Quote | <DSP#####> |
+| Mode | <e.g. Double mode, 2-pass (A→C→jumper→D→B)> | PO # | <PO or TBD> |
+| Project Type | <Planned outage — Month Year / Emergency turnaround> | PM | <name> |
+| Lodging | <hotel> | Training | <e.g. Site specific> |
 
 ---
 
-## <TAG> — Coil Data
+## Schedule
 
-<!-- Compact reference copied FROM the heater card — the card stays the source of truth.
-     One table per heater. -->
+<!-- No per-phase clock times — that implies assigning phases to shifts. -->
 
-| Section | Coils | Pipe OD | Pipe Wall | Pipe ID | Tube Length | Tubes/Coil | Ft/Section |
-|---|---|---|---|---|---|---|---|
-| Convection | | | | | | | |
-| Radiant | | | | | | | |
+| Mobilization | Rig-In / Start | Projected Complete |
+|---|---|---|
+| | | |
 
-Metallurgy: . Pass config: . Connections: . Effluent: .
+| Rig-In | Pig | Smart Pig | Rig-Out | Total |
+|---|---|---|---|---|
+| | | | | **<N> hrs** |
+
+<N> days / <N> shifts.
+
+---
+
+## Crew & Labor
+
+<!-- Qty = QUOTED plan (billing basis, never changed to match who showed up).
+     Mob = ACTUAL headcount (never used in a billing figure).
+     Ea. Hrs = per-person shift hours.  Man-Hrs = Qty × Ea. Hrs, combined.
+     5-man crews at 3 day / 2 night are normal, not a variance.
+     PM bills as PM or Day Supervisor per the quote's allocation block — read it per job.
+     Operator names commonly left blank for the field; name the pool in the note. -->
+
+| Shift | Role | Assigned | Qty | Mob | Ea. Hrs | Man-Hrs |
+|---|---|---|---|---|---|---|
+| Day | Supervisor | <name> | 1 | | | |
+| Day | Operator | | <n> | | | |
+| Night | Supervisor | <name> | 1 | | | |
+| Night | Operator | | <n> | | | |
+| **Per Diem — <n> day × <n> days + <n> night × <n> days = <N> days** | | | **<total>** | **<total>** | | **<total>** |
+
+**Qty** = quoted resource plan (billing basis). **Mob** = actual headcount, <n> dayshift / <n> nightshift. Operator pool: <names> — split assigned in the field. PM runs dayshift.
+
+---
+
+## Equipment
+
+<!-- Billable rows only. Non-billable movements go in the note, not the table.
+     Filter Unit row only when filtration was elected. -->
+
+| Qty | Billable As | Asset | Hrs | Status |
+|---|---|---|---|---|
+| 1 | Trimax Pumper | <Trimax #> | | <Staged / mobilizing from …> |
+| 1 | Support Unit | <Support #> | | |
+| 1 | Filter Unit | <Press #> | | |
+| <n> | Crew Truck | <vehicles> | | |
+
+DEF <n> shifts. <Gate passes and other pre-mob action items.>
+
+---
+
+## <TAG> — Coil Data & Connections
+
+<!-- Copied FROM the heater card; the card stays source of truth. Metallurgy is a column.
+     INLETS and OUTLETS — never "nozzles".
+     Final Pigs = orderable sizes only. Never the card's "Max pig OD" rule cap, never "final foam".
+     At grade OR on scaffolding, never both — state it once inside Launchers. -->
+
+| Section | Coils | Pipe OD | Wall | Pipe ID | Tube Lgth | Tubes/Coil | Ft/Section | Metallurgy |
+|---|---|---|---|---|---|---|---|---|
+| Convection | | | | | | | | |
+| Radiant | | | | | | | | |
+
+> **Inlets <A / B>** <size rating face> · **Outlets <C / D>** <size rating face> · **Launchers** <n × size> · <at grade> · **Final Pigs** <orderable sizes>
+>
+> **Adapters** — <required or not; termination vs. connection rating; who fabricates; bolt-up and wrench>
+> **Water** — <source>
+> **Coil** — <heater total effective footage; crossover ID and whether a reducer exists>
 
 Full tube geometry, config rollup, and pig spec history: [[<TAG>]].
 
@@ -109,7 +131,7 @@ Full tube geometry, config rollup, and pig spec history: [[<TAG>]].
 
 ## Carry-Forward Notes — Prior Decoke (<USA#####>, <Month Year>)
 
-<!-- CONDITIONAL — omit this whole section on a first-time heater with no prior job history.
+<!-- CONDITIONAL — omit entirely on a first-time heater with no prior job history.
      Source is the prior job's Field Notes on the heater card. -->
 
 | Heater | Watch For | Action |
@@ -121,5 +143,5 @@ Full tube geometry, config rollup, and pig spec history: [[<TAG>]].
 ## Notes
 
 Printable deliverable: `<USA#####>-job-sheet.pdf` (source `<USA#####>-job-sheet.html`), alongside
-this file. Billing tables reflect the quoted work-up (<N>-person resource plan). Actual mobilized
-crew and timeline are recorded on the job report, not here.
+this file. Billing tables reflect the quoted work-up. Actual mobilized crew and timeline are
+recorded on the job report, not here.
