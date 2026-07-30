@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — lint-rule trigger design decision for tools/vault_lint.py and ~/.claude hooks (04-knowledge, tooling scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: finding
 status: open

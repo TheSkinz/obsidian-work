@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — F6 regression-fixture rig-tier decision, Lane 4 (04-knowledge, usadebusk-estimating scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: note
 status: open

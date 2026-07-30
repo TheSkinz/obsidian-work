@@ -172,6 +172,18 @@ Consequence: auto mode stays on, the allow list is allowed to grow, and no recur
 
 Source: `/doctor` follow-up + power-user prior-art search, 2026-07-29.
 
+## usadebusk-exec-guard.mjs gates `gh repo` verbs but not `gh api`
+
+The hook (config `529ba04`) gates `gh repo delete|create|edit|rename|archive|unarchive|set-default` but not `gh api`, which reaches the same destructive endpoints by another route — `gh api --method DELETE /repos/<owner>/<repo>` does what `gh repo delete` does, and `gh api --method PATCH` can flip visibility. Left out deliberately to keep the first version tight and avoid false positives on read-only `gh api` calls, which are ordinary research. Not a live exposure as of 2026-07-29: nothing in the current workflow drives the GitHub API directly, and the allow list carries no `gh api` rule. The fix if it becomes relevant is one `RULES` entry matching `gh api` plus `--method`/`-X` followed by `POST|PUT|PATCH|DELETE`, with a test confirming a plain read-only `gh api /repos/...` call stays allowed. Revisit if GitHub API calls start appearing in normal work.
+
+Source: capture-loop harvest, 2026-07-29 inbox note.
+
+## A regex-based exec guard over-matches on prose, and that's the accepted tradeoff
+
+`usadebusk-exec-guard.mjs` blocked its own commit during the session that authored it, because the commit *message* described the `python -c` pattern it gates — the regex matches the command string regardless of whether the match is a live command or a description of one. Worked around by rewording rather than reaching for the hook's documented sentinel escape. This is the same tradeoff [[2026-07-19-auto-mode-permission-drift]]'s git-guard comments already accept: failing toward an extra prompt is the safe direction for a security gate, so a false positive costs a reword, not a bypass — but it recurs in this vault specifically, since writing *about* these commands (in commit messages, in notes like this one) is routine. The contained fix — stripping heredoc/quoted bodies before matching — is small (~15 lines, 2 tests) and deliberately not yet built; the plan is to let it be annoying once or twice before spending the effort.
+
+Source: capture-loop harvest, 2026-07-29 session (`80ad9814`).
+
 ## Skill description length is a per-session token cost, and a stale job-specific banner is worse than none
 
 A skill's `description:` field is resident in every session's skill listing regardless of whether the project is relevant — length there is a real, ongoing token cost, not a one-time authoring cost. A 2026-07-19 audit found `usadebusk-fieldpm`'s description carrying a job-specific "ACTIVE for USA26038... re-dormant at demob" banner at 769 characters (~196 tokens), the longest of any skill's description. The same audit found the skill's usage counter at zero lifetime (absent from `skillUsage` in `~/.claude.json`, no `Skill` dispatch for it in the 50 most recent transcripts) despite nine days into the job it names as active — an unresolved open question (real workflow gap vs. workflow happening outside Claude Code) rather than a confirmed bug. The actionable lesson independent of that question: a job-specific ACTIVE banner needs its own demob trigger, since a stale banner pointing a live-job routing hint at a finished job is worse than a plain dormant one-liner, and reverting it recovers most of the token cost too.

@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — governance decision on vault-capture-loop-spec.md's Terminal-Note Sweep status rule (04-knowledge scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: note
 status: inbox

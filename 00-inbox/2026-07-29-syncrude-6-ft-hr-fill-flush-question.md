@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — Syncrude 7-1-F-1 actuals question feeding the estimating-actuals-rollup (02-facilities, 04-knowledge scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: note
 created: 2026-07-29

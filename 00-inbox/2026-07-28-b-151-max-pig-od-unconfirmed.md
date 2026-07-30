@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — heater-card ID/pig-OD confirmation decision on B-151.md (02-facilities scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: finding
 status: open

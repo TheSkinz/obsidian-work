@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — config-repo (~/.claude) build task wiring backtest_workup.py into the fixture-replay guard, Lane 4 estimating scope. Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: note
 created: 2026-07-29

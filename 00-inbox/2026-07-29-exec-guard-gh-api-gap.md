@@ -1,3 +1,4 @@
+<!-- ROUTED 2026-07-30 — content landed in 07-llms/claude/code.md. Retained as the original capture record. -->
 ---
 type: capture
 status: inbox

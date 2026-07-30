@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — skill-instruction-density regression follow-up, Lane 4 (usadebusk-* skill-drift scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: note
 status: open
