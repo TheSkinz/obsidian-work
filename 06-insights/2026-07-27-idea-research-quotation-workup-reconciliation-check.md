@@ -49,7 +49,7 @@ is case (b): no gate blocks research, and the research itself is what the gate i
 
 ## Decision
 
-- [ ] Approved — build as event-triggered (post-script-edit + optional pre-send gate)
+- [x] Approved — build as event-triggered (post-script-edit + optional pre-send gate)
 - [x] **Approved with edits** — Jesse, 2026-07-29
 - [ ] Park — revisit later (state new trigger)
 - [ ] Drop

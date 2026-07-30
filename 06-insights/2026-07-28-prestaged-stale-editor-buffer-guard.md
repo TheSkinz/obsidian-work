@@ -62,7 +62,7 @@ A `git diff -w --stat` based check, run at session start or as a pre-commit hook
 
 Removes the camouflage mechanism at the source. The source note observes this format churn has "only real function here was camouflage" and has separately generated recurring noise commits (e.g. `f36de3d`, "Reformat F-802 table alignment").
 
-- [ ] Approved
+- [x] Approved
 - [ ] Approved with edits
 - [ ] Rejected
 - [ ] Needs more research
