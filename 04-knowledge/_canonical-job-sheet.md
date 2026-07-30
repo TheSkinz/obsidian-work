@@ -37,8 +37,9 @@ OMISSION RULES (USA26040 — each one earned by a deletion):
   - Don't state what is always true. Every job is a mechanical decoke; saying so is noise.
   - Don't restate what another field already says. The C↔D jumper detail came off because Mode
     already reads "double mode."
-  - Don't state mutually exclusive alternatives as if both apply. Launcher/receiver connections
-    are at grade OR on scaffolding, never both — say it once, in Launchers.
+  - Don't state mutually exclusive alternatives as if both apply. A given launcher group is at
+    grade OR elevated, never both — say it once, inside Launchers. (Different groups on the same
+    job may sit at different elevations; see GRADE vs ELEVATION below.)
   - Don't attribute a task to a shift. Both shifts are capable of every task, so which shift
     catches smart pigging is not information.
   - Don't print a computed value that looks like an orderable one. See the Final Pigs rule.
@@ -229,8 +230,19 @@ computed sizing-rule cap (governing ID + 0.250) and resolves to values like 6.01
 made in. The card is correct to record it as a rule cap; it must not propagate to a crew sheet
 where it reads as a size to grab.
 
-GRADE vs SCAFFOLD: connections are at grade OR elevated on scaffolding, never both. State it once
-inside Launchers ("4 × 6" · at grade") and give it no line of its own.
+GRADE vs ELEVATION: elevation belongs INSIDE the Launchers spec value ("4 × 6" · at grade") and
+never gets a line of its own. Corrected 2026-07-30 — the rule was first written as "at grade OR on
+scaffolding, never both," which is wrong at the job level. A single launcher GROUP is at one
+elevation, but one job can carry groups at different ones: USA26038 ran "convection (4) 4"
+launchers, 10' from grade; radiant (2) 4" launchers at grade." When groups differ, say both, each
+with its own elevation.
+
+SCAFFOLD IS NOT AN ELEVATION. Customer-scope scaffold for bolting up inlet/outlet spools at
+elevated nozzles says nothing about where OUR launcher sits, and the two get confused constantly.
+H-2421 is the worked example: the heater card records "scaffold req'd at A, B, C, D" (HF Sinclair's
+spool work, up at the nozzles) while the launchers themselves sit at grade, fed by risers — the
+drawing markup reads "PIG LAUNCHER PIPING — CONNECT TO A,B (RUN DOWN TO GRADE)". Both are true.
+Launchers reports OUR position; customer scaffold scope does not belong on the job sheet at all.
 -->
 
 | Section | Coils | Pipe OD | Wall | Pipe ID | Tube Lgth | Tubes/Coil | Ft/Section | Metallurgy |
@@ -244,7 +256,7 @@ inside Launchers ("4 × 6" · at grade") and give it no line of its own.
 > **Water** — <source>
 > **Coil** — <heater total effective footage; crossover ID and whether a reducer exists>
 
-<!-- In the HTML printable this is `.connbox`: 1px border, 4px #F2A900 left rule, a `.spec-strip`
+<!-- In the HTML printable this is `.connbox`: 1px border, 4px #FCC30A left rule, a `.spec-strip`
      of four `.spec` blocks (small uppercase label over a 9.2pt bold value), then `.cline` rows
      with a right-aligned 52px label gutter. -->
 
@@ -295,9 +307,11 @@ See 06-insights/2026-07-18-idea-research-job-sheet-type-formalization.md.
 PAGE BUDGET: Letter portrait, 0.55in × 0.6in margins ≈ 9.4in usable height. Six blocks fit with
 room to spare; nine did not. If a future section is proposed, something else comes off.
 
-BRAND: the printables use gold #F2A900 while usadebusk-core's brand standard specifies #FCC30A.
-The pair is internally consistent; the discrepancy is logged and unresolved as of 2026-07-30. Do
-not silently switch one without the other.
+BRAND: gold is #FCC30A. RESOLVED 2026-07-30 against the live usadebusk.com stylesheet, which
+carries #FCC30A throughout (nav hover, header links, hero gradient) and #F2A900 not once. The
+earlier #F2A900 in the printables was never a brand color; usadebusk-core was right all along.
+USA26040's printable was corrected. USA26038's was deliberately NOT — completed job, historical
+record — so the two printables differ in gold on purpose. That is not drift; do not "fix" it.
 -->
 
 <!--

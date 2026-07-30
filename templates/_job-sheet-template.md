@@ -112,7 +112,10 @@ DEF <n> shifts. <Gate passes and other pre-mob action items.>
 <!-- Copied FROM the heater card; the card stays source of truth. Metallurgy is a column.
      INLETS and OUTLETS — never "nozzles".
      Final Pigs = orderable sizes only. Never the card's "Max pig OD" rule cap, never "final foam".
-     At grade OR on scaffolding, never both — state it once inside Launchers. -->
+     Elevation goes inside the Launchers value, never on its own line. One group = one elevation,
+     but groups can differ on the same job (USA26038: convection 10' from grade, radiant at grade).
+     Customer scaffold for spool bolt-up at elevated nozzles is NOT our launcher elevation and does
+     not go on the sheet. -->
 
 | Section | Coils | Pipe OD | Wall | Pipe ID | Tube Lgth | Tubes/Coil | Ft/Section | Metallurgy |
 |---|---|---|---|---|---|---|---|---|
