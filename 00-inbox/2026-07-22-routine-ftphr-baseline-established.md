@@ -1,4 +1,5 @@
 <!-- vault-loop: operational — estimating-actuals-rollup observations and open audit threads (04-knowledge scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
+<!-- vault-prestaged: 2026-07-31-prestaged-routine-service-derate-seed-data.md -->
 ---
 type: note
 status: inbox
