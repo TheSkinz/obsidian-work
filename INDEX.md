@@ -104,6 +104,25 @@
 - [[job-report-generator-build-spec]] — Job-Report Generator — Build Spec
 - [[knowledge-system-evaluation-questions]] — Knowledge System Evaluation Questions
 - [[knowledge-system-governance]] — Knowledge System Governance
+- [[00-manual-index]] — Mechanical Pigging Methodology Manual `(manual)`
+- [[01-scope-and-use]] — 1. Scope and Use `(manual)`
+- [[02-what-mechanical-pigging-is]] — 2. What Mechanical Pigging Is `(manual)`
+- [[03-heater-and-coil-fundamentals]] — 3. Heater and Coil Fundamentals `(manual)`
+- [[04-project-inputs-and-engineering]] — 4. Project Inputs and Engineering `(manual)`
+- [[05-system-and-equipment]] — 5. System and Equipment `(manual)`
+- [[06-safety-and-permit-interface]] — 6. Safety and Permit Interface `(manual)`
+- [[07-roles-and-responsibilities]] — 7. Roles and Responsibilities `(manual)`
+- [[08-phase-i-rig-in]] — 8. Phase I — Rig-In `(manual)`
+- [[09-phase-ii-mechanical-decoking]] — 9. Phase II — Mechanical Decoking `(manual)`
+- [[10-verification-and-completion]] — 10. Verification and Completion `(manual)`
+- [[11-phase-iii-rig-out-and-restoration]] — 11. Phase III — Rig-Out and Site Restoration `(manual)`
+- [[12-ancillary-filtration-and-waste]] — 12. Filtration and Waste Handling `(manual)`
+- [[13-ancillary-initial-flush-and-pitch-removal]] — 13. Initial Flush and Pitch / Oily Water Removal `(manual)`
+- [[14-ancillary-smart-pig-support]] — 14. Smart Pig and In-Line Inspection Support `(manual)`
+- [[15-ancillary-passivation-stainless]] — 15. Passivation on Stainless Metallurgy `(manual)`
+- [[16-documentation-and-deliverables]] — 16. Documentation and Deliverables `(manual)`
+- [[17-glossary]] — 17. Glossary `(manual)`
+- [[18-reference-tables]] — 18. Reference Tables `(manual)`
 - [[_cost-model]] — Internal Cost Model `(pricing)`
 - [[sop-formatting-standard]] — SOP Formatting Standard `(sops)`
 - [[vault-agent-loop-spec]] — Vault Agent Loop Spec
@@ -149,6 +168,7 @@
 - [[2026-07-30-idea-research-vault-stats-layer]] — Idea Research — Vault-Wide Stats Layer
 - [[2026-07-30-prestaged-portfolio-revival-still-worth-doing]] — Review — Is the deferred full portfolio-revival pass still worth doing?
 - [[2026-07-31-idea-research-replay-ordering-discipline]] — Idea Research — Replay-Ordering Discipline Instead of a Smarter Detector
+- [[2026-07-31-prestaged-routine-service-derate-seed-data]] — Review — Is the routine ft/hr spread worth a service-based derate yet, or is n=5 too sparse?
 
 ## LLMs
 

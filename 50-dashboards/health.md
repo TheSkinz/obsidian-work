@@ -4,10 +4,10 @@
 
 | Metric | Value | Target | Status |
 |---|---|---|---|
-| Open decision rows | 1 | <= 10 | ok |
-| Review notes awaiting decision | 4 | <= 5 | ok |
+| Open decision rows | 2 | <= 10 | ok |
+| Review notes awaiting decision | 5 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 40 | (backlog) | ok |
+| Lint warnings | 38 | (backlog) | ok |
 | Inbox items | 43 | - | ok |
 | Inbox median age | 3 d | < 14 d | ok |
 | Inbox oldest item | 13 d | < 30 d | ok |
@@ -22,11 +22,11 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 
 | Loop | Last fired | Last heartbeat | Cadence | Status |
 |---|---|---|---|---|
-| Capture loop | 2026-07-31 (0 d ago) | 2026-07-30 (1 d ago) | 7 d | ok |
+| Capture loop | 2026-07-31 (0 d ago) | 2026-07-31 (0 d ago) | 7 d | ok |
 | Idea-research loop | 2026-07-31 (0 d ago) | 2026-07-31 (0 d ago) | 30 d | ok |
-| Pre-staging loop | 2026-07-30 (0 d ago) | 2026-07-30 (1 d ago) | 30 d | ok |
+| Pre-staging loop | 2026-07-31 (0 d ago) | 2026-07-31 (0 d ago) | 30 d | ok |
 | Consolidation loop | 2026-07-19 (12 d ago) | 2026-07-18 (13 d ago) | 31 d | ok |
-| Skill-drift loop | 2026-07-25 (5 d ago) | 2026-07-25 (6 d ago) | 62 d | ok |
+| Skill-drift loop | 2026-07-25 (6 d ago) | 2026-07-25 (6 d ago) | 62 d | ok |
 
 ## Commercial pipeline
 
@@ -55,7 +55,7 @@ Every recorded wake-up condition (`revisit-trigger:` frontmatter) — parked ide
 
 ## Notes
 
-- **Decision queue:** [[decision-queue]] — 1 open. Cap is 10; over cap, proposal-generating loops pause.
-- **Review notes awaiting decision:** 4 in `06-insights/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
+- **Decision queue:** [[decision-queue]] — 2 open. Cap is 10; over cap, proposal-generating loops pause.
+- **Review notes awaiting decision:** 5 in `06-insights/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
 - **Lint warnings** are the standing to-do list (provenance-frontmatter backfill, stale `related:` links), not failures. Detail: run `python tools/vault_lint.py --report` → `50-dashboards/lint-report.md`.
 - **Heartbeats overdue** means a loop row shows FAIL — either the scheduler stopped firing (check the task's enabled state in the desktop app) or a run started and never finished (check the app's session history for that run). A loop that fires and no-ops cleanly shows ok with no new commit — that is healthy, not silent.
