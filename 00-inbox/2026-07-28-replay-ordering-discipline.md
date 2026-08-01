@@ -1,6 +1,6 @@
 ---
 type: idea-seed
-status: researched
+status: closed-unactioned
 created: 2026-07-28
 related:
   - "[[2026-07-31-idea-research-replay-ordering-discipline]]"

@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: exploration
 source_authority: primary
 confidence: high
@@ -191,14 +191,30 @@ field, which should ride the existing heater-card schema trigger rather than ope
 **Rows 1–3 are mutually exclusive scope choices — pick one.** Tier 5 is not part of this decision;
 it is tracked separately as [[idea-rig-layout-diagram]].
 
-- [ ] **Approved — Tier 2 + Tier 3 + Tier 1** (recommended: SVG coil elevation with launcher/receiver terminals, plus the Mermaid circuit block)
-- [ ] Approved — Tier 1 only (Mermaid circuit block; defer the SVG generator)
-- [ ] Approved — Tier 2 only (coil elevation, no terminal layer, no Mermaid)
-- [ ] Park — revisit on a trigger to be named
-- [ ] Drop
+- [x] **Approved — Tier 2 + Tier 3 + Tier 1** (Jesse, 2026-08-01) — SVG coil elevation with launcher/receiver terminals, plus the Mermaid circuit block
+- [ ] ~~Approved — Tier 1 only (Mermaid circuit block; defer the SVG generator)~~
+- [ ] ~~Approved — Tier 2 only (coil elevation, no terminal layer, no Mermaid)~~
+- [ ] ~~Park — revisit on a trigger to be named~~
+- [ ] ~~Drop~~
+
+**Approved as scope, not as scheduled work.** The build is filed as owed at
+`00-inbox/2026-08-01-coil-visualization-build-owed.md`.
+
+It will not reach the USA26040 crew — that job mobilizes 2026-08-04 and the window is gone
+regardless of what was decided here. The scope was approved anyway because the input data is as
+good as it will ever be: H-2421's card was verified line-by-line against GA drawings J04917
+CC1/RC1, the Navajo nozzle sheet, and the USAD Excel on 2026-07-19, and the heater recurs on
+[[DSP26080]] (Feb 2027 Artesia outage, three heaters).
+
+This decision also releases [[idea-rig-layout-diagram]], whose dormant trigger was gated on this
+block resolving. That trigger is re-pointed rather than retired — it was written to fire against
+"whatever render path that build establishes," and the build has not happened yet, so the
+condition now names the build rather than this decision.
 
 ## Apply Log
 
 | Date | Action | By | Notes |
 |---|---|---|---|
 | 2026-07-30 | Exploration written; no build | Claude (Opus 5) | Jesse asked for the option space only. Drawability count (28/39) measured, not estimated. Awaiting tier decision. |
+| 2026-08-01 | **Tier 2+3+1 approved; `status` → `resolved`** | Claude | Decision only — no build this session. Owed work filed to `00-inbox/2026-08-01-coil-visualization-build-owed.md`. Source seed `00-inbox/idea-coil-visualization-for-crews.md` closed. |
+| 2026-08-01 | `revisit-trigger:` on [[idea-rig-layout-diagram]] re-pointed | Claude | The old condition ("Tier decision made on this note") has now fired, but its stated action — research the rig/hose layout against the render path *that build establishes* — is not yet reachable, since the build is owed. Re-pointed at the build rather than retired, so it does not read as satisfied while the thing it depends on is missing. |

@@ -14,9 +14,13 @@ The estimating rollup now carries 5 routine mode-normalized rates: 47 (HF-0012),
 benchmark**. Not proposing a benchmark change (n=5, huge spread), but two things worth a look when
 convenient:
 
-1. **The spread is service-shaped, not noise.** The slow end (47–52) is the big/hard coils (12k-ft
-   coker, 14k-ft crude, four-bore vacuum); the fast end (85–259) is short clean single-coil scopes.
-   If a derating-by-service refinement to the flat 100 ever gets considered, this is the seed data.
+1. ~~**The spread is service-shaped, not noise.**~~ **RESOLVED 2026-08-01 (DQ-005).** The slow end
+   (47–52) is the big/hard coils (12k-ft coker, 14k-ft crude, four-bore vacuum); the fast end
+   (85–259) is short clean single-coil scopes. Jesse ruled: no numeric derate at n=5 — the
+   qualitative derate list in `estimating-pricing.md` stands, and no figure enters a pricing
+   document. The question reopens automatically at 10 routine mode-normalized rows, now a counted
+   trigger on [[2026-07-31-prestaged-routine-service-derate-seed-data]] rather than a judgment
+   call someone has to make again from scratch.
 2. **HP-0025's 259 ft/hr** (2,328 ft in 9 pig hrs, mode 1) is the outlier — single 24-hr-cycle scope.
    Sanity-worthy if it ever anchors an estimate alone.
 

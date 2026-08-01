@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: pre-staged
 source_authority: inferred
 confidence: medium
@@ -40,28 +40,28 @@ Two of the three owed items are stale review/bookkeeping work with no forcing fu
 
 Re-verify Knowledge Loop OS sessions C/D/F against current vault and leverage-repo state, re-run the thesis experiment under the v2 scoring fix and record what the result means for the infrastructure bet, then route findings as individual `decision-queue.md` rows (queue currently at 0/10, full headroom).
 
-- [ ] Approved
-- [ ] Approved with edits
-- [ ] Rejected
-- [ ] Needs more research
+- [ ] ~~Approved~~
+- [ ] ~~Approved with edits~~
+- [x] **Rejected** — the C/D/F re-verification and findings-routing thirds carry no forcing function; doing them would add queue rows rather than close them
+- [ ] ~~Needs more research~~
 
 ### B. Narrow to just the thesis v2 re-run
 
 Sessions C/D/F re-verification is bookkeeping against a 13-day-old memory with no independent artifact either way — low cost either way, low stakes. The thesis question is different in kind: it's the one item this loop's own source review flagged as "the genuinely open decision," and it's blocked purely on execution (re-running `run.py` against the existing 30-item corpus with the already-fixed scoring rule already committed). Do that alone; let sessions C/D/F stay an unforced, low-priority memory note.
 
-- [ ] Approved
-- [ ] Approved with edits
-- [ ] Rejected
-- [ ] Needs more research
+- [x] **Approved 2026-08-01 (Jesse)** — thesis v2 re-run only; C/D/F re-verification and findings-routing dropped
+- [ ] ~~Approved with edits~~
+- [ ] ~~Rejected~~
+- [ ] ~~Needs more research~~
 
 ### C. Drop — no longer a current priority
 
 Given the "build data before automation" and hands-on-work drift signals accumulated since this item was deferred, and 8 days of the leverage repo going untouched on this thread specifically, treat this as a parked idea rather than owed work. Remove the inbox item's active-work framing; leave the underlying memories (`project-knowledge-loop-os`, `project-leverage-repo`) as historical record without a forcing function to update them.
 
-- [ ] Approved
-- [ ] Approved with edits
-- [ ] Rejected
-- [ ] Needs more research
+- [ ] ~~Approved~~
+- [ ] ~~Approved with edits~~
+- [x] **Rejected in part** — C's reasoning was accepted for the two bookkeeping thirds, which are dropped exactly as C describes. It was rejected for the thesis re-run: the scoring-artifact finding is real and unresolved, and reconstructing it later costs more than running it now.
+- [ ] ~~Needs more research~~
 
 ## Risks and Counter-Arguments
 
@@ -69,10 +69,15 @@ Option A spends an hour on speculative infrastructure research at a moment when 
 
 ## Decision
 
-Open — awaiting Jesse's disposition on A/B/C above.
+**B approved 2026-08-01 (Jesse).** Narrowed to the thesis v2 re-run alone. Sessions C/D/F re-verification and the findings-routing third are dropped under C's reasoning — no forcing function, and re-verifying a memory against itself produces bookkeeping, not decisions.
+
+**This note is resolved as a decision, not as work.** The re-run itself is approved and unexecuted: it means running `run.py` against the existing 30-item corpus in `C:\Users\Jwuts\leverage\experiments\thesis` under the scoring rule already committed at `6febf55`. That is a real execution cost (frontier-model calls across 30 items) and was out of scope for this session, so it is filed as owed work at `00-inbox/2026-08-01-thesis-v2-rerun-owed.md` rather than left implicit here.
+
+Until it runs, the v1 result stays uncitable — `DESIGN.md:112-132` states it "should not be cited as a conclusion under this design," and the 100%-scoring-artifact root cause means the frontier-trails-cheap-models reading may be entirely wrong.
 
 ## Apply Log
 
 | Date | Action | By |
 |---|---|---|
 | 2026-07-30 | Note filed by pre-staging loop from `00-inbox/2026-07-22-deferred-portfolio-revival-full-pass.md`; confirmed via `DESIGN.md` and `git log` that no v2-scored thesis re-run exists yet; no vault or leverage-repo content modified beyond the source marker | Claude (pre-staging loop) |
+| 2026-08-01 | **B applied.** Decision recorded, `status` → `resolved`, DQ-004 moved to the decision-queue Closed table. Approved-but-unexecuted re-run filed to `00-inbox/2026-08-01-thesis-v2-rerun-owed.md`; the superseded source item `00-inbox/2026-07-22-deferred-portfolio-revival-full-pass.md` is now closed by this ruling. No leverage-repo content touched. | Claude |

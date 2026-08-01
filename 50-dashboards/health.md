@@ -4,11 +4,11 @@
 
 | Metric | Value | Target | Status |
 |---|---|---|---|
-| Open decision rows | 2 | <= 10 | ok |
-| Review notes awaiting decision | 7 | <= 5 | FAIL |
+| Open decision rows | 0 | <= 10 | ok |
+| Review notes awaiting decision | 0 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 40 | (backlog) | ok |
-| Inbox items | 43 | - | ok |
+| Lint warnings | 41 | (backlog) | ok |
+| Inbox items | 46 | - | ok |
 | Inbox median age | 4 d | < 14 d | ok |
 | Inbox oldest item | 14 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
@@ -22,9 +22,9 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 
 | Loop | Last fired | Last heartbeat | Cadence | Status |
 |---|---|---|---|---|
-| Capture loop | 2026-08-01 (0 d ago) | 2026-07-31 (1 d ago) | 7 d | running |
+| Capture loop | 2026-08-01 (0 d ago) | 2026-08-01 (0 d ago) | 7 d | ok |
 | Idea-research loop | 2026-08-01 (0 d ago) | 2026-08-01 (0 d ago) | 30 d | ok |
-| Pre-staging loop | 2026-07-31 (0 d ago) | 2026-07-31 (1 d ago) | 30 d | ok |
+| Pre-staging loop | 2026-08-01 (0 d ago) | 2026-07-31 (1 d ago) | 30 d | ok |
 | Consolidation loop | 2026-07-19 (13 d ago) | 2026-07-18 (14 d ago) | 31 d | ok |
 | Skill-drift loop | 2026-08-01 (0 d ago) | 2026-08-01 (0 d ago) | 62 d | ok |
 
@@ -48,14 +48,16 @@ Every recorded wake-up condition (`revisit-trigger:` frontmatter) — parked ide
 |---|---|---|
 | [[2026-07-24-parallel-friction-factor-deferred]] | Actuals rollup carries 3-4 routine multi-pass rows with a recorded Mode -> decide whether the Duration Model gets a mode-friction term — event: check when a multi-pass TA lands actuals | event — checked at the step the condition names |
 | [[idea-context-packet-builder-skill]] | A real mobilization or bid shows manual context-gathering friction (parked 2026-07-18) — event: check at job mobilization | event — checked at the step the condition names |
-| [[idea-rig-layout-diagram]] | Tier decision made on [[2026-07-30-exploration-coil-visualization-for-crews]] -> research the rig/hose layout diagram against whatever render path that build establishes — event: check when the coil-visualization Decision block is resolved | event — checked at the step the condition names |
+| [[idea-rig-layout-diagram]] | Coil-visualization Tier 2+3 build lands (approved 2026-08-01, owed at [[2026-08-01-coil-visualization-build-owed]]) -> research the rig/hose layout diagram against the render path that build establishes — event: check when the coil-viz SVG generator exists | event — checked at the step the condition names |
 | [[rfq-intake-protocol]] | About 12 quote notes under a settled rate-table heading convention -> build the cross-quote rate-history rollup [machine: quote-count>=12] | quote notes: 11 of 12 |
 | [[2026-07-19-rate-model-grain-review]] | First bid under a multi-year or master agreement -> build the contract-note type (proposal C, rejected 2026-07-19) — event: check at RFQ intake | event — checked at the step the condition names |
 | [[2026-07-28-idea-research-rollup-per-rig-coilset-grain]] | Next time `_canonical-heater-card.md` is opened for a change carrying its own weight -> decide the structured per-coilset actuals sub-table, bundled with the parked Pig Specifications Condition column (parked 2026-07-29) — event: check at heater-card schema change | event — checked at the step the condition names |
+| [[2026-07-30-idea-research-vault-stats-layer]] | Canonical heater-card schema opened for a change carrying its own weight -> decide Track 1 (five validation rules into vault_lint.py) and Track 2 (frontmatter promotion of multi-ID/smart-pig/filtration flags), bundled with the per-rig-coilset sub-table and the Pig Specifications Condition column (parked 2026-08-01) — event: check at heater-card schema change | event — checked at the step the condition names |
+| [[2026-07-31-prestaged-routine-service-derate-seed-data]] | 10 routine mode-normalized rows in the actuals rollup -> revisit the ft/hr service derate (n=5 at ruling, 2026-08-01) [machine: routine-rows>=10] | routine rows: 5 of 10 |
 
 ## Notes
 
-- **Decision queue:** [[decision-queue]] — 2 open. Cap is 10; over cap, proposal-generating loops pause.
-- **Review notes awaiting decision:** 7 in `06-insights/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
+- **Decision queue:** [[decision-queue]] — 0 open. Cap is 10; over cap, proposal-generating loops pause.
+- **Review notes awaiting decision:** 0 in `06-insights/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
 - **Lint warnings** are the standing to-do list (provenance-frontmatter backfill, stale `related:` links), not failures. Detail: run `python tools/vault_lint.py --report` → `50-dashboards/lint-report.md`.
 - **Heartbeats overdue** means a loop row shows FAIL — either the scheduler stopped firing (check the task's enabled state in the desktop app) or a run started and never finished (check the app's session history for that run). A loop that fires and no-ops cleanly shows ok with no new commit — that is healthy, not silent.

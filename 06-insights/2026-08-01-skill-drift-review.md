@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: skill-drift
 source_authority: primary
 confidence: high

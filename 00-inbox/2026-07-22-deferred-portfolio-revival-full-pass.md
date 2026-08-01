@@ -2,10 +2,16 @@
 <!-- vault-prestaged: 2026-07-30-prestaged-portfolio-revival-still-worth-doing.md -->
 ---
 type: note
-status: inbox
+status: superseded
 created: 2026-07-22
 tags: [inbox, knowledge-system, leverage-repo, deferred]
 ---
+
+> **Closed 2026-08-01 by DQ-004.** Jesse approved option B: the thesis v2 re-run
+> only. The other two owed items below — C/D/F re-verification and routing output
+> as queue rows — were dropped as bookkeeping with no forcing function. The
+> surviving item lives at [[2026-08-01-thesis-v2-rerun-owed]]. Kept as the record
+> of what was owed and what was dropped.
 
 # Deferred — full portfolio revival pass
 

@@ -21,16 +21,16 @@ The single place every open decision lives. One row per open ask — not one not
 
 | id | opened | source | ask | risk | age (d) | status |
 |---|---|---|---|---|---|---|
-| DQ-004 | 2026-07-30 | [[2026-07-30-prestaged-portfolio-revival-still-worth-doing]] | Is the deferred full portfolio-revival pass (re-verify Knowledge Loop OS C/D/F, re-run thesis experiment under v2 scoring, route findings) still worth doing as-scoped, worth narrowing to just the thesis re-run, or worth dropping? | low | 0 | open |
-| DQ-005 | 2026-07-31 | [[2026-07-31-prestaged-routine-service-derate-seed-data]] | Is the 5-row routine ft/hr spread (47-259, mean 99) enough to act on with a service-based derate or revisit trigger, or should it stay tracked with no action until more routine rows accumulate? | high | 0 | open |
 
-**2 open rows** as of 2026-07-31.
+**0 open rows** as of 2026-08-01.
 
 ## Closed
 
 | id | opened | closed | source | ask | outcome |
 |---|---|---|---|---|---|
 | DQ-003 | 2026-07-28 | 2026-07-28 | [[2026-07-28-prestaged-stale-editor-buffer-guard]] | Given the 2026-07-19 silent-revert incident on B-101.md, add a mechanical diff-gate or disable Obsidian auto-format, or is the adopted `git diff -w` habit sufficient? | **A + B approved, C dropped.** A applied narrowed — WORD-DELTA gains `--worktree`, since the incident file was never staged and the staged-only rule could not see it. B (Source mode) is a manual toggle left with Jesse and carried as a `revisit-trigger:` on the source note. |
+| DQ-004 | 2026-07-30 | 2026-08-01 | [[2026-07-30-prestaged-portfolio-revival-still-worth-doing]] | Is the deferred full portfolio-revival pass (re-verify Knowledge Loop OS C/D/F, re-run thesis experiment under v2 scoring, route findings) still worth doing as-scoped, worth narrowing to just the thesis re-run, or worth dropping? | **B approved — narrowed to the thesis v2 re-run alone.** C/D/F re-verification and findings-routing dropped as bookkeeping with no forcing function. The re-run is approved but unexecuted (frontier-model calls across a 30-item corpus), filed as owed work at [[2026-08-01-thesis-v2-rerun-owed]]; until it runs the v1 result stays uncitable, since its headline was 100% a scoring artifact. |
+| DQ-005 | 2026-07-31 | 2026-08-01 | [[2026-07-31-prestaged-routine-service-derate-seed-data]] | Is the 5-row routine ft/hr spread (47-259, mean 99) enough to act on with a service-based derate or revisit trigger, or should it stay tracked with no action until more routine rows accumulate? | **B approved — revisit trigger, no numeric derate.** No figure enters any pricing document at n=5; the qualitative derate list in `estimating-pricing.md` is unchanged. C rejected on the note's own counter-argument (HP-0007's 51 ft/hr is routine, not hard, and would sit inside an illustrative "hard" range by coincidence off a two-row bucket). The threshold — 10 routine mode-normalized rows — is machine-checked: `tools/vault_health.py` gained a `routine-rows` token, since an unrecognized `[machine: …]` token silently degrades to event-shaped and would have looked checked without being checked. |
 
 ## Why the queue is empty at launch
 

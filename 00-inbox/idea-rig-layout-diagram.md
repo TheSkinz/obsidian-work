@@ -2,7 +2,7 @@
 type: idea-seed
 status: unexplored
 created: 2026-07-30
-revisit-trigger: "Tier decision made on [[2026-07-30-exploration-coil-visualization-for-crews]] -> research the rig/hose layout diagram against whatever render path that build establishes — event: check when the coil-visualization Decision block is resolved"
+revisit-trigger: "Coil-visualization Tier 2+3 build lands (approved 2026-08-01, owed at [[2026-08-01-coil-visualization-build-owed]]) -> research the rig/hose layout diagram against the render path that build establishes — event: check when the coil-viz SVG generator exists"
 related:
   - "[[2026-07-30-exploration-coil-visualization-for-crews]]"
   - "[[idea-coil-visualization-for-crews]]"

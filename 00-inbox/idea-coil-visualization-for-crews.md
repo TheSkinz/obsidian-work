@@ -1,6 +1,6 @@
 ---
 type: idea-seed
-status: researched
+status: resolved
 created: 2026-07-30
 related:
   - "[[2026-07-30-exploration-coil-visualization-for-crews]]"

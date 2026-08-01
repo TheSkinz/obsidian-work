@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: primary
 confidence: high
@@ -147,13 +147,31 @@ entirely" failure mode.
 
 ## Decision
 
-- [ ] Approved — build in the order above
-- [ ] Approved with edits
-- [ ] Drop
-- [ ] Needs more source material (e.g. confirm/rule out Agnix first)
+- [x] **Approved — build in the order above** (Jesse, 2026-08-01)
+- [ ] ~~Approved with edits~~
+- [ ] ~~Drop~~
+- [ ] ~~Needs more source material (e.g. confirm/rule out Agnix first)~~
+
+Ruled together with [[2026-07-31-idea-research-replay-ordering-discipline]], which was **dropped**
+in the same pass — the mechanical check here supersedes the discipline-based convention, and only
+one of the two was ever needed. That note's point 1 stands as the record of why: the F1/F6
+rebaseline, the exact case the convention covered, still split into two commits under careful
+manual execution.
+
+**The order is load-bearing, not a suggestion.** Step 1 is a prerequisite, not a nicety — the
+checker cannot be built on the `skills:` field as it exists today. Verified across all six live
+frozen files: F5 records a date rather than a commit hash, F1 names a vault path with no hash, and
+the field is free prose written per-fixture rather than a structured value. Nothing parses it
+programmatically today, so standardizing it is a no-behavior-change edit.
+
+The Agnix lead stays a two-minute check before step 3 only, not a gate on steps 1–2.
+
+**Approved but unexecuted.** Filed as owed work at `00-inbox/2026-08-01-baseline-staleness-detector-owed.md`.
+Steps 1 and 3 are config-repo changes (`~/.claude/regression/frozen/`, `~/.claude/skills/`); step 2
+adds a script under the vault's `tools/`.
 
 ## Apply Log
 
 | Date | Action | By | Notes |
 |---|---|---|---|
-| | | | |
+| 2026-08-01 | Approved in the ordered three-step form; `status` → `resolved` | Claude | No build this session — the ruling closes the decision, not the work. Owed work filed to `00-inbox/2026-08-01-baseline-staleness-detector-owed.md`. Sibling note dropped in the same pass. Source seeds `00-inbox/idea-baseline-staleness-detector.md` and `00-inbox/2026-07-28-replay-ordering-discipline.md` both closed by this ruling. |

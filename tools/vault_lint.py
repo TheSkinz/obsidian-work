@@ -142,7 +142,12 @@ SECRET_PATTERNS = [
         r"(?i)\b(api[_-]?key|secret[_-]?key|access[_-]?token|password)\b\s*[:=]\s*['\"]?[A-Za-z0-9+/_\-]{20,}")),
 ]
 
-WIKILINK_RE = re.compile(r"\[\[([^\[\]|#]+)(?:#[^\[\]|]*)?(?:\|[^\[\]]*)?\]\]")
+# The alias pipe may be backslash-escaped (`[[Target\|Alias]]`) — required by
+# Obsidian inside a Markdown table cell, where a bare `|` would split the row.
+# Excluding `\` from the target capture and allowing it before the pipe keeps
+# the escape out of the looked-up name; without this, `[[DSP26071\|DSP26071.2]]`
+# in 01-context/active-jobs.md reported a phantom DEAD-LINK on `DSP26071\`.
+WIKILINK_RE = re.compile(r"\[\[([^\[\]|#\\]+)(?:#[^\[\]|]*)?(?:\\?\|[^\[\]]*)?\]\]")
 FENCE_RE = re.compile(r"^\s*(```|~~~)")
 
 # ORPHAN check scope: layers where an unlinked note is write-only memory.

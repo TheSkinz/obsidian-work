@@ -1,6 +1,6 @@
 ---
 type: idea-seed
-status: researched
+status: resolved
 created: 2026-07-28
 related:
   - "[[2026-08-01-idea-research-baseline-staleness-detector]]"

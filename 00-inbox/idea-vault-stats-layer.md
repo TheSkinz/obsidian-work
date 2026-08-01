@@ -1,6 +1,6 @@
 ---
 type: idea-seed
-status: researched
+status: resolved
 created: 2026-07-26
 related:
   - "[[2026-07-30-idea-research-vault-stats-layer]]"

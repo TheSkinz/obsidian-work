@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -117,13 +117,22 @@ depend on anyone remembering anything.
 
 ## Decision
 
-- [ ] Approved — pursue the replay-last / co-commit workflow convention
-- [ ] Approved with edits
-- [ ] Drop — fold into `idea-baseline-staleness-detector` instead
-- [ ] Needs more source material
+- [ ] ~~Approved — pursue the replay-last / co-commit workflow convention~~
+- [ ] ~~Approved with edits~~
+- [x] **Drop — fold into `idea-baseline-staleness-detector` instead** (Jesse, 2026-08-01)
+- [ ] ~~Needs more source material~~
+
+Ruled together with [[2026-08-01-idea-research-baseline-staleness-detector]], which was approved
+in its ordered three-step form in the same pass. Deciding them separately would have risked
+approving both halves of one thing — the convention and the mechanical check close the same gap.
+
+The deciding evidence is this note's own point 1: the F1/F6 rebaseline was the exact case the
+convention exists to cover, and under careful manual execution it still split into two commits
+(`ccf20ad`, `71efec5`). A convention that did not survive its first real trial is not worth
+adopting alongside a mechanical check that needs no one to remember anything.
 
 ## Apply Log
 
 | Date | Action | By | Notes |
 |---|---|---|---|
-| | | | |
+| 2026-08-01 | Dropped as a standalone track; `status` → `resolved` | Claude | Live idea (record a config-commit reference, check by comparison not date) carried forward into the approved baseline-staleness build. Point 1 is cited there as the reason not to also pursue a discipline-based convention alongside it. Source seed `00-inbox/2026-07-28-replay-ordering-discipline.md` closed. |

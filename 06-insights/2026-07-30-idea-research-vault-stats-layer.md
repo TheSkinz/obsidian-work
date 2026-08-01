@@ -1,11 +1,12 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
 created: 2026-07-30
 review_after: 2026-08-30
+revisit-trigger: "Canonical heater-card schema opened for a change carrying its own weight -> decide Track 1 (five validation rules into vault_lint.py) and Track 2 (frontmatter promotion of multi-ID/smart-pig/filtration flags), bundled with the per-rig-coilset sub-table and the Pig Specifications Condition column (parked 2026-08-01) — event: check at heater-card schema change"
 related:
   - "[[idea-vault-stats-layer]]"
   - "[[idea-pig-actuals-maturation]]"
@@ -131,13 +132,30 @@ regardless (point 6).
 
 ## Decision
 
-- [ ] Approved — start Track 1 (validation rules into `vault_lint.py`) now
-- [ ] Approved with edits
-- [ ] Park both tracks — revisit next time the canonical schema is opened for another reason
-- [ ] Drop
+- [ ] ~~Approved — start Track 1 (validation rules into `vault_lint.py`) now~~
+- [ ] ~~Approved with edits~~
+- [x] **Park both tracks — revisit next time the canonical schema is opened for another reason** (Jesse, 2026-08-01)
+- [ ] ~~Drop~~
+
+Neither track is dropped; both wait on the same trigger. That trigger now carries three items —
+this note's Track 1 and Track 2, the per-rig-coilset actuals sub-table from
+[[2026-07-28-idea-research-rollup-per-rig-coilset-grain]], and the Pig Specifications `Condition`
+column from [[2026-07-26-idea-research-pig-actuals-maturation]] — so one schema-open pass clears
+all of them rather than three separate reopenings of the same file.
+
+**On whether the trigger already fired:** `tools/vault_lint.py` *was* opened on 2026-08-01, for the
+`WIKILINK_RE` escaped-pipe fix. That was a one-line regex correction, which does not meet the
+"opened for a reason carrying its own weight" bar the convention names — and it touched the linter,
+not the canonical heater-card schema, which is what the other two parked items actually ride.
+Recorded here so a future session does not read the lint commit as having fired this trigger.
+
+Track 2 has a zero-cost step available to Jesse independently of the trigger: try Obsidian's native
+Bases (already enabled, unused) against the frontmatter fields exposed today — facility, client,
+heater-type. If that satisfies the itch, Track 2 collapses to nothing and only the frontmatter-
+promotion question remains.
 
 ## Apply Log
 
 | Date | Action | By | Notes |
 |---|---|---|---|
-|  |  |  |  |
+| 2026-08-01 | **Both tracks parked; `status` → `resolved`, `revisit-trigger:` added** | Claude | No code written. Trigger is event-shaped (a schema open), not machine-checkable — no row count decides it. Bundled with the two schema items already riding the same condition. Source seed `00-inbox/idea-vault-stats-layer.md` closed. |

@@ -89,11 +89,17 @@ LEDGER_REL = "50-dashboards/.loop-runs.json"
 # revisit decision). The field's presence — regardless of the note's status,
 # since a resolved review's trigger outlives its resolution — puts it on the
 # dashboard. Retire a trigger by removing the field when it fires and is acted
-# on. Machine-checkable conditions embed a token the script evaluates; only
-# one exists so far: `[machine: quote-count>=N]` (count of `type: quote` notes).
-# Everything else is event-shaped and names the workflow step that checks it.
+# on. Machine-checkable conditions embed a token the script evaluates; two
+# exist: `[machine: quote-count>=N]` (count of `type: quote` notes) and
+# `[machine: routine-rows>=N]` (rows behind the `routine` mean in the generated
+# actuals rollup). Everything else is event-shaped and names the workflow step
+# that checks it. An unrecognized token falls through to the event-shaped
+# wording, so a typo'd token reads as "someone checks this by hand" rather than
+# failing loudly — keep this list and the tokens in use in sync.
 TRIGGER_FIELD = "revisit-trigger"
 TRIGGER_QC_RE = re.compile(r"\[machine:\s*quote-count\s*>=\s*(\d+)\]")
+TRIGGER_RR_RE = re.compile(r"\[machine:\s*routine-rows\s*>=\s*(\d+)\]")
+ROLLUP_REL = "04-knowledge/estimating-actuals-rollup.md"
 
 # Commercial pipeline: read from `type: quote` frontmatter. `valid-through`
 # and `date-execution` tolerate YYYY-MM-DD and YYYY-MM (month reads as the
@@ -313,9 +319,35 @@ def pipeline_rows(notes: dict):
     return rows, expired
 
 
-def trigger_rows(notes: dict):
+def count_routine_rows(root: Path) -> int | None:
+    """Rows behind the `routine` mean in the generated actuals rollup.
+
+    The rollup carries the GENERATED marker, so `collect_notes` skips it and it
+    has to be read from disk. Returns None when the file or its condition table
+    is missing: an unreadable source must show as unknown rather than 0, since
+    0 would read as "no routine actuals yet" and quietly never fire.
+    """
+    try:
+        text = (root / ROLLUP_REL).read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return None
+    for line in text.splitlines():
+        if not line.lstrip().startswith("|"):
+            continue
+        # Parse cells, not the raw string — Obsidian pads table cells.
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) >= 2 and cells[0].lower() == "routine":
+            try:
+                return int(cells[1])
+            except ValueError:
+                return None
+    return None
+
+
+def trigger_rows(notes: dict, root: Path):
     """Return (rows, fired_count). Row: (source stem, condition, check result)."""
     quote_count = len(collect_quotes(notes))
+    routine_rows = count_routine_rows(root)
     rows = []
     fired = 0
     for path, text in sorted(notes.items()):
@@ -323,12 +355,21 @@ def trigger_rows(notes: dict):
         raw = fm.get(TRIGGER_FIELD)
         if not raw:
             continue
-        m = TRIGGER_QC_RE.search(raw)
-        if m:
-            threshold = int(m.group(1))
+        qc = TRIGGER_QC_RE.search(raw)
+        rr = TRIGGER_RR_RE.search(raw)
+        if qc:
+            threshold = int(qc.group(1))
             hit = quote_count >= threshold
             check = f"quote notes: {quote_count} of {threshold}" + (" — **FIRED**" if hit else "")
             fired += 1 if hit else 0
+        elif rr:
+            threshold = int(rr.group(1))
+            if routine_rows is None:
+                check = "routine rows: source unreadable — check `estimating-actuals-rollup.md`"
+            else:
+                hit = routine_rows >= threshold
+                check = f"routine rows: {routine_rows} of {threshold}" + (" — **FIRED**" if hit else "")
+                fired += 1 if hit else 0
         else:
             check = "event — checked at the step the condition names"
         rows.append((path.stem, raw.replace("|", "\\|"), check))
@@ -347,7 +388,7 @@ def build(root: Path) -> str:
     hb_rows, hb_overdue = loop_heartbeats(root)
     notes = vault_lint.collect_notes(root)
     pipe_rows, expired = pipeline_rows(notes)
-    trig_rows, fired = trigger_rows(notes)
+    trig_rows, fired = trigger_rows(notes, root)
 
     def flag(ok: bool) -> str:
         return "ok" if ok else "FAIL"

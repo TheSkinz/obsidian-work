@@ -1,11 +1,12 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: pre-staged
 source_authority: inferred
 confidence: medium
 created: 2026-07-31
 review_after: 2026-08-30
+revisit-trigger: "10 routine mode-normalized rows in the actuals rollup -> revisit the ft/hr service derate (n=5 at ruling, 2026-08-01) [machine: routine-rows>=10]"
 related:
   - 2026-07-22-duration-model-capture
   - estimating-actuals-rollup
@@ -42,28 +43,30 @@ The rollup's own governing text names this exact situation — "ft/hr consistent
 
 The rollup already surfaces this correctly: descriptive stats on a growing dataset, explicitly not yet a calibrated model. Leave the qualitative derate list as-is in `estimating-pricing.md`, take no numeric action, and let `estimating_rollup.py`'s existing "Reading this" guidance be the trigger for raising it again once routine rows grow (e.g., ~10-15).
 
-- [ ] Approved
-- [ ] Approved with edits
-- [ ] Rejected
+- [ ] ~~Approved~~
+- [ ] ~~Approved with edits~~
+- [x] **Rejected** — superseded by B, which keeps A's no-numeric-action stance and only replaces the implicit trigger with a checked one
 - [ ] Needs more research
 
 ### B. Set an explicit re-visit trigger now
 
 Same as A, but instead of leaving the threshold implicit in the rollup's generic prose, add a specific `revisit-trigger:` note (frontmatter or inline) on the rollup or on `estimating-pricing.md` — e.g., "revisit routine ft/hr derate once ≥10 routine mode-normalized rows exist" — so a future pre-staging or agent-review run has a mechanical condition to check instead of re-judging "is this enough data" from scratch each time.
 
-- [ ] Approved
-- [ ] Approved with edits
-- [ ] Rejected
-- [ ] Needs more research
+- [x] **Approved 2026-08-01 (Jesse)** — threshold set at 10 routine mode-normalized rows, made machine-checkable
+- [ ] ~~Approved with edits~~
+- [ ] ~~Rejected~~
+- [ ] ~~Needs more research~~
+
+**Placement note.** The trigger went on this review note, not on the rollup or `estimating-pricing.md`. The rollup carries the GENERATED marker and is rewritten by `estimating_rollup.py` on every run, so frontmatter added there would not survive; and `estimating-pricing.md` is the canonical pricing document, where a revisit field would sit next to the content it governs and invite exactly the "is this a rate?" misreading option C was rejected for. A resolved review note carrying a live trigger is the pattern the dormant-triggers table already expects — the field's presence puts it on the dashboard regardless of the note's status (`vault_health.py:87-91`).
 
 ### C. Build a coarse two-bucket derate now (hard-service vs clean-service)
 
 Rather than a fitted coefficient, split the existing qualitative list into two named buckets (hard: coker/crude/vacuum/pitch/restrictions vs clean: everything else) and attach the current means as *illustrative, not authoritative* reference points (hard ≈ 50 ft/hr, clean ≈ 85-260 ft/hr) directly in `estimating-pricing.md`, clearly labeled as provisional pending more data. This gets the seed data into the document where an estimator would see it, without claiming it's calibrated.
 
-- [ ] Approved
-- [ ] Approved with edits
-- [ ] Rejected
-- [ ] Needs more research
+- [ ] ~~Approved~~
+- [ ] ~~Approved with edits~~
+- [x] **Rejected** — no numeric figure enters the pricing document at n=5. The note's own counter-argument decides it: HP-0007's 51 ft/hr is routine service, not hard, and would land inside an illustrative "hard ≈ 50" range by coincidence, off a two-row bucket.
+- [ ] ~~Needs more research~~
 
 ## Risks and Counter-Arguments
 
@@ -71,10 +74,15 @@ Option A risks losing the observation entirely — "the rollup will surface it" 
 
 ## Decision
 
-Open — awaiting Jesse's disposition on A/B/C above.
+**B approved 2026-08-01 (Jesse). A and C rejected.** No numeric service derate at n=5 — the qualitative derate list in `estimating-pricing.md` stands unchanged, and no figure enters any pricing document. What changes is only the trigger: the "is this enough data yet" judgment is replaced by a counted threshold of 10 routine mode-normalized rows, evaluated on every health run, so no future session has to re-litigate data sufficiency from scratch.
+
+This is a Lane 4 topic, but the ruling makes no Lane 4 change — the derate model and every rate are untouched.
 
 ## Apply Log
 
 | Date | Action | By |
 |---|---|---|
 | 2026-07-31 | Note filed by pre-staging loop from `00-inbox/2026-07-22-routine-ftphr-baseline-established.md`; confirmed via `estimating-actuals-rollup.md` and `estimating-pricing.md` that no numeric service-derate exists yet (qualitative direction only); no vault content modified beyond the source marker | Claude (pre-staging loop) |
+| 2026-08-01 | **B applied.** `revisit-trigger:` added to this note's frontmatter with a `[machine: routine-rows>=10]` token; `status` → `resolved`. No edit to `estimating-pricing.md`, the rollup, or any rate. | Claude |
+| 2026-08-01 | **`routine-rows` token implemented in `tools/vault_health.py`.** Jesse approved a *machine-checkable* trigger, and an unrecognized `[machine: …]` token silently degrades to the event-shaped wording (`trigger_rows`, else branch) — the token would have looked checked without being checked. Added `TRIGGER_RR_RE` + `count_routine_rows()`, which parses the `routine` row of the rollup's condition table by cell (the rollup is GENERATED, so `collect_notes` skips it and it is read from disk). Returns `None` rather than 0 on an unreadable source, since 0 would read as "no routine actuals" and never fire. | Claude |
+| 2026-08-01 | DQ-005 moved to the decision-queue Closed table | Claude |
