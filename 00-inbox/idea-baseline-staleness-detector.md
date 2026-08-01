@@ -1,7 +1,9 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-07-28
+related:
+  - "[[2026-08-01-idea-research-baseline-staleness-detector]]"
 tags: [idea, vault-system, regression, future]
 ---
 
