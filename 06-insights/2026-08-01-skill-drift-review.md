@@ -147,7 +147,7 @@ Three things follow, and the middle one is the reason this finding was worth rai
 - [x] **V1:** ~~decide the reframing approach~~ — **ruled 2026-08-01:** general-explanation documents state no task durations at all. Applied to process-flow.md, and swept to V2 and V3.
 - [x] **V2 + V3:** applied under V1's ruling — see Apply Log
 - [x] **Open question 1 (soda ash supply):** ruled 2026-08-01 — generalized documents name no provider; `usadebusk-core`'s rule is behavioral and stands. See Part 4.
-- [ ] **M1:** run `/consolidate-memory`, or dismiss if the index staleness is judged too minor to bother with
+- [x] **M1:** `/consolidate-memory` run 2026-08-01 — index corrected to six loops, and the pass retired 2 merged-away files, closed a stale "open item" in the harness-audit memory that today's ruling had overtaken, and captured both of this session's rulings as new memories
 
 ## Apply Log
 
