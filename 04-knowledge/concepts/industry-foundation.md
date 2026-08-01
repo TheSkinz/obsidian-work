@@ -53,7 +53,7 @@ Why refineries need it: coke reduces heat transfer efficiency, increases tube sk
 
 **Carbon steel:** Standard process, no modification needed.
 
-**Stainless steel:** Requires passivation. Soda ash solution circulated through coil after mechanical cleaning to restore passive oxide layer. Customer typically provides soda ash or pre-mixes. USADebusk can supply if required. pH monitoring required throughout.
+**Stainless steel:** Requires passivation. Soda ash solution circulated through coil after mechanical cleaning to restore passive oxide layer. pH monitoring required throughout.
 - Target pH: maintained above ~10.0 during circulation
 - Circulation velocity: ~1–2 ft/s
 - Final flush to neutral pH before job closeout

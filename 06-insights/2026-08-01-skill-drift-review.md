@@ -131,14 +131,22 @@ And `04-knowledge/manual/15-ancillary-passivation-stainless.md:29`: `| Solution 
 
 Two recent and deliberate surfaces say customer-only; one older surface, inherited from the Master Reference decomposition, says USADebusk can supply. This is Lane 4 domain truth, so **no edit was made** — the duration removal (V2) landed regardless, since it is independent of who supplies the material. If customer-only is correct, `industry-foundation.md:56` needs its last sentence dropped. If USADebusk genuinely can supply on request, then `usadebusk-core`'s "end to end" overstates it and the fix runs the other direction, as a config-repo branch change rather than a vault edit.
 
+**RESOLVED 2026-08-01, in session — and neither branch of that guess was right.** Jesse: *"In a generalized document, don't mention who provides it. Context: We've provided it in the past, but it's not something I want to do. I made the rule that the customer always supplies it because when the rule wasn't in place you flagged or questioned it in almost everything we worked on. The instances where we supply and mix the soda ash is so rare with complications over the customer's preferences that I wanted to avoid the conversation all together."*
+
+Three things follow, and the middle one is the reason this finding was worth raising:
+
+1. **`industry-foundation.md:56` drops the provider question entirely** — both the "customer typically provides" sentence and the "USADebusk can supply if required" sentence. A generalized document does not name a provider at all. Applied.
+2. **`usadebusk-core:105` is a behavioral rule, not a factual claim, and it is correct as written.** USADebusk *has* supplied soda ash historically. The rule exists because without it the model flagged or questioned supply in nearly every piece of work, and the real-world cases are rare enough — and tangled enough in customer preference — that Jesse wants the conversation avoided rather than surfaced. **A future drift run that finds historical evidence of USADebusk supplying soda ash must not read that as core being wrong.** The skill is deliberately stating the operating rule, not the full factual picture.
+3. **The manual's `| Solution | Soda ash, customer-supplied and customer-mixed |`** (`manual/15-ancillary-passivation-stainless.md:29`) was **left alone** — it is a customer-facing deliverable, which per global CLAUDE.md is not modified without explicit confirmation, and there it functions as a scope statement to the customer, which serves the same avoid-the-conversation goal. Raised with Jesse separately rather than changed.
+
 ---
 
 ## Decision
 
-- [ ] **F1:** merge `drift/2026-08` (single README.md hash correction)
+- [x] **F1:** merge `drift/2026-08` (single README.md hash correction) — approved and merged 2026-08-01
 - [x] **V1:** ~~decide the reframing approach~~ — **ruled 2026-08-01:** general-explanation documents state no task durations at all. Applied to process-flow.md, and swept to V2 and V3.
 - [x] **V2 + V3:** applied under V1's ruling — see Apply Log
-- [ ] **Open question 1 (soda ash supply):** rule on whether USADebusk can ever supply, then fix whichever surface is wrong
+- [x] **Open question 1 (soda ash supply):** ruled 2026-08-01 — generalized documents name no provider; `usadebusk-core`'s rule is behavioral and stands. See Part 4.
 - [ ] **M1:** run `/consolidate-memory`, or dismiss if the index staleness is judged too minor to bother with
 
 ## Apply Log
@@ -150,3 +158,5 @@ Two recent and deliberate surfaces say customer-only; one older surface, inherit
 | 2026-08-01 | **V3 applied** — _cost-model.md:113 | Claude | Reworded, not deleted, so the rate-link anomaly's impact argument survives: "Rig-out runs a handful of hours on any job (the no-job-walk fallback tiers span 4 to 12 hrs)". The anomaly finding itself is untouched. Flagged as Lane 4 because it sits in the cost model, though no rate or margin figure changed. |
 | 2026-08-01 | **decoking-method-comparison.md:26 left unchanged** | Claude | Deliberate. Third-party AFPM/Marathon benchmark, web-verified, load-bearing for the steam-air comparison, and protected by that file's own line 48. Recorded in Part 2b so a future sweep does not re-litigate it. |
 | 2026-08-01 | **Soda-ash supply contradiction flagged, not fixed** | Claude | Lane 4 domain truth, not settleable from files. Filed as Part 4 open question 1. V2 landed independently of it. |
+| 2026-08-01 | **Open question 1 ruled; industry-foundation.md:56 stripped of provider language** | Claude | Both provider sentences removed — a generalized document names no provider. `usadebusk-core:105` left unchanged and recorded as a *behavioral* rule rather than a factual claim, so a future run does not "correct" it on historical evidence. Manual left alone (customer-facing deliverable). |
+| 2026-08-01 | **`drift/2026-08` merged to config `main`** | Claude | Jesse approved. Single-commit branch (`db558d3`, F5 hash correction). Merged, not rebased; branch retained per the vault-wide deletion ban. |
