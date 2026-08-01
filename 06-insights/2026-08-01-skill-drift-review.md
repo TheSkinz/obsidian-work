@@ -21,7 +21,9 @@ Scheduled fire of the `vault-skill-drift-loop` task. Window: everything since th
 
 Config repo was clean on `main` at start (`git -C ~/.claude fetch` + `status` confirmed). The prior `drift/2026-07b` branch's review note carries `status: decided-blocked` with nothing pending (F1/F2/F5/F6 applied to `main` by hand, F3 rejected, F4 held-then-resolved via `f2b87e4`) — per the loop spec's Branch States table, a terminal-status note means the branch is a record, not a backlog, so branch creation was **not** skipped. This run's branch is `drift/2026-08`.
 
-Three findings: one regression-suite (proposed on the branch), one vault-side (no branch — this loop does not edit vault content beyond this note), one memory-side (read-only, flagged only). No finding is proposed without a quoted line.
+Five findings and one open question: one regression-suite (F1, proposed on the branch), three vault-side (V1–V3), one memory-side (M1, read-only, flagged only). No finding is proposed without a quoted line.
+
+**The loop itself wrote only this note and the branch.** V1 was raised as a finding with no edit proposed, per the loop's zero-authority-over-vault-content rule. Jesse then ruled on it in the same session, and V2 and V3 were found and applied by that interactive session under his ruling — not by the loop. The Apply Log distinguishes them.
 
 ---
 
@@ -48,7 +50,7 @@ Three findings: one regression-suite (proposed on the branch), one vault-side (n
 
 ## Part 2 — Vault-side drift (no branch; this loop does not edit vault content)
 
-### V1 · process-flow.md states Rig-In/Rig-Out durations the SOP skill explicitly forbids stating — MEDIUM · Lane 4 (estimating/domain-truth)
+### V1 · process-flow.md states Rig-In/Rig-Out durations the SOP skill explicitly forbids stating — MEDIUM · Lane 4 (estimating/domain-truth) — **RESOLVED**
 
 `04-knowledge/concepts/process-flow.md:9`:
 
@@ -68,6 +70,32 @@ Two separate problems, not one. First, the plain contradiction: the vault note s
 **Evidence this is already known and open, not new:** `change-log.md`'s 2026-07-31 entry (manual-creation commit `1f5ccbd`) states verbatim: *"Still open: `process-flow.md` lines 9 and 31 keep the 'default 6 hrs' language that contradicts the SOP skill — the manual sidesteps it by omitting durations, but the contradiction is live in the vault and reframing those lines as estimating-model data needs a separate go-ahead."* This finding restates that open item with current line numbers and the additional pass-count problem, since it survived the manual build unresolved.
 
 **Not proposed as an edit** — this is vault content, which is outside this loop's writes, and the change-log entry itself flags it as needing Jesse's go-ahead on the reframing approach (strip entirely vs. reframe as a pointer with no numbers, matching the SOP skill's own phrasing). Surfacing it here so it doesn't keep aging past the person who already flagged it.
+
+**RESOLVED 2026-08-01, in session.** Jesse ruled: *"No need to mention durations for a document / concept intended to give a general explanation on a task. Giving a specific number would imply all scopes / rig-in times are the same. They are not."* Both lines now carry the SOP skill's own construction with no figure. The ruling is general, so a sweep applied it to one sibling instance and corrected one factual descendant of the same root cause — see the Apply Log.
+
+### V2 · industry-foundation.md states a passivation circulation duration — LOW · Lane 2
+
+`04-knowledge/concepts/industry-foundation.md:59` (before this session):
+
+> - Duration: typically 4–6 hours
+
+Same defect class as V1, in the stainless passivation parameter list. **Evidence it is stale rather than deliberate:** `04-knowledge/manual/15-ancillary-passivation-stainless.md:27-33` carries this same parameter table — target pH, circulation velocity, final condition, governing specification — and drops the duration row entirely, consistent with `00-manual-index.md:21`'s explicit no-durations rule. The concepts note was never updated when the manual was built. **Applied 2026-08-01** under V1's ruling; the remaining four bullets now match the manual.
+
+### V3 · _cost-model.md asserts a fixed 6-hr rig-out on every job — MEDIUM · Lane 4 (pricing analysis)
+
+`04-knowledge/pricing/_cost-model.md:113` (before this session):
+
+> Rig-out is a fixed ~6 hr event on essentially every job, so the error is small per job but systematic across all of them.
+
+Not a general-explanation document, so V1's ruling does not reach it — but it carries the same claim in its strongest, most universalizing form, and it is wrong on the merits against `usadebusk-estimating/SKILL.md:68`'s current fallback tiers (Small 4 / Moderate 6 / Large 8 / Very large 12) and the launcher-elevation tiering that replaced the flat default. Same root cause as V1: both predate the tiered model.
+
+The sentence is sizing the dollar impact of the rig-out/stand-by rate-link anomaly, so the argument had to survive. **Reworded, not deleted,** 2026-08-01 — the anomaly finding itself is untouched.
+
+---
+
+## Part 2b — Deliberately not changed
+
+`04-knowledge/concepts/decoking-method-comparison.md:26` states `| Cleaning window | ~18–24 hr (coker) |`. This surfaced in the same sweep and was **left alone deliberately.** It is a third-party attributed benchmark — Marathon Petroleum via AFPM Question 74, web-verified 2026-07-22 and quoted verbatim at that file's line 40 — not USADebusk stating its own scope duration, and it is load-bearing for the pigging-vs-steam-air argument. That file's line 48 explicitly directs "Use only the verified ~18–24 hr pigging figure (AFPM)" as a guard against uncorroborated inflated case-history numbers. Removing it would gut the document's purpose and re-open the door that guard closes. Recorded here so a future sweep does not re-litigate it.
 
 ---
 
@@ -91,16 +119,34 @@ The topic file itself is current. Only the one-line index restatement in `MEMORY
 
 ## Part 4 — Open questions (not settleable from files; no edits proposed)
 
-None this run — the process-flow.md reframing (V1) already has an owner and an explicit "needs a separate go-ahead" flag from the 2026-07-31 change-log entry, so it's carried as a finding rather than a new open question.
+**1. Does USADebusk ever supply the soda ash?** Surfaced while editing the passivation block for V2, and not settleable from files. `04-knowledge/concepts/industry-foundation.md:56`:
+
+> Customer typically provides soda ash or pre-mixes. **USADebusk can supply if required.**
+
+Against `~/.claude/skills/usadebusk-core/SKILL.md:105`:
+
+> USADebusk doesn't supply the soda ash or perform the passivation, and does not provide or mix the soda ash / low-chloride water — **it's customer scope, end to end.**
+
+And `04-knowledge/manual/15-ancillary-passivation-stainless.md:29`: `| Solution | Soda ash, customer-supplied and customer-mixed |`.
+
+Two recent and deliberate surfaces say customer-only; one older surface, inherited from the Master Reference decomposition, says USADebusk can supply. This is Lane 4 domain truth, so **no edit was made** — the duration removal (V2) landed regardless, since it is independent of who supplies the material. If customer-only is correct, `industry-foundation.md:56` needs its last sentence dropped. If USADebusk genuinely can supply on request, then `usadebusk-core`'s "end to end" overstates it and the fix runs the other direction, as a config-repo branch change rather than a vault edit.
 
 ---
 
 ## Decision
 
 - [ ] **F1:** merge `drift/2026-08` (single README.md hash correction)
-- [ ] **V1:** decide the process-flow.md reframing approach (strip durations entirely to match the SOP skill's silence-on-hours convention, vs. reframe as a bare pointer to the Duration Model with no numbers) and apply in the vault
+- [x] **V1:** ~~decide the reframing approach~~ — **ruled 2026-08-01:** general-explanation documents state no task durations at all. Applied to process-flow.md, and swept to V2 and V3.
+- [x] **V2 + V3:** applied under V1's ruling — see Apply Log
+- [ ] **Open question 1 (soda ash supply):** rule on whether USADebusk can ever supply, then fix whichever surface is wrong
 - [ ] **M1:** run `/consolidate-memory`, or dismiss if the index staleness is judged too minor to bother with
 
 ## Apply Log
 
-*(empty — awaiting Jesse's decisions above)*
+| Date | Action | By | Notes |
+|---|---|---|---|
+| 2026-08-01 | **V1 applied** — process-flow.md lines 9 and 31 | Claude | Both headers now read `*(fixed event — hours and scheduling belong to the estimate, not this note; see the Duration Model in usadebusk-estimating)*`, mirroring `usadebusk-sop/SKILL.md:12` verbatim so the two surfaces read as one rule. Dropped the "6 hrs" figures, the rejected pass-count driver, and the Mob/Demob 12-hour disambiguation, which existed only to guard a number that no longer appears. |
+| 2026-08-01 | **V2 applied** — industry-foundation.md:59 | Claude | `- Duration: typically 4–6 hours` deleted. The remaining four passivation bullets now match `manual/15-ancillary-passivation-stainless.md`'s parameter table exactly. |
+| 2026-08-01 | **V3 applied** — _cost-model.md:113 | Claude | Reworded, not deleted, so the rate-link anomaly's impact argument survives: "Rig-out runs a handful of hours on any job (the no-job-walk fallback tiers span 4 to 12 hrs)". The anomaly finding itself is untouched. Flagged as Lane 4 because it sits in the cost model, though no rate or margin figure changed. |
+| 2026-08-01 | **decoking-method-comparison.md:26 left unchanged** | Claude | Deliberate. Third-party AFPM/Marathon benchmark, web-verified, load-bearing for the steam-air comparison, and protected by that file's own line 48. Recorded in Part 2b so a future sweep does not re-litigate it. |
+| 2026-08-01 | **Soda-ash supply contradiction flagged, not fixed** | Claude | Lane 4 domain truth, not settleable from files. Filed as Part 4 open question 1. V2 landed independently of it. |

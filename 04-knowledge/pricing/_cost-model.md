@@ -110,7 +110,7 @@ Blended workup margin ranged 42.0%–54.5% across the six files, with DSP26058 a
 
 ## Known anomalies — verify before relying on these lines
 
-**Rig-out cost chains from stand-by, not ops.** In the workbook the rig-out cost rate links to the stand-by rate ($100/hr) rather than the ops rate ($184/hr): `AD26=184 → … → AD30=100 → AD31=AD30`. If rig-out genuinely consumes the same resources as rig-in, this understates rig-out cost by $84/hr and overstates that line's margin on every job. Unresolved — either intentional or a link error. Rig-out is a fixed ~6 hr event on essentially every job, so the error is small per job but systematic across all of them.
+**Rig-out cost chains from stand-by, not ops.** In the workbook the rig-out cost rate links to the stand-by rate ($100/hr) rather than the ops rate ($184/hr): `AD26=184 → … → AD30=100 → AD31=AD30`. If rig-out genuinely consumes the same resources as rig-in, this understates rig-out cost by $84/hr and overstates that line's margin on every job. Unresolved — either intentional or a link error. Rig-out runs a handful of hours on any job (the no-job-walk fallback tiers span 4 to 12 hrs), so the error is small per job but systematic across all of them.
 
 **Filter stand-by bill rate is inconsistent within one facility.** DSP26071.2 bills filter stand-by at $35/hr; other Exxon Baytown workups bill it at $150/hr against the same $20/hr cost. That is a 4× spread on the same line at the same site. Either a negotiated difference or an error worth catching.
 

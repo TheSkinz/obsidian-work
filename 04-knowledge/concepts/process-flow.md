@@ -6,7 +6,7 @@
 
 ## Full decoking sequence
 
-**Rig-In (fixed event; default 6 hrs, duration varies by pass count and access complexity — see Duration Model in `usadebusk-estimating`. The 12-hour simultaneous Day/Night framing belongs to Mob/Demob, a separate event.)**
+**Rig-In** *(fixed event — hours and scheduling belong to the estimate, not this note; see the Duration Model in `usadebusk-estimating`)*
 1. Position Trimax pumper, clean tank, dirty tank adjacent to heater
 2. Install pig launchers on convection inlet flanges (adapters as required)
 3. Install pig receivers on radiant outlet flanges (adapters as required)
@@ -28,7 +28,7 @@
 9. Run AFTER flow test (same RPM vs PSI vs GPM) — after final pig pass
 10. Log all data on service receipt
 
-**Rig-Out (fixed event; default 6 hrs, duration varies — see Duration Model)**
+**Rig-Out** *(fixed event — hours and scheduling belong to the estimate, not this note; see the Duration Model in `usadebusk-estimating`)*
 - Remove launchers, receivers, all hoses and surface equipment
 - Reconnect customer flanges, clean site
 

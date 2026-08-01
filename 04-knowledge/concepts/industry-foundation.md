@@ -56,7 +56,6 @@ Why refineries need it: coke reduces heat transfer efficiency, increases tube sk
 **Stainless steel:** Requires passivation. Soda ash solution circulated through coil after mechanical cleaning to restore passive oxide layer. Customer typically provides soda ash or pre-mixes. USADebusk can supply if required. pH monitoring required throughout.
 - Target pH: maintained above ~10.0 during circulation
 - Circulation velocity: ~1–2 ft/s
-- Duration: typically 4–6 hours
 - Final flush to neutral pH before job closeout
 - Chloride limits: fresh solution ≤250 ppm, spent solution ≤500 ppm, verify <0.5 ppm before fill
 
