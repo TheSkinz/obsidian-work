@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — 50-dashboards/decision-queue.md structure/governance; capture loop cannot write this content. -->
 ---
 type: note
 status: inbox

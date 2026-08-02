@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — tools/vault_lint.py + health.md severity-tiering; capture loop cannot write this content. -->
 ---
 type: note
 status: inbox
