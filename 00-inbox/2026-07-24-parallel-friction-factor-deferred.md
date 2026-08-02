@@ -1,4 +1,5 @@
 <!-- vault-loop: operational — duration-model pricing question, Lane 4 (04-knowledge scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
+<!-- vault-prestaged: skipped — already covered by the `usadebusk-estimating` skill (config commit 71efec5, Jesse 2026-07-28): parallel-friction is now a written 25-40% band applied to any multi-circuit pass set, replacing the "deliberately left unpriced" state this note describes. The note's own revisit-trigger (a 3rd/4th routine multi-pass row) never fired — Jesse ruled a bounded range off the existing 2-row evidence instead of waiting on more rows -->
 ---
 type: note
 status: inbox

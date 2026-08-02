@@ -1,4 +1,5 @@
 <!-- vault-loop: operational — Baytown quote-note field backfill and rate-basis reconciliation (02-facilities scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
+<!-- vault-prestaged: skipped — execution correction, needs doing not deciding. Confirmed DSP24005.md, DSP26058.md and DSP26030_H28_H29.md still carry no contract-type field (checked 2026-08-02). Both items are read-the-source-doc-and-fill-the-field / check-the-contract tasks with no open question for Jesse to weigh, not decisions. -->
 ---
 type: note
 status: open

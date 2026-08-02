@@ -1,4 +1,5 @@
 <!-- vault-loop: operational — heater-card/facility table-schema and lint-rule decisions (02-facilities, 04-knowledge scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
+<!-- vault-prestaged: 2026-08-02-prestaged-over-wide-tables-remainder.md -->
 ---
 type: idea
 status: unexplored

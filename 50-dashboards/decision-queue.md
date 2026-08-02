@@ -21,8 +21,9 @@ The single place every open decision lives. One row per open ask — not one not
 
 | id | opened | source | ask | risk | age (d) | status |
 |---|---|---|---|---|---|---|
+| DQ-006 | 2026-08-02 | [[2026-08-02-prestaged-over-wide-tables-remainder]] | Should `_directory.md`'s narrative-width Facilities table be trimmed to an index (pushing prose to each `_facility.md`), and should the new 11-column Tube Geometry header get a `TUBE-GEOM-HEADER` lint lock like `DURATIONS-HEADER`? | med | 0 | open |
 
-**0 open rows** as of 2026-08-01.
+**1 open row** as of 2026-08-02.
 
 ## Closed
 

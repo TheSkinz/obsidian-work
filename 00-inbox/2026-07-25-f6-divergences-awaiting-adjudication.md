@@ -1,4 +1,5 @@
 <!-- vault-loop: operational — estimating regression fixture divergences awaiting Jesse's call, Lane 4 (04-knowledge, usadebusk-estimating scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
+<!-- vault-prestaged: skipped — already covered by the `usadebusk-estimating` skill (config commit 71efec5, Jesse 2026-07-28). Both "STILL OPEN" sub-questions are answered in the skill's Rig-In/Rig-Out section: the pipefitter adder stacks on top of the tier rather than promoting it (Large 8 + 2 = 10), and rig-out mirrors rig-in at the WHOLE figure including adders, not the bare tier — the earlier run's tier-only mirroring was ruled wrong. -->
 ---
 type: note
 status: open

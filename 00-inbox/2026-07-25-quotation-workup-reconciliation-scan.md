@@ -1,4 +1,5 @@
 <!-- vault-loop: operational — quotation-vs-workup reconciliation audit and generator defects, Lane 4 (02-facilities, usadebusk-estimating scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
+<!-- vault-prestaged: skipped — already covered, both generator defects fixed same day in config commit 677d447 (Jesse 2026-07-25, ~48 min after this note): extract_workup.py now emits a CONFIRM (J field) flag on mob/demob instead of treating the workup amount as quotable, and the reconciliation flag treats an exact-multiple-of-mob/demob gap as expected/non-blocking rather than "do not send." The DSP26026/DSP26058 items in this note were also separately closed inline. -->
 ---
 type: note
 status: open
