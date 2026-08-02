@@ -1,7 +1,9 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-07-29
+related:
+  - "[[2026-08-02-idea-research-business-normal-register]]"
 tags: [idea, vault-system, future, estimating]
 ---
 
