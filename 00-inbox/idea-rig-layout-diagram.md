@@ -1,11 +1,12 @@
 ---
 type: idea-seed
-status: unexplored
+status: gated
 created: 2026-07-30
-revisit-trigger: "Coil-visualization Tier 2+3 build lands (approved 2026-08-01, owed at [[2026-08-01-coil-visualization-build-owed]]) -> research the rig/hose layout diagram against the render path that build establishes — event: check when the coil-viz SVG generator exists"
+revisit-trigger: "Coil-visualization Tier 2+3 build lands (approved 2026-08-01, owed at [[2026-08-01-coil-visualization-build-owed]]) -> research the rig/hose layout diagram against the render path that build establishes — event: check when the coil-viz SVG generator exists (verified still unbuilt 2026-08-03, tools/ has no such generator)"
 related:
   - "[[2026-07-30-exploration-coil-visualization-for-crews]]"
   - "[[idea-coil-visualization-for-crews]]"
+  - "[[2026-08-03-idea-research-rig-layout-diagram]]"
 tags: [idea, field-ops, job-sheet, visualization, sop, future]
 ---
 
