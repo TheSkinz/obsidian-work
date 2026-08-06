@@ -22,8 +22,9 @@ The single place every open decision lives. One row per open ask — not one not
 | id | opened | source | ask | risk | age (d) | status |
 |---|---|---|---|---|---|---|
 | DQ-006 | 2026-08-02 | [[2026-08-02-prestaged-over-wide-tables-remainder]] | Should `_directory.md`'s narrative-width Facilities table be trimmed to an index (pushing prose to each `_facility.md`), and should the new 11-column Tube Geometry header get a `TUBE-GEOM-HEADER` lint lock like `DURATIONS-HEADER`? | med | 0 | open |
+| DQ-007 | 2026-08-06 | [[2026-08-06-prestaged-checkbox-delta-trigger]] | Should `CHECKBOX-DELTA` gain an unprompted trigger (fold `--worktree` into the daily loops, add an ungated PreToolUse hook, add a session-start check) or stay manual-only? | med | 0 | open |
 
-**1 open row** as of 2026-08-02.
+**2 open rows** as of 2026-08-06.
 
 ## Closed
 

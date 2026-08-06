@@ -1,4 +1,5 @@
 <!-- vault-loop: operational — lint-rule trigger design decision for tools/vault_lint.py and ~/.claude hooks (04-knowledge, tooling scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
+<!-- vault-prestaged: 2026-08-06-prestaged-checkbox-delta-trigger.md -->
 ---
 type: finding
 status: open
