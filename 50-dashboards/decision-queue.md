@@ -24,8 +24,9 @@ The single place every open decision lives. One row per open ask — not one not
 | DQ-006 | 2026-08-02 | [[2026-08-02-prestaged-over-wide-tables-remainder]] | Should `_directory.md`'s narrative-width Facilities table be trimmed to an index (pushing prose to each `_facility.md`), and should the new 11-column Tube Geometry header get a `TUBE-GEOM-HEADER` lint lock like `DURATIONS-HEADER`? | med | 0 | open |
 | DQ-007 | 2026-08-06 | [[2026-08-06-prestaged-checkbox-delta-trigger]] | Should `CHECKBOX-DELTA` gain an unprompted trigger (fold `--worktree` into the daily loops, add an ungated PreToolUse hook, add a session-start check) or stay manual-only? | med | 0 | open |
 | DQ-008 | 2026-08-07 | [[2026-08-07-prestaged-f4-instruction-density-second-fixture]] | Should the F4 (SOP) instruction-density arm test run now to corroborate the F5 finding, get filed as owed work like the three existing `-owed` notes, or be dropped at n=1? | low | 0 | open |
+| DQ-009 | 2026-08-08 | [[2026-08-08-prestaged-f6-rig-tier-decision]] | Should F6's ambiguous launcher-access wording be amended to make the rig-in tier deterministic, ruled as judgment (naming the expected tier on the current wording), or left open as bounded, documented noise? | med | 0 | open |
 
-**3 open rows** as of 2026-08-07.
+**4 open rows** as of 2026-08-08.
 
 ## Closed
 
