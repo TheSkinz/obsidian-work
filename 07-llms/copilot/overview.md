@@ -91,3 +91,57 @@ Copilot Chat does not have durable access to prior chat history across sessions.
 ## Structured output preference
 
 For multi-item status, comparisons, and project tracking: prefer ini/yaml-style or tabular structured output over verbose Markdown prose. Structured output is scannable, diff-able, and copy-pasteable into downstream tools. Default to this format whenever output will be reviewed quickly or reused.
+
+---
+
+# Verified Copilot mechanics — 2026-08-10
+
+Established against Microsoft Learn during the Furnace Decoking knowledge-base design session. Version-sensitive; re-verify before relying on the numbers. Docs: [semantic indexing](https://learn.microsoft.com/en-us/microsoftsearch/semantic-index-for-copilot), [agent knowledge sources](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/agent-builder-add-knowledge).
+
+## Three surfaces, and only two take instructions
+
+The single most confusing thing about this ecosystem, and the source of a session's worth of talking past each other:
+
+| Surface | What it is | Instruction field | Scope |
+|---|---|---|---|
+| **Copilot in SharePoint** — the right-hand "Ask a question about this site" panel | First-party, built in, not user-created | **None.** It says so itself. | Whole site, fixed |
+| **SharePoint agent** — a `.agent` file you create | User-created; editor has Identity / Sources / **Behavior** | **Yes** — Behavior holds welcome message, starter prompts, instructions | Whatever you point it at |
+| **M365 Copilot desktop/web app** | Tenant-wide chat | Custom instructions | Everything your account can reach — **not scopable** |
+
+`.agent` files land in `Site Assets > Copilots` when created from the site homepage, or in the current library folder when created from a library. When the site panel offers to store "site instructions" or "reusable skills" as files, that is the retrieved-as-knowledge anti-pattern, not a real instruction field — Microsoft's declarative-agent guidance says instructions belong in the instruction field because knowledge content is not trusted instruction content.
+
+## `.md` is not an indexed file type
+
+Semantic index supported types: **doc/docx, pptx, pdf, aspx, one**, plus connector data. Agent Builder embedded files add **.txt, .html, .xls/.xlsx**. **Markdown appears in neither list.**
+
+A SharePoint agent may still *open* a `.md` file when it enumerates a library — direct file access and semantic retrieval are different paths, which is why an agent will claim it "reads .md fine." The failure mode is the dangerous one: content that looks loaded but never ranks in retrieval. **Convert vault notes to `.docx` or `.pdf` before uploading**, and strip YAML frontmatter on export so the columns are the only copy of the schema.
+
+## Column metadata is a real retrieval signal — but only when scoped
+
+Direct from the docs: *"associated column metadata can be incorporated as signals during retrieval when a query is scoped to a specific library or folder,"* and attaching a library or folder means grounding *"uses the library's column metadata alongside file content to constrain and rank results."*
+
+This is the fact that makes a column schema worth building **and** confines its value to the scoped-agent case. It buys nothing for a broad desktop-app query. Two conditions: documented as available on the web experience, and the site must stay searchable (`Site settings > Search and offline availability`). This supersedes nothing in the flat-index note above — folder *nesting* still buys nothing; *columns* do.
+
+## Limits and cadence
+
+Per agent: **100** SharePoint files/folders/sites · **50** OneDrive files · **1** SharePoint list · **20** uploaded embedded files · 4 public URLs · 5 Teams chats. Selecting a site does **not** include its lists — a list must be added by its own URL. A list caps at 20,000 items and 50 MB raw text.
+
+Indexing: new documents on a site accessible to **two or more users index daily**; updates to already-indexed documents are immediate. Run any retrieval eval the next day, not the same afternoon.
+
+## Agent Builder cannot block fabrication
+
+The **"Only use specified sources"** toggle *prioritizes* rather than blocks — Microsoft states plainly that Agent Builder can't fully block general AI knowledge and that stricter control requires **Copilot Studio**. So a fabrication probe in an eval is a calibration measurement, not a pass/fail on the platform, and persistent leakage is the documented trigger to evaluate Studio.
+
+Also: if **Restricted SharePoint Search** is ever enabled tenant-wide, SharePoint stops working as a knowledge source entirely.
+
+## No API path exists
+
+The MCP registry has **no SharePoint, Microsoft Graph, M365, OneDrive, or Outlook connector** (searched 2026-08-10, zero results). Reaching the tenant programmatically is not available; browser automation via Chrome integration is the only route — see [[code]].
+
+## Furnace Decoking site — as-found
+
+`usadebusk.sharepoint.com/sites/FurnaceDecoking` · private group, Jesse owner, **Jason Harman, Travis Trenholm, James Lee** members (all Edit via the Members group). Libraries as of 2026-08-10: `Copilot Knowledge` (43 items, unexplained), `Knowledge Vault` (21 items, a throwaway test build), `Documents` (empty), `Site Assets` (10), `Site Pages` (4). An admin policy applies **Deny: Add and Customize Pages** on top of Full Control, which likely takes Copilot Pages off the table here and proves tenant policy is in play that Jesse doesn't control.
+
+**Pricing boundary note:** Jason and Travis are inside the Jason/Marshall/Travis cost-basis circle; **James Lee is not.** Jesse ruled the site 100% trusted on 2026-08-10, so this is a sanctioned exception rather than a violation — recorded so a future drift run doesn't read it as one.
+
+**Build plan:** `~/.claude/plans/create-a-new-session-effervescent-papert.md` — seven phases, library-scoped SharePoint agent, vault stays canonical as a one-way projection.
