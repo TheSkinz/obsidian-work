@@ -1,4 +1,5 @@
 <!-- vault-loop: operational — quote-note-vs-bid-folder staleness check design, overlapping Lane 4 reconciliation work (02-facilities, 04-knowledge, health-dashboard scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
+<!-- vault-prestaged: 2026-08-10-prestaged-quote-note-bid-folder-staleness.md -->
 ---
 type: capture
 status: open
