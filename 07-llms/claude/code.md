@@ -232,6 +232,22 @@ Useful property for vault-adjacent work: in plan mode, read-only browser calls (
 
 Docs: `code.claude.com/docs/en/chrome`. Source: Claude Code session, 2026-08-10 (SharePoint knowledge-base design session).
 
+**Connection is a separate step from installation, and two failures mean stop.** Tool *schemas* can register in a session while the extension is still unreachable — that is not a connected integration. Verified 2026-08-10: extension present, both native-messaging registry keys present, CLI current, and `tabs_context_mcp` still returned "Claude in Chrome is not connected" twice. The link that installation does not cover is **signing in to the Claude side panel inside Chrome with the same account as the app**; Chrome must also be running, and its service worker goes idle on long sessions (`/chrome` → "Reconnect extension"). A session classified as a *scheduled run* appears unable to connect at all — computer-use refused in the same session with "can't be approved during a scheduled run," which does not lift from inside it. Do browser work in an interactive session.
+
+## `claude install` deletes the working npm global and replaces it with nothing
+
+**Never run `claude install`, and decline any prompt offering to migrate to the native installer.** On Windows 11, a working `npm install -g @anthropic-ai/claude-code` is destroyed by it: `claude` stops being recognized in PowerShell, `~/.local/bin/claude` does not exist, and the npm global package is gone. Hit on this machine 2026-08-10.
+
+The mechanism ([issue #26173](https://github.com/anthropics/claude-code/issues/26173)): the native installer runs `installLatest`, which reports success; `setupLauncher` then fails to create the native launcher but only logs a warning instead of erroring; because step one already reported success, cleanup runs `npm uninstall -g @anthropic-ai/claude-code`. The working install is deliberately removed and nothing replaces it. [Issue #22372](https://github.com/anthropics/claude-code/issues/22372) is the Windows-specific report — labeled `bug`, `has repro`, `platform:windows`, closed as *not planned*, still unresolved.
+
+**Recovery:** `npm install -g @anthropic-ai/claude-code`.
+
+**Diagnostic trap worth remembering:** an empty or absent `.local\bin` reads like disproof of the migration theory, but in this bug it is the *symptom* — creating that directory is exactly the step that fails. And the removal looks clean rather than crash-like because it was a real `npm uninstall -g`.
+
+Related and still open: [#28625](https://github.com/anthropics/claude-code/issues/28625) and [#56399](https://github.com/anthropics/claude-code/issues/56399) — `claude update` misdetects install types and replaces them. Be wary of anything offering to change *how* Claude Code is installed rather than updating it in place.
+
+Source: Claude Code session, 2026-08-10. CLI 2.1.220, Windows 11. Re-check whether these issues have been fixed before assuming the ban still applies.
+
 ## `claude install` silently destroys an npm-global install — stay on npm on this machine
 
 **What happened.** On 2026-08-10 the `claude` command stopped resolving in PowerShell on LINDA2 — `CommandNotFoundException`, despite `C:\Users\Jwuts\AppData\Roaming\npm` being present on the persisted user PATH and prepended again by the PowerShell profile. The cause was not PATH: Claude Code was simply not installed. `npm ls -g --depth=0` listed only `npm@11.14.1`, the `npm` global directory held only `npm*`/`npx*` shims dated 5/16/2026, and `%USERPROFILE%\.local\bin` did not exist. `npm install -g @anthropic-ai/claude-code` restored it in 3 seconds (now `2.1.220`).
