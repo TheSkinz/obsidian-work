@@ -232,6 +232,26 @@ Useful property for vault-adjacent work: in plan mode, read-only browser calls (
 
 Docs: `code.claude.com/docs/en/chrome`. Source: Claude Code session, 2026-08-10 (SharePoint knowledge-base design session).
 
+## `claude install` silently destroys an npm-global install — stay on npm on this machine
+
+**What happened.** On 2026-08-10 the `claude` command stopped resolving in PowerShell on LINDA2 — `CommandNotFoundException`, despite `C:\Users\Jwuts\AppData\Roaming\npm` being present on the persisted user PATH and prepended again by the PowerShell profile. The cause was not PATH: Claude Code was simply not installed. `npm ls -g --depth=0` listed only `npm@11.14.1`, the `npm` global directory held only `npm*`/`npx*` shims dated 5/16/2026, and `%USERPROFILE%\.local\bin` did not exist. `npm install -g @anthropic-ai/claude-code` restored it in 3 seconds (now `2.1.220`).
+
+**Root cause, per upstream.** [anthropics/claude-code#22372](https://github.com/anthropics/claude-code/issues/22372) is the Windows 11 report — a working npm install breaks after running `claude install`, and `claude` stops being recognized; labeled `bug`, `has repro`, `platform:windows`, closed as not planned and still unresolved. [#26173](https://github.com/anthropics/claude-code/issues/26173) documents the mechanism: `installLatest` reports success, `setupLauncher` then fails *silently* to create the native launcher and only logs a warning instead of erroring, so the cleanup routine runs `npm uninstall -g @anthropic-ai/claude-code` anyway. The user's working install is deliberately removed and nothing replaces it. Related open reports show `claude update` misdetecting install type and replacing it ([#28625](https://github.com/anthropics/claude-code/issues/28625), [#56399](https://github.com/anthropics/claude-code/issues/56399)).
+
+**Standing rule for this machine.** Stay on the npm install. Do not run `claude install`, and do not accept a prompt offering to migrate to the native installer — anything that changes *how* Claude Code is installed, as opposed to updating it in place, is the hazard. Recovery is one command: `npm install -g @anthropic-ai/claude-code`.
+
+**Diagnostic signature, for next time.** Run `npm ls -g --depth=0` first. Package absent with no leftover `node_modules\@anthropic-ai` directory means it was uninstalled this way — reinstall. Package listed but the binary missing means an antivirus quarantine instead, which needs a Defender exclusion, not a reinstall. A clean removal with no wreckage rules quarantine out; that distinction is what separates the two failure modes.
+
+Source: Claude Code session, 2026-08-10 (install troubleshooting). Verified against the live machine and the four issues linked above.
+
+## My tool shell sees a virtualized filesystem — Jesse's terminal is authoritative
+
+Established during the same 2026-08-10 session, and load-bearing for any future troubleshooting. The shell backing my Bash tool — and any `powershell.exe` I spawn from it — does **not** see the same filesystem as Jesse's own terminal, on the same host and the same account. Throughout the session above it listed `claude`, `claude.cmd`, `claude.ps1` and a 266 MB `claude.exe` under `%APPDATA%\npm` dated Jul 29, and I cited that for six rounds as proof the install was fine. His real shell, standing in that exact directory with `dir` unaliased and `(Get-Item .).FullName` confirmed, saw only the `npm*`/`npx*` shims. The install did not exist. A corroborating tell: my `whoami` returned bare `Jwutsey`, while real `whoami.exe` always prints `domain\user` (his printed `linda2\jwutsey`) — so even that was not the system binary.
+
+Two consequences. **His terminal output wins any disagreement about machine state**; when his output contradicts mine, my environment is the suspect. And **the Run button on fenced ` ```bash ` blocks executes in that same sandbox, in the project cwd** — not in his window. The giveaway is the prompt path silently changing to the project directory. A clicked `npm install -g` installs into the sandbox rather than onto the machine, so commands meant for his shell get delivered as inline code to type by hand. Note that inline code is also necessary for a second reason: bare prose is markdown-processed, and `\.` is an escape that renders as `.`, which silently corrupted a Windows path twice in one session.
+
+Source: Claude Code session, 2026-08-10 (install troubleshooting).
+
 ## Links
 
 - Config repo: https://github.com/TheSkinz/claude-config
