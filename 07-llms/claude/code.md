@@ -214,6 +214,24 @@ Caution carried alongside the above: star counts in these listicles are not trus
 
 Source: Claude Code session `c58875e7`, 2026-08-08 (exploratory session, no build action taken).
 
+## Chrome integration is the only path to authenticated web apps, and it's already installed
+
+Reaching an authenticated web app — the Furnace Decoking SharePoint site, Outlook web, anything behind M365 SSO — has exactly one working path: **Claude Code's Chrome integration**. Verified 2026-08-10, all three alternatives are dead ends.
+
+**What doesn't work.** The `Claude_Browser` preview pane opens an isolated context with no session sharing — navigating to `usadebusk.sharepoint.com` lands on `login.microsoftonline.com`, and routing credentials through a Claude-controlled browser is never the answer. `WebFetch` fails on authenticated URLs by design. The **computer-use MCP** grants browsers at tier "read" only (visible in screenshots, clicks and typing blocked), so even when it works it can't drive a UI — and it refused entirely here with "can't be approved during a scheduled run," which does not lift from inside such a session. The **MCP registry has no SharePoint / Microsoft Graph / M365 connector at all** (searched `sharepoint`, `microsoft 365`, `onedrive`, `microsoft graph`, `outlook` — zero results), so there is no API path to the tenant either.
+
+**What works, and the key property:** Claude Code integrates with the Claude in Chrome extension and *shares the browser's existing login state* — it reaches any site already signed in, without credentials passing through the session. On a login page or CAPTCHA it pauses and hands off. Works with Chrome and Edge (and other Chromium browsers); not supported in WSL.
+
+**This machine is already fully provisioned** (checked 2026-08-10): Claude Code `2.1.220`, extension `1.0.85` (minimum is 1.0.36) carrying the "Communicate with cooperating native applications" permission, and `com.anthropic.claude_code_browser_extension` registered under **both** `HKCU\Software\Google\Chrome\NativeMessagingHosts\` and `HKCU\Software\Microsoft\Edge\NativeMessagingHosts\`. Nothing to install.
+
+**Why it was absent anyway:** browser tools load per session. Launch with `claude --chrome`, or run `/chrome` once and select "Enabled by default" (costs context every session, since the tools then always load). First browser action prompts to approve the `claude-in-chrome` skill; site-level permissions are inherited from the extension's own settings, so `usadebusk.sharepoint.com` has to be granted there. `/chrome` shows connection status — working means "Status: Enabled" and "Extension: Installed."
+
+**Three failure modes worth knowing before troubleshooting anything else.** Chrome reads the native messaging config only at startup, so a first-time enable that isn't detected usually just needs Chrome restarted. Authentication must be `/login` on a direct Anthropic plan — an API key or a `claude setup-token` long-lived token keeps Chrome integration off *even when `--chrome` is passed*. And a `deniedMcpServers` managed setting blocking `claude-in-chrome` suppresses the install prompt entirely with no visible error, which is the one to suspect on a corporate machine.
+
+Useful property for vault-adjacent work: in plan mode, read-only browser calls (`read_page`, `get_page_text`, `find`, console/network reads, screenshots) run without a permission prompt, while clicks, typing, and navigation prompt for approval. Recon flows; state changes stay gated.
+
+Docs: `code.claude.com/docs/en/chrome`. Source: Claude Code session, 2026-08-10 (SharePoint knowledge-base design session).
+
 ## Links
 
 - Config repo: https://github.com/TheSkinz/claude-config
