@@ -1,3 +1,4 @@
+<!-- vault-loop: no home yet, candidate for [markdown-ranking-retest] -->
 ---
 type: review
 status: open

@@ -1,3 +1,4 @@
+<!-- vault-loop: no home yet, candidate for [sharepoint-kb-open-items] -->
 ---
 type: note
 status: inbox
