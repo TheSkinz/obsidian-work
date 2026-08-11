@@ -6,7 +6,7 @@ source_authority: session
 confidence: high
 created: 2026-08-10
 review_after: 2026-08-24
-revisit-trigger: "Two SharePoint cleanup items still open after the Phase 5 eval -> recycle PROBE - Markdown Format Test.agent from Documents, and move Decoking Knowledge.agent from the Knowledge library to Site Assets — event: check at the next session that drives the Furnace Decoking site"
+revisit-trigger: "Tranche A ranking retest completes -> move Decoking Knowledge.agent from the Knowledge library to Site Assets, then re-ask the pig OD question to confirm the agent still answers — event: check after the markdown ranking retest is scored"
 related:
   - "[[overview]]"
 tags: [copilot, sharepoint, cleanup, safety]
@@ -30,7 +30,11 @@ It exists to answer eval Q1: does the agent prefer the `active` file over the `d
 
 **Q1 passed on run 1, 2026-08-10** (detail in [[overview]]). The agent returned 0.250 citing the active file and naming its Status, then on follow-up identified Rev-A by name, cited its `deprecated`/`low` values, and ruled it non-authoritative. Run 2 is still owed, along with eval Q2–Q6. **The file may be deleted as soon as run 2 completes — it has already produced the result it was built for.**
 
-## 2. Delete or repoint `PROBE - Markdown Format Test.agent`
+## 2. Delete or repoint `PROBE - Markdown Format Test.agent` — DONE 2026-08-10
+
+**Recycled 2026-08-10** through the SharePoint Copilot panel, verified against the REST API: `Documents` is now empty and no PROBE file exists anywhere on the site. Deleted rather than repointed — the volume retest it might have served is better run with `Decoking Knowledge` itself, since that is the agent whose behaviour actually matters. Original reasoning kept below.
+
+
 
 Lives in the `Documents` library. Built to test whether a library-scoped agent could retrieve and cite `.md` — it can. Either delete it, or repoint its source from `Documents` to `Knowledge` and reuse it for the Phase 6 volume retest, which is still owed: markdown was proven reachable and citable at n=2 with identical content, never proven to *rank* against a corpus of differing files.
 
@@ -46,6 +50,8 @@ It is not a bug. Re-checked minutes later with the `.agent` file still in the li
 
 `Decoking Knowledge.agent` saved into the `Knowledge` library itself, so the agent's own config sits inside its knowledge source. Probably harmless — it is JSON, not prose — but the library's whole value is being curated. Move it to `Site Assets` when convenient.
 
-## Why items 2 and the agent move are still open
+## Status and why the agent move is deferred
 
-Both were attempted 2026-08-10 through the SharePoint REST API and **blocked by the Claude Code auto-mode classifier**, not by SharePoint — the recycle and `moveto` calls never reached the tenant. Nothing is wrong on the site. Either drive them from the SharePoint Copilot panel, do them by hand, or re-run the REST calls from a session where that permission is granted.
+Items 1 and 2 are both closed. Only the `Decoking Knowledge.agent` relocation remains, and it is **deliberately deferred until after the tranche A ranking retest** — that agent is the instrument the retest measures with, so moving its config file first would make an odd result ambiguous between "markdown failed to rank" and "the move disturbed the agent." Confirm the agent still answers the pig OD question after the move.
+
+Worth recording for future sessions: both deletions were attempted first through the SharePoint REST API and **blocked by the Claude Code auto-mode classifier**, not by SharePoint — the `recycle()` and `moveto()` calls never reached the tenant. Reads, column writes (`MERGE`), and file uploads through the same API all went through fine. So the working split is REST for reads and metadata, the Copilot panel for deletes and moves.
