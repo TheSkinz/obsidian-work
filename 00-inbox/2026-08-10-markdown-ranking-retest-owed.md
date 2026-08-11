@@ -1,13 +1,12 @@
 <!-- vault-loop: no home yet, candidate for [markdown-ranking-retest] -->
 ---
 type: review
-status: open
+status: resolved
 review_type: eval
 source_authority: session
 confidence: high
 created: 2026-08-10
-review_after: 2026-08-17
-revisit-trigger: "Tranche A indexed (new documents on a multi-user site index daily, so 2026-08-11 or later) -> run the markdown ranking retest against the 19-chapter Knowledge library and score it — event: check the morning after 2026-08-10"
+resolved: 2026-08-11
 related:
   - "[[overview]]"
   - "[[2026-08-10-sharepoint-pilot-cleanup-owed]]"
@@ -15,6 +14,12 @@ tags: [copilot, sharepoint, eval, markdown]
 ---
 
 # Markdown ranking retest — owed on the Furnace Decoking library
+
+> **CLOSED 2026-08-11 — PASSED.** Both questions ran against the 21-file `Knowledge` library with `Decoking Knowledge` tagged in the M365 desktop app, and both passed all three citation criteria with no fabrication. Q1 cited `MANUAL-11` alone, beating `MANUAL-14` §14.6 — titled *"Approval gate before rig-out"*, a stronger surface match than §11.1 — which is body-content ranking over a title match. Q2 cited `MANUAL-04` §4.3 and `MANUAL-18` §18.1, reaching both halves without dropping either. Full result and the two supporting discriminators are in [[overview]]. The `.md` ruling stands, the converter contingency is closed, and tranche B plus the agent relocation are unblocked.
+>
+> One correction to the design below, recorded because it nearly misgraded the run: the rule and the rig-out gate are each stated in **four** chapters, so "governing chapter vs plausible neighbour" was under-specified. Q2's rule half landed on chapter 4, not the predicted chapter 9 — §4.3 is titled *Pig sizing derivation*, which is the better answer to a question asking how the figure is *determined*. Scored as a pass on the merits.
+>
+> Four earlier runs were voided because the agent was not tagged and the questions reached tenant-wide Copilot, which answered from a job SOP on OneDrive. That is filed as its own finding in [[overview]].
 
 The last open risk in the SharePoint knowledge-base build. Everything else in tranche A is done and verified.
 

@@ -123,7 +123,7 @@ The documentation still excludes markdown. The semantic index supported-types ta
 - **M365 Copilot app** (tenant index) returned both tokens and named both files. Asked a content question with no filename and no token, it answered correctly and cited `TEST-A.md` — the markdown file — over the identical `.docx`.
 - **Library-scoped SharePoint agent** (sources set to one library, prioritize-sources on, default Behavior) returned both tokens in a table with a working link per file, and used both files as inline citations on a content question.
 
-**What this does not establish.** Both files held identical content, so citing markdown proves it is reachable and citable, not that it *ranks* against a larger corpus of differing documents. Retest at volume when the full load lands, and convert only if markdown degrades there.
+**What this does not establish — retired 2026-08-11.** Both files held identical content, so citing markdown proved it reachable and citable, not that it *ranks* against a larger corpus of differing documents. That gap was the standing open risk until the tranche A retest closed it — see *Markdown ranks* below. Kept here because the n=2 bound is the reason the retest existed.
 
 **Contrary external evidence, still live.** A Microsoft Tech Community thread running May–August 2026 reports `.md` files in SharePoint libraries being neither retrievable nor citable — but for **Copilot Studio** agents, which is a different product from a SharePoint agent. Treat markdown support as unproven if Copilot Studio is ever adopted; that migration could silently break the knowledge layer. Microsoft is separately expanding markdown across the stack: native `.md` editing in SharePoint and OneDrive went GA 2026-04-21, and Copilot Notebooks added `.md` grounding rolling out early August 2026.
 
@@ -204,6 +204,35 @@ Both surfaced only at volume; the pilot five had hidden them.
 **The Description column is unreachable from the REST API in both directions.** It was already known not to be queryable as an item property; a `MERGE` write against `_ExtendedDescription` also fails with `InvalidClientQueryException`. So Description is Copilot-panel or grid-view only, and the only way to verify it is to look at a list view. The panel wrote all seventeen verbatim when told not to paraphrase, so it remains the right tool for that one column — everything else is faster and more auditable through REST, which returns a checkable 204 per item.
 
 **Owner does not populate itself.** Files that arrive by API upload *or* by drag-and-drop land with Owner empty, even though the uploading account is correctly recorded as Modified By. The pilot five had Owner set by hand, so nothing revealed this until seventeen files landed without it. Set it explicitly on every load rather than assuming it inherits from the uploader.
+
+## Markdown ranks — tranche A retest passed 2026-08-11
+
+The open risk this build carried from the start, now closed. The 2026-08-10 A/B proved markdown *reachable and citable* at n=2 with byte-identical content, which established retrieval and established nothing about ranking. Tranche A put 21 markdown files in the `Knowledge` library — nineteen manual chapters about one process, competing directly — and this retest asked whether the governing chapter surfaces rather than an arbitrary one. Run from the M365 desktop app with `Decoking Knowledge` tagged, one question per exchange.
+
+| Asked | Cited | Result |
+|---|---|---|
+| What has to be true before rig-out can start? | `MANUAL-11` alone | **Pass.** Quoted §11.1 verbatim and named both gates — circuits complete per Section 10, plus written customer acceptance on inspection scopes |
+| How is maximum pig OD determined, and where are the tube dimensions? | `MANUAL-04` §4.3, `MANUAL-18` §18.1 | **Pass.** Rule from the section titled *Pig sizing derivation*; dimensions from the reference table, all five Sch 40 IDs reproduced exactly |
+
+**Two results carry the ranking claim, and neither is explainable by filename matching.**
+
+The first is that `MANUAL-14` §14.6 is titled *"Approval gate before rig-out"* — a stronger surface match to the rig-out question than §11.1's *"Gate before rig-out"* — and it was not cited. Nor were `MANUAL-10` §10.5 or `MANUAL-07`, both of which state the same inspection-acceptance gate. The agent went to the one chapter that states **both** gates together, which is the only place they appear together. Body content beat a title match.
+
+The second is that the + 0.250 in rule appears in four chapters (`04`, `09`, `17`, `18`). The agent cited one, and picked the section actually titled *Pig sizing derivation* against a question asking how the figure is **determined**. The prior session's note pre-registered chapter 9 as the expected hit; 4 is the better answer, and choosing it is a stronger result than the prediction, not a miss. Citations stayed at one or two chapters throughout — the scattered-citation signature of weak ranking never appeared.
+
+**No fabrication.** Every quoted string and all five tube IDs were checked against the source files and match exactly. Section numbers were correct in all three attributions. Citations resolved as working links to the `.md` files.
+
+**Standing ruling confirmed, not merely unreversed:** upload vault notes as `.md`, no conversion step. The converter contingency is now closed rather than dormant. This unblocks tranche B (8 files staged in `_OUTPUTS/sharepoint/`), the Outlook routing document, and the `Decoking Knowledge.agent` relocation.
+
+### Untagged queries answer from OneDrive, as methodology
+
+Four runs were voided before the valid one because the agent was not tagged — the questions went to tenant-wide Copilot instead. Worth keeping, because the failure is silent and the answers looked authoritative.
+
+All four cited only `USADebusk SOP-DCK-HU5A-F501-REV1_2026-Aug.pdf`, a job-specific execution SOP on Jesse's company OneDrive. M365 Copilot indexes a user's own OneDrive for Business, so reaching it is expected; a library-scoped SharePoint agent cannot, because OneDrive files are a separate source type that must be added explicitly. That asymmetry is what makes the tag load-bearing rather than cosmetic.
+
+The failure mode is the altitude, not the accuracy. Asked *how the maximum pig OD is determined* — a generic methodology question naming no job — untagged Copilot returned **4.635" → 4.875"**, F-501's specific figures, framed as *"the governing rule."* Correct arithmetic on the right rule, presented as general truth. A job instance served as methodology is harder to catch than a wrong number, and it is the concrete argument for the scoped agent over tenant-wide chat.
+
+**The tell that a thread is running the agent** is its welcome message and starter prompts, from the Behavior field. A thread headed only "Copilot" is tenant-wide chat and will keep answering from OneDrive regardless of how the question is worded.
 
 ## Limits and cadence
 

@@ -7,7 +7,7 @@ source_authority: session
 confidence: high
 created: 2026-08-10
 review_after: 2026-08-24
-revisit-trigger: "Tranche A ranking retest completes -> move Decoking Knowledge.agent from the Knowledge library to Site Assets, then re-ask the pig OD question to confirm the agent still answers — event: check after the markdown ranking retest is scored"
+revisit-trigger: "GATE CLEARED 2026-08-11 — the ranking retest passed, so the only thing left is the action: move Decoking Knowledge.agent from the Knowledge library to Site Assets, then re-ask the pig OD question to confirm the agent still answers — event: ready to run in any session with browser access to the tenant"
 related:
   - "[[overview]]"
 tags: [copilot, sharepoint, cleanup, safety]
@@ -53,6 +53,8 @@ It is not a bug. Re-checked minutes later with the `.agent` file still in the li
 
 ## Status and why the agent move is deferred
 
-Items 1 and 2 are both closed. Only the `Decoking Knowledge.agent` relocation remains, and it is **deliberately deferred until after the tranche A ranking retest** — that agent is the instrument the retest measures with, so moving its config file first would make an odd result ambiguous between "markdown failed to rank" and "the move disturbed the agent." Confirm the agent still answers the pig OD question after the move.
+Items 1 and 2 are both closed. Only the `Decoking Knowledge.agent` relocation remains. It was deliberately deferred until after the tranche A ranking retest — that agent is the instrument the retest measures with, so moving its config file first would have made an odd result ambiguous between "markdown failed to rank" and "the move disturbed the agent."
+
+**The retest passed 2026-08-11, so that gate has cleared and the move is free to run.** Confirm the agent still answers the pig OD question afterwards; the known-good baseline to compare against is now on record — it cites `MANUAL-04` §4.3 and `MANUAL-18` §18.2 for the + 0.250 in rule. Not done in the scoring session, which had no browser path to the tenant.
 
 Worth recording for future sessions: both deletions were attempted first through the SharePoint REST API and **blocked by the Claude Code auto-mode classifier**, not by SharePoint — the `recycle()` and `moveto()` calls never reached the tenant. Reads, column writes (`MERGE`), and file uploads through the same API all went through fine. So the working split is REST for reads and metadata, the Copilot panel for deletes and moves.
