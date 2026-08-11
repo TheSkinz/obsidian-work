@@ -7,8 +7,8 @@
 | Open decision rows | 5 | <= 10 | ok |
 | Review notes awaiting decision | 6 | <= 5 | FAIL |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 44 | (backlog) | ok |
-| Inbox items | 47 | - | ok |
+| Lint warnings | 45 | (backlog) | ok |
+| Inbox items | 48 | - | ok |
 | Inbox median age | 10 d | < 14 d | ok |
 | Inbox oldest item | 23 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
@@ -25,7 +25,7 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 | Capture loop | 2026-08-10 (0 d ago) | 2026-08-10 (0 d ago) | 7 d | ok |
 | Idea-research loop | 2026-08-10 (1 d ago) | 2026-08-03 (7 d ago) | 30 d | ok |
 | Pre-staging loop | 2026-08-10 (0 d ago) | 2026-08-10 (0 d ago) | 30 d | ok |
-| Consolidation loop | 2026-07-19 (22 d ago) | 2026-07-18 (23 d ago) | 31 d | ok |
+| Consolidation loop | 2026-07-19 (23 d ago) | 2026-07-18 (23 d ago) | 31 d | ok |
 | Skill-drift loop | 2026-08-01 (10 d ago) | 2026-08-01 (9 d ago) | 62 d | ok |
 
 ## Commercial pipeline
@@ -46,7 +46,8 @@ Every recorded wake-up condition (`revisit-trigger:` frontmatter) — parked ide
 | Source | Condition | Check |
 |---|---|---|
 | [[2026-07-24-parallel-friction-factor-deferred]] | Actuals rollup carries 3-4 routine multi-pass rows with a recorded Mode -> decide whether the Duration Model gets a mode-friction term — event: check when a multi-pass TA lands actuals | event — checked at the step the condition names |
-| [[2026-08-10-sharepoint-pilot-cleanup-owed]] | Phase 5 eval of the SharePoint Knowledge agent completes -> delete the deliberate-error test file MANUAL-09_Phase-II-Mechanical-Decoking-Rev-A from the Knowledge library, and delete or repoint the PROBE - Markdown Format Test agent — event: check when the six eval questions have been run twice | event — checked at the step the condition names |
+| [[2026-08-10-markdown-ranking-retest-owed]] | Tranche A indexed (new documents on a multi-user site index daily, so 2026-08-11 or later) -> run the markdown ranking retest against the 19-chapter Knowledge library and score it — event: check the morning after 2026-08-10 | event — checked at the step the condition names |
+| [[2026-08-10-sharepoint-pilot-cleanup-owed]] | Tranche A ranking retest completes -> move Decoking Knowledge.agent from the Knowledge library to Site Assets, then re-ask the pig OD question to confirm the agent still answers — event: check after the markdown ranking retest is scored | event — checked at the step the condition names |
 | [[idea-context-packet-builder-skill]] | A real mobilization or bid shows manual context-gathering friction (parked 2026-07-18) — event: check at job mobilization | event — checked at the step the condition names |
 | [[idea-rig-layout-diagram]] | Coil-visualization Tier 2+3 build lands (approved 2026-08-01, owed at [[2026-08-01-coil-visualization-build-owed]]) -> research the rig/hose layout diagram against the render path that build establishes — event: check when the coil-viz SVG generator exists (verified still unbuilt 2026-08-03, tools/ has no such generator) | event — checked at the step the condition names |
 | [[idea-sharepoint-projection-drift-check]] | Phase 6 of the SharePoint knowledge base lands (22 more files in the Knowledge library) -> build the projection drift check so health.md surfaces stale SharePoint copies — event: check when the full load completes | event — checked at the step the condition names |

@@ -180,6 +180,7 @@
 - [[2026-08-06-prestaged-checkbox-delta-trigger]] — Review — What should trigger CHECKBOX-DELTA unprompted?
 - [[2026-08-07-prestaged-f4-instruction-density-second-fixture]] — Review — Should the F4 (SOP) instruction-density arm test run, and when?
 - [[2026-08-08-prestaged-f6-rig-tier-decision]] — Review — Should F6's rig-in tier ambiguity be closed by amending the fixture or by ruling the tier?
+- [[2026-08-10-prestaged-quote-note-bid-folder-staleness]] — Review — Should a quote-note-vs-bid-folder staleness check be built, and where does it live?
 
 ## LLMs
 
