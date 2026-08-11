@@ -1,8 +1,10 @@
 ---
 type: idea-seed
-status: unexplored
+status: gated
 created: 2026-08-10
-revisit-trigger: "Phase 6 of the SharePoint knowledge base lands (22 more files in the Knowledge library) -> build the projection drift check so health.md surfaces stale SharePoint copies — event: check when the full load completes"
+revisit-trigger: "Tranche B lands (8 files, staged in _OUTPUTS/sharepoint/, blocked on the markdown ranking retest per [[2026-08-10-markdown-ranking-retest-owed]]) and the full Knowledge-library load completes -> build the projection drift check so health.md surfaces stale SharePoint copies — event: check when tranche B is uploaded (verified still staged, not loaded, 2026-08-11)"
+related:
+  - "[[2026-08-11-idea-research-sharepoint-projection-drift-check]]"
 tags: [idea, vault-system, future, copilot, sharepoint]
 ---
 
