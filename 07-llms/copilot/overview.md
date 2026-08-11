@@ -135,6 +135,35 @@ Direct from the docs: *"associated column metadata can be incorporated as signal
 
 This is the fact that makes a column schema worth building **and** confines its value to the scoped-agent case. It buys nothing for a broad desktop-app query. Two conditions: documented as available on the web experience, and the site must stay searchable (`Site settings > Search and offline availability`). This supersedes nothing in the flat-index note above — folder *nesting* still buys nothing; *columns* do.
 
+## Driving SharePoint through the Chrome integration — operating notes
+
+Learned by doing on 2026-08-10, building the `Knowledge` library end to end. Recorded here rather than in a session plan file because Jesse expects to build workflows, agents, and Power Automate flows on this tenant eventually. There is no API path — the MCP registry has no SharePoint/Graph/M365 connector — so browser automation is the only route and these are its rules.
+
+**Verify through the REST API, never the UI and never a chat transcript.** Navigate the browser straight to these and read the XML:
+
+```
+/_api/web/lists?$select=Title,ItemCount&$filter=Hidden eq false
+/_api/web/lists/getbytitle('X')/items?$select=FileLeafRef,<columns>
+/_api/web/lists/getbytitle('X')/fields?$select=Title,InternalName,TypeAsString,Choices&$filter=Hidden eq false and ReadOnlyField eq false and CanBeDeleted eq true
+/_api/web/lists/getbytitle('X')/views?$select=Title,ViewQuery,DefaultView,Hidden
+```
+
+Append `&$expand=Owner` with `Owner/Title` for person columns. `_ExtendedDescription` — the Description column — is **not** queryable as an item property and errors the whole request; verify it visually in a list view instead.
+
+**Prefer the Copilot panel to clicking.** It built a library, twelve columns with exact choice values, and three filtered views in two prompts, with zero drift. Instruct it *"use these exact names and values verbatim, do not paraphrase, reword, or add values I have not listed"* and it complies. Then audit via the API — see the commits-before-undo behaviour noted above.
+
+**Native browser confirm dialogs block the Chrome extension completely.** Screenshots time out, keypresses don't reach them, and only Jesse can clear one. Classic `_layouts` pages throw them; the Copilot panel renders its own in-page confirmation card, which is clickable. That alone makes the panel the better automation surface, not just the faster one.
+
+**Classic `_layouts/15/ViewEdit.aspx` does not save** against a modern library here — it returned "View does not exist" and committed nothing. Read-only and simple-write classic pages are fine: `srchvis.aspx` (search visibility), `listgeneralsettings.aspx` (Quick Launch, name, description), `listedit.aspx` (library delete).
+
+**Agent-created libraries are not added to Quick Launch.** Fix at `listgeneralsettings.aspx?List={guid}` → Navigation → Yes. The Copilot panel builds the data model well and the presentation layer inconsistently — it also skipped column formatting.
+
+**`read_page` truncates on SharePoint's enormous column dropdowns.** Use `find` with a specific natural-language query to get element refs, then `form_input`.
+
+**Tabs die between turns.** Call `tabs_context_mcp` with `createIfEmpty:true` and re-navigate; no state is lost.
+
+**Do not diagnose from a freshly-created item's row in a view.** A new file appeared in `Review Overdue` carrying no date, which read as the filter matching nulls — a real bug if true. It wasn't; the list was rendering a just-created item before the filter re-queried. Re-check before concluding.
+
 ## Column metadata fires — eval Q1 passed 2026-08-10
 
 The question the whole column schema was built to answer, tested and answered the same night the library was built. Two files in the `Knowledge` library on the same topic, contradicting on one checkable number: `MANUAL-09_Phase-II-Mechanical-Decoking` (Status `active`, max pig OD = governing tube ID + 0.250 in) and a deliberately falsified sibling `…-Rev-A` (Status `deprecated`, Confidence `low`, + 0.500 in). Filenames deliberately gave nothing away.
