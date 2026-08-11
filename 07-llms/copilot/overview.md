@@ -197,6 +197,14 @@ All six questions asked in one thread against the five-file pilot library. Q1 ha
 
 **Method caveat.** All six were asked in a single thread, so Q2–Q6 have one run each rather than the two the plan called for, and later answers carried context from earlier ones. Q5's clean refusal is therefore slightly weaker evidence than it looks — five straight corpus-grounded answers may have primed it. Q6's result is unaffected.
 
+## Two column mechanics found loading tranche A — 2026-08-10
+
+Both surfaced only at volume; the pilot five had hidden them.
+
+**The Description column is unreachable from the REST API in both directions.** It was already known not to be queryable as an item property; a `MERGE` write against `_ExtendedDescription` also fails with `InvalidClientQueryException`. So Description is Copilot-panel or grid-view only, and the only way to verify it is to look at a list view. The panel wrote all seventeen verbatim when told not to paraphrase, so it remains the right tool for that one column — everything else is faster and more auditable through REST, which returns a checkable 204 per item.
+
+**Owner does not populate itself.** Files that arrive by API upload *or* by drag-and-drop land with Owner empty, even though the uploading account is correctly recorded as Modified By. The pilot five had Owner set by hand, so nothing revealed this until seventeen files landed without it. Set it explicitly on every load rather than assuming it inherits from the uploader.
+
 ## Limits and cadence
 
 Per agent: **100** SharePoint files/folders/sites · **50** OneDrive files · **1** SharePoint list · **20** uploaded embedded files · 4 public URLs · 5 Teams chats. Selecting a site does **not** include its lists — a list must be added by its own URL. A list caps at 20,000 items and 50 MB raw text.
