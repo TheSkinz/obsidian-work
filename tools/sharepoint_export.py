@@ -48,6 +48,16 @@ STAGING = VAULT / "_OUTPUTS" / "sharepoint"
 #   01-context/active-jobs.md                     volatile, no refresh mechanism
 #   01-context/output-preferences.md              Claude-harness specific
 #   01-context/system-workflow-reference.md       Claude-harness specific
+#   01-context/workflow-map.md                    dropped 2026-08-11 after being
+#                                                 staged: not about decoking (paused
+#                                                 initiatives, retired claude.ai
+#                                                 Projects, internal tooling) and
+#                                                 self-described as retired-system
+#                                                 history with nothing live, so any
+#                                                 Status value either misleads or
+#                                                 labels a file that shouldn't be
+#                                                 there. Same profile as
+#                                                 rfq-intake-protocol above.
 MANIFEST: list[tuple[str, str]] = [
     # --- Phase 3 pilot -----------------------------------------------------
     ("04-knowledge/manual/09-phase-ii-mechanical-decoking.md",
@@ -113,9 +123,6 @@ MANIFEST: list[tuple[str, str]] = [
      "CONTEXT_Equipment-Fleet.md"),
     ("01-context/estimating-approach.md",
      "CONTEXT_Estimating-Approach.md"),
-    ("01-context/workflow-map.md",
-     "CONTEXT_Workflow-Map.md"),
-
     # Authored 2026-08-11 for this load, not projected from pre-existing vault
     # content. The three-tier model was buried inside 07-llms/copilot/overview.md;
     # Copilot reads these nine folders daily without knowing what any of them mean.

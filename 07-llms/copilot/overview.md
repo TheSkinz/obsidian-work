@@ -224,7 +224,7 @@ The second is that the + 0.250 in rule appears in four chapters (`04`, `09`, `17
 
 **No fabrication.** Every quoted string and all five tube IDs were checked against the source files and match exactly. Section numbers were correct in all three attributions. Citations resolved as working links to the `.md` files.
 
-**Standing ruling confirmed, not merely unreversed:** upload vault notes as `.md`, no conversion step. The converter contingency is now closed rather than dormant. This unblocks tranche B and the `Decoking Knowledge.agent` relocation. The Outlook routing document was authored the same day and staged alongside the rest, so **tranche B is nine files in `_OUTPUTS/sharepoint/`, not eight** — see [[outlook-email-architecture]].
+**Standing ruling confirmed, not merely unreversed:** upload vault notes as `.md`, no conversion step. The converter contingency is now closed rather than dormant. This unblocks tranche B and the `Decoking Knowledge.agent` relocation. **Tranche B is still eight files, but not the same eight**: the Outlook routing document was authored 2026-08-11 and added (see [[outlook-email-architecture]]), and `CONTEXT_Workflow-Map` was dropped the same day — it is internal-tooling history rather than decoking content, and self-describes as retired with nothing live, so any `Status` value would either mislead or merely label a file that should not be in the library.
 
 ### Untagged queries answer from OneDrive, as methodology
 
