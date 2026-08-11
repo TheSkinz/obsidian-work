@@ -24,6 +24,8 @@ Its guards are metadata only: `Status = deprecated`, `Source Rank = 6 AI/unrevie
 
 It exists to answer eval Q1: does the agent prefer the `active` file over the `deprecated` one, or flag the deprecation, when both answer the same question and contradict on one number. Once that question has been run twice, the file has done its job.
 
+**Q1 passed on run 1, 2026-08-10** (detail in [[overview]]). The agent returned 0.250 citing the active file and naming its Status, then on follow-up identified Rev-A by name, cited its `deprecated`/`low` values, and ruled it non-authoritative. Run 2 is still owed, along with eval Q2–Q6. **The file may be deleted as soon as run 2 completes — it has already produced the result it was built for.**
+
 ## 2. Delete or repoint `PROBE - Markdown Format Test.agent`
 
 Lives in the `Documents` library. Built to test whether a library-scoped agent could retrieve and cite `.md` — it can. Either delete it, or repoint its source from `Documents` to `Knowledge` and reuse it for the Phase 6 volume retest, which is still owed: markdown was proven reachable and citable at n=2 with identical content, never proven to *rank* against a corpus of differing files.

@@ -135,6 +135,18 @@ Direct from the docs: *"associated column metadata can be incorporated as signal
 
 This is the fact that makes a column schema worth building **and** confines its value to the scoped-agent case. It buys nothing for a broad desktop-app query. Two conditions: documented as available on the web experience, and the site must stay searchable (`Site settings > Search and offline availability`). This supersedes nothing in the flat-index note above — folder *nesting* still buys nothing; *columns* do.
 
+## Column metadata fires — eval Q1 passed 2026-08-10
+
+The question the whole column schema was built to answer, tested and answered the same night the library was built. Two files in the `Knowledge` library on the same topic, contradicting on one checkable number: `MANUAL-09_Phase-II-Mechanical-Decoking` (Status `active`, max pig OD = governing tube ID + 0.250 in) and a deliberately falsified sibling `…-Rev-A` (Status `deprecated`, Confidence `low`, + 0.500 in). Filenames deliberately gave nothing away.
+
+Asked for the maximum pig OD, the agent returned 0.250 with the correct worked example and volunteered *"Source used: MANUAL-09_Phase-II-Mechanical-Decoking.md (Status: active)."* Asked whether any other document gave a different figure, it named Rev-A, cited its `deprecated` status and `low` confidence, ruled it non-authoritative, and declined to state Rev-A's figure without opening the file.
+
+So the agent **retrieves competing documents, reads their column values, and discriminates on them.** Column metadata is a live retrieval and ranking signal on a library-scoped agent, not decoration. The contingency the build plan carried — move Status into the document body as a plain header line — is not needed.
+
+**Bound on the claim.** Rev-A's Description column read "Contains a deliberate factual error in the pig OD ceiling," written as a safety guard for human readers. The agent cited Status, Confidence *and* Description together, so this proves the column *set* discriminates, not Status in isolation. A future test wanting to isolate Status should use a neutral Description. Single run; the plan calls for a second the following day.
+
+**Surface note.** The agent answered correctly when tagged inside the M365 desktop app, including on iPhone. The *same agent* invoked through the SharePoint in-site Copilot panel returned "it looks like I can't chat about this" and, earlier, hung indefinitely. The agent, its instructions, and the index are all fine — the in-site panel is the unreliable surface for custom agents. Run evals from the desktop app.
+
 ## Limits and cadence
 
 Per agent: **100** SharePoint files/folders/sites · **50** OneDrive files · **1** SharePoint list · **20** uploaded embedded files · 4 public URLs · 5 Teams chats. Selecting a site does **not** include its lists — a list must be added by its own URL. A list caps at 20,000 items and 50 MB raw text.
