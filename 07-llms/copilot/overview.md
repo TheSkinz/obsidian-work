@@ -108,13 +108,26 @@ The single most confusing thing about this ecosystem, and the source of a sessio
 | **SharePoint agent** — a `.agent` file you create | User-created; editor has Identity / Sources / **Behavior** | **Yes** — Behavior holds welcome message, starter prompts, instructions | Whatever you point it at |
 | **M365 Copilot desktop/web app** | Tenant-wide chat | Custom instructions | Everything your account can reach — **not scopable** |
 
+**The site panel is not read-only — corrected 2026-08-10.** The "no instruction field" column above still holds, but treating that surface as question-and-answer only is wrong. Asked in plain language, it deleted a document library, created a new one with a description, added twelve columns with exact choice values, and built three filtered/grouped views — all verified afterward against the REST API, all correct. Two behaviours worth knowing: it renders its **own in-page confirmation card** for destructive actions rather than the native browser dialog (which the Chrome integration cannot dismiss, so the panel is the *easier* path for automation, not the harder one), and for non-destructive changes it **commits first and offers an undo card after** — a card with a Save button next to it may describe work already done. Verify against the API rather than reading the chat transcript.
+
 `.agent` files land in `Site Assets > Copilots` when created from the site homepage, or in the current library folder when created from a library. When the site panel offers to store "site instructions" or "reusable skills" as files, that is the retrieved-as-knowledge anti-pattern, not a real instruction field — Microsoft's declarative-agent guidance says instructions belong in the instruction field because knowledge content is not trusted instruction content.
 
-## `.md` is not an indexed file type
+## `.md` is not on the documented list — but it works in this tenant
 
-Semantic index supported types: **doc/docx, pptx, pdf, aspx, one**, plus connector data. Agent Builder embedded files add **.txt, .html, .xls/.xlsx**. **Markdown appears in neither list.**
+**Corrected 2026-08-10 by direct test. The earlier ruling on this page said to convert vault notes to `.docx` before uploading. That was wrong for this tenant and has been reversed.**
 
-A SharePoint agent may still *open* a `.md` file when it enumerates a library — direct file access and semantic retrieval are different paths, which is why an agent will claim it "reads .md fine." The failure mode is the dangerous one: content that looks loaded but never ranks in retrieval. **Convert vault notes to `.docx` or `.pdf` before uploading**, and strip YAML frontmatter on export so the columns are the only copy of the schema.
+The documentation still excludes markdown. The semantic index supported-types table (page revision 2026-04-23) lists **doc/docx, pptx, pdf, aspx, one** plus connector data, and Agent Builder embedded files add **.txt, .html, .xls/.xlsx**. Markdown is in neither. The same page, however, describes the tenant index as "generated from text-based SharePoint Online files," which is broader than its own table — markdown falls in that gap.
+
+**The test.** `TEST-A.md` and `TEST-B.docx` were uploaded to the Furnace Decoking `Documents` library with byte-identical content apart from a unique calibration token in each (ORANGE-7 and INDIGO-4). Both were retrievable roughly 75 minutes after upload, well inside the documented daily cadence for new files. Two surfaces, both passing:
+
+- **M365 Copilot app** (tenant index) returned both tokens and named both files. Asked a content question with no filename and no token, it answered correctly and cited `TEST-A.md` — the markdown file — over the identical `.docx`.
+- **Library-scoped SharePoint agent** (sources set to one library, prioritize-sources on, default Behavior) returned both tokens in a table with a working link per file, and used both files as inline citations on a content question.
+
+**What this does not establish.** Both files held identical content, so citing markdown proves it is reachable and citable, not that it *ranks* against a larger corpus of differing documents. Retest at volume when the full load lands, and convert only if markdown degrades there.
+
+**Contrary external evidence, still live.** A Microsoft Tech Community thread running May–August 2026 reports `.md` files in SharePoint libraries being neither retrievable nor citable — but for **Copilot Studio** agents, which is a different product from a SharePoint agent. Treat markdown support as unproven if Copilot Studio is ever adopted; that migration could silently break the knowledge layer. Microsoft is separately expanding markdown across the stack: native `.md` editing in SharePoint and OneDrive went GA 2026-04-21, and Copilot Notebooks added `.md` grounding rolling out early August 2026.
+
+**Standing ruling:** upload vault notes as `.md`, no conversion step. Still strip YAML frontmatter on export so the library columns remain the only copy of `status` and `review_after`.
 
 ## Column metadata is a real retrieval signal — but only when scoped
 
