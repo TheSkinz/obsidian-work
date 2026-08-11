@@ -12,22 +12,19 @@ build plan called for was dropped. See `07-llms/copilot/overview.md`.
 What the transform does:
   - strips YAML frontmatter (the SharePoint columns are the only copy of
     `status` and `review_after`; two copies would silently disagree)
-  - applies any per-file redaction (see REDACTIONS)
   - stamps a provenance line under the H1 naming the vault source and date
   - writes out under the leading-token filename convention the index ranks on
 
-Then it scans what it produced for restricted commercial content, because the
-site carries a standing constraint the vault does not: no cost basis or margin
-on SharePoint. Billing rates are not confidential internally, so the scan
-targets cost/margin, not every dollar sign.
+Content is projected verbatim otherwise. Every member of the Furnace Decoking
+site is trusted with all of its data (Jesse, 2026-08-10), so nothing is
+withheld or rewritten on the way out.
 
 Usage:
     python tools/sharepoint_export.py            # write staging copies
     python tools/sharepoint_export.py --check    # report drift, write nothing
 
 `--check` exits 1 if any staged file is missing or differs from what the vault
-would produce now, so it can gate a pre-upload step. Either mode exits 1 on a
-redaction that no longer matches or on restricted content in the output.
+would produce now, so it can gate a pre-upload step.
 """
 from __future__ import annotations
 
@@ -120,88 +117,14 @@ MANIFEST: list[tuple[str, str]] = [
      "CONTEXT_Workflow-Map.md"),
 ]
 
-# Per-file export-time redaction: vault source -> [(find, replace), ...].
+# No redaction or restricted-content scan lives here, deliberately.
 #
-# The vault is canonical and these strings are correct there — never edit the
-# vault file to satisfy this. The site is what carries the extra constraint.
-#
-# Every pattern MUST match, every run. A redaction that silently stops matching
-# because the vault text was reworded is the exact failure this mechanism
-# exists to prevent, so a miss raises rather than warns.
-REDACTIONS: dict[str, list[tuple[str, str]]] = {
-    # Third-party markup floor. Markup is margin-adjacent; the rest of the
-    # line (that third party bills at cost + markup, confirm per job) is fine.
-    "04-knowledge/concepts/field-operations.md": [
-        (" — some facilities as low as 5%", ""),
-    ],
-    # Same ruling, applied to a file the ruling's author had not seen: this
-    # enumerates the whole markup ladder. Caught by the scan below on
-    # 2026-08-10, after CONTEXT_Company had already been uploaded in the Phase
-    # 3 pilot — so this file needs re-uploading, not just re-exporting.
-    # The instruction to confirm per contract is the part worth keeping.
-    "01-context/company-context.md": [
-        ("- Third-party markup: one of 5%, 10%, or 15%, set by the specific "
-         "facility/project contract — no default. Always confirm before "
-         "invoicing or proposing.",
-         "- Third-party markup: set by the specific facility/project contract "
-         "— no default. Always confirm before invoicing or proposing."),
-    ],
-}
-
-# Restricted-content scan over the projected output.
-#
-# Per the internal-vs-customer data boundary: billing rates are NOT
-# confidential internally — cost basis and margin are. So a bare dollar figure
-# is not a finding; a dollar figure attached to an hourly rate is worth a human
-# look, and explicit cost/margin vocabulary is worth flagging.
-RESTRICTED_FAIL = [
-    (re.compile(r"\$\s?[\d,]+(?:\.\d+)?\s*(?:/|per\s+)\s*h(?:r|our)", re.I),
-     "hourly rate figure"),
-    (re.compile(r"\bcost basis\b", re.I), "cost basis"),
-]
-RESTRICTED_WARN = [
-    (re.compile(r"\bmargin\b", re.I), "margin"),
-    (re.compile(r"\bmarkup\b", re.I), "markup"),
-]
-
-# Lines already read and cleared by a human. Keyed by output filename; the
-# value is the exact stripped line. Anything NOT listed here shows up in the
-# scan, so a clean run is silent and a newly-introduced mention is loud.
-ACKNOWLEDGED: dict[str, set[str]] = {
-    # Both state where commercial data lives, not what it is. No figures.
-    "CONCEPT_Quote-Lifecycle.md": {
-        "The heater card is the operational record. Job-level commercial data "
-        "(revenue, cost, margin, crew) lives in the file estate, not the vault.",
-        "Commercial close (revenue, cost, margin against the final ticket "
-        "breakdown) is handled in the file estate, not the vault.",
-    },
-    # Survives redaction on purpose: that third party bills cost + markup is a
-    # scope fact. The 5% floor is what got cut.
-    "CONCEPT_Field-Operations.md": {
-        "| Third Party | Third Party | N hrs | Cost + markup "
-        "(contract-specific, confirm each job) |",
-    },
-    # Survives redaction on purpose: the markup ladder is cut, the
-    # confirm-per-contract instruction stays.
-    "CONTEXT_Company.md": {
-        "- Third-party markup: set by the specific facility/project contract "
-        "— no default. Always confirm before invoicing or proposing.",
-    },
-    # Names third-party markup as a topic the estimating skill owns. No figure.
-    "CONTEXT_Estimating-Approach.md": {
-        "**Authority:** The `usadebusk-estimating` skill owns estimating in "
-        "full — commercial structure, third-party markup, equipment/crew "
-        "profile, rate-application discipline, and the 14-section proposal "
-        "composition (intake checklist, section templates, guardrails). Load "
-        "it for any bid. This file keeps only the duration model — the one "
-        "piece worth having cold before the skill loads — and does not "
-        "restate the skill's pricing or section content.",
-    },
-}
-
-
-class RedactionError(RuntimeError):
-    """A configured redaction no longer matches its source."""
+# A redaction mechanism and a cost/margin scanner were built on 2026-08-10 and
+# removed the same day: Jesse ruled that every member of the Furnace Decoking
+# site is trusted with all of its data, so nothing needs redacting and the
+# machinery had no constraint left to serve. Both are recoverable from commit
+# 613d872 if site membership ever stops being fully trusted — restore rather
+# than rebuild.
 
 # Eval instruments and other hand-built staging files this script must not
 # claim ownership of or report as unexpected.
@@ -214,48 +137,9 @@ FRONTMATTER = re.compile(r"\A---\r?\n.*?\r?\n---\r?\n", re.DOTALL)
 PROVENANCE = re.compile(r"^\*Source: `[^`]+` — exported \d{4}-\d{2}-\d{2}\*$")
 
 
-def redact(text: str, source_rel: str) -> str:
-    """Apply this source's configured redactions, requiring every one to hit."""
-    for find, replace in REDACTIONS.get(source_rel, []):
-        if find not in text:
-            raise RedactionError(
-                f"{source_rel}: redaction no longer matches its source.\n"
-                f"  looked for: {find!r}\n"
-                "  The vault text was probably reworded. Re-read the source, "
-                "update REDACTIONS to match, and confirm the restricted "
-                "content is still handled — do not just delete the rule."
-            )
-        text = text.replace(find, replace)
-    return text
-
-
-def scan(text: str, out_name: str) -> tuple[list[str], list[str]]:
-    """Find restricted commercial content in projected output.
-
-    Returns (failures, warnings). A line listed in ACKNOWLEDGED is skipped, so
-    a clean run says nothing and anything new is loud.
-    """
-    cleared = ACKNOWLEDGED.get(out_name, set())
-    failures: list[str] = []
-    warnings: list[str] = []
-
-    for n, raw in enumerate(text.split("\n"), 1):
-        line = raw.strip()
-        if not line or line in cleared:
-            continue
-        for pattern, label in RESTRICTED_FAIL:
-            if pattern.search(line):
-                failures.append(f"{out_name}:{n}  [{label}]  {line}")
-        for pattern, label in RESTRICTED_WARN:
-            if pattern.search(line):
-                warnings.append(f"{out_name}:{n}  [{label}]  {line}")
-    return failures, warnings
-
-
 def project(text: str, source_rel: str, exported: str) -> str:
     """Vault note -> the exact bytes that belong in the staging folder."""
     text = FRONTMATTER.sub("", text).lstrip("\n")
-    text = redact(text, source_rel)
     line = f"*Source: `{source_rel}` — exported {exported}*"
 
     lines = text.split("\n")
@@ -288,21 +172,12 @@ def main() -> int:
     STAGING.mkdir(parents=True, exist_ok=True)
 
     stale: list[str] = []
-    failures: list[str] = []
-    warnings: list[str] = []
     for src_rel, out_name in MANIFEST:
         src = VAULT / src_rel
         if not src.exists():
             print(f"MISSING SOURCE  {src_rel}")
             stale.append(out_name)
             continue
-
-        # Scan what this source projects to now, in both modes: --check must
-        # catch restricted content that a stale staging copy would hide.
-        found_fail, found_warn = scan(
-            project(src.read_text(encoding="utf-8"), src_rel, today), out_name)
-        failures += found_fail
-        warnings += found_warn
 
         dest = STAGING / out_name
         prior = existing_export_date(dest)
@@ -332,20 +207,6 @@ def main() -> int:
         if path.name not in projected and path.name not in NOT_PROJECTED:
             print(f"UNTRACKED  {path.name}  (in staging, not in MANIFEST)")
 
-    if warnings:
-        print("\nCommercial vocabulary, review then add to ACKNOWLEDGED to silence:")
-        for w in warnings:
-            print(f"  warn  {w}")
-
-    if failures:
-        print("\nRESTRICTED CONTENT — do not upload:")
-        for f in failures:
-            print(f"  FAIL  {f}")
-        print(f"\n{len(failures)} restricted line(s). Redact at export via "
-              "REDACTIONS, or drop the file from MANIFEST. Do not edit the "
-              "vault to satisfy this — the vault is canonical.")
-        return 1
-
     if args.check and stale:
         print(f"\n{len(stale)} file(s) stale — re-run without --check before uploading.")
         return 1
@@ -353,8 +214,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    try:
-        sys.exit(main())
-    except RedactionError as exc:
-        print(f"\nREDACTION FAILED\n{exc}", file=sys.stderr)
-        sys.exit(1)
+    sys.exit(main())
