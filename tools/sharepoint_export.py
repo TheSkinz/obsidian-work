@@ -115,6 +115,16 @@ MANIFEST: list[tuple[str, str]] = [
      "CONTEXT_Estimating-Approach.md"),
     ("01-context/workflow-map.md",
      "CONTEXT_Workflow-Map.md"),
+
+    # Authored 2026-08-11 for this load, not projected from pre-existing vault
+    # content. The three-tier model was buried inside 07-llms/copilot/overview.md;
+    # Copilot reads these nine folders daily without knowing what any of them mean.
+    #
+    # Its consumer is tenant-wide M365 Copilot, NOT the Decoking Knowledge agent —
+    # SharePoint agents cannot reach Outlook mail. It sits on this site because that
+    # is what puts it in the tenant index, and any eval of it must be run untagged.
+    ("08-systems/outlook-email-architecture.md",
+     "CONTEXT_Outlook-Routing.md"),
 ]
 
 # No redaction or restricted-content scan lives here, deliberately.

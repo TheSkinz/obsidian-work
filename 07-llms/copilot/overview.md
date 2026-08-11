@@ -32,6 +32,8 @@ Copilot is used primarily through Outlook (email triage and drafting) and as a r
 
 **Tier 3: Copilot** — the reasoning layer. Reads folder state + categories to answer questions like "what bids are pending for Valero?" or "what's outstanding from last week?" without manually searching.
 
+**The model now has a standalone canonical home: [[outlook-email-architecture]]** (`08-systems/`), authored 2026-08-11 and projected to the Furnace Decoking site as `CONTEXT_Outlook-Routing.md`. That file carries the full legend — folder meanings, the category groups, the folder-beats-stale-category rule, the map from the commercial folders onto the DSP#/USA# transition, and what may and may not be inferred. The summary above is kept as the quick reference; the standalone note is what Copilot is actually grounded in, and it is the one to edit.
+
 ## Outlook email security architecture
 
 Deployed a 5-rule corrective architecture to fix email deliverability and sorting issues. Known gap: smtp.com in Rule 02A was flagged during design — confirm whether it's still a live gap.
@@ -222,7 +224,7 @@ The second is that the + 0.250 in rule appears in four chapters (`04`, `09`, `17
 
 **No fabrication.** Every quoted string and all five tube IDs were checked against the source files and match exactly. Section numbers were correct in all three attributions. Citations resolved as working links to the `.md` files.
 
-**Standing ruling confirmed, not merely unreversed:** upload vault notes as `.md`, no conversion step. The converter contingency is now closed rather than dormant. This unblocks tranche B (8 files staged in `_OUTPUTS/sharepoint/`), the Outlook routing document, and the `Decoking Knowledge.agent` relocation.
+**Standing ruling confirmed, not merely unreversed:** upload vault notes as `.md`, no conversion step. The converter contingency is now closed rather than dormant. This unblocks tranche B and the `Decoking Knowledge.agent` relocation. The Outlook routing document was authored the same day and staged alongside the rest, so **tranche B is nine files in `_OUTPUTS/sharepoint/`, not eight** — see [[outlook-email-architecture]].
 
 ### Untagged queries answer from OneDrive, as methodology
 
