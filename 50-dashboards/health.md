@@ -4,14 +4,14 @@
 
 | Metric | Value | Target | Status |
 |---|---|---|---|
-| Open decision rows | 4 | <= 10 | ok |
-| Review notes awaiting decision | 5 | <= 5 | ok |
+| Open decision rows | 5 | <= 10 | ok |
+| Review notes awaiting decision | 6 | <= 5 | FAIL |
 | Lint errors | 0 | 0 | ok |
 | Lint warnings | 44 | (backlog) | ok |
-| Inbox items | 44 | - | ok |
-| Inbox median age | 11 d | < 14 d | ok |
+| Inbox items | 46 | - | ok |
+| Inbox median age | 10 d | < 14 d | ok |
 | Inbox oldest item | 23 d | < 30 d | ok |
-| Days since last commit | 1 d | - | ok |
+| Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
 | Pending quotes expired | 0 | 0 | ok |
 | Dormant triggers fired | 0 | 0 | ok |
@@ -22,11 +22,11 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 
 | Loop | Last fired | Last heartbeat | Cadence | Status |
 |---|---|---|---|---|
-| Capture loop | 2026-08-10 (0 d ago) | 2026-08-09 (1 d ago) | 7 d | running |
-| Idea-research loop | 2026-08-10 (0 d ago) | 2026-08-03 (7 d ago) | 30 d | ok |
-| Pre-staging loop | 2026-08-09 (1 d ago) | 2026-08-08 (2 d ago) | 30 d | ok |
+| Capture loop | 2026-08-10 (0 d ago) | 2026-08-10 (0 d ago) | 7 d | ok |
+| Idea-research loop | 2026-08-10 (1 d ago) | 2026-08-03 (7 d ago) | 30 d | ok |
+| Pre-staging loop | 2026-08-10 (0 d ago) | 2026-08-10 (0 d ago) | 30 d | ok |
 | Consolidation loop | 2026-07-19 (22 d ago) | 2026-07-18 (23 d ago) | 31 d | ok |
-| Skill-drift loop | 2026-08-01 (9 d ago) | 2026-08-01 (9 d ago) | 62 d | ok |
+| Skill-drift loop | 2026-08-01 (10 d ago) | 2026-08-01 (9 d ago) | 62 d | ok |
 
 ## Commercial pipeline
 
@@ -46,6 +46,7 @@ Every recorded wake-up condition (`revisit-trigger:` frontmatter) — parked ide
 | Source | Condition | Check |
 |---|---|---|
 | [[2026-07-24-parallel-friction-factor-deferred]] | Actuals rollup carries 3-4 routine multi-pass rows with a recorded Mode -> decide whether the Duration Model gets a mode-friction term — event: check when a multi-pass TA lands actuals | event — checked at the step the condition names |
+| [[2026-08-10-sharepoint-pilot-cleanup-owed]] | Phase 5 eval of the SharePoint Knowledge agent completes -> delete the deliberate-error test file MANUAL-09_Phase-II-Mechanical-Decoking-Rev-A from the Knowledge library, and delete or repoint the PROBE - Markdown Format Test agent — event: check when the six eval questions have been run twice | event — checked at the step the condition names |
 | [[idea-context-packet-builder-skill]] | A real mobilization or bid shows manual context-gathering friction (parked 2026-07-18) — event: check at job mobilization | event — checked at the step the condition names |
 | [[idea-rig-layout-diagram]] | Coil-visualization Tier 2+3 build lands (approved 2026-08-01, owed at [[2026-08-01-coil-visualization-build-owed]]) -> research the rig/hose layout diagram against the render path that build establishes — event: check when the coil-viz SVG generator exists (verified still unbuilt 2026-08-03, tools/ has no such generator) | event — checked at the step the condition names |
 | [[rfq-intake-protocol]] | About 12 quote notes under a settled rate-table heading convention -> build the cross-quote rate-history rollup [machine: quote-count>=12] | quote notes: 11 of 12 |
@@ -56,7 +57,7 @@ Every recorded wake-up condition (`revisit-trigger:` frontmatter) — parked ide
 
 ## Notes
 
-- **Decision queue:** [[decision-queue]] — 4 open. Cap is 10; over cap, proposal-generating loops pause.
-- **Review notes awaiting decision:** 5 in `06-insights/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
+- **Decision queue:** [[decision-queue]] — 5 open. Cap is 10; over cap, proposal-generating loops pause.
+- **Review notes awaiting decision:** 6 in `06-insights/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
 - **Lint warnings** are the standing to-do list (provenance-frontmatter backfill, stale `related:` links), not failures. Detail: run `python tools/vault_lint.py --report` → `50-dashboards/lint-report.md`.
 - **Heartbeats overdue** means a loop row shows FAIL — either the scheduler stopped firing (check the task's enabled state in the desktop app) or a run started and never finished (check the app's session history for that run). A loop that fires and no-ops cleanly shows ok with no new commit — that is healthy, not silent.
