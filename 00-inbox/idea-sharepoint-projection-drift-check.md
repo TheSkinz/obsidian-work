@@ -2,7 +2,7 @@
 type: idea-seed
 status: gated
 created: 2026-08-10
-revisit-trigger: "Tranche B lands (8 files, staged in _OUTPUTS/sharepoint/ — no longer blocked, the markdown ranking retest passed 2026-08-11 per [[2026-08-10-markdown-ranking-retest-owed]], so the load is free to run; membership changed 2026-08-11 — CONTEXT_Outlook-Routing.md added, CONTEXT_Workflow-Map.md dropped) and the full Knowledge-library load completes -> build the projection drift check so health.md surfaces stale SharePoint copies — event: check when tranche B is uploaded (verified still staged, not loaded, 2026-08-11)"
+revisit-trigger: "FIRED 2026-08-11 — tranche B landed (8 files; CONTEXT_Outlook-Routing.md added, CONTEXT_Workflow-Map.md dropped) and the Knowledge-library load completed at 29 markdown files, so the gate is satisfied -> build the projection drift check so health.md surfaces stale SharePoint copies. A real drift instance was caught by hand the same day (see the Evidence section below) — design against it."
 related:
   - "[[2026-08-11-idea-research-sharepoint-projection-drift-check]]"
 tags: [idea, vault-system, future, copilot, sharepoint]
@@ -16,7 +16,21 @@ Idea seed captured 2026-08-10 for a future exploration session. The read below i
 
 **To explore:** Where the check hooks — a rule inside `vault_lint.py`, a separate call from `vault_health.py`, or the capture loop. Whether staged-vs-vault is the right comparison at all, or whether it should compare the vault against what is actually *live in SharePoint* (the staging folder can itself be stale relative to the uploaded copy, so a green staging check could still mean a stale library — this is the real question and it may need a REST read rather than a local diff). Whether the row is informational or a FAIL. What happens to the `Rev-A` style non-projected files that must not be reported as drift.
 
-**Gate:** Phase 6 has not run — the library holds five pilot files, and there is no corpus to drift yet. Build after the full load, not before.
+**Gate — satisfied 2026-08-11.** The full load has run: 29 markdown files in the library. Build is unblocked.
+
+## Evidence from the tranche B load — design against this case
+
+A real drift instance was caught by hand during the load, and it settles the open question above about *what* to compare.
+
+`CONTEXT_Outlook-Routing.md` was uploaded manually and the library held the **vault source** rather than the projection — YAML frontmatter intact, no provenance line, dead `[[wikilinks]]`. Everything a cheap check would look at was correct: the filename matched, all twelve columns were set, Owner was right, the content read plausibly. Only `File/Length` against the staged copy on disk gave it away, 5489 against 5461, and SHA-256 confirmed it.
+
+Three consequences for the design:
+
+**Presence-only would have passed it.** So would a columns-complete check. The comparison has to be on content.
+
+**Staged-vs-vault is not sufficient** — `--check` was green throughout, because the staging folder was correct; it was the *library* that was wrong. This confirms the tentative read in the "To explore" section: the check needs a REST read of what is actually live, not a local diff. `File/Length` is the cheap first pass and a `$value` fetch plus hash is the exact one.
+
+**The failure mode is a plausible-looking wrong file, not a missing one.** Any path that does not run `sharepoint_export.py` — a hand upload, a drag-and-drop, a file pulled from the wrong folder — produces something that looks right everywhere the library can see.
 
 ---
 

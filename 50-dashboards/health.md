@@ -7,7 +7,7 @@
 | Open decision rows | 6 | <= 10 | ok |
 | Review notes awaiting decision | 7 | <= 5 | FAIL |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 48 | (backlog) | ok |
+| Lint warnings | 51 | (backlog) | ok |
 | Inbox items | 48 | - | ok |
 | Inbox median age | 10 d | < 14 d | ok |
 | Inbox oldest item | 24 d | < 30 d | ok |
@@ -23,10 +23,10 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 | Loop | Last fired | Last heartbeat | Cadence | Status |
 |---|---|---|---|---|
 | Capture loop | 2026-08-11 (0 d ago) | 2026-08-11 (0 d ago) | 7 d | ok |
-| Idea-research loop | 2026-08-11 (0 d ago) | 2026-08-11 (0 d ago) | 30 d | ok |
-| Pre-staging loop | 2026-08-11 (0 d ago) | 2026-08-11 (0 d ago) | 30 d | ok |
+| Idea-research loop | 2026-08-11 (1 d ago) | 2026-08-11 (0 d ago) | 30 d | ok |
+| Pre-staging loop | 2026-08-11 (1 d ago) | 2026-08-11 (0 d ago) | 30 d | ok |
 | Consolidation loop | 2026-07-19 (23 d ago) | 2026-07-18 (24 d ago) | 31 d | ok |
-| Skill-drift loop | 2026-08-01 (10 d ago) | 2026-08-01 (10 d ago) | 62 d | ok |
+| Skill-drift loop | 2026-08-01 (11 d ago) | 2026-08-01 (10 d ago) | 62 d | ok |
 
 ## Commercial pipeline
 
@@ -49,7 +49,7 @@ Every recorded wake-up condition (`revisit-trigger:` frontmatter) — parked ide
 | [[2026-08-10-sharepoint-pilot-cleanup-owed]] | GATE CLEARED 2026-08-11 — the ranking retest passed, so the only thing left is the action: move Decoking Knowledge.agent from the Knowledge library to Site Assets, then re-ask the pig OD question to confirm the agent still answers — event: ready to run in any session with browser access to the tenant | event — checked at the step the condition names |
 | [[idea-context-packet-builder-skill]] | A real mobilization or bid shows manual context-gathering friction (parked 2026-07-18) — event: check at job mobilization | event — checked at the step the condition names |
 | [[idea-rig-layout-diagram]] | Coil-visualization Tier 2+3 build lands (approved 2026-08-01, owed at [[2026-08-01-coil-visualization-build-owed]]) -> research the rig/hose layout diagram against the render path that build establishes — event: check when the coil-viz SVG generator exists (verified still unbuilt 2026-08-03, tools/ has no such generator) | event — checked at the step the condition names |
-| [[idea-sharepoint-projection-drift-check]] | Tranche B lands (8 files, staged in _OUTPUTS/sharepoint/ — no longer blocked, the markdown ranking retest passed 2026-08-11 per [[2026-08-10-markdown-ranking-retest-owed]], so the load is free to run; membership changed 2026-08-11 — CONTEXT_Outlook-Routing.md added, CONTEXT_Workflow-Map.md dropped) and the full Knowledge-library load completes -> build the projection drift check so health.md surfaces stale SharePoint copies — event: check when tranche B is uploaded (verified still staged, not loaded, 2026-08-11) | event — checked at the step the condition names |
+| [[idea-sharepoint-projection-drift-check]] | FIRED 2026-08-11 — tranche B landed (8 files; CONTEXT_Outlook-Routing.md added, CONTEXT_Workflow-Map.md dropped) and the Knowledge-library load completed at 29 markdown files, so the gate is satisfied -> build the projection drift check so health.md surfaces stale SharePoint copies. A real drift instance was caught by hand the same day (see the Evidence section below) — design against it. | event — checked at the step the condition names |
 | [[rfq-intake-protocol]] | About 12 quote notes under a settled rate-table heading convention -> build the cross-quote rate-history rollup [machine: quote-count>=12] | quote notes: 11 of 12 |
 | [[2026-07-19-rate-model-grain-review]] | First bid under a multi-year or master agreement -> build the contract-note type (proposal C, rejected 2026-07-19) — event: check at RFQ intake | event — checked at the step the condition names |
 | [[2026-07-28-idea-research-rollup-per-rig-coilset-grain]] | Next time `_canonical-heater-card.md` is opened for a change carrying its own weight -> decide the structured per-coilset actuals sub-table, bundled with the parked Pig Specifications Condition column (parked 2026-07-29) — event: check at heater-card schema change | event — checked at the step the condition names |

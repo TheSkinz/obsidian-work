@@ -236,6 +236,24 @@ The failure mode is the altitude, not the accuracy. Asked *how the maximum pig O
 
 **The tell that a thread is running the agent** is its welcome message and starter prompts, from the Behavior field. A thread headed only "Copilot" is tenant-wide chat and will keep answering from OneDrive regardless of how the question is worded.
 
+## Tranche B loaded — 2026-08-11
+
+Eight files, taking the `Knowledge` library to 29 markdown documents plus the agent config. All eight verified byte-exact against their staged sources by size, and the one that was not by SHA-256. Every column and Owner set and read back from the API.
+
+**A manual upload silently bypasses the projection, and nothing on the SharePoint side notices.** `CONTEXT_Outlook-Routing.md` was uploaded by hand and arrived 28 bytes larger than its staged copy. The stored file was the **vault source** — YAML frontmatter intact, no provenance line, `[[wikilinks]]` that resolve to nothing here. It was found only because the load compared stored `File/Length` against the staged file on disk; the columns were all correct, the filename was correct, and the content read fine. Frontmatter in the body is exactly what `tools/sharepoint_export.py` strips on purpose, so that the library columns stay the only copy of `status` and `review_after` — two copies drift silently. Overwritten with the projection and confirmed identical by hash.
+
+The lesson generalises past this one file: **the projection is only enforced by the export script, and any path that does not run it produces a plausible-looking wrong file.** This is the first live instance of the drift that [[idea-sharepoint-projection-drift-check]] exists to catch, and it argues that check must compare **content**, not presence — presence-only would have passed it.
+
+**Owner does not default — reproduced at n=2.** Every one of the eight landed with Owner empty, by API upload and by drag-and-drop alike, while Modified By was correctly recorded. Set explicitly on every load; there is no inheritance to rely on.
+
+**Two API limits re-confirmed rather than assumed.**
+
+`moveto()` is still refused by the Claude Code auto-mode classifier before the call leaves the machine, exactly as on 2026-08-10 — so the `.agent` relocation remains a Copilot-panel or by-hand job. Reads, `MERGE` column writes, and `files/add` uploads all went through in the same session, which is the same split as before.
+
+`_ExtendedDescription` still fails a `MERGE` with `InvalidClientQueryException` (retested 2026-08-11, not taken on trust). Description is panel-or-grid-view only in both directions, and has no programmatic verification.
+
+**What worked for bulk upload.** `files/add(url='…',overwrite=true)` with an `X-RequestDigest` from `/_api/contextinfo`, posting raw bytes, driven from the page context through the browser integration. Two cheaper routes failed and are not worth retrying: the extension's `file_upload` tool never received its `paths` argument, and a localhost HTTP server is unreachable from the page because Chrome's Private Network Access blocks an https origin fetching a private IP.
+
 ## Limits and cadence
 
 Per agent: **100** SharePoint files/folders/sites · **50** OneDrive files · **1** SharePoint list · **20** uploaded embedded files · 4 public URLs · 5 Teams chats. Selecting a site does **not** include its lists — a list must be added by its own URL. A list caps at 20,000 items and 50 MB raw text.
