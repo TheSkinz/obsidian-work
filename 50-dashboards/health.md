@@ -7,8 +7,8 @@
 | Open decision rows | 6 | <= 10 | ok |
 | Review notes awaiting decision | 7 | <= 5 | FAIL |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 49 | (backlog) | ok |
-| Inbox items | 49 | - | ok |
+| Lint warnings | 51 | (backlog) | ok |
+| Inbox items | 51 | - | ok |
 | Inbox median age | 10 d | < 14 d | ok |
 | Inbox oldest item | 24 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
@@ -46,6 +46,7 @@ Every recorded wake-up condition (`revisit-trigger:` frontmatter) — parked ide
 | Source | Condition | Check |
 |---|---|---|
 | [[2026-07-24-parallel-friction-factor-deferred]] | Actuals rollup carries 3-4 routine multi-pass rows with a recorded Mode -> decide whether the Duration Model gets a mode-friction term — event: check when a multi-pass TA lands actuals | event — checked at the step the condition names |
+| [[2026-08-11-outlook-doc-three-copies]] | Next session touching Outlook, Copilot grounding, or the OneDrive eviction -> read Phase 1 Outlook Operating Procedure - Reference.docx, decide which of the three folder-structure documents survives, and check whether it holds the five email-rule bodies that exist nowhere else — event: check at the next M365 session | event — checked at the step the condition names |
 | [[idea-context-packet-builder-skill]] | A real mobilization or bid shows manual context-gathering friction (parked 2026-07-18) — event: check at job mobilization | event — checked at the step the condition names |
 | [[idea-rig-layout-diagram]] | Coil-visualization Tier 2+3 build lands (approved 2026-08-01, owed at [[2026-08-01-coil-visualization-build-owed]]) -> research the rig/hose layout diagram against the render path that build establishes — event: check when the coil-viz SVG generator exists (verified still unbuilt 2026-08-03, tools/ has no such generator) | event — checked at the step the condition names |
 | [[idea-sharepoint-projection-drift-check]] | FIRED 2026-08-11 — tranche B landed (8 files; CONTEXT_Outlook-Routing.md added, CONTEXT_Workflow-Map.md dropped) and the Knowledge-library load completed at 29 markdown files, so the gate is satisfied -> build the projection drift check so health.md surfaces stale SharePoint copies. A real drift instance was caught by hand the same day (see the Evidence section below) — design against it. | event — checked at the step the condition names |
