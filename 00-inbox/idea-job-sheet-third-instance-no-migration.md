@@ -1,7 +1,9 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-08-11
+related:
+  - [[2026-08-12-idea-research-job-sheet-third-instance-no-migration]]
 tags: [idea, vault-system, job-sheet, schema]
 ---
 
