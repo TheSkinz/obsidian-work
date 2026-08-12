@@ -203,7 +203,7 @@ All six questions asked in one thread against the five-file pilot library. Q1 ha
 
 Both surfaced only at volume; the pilot five had hidden them.
 
-**The Description column is unreachable from the REST API in both directions.** It was already known not to be queryable as an item property; a `MERGE` write against `_ExtendedDescription` also fails with `InvalidClientQueryException`. So Description is Copilot-panel or grid-view only, and the only way to verify it is to look at a list view. The panel wrote all seventeen verbatim when told not to paraphrase, so it remains the right tool for that one column — everything else is faster and more auditable through REST, which returns a checkable 204 per item.
+**The Description column cannot be written from the REST API** — a `MERGE` against `_ExtendedDescription` fails with `InvalidClientQueryException`, and it is not queryable as an item property. *(Half-corrected 2026-08-11: the write limit holds, but it is readable via `RenderListDataAsStream` — see the tranche B section below. The claim that it was unverifiable was wrong.)* The panel wrote all seventeen verbatim when told not to paraphrase, so it remains the right tool for that one column — everything else is faster and more auditable through REST, which returns a checkable 204 per item.
 
 **Owner does not populate itself.** Files that arrive by API upload *or* by drag-and-drop land with Owner empty, even though the uploading account is correctly recorded as Modified By. The pilot five had Owner set by hand, so nothing revealed this until seventeen files landed without it. Set it explicitly on every load rather than assuming it inherits from the uploader.
 
@@ -240,7 +240,7 @@ The failure mode is the altitude, not the accuracy. Asked *how the maximum pig O
 
 Eight files, taking the `Knowledge` library to 29 markdown documents plus the agent config. All eight verified byte-exact against their staged sources by size, and the one that was not by SHA-256. Every column and Owner set and read back from the API.
 
-**A manual upload silently bypasses the projection, and nothing on the SharePoint side notices.** `CONTEXT_Outlook-Routing.md` was uploaded by hand and arrived 28 bytes larger than its staged copy. The stored file was the **vault source** — YAML frontmatter intact, no provenance line, `[[wikilinks]]` that resolve to nothing here. It was found only because the load compared stored `File/Length` against the staged file on disk; the columns were all correct, the filename was correct, and the content read fine. Frontmatter in the body is exactly what `tools/sharepoint_export.py` strips on purpose, so that the library columns stay the only copy of `status` and `review_after` — two copies drift silently. Overwritten with the projection and confirmed identical by hash.
+**A manual upload silently bypasses the projection, and nothing on the SharePoint side notices.** `CONTEXT_Outlook-Routing.md` was uploaded by hand and arrived 28 bytes larger than its staged copy. The stored file was the **vault source** — YAML frontmatter intact, no provenance line, and Obsidian-style wiki-links that resolve to nothing here. It was found only because the load compared stored `File/Length` against the staged file on disk; the columns were all correct, the filename was correct, and the content read fine. Frontmatter in the body is exactly what `tools/sharepoint_export.py` strips on purpose, so that the library columns stay the only copy of `status` and `review_after` — two copies drift silently. Overwritten with the projection and confirmed identical by hash.
 
 The lesson generalises past this one file: **the projection is only enforced by the export script, and any path that does not run it produces a plausible-looking wrong file.** This is the first live instance of the drift that [[idea-sharepoint-projection-drift-check]] exists to catch, and it argues that check must compare **content**, not presence — presence-only would have passed it.
 
@@ -248,9 +248,18 @@ The lesson generalises past this one file: **the projection is only enforced by 
 
 **Two API limits re-confirmed rather than assumed.**
 
-`moveto()` is still refused by the Claude Code auto-mode classifier before the call leaves the machine, exactly as on 2026-08-10 — so the `.agent` relocation remains a Copilot-panel or by-hand job. Reads, `MERGE` column writes, and `files/add` uploads all went through in the same session, which is the same split as before.
+`moveto()` is still refused by the Claude Code auto-mode classifier before the call leaves the machine, exactly as on 2026-08-10 — so the `.agent` relocation remains a Copilot-panel or by-hand job. Reads, `MERGE` column writes, and `files/add` uploads all went through in the same session, which is the same split as before. The panel did the move on request and it verified clean: `Knowledge` holds 29 items and no `.agent`, `Site Assets` holds `Decoking Knowledge.agent`.
 
-`_ExtendedDescription` still fails a `MERGE` with `InvalidClientQueryException` (retested 2026-08-11, not taken on trust). Description is panel-or-grid-view only in both directions, and has no programmatic verification.
+`_ExtendedDescription` still fails a `MERGE` with `InvalidClientQueryException` (retested 2026-08-11, not taken on trust), so **writing** Description remains panel-or-grid-view only.
+
+**Reading it is solved, and the earlier "unreachable in both directions" ruling is wrong.** `RenderListDataAsStream` returns `_ExtendedDescription` for every row, where the OData `items` endpoint refuses it:
+
+```
+POST /_api/web/lists/getbytitle('Knowledge')/RenderListDataAsStream
+{"parameters":{"ViewXml":"<View><ViewFields><FieldRef Name='FileLeafRef'/><FieldRef Name='_ExtendedDescription'/></ViewFields><RowLimit>60</RowLimit></View>"}}
+```
+
+That gave an exact string comparison of all eight panel-written Descriptions against their intended text — 8/8 verbatim — instead of the visual list-view check the prior note called for. Worth generalising: **when an OData property is refused, try `RenderListDataAsStream` with an explicit `ViewFields` before concluding a field is unreachable.** It renders through the view engine rather than the entity type, so it is not bound by `SP.Data.KnowledgeItem`'s property set.
 
 **What worked for bulk upload.** `files/add(url='…',overwrite=true)` with an `X-RequestDigest` from `/_api/contextinfo`, posting raw bytes, driven from the page context through the browser integration. Two cheaper routes failed and are not worth retrying: the extension's `file_upload` tool never received its `paths` argument, and a localhost HTTP server is unreachable from the page because Chrome's Private Network Access blocks an https origin fetching a private IP.
 

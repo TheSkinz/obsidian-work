@@ -22,7 +22,7 @@ Idea seed captured 2026-08-10 for a future exploration session. The read below i
 
 A real drift instance was caught by hand during the load, and it settles the open question above about *what* to compare.
 
-`CONTEXT_Outlook-Routing.md` was uploaded manually and the library held the **vault source** rather than the projection — YAML frontmatter intact, no provenance line, dead `[[wikilinks]]`. Everything a cheap check would look at was correct: the filename matched, all twelve columns were set, Owner was right, the content read plausibly. Only `File/Length` against the staged copy on disk gave it away, 5489 against 5461, and SHA-256 confirmed it.
+`CONTEXT_Outlook-Routing.md` was uploaded manually and the library held the **vault source** rather than the projection — YAML frontmatter intact, no provenance line, and Obsidian-style wiki-links that resolve to nothing in SharePoint. Everything a cheap check would look at was correct: the filename matched, all twelve columns were set, Owner was right, the content read plausibly. Only `File/Length` against the staged copy on disk gave it away, 5489 against 5461, and SHA-256 confirmed it.
 
 Three consequences for the design:
 
