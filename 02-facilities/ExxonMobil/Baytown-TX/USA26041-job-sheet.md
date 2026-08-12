@@ -1,21 +1,15 @@
 ---
 type: job-sheet
-job-number: 
+job-number: USA26041
 client: ExxonMobil
 facility: ExxonMobil-Baytown-TX
 source: DSP26071.2
 verified: 2026-07-27
-last-updated: 2026-07-27
-tags: [job-sheet, ExxonMobil, HU5A-F501]
+last-updated: 2026-08-11
+tags: [job-sheet, ExxonMobil, HU5A-F501, USA26041]
 ---
 
-<!-- Job number is the ops manager's to create, on his own schedule (Jesse, 2026-07-29). This is
-     not an open item and is not to be flagged, chased, or raised as a mobilization risk — Jesse
-     brings the number to the session the moment it exists. On receipt: set `job-number`, add
-     USA##### to the tags list, fill the Job # row in Project Details, and rename this file to
-     <USA#####>-job-sheet.md per the canonical naming convention. -->
-
-# HU5A F-501 — ExxonMobil Baytown Refinery, Baytown, TX
+# USA26041 — ExxonMobil Baytown Refinery, Baytown, TX
 
 > Vault-native copy of the printable crew job sheet. A job sheet is static — created at bid-win
 > from the quoted work-up. Actuals and timeline live on the job report, never here.
@@ -27,7 +21,7 @@ tags: [job-sheet, ExxonMobil, HU5A-F501]
 | Field | Value |
 |---|---|
 | Facility | ExxonMobil Baytown Refinery — 2800 Decker Drive, Baytown, TX 77520 |
-| Job # | *(pending — not yet issued)* |
+| Job # | USA26041 |
 | Quote | [[DSP26071]] (DSP#26071.2 Rev002) |
 | PO # | 4411473422 |
 | WO # | 20961590 |
@@ -36,9 +30,10 @@ tags: [job-sheet, ExxonMobil, HU5A-F501]
 | Heaters | F-501 — HU5A process & treat gas heater |
 | Project Type | Planned turnaround (August 2026 HU5A TA) |
 | Equipment mobilization | **2026-08-08** |
-| Rig-in / execution start | **2026-08-10** |
+| Rig-in / execution start | **2026-08-12** |
 | Quoted duration | 48 hrs — 8 rig-in / 24 pig / 8 smart pig / 8 rig-out · 2 days · 4 shifts |
 | Training | Site-specific (same as all other ExxonMobil Baytown jobs) **plus PSSR training, which is required for this job**. PSSR is held inside the gate — a site badge must be issued before the crew can attend. Sequence: badge → gate access → PSSR → work. |
+| Lodging | Booking in progress — Kelly booking a Baytown-area hotel for the night of 2026-08-12 |
 
 ---
 
@@ -73,10 +68,8 @@ schedule bills non-USADebusk-caused standby at $500/hr pumper, but only against 
 
 ## Crew Assignment — By Rig & Shift
 
-<!-- Crew assignment and badging are owned elsewhere and arrive on their own schedule (Jesse,
-     2026-07-29) — same standing as the job number above. Not an open item, not a risk to
-     surface. Supervisors are fixed to a rig; operators are a shared pool by shift. Fill in when
-     the names come through. -->
+**Mobilized crew (pool, shift split not yet assigned):** Jesse Utsey, Sid, Blake B., Danilo,
+Brody, Sam.
 
 **Dayshift**
 
@@ -94,6 +87,26 @@ schedule bills non-USADebusk-caused standby at $500/hr pumper, but only against 
 (The work-up names Travis Trenholm as Project Manager. That is the standing template default on
 every quotation, not an assignment — nothing to reconcile. No billable Project Manager line is
 carried on the quote; the PM row is quoted at qty 0.)
+
+---
+
+## Equipment Mobilized
+
+| Qty | Billable As | Asset | Status |
+|---|---|---|---|
+| 1 | Trimax Pumper | Trimax 4 | Staged |
+| 1 | Support Unit | Support 4 | Fully loaded, ready |
+| 1 | Filter Unit | Press 2 | Staged |
+
+**Vehicles** — F150; rental truck currently with Jesse. Jesse is trying to track down an
+additional truck for this job.
+
+**Mobilization action items (2026-08-11)** — all personnel reporting to badging today, badges to
+be activated for site access (Kelly has already submitted the reactivation requests); Brody
+assisting with moving gear and final preparations; Jesse and Sid double-checking the loadout;
+ensure all equipment, trucks, and paperwork are ready prior to mobilization.
+
+Pigging operations are expected to begin immediately following rig-in completion.
 
 ---
 
@@ -202,6 +215,8 @@ crew judgment alone.
 
 **Dates in the submitted quote read 2027.** The Rev002 execution plan shows 8/10/27–8/12/27
 against an "August 2026 TA" header. The correct dates are the ones at the top of this sheet:
-mob 2026-08-08, rig-in 2026-08-10.
+mob 2026-08-08, rig-in 2026-08-12.
+
+**Rig-in slipped 2 days** from the quoted 2026-08-10 to 2026-08-12.
 
 First decoke of this heater — no prior job history, so no carry-forward notes.

@@ -24,7 +24,7 @@
 | Job # | Facility | Heater(s) | Quote | Execution | Notes |
 |---|---|---|---|---|---|
 | USA26040 | HF Sinclair Navajo, Artesia NM | H-2421 (HDU charge) | DSP26092 — $38,583.30 | Mob 2026-08-04, rig-in 2026-08-05 07:00 | PO TBD. Mechanical decoke + smart-pig support, double mode, 1 Trimax with filtration; 28 quoted hrs, 2 days / 3 shifts. Jesse PM of record. Trimax 5 / Support 5 / Press 2 staged in plant laydown; Glider to be picked up from Deer Park pre-mob. Crew (5 against a 6-slot quoted plan — nights runs 1 operator): Jesse (day sup), Sam (night sup), Andre, Brandon, Blake B. → [[USA26040-job-sheet]]. |
-| *(pending)* | ExxonMobil Baytown, TX | F-501 (HU5A) | [[DSP26071\|DSP26071.2]] — $60,287.42 | Mob 2026-08-08, rig-in 2026-08-10 | PO 4411473422 / WO 20961590 received 2026-07-29, VP-approved. One PO ($256,250.56) covers the hydroblast and pigging scopes under the same agreement. ExxonMobil tags the heater `R501`. USA#, crew and badging sit with the ops manager and arrive on his schedule — not open items. Jesse running the job. |
+| USA26041 | ExxonMobil Baytown, TX | F-501 (HU5A) | [[DSP26071\|DSP26071.2]] — $60,287.42 | Mob 2026-08-08, rig-in 2026-08-12 | PO 4411473422 / WO 20961590 received 2026-07-29, VP-approved. One PO ($256,250.56) covers the hydroblast and pigging scopes under the same agreement. ExxonMobil tags the heater `R501`. Rig-in slipped 2 days from quoted 08-10. Crew mobilized: Jesse, Sid, Blake B., Danilo, Brody, Sam (shift split TBD). Trimax 4 / Support 4 / Press 2. Badge activations in progress today. Jesse running the job. → [[USA26041-job-sheet]]. |
 
 ---
 

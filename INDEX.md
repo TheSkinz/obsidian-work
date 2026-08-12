@@ -40,7 +40,7 @@
 - [[F-501]] — HU5A F-501 Process & Treat Gas Coils — ExxonMobil Baytown, TX `(ExxonMobil/Baytown-TX)`
 - [[F-802]] — PS8 F-802 Crude Heater — ExxonMobil Baytown, TX `(ExxonMobil/Baytown-TX)`
 - [[F-901]] — PS8 F-901 Kerosene Furnace — ExxonMobil Baytown, TX `(ExxonMobil/Baytown-TX)`
-- [[HU5A-F501-job-sheet]] — HU5A F-501 — ExxonMobil Baytown Refinery, Baytown, TX `(ExxonMobil/Baytown-TX)`
+- [[USA26041-job-sheet]] — USA26041 — ExxonMobil Baytown Refinery, Baytown, TX `(ExxonMobil/Baytown-TX)`
 - [[01-BA-105]] — 01-BA-105 Raw Oil Charge Preheater — Flint Hills Resources, Corpus Christi, TX `(Flint-Hills/Corpus-Christi-TX)`
 - [[02-BA-201]] — 02-BA-201 Debutanizer Reboiler — Flint Hills Resources, Corpus Christi, TX `(Flint-Hills/Corpus-Christi-TX)`
 - [[_facility]] — Flint Hills Resources — Corpus Christi, TX `(Flint-Hills/Corpus-Christi-TX)`
@@ -182,6 +182,7 @@
 - [[2026-08-08-prestaged-f6-rig-tier-decision]] — Review — Should F6's rig-in tier ambiguity be closed by amending the fixture or by ruling the tier?
 - [[2026-08-10-prestaged-quote-note-bid-folder-staleness]] — Review — Should a quote-note-vs-bid-folder staleness check be built, and where does it live?
 - [[2026-08-11-idea-research-sharepoint-projection-drift-check]] — Idea Research — SharePoint Projection Drift Check on the Health Dashboard (Gate Check)
+- [[2026-08-11-prestaged-backtest-workup-fixture-mapping]] — Review — Should `backtest_workup.py` script edits get a fixture-replay-guard mapping?
 
 ## LLMs
 
@@ -211,6 +212,7 @@
 - [[desktop-hardware]] — Desktop Hardware
 - [[mobile-field-access]] — Mobile / Field Access
 - [[obsidian-setup]] — Obsidian Setup
+- [[outlook-email-architecture]] — Outlook Email Architecture
 - [[windows-config]] — Windows Configuration Notes
 
 ## Interests
