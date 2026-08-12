@@ -10,6 +10,14 @@ related:
 
 # Outlook Email Architecture
 
+> **⚠ SUPERSEDED THE DAY IT WAS WRITTEN — 2026-08-11. Everything below the line describes folders that do not exist.**
+>
+> Written from the three-tier model in [[copilot/overview]] without checking the live mailbox. Verified the same evening and the model is wrong: the real folders are `00 Action - Today`, `01 Waiting On Others`, `02 Internal Review`, `03 Sent - Pending Response`, `04 Execution Active`, `05 Automation & Systems`, `06 IT / Security`, `07 Read Later`, `99 Archive`.
+>
+> The document below describes a commercial pipeline; the mailbox is a personal triage workflow. The quote-lifecycle mapping — `04-Proposals-Sent` → `05-Awarded` as the DSP-to-USA transition — refers to two folders that do not exist, and it was the section this document was built around.
+>
+> The projected copy in the SharePoint `Knowledge` library is set `Status: stale` / `Confidence: low`. Rewrite pending Jesse's account of what each real folder means and a confirmed category list; the structure below (legend → orthogonality rule → lifecycle join → valid/invalid inferences) is worth keeping, the content is not.
+
 How email is organised in this mailbox, and what each folder and category *means*. Written so that
 a model reading the mailbox can reason about an email's state instead of guessing from its text.
 

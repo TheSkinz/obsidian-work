@@ -10,6 +10,16 @@ Copilot is used primarily through Outlook (email triage and drafting) and as a r
 
 ## Email architecture — three-tier model
 
+> **⚠ THE FOLDER TABLE BELOW IS WRONG — verified against the live mailbox 2026-08-11. Do not build on it.**
+>
+> The real folders are `00 Action - Today`, `01 Waiting On Others`, `02 Internal Review`, `03 Sent - Pending Response`, `04 Execution Active`, `05 Automation & Systems`, `06 IT / Security`, `07 Read Later`, `99 Archive`. Nine custom folders, as recorded — and that is the only thing that matches.
+>
+> The table below describes a **commercial pipeline** (proposals → awarded → execution → closed). The mailbox is a **personal triage workflow**. There is no Awarded folder, no Closed folder, no Reference folder, and no Proposals-Active/Sent split; four real folders are absent from it entirely. The error dates to this page's creation on 2026-06-29 and was never checked against the tenant.
+>
+> **The category list is also unconfirmed.** Copilot was observed using `Submitted`, `Awarded` and `Closed / No-Go`, and only one of those appears in the seven below.
+>
+> Kept verbatim pending the rewrite so the scale of the drift stays visible. `CONTEXT_Outlook-Routing.md` in the SharePoint library was built from this table and has been set `Status: stale` / `Confidence: low`.
+
 **Tier 1: Outlook folders** — encode state (where is this email in its lifecycle?). Nine folders define the pipeline:
 
 | Folder | Meaning |
