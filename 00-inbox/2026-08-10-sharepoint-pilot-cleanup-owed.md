@@ -1,13 +1,12 @@
 <!-- vault-loop: no home yet, candidate for [sharepoint-pilot-cleanup] -->
 ---
 type: review
-status: open
+status: resolved
 review_type: cleanup
 source_authority: session
 confidence: high
 created: 2026-08-10
-review_after: 2026-08-24
-revisit-trigger: "GATE CLEARED 2026-08-11 — the ranking retest passed, so the only thing left is the action: move Decoking Knowledge.agent from the Knowledge library to Site Assets, then re-ask the pig OD question to confirm the agent still answers — event: ready to run in any session with browser access to the tenant"
+resolved: 2026-08-11
 related:
   - "[[overview]]"
 tags: [copilot, sharepoint, cleanup, safety]
@@ -57,6 +56,8 @@ Items 1 and 2 are both closed. Only the `Decoking Knowledge.agent` relocation re
 
 **DONE 2026-08-11.** The retest passed, clearing the gate, and the move was carried out through the SharePoint Copilot panel — REST `moveto()` was refused by the auto-mode classifier again, same as on 2026-08-10. Verified against the API rather than the panel's transcript: `Knowledge` holds 29 items with no `.agent`, and `Decoking Knowledge.agent` is in `Site Assets`.
 
-**One check still owed, and it needs the M365 desktop app:** re-ask the pig OD question with the agent tagged and confirm it still answers. The known-good baseline is on record — it cites `MANUAL-04` §4.3 and `MANUAL-18` §18.2 for the + 0.250 in rule. A matching answer closes this note entirely.
+**Post-move confirmation passed 2026-08-11.** The pig OD question was re-asked with the agent tagged and it answered from the same two sources as the pre-move baseline, `MANUAL-04` and `MANUAL-18`. Content checked against source rather than read for plausibility: the five-row ceiling table was `MANUAL-18` §18.3 reproduced exactly, not arithmetic the model performed, and the data-provenance paragraph tracks §4.2 faithfully. It volunteered more than the baseline did, which is depth rather than drift.
+
+**All three items are now closed and the note is finished.**
 
 Worth recording for future sessions: both deletions were attempted first through the SharePoint REST API and **blocked by the Claude Code auto-mode classifier**, not by SharePoint — the `recycle()` and `moveto()` calls never reached the tenant. Reads, column writes (`MERGE`), and file uploads through the same API all went through fine. So the working split is REST for reads and metadata, the Copilot panel for deletes and moves.

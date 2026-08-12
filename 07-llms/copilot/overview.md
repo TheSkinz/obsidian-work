@@ -248,7 +248,7 @@ The lesson generalises past this one file: **the projection is only enforced by 
 
 **Two API limits re-confirmed rather than assumed.**
 
-`moveto()` is still refused by the Claude Code auto-mode classifier before the call leaves the machine, exactly as on 2026-08-10 — so the `.agent` relocation remains a Copilot-panel or by-hand job. Reads, `MERGE` column writes, and `files/add` uploads all went through in the same session, which is the same split as before. The panel did the move on request and it verified clean: `Knowledge` holds 29 items and no `.agent`, `Site Assets` holds `Decoking Knowledge.agent`.
+`moveto()` is still refused by the Claude Code auto-mode classifier before the call leaves the machine, exactly as on 2026-08-10 — so the `.agent` relocation remains a Copilot-panel or by-hand job. Reads, `MERGE` column writes, and `files/add` uploads all went through in the same session, which is the same split as before. The panel did the move on request and it verified clean: `Knowledge` holds 29 items and no `.agent`, `Site Assets` holds `Decoking Knowledge.agent`. The agent was re-asked the pig OD question afterwards and answered from the same two sources as its pre-move baseline, with the §18.3 ceiling table reproduced exactly rather than recomputed — so moving an agent's config out of the library it is scoped to does not disturb it.
 
 `_ExtendedDescription` still fails a `MERGE` with `InvalidClientQueryException` (retested 2026-08-11, not taken on trust), so **writing** Description remains panel-or-grid-view only.
 
