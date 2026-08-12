@@ -16,9 +16,11 @@ Copilot is used primarily through Outlook (email triage and drafting) and as a r
 >
 > The table below describes a **commercial pipeline** (proposals → awarded → execution → closed). The mailbox is a **personal triage workflow**. There is no Awarded folder, no Closed folder, no Reference folder, and no Proposals-Active/Sent split; four real folders are absent from it entirely. The error dates to this page's creation on 2026-06-29 and was never checked against the tenant.
 >
-> **The category list is also unconfirmed.** Copilot was observed using `Submitted`, `Awarded` and `Closed / No-Go`, and only one of those appears in the seven below.
+> **The category list below is wrong too — read from Outlook 2026-08-11.** The real categories are a seven-stage pipeline: `RFQ`, `Proposal Draft`, `Submitted`, `Awarded`, `Execution`, `Post-Job`, `Closed / No-Go`. There are **no facility or customer categories**; the other six entries in Outlook are its stock colour placeholders and carry no meaning. Of the fourteen claimed below, exactly one — `Awarded` — exists.
 >
-> Kept verbatim pending the rewrite so the scale of the drift stays visible. `CONTEXT_Outlook-Routing.md` in the SharePoint library was built from this table and has been set `Status: stale` / `Confidence: low`.
+> Both tiers were fabricated the same way: by asking a model to describe the mailbox instead of reading it. The folder error dates to this page's creation on 2026-06-29; the category error survived a first correction because Copilot-supplied facility names were mistaken for first-hand data.
+>
+> Kept verbatim so the scale of the drift stays visible. **The corrected document is [[outlook-email-architecture]]**, which is now live in the SharePoint library and verified byte-exact. Treat this section as a historical record, not a reference.
 
 **Tier 1: Outlook folders** — encode state (where is this email in its lifecycle?). Nine folders define the pipeline:
 
