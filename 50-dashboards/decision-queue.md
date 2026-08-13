@@ -27,8 +27,9 @@ The single place every open decision lives. One row per open ask — not one not
 | DQ-009 | 2026-08-08 | [[2026-08-08-prestaged-f6-rig-tier-decision]] | Should F6's ambiguous launcher-access wording be amended to make the rig-in tier deterministic, ruled as judgment (naming the expected tier on the current wording), or left open as bounded, documented noise? | med | 0 | open |
 | DQ-010 | 2026-08-10 | [[2026-08-10-prestaged-quote-note-bid-folder-staleness]] | Should a quote-note-vs-bid-folder staleness check be built (extending POINTER-DEAD in lint, or as a health-dashboard soft signal), or deferred until the pre-send reconciliation gate exists? | med | 0 | open |
 | DQ-011 | 2026-08-11 | [[2026-08-11-prestaged-backtest-workup-fixture-mapping]] | Should `usadebusk-fixture-replay-guard.mjs` gain a mapping from `usadebusk-estimating/scripts/*` (backtest_workup.py/extract_workup.py) onto the f1/f6 replay requirement, given a back-tested 25% (1/4) miss rate above the hook's own adopted 14% threshold — and if so, is f1/f6 replay the right verification or should it run the script directly? | med | 0 | open |
+| DQ-012 | 2026-08-13 | [[2026-08-13-prestaged-syncrude-fill-flush-question]] | Should Jesse's read on whether the Syncrude per-coilset pig-hour figures include fill/flush time be captured now, or is it moot today (no current mechanism lets a per-coilset figure enter any benchmark) and better bundled with the already-parked per-coilset re-grain schema decision — or does the underlying "~6 ft/hr" figure need to be reproduced first, since this run couldn't derive it from the card's uneven per-coil footage? | high | 0 | open |
 
-**6 open rows** as of 2026-08-11.
+**7 open rows** as of 2026-08-13.
 
 ## Closed
 
