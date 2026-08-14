@@ -1,4 +1,5 @@
 <!-- vault-loop: operational — DQ-003 stale-editor-buffer guard scope decision (does it cover link retargeting), knowledge-system-governance.md (04-knowledge scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
+<!-- vault-prestaged: 2026-08-14-prestaged-obsidian-link-retargeting-guard.md -->
 ---
 type: capture
 status: inbox
