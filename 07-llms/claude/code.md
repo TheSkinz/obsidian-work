@@ -276,6 +276,12 @@ Confirmed again on the 2026-08-10 SharePoint knowledge-base build: `git mv` for 
 
 Source: Claude Code sessions, 2026-08-10 (SharePoint knowledge-base build, chained handoffs 9488ec29→ee7cddfc→d6e44ca6); consistent with the archive/ sweep's `git mv` block first noted 2026-07-30/2026-08-02.
 
+## `.xlsm`/`.docm` files never reach chat — save to disk and open directly
+
+Confirmed a second time, 2026-08-13: a filled-out macro-enabled Office file (`.xlsm`/`.docm`) silently fails chat delivery on every client, the same failure mode a memory record already flagged from a 2026-08-11 SharePoint incident. The correct move once a macro file is the deliverable is to save it to disk and hand the user a path to open directly ("It's an .xlsm so it won't go through chat — open it from disk") rather than attempt the chat attachment. Convert to a macro-free format (`.xlsx`/`.docx`) instead when the file carries no live macros.
+
+Source: Claude Code session `fdec79dc`, 2026-08-13 (ExxonMobil Baytown F-501 change-order session).
+
 ## Links
 
 - Config repo: https://github.com/TheSkinz/claude-config
