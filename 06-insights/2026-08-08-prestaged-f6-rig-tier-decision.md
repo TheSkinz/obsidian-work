@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: pre-staged
 source_authority: inferred
 confidence: medium
@@ -34,6 +34,8 @@ Should F6's ambiguous launcher-access paragraph be **amended** to make the rig-i
 
 ## Proposed Change
 
+> **RESOLVED 2026-08-15 — none of A/B/C. All three rejected; see the Decision section.** All three options assume the ambiguity lives in the fixture's wording. It does not: the tier *rule* was missing its dominant driver. Fixing the rule made the fixture derivable without amending it.
+
 **A. Amend the fixture — replace the qualitative run-distance language with a stated figure (or state the tier outright).** Matches the source note's own recommendation and finishes what `98ac964` (2026-07-25) set out to do: make the rig tier derivable from the rule rather than left to free judgment. Removes a documented four-hour swing between replays that the regression battery cannot currently detect as a defect. Cost: F6 stops exercising tier-selection judgment, one of the few fixtures that currently does.
 
 - [ ] Approved
@@ -61,10 +63,23 @@ Option A's risk is the one the source note names directly: it changes what F6 me
 
 ## Decision
 
-*(Jesse: check one box per lettered option above.)*
+**Resolved 2026-08-15 (Jesse, in session). A — Rejected. B — Rejected. C — Rejected.** The premise shared by all three was wrong. The fixture wording is fine; the rig-tier rule in `usadebusk-estimating` was incomplete, listing only two drivers (elevation, run distance) when there are three. The missing driver is **mode** — pumps utilized, which sets circuit-line and spool count, which sets how much hose gets built.
+
+That gap is the entire 12-vs-10 divergence. Under the two-driver rule F6 reads as one driver low (8 ft walk-up) and one high (long run), so every replay split the difference at Large 8 + fitter 2 = 10. F6 is 2× Trimax — six pumps, twelve circuit lines, six launchers and six receivers, the largest hose build the fleet runs. Counting mode, the drivers do not offset; they multiply, and the tier is Very large.
+
+Three domain facts recorded this session, all Jesse:
+
+1. **Mode is the third tier driver.** A circuit line is a run of connected hoses from a pumper port to one launcher or receiver connection. Single = 1 pump / 2 lines / 2 spools; double = 2 pumps / 4 lines / 4 spools; triple = 3 pumps / 6 lines / 6 spools. Hoses are 17 ft, hard pipe 20 ft, a 60 ft run takes ~4–5 hoses **per line**.
+2. **The three drivers multiply, they do not offset.** Elevation adds to run length (60 ft out + 60 ft up = a 120 ft run, doubling hose per line); mode multiplies the result by line count.
+3. **Rig-in never exceeds 12 hrs and rarely exceeds 8.** Very large is a ceiling, not a rung reached by accumulation. The pipefitter adder therefore stacks *inside* the cap — a Very large tier with a fitter wait is 12, not 14.
+
+**F6's figures under the corrected rule:** rig-in 12, rig-out 12 (full mirror), pigging 17, rig-over 0, smart pig 4 → raw 45, landing 48 with a +3 adjustment. The mid-band shift-landing diagnostic no longer fires (45 sits 3 below the boundary, outside the middle third), which independently corroborates the read — the tier was doing the work the +7 pad was covering for. Mob/demob are unaffected.
+
+**Still open, carried forward:** Jesse's stated triple-mode hose count was 12–15, but his own primitives (6 lines × 4–5 hoses at a 60 ft run) give 24–30, and single/double were both internally consistent at 4–5 per line. Flagged in session as a likely slip; the disputed derived total was deliberately **not** written into the skill. The skill carries only the confirmed primitives (17 ft hose, 20 ft hard pipe, 4–5 hoses per line per 60 ft, lines = 2 × pumps), from which the total falls out. Confirm before any per-mode hose table is authored anywhere.
 
 ## Apply Log
 
 | Date | Action | By |
 |---|---|---|
+| 2026-08-15 | Resolved. A/B/C all rejected; root cause was a missing driver in the tier rule, not fixture wording. Edited `~/.claude/skills/usadebusk-estimating/SKILL.md` in three places: added mode as the third rig-tier driver with the circuit-line/hose primitives and the multiply-don't-offset framing; added the 12-hr rig-in cap with the "rarely above 8" calibration; amended the pipefitter-adder rule to stack inside the cap. Fixture left untouched. **Consequence not yet actioned: F6's frozen baseline is now stale** — rig-in 10→12, rig-out 10→12, raw 41→45 — and needs a replay and re-promotion; the regression suite is audited-but-never-edited, so this was not done unasked. | Claude (with Jesse in session) |
 | 2026-08-08 | Note filed by pre-staging loop from `00-inbox/2026-07-28-f6-rig-tier-decision.md`; confirmed via `~/.claude/regression/fixtures/f6-duration-mobdemob-input.md` and `~/.claude/regression/frozen/f6-duration-mobdemob-output.md` that the ambiguity, the four-replay split, and the Jesse-vs-baseline (12 vs. 10) mismatch are all as described in the source note. `50-dashboards/decision-queue.md` checked — DQ-002 covers the general tier scale, not this fixture-specific ambiguity, so not already covered. No vault or config-repo content modified beyond the source marker. | Claude (pre-staging loop) |
