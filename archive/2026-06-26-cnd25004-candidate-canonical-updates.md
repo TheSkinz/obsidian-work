@@ -9,7 +9,7 @@ review_after: 2026-07-03
 related:
   - CND25004
   - [[7-1-F-1]]
-  - [[_facility]]
+  - [[02-facilities/Syncrude/Fort-McMurray-AB/_facility]]
 tags: [review, knowledge-system, Syncrude, heater-card, CND25004]
 ---
 

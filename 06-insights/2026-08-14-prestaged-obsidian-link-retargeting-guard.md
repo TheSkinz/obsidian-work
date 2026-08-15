@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: pre-staged
 source_authority: inferred
 confidence: medium
@@ -42,7 +42,7 @@ Given a confirmed second instance of the same ambiguous-bare-link pattern still 
 For any wikilink whose target path runs through a facility folder (`02-facilities/<Company>/<Site>/...`), flag it when the target's facility segment doesn't match either the linking note's own `facility:` frontmatter (if present) or the linking note's own containing folder. Would have caught the 2026-07-30 mis-resolution mechanically and, per this run's finding, would also flag the still-live bad link in `archive/2026-06-26-cnd25004-candidate-canonical-updates.md:12` today. Needs an explicit exclusion for generated index files (`INDEX.md`) to avoid misfiring on its by-design bare links.
 
 - [ ] Approved
-- [ ] Approved with edits
+- [x] Approved with edits
 - [ ] Rejected
 - [ ] Needs more research
 
@@ -50,7 +50,7 @@ For any wikilink whose target path runs through a facility folder (`02-facilitie
 
 Fix the one remaining bare link this run found (`archive/2026-06-26-cnd25004-candidate-canonical-updates.md:12`) and stop there. Rationale: both known instances trace to a single one-time Obsidian mass-expansion event on 2026-07-30, not a recurring pattern, and Source mode (already enabled via DQ-003's Option B) removes the Live Preview auto-expansion behavior that caused it — a repeat may not be possible under the current editor setting.
 
-- [ ] Approved
+- [x] Approved
 - [ ] Approved with edits
 - [ ] Rejected
 - [ ] Needs more research
@@ -61,7 +61,7 @@ Treat link-retargeting as a sub-question of DQ-003 rather than a parallel ask �
 
 - [ ] Approved
 - [ ] Approved with edits
-- [ ] Rejected
+- [x] Rejected — premise is false, see Decision
 - [ ] Needs more research
 
 ## Risks and Counter-Arguments
@@ -70,7 +70,27 @@ Option A adds a fourteenth lint rule to a system Jesse has previously pushed bac
 
 ## Decision
 
-Open — awaiting Jesse's disposition on A/B/C above.
+**Resolved 2026-08-15 (Jesse, in session). A approved with edits, B approved and applied, C rejected on a false premise.**
+
+**C's premise is false, and the note contradicts itself about it.** Option C says "DQ-003 is still open," and The Question repeats it. This note's own Source Material table says the opposite one screen earlier: "DQ-003, closed 2026-08-01." The decision queue is the authority and it is blunter than either — DQ-003 sits under `## Closed` with `opened 2026-07-28 / closed 2026-07-28`, so the note also has the closing date wrong. There is nothing to fold into. Flagging the shape rather than just the fact: a pre-staged note that establishes a fact in its evidence table and then contradicts it in an option is the failure mode these notes are most prone to, because the options get drafted against the original inbox item's framing rather than against what the run just found. Worth reading the two sections against each other before ruling on any future pre-staged note.
+
+**A is approved but needed two corrections, because as specified it would not have caught either the cause or the survivor.**
+
+The note claims A "would also flag the still-live bad link in `archive/2026-06-26-cnd25004-candidate-canonical-updates.md:12`." It would not, twice over. First, A compares a link's facility segment against the linking note's own — and the surviving link is a *bare* `[[_facility]]` with no facility segment at all, so there is nothing to compare. Second, `archive/` is in `SKIP_SCAN`; lint does not read that directory under any rule. (DEAD-LINK includes `archive/` in its *resolution* set, which is about link targets, not scanned sources — an easy pair to conflate.)
+
+So the rule ships in two halves. **MISMATCH** is A as written: a note under `02-facilities/<Co>/<Site>/` linking into a different `<Co>/<Site>`. **AMBIGUOUS** flags any bare `[[_facility]]`, which is the form that actually caused the incident — 12 facility folders each hold a `_facility.md`, so the link resolves by basename to whichever one Obsidian picks. Without the second half the rule protects against a consequence while ignoring the cause.
+
+Two further corrections to A's stated design. The proposed exclusion for generated index files is unnecessary — `INDEX.md` carries the GENERATED marker and `collect_notes()` already skips it, so its dozens of by-design bare links cost nothing. And `facility:` frontmatter is deliberately **not** used as the reference: it carries a slug like `Westlake-South-Westlake-LA` that does not correspond to the `Westlake-Chemical/Westlake-LA` path pair, so matching on it would false-positive on every quote note. The linking note's own folder is the only reliable reference.
+
+**One thing the build found that no option anticipated.** The first run fired six times on the real vault, all false positives, all prose *discussing* the broken form inside inline backticks — in the incident writeup and in this review note. `body_lines_outside_fences()` strips fenced blocks but not inline spans. A rule whose only hits are its own documentation is wallpaper, so `strip_inline_code()` was added and the rule now reports zero on the live vault. This is a general trap for any future lint rule that pattern-matches on markup the vault also writes *about*.
+
+**B is approved as remediation, not as an alternative.** Its "Source mode should prevent recurrence" argument is unverified — the note itself concedes Source mode governs the Live Preview table editor, while this was wikilink autocomplete, possibly a different setting entirely. That is not a basis for declining the rule. But B's fix was still needed and lint structurally cannot do it, so the archive link was corrected by hand.
+
+## Apply Log
+
+| Date | Action | By |
+|---|---|---|
+| 2026-08-15 | Ruled and applied. Added `check_link_facility()` to `tools/vault_lint.py` with both MISMATCH and AMBIGUOUS halves, registered alongside the other tree rules, warning severity. Added `strip_inline_code()` after the first run produced six false positives on prose. Shipped fixture `tools/fixtures/02-facilities/TestClient/Test-City-TX/T-400.md` tripping both halves per the no-fixture-no-rule contract; self-test now 16 rules. Real vault: 0 LINK-FACILITY findings, warnings unchanged at 58. Separately fixed the surviving bare link at `archive/2026-06-26-cnd25004-candidate-canonical-updates.md:12` by hand to `[[02-facilities/Syncrude/Fort-McMurray-AB/_facility]]`, matching the two body links already corrected in `1d0e522` — lint cannot see `archive/` and never will under the current SKIP_SCAN. Verified this is the only surviving bare link in the vault outside generated files and prose. Decision-queue row DQ-013 left for the queue-hygiene pass. | Claude (review queue) |
 
 ## Apply Log
 

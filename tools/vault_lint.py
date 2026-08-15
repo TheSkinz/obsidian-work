@@ -17,6 +17,7 @@ Rules (code | severity):
     SUPERSEDED      warning  note declares superseded_by but is still marked live
     DURATIONS-HEADER warning heater-card Task-Durations header off the canonical schema
     TUBE-GEOM-HEADER warning heater-card Tube-Geometry header off the canonical schema
+    LINK-FACILITY   warning  wikilink into the wrong facility, or a bare ambiguous [[_facility]]
     POINTER-DEAD    warning  recorded absolute source path no longer resolves
     YAML-COMMENT    error    unquoted frontmatter value silently truncated by a ` #` comment
     WORD-DELTA      warning  words left a note (--staged / --worktree only; see below)
@@ -532,6 +533,81 @@ def check_durations_header(root: Path, notes: dict[Path, str]) -> list[Finding]:
     return findings
 
 
+FACILITY_SEG_RE = re.compile(r"(?:^|/)02-facilities/([^/]+)/([^/]+)/")
+INLINE_CODE_RE = re.compile(r"`+[^`]*`+")
+
+
+def strip_inline_code(line: str) -> str:
+    """Blank out `inline code` spans, keeping length so offsets stay usable.
+
+    Load-bearing for LINK-FACILITY. `body_lines_outside_fences()` removes fenced
+    blocks but not inline spans, and the notes most likely to *discuss* a bad
+    wikilink are the incident writeup and the review note about it — which quote
+    the broken form in backticks. Without this the rule fires six times on its own
+    documentation and nothing else, which is the definition of wallpaper.
+    """
+    return INLINE_CODE_RE.sub(lambda m: " " * len(m.group(0)), line)
+# A bare `[[_facility]]` is ambiguous by construction: every facility folder holds
+# a `_facility.md`, so the link resolves by basename to whichever one Obsidian
+# picks. That is the actual 2026-07-30 defect — 24 bare links auto-expanded and
+# one landed on PBF Toledo inside a Syncrude note.
+BARE_FACILITY_RE = re.compile(r"\[\[_facility(?:\|[^\[\]]*)?\]\]")
+
+
+def check_link_facility(root: Path, notes: dict[Path, str]) -> list[Finding]:
+    """LINK-FACILITY: a wikilink pointing into the wrong facility, or into an
+    ambiguous one.
+
+    Two shapes, because the 2026-07-30 incident has two halves and the mismatch
+    check alone catches neither the cause nor the survivor:
+
+      MISMATCH  — a note living under `02-facilities/<Co>/<Site>/` links to a
+                  path under a DIFFERENT `<Co>/<Site>`. High confidence: the
+                  linking note's own folder is the reference, so no frontmatter
+                  is consulted and there is nothing to misread. (`facility:`
+                  frontmatter is deliberately NOT used — it carries a slug like
+                  `Westlake-South-Westlake-LA` that does not correspond to the
+                  `Westlake-Chemical/Westlake-LA` path pair, so matching on it
+                  would produce false positives on every quote note.)
+      AMBIGUOUS — a bare `[[_facility]]` anywhere. This is the form that caused
+                  the incident, and MISMATCH structurally cannot see it: a bare
+                  link has no facility segment to compare against.
+
+    DEAD-LINK does not cover either. It fires when a link resolves to nothing;
+    both of these resolve fine, to the wrong note.
+
+    Generated files need no exclusion — `INDEX.md` carries dozens of bare
+    `[[_facility]]` links by design, and `collect_notes()` already skips anything
+    carrying the GENERATED marker.
+
+    KNOWN LIMIT, STATED PLAINLY. `archive/` is in SKIP_SCAN, so this rule cannot
+    see the one bare link still live in
+    `archive/2026-06-26-cnd25004-candidate-canonical-updates.md`. That file was
+    fixed by hand instead. This rule is forward protection for the live vault,
+    not a sweep of the estate. Warning, not error.
+    """
+    findings = []
+    for path, text in notes.items():
+        rel = path.relative_to(root).as_posix()
+        own = FACILITY_SEG_RE.search("/" + rel)
+        for raw_line in body_lines_outside_fences(text):
+            line = strip_inline_code(raw_line)
+            for m in BARE_FACILITY_RE.finditer(line):
+                findings.append(Finding("LINK-FACILITY", path,
+                    "bare [[_facility]] is ambiguous — every facility folder holds a "
+                    "_facility.md, so this resolves by basename to an arbitrary one; "
+                    "write the full 02-facilities/<Company>/<Site>/_facility path"))
+            if not own:
+                continue
+            for m in WIKILINK_RE.finditer(line):
+                tgt = FACILITY_SEG_RE.search("/" + m.group(1).strip().replace("\\", "/"))
+                if tgt and (tgt.group(1), tgt.group(2)) != (own.group(1), own.group(2)):
+                    findings.append(Finding("LINK-FACILITY", path,
+                        f"links into {tgt.group(1)}/{tgt.group(2)} from a note that lives "
+                        f"under {own.group(1)}/{own.group(2)} — confirm the target is right"))
+    return findings
+
+
 def check_tube_geom_header(root: Path, notes: dict[Path, str]) -> list[Finding]:
     """TUBE-GEOM-HEADER: heater-card Tube-Geometry header must match the
     canonical schema exactly (column set and order). No optional columns.
@@ -859,6 +935,7 @@ def run_lint(root: Path, with_git: bool = True) -> list[Finding]:
     findings += check_superseded(root, notes)
     findings += check_durations_header(root, notes)
     findings += check_tube_geom_header(root, notes)
+    findings += check_link_facility(root, notes)
     findings += check_pointer_dead(root, notes)
     findings += check_yaml_comment(root, notes)
     return findings
@@ -951,6 +1028,7 @@ def self_test() -> int:
     expected = {"OP-FRONTMATTER", "DEAD-LINK", "SECRET", "STATUS-VOCAB",
                 "CONF-CONFLICT", "INBOX-AGE", "ORPHAN",
                 "REVIEW-OVERDUE", "SUPERSEDED", "DURATIONS-HEADER", "TUBE-GEOM-HEADER",
+                "LINK-FACILITY",
                 "POINTER-DEAD", "YAML-COMMENT", "WORD-DELTA", "CHECKBOX-DELTA"}
     missing = expected - fired
     for f in findings:
