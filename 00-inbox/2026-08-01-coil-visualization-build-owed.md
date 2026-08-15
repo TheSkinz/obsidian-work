@@ -1,4 +1,6 @@
 <!-- vault-loop: operational — tools/ build owed; capture loop cannot write this content. -->
+<!-- vault-prestaged: skipped — already covered by [[2026-07-30-exploration-coil-visualization-for-crews]], decision already closed 2026-08-01, this note only tracks owed unexecuted work -->
+
 ---
 type: note
 status: inbox

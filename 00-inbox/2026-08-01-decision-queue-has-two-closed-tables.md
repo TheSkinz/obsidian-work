@@ -1,4 +1,5 @@
 <!-- vault-loop: operational — 50-dashboards/decision-queue.md structure/governance; capture loop cannot write this content. -->
+<!-- vault-prestaged: 2026-08-15-prestaged-decision-queue-duplicate-closed-tables.md -->
 ---
 type: note
 status: inbox

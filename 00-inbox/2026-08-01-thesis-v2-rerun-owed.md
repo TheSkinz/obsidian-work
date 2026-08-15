@@ -1,4 +1,6 @@
 <!-- vault-loop: operational — leverage-repo execution owed; capture loop cannot run the experiment. -->
+<!-- vault-prestaged: skipped — already covered by DQ-004 / [[2026-07-30-prestaged-portfolio-revival-still-worth-doing]], decision already closed 2026-08-01, this note only tracks owed unexecuted work -->
+
 ---
 type: note
 status: inbox

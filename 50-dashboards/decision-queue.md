@@ -29,8 +29,9 @@ The single place every open decision lives. One row per open ask — not one not
 | DQ-011 | 2026-08-11 | [[2026-08-11-prestaged-backtest-workup-fixture-mapping]] | Should `usadebusk-fixture-replay-guard.mjs` gain a mapping from `usadebusk-estimating/scripts/*` (backtest_workup.py/extract_workup.py) onto the f1/f6 replay requirement, given a back-tested 25% (1/4) miss rate above the hook's own adopted 14% threshold — and if so, is f1/f6 replay the right verification or should it run the script directly? | med | 0 | open |
 | DQ-012 | 2026-08-13 | [[2026-08-13-prestaged-syncrude-fill-flush-question]] | Should Jesse's read on whether the Syncrude per-coilset pig-hour figures include fill/flush time be captured now, or is it moot today (no current mechanism lets a per-coilset figure enter any benchmark) and better bundled with the already-parked per-coilset re-grain schema decision — or does the underlying "~6 ft/hr" figure need to be reproduced first, since this run couldn't derive it from the card's uneven per-coil footage? | high | 0 | open |
 | DQ-013 | 2026-08-14 | [[2026-08-14-prestaged-obsidian-link-retargeting-guard]] | Should the vault add a `LINK-FACILITY` lint rule to catch wikilinks that resolve to the wrong facility (as happened 2026-07-30, and as a still-live second instance found this run confirms), treat it as a one-time remediation with no new tooling, or fold the question into the still-open DQ-003? | med | 0 | open |
+| DQ-014 | 2026-08-15 | [[2026-08-15-prestaged-decision-queue-duplicate-closed-tables]] | Should this table's own two differently-shaped Closed sections be merged into one format (backfilling DQ-001/DQ-002), left split with an explicit placement rule added, or only have the stale "queue is empty at launch" prose corrected? | med | 0 | open |
 
-**8 open rows** as of 2026-08-14.
+**9 open rows** as of 2026-08-15.
 
 ## Closed
 
