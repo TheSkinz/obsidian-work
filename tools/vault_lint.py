@@ -775,6 +775,17 @@ def checkbox_delta(before: str, after: str) -> list[str]:
 # (`unexplored` -> `researched`). Real content loss across all 43: zero. That 100%
 # is why the loops could not simply be switched to --worktree; see
 # 06-insights/2026-08-06-prestaged-checkbox-delta-trigger.md.
+#
+# KNOWINGLY INSIDE THIS: `50-dashboards/decision-queue.md`, which is hand-
+# maintained rather than script-owned. A marker-based test (skip files carrying
+# the GENERATED header) was built first, precisely to keep that file visible, and
+# then measured and reverted: it takes WORD-DELTA's loop fire rate from 28% to
+# **53%**, into the band this vault has rejected twice, because the loops rewrite
+# the file's "N open rows" line on every append and the old count is a lost word.
+# And it buys nothing on the other side — CHECKBOX-DELTA gates on the note's PRIOR
+# status being resolved/superseded, and decision-queue.md is `status: active`, so
+# it can never fire there whatever the path rules say. The cost was real and the
+# benefit was imaginary. Revisit only if the queue ever carries a closed status.
 GENERATED_PATHS = ("INDEX.md", "50-dashboards/")
 
 
