@@ -75,7 +75,7 @@ Three domain facts recorded this session, all Jesse:
 
 **F6's figures under the corrected rule:** rig-in 12, rig-out 12 (full mirror), pigging 17, rig-over 0, smart pig 4 → raw 45, landing 48 with a +3 adjustment. The mid-band shift-landing diagnostic no longer fires (45 sits 3 below the boundary, outside the middle third), which independently corroborates the read — the tier was doing the work the +7 pad was covering for. Mob/demob are unaffected.
 
-**Still open, carried forward:** Jesse's stated triple-mode hose count was 12–15, but his own primitives (6 lines × 4–5 hoses at a 60 ft run) give 24–30, and single/double were both internally consistent at 4–5 per line. Flagged in session as a likely slip; the disputed derived total was deliberately **not** written into the skill. The skill carries only the confirmed primitives (17 ft hose, 20 ft hard pipe, 4–5 hoses per line per 60 ft, lines = 2 × pumps), from which the total falls out. Confirm before any per-mode hose table is authored anywhere.
+**Triple-mode hose count — flagged, then closed.** Jesse first gave triple as 12–15, which contradicted his own primitives (6 lines × 4–5 hoses at a 60 ft run = 24–30); single and double were both internally consistent at 4–5 per line, so only the triple row broke the pattern. Raised in session as a likely arithmetic slip and the disputed total was withheld from the skill pending confirmation. **Jesse confirmed the slip same session — 24–30 is correct.** The per-mode figures at a 60 ft run are now written into the skill: single 8–10, double 16–20, triple 24–30, each doubling when the run doubles.
 
 ## Apply Log
 
