@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: pre-staged
 source_authority: inferred
 confidence: medium
@@ -48,7 +48,7 @@ Two independent open items ride on this one inbox note. (1) Should `02-facilitie
 
 **A. Leave it as a rich directory, tolerated.** No restructuring. The table already serves as the de facto per-facility summary Jesse and any session land on first; splitting it would mean opening two files (directory + `_facility.md`) to get the same picture one file gives now.
 
-- [ ] Approved
+- [x] Approved
 - [ ] Approved with edits
 - [ ] Rejected
 - [ ] Needs more research
@@ -57,14 +57,14 @@ Two independent open items ride on this one inbox note. (1) Should `02-facilitie
 
 - [ ] Approved
 - [ ] Approved with edits
-- [ ] Rejected
+- [x] Rejected
 - [ ] Needs more research
 
 ### For (3) — Tube Geometry header lock
 
 **C. Build `TUBE-GEOM-HEADER` in `vault_lint.py`, modeled directly on `check_durations_header()`.** Anchor on `## Tube Geometry`, canonicalize the 11-column header from `_canonical-heater-card.md`, warn (not error, matching `DURATIONS-HEADER`'s severity) on any deviation. Closes the hand-edit and stale-copy gaps the dead-string guard cannot see.
 
-- [ ] Approved
+- [x] Approved
 - [ ] Approved with edits
 - [ ] Rejected
 - [ ] Needs more research
@@ -73,7 +73,7 @@ Two independent open items ride on this one inbox note. (1) Should `02-facilitie
 
 - [ ] Approved
 - [ ] Approved with edits
-- [ ] Rejected
+- [x] Rejected
 - [ ] Needs more research
 
 ## Risks and Counter-Arguments
@@ -84,10 +84,17 @@ For (3): Option C's risk is scope-creep into "which canonical tables deserve a h
 
 ## Decision
 
-*(Jesse: check one box per lettered option above.)*
+**Resolved 2026-08-15 (Jesse, in session). (1) A approved, B rejected. (3) C approved, D rejected.**
+
+**On (1) — leave `_directory.md` rich.** Only the linter is complaining. The table is what a session lands on first, and splitting it costs a second file open on every read to recover the "why" one file currently gives. Option B's own risk paragraph names the real objection to itself: restructuring an index nobody reads as a table, to satisfy a width metric nobody has complained about, is solving a problem only the linter has. The growth risk A carries is real but slow, and it is cheaper to revisit at the point the table actually becomes unreadable than to pay B's nine-file restructuring cost now against a hypothetical.
+
+**On (3) — build the lock.** The survey that decided it: all 41 heater cards plus the exemplar and the template carried the identical 11-column header, with no variants and no optional columns. That makes the lock free — it fires on zero existing files, so it is pure drift protection with no backlog to burn down, which is a materially better position than `DURATIONS-HEADER` was in when it was written (that one was locking a drift that had already happened). D's argument that the schema "has not drifted since" is true and is exactly why now is the cheap moment: the lock costs nothing to adopt while everything conforms, and the gap it closes — a card authored from a pre-`e4de4a5` template — gets more likely, not less, as the template ages out of memory.
+
+The scope-creep concern option C's risk paragraph raises ("which canonical tables deserve a header lock") is noted and deliberately not answered here. Two locks is not a pattern demanding a framework; if a third near-identical table appears, that is the moment to generalize, not before.
 
 ## Apply Log
 
 | Date | Action | By |
 |---|---|---|
+| 2026-08-15 | Both sub-questions ruled and (3) applied. Surveyed every `## Tube Geometry` header in the vault first — 41 cards + exemplar + template, all identical at 11 columns, no variants — which is what made C free to adopt. Added `TUBE_GEOM_HEADER` / `TUBE_GEOM_HEADING_RE` constants and `check_tube_geom_header()` to `tools/vault_lint.py`, modeled on `check_durations_header()` and registered alongside it; warning severity, no optional columns. Shipped with fixture `tools/fixtures/02-facilities/TestClient/Test-City-TX/T-300.md` (carries the pre-`e4de4a5` trailing `Notes` column) per the no-fixture-no-rule contract, and added `TUBE-GEOM-HEADER` to the self-test's expected set. Self-test passes at 15 rules; a real lint pass shows zero TUBE-GEOM-HEADER hits and warnings unchanged at 58. No change to `_directory.md` per (1). | Claude (review queue) |
 | 2026-08-02 | Note filed by pre-staging loop from `00-inbox/2026-07-27-over-wide-tables-remainder.md`; confirmed via `_directory.md`, `vault_lint.py`, and `_canonical-heater-card.md` that both sub-questions remain genuinely open and unaddressed by any commit since 2026-07-27. No vault content modified beyond the source marker. | Claude (pre-staging loop) |

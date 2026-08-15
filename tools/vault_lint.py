@@ -16,6 +16,7 @@ Rules (code | severity):
     REVIEW-OVERDUE  warning  live note whose review_after date has passed
     SUPERSEDED      warning  note declares superseded_by but is still marked live
     DURATIONS-HEADER warning heater-card Task-Durations header off the canonical schema
+    TUBE-GEOM-HEADER warning heater-card Tube-Geometry header off the canonical schema
     POINTER-DEAD    warning  recorded absolute source path no longer resolves
     YAML-COMMENT    error    unquoted frontmatter value silently truncated by a ` #` comment
     WORD-DELTA      warning  words left a note (--staged / --worktree only; see below)
@@ -98,7 +99,15 @@ INBOX_MAX_AGE_DAYS = 14
 
 # Folders never scanned for problems (archive is history; templates are blanks;
 # fixtures contain deliberate violations; .obsidian is app state).
-SKIP_SCAN = ("archive", "templates", "tools/fixtures", ".obsidian", ".git")
+SKIP_SCAN = ("archive", "templates", "tools/fixtures", ".obsidian", ".git", ".claude")
+# `.claude` added 2026-08-15. It carries only json config of its own, but Claude
+# Code checks out task worktrees under `.claude/worktrees/<name>/` — a complete
+# second copy of the vault. Scanning one double-counts every warning AND re-reads
+# the deliberately-broken lint fixtures as if they were real notes, because the
+# `tools/fixtures` skip is root-relative and does not match the nested copy. That
+# takes the vault from 0 errors to 6 (the SECRET and CONF-CONFLICT fixtures) and
+# flips the health dashboard's Lint-errors row to FAIL for the lifetime of the
+# worktree. Found while a spawned task happened to have a worktree open.
 
 # Status vocabulary actually in use across the vault as of 2026-07-05, plus the
 # decision-queue's `expired`. Keep this list honest — it is the vocabulary, not
@@ -173,6 +182,26 @@ DURATIONS_HEADER = (
 # proposal cost tables, rate tables, and prose all over the vault.
 DURATIONS_HEADING_RE = re.compile(r"^#{1,6}\s+Task Durations\s*$", re.IGNORECASE)
 MD_HEADING_RE = re.compile(r"^#{1,6}\s+")
+
+# Canonical heater-card Tube-Geometry header — same contract as DURATIONS_HEADER
+# above: the exemplar `04-knowledge/_canonical-heater-card.md` is the human-facing
+# authority, this tuple is the machine-checked copy, and a schema change edits
+# both in one commit.
+#
+# Locked 2026-08-15. Config commit e4de4a5 (2026-07-27) dropped the old trailing
+# `Notes` column and moved 75 notes across 39 cards into keyed blocks. The only
+# protection afterwards was a dead-string rule in `usadebusk-core`, which catches
+# an agent re-adding `Notes` but is blind to a hand edit or a card authored from a
+# pre-e4de4a5 template. This closes that gap. Unlike DURATIONS_HEADER there is no
+# optional column: all 41 cards plus the exemplar and template carried this exact
+# 11-column header when the lock was written, so it fires on zero existing files
+# and is pure drift protection with no backlog to burn down.
+TUBE_GEOM_HEADER = (
+    "Section", "Arrangement", "Metallurgy", "OD (in)", "Sched", "Wall (in)",
+    "ID (in)", "Tubes/Circuit", "Avg Length (ft)", "Length/Circuit (ft)",
+    "Return Bend Type",
+)
+TUBE_GEOM_HEADING_RE = re.compile(r"^#{1,6}\s+Tube Geometry\s*$", re.IGNORECASE)
 MD_TABLE_SEP_RE = re.compile(r"^\|[\s|:\-]*-[\s|:\-]*$")  # the |---|---| divider row (needs a dash)
 
 # POINTER-DEAD scope: the vault-as-index boundary is only recorded in
@@ -503,6 +532,39 @@ def check_durations_header(root: Path, notes: dict[Path, str]) -> list[Finding]:
     return findings
 
 
+def check_tube_geom_header(root: Path, notes: dict[Path, str]) -> list[Finding]:
+    """TUBE-GEOM-HEADER: heater-card Tube-Geometry header must match the
+    canonical schema exactly (column set and order). No optional columns.
+
+    Same anchor-and-compare shape as check_durations_header(), for the same
+    reason: `Section` and `Metallurgy` appear in prose and proposal tables all
+    over the vault, so the heading is the only safe anchor. Only the first table
+    row under `## Tube Geometry` is read. Comparison ignores case only; a
+    missing, extra, reordered, or renamed column all fire. Warning, not error —
+    a header fix is a to-do, not a stop-the-line.
+    """
+    canon = tuple(c.casefold() for c in TUBE_GEOM_HEADER)
+    findings = []
+    for path, text in notes.items():
+        in_section = False
+        for line in body_lines_outside_fences(text):
+            if MD_HEADING_RE.match(line):
+                in_section = bool(TUBE_GEOM_HEADING_RE.match(line))
+                continue
+            if not in_section:
+                continue
+            s = line.strip()
+            if not s.startswith("|") or MD_TABLE_SEP_RE.match(s):
+                continue
+            cells = split_table_row(line)
+            if tuple(c.casefold() for c in cells) != canon:
+                findings.append(Finding("TUBE-GEOM-HEADER", path,
+                    f"Tube-Geometry header does not match canonical schema: "
+                    f"got {cells}, expected {list(TUBE_GEOM_HEADER)}"))
+            in_section = False  # only the header row matters; done with this card
+    return findings
+
+
 def check_yaml_comment(root: Path, notes: dict[Path, str]) -> list[Finding]:
     """YAML-COMMENT: an unquoted frontmatter value YAML will not read as written.
 
@@ -779,6 +841,7 @@ def run_lint(root: Path, with_git: bool = True) -> list[Finding]:
     findings += check_review_overdue(root, notes)
     findings += check_superseded(root, notes)
     findings += check_durations_header(root, notes)
+    findings += check_tube_geom_header(root, notes)
     findings += check_pointer_dead(root, notes)
     findings += check_yaml_comment(root, notes)
     return findings
@@ -870,7 +933,7 @@ def self_test() -> int:
     fired = {f.code for f in findings}
     expected = {"OP-FRONTMATTER", "DEAD-LINK", "SECRET", "STATUS-VOCAB",
                 "CONF-CONFLICT", "INBOX-AGE", "ORPHAN",
-                "REVIEW-OVERDUE", "SUPERSEDED", "DURATIONS-HEADER",
+                "REVIEW-OVERDUE", "SUPERSEDED", "DURATIONS-HEADER", "TUBE-GEOM-HEADER",
                 "POINTER-DEAD", "YAML-COMMENT", "WORD-DELTA", "CHECKBOX-DELTA"}
     missing = expected - fired
     for f in findings:

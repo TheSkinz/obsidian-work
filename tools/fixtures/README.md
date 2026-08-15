@@ -12,6 +12,8 @@ passing fixture.
 | Fixture | Rule it trips | Severity |
 |---|---|---|
 | `02-facilities/TestClient/Test-City-TX/T-100.md` | OP-FRONTMATTER | warning |
+| `02-facilities/TestClient/Test-City-TX/T-200.md` | DURATIONS-HEADER | warning |
+| `02-facilities/TestClient/Test-City-TX/T-300.md` | TUBE-GEOM-HEADER | warning |
 | `06-insights/dead-link-note.md` | DEAD-LINK | warning |
 | `08-systems/secret-note.md` | SECRET | error |
 | `04-knowledge/bad-status.md` | STATUS-VOCAB | warning |
