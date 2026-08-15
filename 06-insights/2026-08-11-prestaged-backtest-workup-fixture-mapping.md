@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: pre-staged
 source_authority: inferred
 confidence: medium
@@ -38,19 +38,19 @@ Should `usadebusk-fixture-replay-guard.mjs` gain a mapping from `usadebusk-estim
 
 - [ ] Approved
 - [ ] Approved with edits
-- [ ] Rejected
+- [x] Rejected
 - [ ] Needs more research
 
 **B. Map `scripts/*` to a narrower or different fixture set than `f1`/`f6`, on the theory that a reconciliation-script edit (`backtest_workup.py`/`extract_workup.py`) is validated by running `backtest_workup.py`'s own three-pair check directly, not by replaying the `f1`/`f6` conversation fixtures.** The hook's replay mechanism only knows how to check for a dated file in `regression/runs/<model>/`; wiring a second, different verification path (running the script and checking its exit code) would need its own runner branch rather than reusing `missingReplays()`. Larger change than A; only worth it if `f1`/`f6` replays don't actually exercise the reconciliation logic (unverified this run — would need reading what `f1`/`f6` cover to confirm or rule out).
 
 - [ ] Approved
 - [ ] Approved with edits
-- [ ] Rejected
+- [x] Rejected
 - [ ] Needs more research
 
 **C. Leave it unmapped — the 2026-07-25 pair replayed anyway by discipline, and one miss in a 4-commit sample is too small to generalize a rate from.** Counter to this: the hook's own adopted NARROW design was itself justified on a 21-commit sample at 14%; a 4-commit sample at 25% is smaller but points the same direction, not the opposite one, and the miss (`beb24ed`) was a real rule change (legal-name text in a customer-facing T&C line) landing with zero same-day verification — exactly the failure mode the hook exists to catch, not a false positive.
 
-- [ ] Approved
+- [x] Approved
 - [ ] Approved with edits
 - [ ] Rejected
 - [ ] Needs more research
@@ -61,10 +61,23 @@ The sample is small — 4 substantive commits total, 3 scripts-only — so "25% 
 
 ## Decision
 
-*(Jesse: check one box per lettered option above.)*
+**Resolved 2026-08-15 (Jesse, in session): A rejected, B rejected, C approved — but on corrected reasoning, not the rationale C states.** C's stated argument ("one miss in a 4-commit sample is too small to generalize a rate from") is the weak version and is not what this decision rests on. The load-bearing findings are below.
+
+**A is structurally void.** The review's own load-bearing unknown — do `f1`/`f6` exercise `backtest_workup.py`/`extract_workup.py`? — resolves no, decisively. Both fixtures are *conversation* fixtures: markdown replay prompts pasted to a model with `usadebusk-core` + `usadebusk-estimating` loaded. F1 is a 17-item RFQ intake, F6 is job data for duration and mob/demob math. Neither carries an `.xlsx` and neither invokes Python, while `extract_workup.py` reads finished workup spreadsheets off the OneDrive canonical root. `regression/README.md:6` states it directly: "No automation, no scripts to maintain; this is a manual battery." Per the note's own framing, that makes A a requirement to replay something that proves nothing — worse than no gate.
+
+**The cited miss is not a miss.** The entire evidentiary case rests on `beb24ed` (2026-07-27) landing with no same-day replay. The pre-staging loop read `git show --stat` and inferred a gap; it did not read the commit body, which records the disposition explicitly: "Not in any frozen fixture, so no replay impact." That was checked at the time and is correct. The diff is one boilerplate T&C string inside `build_quotation()` in `render_proposal.py` ("USADebusk Services" → "USA DeBusk"). Neither proposed gate would have caught it: an `f1`/`f6` replay doesn't exercise the scripts, and `backtest_workup.py` imports only `extract()` and compares line-item roles, amounts, grand total and Pricing-Summary labels — it never calls `render_proposal.py` at all. The one commit offered as proof a gate is needed would not have fired under either gate proposed to catch it. With `beb24ed` reclassified, the substantive-miss count over the whole history is zero.
+
+**B fails on the hook's own back-test standard.** B's mechanically correct form is not a fixture mapping at all — it is gating a staged `extract_workup.py` edit on `python backtest_workup.py` exiting zero, which is cheap and deterministic rather than a model call. But `missingReplays()` works by finding a dated file in `regression/runs/<model>/`, and a backtest run leaves no artifact: it prints to stdout and exits. There is nothing to check, so the gate would fire on every edit to those files — 100%, exactly the BROAD variant the hook's own comment block rejected as wallpaper against the 14% NARROW band it shipped on.
+
+**Precondition if this is ever revisited:** `backtest_workup.py` writing a dated run artifact under `regression/runs/`. Not more commit history — history cannot fix this, because the missing thing is a verification signal, not a sample size. Deliberately **not** filed as a `revisit-trigger:`, since no workflow step will spontaneously produce that artifact and the trigger would sit on the health dashboard forever without firing.
+
+**Carried forward as a separate observation, not actioned here:** `677d447` and `a4ed96f` both edited `backtest_workup.py` and `extract_workup.py` in the same commit — the harness moving alongside the code it checks, which weakens the check. That is a real soft spot but a different problem from the one this note asks about, and no fixture mapping addresses it.
+
+No hook change made. `usadebusk-fixture-replay-guard.mjs` and `SKILL_FIXTURES` stay as they are.
 
 ## Apply Log
 
 | Date | Action | By |
 |---|---|---|
+| 2026-08-15 | Reviewed in session and resolved. Read `f1-rfq-input.md` and `f6-duration-mobdemob-input.md` directly — the unknown this note flagged as load-bearing — plus `backtest_workup.py`, `usadebusk-fixture-replay-guard.mjs`, `regression/README.md`, and the full diff (not just `--stat`) of all 5 `scripts/` commits. Fixtures confirmed conversation-only, so A is void. `beb24ed`'s commit body reclassifies it from a miss to a correctly-dispositioned no-replay-impact change, which removes the note's entire evidentiary basis. B has no verification artifact to gate against and would fire at 100%. A rejected, B rejected, C approved on corrected reasoning. No hook or config-repo file modified. | Claude (review queue) |
 | 2026-08-11 | Note filed by pre-staging loop from `00-inbox/2026-07-29-build-workup-quotation-regression-check.md`. Confirmed the gap is real by reading `fixturesFor()`'s regex directly (SKILL.md-only, cannot match `scripts/*`). Ran the back-test the inbox note itself asked for: 5 commits ever touched `usadebusk-estimating/scripts/`, 1 excluded as cosmetic by the existing filter, 3 of the remaining 4 invisible to the current mapping (no co-committed SKILL.md), 1 of those 3 (`beb24ed`, 2026-07-27) had no same-day `f1`/`f6` replay at all. No code or hook file modified — config-repo change, out of scope for this loop regardless. No vault content modified beyond the source marker. | Claude (pre-staging loop) |
