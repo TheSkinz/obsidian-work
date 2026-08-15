@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: pre-staged
 source_authority: inferred
 confidence: medium
@@ -39,20 +39,20 @@ Should a check be built that compares a `type: quote` note's claimed state (`sta
 
 - [ ] Approved
 - [ ] Approved with edits
-- [ ] Rejected
+- [x] Rejected
 - [ ] Needs more research
 
 **B. Build it as a soft signal on the Commercial pipeline table in `50-dashboards/health.md` instead, not as a lint rule.** `vault_health.py` already reads quote frontmatter for this exact table; adding a folder-freshness column there keeps the check in the place quote anomalies already surface, and a health-dashboard row degrading to "unknown" or "check" on a sync/offline false positive reads as a soft prompt rather than a lint error blocking a commit. Matches the inbox note's own lean ("may belong on the health dashboard as a soft signal rather than in lint as a rule").
 
 - [ ] Approved
-- [ ] Approved with edits
+- [x] Approved with edits
 - [ ] Rejected
 - [ ] Needs more research
 
 **C. Do not build either yet — the value comparison against `extract_workup.py`'s reconciled total (the inbox note's third bullet) should wait for the pre-send gate half of the quotation-workup reconciliation build (held manual per that note's Apply Log, pending the scope-narrowing rule), so building the note-vs-folder check now would duplicate work once that gate exists.** Narrower version: build only the existence/recency half now (A or B, minus the value-reconciliation bullet), defer the value-comparison bullet to ride on the pre-send gate when it's built.
 
 - [ ] Approved
-- [ ] Approved with edits
+- [x] Approved with edits
 - [ ] Rejected
 - [ ] Needs more research
 
@@ -62,10 +62,23 @@ Option A's risk is the one the source note names: a missing OneDrive path, an un
 
 ## Decision
 
-*(Jesse: check one box per lettered option above.)*
+**Resolved 2026-08-15 (Jesse, in session). A rejected. B approved, narrowed by C — built as a soft signal on the health dashboard, existence and recency only.**
+
+**A is rejected on the risk the note itself names as strongest.** A missing OneDrive path, an unsynced folder and a laptop offline are indistinguishable from a genuinely stale note under an existence/mtime check, and lint is a binary 0-errors gate that cannot carry a maybe. POINTER-DEAD gets away with reaching into OneDrive because existence is the *whole* of its claim and it base-gates to silence elsewhere; a content-comparison rule inherits the reach without inheriting that certainty. Putting a probabilistic signal behind a gate that blocks commits is the wrong shape.
+
+**B carries C's narrowing.** The value-comparison bullet is deferred to the quotation-vs-workup pre-send gate, which reads the workup's reconciled total rather than guessing from filenames — that is the right owner for it, and building a filename-based approximation now would be thrown away when the gate lands. What shipped is existence and recency only.
+
+**On C's own risk** — that deferring leaves the confident-and-wrong failure mode open — the narrowing does not actually leave it open. The recency half is what catches the DSP26095 case: that note was wrong precisely because its folder had moved on while the note had not, which is a recency signal, not a value signal. The value comparison would have caught it too, but it was not needed to.
+
+**What it does.** `bid_folder_signal()` in `tools/vault_health.py` resolves the note's own recorded bid-folder paths via `vault_lint.POINTER_RE`, base-gates on the first three path components exactly as POINTER-DEAD does, takes the newest file mtime in the folder, and compares it against the leading date of the note's `verified:` value. Five outcomes: `-` (base absent, nothing judged), `no bid folder path recorded`, `folder empty or unreadable`, `newest artifact <date> — note carries no verified date`, `artifacts newer than verified (<date>)`, or `ok`. It renders as a sixth column on the Commercial pipeline table with a paragraph above it saying plainly that it is a soft signal and why it is not lint.
+
+**It found two real gaps on its first run**, neither of which was the case that motivated the note: [[DSP26080]] records no bid-folder path at all, and [[DSP26039]] carries no `verified:` date against a folder whose newest artifact is 2026-05-12. Both were invisible to every existing check.
+
+**On B's dilution risk** — a second differently-shaped signal on a table that already carries one FAIL condition — the mitigation is that this column never reads FAIL. The pipeline's FAIL remains validity expiry alone, and the new column's worst state is a sentence telling you to go look. If it turns out to be scanned past anyway, the fix is to hoist it into the metrics table as a count, not to make it a gate.
 
 ## Apply Log
 
 | Date | Action | By |
 |---|---|---|
+| 2026-08-15 | Ruled and applied. Added `_verified_day()` and `bid_folder_signal()` to `tools/vault_health.py`, extended `pipeline_rows()` to a 6-tuple, and added the Bid folder column plus its explanatory paragraph to the Commercial pipeline section. Reuses `vault_lint.POINTER_RE` and `body_lines_outside_fences` rather than re-implementing path extraction, and copies POINTER-DEAD's three-component base gate verbatim so portability behaviour is identical. Regenerated `50-dashboards/health.md`; verified the recency branch actually executes (DSP26085 verified 2026-07-27 → ok, DSP26095 verified 2026-07-28 → ok, both reached via the comparison rather than an empty-folder short-circuit). No lint rule added. | Claude (review queue) |
 | 2026-08-10 | Note filed by pre-staging loop from `00-inbox/2026-07-28-quote-notes-go-stale-against-their-own-bid-folder.md`. Checked for existing coverage: the quotation-vs-workup reconciliation build (resolved 2026-07-27/29) compares different documents on a different axis and does not cover this; the baseline-staleness-detector (resolved 2026-08-01) is an unrelated domain (regression fixtures) that only matched on the word "staleness." Found and cited one correction to the source note's own framing: POINTER-DEAD already reaches outside the vault into OneDrive (existence-only), so the proposed check is an extension of an existing mechanism, not new ground. `50-dashboards/decision-queue.md` checked — not already queued. No vault or config-repo content modified beyond the source marker. | Claude (pre-staging loop) |

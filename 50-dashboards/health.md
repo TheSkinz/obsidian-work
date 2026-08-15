@@ -5,7 +5,7 @@
 | Metric | Value | Target | Status |
 |---|---|---|---|
 | Open decision rows | 9 | <= 10 | ok |
-| Review notes awaiting decision | 10 | <= 5 | FAIL |
+| Review notes awaiting decision | 5 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
 | Lint warnings | 58 | (backlog) | ok |
 | Inbox items | 49 | - | ok |
@@ -32,12 +32,14 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 
 One row per pending quote, plus any quote whose execution date is within 90 days. Read from `type: quote` frontmatter (`status`, `valid-through`, `date-execution`). A pending quote past its validity is the FAIL condition — record the outcome (awarded / lost / expired / extension) on the quote note to clear it.
 
-| Quote | Status | Valid through | Execution | Signal |
-|---|---|---|---|---|
-| [[DSP26039]] | pending | 2027-04-07 | 2027-01 | ok |
-| [[DSP26080]] | pending | - | 2027-02 | no validity date recorded |
-| [[DSP26085]] | pending | 2026-09-29 | 2027-01 | ok |
-| [[DSP26095]] | pending | 2026-09-29 | 2026-09 | execution in 17 d |
+**Bid folder** is a soft signal, not a gate: it resolves the note's own recorded bid-folder path and compares the newest artifact's date against the note's `verified:` date. `artifacts newer than verified` means the folder moved on and the note may not have — the DSP26095 case, where the note read "Not yet priced" while its folder already held a finished quotation. It is **not** a lint rule on purpose: an unsynced folder, an offline machine and a genuinely stale note are indistinguishable from here, and lint is a binary 0-errors gate. `-` means the path base is absent on this machine, so nothing was judged. Value reconciliation is out of scope here and belongs to the quotation-vs-workup pre-send gate.
+
+| Quote | Status | Valid through | Execution | Signal | Bid folder |
+|---|---|---|---|---|---|
+| [[DSP26039]] | pending | 2027-04-07 | 2027-01 | ok | newest artifact 2026-05-12 — note carries no verified date |
+| [[DSP26080]] | pending | - | 2027-02 | no validity date recorded | no bid folder path recorded |
+| [[DSP26085]] | pending | 2026-09-29 | 2027-01 | ok | ok |
+| [[DSP26095]] | pending | 2026-09-29 | 2026-09 | execution in 17 d | ok |
 
 ## Dormant triggers
 
@@ -59,6 +61,6 @@ Every recorded wake-up condition (`revisit-trigger:` frontmatter) — parked ide
 ## Notes
 
 - **Decision queue:** [[decision-queue]] — 9 open. Cap is 10; over cap, proposal-generating loops pause.
-- **Review notes awaiting decision:** 10 in `06-insights/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
+- **Review notes awaiting decision:** 5 in `06-insights/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
 - **Lint warnings** are the standing to-do list (provenance-frontmatter backfill, stale `related:` links), not failures. Detail: run `python tools/vault_lint.py --report` → `50-dashboards/lint-report.md`.
 - **Heartbeats overdue** means a loop row shows FAIL — either the scheduler stopped firing (check the task's enabled state in the desktop app) or a run started and never finished (check the app's session history for that run). A loop that fires and no-ops cleanly shows ok with no new commit — that is healthy, not silent.

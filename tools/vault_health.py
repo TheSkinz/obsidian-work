@@ -286,9 +286,75 @@ def collect_quotes(notes: dict) -> list[tuple[Path, dict]]:
     return sorted(out, key=lambda t: t[0].stem)
 
 
+def _verified_day(fm: dict) -> date | None:
+    """The leading YYYY-MM-DD of a `verified:` value, which is prose after the date."""
+    m = re.match(r"\s*(\d{4}-\d{2}-\d{2})", str(fm.get("verified") or ""))
+    return parse_day(m.group(1)) if m else None
+
+
+def bid_folder_signal(fm: dict, text: str) -> str:
+    """Existence + recency of the bid folder a quote note points at.
+
+    Soft signal only, and deliberately NOT a lint rule: a missing OneDrive root,
+    an unsynced folder and a genuinely stale note all look identical from here,
+    and lint is a binary 0-errors gate that cannot carry a maybe. Ruled
+    2026-08-15 (option B narrowed by C) after DSP26095 read "Not yet priced — no
+    rates on file" on 2026-07-28 while its own bid folder already held a finished
+    quotation and a priced workup.
+
+    Value comparison is deliberately out of scope — that half is deferred to the
+    quotation-vs-workup pre-send gate, which reads the workup's reconciled total
+    rather than guessing from filenames.
+
+    Base-gated exactly like POINTER-DEAD: judged only when the path's first three
+    components exist on this machine, so it degrades to "-" elsewhere instead of
+    reporting every quote as broken.
+    """
+    dirs = []
+    for line in vault_lint.body_lines_outside_fences(text):
+        for m in vault_lint.POINTER_RE.finditer(line):
+            raw = m.group(1).strip(" ")
+            if "…" in raw or "�" in raw:
+                continue
+            p = Path(raw)
+            if len(p.parts) < 3:
+                continue
+            try:
+                if not Path(*p.parts[:3]).exists():
+                    return "-"  # base absent — different machine, not a finding
+                if p.is_dir():
+                    dirs.append(p)
+            except OSError:
+                continue
+    if not dirs:
+        return "no bid folder path recorded"
+
+    newest, newest_name = None, None
+    for d in dirs:
+        try:
+            for f in d.iterdir():
+                if not f.is_file():
+                    continue
+                mt = date.fromtimestamp(f.stat().st_mtime)
+                if newest is None or mt > newest:
+                    newest, newest_name = mt, f.name
+        except OSError:
+            continue
+    if newest is None:
+        return "folder empty or unreadable"
+
+    ver = _verified_day(fm)
+    if ver is None:
+        return f"newest artifact {newest} — note carries no verified date"
+    if newest > ver:
+        return f"artifacts newer than verified ({ver}) — newest {newest}, check the note"
+    return "ok"
+
+
 def pipeline_rows(notes: dict):
     """Return (rows, expired_count). One row per pending quote plus any quote
-    inside the execution horizon. Row: (quote, status, valid, execution, signal)."""
+    inside the execution horizon.
+    Row: (quote, status, valid, execution, signal, bid-folder)."""
     today = date.today()
     rows = []
     expired = 0
@@ -315,7 +381,8 @@ def pipeline_rows(notes: dict):
             signal = f"{signal}; {note}" if signal and signal != "ok" else note
         if signal:
             rows.append((link, status, fm.get("valid-through") or "-",
-                         fm.get("date-execution") or "-", signal))
+                         fm.get("date-execution") or "-", signal,
+                         bid_folder_signal(fm, notes[path])))
     return rows, expired
 
 
@@ -443,11 +510,22 @@ def build(root: Path) -> str:
         "validity is the FAIL condition — record the outcome (awarded / lost / "
         "expired / extension) on the quote note to clear it.",
         "",
-        "| Quote | Status | Valid through | Execution | Signal |",
-        "|---|---|---|---|---|",
+        "**Bid folder** is a soft signal, not a gate: it resolves the note's own recorded "
+        "bid-folder path and compares the newest artifact's date against the note's "
+        "`verified:` date. `artifacts newer than verified` means the folder moved on and the "
+        "note may not have — the DSP26095 case, where the note read \"Not yet priced\" while "
+        "its folder already held a finished quotation. It is **not** a lint rule on purpose: "
+        "an unsynced folder, an offline machine and a genuinely stale note are "
+        "indistinguishable from here, and lint is a binary 0-errors gate. `-` means the path "
+        "base is absent on this machine, so nothing was judged. Value reconciliation is out "
+        "of scope here and belongs to the quotation-vs-workup pre-send gate.",
+        "",
+        "| Quote | Status | Valid through | Execution | Signal | Bid folder |",
+        "|---|---|---|---|---|---|",
     ]
-    lines += [f"| {q} | {st} | {vt} | {ex} | {sig} |" for q, st, vt, ex, sig in pipe_rows] \
-        or ["| _no pending quotes or upcoming executions_ | | | | |"]
+    lines += [f"| {q} | {st} | {vt} | {ex} | {sig} | {bf} |"
+              for q, st, vt, ex, sig, bf in pipe_rows] \
+        or ["| _no pending quotes or upcoming executions_ | | | | | |"]
     lines += [
         "",
         "## Dormant triggers",
