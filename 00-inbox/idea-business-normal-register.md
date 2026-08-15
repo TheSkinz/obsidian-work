@@ -4,10 +4,19 @@ status: researched
 created: 2026-07-29
 related:
   - "[[2026-08-02-idea-research-business-normal-register]]"
+  - "[[business-normal-facts]]"
 tags: [idea, vault-system, future, estimating]
 ---
 
 # A register of business-normal facts — the things that make sound documents look defective
+
+**Decided 2026-08-15 — landed as [[business-normal-facts]].** The answer was *not* a new register
+artifact: a register-shaped thing already existed split across three mechanisms (point-of-use note,
+skill guardrail, assistant memory), so the work was naming that convention and giving the one
+harness-coupled tier a vault-durable copy. See [[2026-08-02-idea-research-business-normal-register]]
+for the research and the ruling. Everything below is the original seed, kept as written.
+
+---
 
 Idea seed captured 2026-07-29 for a future exploration session. The read below is tentative —
 confirm intent with Jesse before designing.

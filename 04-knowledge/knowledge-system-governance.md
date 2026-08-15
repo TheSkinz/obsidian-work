@@ -134,6 +134,10 @@ Process one item at a time. Identify note type, source authority, related facili
 
 When two notes disagree, create a contradiction note with the exact claims and source links. Do not resolve by averaging, summarizing away the conflict, or picking the newer note unless the source hierarchy supports it.
 
+### Struck-Down Flags
+
+The mirror case: a flag raised and then ruled not-a-finding. The reasoning gets written where the next reader will land, at one of three tiers by how far the fact generalizes — point-of-use vault note when it is job-specific, skill guardrail when the shape recurs across any future job, assistant memory when it is a rule about evaluating facts rather than a fact. See [[business-normal-facts]], which holds the convention in full plus the register of the facts themselves.
+
 ### Retrieval Feedback
 
 When a question is answered poorly, create a question note. Record the expected sources, what was retrieved, what was missed, and what metadata/link/template change would improve retrieval next time.

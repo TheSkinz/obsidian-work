@@ -93,6 +93,7 @@
 - [[_canonical-heater-card]] — <Unit/Tag> <ShortName> — <Client> <City>, <ST>
 - [[_canonical-job-sheet]] — <USA#####> — <Client> <Facility Name>, <City>, <ST>
 - [[_facility-template]] — <Client> — <City>, <ST>
+- [[business-normal-facts]] — Business-Normal Facts `(concepts)`
 - [[decoking-method-comparison]] — Decoking Method Comparison — Mechanical Pigging vs. Steam-Air `(concepts)`
 - [[estimating-pricing]] — Estimating & Pricing Logic `(concepts)`
 - [[field-operations]] — Field Operations & Admin `(concepts)`
@@ -186,6 +187,7 @@
 - [[2026-08-12-idea-research-job-sheet-third-instance-no-migration]] — Idea Research — Job-Sheet Third Instance, No Migration
 - [[2026-08-13-prestaged-syncrude-fill-flush-question]] — Review — Does the Syncrude ~6 ft/hr per-coilset figure include fill/flush time, and does it matter today?
 - [[2026-08-14-prestaged-obsidian-link-retargeting-guard]] — Review — Should the vault add a lint check for wikilinks resolved to the wrong facility?
+- [[2026-08-15-prestaged-decision-queue-duplicate-closed-tables]] — Review — Should `decision-queue.md` merge its two differently-shaped Closed tables?
 
 ## LLMs
 

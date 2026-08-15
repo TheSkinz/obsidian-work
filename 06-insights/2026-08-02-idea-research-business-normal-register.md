@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: primary
 confidence: high
@@ -143,13 +143,17 @@ vault-visible copy.
 
 ## Decision
 
-- [ ] Approved — write the convention paragraph + mirror memory content (items 1–2 above)
+- [x] Approved — write the convention paragraph + mirror memory content (items 1–2 above)
 - [ ] Approved with edits
 - [ ] Rejected — leave as-is, three tiers with no written convention
 - [ ] Needs more source material
+
+**Resolved 2026-08-15 (Jesse, in session).** Both items approved and applied. The recommendation to *not* build a new register artifact stands — what landed is documentation of what already exists, not a fourth mechanism competing with the three.
+
+Placement decision: both items went into one new note, `04-knowledge/concepts/business-normal-facts.md`, rather than being split across `01-context/estimating-approach.md` and `04-knowledge/concepts/`. Two reasons. `estimating-approach.md` declares itself duration-model-only ("does not restate the skill's pricing or section content"), so the convention would have been a foreign body there. And the convention and the register explain each other — the register is the thing tier 3 was holding, and the convention is why it needed a vault copy; separating them costs a second file open to understand either. A pointer was added to `knowledge-system-governance.md` under Core Loops as a new "Struck-Down Flags" subsection, sited next to Contradiction Handling since it is the mirror case.
 
 ## Apply Log
 
 | Date | Action | By | Notes |
 |---|---|---|---|
-| | | | |
+| 2026-08-15 | Approved and applied. Created `04-knowledge/concepts/business-normal-facts.md` carrying both the three-tier convention (item 1) and the mirrored register content (item 2). Added the "Struck-Down Flags" subsection to `04-knowledge/knowledge-system-governance.md`. | Claude (review queue) | Re-verified all four cited instances before writing, since this note is 13 days old. `DSP26071.md:44` and `equipment-fleet.md:39` still exact. The SKILL.md rule drifted 379 → 384, content unchanged. **`01-context/active-jobs.md:27` no longer exists as cited** — that instance has since evolved rather than regressed: USA26041 now carries an assigned USA#, and both the badging status and the cross-division shared PO read as plain fact in the job row with no flag framing. The convention is visibly holding in the live file. Cited `change-log.md` lines 133/135/141 have also drifted; the underlying entries are at 141–142 (2026-07-29) and the 2026-07-30 row. Line numbers were not carried into the new note for this reason — instances are cited by file and content. |
