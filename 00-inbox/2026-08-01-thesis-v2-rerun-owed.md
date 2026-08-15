@@ -35,3 +35,8 @@ the same ruling.
 
 Cost is non-trivial (frontier-model calls across 30 items), so this wants a
 deliberate session, not a spare-moment run.
+
+**Runbook: [[2026-08-15-thesis-v2-rerun-handover]]** — exact commands, the
+dry-run/smoke/full sequence, conditions, call volume, the frozen pre-registered
+thresholds to judge against, and what to record afterwards. Built 2026-08-15 by
+reading the repo rather than from recall.
