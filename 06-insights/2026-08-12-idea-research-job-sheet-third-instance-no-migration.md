@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -35,13 +35,17 @@ Bounded one-shot edit, not urgent (USA26041's sheet works as-is), and entirely w
 
 ## Decision
 
-- [ ] Approved — make all three edits now
+- [x] Approved — make all three edits now
 - [ ] Approved with edits
 - [ ] Park — revisit at job report closeout
 - [ ] Drop
+
+**Resolved 2026-08-15 (Jesse, in session).** All three applied. The deciding point is the one the research note makes about rule class: under the canonical's own LAYOUT/DOMAIN split, none of these three is a domain rule. Whether the six blocks are a floor, what the instance count is, and whether a live sheet gets restructured mid-job are all layout and documentation decisions — verifiable by looking at the document, safe to change on judgment, no `(Jesse, YYYY-MM-DD)` attribution required by the canonical's own stated convention. Nothing here asserts how USADebusk operates.
+
+Edit (1) is the substantive one and it only writes down what was already true. Nothing in the canonical, the template, or `document-routing.md` ever said the six blocks were closed; the reading was implicit, and USA26041 is what made the ambiguity cost something. Edit (3) is worth more than it looks: an unstated deferral is indistinguishable from an oversight, and the risk being managed is that a future session "tidies" a live job's sheet in good faith. Saying it in the canonical is what stops that.
 
 ## Apply Log
 
 | Date | Action | By | Notes |
 |---|---|---|---|
-|  |  |  |  |
+| 2026-08-15 | All three edits applied to `04-knowledge/_canonical-job-sheet.md`. STATUS block moved from TWO to THREE validated instances and records that USA26041 coexisted with the shape rather than moving it, replacing the "a third instance may move it again" open question that this note closed. Added a `THE SIX BLOCKS ARE A FLOOR, NOT A CEILING` layout rule and a `USA26041'S OWN SHEET STAYS UNMIGRATED UNTIL ITS JOB REPORT CLOSES IT OUT` block, the latter tied to the existing fact/time wall rather than asserted independently. No domain rule added, no attribution tag required per the canonical's own LAYOUT/DOMAIN convention. `templates/_job-sheet-template.md` deliberately untouched — it derives structure from the canonical and the floor/ceiling rule changes no structure. USA26041's live sheet not modified. | Claude (review queue) |

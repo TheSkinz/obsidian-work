@@ -30,14 +30,38 @@ after a domain rule was written from inference and had to be corrected twice):
   general rule and written into H-2421's card as fact. It was boilerplate; that job has no
   scaffolding. Source documents are evidence of what they say, not of what the job requires.
 
-STATUS: DRAFT — validated against TWO instances (USA26038, July 2026; USA26040, August 2026).
+STATUS: DRAFT — validated against THREE instances (USA26038, July 2026; USA26040, August 2026;
+USA26041, August 2026).
 The second won bid FORCED a change rather than confirming the first shape, which is what this
 exemplar was waiting to find out. USA26040 (Jesse, 2026-07-30) established that the job sheet is
 an INTERNAL crew document and collapsed the section list from nine blocks to six. USA26038's own
 sheet predates the change and was deliberately left unretrofitted — it is a completed job and a
 historical record.
 
-Section shape is now better evidenced but still not settled; a third instance may move it again.
+USA26041 (ExxonMobil Baytown, HU5A F-501) is the third instance this block was waiting on, and it
+did NOT move the shape — it coexisted with it. That sheet predates the six-block collapse and
+already carried Baytown-specific sections (Direct Contact, Turnaround Coordination, Circuit
+Assignments, Prerequisites); mobilization detail was added as one further ad-hoc "Equipment
+Mobilized" section rather than by migrating the sheet. That outcome resolves the open question
+above, in the direction below.
+
+THE SIX BLOCKS ARE A FLOOR, NOT A CEILING (layout rule, 2026-08-15):
+  Additional site-specific sections are EXPECTED and do not constitute schema drift. A sheet
+  carrying Turnaround Coordination or Circuit Assignments on top of the six is conforming, not
+  divergent. What the six blocks guarantee is a minimum a crew can rely on finding; they do not
+  cap what a job may need. This was already the de facto reading — nothing here ever said the set
+  was closed — but it was implicit, and the third instance is what made the ambiguity cost
+  something. Stated now so the next sheet with an extra section is not read as a defect. (The
+  standard convention in both document-template and machine-schema design: open by default, with
+  closing it the deliberate act. See `06-insights/2026-08-12-idea-research-job-sheet-third-instance-no-migration.md`.)
+
+USA26041'S OWN SHEET STAYS UNMIGRATED UNTIL ITS JOB REPORT CLOSES IT OUT (2026-08-15):
+  Its Crew Assignment and Billing Reference tables are NOT to be retrofitted to the merged
+  Crew & Labor / Equipment shape while the job is executing. This follows the fact/time wall
+  below: a job sheet is created once from the quoted work-up and is a stable record from bid-win,
+  and restructuring a live job's sheet mid-execution is a smaller version of the risk that wall
+  exists to prevent. Deferral was already the intent; it is stated here so it does not read as an
+  oversight and so nobody tidies it mid-job. Revisit at closeout, not before.
 
 THE JOB SHEET IS INTERNAL (core rule, USA26040):
   It goes to the crew, never to the customer. Therefore it carries NO rates, NO markup percentage,
