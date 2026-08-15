@@ -11,7 +11,7 @@
 | Inbox items | 49 | - | ok |
 | Inbox median age | 14 d | < 14 d | FAIL |
 | Inbox oldest item | 28 d | < 30 d | ok |
-| Days since last commit | 1 d | - | ok |
+| Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
 | Pending quotes expired | 0 | 0 | ok |
 | Dormant triggers fired | 0 | 0 | ok |
@@ -22,10 +22,10 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 
 | Loop | Last fired | Last heartbeat | Cadence | Status |
 |---|---|---|---|---|
-| Capture loop | 2026-08-14 (0 d ago) | 2026-08-14 (1 d ago) | 7 d | ok |
+| Capture loop | 2026-08-15 (0 d ago) | 2026-08-14 (1 d ago) | 7 d | running |
 | Idea-research loop | 2026-08-15 (0 d ago) | 2026-08-12 (3 d ago) | 30 d | ok |
 | Pre-staging loop | 2026-08-14 (0 d ago) | 2026-08-14 (1 d ago) | 30 d | ok |
-| Consolidation loop | 2026-08-15 (0 d ago) | 2026-07-18 (28 d ago) | 31 d | running |
+| Consolidation loop | 2026-08-15 (0 d ago) | 2026-08-15 (0 d ago) | 31 d | ok |
 | Skill-drift loop | 2026-08-01 (14 d ago) | 2026-08-01 (14 d ago) | 62 d | ok |
 
 ## Commercial pipeline
