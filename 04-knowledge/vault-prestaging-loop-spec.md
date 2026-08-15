@@ -84,7 +84,7 @@ Low to run, high in what it refuses to do. Every run either produces exactly one
    **Frontmatter is mandatory and load-bearing:** `review_type: pre-staged`, `source_authority: inferred`, `status: open`. A pre-staged note is an *unreviewed inference*, and without these a future session may read a machine-drafted Source Material table as settled vault truth.
 6. Append one row to `50-dashboards/decision-queue.md`: `id` = next monotonic `DQ-NNN` (scan the whole file, including closed and expired rows, for the highest existing number; never reuse), `opened` = today, `source` = link to the new review note, `ask` = the one-line question, `risk` = tier per the queue's own rule (`high` for pricing, SOP, safety, field-execution, customer-facing or heater-card facts; `med` for structure, schema or convention; `low` for reversible content), `status` = `open`. Update the "N open rows" line beneath the table.
 7. Mark the source inbox item with `<!-- vault-prestaged: <review-note-filename> -->`. Do not otherwise edit its content, and do not move or delete it — routing it remains the Capture Loop's or Jesse's call.
-8. Run `python tools/vault_lint.py` (use `py -3` if `python` is not on PATH); it must report **0 errors** before committing. Warnings are acceptable.
+8. Run `python tools/vault_lint.py --worktree` (use `py -3` if `python` is not on PATH); it must report **0 errors** before committing. Warnings are acceptable. **The `--worktree` flag is load-bearing** (added 2026-08-15): a bare invocation skips the diff rules, leaving `CHECKBOX-DELTA` with no unprompted trigger. This loop is append-only by design, so a `CHECKBOX-DELTA` finding here means something outside the loop moved a decision box on a closed note — treat it as a real finding, not as this run's own work.
 9. Commit and push only this run's touched paths (the review note, `decision-queue.md`, the marked inbox item). Commit message `vault-prestage: <YYYY-MM-DD> — pre-staged <slug>` (or `— skipped N, no candidates` when a run only skipped). **The `vault-prestage:` prefix is this loop's heartbeat**, read by `tools/vault_health.py`. Because the loop is silent whenever the queue is full or the pile is empty, health tracks it at a monitoring cadence of 30 days, not its daily run cadence — a FAIL means the scheduler died, not that one day was quiet. Keep the prefix exact. No `change-log.md` entry: that file is decisions-only, and the run record lives in the commit message.
 
 ## Allowed Without Additional Approval
@@ -95,7 +95,7 @@ Low to run, high in what it refuses to do. Every run either produces exactly one
 | Create one review note per run in `06-insights/` | Standard template; `review_type: pre-staged`, `source_authority: inferred`, `status: open` mandatory; every Source Material row must cite a file actually read. |
 | Append one row to `50-dashboards/decision-queue.md` | One per run; monotonic id; never edit or close an existing row. |
 | Add a `<!-- vault-prestaged: -->` marker to an inbox item | Comment only; no content change. |
-| Run `tools/vault_lint.py` before committing | Pre-commit gate; must be 0 errors. |
+| Run `tools/vault_lint.py --worktree` before committing | Pre-commit gate; must be 0 errors. `--worktree` is required, not optional — it is what runs the diff rules. |
 | Commit and push this run's touched paths | Per step 9. |
 
 ## Blocked Without Specific Approval

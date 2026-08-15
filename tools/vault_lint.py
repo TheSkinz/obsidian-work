@@ -691,6 +691,22 @@ def checkbox_delta(before: str, after: str) -> list[str]:
     return []
 
 
+# Files a script rewrites wholesale. The diff rules must skip them: a regenerated
+# file always "loses" its previous dates and counts, and that is the tool working,
+# never a finding. Measured 2026-08-15 over the last 43 daily-loop commits — with
+# these included WORD-DELTA fired on 43/43 (100%), with them excluded 12/43 (28%),
+# and every remaining hit is a single word from an idea-seed status flip
+# (`unexplored` -> `researched`). Real content loss across all 43: zero. That 100%
+# is why the loops could not simply be switched to --worktree; see
+# 06-insights/2026-08-06-prestaged-checkbox-delta-trigger.md.
+GENERATED_PATHS = ("INDEX.md", "50-dashboards/")
+
+
+def is_generated(rel: str) -> bool:
+    rel = rel.replace("\\", "/")
+    return any(rel == g or rel.startswith(g) for g in GENERATED_PATHS)
+
+
 def check_diff_rules(root: Path, mode: str = "staged") -> list[Finding]:
     """Words that left a pre-existing note, HEAD -> staged index or working tree.
 
@@ -717,7 +733,8 @@ def check_diff_rules(root: Path, mode: str = "staged") -> list[Finding]:
         out = subprocess.run(listing, cwd=root, capture_output=True, text=True, timeout=60)
         if out.returncode != 0:
             return findings  # not a git repo / no HEAD yet — fail open
-        changed = [f.strip() for f in out.stdout.splitlines() if f.strip()]
+        changed = [f.strip() for f in out.stdout.splitlines() if f.strip()
+                   and not is_generated(f.strip())]
     except Exception:
         return findings  # a lint rule must never wedge a commit
 

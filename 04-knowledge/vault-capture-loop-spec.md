@@ -59,7 +59,7 @@ Low. The content-layer blast radius is small and every write is versioned in git
 2. **Ingest inbox** — for each `.md` file in `00-inbox/`, apply the three-outcome routing model. This is the primary job and runs first.
 3. **Harvest transcripts** — scan transcripts in scope (see Transcript Scope) modified since `last_run`, applying the self-exclusion rule and the Save-vs-Skip filter. For each durable finding: rewrite declarative present-tense, then route to an existing note (append) or create a new one.
 4. Update `00-inbox/.capture-state.json` (see Delta Tracking).
-5. Run `python tools/vault_lint.py` (use `py -3` if `python` is not on PATH); it must report **0 errors** before committing. Fix any error the run introduced — warnings are acceptable. Do **not** append a run summary to `change-log.md`: per the 2026-07-05 narrowing rule, `change-log.md` is decisions-only and the run record lives in the commit message (the `vault-capture:` heartbeat) and git log.
+5. Run `python tools/vault_lint.py --worktree` (use `py -3` if `python` is not on PATH); it must report **0 errors** before committing. Fix any error the run introduced — warnings are acceptable. **The `--worktree` flag is load-bearing** (added 2026-08-15): a bare invocation skips the diff rules entirely, so `CHECKBOX-DELTA` — the guard against a decision silently recorded on an already-closed note — had no unprompted trigger anywhere in the vault. This loop's daily cadence is now that trigger. A `WORD-DELTA` finding on this loop's own edits is expected where the run legitimately rewrote a harvested note; read it, don't reflexively clear it. Do **not** append a run summary to `change-log.md`: per the 2026-07-05 narrowing rule, `change-log.md` is decisions-only and the run record lives in the commit message (the `vault-capture:` heartbeat) and git log.
 6. **Refresh generated files** — run `py -3 tools/vault_index.py` and `py -3 tools/vault_health.py` so `INDEX.md` and `50-dashboards/health.md` reflect this run's ingested/harvested notes; include both in the commit. (Generated files are the sanctioned overwrite exception; added 2026-07-07.)
 7. **Commit and push** (see Durability).
 
@@ -166,7 +166,7 @@ OneDrive sync has been removed; git is the only backup and the single source of 
 | Add the no-home comment to an inbox file | Comment only; no content change. |
 | Move a terminal-status note of any type from `00-inbox/` to `archive/` | Terminal-Note Sweep only; exact status allowlist; tracked-only; never renamed. |
 | Update `00-inbox/.capture-state.json` | State tracking only; merge, never blank-overwrite. |
-| Run `tools/vault_lint.py` before committing | Pre-commit gate; must be 0 errors. Read-only check. |
+| Run `tools/vault_lint.py --worktree` before committing | Pre-commit gate; must be 0 errors. Read-only check. `--worktree` is required, not optional — it is what runs the diff rules. |
 | Commit and push the loop's own touched paths | Durability close, per Durability. The commit message is the run record — no `change-log.md` entry (decisions-only since 2026-07-05). |
 
 ## Blocked Without Specific Approval
