@@ -1,10 +1,11 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: pre-staged
 source_authority: inferred
 confidence: medium
 created: 2026-08-13
+revisit-trigger: "Per-coilset re-grain schema decision reopens (bundled at [[2026-07-28-idea-research-rollup-per-rig-coilset-grain]]) -> reproduce the Syncrude ~6 ft/hr figure from recovered per-coilset footage BEFORE asking the fill/flush question, and do not let it enter a benchmark until both are answered — event: check at heater-card schema change"
 related:
   - "[[2026-07-28-idea-research-rollup-per-rig-coilset-grain]]"
 tags: [review, knowledge-system, estimating, actuals, syncrude]
@@ -36,13 +37,13 @@ Should Jesse's read on whether the Syncrude per-coilset pig-hour figures include
 
 - [ ] Approved
 - [ ] Approved with edits
-- [ ] Rejected
+- [x] Rejected
 - [ ] Needs more research
 
 **B. Bundle and defer — no per-coilset figure feeds any benchmark today** (heater-total rows are already excluded from the norm mean via blank `Mode`; per-coilset rows don't exist as rollup data at all, only as Field Notes prose). Close this inbox item as moot until the per-coilset re-grain schema decision from the 2026-07-28 idea-research note reopens, and answer the fill/flush question at that point, in context, rather than banking an isolated fact now.
 
 - [ ] Approved
-- [ ] Approved with edits
+- [x] Approved with edits
 - [ ] Rejected
 - [ ] Needs more research
 
@@ -50,7 +51,7 @@ Should Jesse's read on whether the Syncrude per-coilset pig-hour figures include
 
 - [ ] Approved
 - [ ] Approved with edits
-- [ ] Rejected
+- [x] Rejected
 - [ ] Needs more research
 
 ## Risks and Counter-Arguments
@@ -59,10 +60,19 @@ Option A's "cheap now" framing assumes Jesse can still recall or look up the fil
 
 ## Decision
 
-*(Jesse: check one box per lettered option above.)*
+**Resolved 2026-08-15 (Jesse, in session). B approved with edits. A and C rejected.**
+
+**A is rejected on its own stated risk.** It asks Jesse to recall the fill/flush split on a September 2025 job — that is a research task wearing a quick question's clothing, and it buys nothing today because no per-coilset figure can reach a benchmark under the current schema.
+
+**B is right that it is moot today, and wrong that "close as moot" is enough.** B's own risk paragraph names the failure exactly: if the per-coilset re-grain decision is ever approved without anyone rereading this note, ~6 ft/hr enters a benchmark with the question still open. Closing a note as moot is precisely how that happens. The edit is therefore a `revisit-trigger:` on this note, tied to the same event that unparks the schema decision, so the dormant-triggers table on the health dashboard carries it and it cannot go quiet.
+
+**C is rejected as an option but its finding is the most important thing in this note, and it reorders the question.** This run could not reproduce ~6 ft/hr from card data at all — the 47 tubes / 2,311 ft are documented as unevenly split across coils, so there is no per-coilset footage to divide by the 63 / 48 / 53-hour sub-totals. The figure rests on a split that was never ingested. That inverts the priority: asking whether the hours include fill/flush is asking for a qualifier on a number nobody can currently derive. Reproduce first, qualify second. C is rejected only because scoping a data-recovery task now, for a figure with no consumer, is work with no deadline attached to it — the requirement is instead written into the trigger so it fires when the figure actually acquires a consumer.
+
+Recorded on the heater card as well as here, because the card is where anyone would land while doing the re-grain work, and a caution that lives only in `06-insights/` is a caution nobody reads at the moment it matters.
 
 ## Apply Log
 
 | Date | Action | By |
 |---|---|---|
+| 2026-08-15 | Ruled. Added `revisit-trigger:` to this note's frontmatter, event-shaped and tied to the per-coilset re-grain decision parked at [[2026-07-28-idea-research-rollup-per-rig-coilset-grain]], requiring the figure be reproduced from recovered per-coilset footage BEFORE the fill/flush question is asked and barring it from any benchmark until both are answered. Added a paragraph to `02-facilities/Syncrude/Fort-McMurray-AB/7-1-F-1.md`'s ft/hr note recording that ~6 ft/hr is not reproducible from card data and why (uneven per-coil tube counts, no per-coilset footage ingested). Heater-card content is Lane 1 in full per the governance facility-data note, so no gate was needed for that edit; no rollup, schema, or benchmark value was touched, and no new domain figure was asserted. | Claude (review queue) |
 | 2026-08-13 | Note filed by pre-staging loop from `00-inbox/2026-07-29-syncrude-6-ft-hr-fill-flush-question.md`. Confirmed both Syncrude rows are already excluded from the actuals rollup's normalized per-pig means (blank `Mode`), for a different reason (multi-rig blending) than the fill/flush question asks about. Attempted to reproduce the "~6 ft/hr" figure from the heater card's per-coilset hour splits and heater-total footage; could not, because per-coil footage is documented as uneven and no per-coilset footage breakdown exists in the card — flagged as Option C. No heater-card, rollup, or schema content modified. | Claude (pre-staging loop) |
