@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: pre-staged
 source_authority: inferred
 confidence: medium
@@ -37,7 +37,7 @@ Should the F4 (SOP) instruction-density arm test run now — replicating the F5 
 
 **A. Run the F4 arm test now, same protocol as F5.** Three blinded Opus 5 calls against the `f4-sop-input.md` fixture: incumbent (`usadebusk-sop` + core + equipment + formatting standard), floor (core only), ablated (corrective/behavioral instructions stripped, data and rules retained). If Arm C matches incumbent on structural conformance the same way F5's did, the finding graduates from n=1 to n=2 across two different skills, two different pass-bar shapes (numeric vs. structural) — the bar the source note itself set for "worth a trim pass." If it doesn't match, the trim idea is closed on evidence rather than left to decay.
 
-- [ ] Approved
+- [x] Approved
 - [ ] Approved with edits
 - [ ] Rejected
 - [ ] Needs more research
@@ -46,14 +46,14 @@ Should the F4 (SOP) instruction-density arm test run now — replicating the F5 
 
 - [ ] Approved
 - [ ] Approved with edits
-- [ ] Rejected
+- [x] Rejected
 - [ ] Needs more research
 
 **C. Drop it — leave the finding at n=1 and untouched.** The counter-evidence already on file (2026-07-24 `adversarial-review` arm test: architecture ranked in exact inverse order of scaffolding density) points the same general direction as caution, not confidence, and `07-llms/prompt-engineering.md` already carries the standing rule that input-verifying corrective instructions are worth keeping. A second fixture only sharpens a conclusion nobody is currently acting on — no trim pass is scheduled or proposed anywhere in the vault.
 
 - [ ] Approved
 - [ ] Approved with edits
-- [ ] Rejected
+- [x] Rejected
 - [ ] Needs more research
 
 ## Risks and Counter-Arguments
@@ -62,10 +62,23 @@ Option A's cost is real but bounded — three model calls against an existing, a
 
 ## Decision
 
-*(Jesse: check one box per lettered option above.)*
+**Resolved 2026-08-15 (Jesse, in session). A approved and executed the same day; B and C rejected.**
+
+B was rejected because the note's own risk paragraph is right about owed work — three `-owed` items already sit unexecuted in `00-inbox/`, and this is three model calls against a fixture that already exists, not a build. Rationing it into a queue that has a demonstrated backlog would have left the F5 finding uncorroborated indefinitely for no saving. C was rejected because the test was cheap enough that "a second fixture only sharpens a conclusion nobody is acting on" stops being an argument once running it costs ~150 seconds.
+
+**Result: F4 replicates F5 exactly.** Full write-up at `~/.claude/regression/f4-instruction-density-arm-test-2026-08-15.md`.
+
+- **Arm B failed**, the same way and for the same reason. Without `usadebusk-sop` and the formatting standard it invented its own document number, its own 11-section order, its own footer boilerplate, and produced no title-block grid and no color scheme.
+- **Arm C matched arm A** on every structural conformance key — document number, short-form DOCUMENT NO. cell, 2×4 title block, 9 sections in canonical order, Phase I/II/III procedure, controlled-document footer wording, gold/charcoal scheme — and on every binding numeric, including the 4.250" max pig OD and its 4.026 + 0.250 = 4.276 ceiling arithmetic.
+- **C produced *more* judgment-call flags than A** (13 vs 11), so the trap condition — a stripped skill silently dropping flagging discipline — did not fire, replicating F5.
+- **Both stripped guardrails held without their instruction text.** The firewater "never surface it as a flag" framing was removed and C still wrote the 2" hose as a plain customer-scope line item rather than an open question. The lodged-pig hard suppression gate was removed and C never referenced `SOP-OPS-LODGE-001`, and correctly omitted the plug-header module on the grounds that this coil has cast 180s.
+- **Arm B degraded honestly again** — its opening line names the missing file and its closing line calls that gap "the single biggest risk in this deliverable." Two for two on the standing observation.
+
+**What this changes.** The finding is now n=2 across two skills, two output shapes, and two pass-bar types (numeric on F5, structural on F4), which is exactly the bar the F5 note set. It still does not license a trim pass across nine skills — two clean results are two runs, and F5's own Sch 80 error is on record as evidence that one run carries enough variance to produce a wrong value. The defensible next step is narrower than a trim pass: the strips that proved **redundant with a rule that was retained** (the RFWN corrective, "do not state durations here" alongside the Rig-In/Rig-Out fixed-event labels, "Never assume" alongside the Required Inputs list) are the cheap, low-risk candidates, because in each case the rule already carries the behavior and the corrective only restates it. That is left as an open item, not adopted here.
 
 ## Apply Log
 
 | Date | Action | By |
 |---|---|---|
+| 2026-08-15 | Approved and executed. Staged blinded scratchpad copies of the four reference files, built arm C by 29 exact-match strips (each asserted to have matched, so a silent no-op could not pass as a completed ablation), and ran three parallel blinded Opus 5 agents with no Skill tool, no web access, and no read access to `~/.claude/skills/`, `~/.claude/regression/`, or the vault. Arm C is 46,222 bytes against arm A's 51,823 — 10.8% overall, 19.9% on `usadebusk-sop` itself, bracketing F5's 16%. `usadebusk-equipment`'s share of the strip re-applies F5's own documented removal list verbatim so the shared material is ablated identically across both tests. Wrote the full result to `~/.claude/regression/f4-instruction-density-arm-test-2026-08-15.md`. F4's frozen output deliberately **not** re-promoted — promotion is Jesse's call and arm A is a blinded reference, not a standard replay. | Claude (review queue) |
 | 2026-08-07 | Note filed by pre-staging loop from `00-inbox/2026-07-28-instruction-density-second-fixture.md`; confirmed via `~/.claude/regression/runs/claude-opus-5/` directory listing, `README.md`'s fixture map, `07-llms/prompt-engineering.md`, and `change-log.md` that no F4 density arm test has run and no trim-pass decision has been made since the source note was filed ten days ago. No vault content modified beyond the source marker. | Claude (pre-staging loop) |
