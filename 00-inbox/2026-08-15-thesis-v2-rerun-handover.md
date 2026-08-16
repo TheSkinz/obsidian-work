@@ -1,16 +1,21 @@
 ---
 type: note
-status: inbox
+status: complete
 created: 2026-08-15
-tags: [inbox, leverage-repo, runbook, handover, approved-unexecuted]
+closed: 2026-08-15
+tags: [leverage-repo, runbook, reference, retired]
 related:
   - "[[2026-08-01-thesis-v2-rerun-owed]]"
   - "[[2026-07-30-prestaged-portfolio-revival-still-worth-doing]]"
 ---
 
-# Hand-over — running the thesis experiment v2 re-run
+# Hand-over — running the thesis experiment v2 re-run — SUPERSEDED, DO NOT RUN
 
-Everything needed to execute the work owed at [[2026-08-01-thesis-v2-rerun-owed]] (approved by Jesse 2026-08-01 under DQ-004). Written 2026-08-15 from the repo as it stands; every path, flag and threshold below was read from the files, not recalled.
+> **The run this describes was retired the same day it was written** (Jesse, 2026-08-15) — see [[2026-08-01-thesis-v2-rerun-owed]] for the reasoning. In short: B pass@1 at 0.962 is within 10pp of any value A can take, so the frozen thresholds return "inconclusive, items too easy" regardless of what the run produces. **Do not execute the commands below to close DQ-004; that item is closed by ruling.**
+>
+> Kept rather than deleted because the mechanics are accurate and independent of the verdict. If the thesis is ever revived with a harder item set, the sequence, flags, conditions, call volume and cost guard below still hold — only the corpus and the frozen thresholds would need replacing.
+
+Everything needed to execute the work formerly owed at [[2026-08-01-thesis-v2-rerun-owed]] (approved by Jesse 2026-08-01 under DQ-004, retired 2026-08-15). Written 2026-08-15 from the repo as it stands; every path, flag and threshold below was read from the files, not recalled.
 
 ## What you are running and why
 

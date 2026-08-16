@@ -3,9 +3,24 @@
 
 ---
 type: note
-status: inbox
+status: closed-unactioned
 created: 2026-08-01
-tags: [inbox, leverage-repo, deferred, approved-unexecuted]
+closed: 2026-08-15
+tags: [inbox, leverage-repo, deferred, retired]
+---
+
+# Owed — thesis experiment v2 re-run — RETIRED 2026-08-15
+
+> **RETIRED, NOT RUN** (Jesse, 2026-08-15). The re-run cannot produce a discriminating result on this corpus, and that is provable from data already in hand rather than from anything the run would return. Reasoning below; everything under the rule is the original note, kept as written.
+>
+> **The pre-registered verdict is already determined.** `DESIGN.md` records v1 at A 0.795 / B 0.962 / C 0.962, and the audit found **100% of failures across all three conditions** were the unit artifact. v2 rescoring only converts failures to passes, so A rises toward ~1.0 and B rises from 0.962 or holds. The frozen thresholds call it **inconclusive** when B pass@1 is within 10pp of A — and B at 0.962 is within 10pp of *any* value A can take, since the ceiling is only 3.8pp above it. There is no arithmetic path to a validating or falsifying result. The run would spend ~450 calls to return "items too easy," which the design already prescribes the remedy for.
+>
+> **Secondary: the frontier arm tests a routing choice no longer made.** Condition A names `claude-fable-5`. Current routing is Opus 5 for nearly everything, with Fable reserved for maximal long-horizon runs — structured field extraction is the opposite shape. Swapping it is not a flag change: `DESIGN.md:3-4` freezes the thresholds and requires a new version of the file with a stated reason.
+>
+> **What this closes.** The thing that actually needed resolving was the non-citable v1 headline sitting on record. A ruling retires it as cleanly as a measurement would: *the v1 result was a scoring artifact, v2 rescoring cannot discriminate on this corpus, and the experiment is retired pending a harder item set.* The v1 numbers remain non-citable — that does not change.
+>
+> **If the thesis is ever wanted for real**, the work is not a re-run. It is building items hard enough that a cheap model does not already score 96% on them, which the pre-registration itself names as the remedy. That is a fresh build to be decided on its own merits, not a commitment inherited from July.
+
 ---
 
 # Owed — thesis experiment v2 re-run
