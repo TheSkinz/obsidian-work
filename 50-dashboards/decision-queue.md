@@ -25,7 +25,9 @@ The single place every open decision lives. One row per open ask — not one not
 | DQ-016 | 2026-08-15 | [[idea-sharepoint-projection-drift-check]] | Build the SharePoint projection drift check as a `health.md` row. Design is settled by the 2026-08-11 evidence: it must REST-read live library content, because `sharepoint_export.py --check` was green throughout while the library itself held the wrong file. Presence-only and columns-complete checks both pass the real case. | med | 0 | open |
 | DQ-017 | 2026-08-15 | [[2026-07-28-idea-research-rollup-per-rig-coilset-grain]] | Open the bundled heater-card schema decision in its own session rather than waiting for a schema change to carry it: the per-coilset re-grain, the Pig Specifications `Condition` column, and the vault-stats layer's two tracks. **Ordering constraint from DQ-012, load-bearing:** the Syncrude ~6 ft/hr figure must be *reproduced* from per-coilset footage before the fill/flush question is asked, and it may not enter any benchmark until both are answered. | high | 0 | open |
 
-**2 open rows** as of 2026-08-15.
+| DQ-018 | 2026-08-16 | [[2026-08-15-retirement-sweep-what-else-has-outlived-its-reason]] | A retired note lands on `closed-unactioned`, which is terminal to lint but **absent from the Terminal-Note Sweep's allowlist** (`executed · resolved · complete · superseded · spec-complete`), so a correctly-retired commitment stays in `00-inbox/` forever — four already do. Is that deliberate (a retirement should stay visible) or an oversight? If an oversight, the fix is one status added to the allowlist in [[vault-capture-loop-spec]]. | med | 0 | open |
+
+**3 open rows** as of 2026-08-16.
 
 ## Closed
 
