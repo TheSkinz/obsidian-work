@@ -5,6 +5,8 @@ client: HF Sinclair Navajo
 facility: HF-Sinclair-Artesia-NM
 last-updated: 2026-07-11
 tags: [job-sheet, HF-Sinclair, USA26038]
+source: "USA26038-job-sheet.html in this folder, rendered to USA26038-job-sheet.pdf — created at bid-win from the quoted work-up"
+verified: never
 ---
 
 # USA26038 — HF Sinclair Navajo Refinery, Artesia, NM

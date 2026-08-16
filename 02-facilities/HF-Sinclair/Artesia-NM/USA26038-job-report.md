@@ -10,6 +10,8 @@ execution: 2026-07-10 to 2026-07-17
 condition: crash
 last-updated: 2026-07-21
 tags: [job-report, HF-Sinclair, USA26038]
+source: "USA26038-job-report.docx in this folder — the customer-facing deliverable this note indexes, built to DeBusk brand standards"
+verified: never
 ---
 
 # USA26038 — HF Sinclair Navajo Refinery Job Report (H-19 & H-20)
