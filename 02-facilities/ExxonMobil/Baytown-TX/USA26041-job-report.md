@@ -60,10 +60,11 @@ Circuit 2 57 · 45 · 38 · 31 · Treat Gas 0 · 0 · 0 · 5.
 
 ## Field findings
 
-**Metal restrictions near the Pass A/B cross-overs.** Protruding into the tubes, B's worse than
-A's. They gouged the pigs slightly but did not significantly hinder the decoke. The cross-overs
-were never removed, so the restrictions were located and mapped but **not identified** — the
-cross-overs are the likely source, not a confirmed one. Circuit 1 finished on a 4.75" pig against
+**Metal restrictions on Passes A and B.** Protruding into the tubes, B's worse than A's. They
+gouged the pigs slightly but did not significantly hinder the decoke. **Location is mapped, not
+confirmed** — the restrictions were located in the cross-over area and that piping is the likely
+source, but the cross-overs were never opened, nothing was visually verified, and nothing appeared
+in the smart-pig inspection data (Jesse, 2026-08-16). Circuit 1 finished on a 4.75" pig against
 the 4.875" computed from tube ID; plan that circuit against 4.75" until this is characterised.
 
 **Pig appendage wear across sections — the durable finding.** The minor convection fouling the
