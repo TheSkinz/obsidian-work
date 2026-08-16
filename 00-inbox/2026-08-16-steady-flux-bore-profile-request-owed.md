@@ -1,6 +1,6 @@
 ---
 type: note
-status: open
+status: closed-unactioned
 created: 2026-08-16
 tags: [loose-end, ExxonMobil, F-501, USA26041, estimating]
 related: [[F-501]], [[USA26041-job-report]]
@@ -8,7 +8,25 @@ related: [[F-501]], [[USA26041-job-report]]
 
 # Owed: ask Steady Flux for the A_1_X / B_1_X bore profile
 
-Open action carried out of the USA26041 close-out, 2026-08-16. Not started.
+> **Retired 2026-08-16, same day it was opened.** Jesse handled it directly — a text
+> message to his contact — and told the vault so. The request needed no formal channel,
+> no drafted letter and no tracked action item; the note was written as though it did.
+>
+> **What retires with it.** The decay argument below is the whole reason this was urgent,
+> and it is spent: the ask went out while the vendor's raw data and the technician's
+> recall were still fresh, which is exactly what the note was protecting. Nothing about
+> the technical question changed — if a bore profile comes back for A_1_X and B_1_X, it
+> lands on [[F-501]] as measured geometry, and the 4.75 in planning assumption for
+> Passes A and B converts from defensive to measured there, not here.
+>
+> **Worth noticing about the capture, not the request.** A one-line text was the right
+> channel and the note is heavier than the task was. The signal is not that capturing it
+> was wrong — an owed vendor request with a decay clock is worth writing down — but that
+> "owed" notes do not carry how big the doing is, so a two-minute errand and a multi-day
+> build get the same shape and the same weight in the inbox.
+
+Open action carried out of the USA26041 close-out, 2026-08-16. **Superseded by the
+retirement block above** — the record below is kept as written.
 
 **What.** Request the internal-radius / bore-profile data for cross-over segments **A_1_X and
 B_1_X** from Steady Flux Technologies, against inspection `26-0663-002 Rev. A` (run 2026-08-13,
