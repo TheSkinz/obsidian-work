@@ -131,13 +131,14 @@ $150/hr governs going forward. Both facts stand: the quote's $35 was real when w
 executed contract carries $150. Do not "correct" the DSP26071 quoted schedule to $150 — that table
 records what went to the customer — but do not bill or re-quote off the $35 either.
 
-**The wider lesson for this site is about provenance, not the number.** $35/hr has appeared here as
-a template artifact (DSP25123), as a genuinely negotiated rate (DSP26071 as quoted), and as a rate
-renegotiated away before execution (USA26041 as billed). The number alone diagnoses nothing — and
-more importantly, **an "awarded rate" is only current as of the award date.** The account manager
-can move it afterwards without the vault or the assigned PM being told. Confirm the live schedule
-with the account manager at job-start before billing off any quoted rate.
-See [[DSP26071]] and [[USA26041-job-sheet]].
+**What is worth carrying is about the number, not the process.** $35/hr has appeared on this site
+three ways — a template artifact (DSP25123), a genuinely negotiated rate (DSP26071 as quoted), and
+a rate renegotiated away before execution (USA26041 as billed). The number alone diagnoses nothing,
+so read the surrounding note rather than pattern-matching the figure.
+
+**The pre-mobilization rate change was a one-off** (Jesse, 2026-08-15), handled directly with the
+account manager. It is not a standing risk, not a reason to re-confirm awarded rates at job-start,
+and not a step to add to any workflow. See [[DSP26071]] and [[USA26041-job-sheet]].
 
 ## Labor Rates — PS8 F-802 (USA26022, quoted vs. actual billed)
 
