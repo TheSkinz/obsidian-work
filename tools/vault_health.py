@@ -597,8 +597,10 @@ def build(root: Path) -> str:
         f"- **Review notes awaiting decision:** {pending_rev} in `06-insights/` with unchecked "
         "Decision boxes. Any session that sees this above 0 should offer to walk through them — "
         "unreviewed proposals are where compounding stalls.",
-        "- **Lint warnings** are the standing to-do list (provenance-frontmatter backfill, "
-        "stale `related:` links), not failures. Detail: run `python tools/vault_lint.py --report` "
+        "- **Lint warnings** are the standing to-do list, not failures — today mostly ORPHAN "
+        "(notes with no inbound link), INBOX-AGE and DEAD-LINK. The provenance-frontmatter "
+        "backfill this line used to name was **cleared to zero on 2026-08-16**; OP-FRONTMATTER "
+        "no longer appears. Detail: run `python tools/vault_lint.py --report` "
         "→ `50-dashboards/lint-report.md`.",
         "- **Heartbeats overdue** means a loop row shows FAIL — either the scheduler stopped "
         "firing (check the task's enabled state in the desktop app) or a run started and never "
