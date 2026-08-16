@@ -199,7 +199,15 @@ def main() -> int:
         print("[!] PyYAML unavailable — parse checking is skipped, only structural "
               "checks run. Install PyYAML for the real check.")
 
+    # `scheduled-tasks/*/SKILL.md` added 2026-08-16 and it is not a nicety. The first
+    # version globbed `skills/` only and reported all nine clean — while
+    # scheduled-tasks/vault-consolidation-loop/SKILL.md sat with frontmatter that does
+    # not parse, the exact fieldpm defect (unquoted "07/08/09: merge"), in a loop that
+    # runs on a schedule. agnix found it because it walks the whole config tree; this
+    # tool could not see it because of where it was pointed. A checker's blind spot is
+    # its glob, and a clean report from a narrow glob reads identically to a clean tree.
     targets = [(p, "skill") for p in sorted(config.glob("skills/*/SKILL.md"))]
+    targets += [(p, "skill") for p in sorted(config.glob("scheduled-tasks/*/SKILL.md"))]
     targets += [(p, "fixture") for p in sorted(config.glob("regression/frozen/*.md"))]
 
     total = 0

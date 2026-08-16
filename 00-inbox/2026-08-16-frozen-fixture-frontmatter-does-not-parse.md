@@ -68,6 +68,25 @@ but it is a comment, and comments are not enforcement.
 `tools/config_frontmatter_lint.py` detects the condition whichever way this goes; it is
 not wired into `health.md` on purpose, pending this ruling.
 
+## Adjacent question, still OPEN: adopt agnix?
+
+> **Trialled 2026-08-16, decision NOT yet made.** Installed globally at `0.49.0` and run
+> once against `~/.claude`. It was briefly uninstalled — **that was a misclick, not a
+> ruling** — and has been restored, pinned to the same version.
+>
+> **One thing the trial did settle:** it does not replace `config_frontmatter_lint.py`.
+> It scanned `regression/` and flagged run logs for portability, but reported nothing
+> about the five frozen fixtures failing to parse — non-`SKILL.md` markdown appears to be
+> treated as generic prose, so the AS rules never apply and `AS-016` never fires. The two
+> tools are complements, not alternatives.
+>
+> **Still unknown, and it is the number the decision turns on:** the run reported 16
+> errors that were never read — the output scrolled. Everything assessed so far is from
+> the warnings. Three genuine findings are captured at
+> [[2026-08-16-three-config-findings-from-the-agnix-trial]].
+>
+> The section below is the pre-trial assessment, kept as written.
+
 ## Adjacent, and also Jesse's call: adopt agnix?
 
 `agnix` (`github.com/agent-sh/agnix`) is a real linter for exactly this class of problem —
