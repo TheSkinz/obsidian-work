@@ -19,6 +19,7 @@ Benchmarks as stated in `usadebusk-estimating`: **100 ft/hr** pigging (nominal f
 | HP-0006 | CHS | 2025-04-01 | USA25025 | routine, combined-heaters | 1 | ? | 6 | 26 | 4 | ? | ? | 36 | 616 | - | - |
 | HP-0007 | CHS | 2025-03-30 | USA25025 | routine | 1 | 1 | ? | 15 | 4 | 5 | ? | 24 | 765 | 51 | 51 |
 | HP-0025 | CHS | 2025-03-31 | USA25025 | routine | 1 | 1 | 6 | 9 | 3 | 6 | ? | 24 | 2,328 | 259 | 259 |
+| F-501 | ExxonMobil | 2026-08-12 | USA26041 | first | 1 | 3 | 7 | 16 | 6 | 14 | 11 | 43 | 3,588 | 224 | 75 |
 | F-802 | ExxonMobil | 2026-04-28 | USA26022 | routine | 2 | 5 | 4 | 55 | 6 | 20 | 49 | 85 | 14,280 | 260 | 52 |
 | 01-BA-105 | Flint Hills Resources | 2026-01-20 | USA26005 | crash, hours-blended | 1 | 2 | 10.5 | 29 | –* | –* | 40.5 | 39.5 | (not recorded) | - | - |
 | 02-BA-201 | Flint Hills Resources | 2026-01-23 | USA26005 | crash | 1 | 2 | –* | 10 | 5 | 7 | – | 25 | (not recorded) | - | - |
@@ -42,6 +43,7 @@ Mode-normalized per-pig rates (elapsed ÷ Mode), so jobs run in different modes 
 | Condition | Rows w/ norm rate | Range (ft/hr per pig) | Mean |
 |---|---|---|---|
 | crash | 6 | 13–67 | 33 |
+| first | 1 | 75 | 75 |
 | routine | 5 | 47–259 | 99 |
 
 > 3 row(s) carry an elapsed rate but no `Mode`, so they are excluded from these per-pig means — add `Mode` to those Task Durations rows to include them.
@@ -51,7 +53,6 @@ Mode-normalized per-pig rates (elapsed ÷ Mode), so jobs run in different modes 
 - F-201 (ExxonMobil) — no Task Durations actuals yet
 - F-301 (ExxonMobil) — no Task Durations actuals yet
 - F-371A (ExxonMobil) — no Task Durations actuals yet
-- F-501 (ExxonMobil) — no Task Durations actuals yet
 - F-901 (ExxonMobil) — no Task Durations actuals yet
 - VR-401C (Formosa) — no Task Durations actuals yet
 - H-2421 (HF Sinclair) — no Task Durations actuals yet
@@ -73,5 +74,5 @@ Mode-normalized per-pig rates (elapsed ÷ Mode), so jobs run in different modes 
 
 ## Reading this
 
-- With **24** actual job row(s), this is a growing dataset, not a calibrated model. Treat per-job ft/hr as anecdotes until several same-service jobs accumulate.
+- With **25** actual job row(s), this is a growing dataset, not a calibrated model. Treat per-job ft/hr as anecdotes until several same-service jobs accumulate.
 - Rig-In/Rig-Out actuals well off the 6/6 hr defaults, or ft/hr consistently off 100, are the signal to revisit the Duration Model — raise it with Jesse rather than editing the skill from here.

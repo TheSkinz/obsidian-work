@@ -14,7 +14,7 @@
 
 | Job # | Facility | Heater(s) | Completed | Notes |
 |---|---|---|---|---|
-| USA26041 | ExxonMobil Baytown, TX | F-501 (HU5A) | 2026-08-14 | August HU5A TA, first USADebusk decoke of this heater. Mob 08-08, rig-in 08-12, Steady Flux smart pig 08-13, finished 08-14. 1 Trimax triple mode, filtration, all 3 circuits concurrent. Jesse ran the job. Inspection report `26-0663-002 Rev. A` received 08-15 — coil reported generally clean, one convection segment (B_8_C, 43.9% loss) flagged for ExxonMobil. Heater card geometry corrected from the report. **Owed: hour actuals from service receipts → Task Durations on [[F-501]].** → [[USA26041-job-sheet]]. |
+| USA26041 | ExxonMobil Baytown, TX | F-501 (HU5A) | 2026-08-14 | August HU5A TA, first USADebusk decoke of this heater. Mob 08-08, rig-in 08-12, Steady Flux smart pig 08-13, finished 08-14. 1 Trimax triple mode, filtration, all 3 circuits concurrent. Jesse ran the job. Inspection report `26-0663-002 Rev. A` received 08-15 — coil reported generally clean, one convection segment (B_8_C, 43.9% loss) flagged for ExxonMobil. Heater card geometry corrected from the report; actuals filed from receipts 10780–10786 (43 productive hrs vs 48 quoted, + 11 hrs PDT). Metal restriction found in the Pass A/B cross-overs — Circuit 1 capped at a 4.75" final pig. → [[USA26041-job-sheet]]. |
 | USA26038 | HF Sinclair Navajo, Artesia NM | H-19, H-20 | 2026-07-17 | Emergency decoke, 2 Trimax units, PM Dacorey Slater. Crash condition. Job report + actuals filed → [[USA26038-job-report]]; actuals on [[H19]]/[[H20]]. |
 | USA26025 | Valero Port Arthur | H-102A, H-102B | Complete | Reference only. Dual-rig dual-shift vacuum heaters (corrected from "coker" 2026-07-22). |
 
