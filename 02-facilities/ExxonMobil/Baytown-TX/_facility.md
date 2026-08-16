@@ -117,13 +117,24 @@ figure from this bid's contract or bid instructions.
 **4×3 pump basis changed** between DSP25084/25123 ($1,016/shift) and DSP26039 ($85/hr).
 Not reconciled — check which basis the governing contract uses before pricing it.
 
-**DSP26071.2 (HU5A F-501) is awarded and live as of 2026-07-27** — the first live rate set on
-this site. Not yet added as a column above; that widening is pending. Its schedule matches the
-house standard on every line except one: **Filter Stand-by is $35/hr, and on this contract that
-is the real awarded rate** (confirmed by Jesse 2026-07-27), not the DSP25123 cell error it
-happens to match. 24 standby hours are quoted at it. So $35/hr is now a figure that has appeared
-on this site both as a template artifact and as a genuinely negotiated rate — do not treat the
-number alone as diagnostic of the bug, and do not "correct" DSP26071 to $150. See [[DSP26071]].
+**DSP26071.2 (HU5A F-501) — awarded 2026-07-27, executed as USA26041, complete 2026-08-14.** The
+first live rate set on this site. Not yet added as a column above; that widening is pending. Its
+schedule matched the house standard on every line except Filter Stand-by, quoted at **$35/hr** —
+genuinely negotiated, not the DSP25123 cell error it happens to match (confirmed by Jesse
+2026-07-27). 24 stand-by hours were quoted at it.
+
+⚠ **Superseded in execution: filtration stand-by was changed to $150/hr by change order, approved
+by the ExxonMobil reps** (Jesse, 2026-08-15). So on this site the pair now reads **$35 quoted →
+$150 billed**, and $150/hr is what governs going forward. Both facts stand: the quote's $35 was
+real when it was written, and the executed contract carries $150. Do not "correct" the DSP26071
+quoted schedule to $150 — that table records what went to the customer — but do not bill or
+re-quote off the $35 either.
+
+The wider lesson for this site: **$35/hr has now appeared here as a template artifact (DSP25123), as
+a genuinely negotiated rate (DSP26071 as quoted), and as a rate that was then changed away (USA26041
+as billed).** The number alone diagnoses nothing. Take the governing figure from the executed
+contract plus any change orders, not from the quote sheet and not from the house standard.
+See [[DSP26071]] and [[USA26041-job-sheet]].
 
 ## Labor Rates — PS8 F-802 (USA26022, quoted vs. actual billed)
 

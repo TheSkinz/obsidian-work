@@ -134,47 +134,47 @@ Operator / Night Operator Amt is combined man-hours (Qty × per-person shift hou
 **Three things to watch on the receipts:**
 
 1. **Filter Unit is quoted 24 hrs active + 24 hrs stand-by**, not 48 hrs active. Key filtration
-   hours to the right line — active $200/hr, stand-by **$35/hr**. That $35 is the awarded contract
-   rate on this job, not the house $150 — bill it as written.
+   hours to the right line — active $200/hr, stand-by ~~$35/hr~~ → **$150/hr**. ⚠ **Updated
+   2026-08-15:** the $35 was the quoted rate, but stand-by was **changed to $150/hr by change
+   order during execution, approved by the ExxonMobil reps** (Jesse). $150 is what billed and what
+   governs. Do not re-flag the workbook's $150 as an error — it is correct.
 2. **Crew Truck bills at qty 1 / 48 hrs** even though the execution plan mobilizes 2 crew trucks.
    That is what was quoted; a second truck's hours are not covered.
 3. **DEF is quoted at qty 0** — it appears in the line description but is not billed on this scope.
 
-### ⚠ Ticket breakdown reconciliation — 2026-08-15, PRE-INVOICE, NOT YET RESOLVED
+### Ticket breakdown reconciliation — CLOSED 2026-08-15
 
 Source: `USA26041 EXXON HU5 TriMax Ticket Breakdown.xlsx` (QB Sheet + Day/Night 1–4) against service
-receipts 10780–10786 and DSP26071.2. Workbook currently totals **$67,187.65**. Nothing below has
-been changed in the workbook — these are flags for Jesse's decision.
+receipts 10780–10786 and DSP26071.2. Workbook totals **$67,187.65**.
 
-**Two of the three watch-items above were missed in the workbook.**
+**The job is complete and the change orders are signed and approved** (Jesse, 2026-08-15). The
+$67,187.65 is authorised. Nothing below is an open commercial item — it is kept as the reconciliation
+record and as estimating feedback.
 
-| # | Flag | Direction | Amount |
-|---|---|---|---|
-| 1 | **PO value shows $46,949.58; billings $67,187.65 = 143% of PO, over by $20,238.07** | resolve first | $20,238.07 |
-| 2 | Filtration stand-by billed at the house **$150/hr**, not the awarded **$35/hr** (watch-item 1). 32 hrs → $4,800 billed vs $1,120 correct | over | $3,680.00 |
-| 3 | Filtration **active** hrs overstated by 6 — 22 billed vs 16 actual pumping hrs | over | $990.00 |
-| 4 | **DEF billed $540** (3 shifts × $180) against a quoted qty of 0 (watch-item 3) | over | $540.00 |
-| 5 | Operator hours exceed the signed receipts by 6 hrs @ $55.39 | over | $332.34 |
-| 6 | Per diem: receipts total 27 person-days, workbook bills 15 | **under** | ($1,800.00) |
-| 7 | PPE $71.50 appears in the QB stand-by breakdown but not in the Materials subtotal | inconsistent | $71.50 |
-| 8 | **No customer signature on any of the seven receipts** — supervisor-signed only | dispute risk | — |
+| # | Flag raised | Resolution |
+|---|---|---|
+| 1 | PO value $46,949.58 vs billings $67,187.65 = 143% | **Closed** — change orders signed and approved. |
+| 2 | Filtration stand-by at $150/hr vs the quoted $35/hr | **Not an error** — the rate was changed to $150 by change order, approved by the ExxonMobil reps. The workbook is right; the vault's $35 was stale and is now corrected in watch-item 1 above, [[DSP26071]] and [[02-facilities/ExxonMobil/Baytown-TX/_facility]]. |
+| 3 | Filtration active hrs 22 billed vs 16 actual pumping | **Closed commercially** (approved). Residual classification note below. |
+| 4 | DEF $540 billed against a quoted qty of 0 | **Closed** — approved. Estimating feedback: the quote's qty 0 was wrong; DEF ran 3–4 shifts. |
+| 5 | Operator hrs 6 over the signed receipts | **Closed** — approved. Documentation note below. |
+| 6 | Per diem 15 person-days billed vs 27 on the receipts | **Open, low value** — the only flag pointing USADebusk's way, ~$1,800. See below. |
+| 7 | PPE $71.50 in the QB stand-by view, not in Materials | Cosmetic, workbook view only. |
+| 8 | No customer signature on the seven receipts | **Moot** — the signed change orders supersede. |
 
-**Flag 1 is the one to settle before anything else.** The workbook's $46,949.58 matches neither the
-DSP26071.2 quote ($60,287.42) nor the combined PO recorded on [[active-jobs]] ($256,250.56, covering
-hydroblast and pigging under one agreement). Either the workbook's PO figure is wrong and the real
-headroom is larger, or this needs a change order before it invoices. Everything else is small
-against that.
+**Residual on flag 3 (classification, not money).** Filtration rate basis is pumping (pigging only)
+vs non-pumping (rig-in, rig-out, smart pigging, stand-by). Day 3 billed 12 active hrs on a shift
+that was 10 pig + 2 smart pig; Night 3 billed 4 active hrs on a shift with zero pigging (4 smart
+pig + 8 rig-out). With stand-by now at $150 rather than $35 the exposure is 6 hrs × $50 = $300, and
+it is inside an approved total. Worth keying correctly next time so the active/stand-by split stays
+meaningful as an estimating input — actual was 16 pumping / 38 non-pumping against 24 + 24 quoted.
 
-**Flag 3 detail.** Filtration rate basis is pumping (pigging only) vs non-pumping (rig-in, rig-out,
-smart pigging, stand-by). Day 3 billed 12 active hrs on a shift that was 10 pig + 2 smart pig;
-Night 3 billed 4 active hrs on a shift with **zero** pigging (4 smart pig + 8 rig-out). Correct
-split is 16 active / 38 non-pumping. Combined with flag 2: **$9,200 billed vs $4,530 correct,
-over by $4,670.** Note the total is 54 filtration hrs against 48 quoted (24 + 24).
+**Still worth a look — per diem.** Receipts total 27 person-days (10780 ×6, 10781–10785 ×3 each,
+10786 ×6); the workbook bills 15. The mob and demob days carry none, presumably absorbed into the
+lump sums. If per diem is separately claimable on those days that is ~$1,800 left on the table.
 
-**If flags 2–5 are corrected:** $67,187.65 − $5,542.34 = **$61,645.31**, or $63,445.31 with the
-per-diem gap added back. Against the $60,287.42 quote that is a defensible T&M overrun on a job
-carrying 11 hrs of ExxonMobil-caused PDT. Against the workbook's recorded PO it is still ~$14,700
-over — hence flag 1.
+**Workbook housekeeping:** SUMMARY rows Change-Order 1/2/3 are all still $0, so the sheet reports
+−$20,238.07 remaining and 143% of PO. Entering the approved change-order values will square it.
 
 **What reconciles cleanly.** Equipment task hours in the QB Sheet tie exactly to the actuals filed
 on [[F-501]] — Rig-In 7 · Pigging 16 · Smart Pig 6 · Rig-Out 14 · Trimax Stand-By 11. Trimax
