@@ -158,7 +158,7 @@ record and as estimating feedback.
 | 3 | Filtration active hrs 22 billed vs 16 actual pumping | **Closed commercially** (approved). Residual classification note below. |
 | 4 | DEF $540 billed against a quoted qty of 0 | **Closed** — approved. Estimating feedback: the quote's qty 0 was wrong; DEF ran 3–4 shifts. |
 | 5 | Operator hrs 6 over the signed receipts | **Closed** — approved. Documentation note below. |
-| 6 | Per diem 15 person-days billed vs 24 entitled | **Open — $1,350 unbilled.** The only flag pointing USADebusk's way. See the shift analysis below. |
+| 6 | Per diem 15 person-days billed vs 24 on site | **Closed — nothing missing.** Mob and demob bill as lump sum and **the per diem for those days is inside the lump sum** (Jesse, 2026-08-15). Both lump sums are billed, so both days' per diem is billed. |
 | 7 | PPE $71.50 in the QB stand-by view, not in Materials | Cosmetic, workbook view only. |
 | 8 | No customer signature on the seven receipts | **Moot** — the signed change orders supersede. |
 
@@ -192,34 +192,29 @@ and 4 shifts over 2 days quoted, the job ran **6 shifts over 4 days**.
 Brody. The workbook resolved this correctly — it billed 10785's labor and treated 10786 as the demob
 lump sum. Do not sum the two receipts' headcounts.
 
-**Per diem — 9 person-days unbilled, $1,350.** Per person per calendar day on site:
+**Per diem — fully billed, nothing outstanding.** Per person per calendar day on site:
 
-| Date | On site | Workbook billed | Gap |
+| Date | On site | How it bills | Line-billed |
 |---|---|---|---|
-| 08-11 | 6 | 0 | **6** |
-| 08-12 | 6 (3 day + 3 night) | 6 | — |
-| 08-13 | 6 (3 day + 3 night) | 6 | — |
-| 08-14 | 6 | 3 | **3** |
-| **Total** | **24** | **15** | **9 × $150 = $1,350** |
+| 08-11 | 6 | inside the **mob lump sum** ($3,558.72) | 0 |
+| 08-12 | 6 (3 day + 3 night) | T&M | 6 |
+| 08-13 | 6 (3 day + 3 night) | T&M | 6 |
+| 08-14 | 6 | rig-out crew T&M + rest inside the **demob lump sum** ($3,558.72) | 3 |
+| **Total** | **24** | | **15 line-billed + 9 in the lump sums** |
 
-The gap is entirely the two lump-sum days: the workbook's Day (1) tab carries no per diem at all,
-and Day (4) carries 3 (from 10785) rather than 6. Both receipts record it — Jesse wrote
-**"Per Diem: 6"** on 10780 and on 10786 — and per diem is a **separate line in the quote**
-(`Per Diem | 6 | 2 days | $150 | $1,800`, under Labor revenue detail), not part of the
-mob/demob lump sum. On that reading the $1,350 is claimable.
+⚠ **Do not read the two zero/short days as a shortfall.** Mob and demob bill as lump sum and
+**the per diem for those days is carried inside the lump sum** (Jesse, 2026-08-15) — as long as the
+lump-sum amount is on the invoice, that per diem is billed. Both lump sums are on this job, so all
+24 person-days are recovered. The receipts' "Per Diem: 6" on 10780 and 10786 records the headcount,
+not a separate claim.
 
-**The one thing that could change the number:** if per diem is paid per *night away* rather than per
-day on site, the demob day has no night after it and the entitlement is 6 × 3 = 18 person-days,
-making the gap 3 (\$450) rather than 9. Jesse's own receipts point to days-on-site — he claimed 6 on
-the demob day, which only makes sense on that basis — so 24 is the figure carried here.
+**Against the quote:** 12 T&M person-days quoted ($1,800) vs 15 billed ($2,250) — three over,
+because the job ran 4 shifts of T&M crew rather than the quoted 4 shifts across 2 days. Normal T&M
+variance, nothing to action.
 
-**Against the quote:** 12 person-days quoted ($1,800) vs 24 entitled ($3,600). Per diem was always
-going to roughly double, because the quote assumed 2 days on site and the job ran 4. Even the
-workbook's under-billed 15 already exceeds the quoted 12. Worth building the next Baytown per-diem
-line off calendar days on site rather than shift count.
-
-*(Corrects the 2026-08-15 first pass, which read 27 person-days by summing the receipt fields
-without noticing the 10785/10786 same-day overlap. Entitlement is 24, gap 9, not 12.)*
+*(This section twice reported an unbilled per-diem gap — first $1,800, then $1,350 after catching
+the 10785/10786 same-day overlap. Both were wrong: there is no gap. The lump-sum treatment is the
+answer, and it applies to every USADebusk job, not just this one.)*
 
 **Workbook housekeeping:** SUMMARY rows Change-Order 1/2/3 are all still $0, so the sheet reports
 −$20,238.07 remaining and 143% of PO. Entering the approved change-order values will square it.
