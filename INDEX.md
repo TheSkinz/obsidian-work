@@ -40,6 +40,7 @@
 - [[F-501]] — HU5A F-501 Process & Treat Gas Coils — ExxonMobil Baytown, TX `(ExxonMobil/Baytown-TX)`
 - [[F-802]] — PS8 F-802 Crude Heater — ExxonMobil Baytown, TX `(ExxonMobil/Baytown-TX)`
 - [[F-901]] — PS8 F-901 Kerosene Furnace — ExxonMobil Baytown, TX `(ExxonMobil/Baytown-TX)`
+- [[USA26041-job-report]] — USA26041 — ExxonMobil Baytown HU5A F-501 Job Report `(ExxonMobil/Baytown-TX)`
 - [[USA26041-job-sheet]] — USA26041 — ExxonMobil Baytown Refinery, Baytown, TX `(ExxonMobil/Baytown-TX)`
 - [[01-BA-105]] — 01-BA-105 Raw Oil Charge Preheater — Flint Hills Resources, Corpus Christi, TX `(Flint-Hills/Corpus-Christi-TX)`
 - [[02-BA-201]] — 02-BA-201 Debutanizer Reboiler — Flint Hills Resources, Corpus Christi, TX `(Flint-Hills/Corpus-Christi-TX)`
@@ -189,6 +190,7 @@
 - [[2026-08-14-prestaged-obsidian-link-retargeting-guard]] — Review — Should the vault add a lint check for wikilinks resolved to the wrong facility?
 - [[2026-08-15-prestaged-decision-queue-duplicate-closed-tables]] — Review — Should `decision-queue.md` merge its two differently-shaped Closed tables?
 - [[2026-08-16-idea-research-rollup-rig-in-column-is-mixed-method]] — Idea Research — The Actuals Rollup's Rig-In Column Is Mixed-Method
+- [[2026-08-16-prestaged-pointer-dead-severity-tiering]] — Review — Should POINTER-DEAD be pulled out of the generic lint-warning backlog?
 
 ## LLMs
 

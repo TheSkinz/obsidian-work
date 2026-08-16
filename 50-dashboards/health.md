@@ -4,8 +4,8 @@
 
 | Metric | Value | Target | Status |
 |---|---|---|---|
-| Open decision rows | 3 | <= 10 | ok |
-| Review notes awaiting decision | 1 | <= 5 | ok |
+| Open decision rows | 4 | <= 10 | ok |
+| Review notes awaiting decision | 2 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
 | Lint warnings | 51 | (backlog) | ok |
 | Inbox items | 37 | - | ok |
@@ -22,9 +22,9 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 
 | Loop | Last fired | Last heartbeat | Cadence | Status |
 |---|---|---|---|---|
-| Capture loop | 2026-08-16 (0 d ago) | 2026-08-15 (1 d ago) | 7 d | running |
+| Capture loop | 2026-08-16 (0 d ago) | 2026-08-16 (0 d ago) | 7 d | ok |
 | Idea-research loop | 2026-08-16 (0 d ago) | 2026-08-16 (0 d ago) | 30 d | ok |
-| Pre-staging loop | 2026-08-15 (1 d ago) | 2026-08-15 (1 d ago) | 30 d | ok |
+| Pre-staging loop | 2026-08-16 (0 d ago) | 2026-08-16 (0 d ago) | 30 d | ok |
 | Consolidation loop | 2026-08-15 (1 d ago) | 2026-08-15 (1 d ago) | 31 d | ok |
 | Skill-drift loop | 2026-08-01 (15 d ago) | 2026-08-01 (15 d ago) | 62 d | ok |
 
@@ -48,7 +48,7 @@ Every recorded wake-up condition (`revisit-trigger:` frontmatter) — parked ide
 |---|---|---|
 | [[2026-07-24-parallel-friction-factor-deferred]] | Actuals rollup carries 3-4 routine multi-pass rows with a recorded Mode -> decide whether the Duration Model gets a mode-friction term — event: check when a multi-pass TA lands actuals | event — checked at the step the condition names |
 | [[2026-08-11-outlook-doc-three-copies]] | Next session touching Outlook, Copilot grounding, or the OneDrive eviction -> read Phase 1 Outlook Operating Procedure - Reference.docx, decide which of the three folder-structure documents survives, and check whether it holds the five email-rule bodies that exist nowhere else — event: check at the next M365 session | event — checked at the step the condition names |
-| [[idea-llm-navigable-vault-map]] | Vault reaches 450 live notes (292 at the time of writing, 2026-08-15) -> re-run the retrieval eval in [[knowledge-system-evaluation-questions]]; if it shows failures, this idea unparks, and if it does not, re-park at the next threshold [machine: note-count>=450] | live notes: 277 of 450 |
+| [[idea-llm-navigable-vault-map]] | Vault reaches 450 live notes (292 at the time of writing, 2026-08-15) -> re-run the retrieval eval in [[knowledge-system-evaluation-questions]]; if it shows failures, this idea unparks, and if it does not, re-park at the next threshold [machine: note-count>=450] | live notes: 279 of 450 |
 | [[idea-rig-layout-diagram]] | Coil-visualization Tier 2+3 build lands (approved 2026-08-01, owed at [[2026-08-01-coil-visualization-build-owed]]) -> research the rig/hose layout diagram against the render path that build establishes — event: check when the coil-viz SVG generator exists (verified still unbuilt 2026-08-03, tools/ has no such generator) | event — checked at the step the condition names |
 | [[rfq-intake-protocol]] | About 12 quote notes under a settled rate-table heading convention -> build the cross-quote rate-history rollup [machine: quote-count>=12] | quote notes: 11 of 12 |
 | [[2026-07-19-rate-model-grain-review]] | First bid under a multi-year or master agreement -> build the contract-note type (proposal C, rejected 2026-07-19) — event: check at RFQ intake | event — checked at the step the condition names |
@@ -56,7 +56,7 @@ Every recorded wake-up condition (`revisit-trigger:` frontmatter) — parked ide
 
 ## Notes
 
-- **Decision queue:** [[decision-queue]] — 3 open. Cap is 10; over cap, proposal-generating loops pause.
-- **Review notes awaiting decision:** 1 in `06-insights/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
+- **Decision queue:** [[decision-queue]] — 4 open. Cap is 10; over cap, proposal-generating loops pause.
+- **Review notes awaiting decision:** 2 in `06-insights/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
 - **Lint warnings** are the standing to-do list (provenance-frontmatter backfill, stale `related:` links), not failures. Detail: run `python tools/vault_lint.py --report` → `50-dashboards/lint-report.md`.
 - **Heartbeats overdue** means a loop row shows FAIL — either the scheduler stopped firing (check the task's enabled state in the desktop app) or a run started and never finished (check the app's session history for that run). A loop that fires and no-ops cleanly shows ok with no new commit — that is healthy, not silent.
