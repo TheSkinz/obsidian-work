@@ -23,6 +23,15 @@ tags: [facility, ExxonMobil]
 | Site contact phone | (not recorded) |
 | Escort requirements | (not recorded) |
 
+⚠ **Equipment clears the asphalt gate on its own schedule — budget for it.** On USA26041 the
+filter press could not get through security at the asphalt gate and did not clear until later
+that day, costing **3 hours of stand-by on the rig-in shift**. The cause was ExxonMobil's own
+gate policy for third-party equipment being unclear, not a USADebusk paperwork miss (Jesse,
+2026-08-16). Treat this as a standing Baytown constraint on any scope mobilizing a press, pump
+or trailer: get equipment through the gate **ahead of** the crew rather than alongside it, and
+confirm the current equipment-entry requirement with the site contact before mob day. Applies to
+the pending [[DSP26085]] F-201 and [[DSP26039]] HU9 scopes, both of which mobilize a filter press.
+
 ---
 
 ## Site Equipment and Constraints
