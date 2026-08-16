@@ -263,11 +263,11 @@ the radiant at 4.635"; convection (4.763") and Treat Gas (4.813") are both large
 convection ID exceeds radiant ID on this heater — genuine, and caused by a common 5.563" OD with
 differing wall, not by differing pipe size. Sizing increment 1/8" per successful pass.
 
-⚠ **Achieved 4.75", not 4.875".** Metal restrictions on Passes A and B were called on two shifts;
-Circuit 1 finished on a 4.75" pig. Circuit 2 (C/D) ran clear. **Location is mapped to the
-cross-over area but not confirmed** — the cross-overs were never opened, nothing was visually
-verified, and nothing appeared in the smart-pig data. Plan Circuit 1 against 4.75" next time —
-see Field Notes on [[F-501]].
+⚠ **Achieved 4.75", not 4.875".** Metal restrictions on Passes A and B were called on two shifts,
+**Pass B the worse of the two**, and those passes finished on a 4.75" pig. Passes C and D ran
+clear. **Location is mapped to the cross-over area but not confirmed** — the cross-overs were
+never opened, nothing was visually verified, and nothing appeared in the smart-pig data. Plan
+Passes A and B against 4.75" next time — see Field Notes on [[F-501]].
 
 Full tube geometry, config rollup, circuit mapping, and SOP detail: [[F-501]].
 

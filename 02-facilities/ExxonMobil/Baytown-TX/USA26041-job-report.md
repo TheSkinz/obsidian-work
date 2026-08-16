@@ -55,17 +55,18 @@ coil was notably dirtier than the rest. Treat Gas had no fouling — complete wi
 fill and flush, and its flow test is flat as a result. Final pig size 4.75" on the process
 circuits. Steady Flux confirmed the clean on all three circuits.
 
-Flow-test Δ PSI at matched GPM (700 / 650 / 600 / 550): Circuit 1 45 · 35 · 28 · 27 ·
-Circuit 2 57 · 45 · 38 · 31 · Treat Gas 0 · 0 · 0 · 5.
+Flow-test Δ PSI at matched GPM (700 / 650 / 600 / 550): Pass A/B 45 · 35 · 28 · 27 ·
+Pass C/D 57 · 45 · 38 · 31 · Treat Gas 0 · 0 · 0 · 5.
 
 ## Field findings
 
-**Metal restrictions on Passes A and B.** Protruding into the tubes, B's worse than A's. They
-gouged the pigs slightly but did not significantly hinder the decoke. **Location is mapped, not
-confirmed** — the restrictions were located in the cross-over area and that piping is the likely
-source, but the cross-overs were never opened, nothing was visually verified, and nothing appeared
-in the smart-pig inspection data (Jesse, 2026-08-16). Circuit 1 finished on a 4.75" pig against
-the 4.875" computed from tube ID; plan that circuit against 4.75" until this is characterised.
+**Metal restrictions on Passes A and B.** Protruding into the tubes, **Pass B the worse of the
+two**. They gouged the pigs slightly but did not significantly hinder the decoke. **Location is
+mapped, not confirmed** — the restrictions were located in the cross-over area and that piping is
+the likely source, but the cross-overs were never opened, nothing was visually verified, and
+nothing appeared in the smart-pig inspection data (Jesse, 2026-08-16). Passes A and B finished on
+a 4.75" pig against the 4.875" computed from tube ID; plan those passes against 4.75" until this
+is characterised. Passes C and D ran clear.
 
 **Pig appendage wear across sections — the durable finding.** The minor convection fouling the
 inspection found was too thin to register on the pressure gauges. All pigs were launched and
