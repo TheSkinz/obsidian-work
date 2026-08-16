@@ -1,10 +1,11 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-08-15
 tags: [idea, estimating, actuals, rollup, data-quality]
 related:
   - "[[estimating-actuals-rollup]]"
+  - "[[2026-08-16-idea-research-rollup-rig-in-column-is-mixed-method]]"
 ---
 
 # The actuals rollup presents a mixed-method column as if it were measurement
