@@ -140,6 +140,54 @@ Operator / Night Operator Amt is combined man-hours (Qty × per-person shift hou
    That is what was quoted; a second truck's hours are not covered.
 3. **DEF is quoted at qty 0** — it appears in the line description but is not billed on this scope.
 
+### ⚠ Ticket breakdown reconciliation — 2026-08-15, PRE-INVOICE, NOT YET RESOLVED
+
+Source: `USA26041 EXXON HU5 TriMax Ticket Breakdown.xlsx` (QB Sheet + Day/Night 1–4) against service
+receipts 10780–10786 and DSP26071.2. Workbook currently totals **$67,187.65**. Nothing below has
+been changed in the workbook — these are flags for Jesse's decision.
+
+**Two of the three watch-items above were missed in the workbook.**
+
+| # | Flag | Direction | Amount |
+|---|---|---|---|
+| 1 | **PO value shows $46,949.58; billings $67,187.65 = 143% of PO, over by $20,238.07** | resolve first | $20,238.07 |
+| 2 | Filtration stand-by billed at the house **$150/hr**, not the awarded **$35/hr** (watch-item 1). 32 hrs → $4,800 billed vs $1,120 correct | over | $3,680.00 |
+| 3 | Filtration **active** hrs overstated by 6 — 22 billed vs 16 actual pumping hrs | over | $990.00 |
+| 4 | **DEF billed $540** (3 shifts × $180) against a quoted qty of 0 (watch-item 3) | over | $540.00 |
+| 5 | Operator hours exceed the signed receipts by 6 hrs @ $55.39 | over | $332.34 |
+| 6 | Per diem: receipts total 27 person-days, workbook bills 15 | **under** | ($1,800.00) |
+| 7 | PPE $71.50 appears in the QB stand-by breakdown but not in the Materials subtotal | inconsistent | $71.50 |
+| 8 | **No customer signature on any of the seven receipts** — supervisor-signed only | dispute risk | — |
+
+**Flag 1 is the one to settle before anything else.** The workbook's $46,949.58 matches neither the
+DSP26071.2 quote ($60,287.42) nor the combined PO recorded on [[active-jobs]] ($256,250.56, covering
+hydroblast and pigging under one agreement). Either the workbook's PO figure is wrong and the real
+headroom is larger, or this needs a change order before it invoices. Everything else is small
+against that.
+
+**Flag 3 detail.** Filtration rate basis is pumping (pigging only) vs non-pumping (rig-in, rig-out,
+smart pigging, stand-by). Day 3 billed 12 active hrs on a shift that was 10 pig + 2 smart pig;
+Night 3 billed 4 active hrs on a shift with **zero** pigging (4 smart pig + 8 rig-out). Correct
+split is 16 active / 38 non-pumping. Combined with flag 2: **$9,200 billed vs $4,530 correct,
+over by $4,670.** Note the total is 54 filtration hrs against 48 quoted (24 + 24).
+
+**If flags 2–5 are corrected:** $67,187.65 − $5,542.34 = **$61,645.31**, or $63,445.31 with the
+per-diem gap added back. Against the $60,287.42 quote that is a defensible T&M overrun on a job
+carrying 11 hrs of ExxonMobil-caused PDT. Against the workbook's recorded PO it is still ~$14,700
+over — hence flag 1.
+
+**What reconciles cleanly.** Equipment task hours in the QB Sheet tie exactly to the actuals filed
+on [[F-501]] — Rig-In 7 · Pigging 16 · Smart Pig 6 · Rig-Out 14 · Trimax Stand-By 11. Trimax
+stand-by matches PDT (5 + 6) and is billed through the Trimax stand-by rate with no generic
+stand-by line, which is correct. Only one crew-truck line is billed (F150, 54 hrs), correct per
+watch-item 2. Pigs tie to the receipts at 43 units.
+
+**Estimating feedback — the $103.50 pig unit is high.** 43 pigs cost $2,742.20 ($3,153.53 with the
+15% mark-up) against 25 quoted at $103.50 ($2,975.63 marked up). Eighteen more pigs for about $178
+more, because real unit costs run $8.60–$81.40: 6" swab $8.60 · 4.75" gauge foam $31.90 · 5" gauge
+foam $35.40 · 4.25" pin $64.90 · 4.5" pin/HR $73.20 · 4.75" pin/HR $81.40. Worth revisiting the
+blended pig unit in the estimating model — it over-recovers on count and under-recovers on nothing.
+
 ---
 
 ## F-501 — Coil Data
