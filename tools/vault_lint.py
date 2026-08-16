@@ -93,6 +93,13 @@ from pathlib import Path
 
 # --- configuration -----------------------------------------------------------
 
+# The em-dashes and arrows in this file's own finding messages are non-ASCII, and
+# on Windows stdout defaults to cp1252 — every sibling tool in tools/ sets this and
+# this one did not, so its output carried replacement bytes that break `grep` and
+# `sort` on the report. Noted in archive/idea-vault-stats-layer.md; fixed 2026-08-16.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
 OPERATIONAL_DIRS = ("02-facilities", "04-knowledge/pricing")
 INBOX_DIR = "00-inbox"
 INBOX_SKIP_SUBDIRS = ("preserved-dsps",)  # deliberately held, per README there
@@ -333,8 +340,27 @@ def check_operational_frontmatter(root: Path, notes: dict[Path, str]) -> list[Fi
     return findings
 
 
+# Files that RECORD wikilinks as history rather than USING them as navigation.
+# `change-log.md` states where a file was and what a link used to say at the time;
+# the capture-loop spec is explicit that its references are not to be rewritten.
+# Linting them produces findings whose only correct fix is to falsify the record —
+# e.g. the 2026-06-29 row reading "converted [[USA]]/[[CND]] wikilinks to plain
+# text", which reports two dead links precisely because it documents removing them.
+DEAD_LINK_EXEMPT = ("change-log.md",)
+
+
 def check_dead_links(root: Path, notes: dict[Path, str]) -> list[Finding]:
-    """DEAD-LINK: [[wikilink]] whose target note exists nowhere in the repo."""
+    """DEAD-LINK: [[wikilink]] whose target note exists nowhere in the repo.
+
+    Two sources of noise are suppressed rather than tolerated, because a rule that
+    fires mostly on its own documentation is wallpaper:
+
+      - `strip_inline_code()` — prose ABOUT a wikilink, written in backticks, is
+        not a wikilink. The rule's own spec files describe the syntax it looks
+        for, so without this the linter flags the documents that explain it. Same
+        fix LINK-FACILITY already carries for the same reason.
+      - `DEAD_LINK_EXEMPT` — historical records, see above.
+    """
     known = set()
     for p in root.rglob("*.md"):  # resolution set includes archive/ deliberately
         rel = p.relative_to(root).as_posix()
@@ -343,7 +369,10 @@ def check_dead_links(root: Path, notes: dict[Path, str]) -> list[Finding]:
         known.add(p.stem.lower())
     findings = []
     for path, text in notes.items():
-        for line in body_lines_outside_fences(text):
+        if path.relative_to(root).as_posix() in DEAD_LINK_EXEMPT:
+            continue
+        for raw_line in body_lines_outside_fences(text):
+            line = strip_inline_code(raw_line)
             for m in WIKILINK_RE.finditer(line):
                 target = m.group(1).strip()
                 if not target or "<" in target:  # template placeholders
