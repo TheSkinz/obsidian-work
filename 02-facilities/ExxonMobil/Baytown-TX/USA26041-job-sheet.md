@@ -144,20 +144,33 @@ Operator / Night Operator Amt is combined man-hours (Qty × per-person shift hou
 
 ## F-501 — Coil Data
 
+*Corrected 2026-08-15 from measured values in Steady Flux report `26-0663-002 Rev. A`. The figures
+this job was estimated against are kept in the row below each section for comparison — they were
+wrong on OD, ID and metallurgy for every section, and omitted the cross-over entirely.*
+
 | Section | Coils | Pipe OD | Pipe Wall | Pipe ID | Tube Length | Tubes/Coil | Ft/Section |
 |---|---|---|---|---|---|---|---|
-| Convection | 4 | 5" | (not recorded) | 4.635" | 18' 10" | 9 | 680 |
-| Radiant | 4 | 5" | (not recorded) | 4.635" | 41' 3" | 15 | 2,472 |
-| Treat Gas | 1 | 5" | (not recorded) | 4.635" | 18' 10" | 16 | 301 |
+| Convection | 4 | 5.563" | 0.400" | 4.763" | 226.0" (250.0" seg. 1) | 9 | 734 |
+| Cross-over | 4 | 5.563" | 0.464" | 4.635" | 113.0" | 1 | 41 |
+| Radiant | 4 | 5.563" | 0.464" | 4.635" | 477.0" (501/507/516 at ends) | 15 | 2,488 |
+| Treat Gas | 1 | 5.563" | 0.375" (Sch 80) | 4.813" | 226.0" (250.0" segs. 1, 16) | 16 | 325 |
 
-Metallurgy: A335 Gr P9 (9Cr-1Mo), all three sections. Pass config: 4 process passes looped to
+*Superseded (as bid): all sections OD 5", ID 4.635", wall not recorded, metallurgy A335 Gr P9;
+convection 680 ft, radiant 2,472 ft, Treat Gas 301 ft, no cross-over.*
+
+Metallurgy: **ASTM A200 T9 (9Cr-1Mo)** convection and radiant; **carbon steel** Treat Gas —
+the bid carried A335 Gr P9 across all three. Tube Length is per straight segment; Ft/Section
+totals include that section's return bends. Pass config: 4 process passes looped to
 2 continuous circuits via temporary 5" 300# 180° spools at the convection inlets; Treat Gas
 standalone as Circuit 3. Connections: 6 launchers, all at grade — (4) at radiant outlets
 (5" 300# RFWN via 5"×6" 300# 90° reducers) and (2) at Treat Gas inlet/outlet (6" 300# RFWN
 direct, via 6" 90° temp offset spools). Effluent: fresh condensate from HU4, filtered through
 the DeBusk press on a 4×3 trash pump loop, recycled to the Trimax clean tank.
 
-Max pig OD: **4.875"** (4.635" ID + 0.250"). Sizing increment 1/8" per successful pass.
+Max pig OD: **4.875"** — unchanged by the geometry correction. The governing (smallest) ID is still
+the radiant at 4.635"; convection (4.763") and Treat Gas (4.813") are both larger. Note that
+convection ID exceeds radiant ID on this heater — genuine, and caused by a common 5.563" OD with
+differing wall, not by differing pipe size. Sizing increment 1/8" per successful pass.
 
 Full tube geometry, config rollup, circuit mapping, and SOP detail: [[F-501]].
 
@@ -165,11 +178,15 @@ Full tube geometry, config rollup, circuit mapping, and SOP detail: [[F-501]].
 
 ## Circuit Assignments — Trimax Triple Mode
 
-| Circuit | Passes | Launcher location | Travel | Pump |
-|---|---|---|---|---|
-| 1 | A + B (conv + rad) | Radiant outlets A & B | ~1,576 ft | Left |
-| 2 | C + D (conv + rad) | Radiant outlets C & D | ~1,576 ft | Center |
-| 3 | Treat Gas | TG inlet & outlet | 301 ft | Right |
+| Circuit | Passes | Launcher location | Travel (as bid) | Travel (measured) | Pump |
+|---|---|---|---|---|---|
+| 1 | A + B (conv + rad) | Radiant outlets A & B | ~1,576 ft | **1,632 ft** | Left |
+| 2 | C + D (conv + rad) | Radiant outlets C & D | ~1,576 ft | **1,631 ft** | Center |
+| 3 | Treat Gas | TG inlet & outlet | 301 ft | **325 ft** | Right |
+
+Total pigged footage **3,588 ft measured** against 3,453 ft as bid — **3.9% high**. The bid counted
+convection as straight tube only, baked a bend allowance into the radiant per-tube figure, and
+omitted the cross-over from both. Use 3,588 ft for any ft/hr rate derived from this job.
 
 **All three circuits are cleaned simultaneously** — one Trimax in triple mode, one pump per
 circuit, running concurrently. Not sequential.
