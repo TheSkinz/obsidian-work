@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — USA26041 pig-unit/rig-out/per-diem estimating-model feedback, Lane 4 (usadebusk-estimating skill / cost-model scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: note
 status: inbox
