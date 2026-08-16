@@ -154,11 +154,11 @@ record and as estimating feedback.
 | # | Flag raised | Resolution |
 |---|---|---|
 | 1 | PO value $46,949.58 vs billings $67,187.65 = 143% | **Closed** — change orders signed and approved. |
-| 2 | Filtration stand-by at $150/hr vs the quoted $35/hr | **Not an error** — the rate was changed to $150 by change order, approved by the ExxonMobil reps. The workbook is right; the vault's $35 was stale and is now corrected in watch-item 1 above, [[DSP26071]] and [[02-facilities/ExxonMobil/Baytown-TX/_facility]]. |
+| 2 | Filtration stand-by at $150/hr vs the quoted $35/hr | **Not an error** — the account manager changed the rate to $150 with ExxonMobil rep approval **before the project started**, and Jesse was not told. The workbook is right; the vault's $35 was stale before mobilization. Corrected in watch-item 1 above, [[DSP26071]] and [[02-facilities/ExxonMobil/Baytown-TX/_facility]]. |
 | 3 | Filtration active hrs 22 billed vs 16 actual pumping | **Closed commercially** (approved). Residual classification note below. |
 | 4 | DEF $540 billed against a quoted qty of 0 | **Closed** — approved. Estimating feedback: the quote's qty 0 was wrong; DEF ran 3–4 shifts. |
 | 5 | Operator hrs 6 over the signed receipts | **Closed** — approved. Documentation note below. |
-| 6 | Per diem 15 person-days billed vs 27 on the receipts | **Open, low value** — the only flag pointing USADebusk's way, ~$1,800. See below. |
+| 6 | Per diem 15 person-days billed vs 24 entitled | **Open — $1,350 unbilled.** The only flag pointing USADebusk's way. See the shift analysis below. |
 | 7 | PPE $71.50 in the QB stand-by view, not in Materials | Cosmetic, workbook view only. |
 | 8 | No customer signature on the seven receipts | **Moot** — the signed change orders supersede. |
 
@@ -169,9 +169,57 @@ pig + 8 rig-out). With stand-by now at $150 rather than $35 the exposure is 6 hr
 it is inside an approved total. Worth keying correctly next time so the active/stand-by split stays
 meaningful as an estimating input — actual was 16 pumping / 38 non-pumping against 24 + 24 quoted.
 
-**Still worth a look — per diem.** Receipts total 27 person-days (10780 ×6, 10781–10785 ×3 each,
-10786 ×6); the workbook bills 15. The mob and demob days carry none, presumably absorbed into the
-lump sums. If per diem is separately claimable on those days that is ~$1,800 left on the table.
+### Shift analysis and the per-diem claim — 2026-08-15
+
+**Six shifts over four calendar days.** 2026-08-14 dayshift was the last (Jesse, 2026-08-15).
+
+| Date | Shift | Receipt | Crew | Man-hrs |
+|---|---|---|---|---|
+| 08-11 Tue | Day | 10780 | all 6 @ 8 — mobilize, spot equipment (lump sum) | 48 |
+| 08-12 Wed | Day | 10781 | Jesse 12 · Danilo 10 · Brody 10 | 32 |
+| 08-12 Wed | Night | 10782 | Sid 12 · Sam 12 · Blake 10 | 34 |
+| 08-13 Thu | Day | 10783 | Jesse 12 · Brody 12 · Danilo 12 | 36 |
+| 08-13 Thu | Night | 10784 | Sid 12 · Blake 12 · Sam 12 | 36 |
+| 08-14 Fri | Day | 10785 | Jesse 6 · Danilo 6 · Brody 6 — final rig-out | 18 |
+| 08-14 Fri | Day | 10786 | all 6 @ 8 — demob to Deer Park (lump sum) | 48 |
+
+Six people throughout, split 3 day / 3 night across the two middle days, all 6 together on the mob
+and demob days. T&M man-hours billed = 156 from the receipts (162 in the workbook — see flag 5);
+the 96 man-hours on 10780 and 10786 sit inside the two $3,558.72 lump sums. Against 144 man-hours
+and 4 shifts over 2 days quoted, the job ran **6 shifts over 4 days**.
+
+⚠ **10785 and 10786 are the same shift.** Both are 08-14 day and they overlap on Jesse, Danilo and
+Brody. The workbook resolved this correctly — it billed 10785's labor and treated 10786 as the demob
+lump sum. Do not sum the two receipts' headcounts.
+
+**Per diem — 9 person-days unbilled, $1,350.** Per person per calendar day on site:
+
+| Date | On site | Workbook billed | Gap |
+|---|---|---|---|
+| 08-11 | 6 | 0 | **6** |
+| 08-12 | 6 (3 day + 3 night) | 6 | — |
+| 08-13 | 6 (3 day + 3 night) | 6 | — |
+| 08-14 | 6 | 3 | **3** |
+| **Total** | **24** | **15** | **9 × $150 = $1,350** |
+
+The gap is entirely the two lump-sum days: the workbook's Day (1) tab carries no per diem at all,
+and Day (4) carries 3 (from 10785) rather than 6. Both receipts record it — Jesse wrote
+**"Per Diem: 6"** on 10780 and on 10786 — and per diem is a **separate line in the quote**
+(`Per Diem | 6 | 2 days | $150 | $1,800`, under Labor revenue detail), not part of the
+mob/demob lump sum. On that reading the $1,350 is claimable.
+
+**The one thing that could change the number:** if per diem is paid per *night away* rather than per
+day on site, the demob day has no night after it and the entitlement is 6 × 3 = 18 person-days,
+making the gap 3 (\$450) rather than 9. Jesse's own receipts point to days-on-site — he claimed 6 on
+the demob day, which only makes sense on that basis — so 24 is the figure carried here.
+
+**Against the quote:** 12 person-days quoted ($1,800) vs 24 entitled ($3,600). Per diem was always
+going to roughly double, because the quote assumed 2 days on site and the job ran 4. Even the
+workbook's under-billed 15 already exceeds the quoted 12. Worth building the next Baytown per-diem
+line off calendar days on site rather than shift count.
+
+*(Corrects the 2026-08-15 first pass, which read 27 person-days by summing the receipt fields
+without noticing the 10785/10786 same-day overlap. Entitlement is 24, gap 9, not 12.)*
 
 **Workbook housekeeping:** SUMMARY rows Change-Order 1/2/3 are all still $0, so the sheet reports
 −$20,238.07 remaining and 143% of PO. Entering the approved change-order values will square it.

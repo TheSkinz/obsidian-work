@@ -123,17 +123,20 @@ schedule matched the house standard on every line except Filter Stand-by, quoted
 genuinely negotiated, not the DSP25123 cell error it happens to match (confirmed by Jesse
 2026-07-27). 24 stand-by hours were quoted at it.
 
-⚠ **Superseded in execution: filtration stand-by was changed to $150/hr by change order, approved
-by the ExxonMobil reps** (Jesse, 2026-08-15). So on this site the pair now reads **$35 quoted →
-$150 billed**, and $150/hr is what governs going forward. Both facts stand: the quote's $35 was
-real when it was written, and the executed contract carries $150. Do not "correct" the DSP26071
-quoted schedule to $150 — that table records what went to the customer — but do not bill or
-re-quote off the $35 either.
+⚠ **Superseded before the job started: filtration stand-by was changed to $150/hr by the account
+manager, with ExxonMobil rep approval, before mobilization — and Jesse was not told** (Jesse,
+2026-08-15). Not a change order raised during execution. He ran USA26041 as PM against a $35 figure
+that had already been renegotiated. So on this site the pair reads **$35 quoted → $150 billed**, and
+$150/hr governs going forward. Both facts stand: the quote's $35 was real when written, and the
+executed contract carries $150. Do not "correct" the DSP26071 quoted schedule to $150 — that table
+records what went to the customer — but do not bill or re-quote off the $35 either.
 
-The wider lesson for this site: **$35/hr has now appeared here as a template artifact (DSP25123), as
-a genuinely negotiated rate (DSP26071 as quoted), and as a rate that was then changed away (USA26041
-as billed).** The number alone diagnoses nothing. Take the governing figure from the executed
-contract plus any change orders, not from the quote sheet and not from the house standard.
+**The wider lesson for this site is about provenance, not the number.** $35/hr has appeared here as
+a template artifact (DSP25123), as a genuinely negotiated rate (DSP26071 as quoted), and as a rate
+renegotiated away before execution (USA26041 as billed). The number alone diagnoses nothing — and
+more importantly, **an "awarded rate" is only current as of the award date.** The account manager
+can move it afterwards without the vault or the assigned PM being told. Confirm the live schedule
+with the account manager at job-start before billing off any quoted rate.
 See [[DSP26071]] and [[USA26041-job-sheet]].
 
 ## Labor Rates — PS8 F-802 (USA26022, quoted vs. actual billed)
