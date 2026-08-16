@@ -210,7 +210,23 @@ def main() -> int:
     targets += [(p, "skill") for p in sorted(config.glob("scheduled-tasks/*/SKILL.md"))]
     targets += [(p, "fixture") for p in sorted(config.glob("regression/frozen/*.md"))]
 
-    total = 0
+    # DISCOVERY CHECK. The globs above are a guess about where authored skills live, and
+    # on 2026-08-16 that guess was wrong — scheduled-tasks/ held a SKILL.md whose
+    # frontmatter did not parse, and this tool reported "all clean" because it never
+    # looked there. Widening the glob fixes that one case; this catches the NEXT location
+    # nobody anticipated. Anything under plugins/ is vendor-installed marketplace and
+    # cache content — not ours, regenerated on install, correctly ignored.
+    claimed = {p for p, _ in targets}
+    discovered = {p for p in config.rglob("SKILL.md")
+                  if "plugins" not in p.relative_to(config).parts
+                  and "worktrees" not in p.relative_to(config).parts}
+    unclaimed = sorted(discovered - claimed)
+    for path in unclaimed:
+        print(f"\n{path.relative_to(config).as_posix()}")
+        print("  - SKILL.md in a location no glob in this tool covers — it is being "
+              "checked by nothing. Widen the globs or state why it is exempt.")
+
+    total = len(unclaimed)
     for path, kind in targets:
         findings = check(path, kind)
         rel = path.relative_to(config).as_posix()
