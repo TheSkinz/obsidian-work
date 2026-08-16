@@ -1,4 +1,5 @@
 <!-- vault-loop: operational — tools/vault_lint.py + health.md severity-tiering; capture loop cannot write this content. -->
+<!-- vault-prestaged: 2026-08-16-prestaged-pointer-dead-severity-tiering.md -->
 ---
 type: note
 status: inbox

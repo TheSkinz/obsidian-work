@@ -26,8 +26,9 @@ The single place every open decision lives. One row per open ask — not one not
 | DQ-017 | 2026-08-15 | [[2026-07-28-idea-research-rollup-per-rig-coilset-grain]] | Open the bundled heater-card schema decision in its own session rather than waiting for a schema change to carry it: the per-coilset re-grain, the Pig Specifications `Condition` column, and the vault-stats layer's two tracks. **Ordering constraint from DQ-012, load-bearing:** the Syncrude ~6 ft/hr figure must be *reproduced* from per-coilset footage before the fill/flush question is asked, and it may not enter any benchmark until both are answered. | high | 0 | open |
 
 | DQ-018 | 2026-08-16 | [[2026-08-15-retirement-sweep-what-else-has-outlived-its-reason]] | A retired note lands on `closed-unactioned`, which is terminal to lint but **absent from the Terminal-Note Sweep's allowlist** (`executed · resolved · complete · superseded · spec-complete`), so a correctly-retired commitment stays in `00-inbox/` forever — four already do. Is that deliberate (a retirement should stay visible) or an oversight? If an oversight, the fix is one status added to the allowlist in [[vault-capture-loop-spec]]. | med | 0 | open |
+| DQ-019 | 2026-08-16 | [[2026-08-16-prestaged-pointer-dead-severity-tiering]] | POINTER-DEAD sits at `warning` tier and folds into a single undifferentiated "Lint warnings: 51 (backlog) ok" count on `health.md` — two of three 2026-08-01 findings sat dead 9 days unnoticed, caught only by reading raw lint output. Promote to lint `error`, give it its own dashboard row, add a procedural reminder at the folder-reorg event that causes it, or leave as-is (3 findings in ~4 weeks, all same-day-fixed once surfaced)? | med | 0 | open |
 
-**3 open rows** as of 2026-08-16.
+**4 open rows** as of 2026-08-16.
 
 ## Closed
 
