@@ -7,14 +7,16 @@
 | Open decision rows | 4 | <= 10 | ok |
 | Review notes awaiting decision | 2 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 58 | (backlog) | ok |
+| Lint warnings | 52 | (backlog) | ok |
 | Inbox items | 43 | - | ok |
-| Inbox median age | 5 d | < 14 d | ok |
+| Inbox median age | 1 d | < 14 d | ok |
 | Inbox oldest item | 27 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
 | Pending quotes expired | 0 | 0 | ok |
 | Dormant triggers fired | 0 | 0 | ok |
+| Regression baselines behind | 6 of 6 | (replay sweep) | ok |
+| Regression baselines unjudgeable | 0 | 0 | ok |
 
 ## Loop heartbeats
 
@@ -53,6 +55,23 @@ Every recorded wake-up condition (`revisit-trigger:` frontmatter) — parked ide
 | [[rfq-intake-protocol]] | About 12 quote notes under a settled rate-table heading convention -> build the cross-quote rate-history rollup [machine: quote-count>=12] | quote notes: 11 of 12 |
 | [[2026-07-19-rate-model-grain-review]] | First bid under a multi-year or master agreement -> build the contract-note type (proposal C, rejected 2026-07-19) — event: check at RFQ intake | event — checked at the step the condition names |
 | [[2026-07-31-prestaged-routine-service-derate-seed-data]] | 10 routine mode-normalized rows in the actuals rollup -> revisit the ft/hr service derate (n=5 at ruling, 2026-08-01) [machine: routine-rows>=10] | routine rows: 5 of 10 |
+
+## Regression baselines
+
+One row per frozen fixture in `~/.claude/regression/frozen/`. Each reads its own `baseline_commits:` field and asks git, per repo, what has landed on the paths that fixture depends on since the baseline was cut. Detail: `python tools/baseline_staleness.py --verbose`.
+
+**`behind` is not a failure.** It means unverified, not wrong — skills change constantly and a baseline is expected to fall behind between replay sweeps. It is informational for the same reason lint warnings are, and clearing it means replaying the fixture and re-promoting, not editing the frozen file. The row that *is* a gate is **unjudgeable**: a fixture whose `baseline_commits:` is missing, malformed, or names a hash that does not resolve cannot be checked at all, and a baseline nobody can check is the state this tool exists to end. **The counts are deliberately not classified substantive vs cosmetic** — the regression README forbids estimating staleness from a commit's subject line, so the tool reports and a human judges.
+
+`-` means the `claude-config` repo is absent on this machine, so nothing was judged — the same base-gating POINTER-DEAD and the Bid-folder column use. Negative preconditions (F2's empty P66 folder, F6's Baytown-only ExxonMobil tree) are **not** covered here: those are existence assertions rather than staleness questions, they are recorded as `baseline_precondition:` on the fixtures themselves, and no checker enforces them yet.
+
+| Fixture | Commits behind | Status |
+|---|---|---|
+| f1-rfq-to-proposal | claude-config 2 · vault 1 | behind |
+| f2-vault-ingest-dryrun | claude-config 1 | behind |
+| f3-fieldpm-extract | claude-config 10 | behind |
+| f4-sop-formatting-pass | claude-config 1 · vault 0 | behind |
+| f5-pig-sizing | claude-config 1 | behind |
+| f6-duration-mobdemob | claude-config 4 · vault 1 | behind |
 
 ## Notes
 

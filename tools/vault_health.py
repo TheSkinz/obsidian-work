@@ -33,6 +33,7 @@ from pathlib import Path
 from statistics import median
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import baseline_staleness  # noqa: E402  (same-dir sibling module)
 import vault_lint  # noqa: E402  (same-dir sibling module)
 
 QUEUE_REL = "50-dashboards/decision-queue.md"
@@ -466,6 +467,8 @@ def build(root: Path) -> str:
     notes = vault_lint.collect_notes(root)
     pipe_rows, expired = pipeline_rows(notes)
     trig_rows, fired = trigger_rows(notes, root)
+    base_rows, base_behind, base_judged = baseline_staleness.health_rows(root)
+    base_unjudgeable = sum(1 for _, _, st in base_rows if st.startswith("FAIL"))
 
     def flag(ok: bool) -> str:
         return "ok" if ok else "FAIL"
@@ -493,6 +496,10 @@ def build(root: Path) -> str:
         f"| Loop heartbeats overdue | {'yes' if hb_overdue else 'no'} | no | {flag(not hb_overdue)} |",
         f"| Pending quotes expired | {expired} | 0 | {flag(expired == 0)} |",
         f"| Dormant triggers fired | {fired} | 0 | {flag(fired == 0)} |",
+        (f"| Regression baselines behind | {base_behind} of {len(base_rows)} | (replay sweep) | {flag(True)} |"
+         if base_judged else f"| Regression baselines behind | {dash} | (replay sweep) | {dash} |"),
+        (f"| Regression baselines unjudgeable | {base_unjudgeable} | 0 | {flag(base_unjudgeable == 0)} |"
+         if base_judged else f"| Regression baselines unjudgeable | {dash} | 0 | {dash} |"),
         "",
         "## Loop heartbeats",
         "",
@@ -551,6 +558,36 @@ def build(root: Path) -> str:
     ]
     lines += [f"| [[{s}]] | {c} | {chk} |" for s, c, chk in trig_rows] \
         or ["| _no dormant triggers recorded_ | | |"]
+    lines += [
+        "",
+        "## Regression baselines",
+        "",
+        "One row per frozen fixture in `~/.claude/regression/frozen/`. Each reads its own "
+        "`baseline_commits:` field and asks git, per repo, what has landed on the paths that "
+        "fixture depends on since the baseline was cut. Detail: "
+        "`python tools/baseline_staleness.py --verbose`.",
+        "",
+        "**`behind` is not a failure.** It means unverified, not wrong — skills change "
+        "constantly and a baseline is expected to fall behind between replay sweeps. It is "
+        "informational for the same reason lint warnings are, and clearing it means replaying "
+        "the fixture and re-promoting, not editing the frozen file. The row that *is* a gate is "
+        "**unjudgeable**: a fixture whose `baseline_commits:` is missing, malformed, or names a "
+        "hash that does not resolve cannot be checked at all, and a baseline nobody can check is "
+        "the state this tool exists to end. **The counts are deliberately not classified "
+        "substantive vs cosmetic** — the regression README forbids estimating staleness from a "
+        "commit's subject line, so the tool reports and a human judges.",
+        "",
+        "`-` means the `claude-config` repo is absent on this machine, so nothing was judged — "
+        "the same base-gating POINTER-DEAD and the Bid-folder column use. Negative preconditions "
+        "(F2's empty P66 folder, F6's Baytown-only ExxonMobil tree) are **not** covered here: "
+        "those are existence assertions rather than staleness questions, they are recorded as "
+        "`baseline_precondition:` on the fixtures themselves, and no checker enforces them yet.",
+        "",
+        "| Fixture | Commits behind | Status |",
+        "|---|---|---|",
+    ]
+    lines += [f"| {name} | {detail} | {st} |" for name, detail, st in base_rows] \
+        or ["| _claude-config repo not present — nothing judged_ | | |"]
     lines += [
         "",
         "## Notes",
