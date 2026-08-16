@@ -46,7 +46,8 @@ Condition `first` — no prior job history, so these actuals do not move the rou
 Quoted 48 hrs (8 rig-in / 24 pig / 8 smart pig / 8 rig-out). Pigging came in 33% under and
 rig-out 75% over — the shape matters more than the −5 total. Crew 6, matching the quoted plan.
 43 pigs used against 25 quoted: 4.25" TC 4 · 4.5" TC 10 / HR 6 · 4.75" TC 8 / HR 4 / Foam 8 ·
-5" Foam 2 · 6" Swab 1. Stand-by 11 hrs, all ExxonMobil-caused.
+5" Foam 2 · 6" Swab 1. Stand-by 11 hrs, all ExxonMobil-caused — 3 of them the filter press held at the asphalt gate
+clearing site security, a Baytown access constraint rather than a one-off (Jesse, 2026-08-16).
 
 ## Cleaning result
 
