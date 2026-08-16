@@ -7,7 +7,7 @@
 | Open decision rows | 3 | <= 10 | ok |
 | Review notes awaiting decision | 0 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 48 | (backlog) | ok |
+| Lint warnings | 46 | (backlog) | ok |
 | Inbox items | 56 | - | ok |
 | Inbox median age | 0 d | < 14 d | ok |
 | Inbox oldest item | 26 d | < 30 d | ok |
@@ -39,7 +39,6 @@ One row per pending quote, plus any quote whose execution date is within 90 days
 | [[DSP26039]] | pending | 2027-04-07 | 2027-01 | ok | newest artifact 2026-05-12 — note carries no verified date |
 | [[DSP26080]] | pending | - | 2027-02 | no validity date recorded | no bid folder path recorded |
 | [[DSP26085]] | pending | 2026-09-29 | 2027-01 | ok | ok |
-| [[DSP26095]] | pending | 2026-09-29 | 2026-09 | execution in 17 d | ok |
 
 ## Dormant triggers
 
