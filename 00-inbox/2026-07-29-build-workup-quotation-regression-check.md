@@ -2,11 +2,15 @@
 <!-- vault-prestaged: 2026-08-11-prestaged-backtest-workup-fixture-mapping.md -->
 ---
 type: note
+status: resolved
 created: 2026-07-29
+closed: 2026-08-15
 tags: [inbox, estimating, tooling, build-task]
 ---
 
 # Wire backtest_workup.py into the fixture-replay guard
+
+> **Closed 2026-08-15** by the retirement sweep — bookkeeping only, no new decision. This note carried no `status` field, which is what kept it invisible to the Terminal-Note Sweep (see [[2026-07-29-statusless-notes-invisible-to-the-sweep]]); `status: resolved` added here. Ruled as DQ-011: **no hook change.** The load-bearing unknown resolved no — f1 and f6 are *conversation* fixtures, replay prompts pasted to a model, carrying no `.xlsx` and invoking no Python, so they cannot exercise the scripts and the mapping would have been a replay that proves nothing. The cited 25% miss rate was also wrong: the one cited miss (`beb24ed`) records "Not in any frozen fixture, so no replay impact" in its own commit body, and its diff is one T&C string in `render_proposal.py`, which `backtest_workup.py` never calls. Substantive-miss count over the full history is zero.
 
 **Scope reduced 2026-07-29, before any code was written.** This note originally called for
 building a quotation-vs-workup reconciliation check. Recon found

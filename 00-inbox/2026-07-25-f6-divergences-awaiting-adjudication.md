@@ -2,12 +2,15 @@
 <!-- vault-prestaged: skipped — already covered by the `usadebusk-estimating` skill (config commit 71efec5, Jesse 2026-07-28). Both "STILL OPEN" sub-questions are answered in the skill's Rig-In/Rig-Out section: the pipefitter adder stacks on top of the tier rather than promoting it (Large 8 + 2 = 10), and rig-out mirrors rig-in at the WHOLE figure including adders, not the bare tier — the earlier run's tier-only mirroring was ruled wrong. -->
 ---
 type: note
-status: open
+status: resolved
 created: 2026-07-25
+closed: 2026-08-15
 tags: [inbox, regression, estimating, awaiting-decision]
 ---
 
 # F6 replay — two divergences awaiting Jesse's call
+
+> **Closed 2026-08-15** by the retirement sweep — bookkeeping only, no new decision. Both "STILL OPEN" sub-rules were settled by DQ-009, which rejected all three of its own options as sharing a false premise: the F6 wording was not ambiguous, the rig-in tier rule was simply missing a third driver — **mode, pumps utilized** — which sets circuit lines and therefore hose count, and the three drivers multiply rather than offset. That gap produced the whole 12-vs-10 divergence and four inconsistent replays. Rule corrected in `usadebusk-estimating`, propagated to `01-context/estimating-approach.md`. F6 was replayed blinded against the corrected rule, passed all twelve diff keys, and was re-promoted (config `ebb1217`) — rig-in 10→12 landing on Jesse's figure, rig-out 10→12, raw 41→45, quoted unchanged at 48, mob/demob $3,774.00 each, which closes item 2's fixture ambiguity as well.
 
 F6 was replayed 2026-07-25 after the estimating change `bb78eb8`, because it is the other estimating fixture and its job data (2× Trimax against 1 filter press) is the exact configuration the rewritten `:111` paragraph governs. The change itself verified clean — nine of ten diff keys held and the corrected press paragraph was adopted near-verbatim. Frozen was **not** re-cut. Run at `~/.claude/regression/runs/claude-opus-5/f6-duration-mobdemob-2026-07-25.md`; record in config commit `2eebec6`.
 

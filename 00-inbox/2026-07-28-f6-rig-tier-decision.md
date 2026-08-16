@@ -2,12 +2,15 @@
 <!-- vault-prestaged: 2026-08-08-prestaged-f6-rig-tier-decision.md -->
 ---
 type: note
-status: open
+status: resolved
 created: 2026-07-28
+closed: 2026-08-15
 tags: [regression, estimating, open-item, decision-needed]
 ---
 
 # F6's rig tier — a decision for Jesse, and it is a fixture problem not a heater problem
+
+> **Closed 2026-08-15** by the retirement sweep — bookkeeping only, no new decision. Ruled as DQ-009, which rejected all three options because they shared this note's own framing: that the fixture wording was ambiguous. It was not. The rig-in tier rule listed two drivers (connection elevation, run distance) when there are three — **mode, pumps utilized** sets circuit lines and therefore hose count, and the three multiply rather than offset. So this was neither a fixture problem nor a heater problem but a missing rule, which is why four replays split three-to-one without converging. Rule corrected in `usadebusk-estimating`, F6 replayed blinded and re-promoted at rig-in 12 (config `ebb1217`).
 
 **Read this first: ExxonMobil Beaumont F-42 is synthetic.** It does not exist. There is no such
 job, no such heater, no job walk and nobody to call. Every real ExxonMobil card in the vault is

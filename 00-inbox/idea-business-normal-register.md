@@ -1,7 +1,8 @@
 ---
 type: idea-seed
-status: researched
+status: complete
 created: 2026-07-29
+closed: 2026-08-15
 related:
   - "[[2026-08-02-idea-research-business-normal-register]]"
   - "[[business-normal-facts]]"
@@ -15,6 +16,8 @@ artifact: a register-shaped thing already existed split across three mechanisms 
 skill guardrail, assistant memory), so the work was naming that convention and giving the one
 harness-coupled tier a vault-durable copy. See [[2026-08-02-idea-research-business-normal-register]]
 for the research and the ruling. Everything below is the original seed, kept as written.
+
+**Status corrected 2026-08-15** by the retirement sweep — this was ruled and landed but left at `status: researched`, which the Terminal-Note Sweep is forbidden to touch, so a finished item was parked behind a status meaning "Jesse has not decided." Destination verified on disk: `04-knowledge/concepts/business-normal-facts.md`.
 
 ---
 

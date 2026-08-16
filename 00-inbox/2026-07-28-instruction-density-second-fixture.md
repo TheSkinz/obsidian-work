@@ -2,12 +2,15 @@
 <!-- vault-prestaged: 2026-08-07-prestaged-f4-instruction-density-second-fixture.md -->
 ---
 type: note
-status: open
+status: resolved
 created: 2026-07-28
+closed: 2026-08-15
 tags: [regression, skills, open-item]
 ---
 
 # Instruction-density finding needs a second fixture (F4)
+
+> **Closed 2026-08-15** by the retirement sweep — bookkeeping only, no new decision. The next step this note asked for was ruled as DQ-008 and executed the same session: A approved, B and C rejected. F4 replicated F5 on every axis against a structural rather than numeric pass bar — arm B failed (invented the document number, section order and footer), arm C matched arm A on document number, title-block grid, section order, phase structure, footer wording and the 4.250" max pig OD, producing 13 judgment calls to A's 11. The finding is now n=2 across two skills and two pass-bar shapes, and still does not license a trim pass across nine skills. Writeup at `~/.claude/regression/f4-instruction-density-arm-test-2026-08-15.md`.
 
 The F5 instruction-density arm test ran 2026-07-28 — full writeup at
 `~/.claude/regression/f5-instruction-density-arm-test-2026-07-28.md`. It tested the claim

@@ -2,8 +2,9 @@
 <!-- vault-prestaged: 2026-08-10-prestaged-quote-note-bid-folder-staleness.md -->
 ---
 type: capture
-status: open
+status: resolved
 created: 2026-07-28
+closed: 2026-08-15
 tags: [capture, vault-system, data-quality, estimating, quotes]
 related:
   - "[[DSP26095]]"
@@ -13,6 +14,8 @@ related:
 ---
 
 # A quote note can go stale against its own bid folder and nothing in the vault notices
+
+> **Closed 2026-08-15** by the retirement sweep — bookkeeping only, no new decision. Ruled as DQ-010: the lint-rule option was rejected, because lint is a binary 0-errors gate and cannot distinguish an unsynced folder, an offline machine and a genuinely stale note. Built instead as a `Bid folder` column on the Commercial pipeline table — existence and recency only, base-gated exactly like POINTER-DEAD — which is the mechanism this note correctly identified as missing. It found two real gaps on first run, neither of them the motivating DSP26095 case: DSP26080 records no bid-folder path and DSP26039 no `verified:` date. Value reconciliation was deferred to the pre-send gate rather than guessed from filenames.
 
 **What happened.** On 2026-07-28, asked what the most important task in the vault was, the answer
 was built on [[DSP26095]], which read `status: pending`, "Not yet priced — no rates on file", and

@@ -2,12 +2,15 @@
 <!-- vault-prestaged: 2026-08-06-prestaged-checkbox-delta-trigger.md -->
 ---
 type: finding
-status: open
+status: resolved
 created: 2026-07-28
+closed: 2026-08-15
 tags: [knowledge-system, tooling, lint, data-integrity]
 ---
 
 # CHECKBOX-DELTA has no unprompted trigger
+
+> **Closed 2026-08-15** by the retirement sweep — bookkeeping only, no new decision. Ruled as DQ-007 on 2026-08-15: A approved with edits, B/C/D rejected. This note's own closing instinct was right — the fire rate was measured rather than argued, and 43 daily-loop commits replayed gave WORD-DELTA 43/43 against CHECKBOX-DELTA 0/43, so the diff rules now skip generated paths and both loop specs move to `--worktree`. B was rejected as an ungated hook on an unmeasured fire rate.
 
 Rule `CHECKBOX-DELTA` shipped 2026-07-28 (`b4092d7`) and works, but nothing runs it on its own. It fires only when someone types `vault_lint.py --staged` or `--worktree`.
 

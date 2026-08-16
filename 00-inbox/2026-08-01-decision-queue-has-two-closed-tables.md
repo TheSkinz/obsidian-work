@@ -2,12 +2,15 @@
 <!-- vault-prestaged: 2026-08-15-prestaged-decision-queue-duplicate-closed-tables.md -->
 ---
 type: note
-status: inbox
+status: resolved
 created: 2026-08-01
+closed: 2026-08-15
 tags: [inbox, vault-system, dashboards, observation]
 ---
 
 # decision-queue.md has two different Closed tables
+
+> **Closed 2026-08-15** by the retirement sweep — bookkeeping only, no new decision. Ruled as DQ-014: merged to the single richer `id | opened | closed | source | ask | outcome` shape, with the placement rule kept as an operating rule. One edit worth carrying — DQ-001's `source` and both rows' `opened` were left blank rather than backfilled, because manufacturing a citable source would make the row look better-evidenced than the record supports. The stale launch section was retitled and corrected to past tense rather than deleted, since it holds real history.
 
 Noticed 2026-08-01 while closing DQ-004 and DQ-005.
 

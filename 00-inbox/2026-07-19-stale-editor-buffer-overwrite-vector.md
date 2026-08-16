@@ -2,8 +2,9 @@
 <!-- vault-prestaged: 2026-07-28-prestaged-stale-editor-buffer-guard.md -->
 ---
 type: capture
-status: inbox
+status: resolved
 created: 2026-07-19
+closed: 2026-08-15
 related:
   - [[B-101]]
   - [[knowledge-system-governance]]
@@ -11,6 +12,8 @@ tags: [capture, vault-system, data-loss, git, obsidian]
 ---
 
 # A stale editor buffer can silently revert committed vault work
+
+> **Closed 2026-08-15** by the retirement sweep — bookkeeping only, no new decision. Ruled as DQ-003 on 2026-07-28: A applied narrowed (`WORD-DELTA` gained `--worktree`, since the incident file was never staged), B applied by Jesse (Obsidian Source mode, `"livePreview": false` in `.obsidian/app.json`), C dropped. Its `revisit-trigger:` was removed the same day per fire → act → remove. B-101 verified this session as carrying the correct 2026-07-07 content — confirmed ID 4.026" → max pig OD ≈ 4.276" and the Resolved block intact. The stale-buffer hypothesis was never proven and is not worth proving now that both guards are in place.
 
 Caught during the 2026-07-19 harness close-out. `02-facilities/Suncor/Montreal-QC/B-101.md` sat uncommitted in the working tree carrying an exact reversal of commit `57ae83e` (2026-07-07, "Confirm tube IDs across Suncor Montreal heater cards"):
 

@@ -2,12 +2,15 @@
 <!-- vault-prestaged: 2026-08-02-prestaged-over-wide-tables-remainder.md -->
 ---
 type: idea
-status: unexplored
+status: resolved
 created: 2026-07-27
+closed: 2026-08-15
 tags: [vault-hygiene, schema, heater-card]
 ---
 
 # Over-wide tables: what's left after the Tube Geometry fix
+
+> **Closed 2026-08-15** by the retirement sweep — bookkeeping only, no new decision. All three items ruled as DQ-006 on 2026-08-15. Item 1: `_directory.md` stays rich, splitting rejected because it costs a second file open on every read to recover the "why" — only the linter was complaining. Item 2: leave alone, as this note recommended. Item 3: `TUBE-GEOM-HEADER` built on `check_durations_header()`'s anchor-and-compare shape, shipped with fixture T-300, firing on zero existing files.
 
 Follow-on to `e4de4a5`, which dropped the Tube Geometry `Notes` column and moved 75
 notes across 39 cards into keyed blocks. That took over-wide rows in `02-facilities`

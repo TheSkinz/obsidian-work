@@ -2,8 +2,9 @@
 <!-- vault-prestaged: 2026-08-14-prestaged-obsidian-link-retargeting-guard.md -->
 ---
 type: capture
-status: inbox
+status: resolved
 created: 2026-07-30
+closed: 2026-08-15
 related:
   - [[2026-07-28-prestaged-stale-editor-buffer-guard]]
   - [[2026-07-19-stale-editor-buffer-overwrite-vector]]
@@ -11,6 +12,8 @@ tags: [capture, obsidian, data-integrity, git, knowledge-system]
 ---
 
 # Obsidian expanded an ambiguous wikilink to the wrong facility
+
+> **Closed 2026-08-15** by the retirement sweep — bookkeeping only, no new decision. Ruled as DQ-013: the `LINK-FACILITY` rule was approved with edits and built, the one-time remediation applied, and folding it into DQ-003 rejected on a false premise (DQ-003 closed 2026-07-28). Worth noting the rule as originally specified would have caught neither this incident's cause nor its survivor — it compares facility segments, and the surviving bad link is a *bare* `[[_facility]]` with no segment, sitting in `archive/`, which `SKIP_SCAN` excludes. It shipped in two halves (MISMATCH + AMBIGUOUS), `strip_inline_code()` was added after the first run produced six false positives on prose discussing the broken form, and the archive link was fixed by hand.
 
 Found at session close-out 2026-07-30, in changes that had been sitting uncommitted in the working tree since before the session started.
 

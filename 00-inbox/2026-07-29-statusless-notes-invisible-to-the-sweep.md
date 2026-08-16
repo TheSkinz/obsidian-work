@@ -50,3 +50,23 @@ leaves the terminal decision where it belongs.
 
 Leaning to the alternative: it fixes the class rather than the instances, and it keeps the
 sweep's one input signal unambiguous. See [[vault-capture-loop-spec]].
+
+## Instances closed 2026-08-15, class question still open
+
+The retirement sweep gave all four notes a status, so the instance half of this note is done:
+`2026-07-12-github-skill-discovery-pipeline-declined` → `complete`,
+`2026-07-07-harness-audit-open-items` → `resolved` (both its items verified closed, not assumed),
+`2026-07-29-build-workup-quotation-regression-check` → `resolved` (DQ-011),
+`2026-07-29-syncrude-6-ft-hr-fill-flush-question` → `superseded` (DQ-012).
+
+Two of them had been stuck for five weeks, which is the cost this note predicted. The table above
+called two "live" — both have since closed through the decision queue, so the split it recorded was
+a snapshot, not a stable property.
+
+**What is still open is only the class fix**, and the sweep is evidence for it rather than against:
+hand-backfilling worked, but it took a dedicated session to notice, and nothing prevents the next
+statusless note from sitting just as long. The recommendation stands — have the capture loop
+normalize any note missing `status:` to `status: inbox` under its existing Lane 1 frontmatter
+authority, which makes every note sweep-eligible in principle and leaves the terminal decision where
+it belongs. The sweep-extension option should be considered dead: this session's four cases show the
+markers mean genuinely different things, exactly as the argument-against predicted.
