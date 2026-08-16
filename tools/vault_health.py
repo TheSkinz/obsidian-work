@@ -89,16 +89,19 @@ LEDGER_REL = "50-dashboards/.loop-runs.json"
 # revisit decision). The field's presence — regardless of the note's status,
 # since a resolved review's trigger outlives its resolution — puts it on the
 # dashboard. Retire a trigger by removing the field when it fires and is acted
-# on. Machine-checkable conditions embed a token the script evaluates; two
-# exist: `[machine: quote-count>=N]` (count of `type: quote` notes) and
+# on. Machine-checkable conditions embed a token the script evaluates; three
+# exist: `[machine: quote-count>=N]` (count of `type: quote` notes),
 # `[machine: routine-rows>=N]` (rows behind the `routine` mean in the generated
-# actuals rollup). Everything else is event-shaped and names the workflow step
-# that checks it. An unrecognized token falls through to the event-shaped
-# wording, so a typo'd token reads as "someone checks this by hand" rather than
-# failing loudly — keep this list and the tokens in use in sync.
+# actuals rollup) and `[machine: note-count>=N]` (live scanned notes — the same
+# population every other check uses, so archive/, templates/, fixtures and
+# generated files are excluded). Everything else is event-shaped and names the
+# workflow step that checks it. An unrecognized token falls through to the
+# event-shaped wording, so a typo'd token reads as "someone checks this by hand"
+# rather than failing loudly — keep this list and the tokens in use in sync.
 TRIGGER_FIELD = "revisit-trigger"
 TRIGGER_QC_RE = re.compile(r"\[machine:\s*quote-count\s*>=\s*(\d+)\]")
 TRIGGER_RR_RE = re.compile(r"\[machine:\s*routine-rows\s*>=\s*(\d+)\]")
+TRIGGER_NC_RE = re.compile(r"\[machine:\s*note-count\s*>=\s*(\d+)\]")
 ROLLUP_REL = "04-knowledge/estimating-actuals-rollup.md"
 
 # Commercial pipeline: read from `type: quote` frontmatter. `valid-through`
@@ -415,6 +418,7 @@ def trigger_rows(notes: dict, root: Path):
     """Return (rows, fired_count). Row: (source stem, condition, check result)."""
     quote_count = len(collect_quotes(notes))
     routine_rows = count_routine_rows(root)
+    note_count = len(notes)
     rows = []
     fired = 0
     for path, text in sorted(notes.items()):
@@ -424,6 +428,7 @@ def trigger_rows(notes: dict, root: Path):
             continue
         qc = TRIGGER_QC_RE.search(raw)
         rr = TRIGGER_RR_RE.search(raw)
+        nc = TRIGGER_NC_RE.search(raw)
         if qc:
             threshold = int(qc.group(1))
             hit = quote_count >= threshold
@@ -437,6 +442,11 @@ def trigger_rows(notes: dict, root: Path):
                 hit = routine_rows >= threshold
                 check = f"routine rows: {routine_rows} of {threshold}" + (" — **FIRED**" if hit else "")
                 fired += 1 if hit else 0
+        elif nc:
+            threshold = int(nc.group(1))
+            hit = note_count >= threshold
+            check = f"live notes: {note_count} of {threshold}" + (" — **FIRED**" if hit else "")
+            fired += 1 if hit else 0
         else:
             check = "event — checked at the step the condition names"
         rows.append((path.stem, raw.replace("|", "\\|"), check))

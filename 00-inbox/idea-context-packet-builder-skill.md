@@ -1,8 +1,8 @@
 ---
 type: idea-seed
-status: researched
+status: closed-unactioned
 created: 2026-07-07
-revisit-trigger: "A real mobilization or bid shows manual context-gathering friction (parked 2026-07-18) — event: check at job mobilization"
+closed: 2026-08-15
 related:
   - [[2026-07-09-idea-research-context-packet-builder-skill]]
 tags: [idea, skills, claude-config, future]
@@ -11,6 +11,14 @@ tags: [idea, skills, claude-config, future]
 > **Disposition (2026-07-18):** **Parked** — revisit only if a real mobilization/bid shows manual context-gathering actually causing friction. Adaptation path (domain-scoped `/prime`-style command, propose-and-confirm) recorded in [[2026-07-09-idea-research-context-packet-builder-skill]].
 
 # Context-packet-builder skill
+
+> **RETIRED 2026-08-15** (Jesse, retirement sweep). **The trigger fired against a real event and the answer was no.** USA26041 (ExxonMobil Baytown, HU5A F-501) mobilized on 2026-08-11 — job sheet, crew pool, equipment, vehicles, badging and loadout — which is exactly the condition this seed was parked against. It showed no manual context-gathering friction worth a build.
+>
+> The failure worth naming is not the answer but the delay: the trigger had already fired and nobody checked it. It sat on the dashboard reading as dormant while the event it named had come and gone four days earlier. Retiring on a fired-and-answered trigger is the honest close; re-parking it would have preserved the same blind spot.
+>
+> **What killed it is not that the idea was bad.** `usadebusk-core` and the domain skills already auto-load on task type, which was the seed's own leading doubt ("is this meaningfully different from just loading the right skills manually?"). A live mobilization answered that empirically rather than by argument.
+>
+> **If this ever returns**, the trigger wording is the thing to fix first. "Shows manual context-gathering friction" has no observer and no moment of check — which is how a fired trigger went unnoticed. A revived version needs a condition someone actually encounters at a step in the workflow.
 
 Idea seed captured 2026-07-07 for a future exploration session. The read below is tentative — confirm intent with Jesse before designing.
 

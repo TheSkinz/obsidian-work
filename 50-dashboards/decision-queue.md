@@ -22,9 +22,9 @@ The single place every open decision lives. One row per open ask — not one not
 
 | id | opened | source | ask | risk | age (d) | status |
 |---|---|---|---|---|---|---|
-| _no open rows_ | | | | | | |
+| DQ-015 | 2026-08-15 | [[idea-quotation-workup-reconciliation-check]] | Build the quotation-vs-workup pre-send gate — a reconciliation on the single pair being submitted, not a calendar sweep. Opened because DQ-010 and `health.md` both deferred value reconciliation to a gate that does not exist. | med | 0 | open |
 
-**0 open rows** as of 2026-08-15.
+**1 open row** as of 2026-08-15.
 
 ## Closed
 

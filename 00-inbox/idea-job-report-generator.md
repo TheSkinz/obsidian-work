@@ -1,7 +1,8 @@
 ---
 type: idea-seed
-status: researched
+status: complete
 created: 2026-07-21
+closed: 2026-08-15
 explored: 2026-07-21
 spec: [[job-report-generator-build-spec]]
 tags: [idea, fieldpm, automation, cross-cutting]
@@ -12,6 +13,21 @@ tags: [idea, fieldpm, automation, cross-cutting]
 > [!done] Explored 2026-07-21 → decision-ready spec at [[job-report-generator-build-spec]].
 > Feasibility forks resolved with Jesse (see below). Next step is the build session, gated on
 > spec approval. Original seed preserved below for provenance.
+
+> **Built — closed 2026-08-15** by the retirement sweep. The "next step gated on spec approval"
+> line above is stale: the build happened the *same day* the spec was written. Verified on disk this
+> session — `extract_ticket_breakdown.py` and `render_job_report.py` in
+> `~/.claude/skills/usadebusk-fieldpm/scripts/`, wired behind `/report`, reproducing the shipped
+> USA26038 report exactly (operating 207, stand-by 74, pigs 298, 6-page layout) and passing the
+> USA25025 structural stress test at project level on every total (rig 90, pigging 321.5, smart
+> 54.5, stand-by 190, pigs 396, operating 466). Rig is pooled at project level per Jesse's ruling
+> that rigging is fungible.
+>
+> Third seed in this sweep found built-but-filed-as-undecided, after
+> [[idea-lint-lock-heater-schema]] and [[idea-business-normal-register]]. The common cause is that
+> `status: researched` is written by the idea-research loop and nothing else ever revisits it — so a
+> seed that gets built carries "Jesse has not decided" indefinitely, and the Terminal-Note Sweep is
+> explicitly forbidden from touching that status. Three instances is a pattern, not bad luck.
 
 **Fork answers (2026-07-21):**
 - **XLSX stability:** same ticket-breakdown template every job → one mapping-spec covers all

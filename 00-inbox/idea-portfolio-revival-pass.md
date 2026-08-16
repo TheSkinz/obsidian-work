@@ -1,13 +1,22 @@
 ---
 type: idea-seed
-status: researched
+status: closed-unactioned
 created: 2026-07-19
+closed: 2026-08-15
 related:
   - [[2026-07-21-idea-research-portfolio-revival-pass]]
 tags: [idea, vault-system, future, project-hygiene]
 ---
 
 # One-shot portfolio revival pass (not an engine)
+
+> **RETIRED 2026-08-15** (Jesse, retirement sweep). **Dead by consequence — the inventory it existed to surface was drained item by item while it waited.**
+>
+> DQ-004 (2026-08-01) already narrowed this pass to the thesis v2 re-run alone, dropping the Knowledge Loop OS C/D/F re-verification and the findings-routing as bookkeeping with no forcing function. The thesis re-run was then retired unrun on 2026-08-15. Of the rest of the named inventory: the three vault stashes are gone, the `leverage` repo's five build packets were all built and moved to `done/` on 2026-07-22, and the Shift-Delta tracker is spec-clean and back-tested and tracked on its own. There is no list left for a ranked revive/complete/kill pass to produce.
+>
+> **The seed's own leading doubt was the correct one.** It asked whether the list is better produced on demand than captured, "since anything written down today is stale the moment a packet gets built or killed." That is precisely what happened — the write-up would have been obsolete within days, and the decision queue turned out to be the mechanism that actually closed these, one row at a time, which is the alternative the seed itself floated in its last line.
+>
+> **The finding worth keeping** is the one from the 2026-07-19 leverage investigation, already recorded there: this should never have become a standing "portfolio recovery engine." Nothing here revises that. If parked work accumulates again, the answer is decision-queue rows, not a pass over an inventory.
 
 Idea seed captured 2026-07-19 for a future exploration session. The read below is tentative — confirm intent with Jesse before designing.
 

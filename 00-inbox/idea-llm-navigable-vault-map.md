@@ -1,13 +1,22 @@
 ---
 type: idea-seed
-status: researched
+status: gated
 created: 2026-07-23
+revisit-trigger: "Vault reaches 450 live notes (292 at the time of writing, 2026-08-15) -> re-run the retrieval eval in [[knowledge-system-evaluation-questions]]; if it shows failures, this idea unparks, and if it does not, re-park at the next threshold [machine: note-count>=450]"
 related:
   - [[2026-07-25-idea-research-llm-navigable-vault-map]]
 tags: [idea, vault-system, future]
 ---
 
 # LLM-Navigable Vault Map (INDEX description hooks)
+
+> **Given a wake condition 2026-08-15** (Jesse, retirement sweep). This was ruled "parked, not killed" on 2026-07-23 after the retrieval eval returned 10/10 with zero hard failures — but no `revisit-trigger:` was recorded, so nothing would ever have raised it again. A park with no wake condition is a retirement that will not admit it, and this one was additionally hidden behind `status: researched`, which the Terminal-Note Sweep may not touch.
+>
+> **The trigger is on the eval, not on this idea.** The seed's own gating condition was "if the eval shows retrieval failures," and the eval is what answers that. If the re-run also comes back clean, re-park at a higher threshold rather than treating a second pass as approval to build.
+>
+> **The eval's own "~100 notes" figure is not reproducible, and the threshold is deliberately not anchored to it.** [[2026-07-23-retrieval-eval-run]] concludes "retrieval is not the binding constraint at this vault size (~100 notes)." Counted this session against the commit as of that date, the scanned population was **169** — the same basis `vault_health.py` uses, excluding `archive/`, `templates/`, `tools/` and `_OUTPUTS/`. The stated figure was already low by about 70% when written. It is the same defect class as the Syncrude ~6 ft/hr number: a round figure that circulates because nobody divides it out. So the trigger is anchored to the count the script actually computes, with today's value (292) written into the condition text, and it fires at 450 — roughly 2.7× the size at which the eval last passed clean.
+>
+> This required a small tooling change to be real: `[machine: note-count>=N]` did not exist, and `tools/vault_health.py` degrades an unrecognized `[machine: …]` token to event-shaped wording rather than failing loudly — so writing the token without adding it would have produced a trigger that *looked* checked and never was. That is the DQ-005 failure mode exactly. Token added the same session.
 
 Idea seed captured 2026-07-23 from the vault-architecture first-principles triage ([[2026-07-23-triage-vault-architecture-first-principles]], idea 4). The read below is tentative — confirm intent with Jesse before designing.
 
