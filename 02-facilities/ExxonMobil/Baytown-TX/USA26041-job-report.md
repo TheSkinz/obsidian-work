@@ -65,9 +65,10 @@ Pass C/D 57 · 45 · 38 · 31 · Treat Gas 0 · 0 · 0 · 5.
 
 **Metal restrictions on Passes A and B.** Protruding into the tubes, **Pass B the worse of the
 two**. They gouged the pigs slightly but did not significantly hinder the decoke. **Location is
-mapped, not confirmed** — the restrictions were located in the cross-over area and that piping is
-the likely source, but the cross-overs were never opened, nothing was visually verified, and
-nothing appeared in the smart-pig inspection data (Jesse, 2026-08-16). Passes A and B finished on
+mapped, not confirmed** — located and mapped from the Trimax **digital chart recorders**, which
+places them in the cross-over area and makes that piping the likely source, but the cross-overs
+were never opened, nothing was visually verified, and nothing appeared in the smart-pig inspection
+data (Jesse, 2026-08-16). Passes A and B finished on
 a 4.75" pig against the 4.875" computed from tube ID; plan those passes against 4.75" until this
 is characterised. Passes C and D ran clear.
 
