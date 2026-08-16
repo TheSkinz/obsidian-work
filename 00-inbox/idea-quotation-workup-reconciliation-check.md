@@ -1,7 +1,8 @@
 ---
 type: idea-seed
-status: gated
+status: complete
 created: 2026-07-25
+closed: 2026-08-15
 tags: [idea, estimating, data-quality, audit, future]
 related:
   - "[[2026-07-27-idea-research-quotation-workup-reconciliation-check]]"
@@ -9,6 +10,8 @@ related:
 
 # Standing quotation-vs-workup reconciliation check
 
+> **BUILT 2026-08-15** — `scripts/presend_gate.py` in `usadebusk-estimating`, config `c7d31c2`. Queued as DQ-015 and closed the same day. Verified against four real pairs; DSP26026 reproduces this rule's own worked $39,548.16 narrowing gap to the cent, and a previously unknown **$6,180.00** divergence in a second DSP26085 workup was found by running it. The narrowing re-price is deliberately left to a human — see the queue row for why. Two defects in the shared extractor surfaced and were fixed in the same commit: `backtest_workup.py` had been silently dead for the second time, and `read_duration()` returned no task hours at all on older workups.
+>
 > **Queued as a build 2026-08-15** (Jesse, retirement sweep) — DQ-015. **This came into the sweep as a retirement candidate and came out load-bearing.**
 >
 > The seed reads like something to close: its own text records that the one-off scan found no customer-facing defect, and argues against a calendar-driven sweep. But since it was written, **two other decisions quietly deferred work to the gate it describes, and the gate does not exist.** DQ-010 (2026-08-15) rejected value reconciliation in lint and in the health dashboard's `Bid folder` column, deferring it to "the pre-send gate, which reads the workup's reconciled total instead of guessing from filenames." `50-dashboards/health.md` now states the same on its face: "Value reconciliation is out of scope here and belongs to the quotation-vs-workup pre-send gate." Retiring this seed would have left both pointing at nothing, and neither would have said so.
