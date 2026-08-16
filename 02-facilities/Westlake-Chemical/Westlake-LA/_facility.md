@@ -10,9 +10,21 @@ tags: [facility, Westlake-South]
 
 # Westlake South — Westlake, LA
 
-> **New to this vault, not new to USADebusk.** USADebusk bid TE-II here in **2024 and lost**.
-> That package sits outside the vault and has not been located — recovering it is the top
-> open action for this site.
+> **New to this vault, not new to USADebusk.** USADebusk bid TE-II here in **2024 and lost**,
+> and bid H-101 TE-II again as DSP26095 in 2026 and lost — **0 for 2**. That 2024 package sits
+> outside the vault and has not been located.
+
+> **The rep prefers DDT** (Jesse, 2026-08-16). Westlake South goes out to bid because
+> procurement requires competing quotes, not because the award is open. That reframes both
+> losses: they are not evidence that USADebusk priced either job wrong, and 0 for 2 here is not a
+> pricing pattern. Do not re-price a future Westlake South bid against what lost. Whether DDT
+> took the DSP26095 award specifically is not recorded — the preference is the recorded fact.
+>
+> **Consequence for the 2024 package.** Recovering it was previously the top open action for
+> this site, on the reasoning that it would show "what price lost." That premise is now weak: if
+> the award was never open, the 2024 price explains nothing. It is still worth having as rate
+> history for a site with no contract, but it is no longer a priority and should not be chased
+> as a loss post-mortem. See [[business-normal-facts]] for the general rule.
 
 > **No active contract — rates are being constructed.** Jesse confirmed 2026-07-27 that there
 > is no live contract at Westlake South, so rates for the current bid will be built rather than
