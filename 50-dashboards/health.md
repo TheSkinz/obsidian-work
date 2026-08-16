@@ -7,10 +7,10 @@
 | Open decision rows | 3 | <= 10 | ok |
 | Review notes awaiting decision | 0 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 48 | (backlog) | ok |
+| Lint warnings | 46 | (backlog) | ok |
 | Inbox items | 54 | - | ok |
 | Inbox median age | 0 d | < 14 d | ok |
-| Inbox oldest item | 28 d | < 30 d | ok |
+| Inbox oldest item | 26 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
 | Pending quotes expired | 0 | 0 | ok |
