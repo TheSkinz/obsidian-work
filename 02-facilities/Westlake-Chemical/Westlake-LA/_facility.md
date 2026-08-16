@@ -18,7 +18,13 @@ tags: [facility, Westlake-South]
 > procurement requires competing quotes, not because the award is open. That reframes both
 > losses: they are not evidence that USADebusk priced either job wrong, and 0 for 2 here is not a
 > pricing pattern. Do not re-price a future Westlake South bid against what lost. Whether DDT
-> took the DSP26095 award specifically is not recorded — the preference is the recorded fact.
+> took the DSP26095 award specifically is **not knowable** — award results and competitor pricing
+> are not available to Jesse — so it is not an open question and should never be listed as one.
+>
+> **Keep bidding here anyway.** Jesse, 2026-08-16: *"I don't believe it's worth bidding, but we
+> will anyway. We don't turn down opportunities to bid."* Low win probability at this site is not
+> a reason to decline, to cut estimating effort, or to propose spending the hours elsewhere. The
+> next Westlake South RFQ gets a full bid like any other.
 >
 > **Consequence for the 2024 package.** Recovering it was previously the top open action for
 > this site, on the reasoning that it would show "what price lost." That premise is now weak: if
