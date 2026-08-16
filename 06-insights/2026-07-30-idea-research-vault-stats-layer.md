@@ -6,7 +6,7 @@ source_authority: inferred
 confidence: medium
 created: 2026-07-30
 review_after: 2026-08-30
-revisit-trigger: "Canonical heater-card schema opened for a change carrying its own weight -> decide Track 1 (five validation rules into vault_lint.py) and Track 2 (frontmatter promotion of multi-ID/smart-pig/filtration flags), bundled with the per-rig-coilset sub-table and the Pig Specifications Condition column (parked 2026-08-01) — event: check at heater-card schema change"
+superseded-by: "DQ-017 (2026-08-15) — Track 1 and Track 2 ride the scheduled bundle session rather than a schema open; `revisit-trigger:` retired"
 related:
   - "[[idea-vault-stats-layer]]"
   - "[[idea-pig-actuals-maturation]]"

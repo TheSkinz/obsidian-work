@@ -6,7 +6,7 @@ source_authority: inferred
 confidence: medium
 created: 2026-07-28
 review_after: 2026-08-28
-revisit-trigger: "Next time `_canonical-heater-card.md` is opened for a change carrying its own weight -> decide the structured per-coilset actuals sub-table, bundled with the parked Pig Specifications Condition column (parked 2026-07-29) — event: check at heater-card schema change"
+superseded-by: "DQ-017 (2026-08-15) — the bundle is scheduled directly rather than waiting on a schema open; `revisit-trigger:` retired"
 related:
   - "[[idea-rollup-per-rig-coilset-grain]]"
   - "[[idea-pig-actuals-maturation]]"

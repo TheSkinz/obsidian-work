@@ -10,6 +10,14 @@ tags: [inbox, field-ops, job-sheet, visualization, tools, approved-unexecuted]
 
 # Owed — coil visualization, Tier 2 + Tier 3 + Tier 1
 
+> **Re-tested and kept, 2026-08-15** (retirement sweep). Both questions come back yes.
+>
+> **Still answerable as specified?** Yes, and verified rather than assumed: `buildGeometry()` is still at `apps/pig-tracker/pig-tracker.html:393`, `04-knowledge/ground-truth/` still holds both `h-2421.md` and `h-28.md` to prove output against, and `estimating_rollup.py` still exports the markdown-table parsers this is meant to reuse. Every prerequisite the note names is intact.
+>
+> **Would the answer change anything?** Yes, on the grounds the note itself argues — it is an extraction QA instrument, not only a crew aid, because a renderer cannot place every tube without forcing unresolved geometry into the open. It also gates [[idea-rig-layout-diagram]], which has been parked on it since 2026-07-30 and cannot move until this does.
+>
+> Unchanged: this needs scheduling, not re-deciding. It is the older of the two surviving owed items and the one with a downstream item waiting on it.
+
 Approved by Jesse 2026-08-01
 ([[2026-07-30-exploration-coil-visualization-for-crews]]). Scope approved, build
 not started.

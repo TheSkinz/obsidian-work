@@ -23,8 +23,10 @@ The single place every open decision lives. One row per open ask — not one not
 | id | opened | source | ask | risk | age (d) | status |
 |---|---|---|---|---|---|---|
 | DQ-015 | 2026-08-15 | [[idea-quotation-workup-reconciliation-check]] | Build the quotation-vs-workup pre-send gate — a reconciliation on the single pair being submitted, not a calendar sweep. Opened because DQ-010 and `health.md` both deferred value reconciliation to a gate that does not exist. | med | 0 | open |
+| DQ-016 | 2026-08-15 | [[idea-sharepoint-projection-drift-check]] | Build the SharePoint projection drift check as a `health.md` row. Design is settled by the 2026-08-11 evidence: it must REST-read live library content, because `sharepoint_export.py --check` was green throughout while the library itself held the wrong file. Presence-only and columns-complete checks both pass the real case. | med | 0 | open |
+| DQ-017 | 2026-08-15 | [[2026-07-28-idea-research-rollup-per-rig-coilset-grain]] | Open the bundled heater-card schema decision in its own session rather than waiting for a schema change to carry it: the per-coilset re-grain, the Pig Specifications `Condition` column, and the vault-stats layer's two tracks. **Ordering constraint from DQ-012, load-bearing:** the Syncrude ~6 ft/hr figure must be *reproduced* from per-coilset footage before the fill/flush question is asked, and it may not enter any benchmark until both are answered. | high | 0 | open |
 
-**1 open row** as of 2026-08-15.
+**3 open rows** as of 2026-08-15.
 
 ## Closed
 

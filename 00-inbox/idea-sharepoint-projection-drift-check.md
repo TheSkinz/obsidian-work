@@ -2,13 +2,16 @@
 type: idea-seed
 status: gated
 created: 2026-08-10
-revisit-trigger: "FIRED 2026-08-11 — tranche B landed (8 files; CONTEXT_Outlook-Routing.md added, CONTEXT_Workflow-Map.md dropped) and the Knowledge-library load completed at 29 markdown files, so the gate is satisfied -> build the projection drift check so health.md surfaces stale SharePoint copies. A real drift instance was caught by hand the same day (see the Evidence section below) — design against it."
 related:
   - "[[2026-08-11-idea-research-sharepoint-projection-drift-check]]"
 tags: [idea, vault-system, future, copilot, sharepoint]
 ---
 
 # SharePoint projection drift check on the health dashboard
+
+> **Queued as DQ-016 on 2026-08-15** (Jesse, retirement sweep); `revisit-trigger:` removed per fire → act → remove. **The trigger had fired on 2026-08-11 and then sat unacted for four days**, still rendering on the dashboard as a dormant condition waiting on an event that had already happened. That is the precise state this sweep was commissioned to find, and it is worth noting that a *fired* trigger is more invisible than an unfired one — the registry's job is to surface conditions, and it has no way to shout that one has been met.
+>
+> The design question is settled by the Evidence section below and does not need re-opening: the check must **REST-read what is live in the library**, not diff the staging folder against the vault. `--check` was green throughout the real incident because the staging folder was correct and the *library* was wrong. Presence-only and columns-complete checks would both have passed it too.
 
 Idea seed captured 2026-08-10 for a future exploration session. The read below is tentative — confirm intent with Jesse before designing.
 
