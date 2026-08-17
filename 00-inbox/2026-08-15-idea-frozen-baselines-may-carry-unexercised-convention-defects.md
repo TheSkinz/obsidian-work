@@ -1,10 +1,11 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-08-15
 tags: [idea, regression, knowledge-system, tooling]
 related:
   - "[[2026-08-07-prestaged-f4-instruction-density-second-fixture]]"
+  - "[[2026-08-17-idea-research-frozen-baselines-unexercised-defects]]"
 ---
 
 # Frozen baselines can carry defects no replay will ever surface
