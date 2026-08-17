@@ -14,7 +14,10 @@ empirical claim was checked against the delivered documents and found wrong, whi
 
 ---
 
-## Open question for Jesse — decide before the lead-in change lands
+## Open question — ANSWERED 2026-08-17: `Decoking Analysis:`
+
+**Jesse's call, same day: the default is `Decoking Analysis:`.** Landed — see execute item 2 below.
+The evidence that raised the question is kept because it is why the key exists at all.
 
 **What should the per-heater narrative lead-in say by default?** Four delivered reports were opened
 and grepped, and they do not agree with each other:
@@ -66,9 +69,15 @@ unchanged afterward. *Note:* this supersedes the `⚠ DO NOT RE-RENDER OVER THE 
 docstring comment in `back-test/report_input_usa26041.py`, which is enforced by nothing — delete it
 in the same change and say why in the commit.
 
-### 2. Make the narrative lead-in config-driven
+### 2. Make the narrative lead-in config-driven — DONE 2026-08-17
 
-**Verdict: execute**, reshaped by evidence from the red-team pass.
+**Verdict: execute**, reshaped by evidence from the red-team pass. **Landed the same day**
+(config repo `db84e4b`+): `DEFAULT_LEAD_IN = "Decoking Analysis:  "` added beside `PIG_BUCKETS`,
+call site at line 385 now reads `bold_lead=ht.get("lead_in", DEFAULT_LEAD_IN)`, and
+`references/report-structure.md` plus the build-spec format table name the key instead of asserting
+a fixed `Result:`. Verified by re-rendering USA26041 to a scratch path and grepping the output:
+one `Decoking Analysis:`, zero `Result:`. The stale ⚠ comment in `report_input_usa26041.py` saying
+this needed a renderer change is retired.
 
 The red-team argued for a second hard-code — swap `Result:` for `Decoking Analysis:` and add no knob,
 because there was "no observed variation to configure." It supported that with a claim that three
@@ -220,9 +229,9 @@ not closer.
 
 **2 execute · 1 test · 1 park · 1 merged as duplicate · 10 kill**
 
-First steps for Jesse: answer the open question on the lead-in default, which is the only thing
-blocking execute item 2. Execute item 1 needs nothing from him and can land immediately. The test
-needs one USA25025 render and should happen before the next Baytown report.
+**Status as of 2026-08-17 close:** execute item 2 is done. Execute item 1 (the write guard) is
+unblocked and unbuilt — it needs nothing from Jesse. The test needs one USA25025 render and should
+happen before the next Baytown report.
 
 Adjacent, and closed the same day: [[2026-08-16-report-gold-two-values]] asked whether the
 generator's `#FCC30A` or the shipped documents' `#F2A900` was the house gold. **Jesse ruled
