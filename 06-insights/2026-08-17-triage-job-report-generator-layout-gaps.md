@@ -111,11 +111,42 @@ sentence in `report-structure.md`.
 
 ---
 
-## Test
+## Test — RUN 2026-08-17, and it falsified its own premise
 
 ### 3. Derive the pig-table and image shapes from the data
 
-**Verdict: test.** The shape is clear and the assumption underneath it is not, which is the
+**Verdict: test. Result: the threshold idea was wrong, and the fix is smaller than either option.**
+
+Rendering USA25025 both ways and rasterizing showed the 2-up split **does not deliver a one-page
+fit either**. The Pigs Used section starts low on page 2, so the 2-up broke anyway — 5 of its 13
+rows before the break, 8 after. The split's entire stated justification ("the size rows split
+across two side-by-side tables to fit the page") is false at the one job it was built for. Fit was
+never governed by row count; it is governed by where the section lands, which no row-count
+threshold can know.
+
+What does work is keeping the table together, so it moves whole to the next page only when it
+would otherwise break. Measured across all three fixtures, single table + keep-together:
+
+| Fixture | Sizes | Pages before | Pages after | Pig table |
+|---|---|---|---|---|
+| USA26041 | 4 | 7 | 7 | whole, inline on p2 |
+| USA26038 | 24 | 7 | 7 | whole on p3 (was split 19/5) |
+| USA25025 | 26 | 10 | 10 | whole on p3 (was split 9/17) |
+
+No page-count change anywhere, no split anywhere. A hard page break was tried first and rejected —
+it cost USA26041 an extra page for a table that already fit.
+
+**A second defect fell out of the raster.** The last bucket merges dewatering swabs *and* honeycomb
+gauges. Jesse's hand-built `SWAB` header is right on USA26041, which ran no honeycomb — but
+USA26038 has 35 of them in that column, so shipping `SWAB` blindly would have mislabelled a
+customer document. The header now follows the data: `SWAB` when the job ran no honeycomb,
+`SWAB/HC` when it did. The bucket keys are untouched.
+
+**Landed** in the same change. Original reasoning kept below for the record.
+
+---
+
+*Original verdict: test.* The shape is clear and the assumption underneath it is not, which is the
 definition of a test rather than an execute.
 
 The idea: branch `build_pigs()` on `len(sizes)` — below a threshold emit one 6-column table with
@@ -237,11 +268,19 @@ not closer.
 
 **2 execute · 1 test · 1 park · 1 merged as duplicate · 10 kill**
 
-**Status as of 2026-08-17 close: both execute items are done and verified.** What remains is the
-test — one USA25025 render with the pig split forced off, rasterized, to find where a single table
-stops fitting — and it should happen before the next Baytown report. The park
-([[idea-generator-owns-marked-spans-not-layout]]) is gated behind a second edit-loss, which the
-write guard now makes considerably less likely.
+**Status as of 2026-08-17 close: both execute items and the test are done and verified.** Two of
+the source seed's three layout gaps are closed in the generator — the narrative lead-in and the pig
+table. **The remaining gap is inline image placement**, which was never tested and is untouched:
+the renderer still emits a dedicated Images section on its own page, and USA26041's config still
+lists the `launchers.png` row the delivered report dropped.
+
+The park ([[idea-generator-owns-marked-spans-not-layout]]) stays gated behind a second edit-loss,
+which the write guard now makes considerably less likely.
+
+**Honest limitation on the pig-table result:** tested at 4, 24 and 26 sizes. Not tested above 26.
+A single table of roughly 40 rows would fill a page on its own; past that, keep-together has
+nothing to move it to and Word will break it. That is a better failure than the old one — it
+breaks only when no layout could avoid it — but it is untested.
 
 Adjacent, and closed the same day: [[2026-08-16-report-gold-two-values]] asked whether the
 generator's `#FCC30A` or the shipped documents' `#F2A900` was the house gold. **Jesse ruled
