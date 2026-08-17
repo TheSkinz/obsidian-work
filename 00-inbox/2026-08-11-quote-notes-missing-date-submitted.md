@@ -1,4 +1,6 @@
 <!-- vault-loop: no home yet, candidate for [quote-note-backfill] -->
+<!-- vault-prestaged: skipped — execution correction, needs doing not deciding. The fix is to confirm the submission date with Jason (DSP26085) and ask whether DSP26080 has drawn any response since 2026-06-26, then backfill date-submitted/valid-through — both fields are still blank as of this run. No alternatives to weigh. -->
+
 ---
 type: review
 status: open

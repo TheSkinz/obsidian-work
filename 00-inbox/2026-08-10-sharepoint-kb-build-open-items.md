@@ -1,4 +1,5 @@
 <!-- vault-loop: no home yet, candidate for [sharepoint-kb-open-items] -->
+<!-- vault-prestaged: skipped — already covered by [[07-llms/copilot/overview.md]]; build proceeded past this note (blocking markdown-vs-docx test passed 2026-08-10, Project Stage already dropped-with-trigger per the build plan, recon items 3-6 resolved by the agent build and tranche A/B loads). Remaining recon items 1 (verify Search and offline availability = Yes) and 2 (identify the 43 Copilot Knowledge items) are simple lookups, not decisions. -->
 ---
 type: note
 status: inbox

@@ -27,8 +27,9 @@ The single place every open decision lives. One row per open ask — not one not
 
 | DQ-018 | 2026-08-16 | [[2026-08-15-retirement-sweep-what-else-has-outlived-its-reason]] | A retired note lands on `closed-unactioned`, which is terminal to lint but **absent from the Terminal-Note Sweep's allowlist** (`executed · resolved · complete · superseded · spec-complete`), so a correctly-retired commitment stays in `00-inbox/` forever — four already do. Is that deliberate (a retirement should stay visible) or an oversight? If an oversight, the fix is one status added to the allowlist in [[vault-capture-loop-spec]]. **Now five, 2026-08-16:** [[2026-08-16-steady-flux-bore-profile-request-owed]] retired the same day it was opened (Jesse handled it by text) and is already stuck. Evidence for the row, not a decision on it. | med | 1 | open |
 | DQ-019 | 2026-08-16 | [[2026-08-16-prestaged-pointer-dead-severity-tiering]] | POINTER-DEAD sits at `warning` tier and folds into a single undifferentiated "Lint warnings: 51 (backlog) ok" count on `health.md` — two of three 2026-08-01 findings sat dead 9 days unnoticed, caught only by reading raw lint output. Promote to lint `error`, give it its own dashboard row, add a procedural reminder at the folder-reorg event that causes it, or leave as-is (3 findings in ~4 weeks, all same-day-fixed once surfaced)? | med | 0 | open |
+| DQ-020 | 2026-08-17 | [[2026-08-17-prestaged-usa26041-estimating-feedback]] | Should any of USA26041's three model-level findings (pig-unit real-cost mix, rig-out duration correction for the six-launcher/triple-mode profile, per-diem calendar-day basis) modify `usadebusk-estimating` now, or does n=1 (Condition `first`) mean all three sit as revisit-triggered observations until a second data point? | high | 0 | open |
 
-**4 open rows** as of 2026-08-16.
+**5 open rows** as of 2026-08-17.
 
 ## Closed
 

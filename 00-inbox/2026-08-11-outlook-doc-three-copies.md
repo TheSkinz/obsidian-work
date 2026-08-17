@@ -1,4 +1,5 @@
 <!-- vault-loop: no home yet, candidate for [outlook-doc-reconciliation] -->
+<!-- vault-prestaged: skipped — already covered; this note already carries its own `type: review` frontmatter, a specific `revisit-trigger`, and a tracked row in 50-dashboards/health.md's Revisit Triggers table gated on "next session touching Outlook, Copilot grounding, or the OneDrive eviction." That event has not occurred since 2026-08-11. Adding a duplicate decision-queue row now would pre-empt the note's own designed gating rather than wait for the trigger it specifies. -->
 ---
 type: review
 status: open
