@@ -5,7 +5,7 @@
 | Metric | Value | Target | Status |
 |---|---|---|---|
 | Open decision rows | 4 | <= 10 | ok |
-| Review notes awaiting decision | 3 | <= 5 | ok |
+| Review notes awaiting decision | 2 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
 | Lint warnings | 40 | (backlog) | ok |
 | Inbox items | 45 | - | ok |
@@ -75,6 +75,6 @@ One row per frozen fixture in `~/.claude/regression/frozen/`. Each reads its own
 ## Notes
 
 - **Decision queue:** [[decision-queue]] — 4 open. Cap is 10; over cap, proposal-generating loops pause.
-- **Review notes awaiting decision:** 3 in `06-insights/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
+- **Review notes awaiting decision:** 2 in `06-insights/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
 - **Lint warnings** are the standing to-do list, not failures — today mostly ORPHAN (notes with no inbound link), INBOX-AGE and DEAD-LINK. The provenance-frontmatter backfill this line used to name was **cleared to zero on 2026-08-16**; OP-FRONTMATTER no longer appears. Detail: run `python tools/vault_lint.py --report` → `50-dashboards/lint-report.md`.
 - **Heartbeats overdue** means a loop row shows FAIL — either the scheduler stopped firing (check the task's enabled state in the desktop app) or a run started and never finished (check the app's session history for that run). A loop that fires and no-ops cleanly shows ok with no new commit — that is healthy, not silent.

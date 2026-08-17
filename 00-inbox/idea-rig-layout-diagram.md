@@ -1,6 +1,6 @@
 ---
 type: idea-seed
-status: active
+status: closed-unactioned
 created: 2026-07-30
 related:
   - "[[2026-07-30-exploration-coil-visualization-for-crews]]"
@@ -61,9 +61,13 @@ data behind a rig layout. The embedding half is genuinely shared but is explicit
 coil-viz note itself ("decide standalone file vs job-sheet page 2 only after it works"). So waiting
 bought nothing. Ungated with Jesse's sign-off; `revisit-trigger:` retired.
 
-**Where it goes next:** the real cost driver was never authoring or relabeling — it was geometry
-correction against hand-placed absolute coordinates. Two candidate fixes (freeze the coordinates
-into per-config templates, or drop coordinates entirely and compute them from layout) went to a
-bounded back-test on F-901 the same day — [[2026-08-16-backtest-rig-diagram-layout-engine]].
-Computed layout passed orthogonal routing, port order and the filtration swap; dual-Trimax is
-unproven and is the case that decides it. Prototype at `apps/rig-diagram/`.
+**Closed 2026-08-16 — no generator.** The back-test ran the same day
+([[2026-08-16-backtest-rig-diagram-layout-engine]]) and answered against building one. Computed
+layout did eliminate orthogonality and hose crossings structurally, but those were the cheap
+failures; domain correctness is not derivable from any drawing engine, so a generator re-opens
+Jesse's review on every run. A frozen template moves that review to once per config — and the
+template set already exists as the four shipped diagrams in [[rig-diagram-corpus]], spanning
+single vs dual Trimax and filtration vs none, already correct and already customer-accepted.
+
+Revisit only on a job whose configuration none of those four covers. Prototype stays at
+`apps/rig-diagram/` as evidence, not as a path.

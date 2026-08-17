@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: backtest
 source_authority: primary
 confidence: high
@@ -122,25 +122,46 @@ rather than anything intrinsic. A fair reading is that the approach front-loads 
 machinery that then holds, whereas the freeze approach front-loads it into templates that also
 hold but do not generalise. The evidence favours computed layout; it does not make it obvious.
 
-## Recommended Action
+## Recommended Action — reversed 2026-08-16, after the review
 
-Prove dual-Trimax on F-802 before committing to anything. If it holds, adopt computed layout as
-the path and retire the twelve-template plan; if it does not, the freeze approach is still
-sitting there and nothing has been lost but this session.
+**Do not build the generator. Use the four shipped diagrams as the template set.**
 
-Do **not** wire this to heater cards yet. The data object is currently hand-filled, and whether
-it should read `## Connection Info (Facts)` off the card is a separate decision that overlaps
-the coil-visualization build's parser work.
+The back-test measured correction rounds, and the honest reading is that the loop did not
+collapse. Five rounds got to something that looked right; Jesse's review then found six more
+errors, four of them domain facts; and he called the remaining tail at another two-plus hours of
+explaining adjustments and hand-fixing outside the tool. That is the same loop the March 2026
+threads ran, which is exactly what this was supposed to avoid.
+
+**What the structural guarantees actually bought.** Orthogonality and hose crossings are
+genuinely eliminated — they cannot recur. But those were the cheap failures. The expensive one
+is domain correctness, and it is not derivable from any drawing engine: that the frac tank is
+off-system, that launchers bolt to the heater flange, that a Trimax never out-scales the heater.
+A generator re-derives geometry on every run and therefore **re-opens domain review on every
+run**, and Jesse is the only domain reviewer. No rendering technology changes that, D2 included.
+
+**A frozen template does change it.** Review happens once per config and then carries forward;
+per-job work is find-and-replace on already-reviewed geometry. That was Jesse's own May-2026
+conclusion, and this session is evidence for it rather than against it.
+
+**The template set already exists and does not need building.** [[rig-diagram-corpus]] holds four
+shipped diagrams spanning single vs dual Trimax and filtration vs none — already domain-correct,
+already customer-accepted. The unbuilt piece was never the templates; it is only the habit of
+picking the closest one and relabeling.
+
+`apps/rig-diagram/` stays filed as back-test evidence, not as a path. Do not wire it to heater
+cards.
 
 ## Decision
 
 **Mutually exclusive — pick one.**
 
-- [ ] Prove dual-Trimax on F-802, then decide (recommended)
-- [ ] Adopt computed layout now on the single-Trimax evidence
-- [ ] Install D2 and run the comparison the plan originally named
-- [ ] Revert to the twelve frozen templates
-- [ ] Park — the five hand-made diagrams are sufficient
+- [x] **Use the four shipped diagrams as the template set; no generator** (2026-08-16)
+- [ ] ~~Prove dual-Trimax on F-802, then decide~~
+- [ ] ~~Adopt computed layout on the single-Trimax evidence~~
+- [ ] ~~Install D2 and run the comparison the plan originally named~~
+
+**Revisit trigger:** a job whose configuration none of the four existing diagrams covers. Until
+then this is closed.
 
 ## Apply Log
 
