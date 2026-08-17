@@ -129,6 +129,7 @@
 - [[17-glossary]] — 17. Glossary `(manual)`
 - [[18-reference-tables]] — 18. Reference Tables `(manual)`
 - [[_cost-model]] — Internal Cost Model `(pricing)`
+- [[rig-diagram-corpus]] — Rig / Hose Layout Diagram Corpus
 - [[sop-formatting-standard]] — SOP Formatting Standard `(sops)`
 - [[vault-agent-loop-spec]] — Vault Agent Loop Spec
 - [[vault-capture-loop-spec]] — Vault Capture Loop Spec

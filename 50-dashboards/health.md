@@ -28,7 +28,7 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 | Idea-research loop | 2026-08-16 (0 d ago) | 2026-08-16 (0 d ago) | 30 d | ok |
 | Pre-staging loop | 2026-08-16 (0 d ago) | 2026-08-16 (0 d ago) | 30 d | ok |
 | Consolidation loop | 2026-08-15 (1 d ago) | 2026-08-15 (1 d ago) | 31 d | ok |
-| Skill-drift loop | 2026-08-01 (15 d ago) | 2026-08-01 (15 d ago) | 62 d | ok |
+| Skill-drift loop | 2026-08-01 (16 d ago) | 2026-08-01 (15 d ago) | 62 d | ok |
 
 ## Commercial pipeline
 
@@ -50,8 +50,7 @@ Every recorded wake-up condition (`revisit-trigger:` frontmatter) — parked ide
 |---|---|---|
 | [[2026-07-24-parallel-friction-factor-deferred]] | Actuals rollup carries 3-4 routine multi-pass rows with a recorded Mode -> decide whether the Duration Model gets a mode-friction term — event: check when a multi-pass TA lands actuals | event — checked at the step the condition names |
 | [[2026-08-11-outlook-doc-three-copies]] | Next session touching Outlook, Copilot grounding, or the OneDrive eviction -> read Phase 1 Outlook Operating Procedure - Reference.docx, decide which of the three folder-structure documents survives, and check whether it holds the five email-rule bodies that exist nowhere else — event: check at the next M365 session | event — checked at the step the condition names |
-| [[idea-llm-navigable-vault-map]] | Vault reaches 450 live notes (292 at the time of writing, 2026-08-15) -> re-run the retrieval eval in [[knowledge-system-evaluation-questions]]; if it shows failures, this idea unparks, and if it does not, re-park at the next threshold [machine: note-count>=450] | live notes: 287 of 450 |
-| [[idea-rig-layout-diagram]] | Coil-visualization Tier 2+3 build lands (approved 2026-08-01, owed at [[2026-08-01-coil-visualization-build-owed]]) -> research the rig/hose layout diagram against the render path that build establishes — event: check when the coil-viz SVG generator exists (verified still unbuilt 2026-08-03, tools/ has no such generator) | event — checked at the step the condition names |
+| [[idea-llm-navigable-vault-map]] | Vault reaches 450 live notes (292 at the time of writing, 2026-08-15) -> re-run the retrieval eval in [[knowledge-system-evaluation-questions]]; if it shows failures, this idea unparks, and if it does not, re-park at the next threshold [machine: note-count>=450] | live notes: 288 of 450 |
 | [[rfq-intake-protocol]] | About 12 quote notes under a settled rate-table heading convention -> build the cross-quote rate-history rollup [machine: quote-count>=12] | quote notes: 11 of 12 |
 | [[2026-07-19-rate-model-grain-review]] | First bid under a multi-year or master agreement -> build the contract-note type (proposal C, rejected 2026-07-19) — event: check at RFQ intake | event — checked at the step the condition names |
 | [[2026-07-31-prestaged-routine-service-derate-seed-data]] | 10 routine mode-normalized rows in the actuals rollup -> revisit the ft/hr service derate (n=5 at ruling, 2026-08-01) [machine: routine-rows>=10] | routine rows: 5 of 10 |
