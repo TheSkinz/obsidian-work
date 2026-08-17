@@ -19,7 +19,7 @@ Skills drive specialized behavior. When a task touches USADebusk work, the relev
 - `usadebusk-core` — always loaded for USADebusk tasks
 - `usadebusk-equipment`, `usadebusk-estimating`, `usadebusk-fieldpm`, `usadebusk-ops`, `usadebusk-sop` — domain-specific
 - `usadebusk-vault-ingest` — converts raw docs to vault notes
-- `adversarial-review`, `idea-triage` — general-purpose (non-USADebusk) skills
+- `adversarial-review`, `idea-triage`, `adhd` — general-purpose (non-USADebusk) skills. `adhd` is the divergent generator that feeds `idea-triage`; both are command-only
 
 (The `claude-obsidian` plugin was dropped 2026-06-30 and fully uninstalled 2026-07-06 — its skills are no longer available.)
 
@@ -294,5 +294,6 @@ Source: capture-loop harvest, 2026-08-16 sessions (`c2fa50c1`, `240e2175`) — c
 
 ## Links
 
+- [[output-styles]] — the system-prompt layer, and why the vault's output rules stay in CLAUDE.md
 - Config repo: https://github.com/TheSkinz/claude-config
 - Vault CLAUDE.md: `C:\Users\Jwuts\obsidian-work\CLAUDE.md`
