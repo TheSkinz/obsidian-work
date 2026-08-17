@@ -1,3 +1,4 @@
+<!-- vault-loop: no home yet, candidate for brand-standards -->
 ---
 type: note
 status: open

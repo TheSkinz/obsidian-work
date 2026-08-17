@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — ExxonMobil/F-501 estimating loose end, superseded by its own retirement block but not a terminal-allowlist status. Capture loop cannot write this content. -->
 ---
 type: note
 status: closed-unactioned

@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — config-repo/hooks/skills linting findings, awaiting adoption ruling on agnix. Capture loop cannot write this content. -->
 ---
 type: finding
 status: open

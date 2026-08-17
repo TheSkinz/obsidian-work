@@ -282,6 +282,16 @@ Confirmed a second time, 2026-08-13: a filled-out macro-enabled Office file (`.x
 
 Source: Claude Code session `fdec79dc`, 2026-08-13 (ExxonMobil Baytown F-501 change-order session).
 
+## An unquoted colon-space in frontmatter fails YAML parsing silently, and the harness just treats the field as absent
+
+A recurring defect class in this config repo: a prose value containing `": "` (a literal colon-space) inside an *unquoted* YAML frontmatter field — description, a `related:` prose sentence, anything free-text — makes a strict YAML parser read it as a nested mapping and abort the whole block. The symptom is never an error. Claude Code does not validate `SKILL.md` frontmatter against a schema; a field that fails to parse just behaves as though it were never set, so the skill or task keeps running on defaults with no visible signal that anything is wrong.
+
+Confirmed on three separate occasions, same root cause each time: `usadebusk-fieldpm`'s description field (silently disabled the skill for three weeks before catching it), `scheduled-tasks/vault-consolidation-loop/SKILL.md`'s description (`Monthly wiki-consolidation pass on 07/08/09: merge duplicates, …` — the loop kept firing on schedule throughout, because the scheduler doesn't depend on the frontmatter parsing), and five of six frozen regression-test fixtures under `~/.claude/regression/frozen/*.md`. A bespoke checker built to catch this class is only as good as its glob — one built against `skills/*/SKILL.md` reported all nine skills clean while missing the exact same defect one directory over, under `scheduled-tasks/*/SKILL.md`, until the glob was widened. A general-purpose linter that walks the whole config tree (rather than a hand-picked path list) catches what a narrow, purpose-built glob cannot, precisely because it doesn't have to be told in advance where to look.
+
+Practical takeaway: never trust a `yaml.safe_load()`-based check as proof a frontmatter field parses across an entire config tree — verify the glob covers every directory that carries the file type, not just the ones the checker's author remembered.
+
+Source: capture-loop harvest, 2026-08-16 sessions (`c2fa50c1`, `240e2175`) — config-repo frontmatter audit and agnix trial.
+
 ## Links
 
 - Config repo: https://github.com/TheSkinz/claude-config
