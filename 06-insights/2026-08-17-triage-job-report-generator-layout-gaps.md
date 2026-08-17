@@ -224,7 +224,8 @@ First steps for Jesse: answer the open question on the lead-in default, which is
 blocking execute item 2. Execute item 1 needs nothing from him and can land immediately. The test
 needs one USA25025 render and should happen before the next Baytown report.
 
-Adjacent and untouched: [[2026-08-16-report-gold-two-values]] is an open `decision-needed` note on
-the same file — every report USADebusk has sent a customer carries `#F2A900` while the generator
-emits `#FCC30A`. Not in this dump and not dispositioned here, but it is a second Jesse-only call
-queued against `render_job_report.py`, and both would be cheaper to answer in one sitting.
+Adjacent, and closed the same day: [[2026-08-16-report-gold-two-values]] asked whether the
+generator's `#FCC30A` or the shipped documents' `#F2A900` was the house gold. **Jesse ruled
+2026-08-17 — `#FCC30A`, nothing changes.** Older documents carrying a slightly different amber are
+expected drift, not a defect to chase. `GOLD` in `render_job_report.py` stays as it is, and the
+generator's `scripts/README.md` now records the ruling instead of an unresolved discrepancy.

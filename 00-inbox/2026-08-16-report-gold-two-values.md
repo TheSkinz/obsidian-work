@@ -1,15 +1,23 @@
-<!-- vault-loop: no home yet, candidate for brand-standards -->
 ---
 type: note
-status: open
+status: closed-unactioned
 created: 2026-08-16
-tags: [loose-end, brand, job-report, decision-needed]
+decided: 2026-08-17
+tags: [loose-end, brand, job-report]
 related: [[USA26041-job-report]]
 ---
 
-# Two golds are in circulation on shipped documents — pick one
+# Two golds are in circulation on shipped documents — settled on `#FCC30A`
 
-Open decision carried out of the USA26041 close-out, 2026-08-16. Needs Jesse.
+**Decided 2026-08-17 (Jesse): `#FCC30A` is the house gold. Nothing changes.** The brand doc is
+right and the generator is right. Older documents carrying a different amber are just older —
+per Jesse, "you'll find older docs with slightly different colors from time to time, it's not a
+big deal." No code change, no brand-doc change, no back-fixing of `#F2A900` artifacts.
+
+The evidence that raised the question is kept below because it is the reason this stays closed:
+anyone re-sampling a shipped PDF will find `#F2A900` again and should not re-open it.
+
+Original note, 2026-08-16:
 
 Sampled from the artifacts themselves, not from documentation:
 
@@ -32,3 +40,5 @@ every rule, section header, KPI band and callout in every future report, so this
 to make in passing.
 
 Recorded on the generator's `scripts/README.md` so nobody "fixes" it silently in either direction.
+
+**Outcome:** the first option. Jesse ruled 2026-08-17 — see the header.
