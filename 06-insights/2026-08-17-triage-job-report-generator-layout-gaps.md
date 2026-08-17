@@ -39,9 +39,17 @@ artifacts, and they point at different defaults. This is a Jesse call, not an id
 
 ## Execute
 
-### 1. Refuse to overwrite an existing output file
+### 1. Refuse to overwrite an existing output file — DONE 2026-08-17
 
 **Verdict: execute.** This is the survivor of a red-team that killed the proposal it came from.
+**Landed the same day.** `main()` now parses `--force` out of argv and refuses when the output path
+exists, checked before the workbook is read so it fails fast. Verified four ways: a new path writes,
+an existing path refuses with exit 1 and a **hash-identical** file afterward, `--force` writes, and
+a bad argument count prints usage. Then verified against the real thing — the exact invocation that
+destroyed the edits on 2026-08-16, pointed at the delivered
+`USA26041_Job Report_ExxonMobil Baytown F-501_2026-08.docx`, refused and left the file byte-identical
+(`ab8e30e0…`). `scripts/README.md`, `SKILL.md` §`/report` and the USA26041 config docstring now
+describe the guard instead of asking people to be careful.
 
 The original idea was a two-layer scheme: a filename convention plus a `PROOF`/`RELEASED` state
 stamped in the docx core properties. The red-team took it apart correctly. Trace the sequence — the
@@ -229,9 +237,11 @@ not closer.
 
 **2 execute · 1 test · 1 park · 1 merged as duplicate · 10 kill**
 
-**Status as of 2026-08-17 close:** execute item 2 is done. Execute item 1 (the write guard) is
-unblocked and unbuilt — it needs nothing from Jesse. The test needs one USA25025 render and should
-happen before the next Baytown report.
+**Status as of 2026-08-17 close: both execute items are done and verified.** What remains is the
+test — one USA25025 render with the pig split forced off, rasterized, to find where a single table
+stops fitting — and it should happen before the next Baytown report. The park
+([[idea-generator-owns-marked-spans-not-layout]]) is gated behind a second edit-loss, which the
+write guard now makes considerably less likely.
 
 Adjacent, and closed the same day: [[2026-08-16-report-gold-two-values]] asked whether the
 generator's `#FCC30A` or the shipped documents' `#F2A900` was the house gold. **Jesse ruled
