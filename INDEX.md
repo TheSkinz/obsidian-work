@@ -190,6 +190,7 @@
 - [[2026-08-13-prestaged-syncrude-fill-flush-question]] — Review — Does the Syncrude ~6 ft/hr per-coilset figure include fill/flush time, and does it matter today?
 - [[2026-08-14-prestaged-obsidian-link-retargeting-guard]] — Review — Should the vault add a lint check for wikilinks resolved to the wrong facility?
 - [[2026-08-15-prestaged-decision-queue-duplicate-closed-tables]] — Review — Should `decision-queue.md` merge its two differently-shaped Closed tables?
+- [[2026-08-16-backtest-rig-diagram-layout-engine]] — Back-test — Rig Diagram: computed layout vs frozen template
 - [[2026-08-16-idea-research-rollup-rig-in-column-is-mixed-method]] — Idea Research — The Actuals Rollup's Rig-In Column Is Mixed-Method
 - [[2026-08-16-prestaged-pointer-dead-severity-tiering]] — Review — Should POINTER-DEAD be pulled out of the generic lint-warning backlog?
 
