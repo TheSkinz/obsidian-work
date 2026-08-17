@@ -1,8 +1,9 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-08-16
 tags: [idea, fieldpm, job-report, generator, future]
+related: [[2026-08-17-triage-job-report-generator-layout-gaps]]
 ---
 
 # Job-report generator: three layout gaps that force hand-editing
