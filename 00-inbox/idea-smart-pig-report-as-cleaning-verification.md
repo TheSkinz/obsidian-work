@@ -30,6 +30,23 @@ customer's own acceptance of the inspection data (the `manual/14` rig-out gate) 
 than the report text. And whether it changes anything commercially — does it help win the next bid,
 shorten a dispute, or is it just nice to have.
 
-**Gate:** Needs at least one more smart-pig-elected job's report to test the "what if the report is
-unflattering" case before this becomes proposal language. DSP26085 (F-201, Jan 2027) carries smart
-pigging and would be the second instance.
+**Gate:** Needs at least one more smart-pig-elected job's *report* to test the "what if the report is
+unflattering" case before this becomes proposal language. **Obtain a second vendor report** — that is
+the gate, not a future job.
+
+**Corrected 2026-08-17.** This seed originally read that DSP26085 (F-201, Jan 2027) "would be the
+second instance." That is wrong, and it set the gate five months out for no reason. Smart pigging has
+been elected on at least five prior USADebusk jobs: Syncrude 7-1-F-1 on both CND24002 and CND25004
+(Quest, all 8 coils each), Flint Hills 01-BA-105 and 02-BA-201 (Quest, all 4 coils each), and Valero
+Port Arthur H-102B (Quest Integrity, all 8 passes). The Syncrude card even carries the claim shape
+this seed is reaching for — the heaviest-fouled radiant tubes at the outlet, where "smart pig found
+minimal fouling there, 'typical of previous decokes.'"
+
+What is actually true is narrower: **F-501 is the first instance where USADebusk holds the vendor's
+own report as a file** (`26-0663-002 Rev. A`, USA26041 Job Files). The prior instances reach the vault
+secondhand, quoted inside USADebusk job reports. So the blocker is document access, not elapsed time,
+and asking Quest or the customer for one of the four earlier reports may be faster than waiting on a
+quote that is still `status: pending`.
+
+Found during the ADHD-skill back-test, 2026-08-17; every instance above verified against the heater
+cards.
