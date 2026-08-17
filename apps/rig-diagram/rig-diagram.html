@@ -26,46 +26,55 @@
   .client{font-size:10.5px;color:var(--dim2);letter-spacing:.1em;
           text-transform:uppercase;margin-top:4px}
 
-  /* Blocks are placed by grid/flex. Nothing below is a hand-set coordinate. */
   .stage{position:relative;margin-top:14px;flex:1;width:100%;
          display:flex;align-items:center}
+  /* L/R column sits hard against the heater: launchers and receivers are
+     bolted to the heater flanges, not hung on a second hose run. */
   .cols{position:relative;z-index:2;display:grid;width:100%;
-        grid-template-columns:146px 372px 96px minmax(200px,1fr);
-        gap:0 78px;align-items:center}
-  /* size is set explicitly in JS from the stage rect — percentage sizing on
-     an SVG resolves against its own intrinsic box and silently disagreed
-     with the layout, which scaled every drawn coordinate */
+        grid-template-columns:154px 300px minmax(360px,1fr);
+        column-gap:38px; align-items:center}
+  /* L/R stack and heater are siblings so the launchers sit hard against
+     the heater flange; the hose lane is the group's left margin. */
+  .rig{display:flex;align-items:center;margin-left:104px}
+  .lrwrap{width:92px;flex:none}
+  .rig .heater{flex:1;margin-left:8px}
+
   svg.wires{position:absolute;left:0;top:0;z-index:3;
             overflow:visible;pointer-events:none}
 
-  .col{display:flex;flex-direction:column;gap:26px}
+  .col{display:flex;flex-direction:column;align-items:stretch}
 
   .blk{border:1.5px solid var(--border2);background:var(--panel);border-radius:3px;
-       padding:8px 9px;text-align:center}
+       padding:7px 9px;text-align:center}
   .blk .lbl{font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
   .blk .meta{font-size:8.5px;color:var(--dim2);margin-top:2px;letter-spacing:.04em}
 
-  .frac{border-color:#3d4a5c;background:#141c26}
-  .frac .lbl{color:#aebcd0}
+  /* the frac tank is not part of the closed loop — separated deliberately */
+  .offsystem{border-color:#3d4a5c;background:#141c26}
+  .offsystem .lbl{color:#aebcd0}
+  .offnote{font-size:8px;color:var(--dim);letter-spacing:.08em;text-transform:uppercase;
+           text-align:center;margin-top:4px}
   .press{border-color:var(--filt);background:#0d1a12}
   .press .lbl{color:var(--filt)}
   .plates{display:flex;gap:2px;justify-content:center;margin-top:5px}
-  .plates i{width:3px;height:22px;background:#2f6b45;display:block}
+  .plates i{width:3px;height:18px;background:#2f6b45;display:block}
   .pump43{border-color:#3b82f6;background:#101c30}
   .pump43 .lbl{color:#7dabff}
 
-  .trimax{border:2px solid var(--gold);border-radius:5px;padding:10px;
-          display:flex;gap:8px;align-items:stretch;background:#10151b}
-  .tank{flex:1;border:1.5px solid;border-radius:3px;min-height:225px;
+  /* Trimax is roughly frac-tank scale — it is a trailer, not a building.
+     It must never read taller than the heater. */
+  .trimax{border:2px solid var(--gold);border-radius:5px;padding:8px;
+          display:flex;gap:7px;align-items:stretch;background:#10151b}
+  .tank{flex:1;border:1.5px solid;border-radius:3px;min-height:96px;
         display:flex;align-items:center;justify-content:center;
-        font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+        font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
   .dirty{border-color:#a1500f;background:#2a1408;color:#e08a3c}
   .clean{border-color:#2563eb;background:#0d1b3d;color:#7dabff}
   .pumps{display:flex;flex-direction:column;justify-content:space-around;
-         padding-left:7px;border-left:1px solid var(--border2)}
-  .pmp{width:32px;height:32px;border-radius:50%;border:2px solid;
+         padding-left:6px;border-left:1px solid var(--border2)}
+  .pmp{width:26px;height:26px;border-radius:50%;border:2px solid;
        display:flex;align-items:center;justify-content:center;
-       font-size:10.5px;font-weight:700;background:#0b1017}
+       font-size:9px;font-weight:700;background:#0b1017}
   .tcap{text-align:center;font-size:9px;color:var(--gold);letter-spacing:.12em;
         text-transform:uppercase;margin-top:5px;font-weight:700}
 
@@ -73,8 +82,8 @@
           text-align:center;margin-bottom:6px;line-height:1.35}
   .lr{display:flex;flex-direction:column}
   .lrpair{display:flex;flex-direction:column;gap:4px}
-  .lrbox{border:1.5px solid;border-radius:3px;padding:5px 0;text-align:center;
-         font-size:10.5px;font-weight:700;letter-spacing:.06em}
+  .lrbox{border:1.5px solid;border-radius:3px;padding:4px 0;text-align:center;
+         font-size:10px;font-weight:700;letter-spacing:.06em}
 
   .heater{border:2px solid var(--green);border-radius:4px;background:#08170e;
           display:flex;flex-direction:column;align-items:center;
@@ -84,7 +93,7 @@
   .heater .hc{font-size:15px;font-weight:600;color:#cfe8d8}
 
   .info{display:grid;grid-template-columns:1.3fr 1fr 1fr;
-        border:1px solid var(--border2);margin-top:18px;background:var(--panel)}
+        border:1px solid var(--border2);margin-top:16px;background:var(--panel)}
   .ib{padding:10px 14px;border-right:1px solid var(--border2)}
   .ib:last-child{border-right:none}
   .ibh{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
@@ -105,6 +114,7 @@
   .stamp{margin-top:9px;font-size:9px;color:var(--dim2);letter-spacing:.08em;
          text-transform:uppercase;text-align:right}
   .wlabel{font-size:8px;fill:#93a3b8;letter-spacing:.04em}
+  .plabel{font-size:7.5px;fill:#7f8fa4;letter-spacing:.03em}
 </style>
 </head>
 <body>
@@ -117,8 +127,6 @@
   <div class="stage" id="stage">
     <svg class="wires" id="wires"></svg>
     <div class="cols">
-
-      <!-- built from JOB: which blocks exist is a data question, not a template one -->
       <div class="col" id="col-util"></div>
 
       <div>
@@ -130,16 +138,16 @@
         <div class="tcap">Trimax Pumper Unit</div>
       </div>
 
-      <div>
-        <div class="lrhead" id="lr-head"></div>
-        <div class="lr" id="b-lr"></div>
+      <div class="rig">
+        <div class="lrwrap">
+          <div class="lrhead" id="lr-head"></div>
+          <div class="lr" id="b-lr"></div>
+        </div>
+        <div class="heater" id="b-heater">
+          <div class="hn" id="h-name"></div>
+          <div class="hc">Coils / Passes</div>
+        </div>
       </div>
-
-      <div class="heater" id="b-heater">
-        <div class="hn" id="h-name"></div>
-        <div class="hc" id="h-caption">Coils / Passes</div>
-      </div>
-
     </div>
   </div>
 
@@ -154,19 +162,19 @@
 
 <script>
 /* =====================================================================
-   DATA — the entire per-job input. Everything below is generic
-   machinery. There is not one coordinate in here.
+   DATA — the entire per-job input. Nothing below is a coordinate.
    ===================================================================== */
 const JOB = {
   title:  "F-901 Fired Heater Decoking",
   sub:    "Single Trimax / Triple Mode Operation",
   client: "ExxonMobil Baytown — PS8 (KHF)",
   heater: "F-901 Heater",
-  hoseLabel: '3" FIG 200',
-  portSpec:  '5" 300#',
-  lrHead: 'Launchers &amp; Receivers<br>(5" 300# Connections)',
+  hoseLabel: '3" FIG 200 jetting hoses',
+  portSpec:  '5" 300# RFWN',
+  lrHead: 'Launchers &amp; Receivers<br>bolted to heater flanges',
   filtration: true,
-  waterSource: { kind:"frac", label:"Frac Tank", meta:"20,000 Gal" },
+  waterSource: { kind:"frac", label:"Frac Tank", meta:"20,000 Gal",
+                 note:"Off-system — initial fill only" },
   circuits: [
     { id:1, color:"--c1", name:"Pass 1 — Process Coils (Convection + Radiant)",
       detail:'Two coils looped via JS-1 | 3,168 ft | 5.043" ID' },
@@ -184,7 +192,7 @@ const JOB = {
   ],
   equip: [
     ["TriMax", "1 Unit (Triple Mode)"],
-    ["Water Source", "1x 20,000 Gal Frac Tank"],
+    ["Water Source", "1x 20,000 Gal Frac Tank (initial fill)"],
     ["Filtration", "1x DeBusk Filter Press"],
     ["Transfer", "1x 4x3 Trash Pump (Linear loop)"],
     ["Inspection", "Steady-Flux Smart Pigging"]
@@ -200,39 +208,47 @@ $('t-client').textContent = JOB.client;
 $('h-name').textContent   = JOB.heater;
 $('lr-head').innerHTML    = JOB.lrHead;
 
-/* ---- left utility column: presence is driven by the data ---- */
-function blk(id, cls, lbl, meta, plates){
+/* ---- left column. The frac tank is drawn clear of the closed loop and
+        spaced away from it: it feeds the pumper at the start of the job
+        and is not part of the circulating system. ---- */
+function blk(id, cls, lbl, meta, opts={}){
   const d=document.createElement('div');
   d.className='blk '+cls; d.id=id;
   d.innerHTML = `<div class="lbl">${lbl}</div>`
     + (meta ? `<div class="meta">${meta}</div>` : '')
-    + (plates ? '<div class="plates">'+'<i></i>'.repeat(10)+'</div>' : '');
+    + (opts.plates ? '<div class="plates">'+'<i></i>'.repeat(10)+'</div>' : '');
+  if (opts.mb) d.style.marginBottom = opts.mb;
   $('col-util').appendChild(d);
+  if (opts.note){
+    const n=document.createElement('div');
+    n.className='offnote'; n.textContent=opts.note;
+    n.style.marginBottom = opts.mb || '0';
+    d.style.marginBottom='0'; $('col-util').appendChild(n);
+  }
   return d;
 }
 const WS = JOB.waterSource;
-blk('b-water', WS.kind==='hydrant' ? 'frac' : 'frac', WS.label, WS.meta);
+blk('b-water','offsystem', WS.label, WS.meta, { note: WS.note, mb:'46px' });
 if (JOB.filtration){
-  blk('b-press','press','DeBusk Filter Press', null, true);
+  blk('b-press','press','DeBusk Filter Press', null, { plates:true, mb:'26px' });
   blk('b-p43','pump43','4&times;3 Trash Pump','Linear Loop');
 } else {
-  blk('b-drain','frac','To Coke Pit /<br>Oily Water Sewer','Effluent — no filtration');
+  blk('b-drain','offsystem','To Coke Pit /<br>Oily Water Sewer', null,
+      { note:'No filtration' });
 }
 
-/* Pumps and L/R pairs are emitted from the same ordered list, so the pump
-   stack order and the launcher order match top-to-bottom by construction. */
+/* pumps and L/R pairs emit from one ordered list */
 JOB.circuits.forEach(c => {
   const col = cv(c.color);
-
   const p = document.createElement('div');
   p.className='pmp'; p.id='pmp-'+c.id;
-  p.style.borderColor=col; p.style.color=col; p.textContent='P';
+  p.style.borderColor=col; p.style.color=col; p.textContent=c.id;
   $('b-pumps').appendChild(p);
 
-  const pair = document.createElement('div');
+  const pair=document.createElement('div');
   pair.className='lrpair';
-  pair.style.marginBottom = (c.id === JOB.circuits.length ? '0' : '36px');
-  ['L','R'].forEach(k => {
+  pair.style.marginBottom = (c.id===JOB.circuits.length ? '0' : '24px');
+  ['L','R'].forEach(k=>{
     const b=document.createElement('div');
     b.className='lrbox'; b.id=k+'-'+c.id;
     b.style.borderColor=col; b.style.color=col; b.style.background=col+'1a';
@@ -250,17 +266,11 @@ $('f-arch').innerHTML  = kv(JOB.arch);
 $('f-equip').innerHTML = kv(JOB.equip);
 
 /* =====================================================================
-   ROUTING — every path is derived from measured element rects and
-   emitted as H/V segments only. A diagonal is not representable.
-   Heater ports are drawn at the measured y of their own L/R box, so
-   they cannot drift out of alignment with it.
+   ROUTING
    ===================================================================== */
 const svg = $('wires'), NS='http://www.w3.org/2000/svg';
 const defs = document.createElementNS(NS,'defs');
 
-/* Origin is the STAGE, which is the element the blocks are actually laid out
-   in. Measuring against the svg's own rect made the coordinate space depend
-   on the svg's size, which is the thing being derived from it. */
 function origin(){ return $('stage').getBoundingClientRect(); }
 function rect(id){
   const r=$(id).getBoundingClientRect(), o=origin();
@@ -285,7 +295,7 @@ function marker(color){
   const m=document.createElementNS(NS,'marker');
   m.setAttribute('id',id); m.setAttribute('viewBox','0 0 10 10');
   m.setAttribute('refX','9'); m.setAttribute('refY','5');
-  m.setAttribute('markerWidth','5.5'); m.setAttribute('markerHeight','5.5');
+  m.setAttribute('markerWidth','5'); m.setAttribute('markerHeight','5');
   m.setAttribute('orient','auto-start-reverse');
   const p=document.createElementNS(NS,'path');
   p.setAttribute('d','M 0 0 L 10 5 L 0 10 z'); p.setAttribute('fill',color);
@@ -294,7 +304,7 @@ function marker(color){
 function wire(pts,color,o={}){
   const p=document.createElementNS(NS,'path');
   p.setAttribute('d',ortho(pts)); p.setAttribute('fill','none');
-  p.setAttribute('stroke',color); p.setAttribute('stroke-width',o.w||1.6);
+  p.setAttribute('stroke',color); p.setAttribute('stroke-width',o.w||1.5);
   p.setAttribute('stroke-linejoin','miter');
   if(o.dash) p.setAttribute('stroke-dasharray',o.dash);
   if(o.arrow!==false) p.setAttribute('marker-end',`url(#${marker(color)})`);
@@ -304,12 +314,12 @@ function box(x,y,w,h,fill){
   const r=document.createElementNS(NS,'rect');
   r.setAttribute('x',x); r.setAttribute('y',y);
   r.setAttribute('width',w); r.setAttribute('height',h);
-  r.setAttribute('fill',fill); r.setAttribute('rx','1');
-  svg.appendChild(r);
+  r.setAttribute('fill',fill); r.setAttribute('rx','1'); svg.appendChild(r);
 }
-function label(x,y,text,anchor){
+function label(x,y,text,anchor,cls){
   const t=document.createElementNS(NS,'text');
-  t.setAttribute('x',x); t.setAttribute('y',y); t.setAttribute('class','wlabel');
+  t.setAttribute('x',x); t.setAttribute('y',y);
+  t.setAttribute('class',cls||'wlabel');
   t.setAttribute('text-anchor',anchor||'middle'); t.textContent=text;
   svg.appendChild(t);
 }
@@ -317,98 +327,114 @@ function label(x,y,text,anchor){
 function draw(){
   svg.innerHTML=''; defs.innerHTML=''; svg.appendChild(defs); seq=0;
   const o=origin();
-  svg.setAttribute('width',  o.width);
-  svg.setAttribute('height', o.height);
+  svg.setAttribute('width',o.width); svg.setAttribute('height',o.height);
   svg.setAttribute('viewBox',`0 0 ${o.width} ${o.height}`);
 
-  const heater = rect('b-heater');
+  const tri = rect('b-trimax'), heater = rect('b-heater');
 
+  /* ---- jetting hoses, Trimax pump ports -> launchers / receivers ----
+     One lane per run, ordered by target height. Sources are ordered the
+     same way (Out above In, pump 1 above pump 2), so the fan is planar:
+     two hoses structurally cannot cross. */
+  const runs = [];
   JOB.circuits.forEach(c => {
-    const col  = cv(c.color);
     const pump = rect('pmp-'+c.id);
-    const lbox = rect('L-'+c.id);
-    const lane = (lbox.x - pump.right)/2;
+    runs.push({ c, port:'Out', srcY:pump.cy-4, box:rect('L-'+c.id), id:'L-'+c.id });
+    runs.push({ c, port:'In',  srcY:pump.cy+4, box:rect('R-'+c.id), id:'R-'+c.id });
+  });
+  runs.sort((a,b) => a.box.cy - b.box.cy);
 
-    ['L','R'].forEach((k,i) => {
-      const b     = rect(k+'-'+c.id);
-      const out   = i===0;                       // launcher = supply, receiver = return
-      const start = { x:pump.right, y:pump.cy + (out ? -6 : 6) };
-      const mid   = pump.right + lane + (out ? -7 : 7);
+  const laneStart = tri.right + 16;
+  const laneEnd   = rect('L-1').x - 14;
+  const step      = (laneEnd - laneStart) / Math.max(1, runs.length - 1);
 
-      wire([start, {x:mid, y:start.y}, {x:mid, y:b.cy}, {x:b.x, y:b.cy}],
-           col, { dash: out ? null : '5 4' });
-
-      /* heater port: drawn at this box's own measured centre line */
-      box(heater.x-5, b.cy-5, 10, 10, '#5c6b7a');
-      wire([{x:b.right, y:b.cy}, {x:heater.x-6, y:b.cy}],
-           col, { dash: out ? null : '5 4' });
-    });
-
+  runs.forEach((r, k) => {
+    const col  = cv(r.c.color);
+    const lane = laneStart + k*step;
+    const supply = r.port === 'Out';
+    if (supply){
+      /* clean water out to the launcher */
+      wire([{x:tri.right, y:r.srcY}, {x:lane, y:r.srcY},
+            {x:lane, y:r.box.cy}, {x:r.box.x, y:r.box.cy}], col);
+    } else {
+      /* return water comes BACK from the receiver into the pump */
+      wire([{x:r.box.x, y:r.box.cy}, {x:lane, y:r.box.cy},
+            {x:lane, y:r.srcY}, {x:tri.right, y:r.srcY}], col, {dash:'5 4'});
+    }
+    label(lane, r.box.cy - 6, `P${r.c.id} ${r.port}`, 'middle', 'plabel');
   });
 
-  /* one hose-spec label in the lane, above the whole stack — per-circuit
-     labels collided with the wires they were meant to annotate */
-  const lrAll = rect('b-lr'), tri0 = rect('b-trimax');
-  label((tri0.right + lrAll.x)/2, lrAll.y - 10, JOB.hoseLabel);
-  label(heater.cx, heater.bottom + 15, JOB.portSpec + ' RFWN heater ports');
+  label((tri.right + rect('L-1').x)/2, rect('b-lr').y - 12, JOB.hoseLabel);
 
-  /* filtration: dirty tank -> 4x3 pump -> press -> back into clean tank */
+  /* ---- launchers/receivers are bolted to the heater flanges ----
+     Drawn as a short rigid stub with a flange pad, not a hose run. */
+  JOB.circuits.forEach(c => {
+    ['L','R'].forEach(k => {
+      const b = rect(k+'-'+c.id);
+      wire([{x:b.right, y:b.cy}, {x:heater.x, y:b.cy}],
+           cv(c.color), { arrow:false, w:3 });
+      box(heater.x-3, b.cy-6, 6, 12, '#9fb0c4');
+    });
+  });
+  label(heater.cx, heater.bottom + 14, JOB.portSpec + ' flange connections');
+
+  /* ---- filtration: dirty tank -> 4x3 pump -> press -> clean tank ----
+     Routed below and beside the loop; it never crosses the frac tank. */
   if (JOB.filtration){
-    const fc    = cv('--filt');
-    const dirty = rect('b-dirty'), clean = rect('b-clean'),
-          press = rect('b-press'), p43 = rect('b-p43'), tri = rect('b-trimax');
-    /* dirty effluent leaves the tank at the bottom and runs UNDER the
-       skid to the transfer pump — never across the tanks */
-    const under = tri.bottom + 34;
+    const fc=cv('--filt');
+    const dirty=rect('b-dirty'), clean=rect('b-clean'),
+          press=rect('b-press'), p43=rect('b-p43');
+    const under = tri.bottom + 26;
+
     wire([{x:dirty.cx, y:dirty.bottom}, {x:dirty.cx, y:under},
           {x:p43.cx, y:under}, {x:p43.cx, y:p43.bottom}], fc);
-    label((dirty.cx + p43.cx)/2, under - 6, '3" Camlock — Dirty Suction');
+    label((dirty.cx+p43.cx)/2, under-5, '3" Camlock — dirty suction');
 
     wire([{x:p43.cx, y:p43.y}, {x:press.cx, y:press.bottom}], fc);
 
-    /* filtrate returns over the top into the clean tank */
-    const over = tri.y - 24;
-    wire([{x:press.cx, y:press.y}, {x:press.cx, y:over},
-          {x:clean.cx-16, y:over}, {x:clean.cx-16, y:clean.y}], fc);
-    label(press.cx + 10, over - 6, '3" Camlock — Clean Filtrate Return', 'start');
+    /* filtrate returns over the top of the skid — it must not cut across
+       the tanks, and it must not run back through the frac tank */
+    const riser = tri.x - 30, top = tri.y - 38;
+    wire([{x:press.right, y:press.cy}, {x:riser, y:press.cy},
+          {x:riser, y:top}, {x:clean.cx+20, y:top},
+          {x:clean.cx+20, y:clean.y}], fc);
+    label(riser+8, top-5, '3" Camlock — clean filtrate return', 'start');
   } else {
-    /* no filtration: effluent leaves the dirty tank to the pit / sewer */
-    const dirty = rect('b-dirty'), drain = rect('b-drain'), tri = rect('b-trimax');
-    const under = tri.bottom + 34;
+    const dirty=rect('b-dirty'), drain=rect('b-drain');
+    const under = tri.bottom + 26;
     wire([{x:dirty.cx, y:dirty.bottom}, {x:dirty.cx, y:under},
           {x:drain.cx, y:under}, {x:drain.cx, y:drain.bottom}], cv('--water'));
-    label((dirty.cx + drain.cx)/2, under - 6, 'Effluent — gravity drain');
+    label((dirty.cx+drain.cx)/2, under-5, 'Effluent — gravity drain');
   }
 
-  /* supply water into the clean tank */
+  /* ---- frac tank: off-system. Feeds the pumper at the start of the job.
+     Routed above the skid so it crosses nothing. ---- */
   const src=rect('b-water'), clean=rect('b-clean');
-  wire([{x:src.right, y:src.cy}, {x:clean.cx+14, y:src.cy},
-        {x:clean.cx+14, y:clean.y}], cv('--water'), {dash:'6 5', w:1.3});
-  label((src.right+clean.cx)/2, src.cy-7,
-        JOB.waterSource.kind==='hydrant' ? 'Hydrant Supply' : 'Makeup Water');
+  const riser2 = tri.x - 14, over = tri.y - 16;
+  wire([{x:src.right, y:src.cy}, {x:riser2, y:src.cy},
+        {x:riser2, y:over}, {x:clean.cx-20, y:over},
+        {x:clean.cx-20, y:clean.y}], cv('--water'), {dash:'6 5', w:1.3});
+  label(clean.cx-20, over-5,
+        JOB.waterSource.kind==='hydrant' ? 'Hydrant supply' : 'Initial fill — start of job');
 }
 
 function debugDump(){
-  const o = svg.getBoundingClientRect();
-  const ids = ['b-heater','b-trimax','b-dirty','b-lr','L-1','pmp-1','b-water']
-                .filter(id => $(id));
-  const lines = [`svg o.left=${o.left.toFixed(1)} o.top=${o.top.toFixed(1)} `
-               + `o.w=${o.width.toFixed(1)} o.h=${o.height.toFixed(1)} `
-               + `viewBox=${svg.getAttribute('viewBox')}`];
-  ids.forEach(id => { const r = rect(id);
-    lines.push(`${id}: x=${r.x.toFixed(1)} right=${r.right.toFixed(1)} `
-             + `cy=${r.cy.toFixed(1)} w=${r.w.toFixed(1)}`); });
-  const d = document.createElement('pre');
+  const ids=['b-heater','b-trimax','b-lr','L-1','pmp-1','b-water'].filter(id=>$(id));
+  const o=origin(); const L=[`stage w=${o.width.toFixed(1)} h=${o.height.toFixed(1)}`];
+  ids.forEach(id=>{const r=rect(id);
+    L.push(`${id}: x=${r.x.toFixed(1)} right=${r.right.toFixed(1)} `
+         + `y=${r.y.toFixed(1)} bottom=${r.bottom.toFixed(1)}`);});
+  const d=document.createElement('pre');
   d.style.cssText='position:fixed;left:8px;bottom:4px;z-index:99;color:#0f0;'
-                 +'font:9px monospace;background:#000;padding:4px;white-space:pre';
-  d.textContent = lines.join('\n');
-  document.body.appendChild(d);
+                 +'font:9px monospace;background:#000;padding:4px';
+  d.textContent=L.join('\n'); document.body.appendChild(d);
 }
 
 function relayout(){
-  /* heater height follows the launcher stack it faces */
+  /* the heater is the tall element; the Trimax is a trailer and must not
+     out-scale it. Heater height follows the launcher stack it carries. */
   const lr = $('b-lr').getBoundingClientRect();
-  $('b-heater').style.minHeight = Math.round(lr.height + 26) + 'px';
+  $('b-heater').style.minHeight = Math.round(lr.height + 40) + 'px';
   draw();
 }
 relayout();

@@ -102,6 +102,33 @@ Note also that F-901 has **two copies under different names** — `USAD-F901-Dia
 `…\_History\Exxon Baytown KHF F-901\` and `USAD-ExxonBaytown-F901-Diagram.pdf` in Revamped
 Diagrams. Confirm which is current before treating either as the reference.
 
+## Drawing rules (Jesse, 2026-08-16)
+
+Stated while reviewing a generated rebuild. These are how the rig actually works, so they
+govern any diagram of it — not style preferences.
+
+- **The frac tank is off-system.** Water is drawn from it at the *start* of the job to fill the
+  system; it is not part of the circulating loop. Draw it separated, and never route filtration
+  hoses through or past it. Its hose runs **directly into the Trimax pumper**.
+- **Launchers and receivers bolt to the heater flanges.** There is one jetting-hose run, pumper
+  → launcher/receiver. Drawing a second hose from the launcher to the heater is wrong — the
+  launcher *is* on the heater. (Matches `usadebusk-sop`: install launchers on convection inlet
+  flanges, receivers on radiant outlet flanges.)
+- **Scale: the Trimax is about the size of a frac tank.** It is a trailer. It must never be
+  drawn taller or larger than the heater, and the rig as a whole does not need to be tall or
+  long. Jesse notes this was a standing failure in the chat-built versions — the pumper came out
+  far too tall and threw the whole scale off.
+- **Jetting hoses from the pump ports to the launchers must not cross.** Route them as a planar
+  fan: order the lanes to match the launcher order, so crossings are impossible rather than
+  merely avoided.
+- **Return flow direction.** Water returns *from* the receiver *into* the pump. Arrowheads on
+  receiver legs point back toward the Trimax, not toward the heater.
+
+Still unrepresented in the generated rebuild, and present in the hand-made originals: the
+**diverter** (90° plunger, operator-controlled from the cab, routing return to clean or dirty
+tank on water clarity) and the **loop/jumper** on passes that are looped rather than single
+(F-901 Pass 1 is two coils looped via JS-1).
+
 ## Two facts that shape any future tooling
 
 **The heater is opaque in three of four.** F-802, F-901 and 70H1 draw it as a plain green box.

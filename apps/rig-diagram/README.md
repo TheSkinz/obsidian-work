@@ -20,6 +20,14 @@ hand-placed coordinate in the file.**
   matches launcher order top-to-bottom by construction.
 - Which blocks exist (filter press + transfer pump, vs. a drain to coke pit / sewer) is a
   data question, driven off `filtration` and `waterSource`.
+- Jetting hoses run as a **planar fan** — one lane per run, ordered by launcher height, with
+  sources ordered to match. Two hoses structurally cannot cross, and this holds unchanged at
+  F-802's ten launchers.
+
+**It encodes the drawing rules in [[rig-diagram-corpus]]**, which came from Jesse's review of an
+earlier render: the frac tank is off-system and separated, launchers bolt to the heater flanges
+(one hose run, not two), the Trimax never out-scales the heater, and return flow points back
+into the pump. A renderer cannot infer any of those — they are domain facts.
 
 ## Render
 
@@ -42,8 +50,16 @@ prints before layout settles. Append `#debug` to the URL for a rect dump.
 Note the rendered `Max Pig OD` reads **5.25"**, the rule-correct figure from the heater card —
 not the 5.5" that the shipped F-901 diagram and SOP-DCK-F901-001 REV 0 both carry in error.
 
-## Known limitation
+## Known limitations
 
 **Dual-Trimax is not implemented and not tested.** Both F-802 and 70H1 run two units, and that
 is precisely the case where a frozen-template approach gets expensive and a computed layout
 should pull ahead. Until it is proven, the back-test result is partial.
+
+**The diverter is not drawn.** The hand-made originals show it — 90° plunger, operator-controlled
+from the cab, routing return water to the clean or dirty tank on clarity. Its absence
+misrepresents how the loop actually works and it should be added before this is used for
+anything real.
+
+**Looped passes are drawn as single runs.** F-901 Pass 1 is two coils looped via JS-1; the
+render shows one straight run like the other two.

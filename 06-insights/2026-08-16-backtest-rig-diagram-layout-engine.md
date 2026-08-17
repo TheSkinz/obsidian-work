@@ -43,7 +43,8 @@ only. It needs no new dependency — Chrome is already the renderer for job shee
 | Criterion | Outcome |
 |---|---|
 | Orthogonal routing | **Pass.** Zero diagonals in any round. `ortho()` cannot represent one. |
-| Port order | **Pass.** Pumps and L/R pairs emit from one ordered list; order matches by construction, never nudged. |
+| Port order | **Pass.** Pumps and L/R pairs emit from one ordered list; order matches by construction, never nudged. Hoses are routed as a planar fan, so they cannot cross. |
+| Domain correctness | **Fail on first pass.** Six errors found by Jesse, four of them domain facts a renderer cannot know. See the correction section. |
 | Filtration swap | **Pass.** Two data fields (`filtration: false`, `waterSource: hydrant`) produced the 70H1 hydrant/coke-pit form. No geometry edited. |
 | Visual bar | **Close, not equal.** Legible and structurally faithful; still missing the per-port `P1 Out / P1 In` labelling and pump numbering the shipped diagrams carry. |
 | Correction rounds | **Five.** See below — the composition matters more than the count. |
@@ -62,8 +63,40 @@ dumping the actual rects, at which point one fix corrected everything simultaneo
 lesson is the standing one: measure through an independent channel instead of inferring from the
 render.**
 
-Not one defect across all five rounds was a diagonal, a swapped arrowhead, or a scale error.
-Those failure classes were eliminated by construction rather than by care.
+No defect across the five rounds was a diagonal or a coordinate-arithmetic error. **That claim
+was originally written to include arrowheads and scale, and Jesse's review proved it wrong on
+both** — see the correction below.
+
+## Correction — Jesse's review, 2026-08-16
+
+Jesse reviewed the render and found six errors, four of which I could not have caught myself
+because they are domain facts, not drawing defects. They are now recorded as drawing rules in
+[[rig-diagram-corpus]]. Summarised:
+
+1. **Frac tank collided with the filtration hoses**, which ran straight through it. It is
+   off-system — water is drawn at the start of the job only — and must be separated.
+2. **Launchers/receivers were drawn hanging off a second hose run.** They bolt to the heater
+   flanges; there is one hose, pumper → L/R.
+3. **The frac tank hose runs directly into the Trimax**, which the render did not show clearly.
+4. **Scale was wrong.** The pumper was drawn larger than the heater. A Trimax is a trailer,
+   roughly frac-tank sized, and must never out-scale the heater. Jesse notes this was a standing
+   failure in the chat-built versions too.
+5. **Jetting hoses crossed** between the pump ports and the launchers.
+6. **Return-flow arrowheads pointed the wrong way** on the receiver legs (my own find, before
+   his review).
+
+**This falsifies part of the result above and the claim is withdrawn.** Arrowhead direction and
+scale were *not* eliminated by construction — direction is a semantic property the router has no
+opinion about, and scale was a CSS value I chose badly. What survives is narrower and should be
+read as the actual finding: **orthogonality and hose crossings are eliminated structurally;
+correctness of direction, scale and domain semantics is not, and still needs a domain reviewer.**
+
+All six were fixed in two rounds. The crossing fix generalises — hoses are now routed as a planar
+fan with one lane per run ordered by launcher height, so crossings are impossible rather than
+avoided, and that holds at F-802's ten launchers without change. The others were data and CSS.
+
+Still unrepresented: the **diverter** and the **loop/jumper** on looped passes. Both appear in
+the hand-made originals and neither is in the generated version.
 
 ## Interpretation
 
