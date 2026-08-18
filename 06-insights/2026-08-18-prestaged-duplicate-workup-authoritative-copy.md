@@ -127,8 +127,16 @@ and `backtest_workup.py` reconcile against CANON, so neither can see this class;
 have confirmed the superseded document as internally consistent.
 
 That is a cross-cutting exposure worth more than the three duplicate pairs this review opened
-with: it applies to any bid Jesse has touched from the work laptop, and it means "the file in
+with: it applies to any bid Jesse has touched from the company laptop, and it means "the file in
 CANON" and "what the customer received" are separate claims that no current tool reconciles.
+
+**Settled the same day, and deliberately not built on.** Jesse: the revision was made on his
+company laptop, which has no access to the system, and replacing the store's copies afterwards
+was simply forgotten — *"this is just something I need to get better at."* His call is human
+discipline, not tooling; no checker, sweep or sync step should be proposed for it. What remains
+is a reading caveat rather than a work item, and it is recorded where it will actually be hit:
+the docstrings of both scripts that reconcile within CANON. The bid itself was **sent 2026-07-06
+to Doug Thomas** at $46,657.08.
 
 ## Apply Log
 
@@ -144,4 +152,6 @@ CANON" and "what the customer received" are separate claims that no current tool
 | 2026-08-18 | **Found and raised:** the quotation's Section 8 rate card was not updated and still publishes the flat $450 / $30 / $150, which reproduces the old $23,580.00 against the quoted hours. Recorded as an open item on [[DSP26085]]; the client document was not modified | Claude |
 | 2026-08-18 | Jesse updated Section 8 and set pumper **Stand-by at $500/hr** — his call, since the workup has no stand-by row to look it up from | Jesse |
 | 2026-08-18 | Section 8 re-rendered and verified: $500 / $650 / $600 / $500, Support $35, Filtration $200, Filter Stand-by $150, Crew Truck $25, Trash Pump $85, PM $94.75. Consistent with the pricing block; the earlier "carried over, not re-read" hedge on Trash Pump and PM is now retired | Claude |
+| 2026-08-18 | Send recorded: **2026-07-06 to Doug Thomas**, from Jesse. Exists nowhere in the file estate — the workup carries only the 07-01 bid due date and the quotation is dated 1-Jul-2026. `date-submitted:` and `submitted-to:` filled on [[DSP26085]] | Claude |
+| 2026-08-18 | Jesse ruled **no tooling** for the off-system revision gap — habit, not a system. DQ-023's escalation reverted to low and the row annotated so it is not re-opened as a build item | Jesse |
 | 2026-08-18 | **Premise corrected — the bid WAS sent.** Jesse: the revision was made and sent from his work laptop, and the `Bids\` copy was the pre-adjustment original. "Never sent" removed from this note, [[DSP26085]], the DQ-022 closed row and the archived quote-number note (whose own claim is correct in its own scope). New class raised in DQ-023 and recorded in both scripts: CANON can silently disagree with what the customer received, and neither tool can see it | Claude |
