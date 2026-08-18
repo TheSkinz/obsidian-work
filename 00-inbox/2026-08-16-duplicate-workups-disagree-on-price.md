@@ -1,4 +1,5 @@
 <!-- vault-loop: operational — workup-vs-workup price divergence on DSP26085/25138/25070, awaiting Jesse's per-bid authoritative-copy ruling, Lane 4 (estimating/quotes scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
+<!-- vault-prestaged: 2026-08-18-prestaged-duplicate-workup-authoritative-copy.md -->
 ---
 type: finding
 status: open
