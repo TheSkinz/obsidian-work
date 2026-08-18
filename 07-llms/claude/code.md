@@ -292,6 +292,26 @@ Practical takeaway: never trust a `yaml.safe_load()`-based check as proof a fron
 
 Source: capture-loop harvest, 2026-08-16 sessions (`c2fa50c1`, `240e2175`) — config-repo frontmatter audit and agnix trial.
 
+## Releases 2.1.221–2.1.234 changed six things this harness depends on
+
+Reviewed the official changelog on 2026-08-17, covering 2.1.221 (2026-08-04) through 2.1.234 (2026-08-17). Most of the run is churn, but six changes alter behavior this vault's workflow actually relies on.
+
+The Windows auto-mode false-stop is fixed in **2.1.233** (2026-08-14): auto mode no longer repeatedly stops for approval on ordinary `cd <dir> && <command> > file` Bash commands. That was the dominant source of unnecessary permission prompts in vault sessions. Separately, **2.1.234** fixed auto mode re-checking network access after every compaction in long sessions, and fixed Windows startup stalling on rename retries against a read-only `~/.claude.json`.
+
+The built-in `claude-api` skill dropped from roughly 200k tokens to about 25k in **2.1.234**. That skill carries an aggressive trigger in global CLAUDE.md, so it loads often; the change is a large recurring context savings, not a marginal one.
+
+Subagent forking is now on by default as of **2.1.232** (2026-08-13) — a `subagent_type: "fork"` subagent inherits the full conversation and prompt cache rather than starting cold. This bears directly on the measured cost of `adversarial-review`: the 3.31x token figure recorded against a single agent was paid partly for cold-context reload, so that comparison needs re-measuring before it's cited again. The same release made non-teammate agent spawns run in the background by default in interactive sessions, and removed the 200-subagent spawn cap (**2.1.224**). `/code-review` at high/xhigh/max now runs as a background agent.
+
+`/commit-push-pr` no longer auto-approves dangerous flags (`--force`, `--amend`, and similar) as of **2.1.232**. This is a harness-level guard pointing the same direction as the vault's own hard bans on force-push and history rewriting, so the two now reinforce rather than duplicate each other.
+
+Todo and task-tracking tools (`TaskCreate`/`TaskGet`/`TaskUpdate`/`TaskList`, `TodoWrite`) were removed on Opus 4.8, Sonnet 5, Fable 5, and Mythos 5+ in **2.1.233**; set `CLAUDE_CODE_ENABLE_TODO_TOOLS=1` to restore them. Opus 5 is not in that list, so the default model for this vault keeps them.
+
+That entry also confirms **Claude Mythos 5** as a real model family, verified against Anthropic's own announcement: Mythos-class sits above the Opus class in capability, and Mythos 5 is not generally available — it ships under limited access through Project Glasswing to approved cybersecurity organizations, critical-infrastructure operators, government partners, and selected life-sciences researchers. Claude Fable 5, released publicly 2026-06-09, is the same underlying model with cybersecurity and biology safeguards applied. Practical consequence for routing: Fable 5 remains the accessible ceiling, and Mythos 5 is not a model to plan around here. See [[opus-5]] and the model-routing memory record.
+
+Two further items are noted but not actionable on this account: `claude self-hosted-runner` (**2.1.224**) is Team and Enterprise only, and the `ultraplan` feature was removed in **2.1.222**. Also of minor use — sessions now auto-continue when a claude.ai usage limit resets (**2.1.234**, configurable in `/config`), and `/review` became an alias of `/code-review` with the last-used effort level reused (**2.1.223**).
+
+Source: official Claude Code changelog at https://code.claude.com/docs/en/changelog, read 2026-08-17; Mythos 5 access terms verified against https://www.anthropic.com/news/claude-fable-5-mythos-5.
+
 ## Links
 
 - [[output-styles]] — the system-prompt layer, and why the vault's output rules stay in CLAUDE.md
