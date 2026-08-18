@@ -57,6 +57,15 @@ disagree on total, three do not:
 | DSP26075 Formosa VR-401C | both $69,396.75 | agree — benign duplicate |
 | DSP24144 Hunt Tuscaloosa | neither readable by `extract_workup` (older template) | not compared |
 
+> [!note] Addendum 2026-08-18 — which total this table measured. These figures come from each
+> workbook's **work tab** (e.g. `4 Heaters!I9`), not its `Insert Quote` tab. That matters for the
+> Valero McKee row: the work-tab pair is $166,484.46 vs $262,828.10 (gap $96,343.64, as stated
+> here and correct), while the quotation-facing pair is $139,510.21 vs $255,500.84 (gap
+> $115,990.63). Both gaps are real and measure different things. The work tab and the quotation
+> also disagree *within* each single copy — by $26,974.25 in the `Bids\` copy and $7,327.26 in
+> the facility-root copy — which is arguably the more interesting thread. Nothing here is wrong;
+> it just needed the label. See DQ-023.
+
 **Neither DSP25138 nor DSP25070 has a vault quote note** — both predate the practice — and both
 are historical: DSP25138 executed July 2026, DSP25070 became USA26007. So they are a
 data-integrity question, not live commercial exposure. Only DSP26085 is pending.
