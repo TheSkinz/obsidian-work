@@ -175,6 +175,16 @@ standby (98 hrs combined) was not planned in the quote at all.
 - [[F-301]]
 - [[F-371A]]
 - [[F-501]] — HU5A
+- [[F-201]] — 27GF1A, Treat Gas
+- **Pipestill 3 (PS3)** — decoked January 2026 as job USA26007. No heater card and no heater ID recorded; the job register and the workup both describe the scope only as "PS3 Heater". Distinct from the PS8 units (F-802, F-902).
+
+## Completed work not held on a heater card
+
+**Pipestill 3 decoke, January 2026 — DSP#25070 → job USA26007.** PO AM4510698312, contracted **$162,576.42**, started 01/28/2026, invoiced **$199,756.00** on invoice 128587, billed through GEP. Source: the `2026 Job Numbers.xlsx` register on SharePoint (Jesse, 2026-08-18), which is authority — not derived from the workup.
+
+The invoice ran **$37,179.58 over the contracted value, 122.9% of quote.** That figure is recorded as-is, not explained: the register carries no change-order or scope note and the vault holds no receipts, shift logs or actuals for this job. Do not read it as an estimating miss without them.
+
+Two workup copies exist and the register settles which governs: `Jobs\USA26007 PS3 2026-02\` totals $162,576.42 on every total it carries and matches the contracted value, so it is authoritative; the `_History\Exxon Baytown_PS3 Heaters\` copy at $169,947.76 is a superseded higher revision sitting where superseded revisions belong. Both are internally consistent and both read `DSP#: 25070` in both cells — this pair was never a defect. No action taken or needed.
 
 ---
 
