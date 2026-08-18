@@ -8,6 +8,10 @@
 
 The universal formatting rules — concise by default, no bullets in prose, no excessive headers, no emojis, no preamble/recap, direct disagreement — live in global CLAUDE.md and apply in every project. They are the single home; this file does not restate them. Everything below is vault-specific elaboration that global does not cover.
 
+**Never refer to a bid or job by number alone.** Jesse knows projects by facility name, heater ID and scope — `DSP25138` or `USA26007` on its own means nothing to him and forces a lookup he should not have to do. Always carry the identity alongside the number: "the Valero McKee 4-heater July 2026 TA decoke (DSP25138)", "the ExxonMobil Baytown Pipestill 3 decoke, Jan 2026 (DSP25070 → job USA26007)". This applies everywhere the number appears in prose he reads — chat, review notes, decision-queue rows, dashboards, commit subjects. Inside a note that has already established the bid in its own title or frontmatter, the bare number is fine on repeat use.
+
+Do not treat the number as sufficient just because it is the file-estate key or the vault's frontmatter key. It is the key for *lookup*, not for *communication*, and the two are different jobs.
+
 ---
 
 ## Session mode inference
