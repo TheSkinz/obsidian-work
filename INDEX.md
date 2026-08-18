@@ -194,6 +194,9 @@
 - [[2026-08-16-idea-research-rollup-rig-in-column-is-mixed-method]] — Idea Research — The Actuals Rollup's Rig-In Column Is Mixed-Method
 - [[2026-08-16-prestaged-pointer-dead-severity-tiering]] — Review — Should POINTER-DEAD be pulled out of the generic lint-warning backlog?
 - [[2026-08-17-idea-research-frozen-baselines-unexercised-defects]] — Idea Research — Frozen Baselines Can Carry Defects No Replay Will Ever Surface
+- [[2026-08-17-prestaged-usa26041-estimating-feedback]] — Review — Do any of USA26041's three model-level estimating findings reach `usadebusk-estimating` now, or does n=1 mean all three wait?
+- [[2026-08-17-rig-out-gate-honored-inconsistently]] — Review — the §14.6 rig-out gate is honored on some inspection-supported jobs and not others
+- [[2026-08-17-triage-job-report-generator-layout-gaps]] — Triage — job-report generator layout gaps
 
 ## LLMs
 
@@ -206,6 +209,7 @@
 - [[design]] — Claude Design `(claude)`
 - [[dynamic-workflows]] — Claude Code — Dynamic Workflows `(claude)`
 - [[opus-5]] — Claude Opus 5 — Release Capture `(claude)`
+- [[output-styles]] — Claude Code — Output Styles `(claude)`
 - [[prefs-signal-log]] `(claude)`
 - [[heater-extraction-agent]] — Copilot Heater Extraction Agent `(copilot)`
 - [[overview]] — Microsoft Copilot — Overview `(copilot)`
