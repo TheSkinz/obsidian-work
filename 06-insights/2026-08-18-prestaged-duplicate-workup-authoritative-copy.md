@@ -1,6 +1,8 @@
 ---
 type: review
-status: open
+status: resolved
+decided: 2026-08-18
+decision: "Option A — Jobs copy ($46,657.08) authoritative; Bids copy ($40,477.08) disposed of. DSP25138/DSP25070 deferred; Option D not taken up."
 review_type: pre-staged
 source_authority: inferred
 confidence: medium
@@ -46,7 +48,7 @@ Per bid, which copy is authoritative, and what happens to the stray — deleted 
 **A. Rule DSP26085 now, defer the two historical bids.** Decide the live one (the vault, the submitted quotation, the frozen regression expectation and the `Bids` copy all agree at $40,477.08 — the Jobs copy is the outlier with no quotation beside it), and leave DSP25138 and DSP25070 as an untimed cleanup item. Smallest action, matches the source note's own "DSP26085 first" recommendation, and keeps an irreversible deletion decision scoped to one file whose evidence is strongest.
 
 - [ ] Approved
-- [ ] Approved with edits
+- [x] Approved with edits — *2026-08-18: taken, but the ruling inverted to the `Jobs` copy at $46,657.08*
 - [ ] Rejected
 - [ ] Needs more research
 
@@ -54,14 +56,14 @@ Per bid, which copy is authoritative, and what happens to the stray — deleted 
 
 - [ ] Approved
 - [ ] Approved with edits
-- [ ] Rejected
+- [x] Rejected — *2026-08-18: superseded by A; DSP25138 and DSP25070 stay deferred*
 - [ ] Needs more research
 
 **C. Adopt a standing folder-of-record rule instead of per-bid rulings.** Rather than three judgments, write one convention — e.g. the copy in the folder matching the bid's current lifecycle state is authoritative, `_History\` is a legitimate archive and its divergence is expected, and a copy loose at a facility root is presumed stray — then apply it mechanically to all three and to future pairs. Converts a recurring judgment into a rule, but the source note's DSP25070 caveat is exactly the case where a blanket rule could delete a deliberate archive.
 
 - [ ] Approved
 - [ ] Approved with edits
-- [ ] Rejected
+- [x] Rejected — *2026-08-18: superseded by A. Worth noting the DSP26085 case would have broken a folder-of-record rule too: the authoritative copy was the one in `Jobs\` on a bid that was never awarded*
 - [ ] Needs more research
 
 **D (additive). Close the detection gap at the `Bids/ → Jobs/` move.** The source note's own follow-on: the award move is what creates most of these pairs, and nothing checks the two copies match at the moment of the move. Existing coverage is per-bid and on-demand only — `backtest_workup.py` disambiguates its five hard-coded cases via `prefer`, `presend_gate.py --find` reports ambiguity when someone runs it on a quote number, and `health.md`'s Bid folder column is presence-and-recency by design. Nothing sweeps. This could be a one-off estate sweep (the missing half of the 2026-07-25 quotation scan) or a standing check; deciding which is part of the option.
@@ -81,9 +83,43 @@ Finally, none of these options addresses whether the pre-send gate's exit-2 "cou
 
 ## Decision
 
-*(Pending — Jesse to review.)*
+**2026-08-18 — Option A, with the ruling inverted from what the evidence in this note pointed at.**
+Jesse: *"The 46,657.08 total is the correct one."* The `Jobs` copy is authoritative; the `Bids`
+copy at $40,477.08 was the stale one and was disposed of. DSP25138 and DSP25070 remain
+undecided and untimed. **Option D was not addressed and stays open** — the detection gap at the
+`Bids/ → Jobs/` move is still unclosed, and nothing sweeps for new divergent pairs.
+
+Recorded as *Approved with edits* rather than *Approved*: the disposition pattern in A was taken
+as written, but A's own reasoning named the `Bids` copy as the one to keep, and that direction
+was inverted.
+
+This note argued for the `Bids` copy on the strength of four artifacts agreeing at $40,477.08
+(the vault note, the quotation, the frozen regression expectation, and the file the Source Files
+block named). All four were downstream of the same stale workup, so their agreement was
+circular rather than corroborating — the count of agreeing artifacts was never evidence. What
+the note did not do was open the two sheets and compare the pricing mechanics, which settles it
+in one pass: task hours are identical at 6/18/6/6 and the whole $6,180.00 sits on equipment
+**rates** — pumper flat $450 → tiered $500/$650/$600/$500, support unit $30 → $35, filtration
+$150 → $200. A flat pumper rate across rig, pig and smart-pig is the anomaly; the tiered card
+matches the Baytown pattern, and `DSP26085.md` had *already flagged* the flat $450 as unusual
+against [[DSP26071]]'s tiered $500/$800/$600/$500. The correction was sitting in the note the
+whole time, one section above the pricing table it contradicted.
+
+The "unexplained provenance" risk in Risks and Counter-Arguments also dissolves: a clean rate-card
+swap with untouched hours is a deliberate re-price, and the 2026-07-25 15:26 save landing 52
+minutes before the 16:18 quote-number patch reads as one working session where the sheet was
+corrected and the quotation was never re-pasted from it. No shared defect to chase.
+
+Because this bid was **never sent** ([[2026-07-24-dsp26085-submitted-wrong-quote-number]]), the
+correction carries no external exposure. The live consequence is internal: the quotation `.docx`
+still renders $40,477.08 from a frozen metafile paste and must be regenerated before submission.
 
 ## Apply Log
 
 | Date | Action | By |
 |---|---|---|
+| 2026-08-18 | Verified both copies on disk and extracted both via `extract_workup.py` — `Bids` $40,477.08 / `Jobs` $46,657.08 confirmed, and the delta localised to eight equipment rate cells | Claude |
+| 2026-08-18 | Backed up the `Bids` workup to session scratchpad, then sent it to the Recycle Bin (recoverable) per the DSP26071.1 precedent; re-ran `find` to confirm one copy remains | Claude |
+| 2026-08-18 | Rebuilt `DSP26085.md` from the `Jobs` copy — `value`, Pricing table, pricing-summary box, composite rate ($1,296.03/hr), Equipment revenue detail, Hourly Rates, Internal Financials (Equipment 70%, Total 53%), Source Files, and the flat-$450 commentary | Claude |
+| 2026-08-18 | `backtest_workup.py`: dropped `prefer: "\Bids"` so a future duplicate raises instead of resolving silently; expectations → $29,760.00 / $46,657.08 / Equipment $33,318.72. Suite passes 3/3, exit 0 | Claude |
+| 2026-08-18 | `presend_gate.py`: `find_pair()` docstring updated — pair is history, and the no-sweep limitation is now stated explicitly | Claude |

@@ -198,6 +198,7 @@
 - [[2026-08-17-rig-out-gate-honored-inconsistently]] — Review — the §14.6 rig-out gate is honored on some inspection-supported jobs and not others
 - [[2026-08-17-triage-job-report-generator-layout-gaps]] — Triage — job-report generator layout gaps
 - [[2026-08-18-idea-research-researched-status-outlives-build]] — Idea Research — `status: researched` Outlives the Build It Was Gating
+- [[2026-08-18-prestaged-duplicate-workup-authoritative-copy]] — Review — Which workup copy is authoritative on the three bids that hold two, and does the stray get deleted or labelled?
 
 ## LLMs
 
