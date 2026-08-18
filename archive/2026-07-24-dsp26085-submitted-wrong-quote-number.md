@@ -14,6 +14,13 @@ tags: [capture, estimating, proposal, data-quality, exxon-baytown]
 > is no external exposure and no reissue. The note's title and framing were wrong; the underlying
 > defect was real and is now fixed.
 
+> [!note] Scope of that correction, clarified 2026-08-18. "Never sent" is true of the
+> quote-number-defective version this note is about, and only of that version. A **revised**
+> DSP26085 quote was later produced on Jesse's work laptop and sent to ExxonMobil at
+> $46,657.08 — so the bid did reach the customer, just not through the file this note tracks.
+> Read here as "this version never went out," not "the bid was never quoted." Context:
+> [[2026-08-18-prestaged-duplicate-workup-authoritative-copy]] and [[DSP26085]].
+
 **What was actually wrong.** `DSP#26085_Exxon Baytown_27GF1A F-201_2027 Jan Quotation.docx`
 carried `Quotation #: DSP#:26000` in its Section-7 pricing block while the live workup's
 `Insert Quote` tab (cell E5) resolved correctly to `DSP#:26085`. The block is a pasted

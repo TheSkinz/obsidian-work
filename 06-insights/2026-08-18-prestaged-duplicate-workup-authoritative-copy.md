@@ -110,9 +110,25 @@ swap with untouched hours is a deliberate re-price, and the 2026-07-25 15:26 sav
 minutes before the 16:18 quote-number patch reads as one working session where the sheet was
 corrected and the quotation was never re-pasted from it. No shared defect to chase.
 
-Because this bid was **never sent** ([[2026-07-24-dsp26085-submitted-wrong-quote-number]]), the
-correction carries no external exposure. The live consequence is internal: the quotation `.docx`
-still renders $40,477.08 from a frozen metafile paste and must be regenerated before submission.
+**Correction, later the same day — the bid WAS sent, and that reframes this whole review.** The
+paragraph here originally read that DSP26085 was never sent, citing
+[[2026-07-24-dsp26085-submitted-wrong-quote-number]]. That archived note is accurate about what
+it covers: the quote-number-defective version never reached ExxonMobil. But Jesse, 2026-08-18:
+the pricing adjustment was made **on his work laptop** and that revised quote is what the
+customer has — the copy in `Bids\` was the pre-adjustment original.
+
+So the customer holds $46,657.08 and always did. The ruling is confirmed by the send rather
+than by the internal evidence, and the real finding is not the duplicate at all: **for roughly
+a month the canonical store's quotation for a live bid was a superseded document.** Every
+artifact this review weighed was derived from that stale copy, which is why they agreed — the
+circularity went one level deeper than "four notes share an ancestor," because the ancestor
+itself was not what went out. Nothing in the store marked it stale, and both `presend_gate.py`
+and `backtest_workup.py` reconcile against CANON, so neither can see this class; they would
+have confirmed the superseded document as internally consistent.
+
+That is a cross-cutting exposure worth more than the three duplicate pairs this review opened
+with: it applies to any bid Jesse has touched from the work laptop, and it means "the file in
+CANON" and "what the customer received" are separate claims that no current tool reconciles.
 
 ## Apply Log
 
@@ -126,3 +142,6 @@ still renders $40,477.08 from a frozen metafile paste and must be regenerated be
 | 2026-08-18 | Jesse replaced the quotation's pricing block with current prices and moved the workup from `Jobs\` back to `Bids\Exxon Baytown_F-201\` | Jesse |
 | 2026-08-18 | Re-verified after his edits: workup still $46,657.08 (the file grew 7 KB on re-save, numbers unchanged), and the quotation rendered docx→PDF reconciles line-for-line — Mechanical Decoke $29,760.00, Total $46,657.08, box $33,318.72 / $11,268.36 / $2,070.00, quote number `DSP#:26085`. Source Files and script comments updated to the new layout | Claude |
 | 2026-08-18 | **Found and raised:** the quotation's Section 8 rate card was not updated and still publishes the flat $450 / $30 / $150, which reproduces the old $23,580.00 against the quoted hours. Recorded as an open item on [[DSP26085]]; the client document was not modified | Claude |
+| 2026-08-18 | Jesse updated Section 8 and set pumper **Stand-by at $500/hr** — his call, since the workup has no stand-by row to look it up from | Jesse |
+| 2026-08-18 | Section 8 re-rendered and verified: $500 / $650 / $600 / $500, Support $35, Filtration $200, Filter Stand-by $150, Crew Truck $25, Trash Pump $85, PM $94.75. Consistent with the pricing block; the earlier "carried over, not re-read" hedge on Trash Pump and PM is now retired | Claude |
+| 2026-08-18 | **Premise corrected — the bid WAS sent.** Jesse: the revision was made and sent from his work laptop, and the `Bids\` copy was the pre-adjustment original. "Never sent" removed from this note, [[DSP26085]], the DQ-022 closed row and the archived quote-number note (whose own claim is correct in its own scope). New class raised in DQ-023 and recorded in both scripts: CANON can silently disagree with what the customer received, and neither tool can see it | Claude |
