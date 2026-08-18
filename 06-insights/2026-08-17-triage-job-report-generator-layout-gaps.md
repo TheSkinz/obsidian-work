@@ -1,6 +1,7 @@
 ---
 type: triage-note
 created: 2026-08-17
+revisit-trigger: "Next job report compiled with /report -> before rendering, check where Jesse places the images. If he puts them inline again rather than in the dedicated Images section, that is the second data point and the generator should learn inline placement — event: check at the /report step"
 tags: [triage, fieldpm, job-report, generator]
 related: [[idea-job-report-generator-layout-gaps]]
 ---
