@@ -1,8 +1,9 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-08-15
 related:
+  - "[[2026-08-18-idea-research-researched-status-outlives-build]]"
   - "[[2026-08-15-retirement-sweep-what-else-has-outlived-its-reason]]"
   - "[[idea-lint-lock-heater-schema]]"
   - "[[idea-job-report-generator]]"
