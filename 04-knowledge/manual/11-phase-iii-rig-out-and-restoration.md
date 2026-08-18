@@ -6,11 +6,13 @@
 
 ---
 
-## 11.1 Gate before rig-out
+## 11.1 Gate before dewatering
 
-Rig-out begins only once the circuits are confirmed complete against the criteria in Section 10, and, on jobs with an inspection component, once the customer has given written acceptance of the inspection data.
+Dewatering begins only once the circuits are confirmed complete against the criteria in Section 10, and, on jobs with an inspection component, once the customer has given written acceptance of the inspection data. Rig-out follows dewatering and is not itself gated.
 
-> **WARNING.** On inspection-supported scopes, no dewatering, hose disconnection, or equipment removal occurs before the customer's written acceptance of the inspection data. Once the circuit is broken, a re-run requires a full re-rig.
+> **WARNING.** On inspection-supported scopes, no dewatering or circuit breaking occurs before the customer's written acceptance of the inspection data. Once the circuit is broken, a re-run requires a full re-rig.
+
+The acceptance is given against the inspection vendor's preliminary digital report, not the final report, which arrives well after demobilization. That preliminary report answers two questions at once: whether the vendor captured the data it needs, and whether any fouling remains. **If the customer does not accept it, the job does not end — pigging continues and the tool is run again until the data is there.** The gate exists so that a data quality problem is found while a re-run is still cheap.
 
 ## 11.2 Dewatering and depressurization
 
@@ -20,14 +22,16 @@ The system is dewatered and depressurized before anything is disconnected. Water
 
 ## 11.3 Rig-out sequence
 
-1. **Confirm completion and, where applicable, inspection acceptance.**
-2. **Dewater and depressurize.** Confirm zero pressure at every circuit.
-3. **Remove launchers and receivers** from the coil inlet and outlet flanges, together with any adapters installed for the job.
-4. **Remove jumper spools** and return them to the customer.
-5. **Disconnect and remove jetting hoses** and, where filtration was deployed, the filtration circuit hoses, press, and transfer pump.
-6. **Reconnect customer flanges.** Coil connections are restored to the condition in which they were received.
-7. **Remove surface equipment.** Pumping units, tanks, and support equipment are demobilized.
-8. **Clean the site.** The work area is left clean and clear.
+Rig-out begins after dewatering and depressurization are complete under 11.1 and 11.2.
+
+1. **Break the jetting hoses** at the 3 inch Fig. 200 connections on the launchers and receivers, and, where filtration was deployed, break down the filtration circuit hoses, press, and transfer pump.
+2. **The fitters break the coil flanges** and remove the launchers, receivers and any job adapters, and the jumper spools where passes were looped. They help place the launchers and receivers back on the USADebusk support unit. USADebusk does not unbolt the heater flanges.
+3. **The fitters reconnect the heater piping.** This is the customer's scope and follows launcher and receiver removal.
+4. **Remove all hoses and surface equipment.** Pumping units, tanks, and support equipment are demobilized.
+5. **Clean the tanks and filtration equipment.**
+6. **Clean the site.** The work area is left clean and clear.
+
+Steps 1, 4, 5 and 6 are USADebusk. Steps 2 and 3 are the customer's pipe-fitters — Section 7.3. The two run alongside each other rather than strictly in sequence; the numbering is the dependency order, not a handover schedule.
 
 ## 11.4 Waste and residual material
 
@@ -37,7 +41,7 @@ Used pigs are removed from site with USADebusk equipment.
 
 ## 11.5 Restoration and handover
 
-Coil connections are returned to the customer in the condition received. Any observation made during rig-out that bears on the condition of customer equipment, a damaged flange face, a gasket surface issue, a fastener problem, is raised with the customer at the time rather than recorded silently.
+Reconnection of the heater piping is the customer's scope under 11.3. Any observation made during rig-out that bears on the condition of customer equipment, a damaged flange face, a gasket surface issue, a fastener problem, is raised with the customer at the time rather than recorded silently.
 
 The completion documentation described in Section 16 is provided at handover.
 

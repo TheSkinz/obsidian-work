@@ -20,11 +20,13 @@ Where any of these is outstanding, the outstanding item is raised before equipme
 
 1. **Position equipment.** The Trimax pumper, with its clean and dirty tanks, is spotted adjacent to the heater within hose reach of every launcher and receiver position. Where filtration is elected, the filter press and transfer pump are positioned with it. Where a second Trimax is deployed, both units are spotted before hoses are run.
 
-2. **Install launchers.** Launchers are installed on the coil inlet flanges, with customer-fabricated adapters where the heater connection differs in size or rating from the launcher.
+2. **Launchers are hung.** The customer's pipe-fitters offload the USADebusk launchers from the support trailer and install them on the coil inlet flanges, with customer-fabricated adapters where the heater connection differs in size or rating from the launcher. This is the customer's scope, not USADebusk's — see Section 7.3.
 
-3. **Install receivers.** Receivers are installed on the coil outlet flanges, with adapters as required.
+3. **Receivers are hung.** The fitters install the USADebusk receivers on the coil outlet flanges, with adapters as required.
 
-4. **Install jumper spools.** Where passes are to be looped, the customer-fabricated 180 degree spool is installed between the designated outlet flanges, joining the two passes into one continuous circuit.
+4. **Jumper spools are installed.** Where passes are to be looped, the fitters install the customer-fabricated 180 degree spool between the designated outlet flanges, joining the two passes into one continuous circuit.
+
+> **NOTE.** Steps 2 through 4 are performed by the customer's pipe-fitters, typically concurrently with USADebusk hose routing rather than ahead of it. USADebusk does not bolt the coil flanges. Where USADebusk will be *waiting* on the fitters rather than working alongside them, that wait is a priced rig-in adder — see the Duration Model in `usadebusk-estimating`.
 
 5. **Route jetting hoses.** Fig. 200 jetting hose runs from the Trimax rear ports to the launcher and receiver connections for each circuit. Hose runs are laid to avoid traffic routes and to keep connections accessible.
 

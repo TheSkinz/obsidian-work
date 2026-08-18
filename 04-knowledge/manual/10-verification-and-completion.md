@@ -51,7 +51,7 @@ Completion is determined per circuit, not per heater. Circuits foul differently,
 
 Where the scope includes a smart pig or in-line inspection run, mechanical cleaning is confirmed complete before the inspection tool is introduced, because wall thickness measurement is only meaningful against a clean wall. Section 14 covers the run itself.
 
-On those jobs the customer's written acceptance of the inspection data is required before dewatering, hose disconnection, or any rig-out activity begins. Rig-out ahead of that acceptance forecloses a re-run, and the gate exists to protect against that.
+On those jobs the customer's written acceptance of the inspection data is required before dewatering or circuit breaking begins; rig-out follows dewatering and is not itself gated. Acceptance is given against the vendor's preliminary digital report rather than the final report, and a non-acceptance means the tool is run again rather than the job ending. Dewatering ahead of that acceptance forecloses a re-run, and the gate exists to protect against that. Section 14.6 covers the gate in full.
 
 ## 10.6 What is handed over
 

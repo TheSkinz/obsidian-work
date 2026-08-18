@@ -8,8 +8,8 @@
 
 **Rig-In** *(fixed event — hours and scheduling belong to the estimate, not this note; see the Duration Model in `usadebusk-estimating`)*
 1. Position Trimax pumper, clean tank, dirty tank adjacent to heater
-2. Install pig launchers on convection inlet flanges (adapters as required)
-3. Install pig receivers on radiant outlet flanges (adapters as required)
+2. Customer's pipe-fitters install USADebusk pig launchers on convection inlet flanges (adapters as required) — see Role boundary below
+3. Customer's pipe-fitters install USADebusk pig receivers on radiant outlet flanges (adapters as required)
 4. Route Fig. 200 jetting hoses from Trimax rear ports to launcher/receiver connections
 5. Connect filtration circuit *(only when filtration is Elected — read the heater card Job Options)*: dirty tank → 4×3 pump → filter press → clean tank; otherwise effluent drains to coke pit / oily water sewer
 6. Fill system and pressure test
@@ -29,8 +29,21 @@
 10. Log all data on service receipt
 
 **Rig-Out** *(fixed event — hours and scheduling belong to the estimate, not this note; see the Duration Model in `usadebusk-estimating`)*
-- Remove launchers, receivers, all hoses and surface equipment
-- Reconnect customer flanges, clean site
+- Dewater and depressurize; confirm zero pressure at every circuit *(on inspection-supported scopes this waits on the customer's acceptance of the inspection data)*
+- USADebusk breaks the jetting hoses from the 3" connections on the launchers/receivers
+- Customer's pipe-fitters break the coil flanges, remove the launchers/receivers, and help place them back on the USADebusk support unit; the fitters then reconnect the heater piping
+- Remove all hoses and surface equipment; clean the tanks and filtration equipment
+- Clean site
+
+> **Role boundary — who bolts the coil flanges.** USADebusk supplies and owns the launchers and
+> receivers, but does **not** bolt or unbolt the facility's heater flanges, and does not handle spool
+> pieces. The customer's pipe-fitters offload them from the USADebusk support trailer, hang them at
+> rig-in — usually while USADebusk is running hoses — remove them at rig-out, and reconnect the heater
+> piping afterward. The units weigh over 400 lbs and the fitters have crane and forklift access
+> USADebusk does not. **USADebusk's connection boundary is the 3" Fig. 200 connection on the
+> launcher/receiver:** we make and break the hose, they make and break the flange. Who the fitters are
+> is the customer's call and usually not known until arrival — call them "the customer" in
+> customer-facing documents. See [[07-roles-and-responsibilities]] §7.1. (Jesse, 2026-08-17.)
 
 ## Flow path — standard single pass (convection-to-radiant)
 

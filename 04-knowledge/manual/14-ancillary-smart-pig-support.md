@@ -52,11 +52,13 @@ The flow figures above are typical values for orientation during planning. The v
 5. The vendor recovers the tool and downloads the data.
 6. The vendor confirms whether the run produced a valid dataset. Where it did not, the run is repeated before the circuit is broken.
 
-## 14.6 Approval gate before rig-out
+## 14.6 Approval gate before dewatering
 
-> **WARNING.** On inspection-supported scopes, the customer's written acceptance of the inspection data is required before dewatering, hose disconnection, or any rig-out activity begins.
+> **WARNING.** On inspection-supported scopes, the customer's written acceptance of the inspection data is required before dewatering or circuit breaking begins. Rig-out follows dewatering and is not itself gated.
 
-The reason is practical. A re-run is straightforward while the circuit is intact and the equipment is in place. Once the coil has been dewatered and the launchers and receivers removed, a re-run requires a complete re-rig. The gate exists so that a data quality problem is discovered while it is still inexpensive to fix.
+The acceptance is given against the vendor's preliminary digital report, not the final report, which arrives well after demobilization. That report answers two questions at once: whether the vendor captured the data it needs, and whether any fouling remains. **A non-acceptance does not end the job — pigging continues and the tool is run again until the customer has the data.**
+
+The reason for the gate is practical. A re-run is straightforward while the circuit is intact and the equipment is in place. Once the coil has been dewatered and the launchers and receivers removed, a re-run requires a complete re-rig. The gate exists so that a data quality problem is discovered while it is still inexpensive to fix.
 
 ## 14.7 Common vendors
 

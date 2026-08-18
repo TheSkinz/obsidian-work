@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: contradiction
 source_authority: verified
 confidence: high
@@ -76,7 +76,15 @@ Lane 4 — the call is Jesse's. The fork, stated neutrally:
 What cannot stand is the present state, where §14.6 says one thing and the most recent
 inspection-supported job did another with no exception recorded.
 
-- [ ] **Decision:**
+- [x] **Decision:** *(Jesse, 2026-08-17)* **Neither fork — the note's premise was wrong, and the manual's error was larger than the gate.**
+
+Rig-out never waited on the final report, and the manual never said it did; it said *inspection data*, and this note substituted "final report." The gate is real and correctly placed, but it belongs **before dewatering**, not before rig-out. Acceptance is given against the inspection vendor's preliminary digital report, which confirms both that the vendor captured usable data and that no fouling remains. A non-acceptance does not release anything — pigging continues and the tool runs again.
+
+The inconsistency this note flagged therefore was not a WARNING being ignored. It was rig-out, correctly, not being gated.
+
+Two deeper errors surfaced while resolving it, both corrected in the same pass. **Rig-out was mis-scoped**: §11.3 folded inspection acceptance and dewatering into the rig-out sequence, when rig-out is the physical demob that follows them. And **the role boundary was wrong across the procedural layer**: §7.1, §7.2, §8.2 and §11.3 all had USADebusk installing and removing launchers, receivers and jumper spools and reconnecting customer flanges. USADebusk supplies and owns the launchers and receivers but does not bolt the facility's heater flanges — the customer's pipe-fitters hang them, remove them, and reconnect the heater piping, because the units weigh over 400 lbs and the fitters have crane and forklift access USADebusk does not. USADebusk's boundary is the 3" Fig. 200 connection on the launcher/receiver.
+
+`usadebusk-estimating` had the role boundary right the whole time (its pipefitter adder prices exactly this), so no bid was mispriced. The drift was confined to the procedural layer.
 
 ## Provenance
 
