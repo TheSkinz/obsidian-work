@@ -26,6 +26,33 @@ Also: LibreOffice must fully exit between conversions — firing `soffice --conv
 
 Source: Claude Code session, 2026-07-20; wait-per-file gotcha confirmed 2026-07-25.
 
+## Fillable Word forms: checkbox content controls work, and the `docx` npm builder emits invalid XML
+
+Building a genuinely clickable Word form on this machine was proven end-to-end on 2026-08-17 (the
+USADebusk change-order form). Two things are worth not rediscovering.
+
+**A `☐` glyph is not a checkbox.** Typing the character produces something the recipient has to select
+and overtype. Word's native checkbox content control (`w14:checkbox`) toggles ☐ to ☒ on a single click
+and clears on a second. It can be injected directly into the document XML — the `w14` namespace is
+already declared in a document built by the usual toolchain, so nothing extra is needed. **The
+Developer tab is only required to *insert* a control, not to use one**, so the recipient needs nothing
+enabled on their end. Verification that actually proves it is wired: build a second copy with the
+control's checked bit flipped — which is exactly what Word writes on a click — convert and rasterise
+it, and confirm ☒ renders.
+
+**`fromXmlString` in the `docx` npm builder wraps every fragment in a bogus `<undefined>` root
+element.** LibreOffice tolerates it, so a soffice-based render-and-verify pass will pass a file that
+Word would likely reject as unreadable. Strip the wrapper from the emitted XML and re-validate before
+shipping. This is a case where the render check and the target application disagree, so LibreOffice
+rendering clean is not sufficient evidence the file is valid.
+
+Two limits to state when sending such a form out. The checkbox glyph resolves through MS Gothic, which
+ships with Windows Word — a Mac without that font substitutes and the box looks slightly off. And in
+Google Docs or any non-Word editor the controls degrade to a static ☐ that cannot be clicked, so the
+recipient has to be told to open it in Word.
+
+Source: Claude Code session `1f31f1dc`, 2026-08-17.
+
 ## Other config notes
 
 (Placeholder — add Windows-specific configuration notes as they accumulate.)

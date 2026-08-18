@@ -58,6 +58,48 @@ documented caps, not the anecdote.
 Source: Claude Code session, 2026-07-28 (Boris Cherny Opus 5 launch talk, reconciled against
 `~/.claude/regression/adversarial-review-arm-test-2026-07-24.md`).
 
+**A second fan-out arm test landed in the same direction, and located the difference in research
+behaviour rather than in the fan-out itself.** The `adhd` skill spawns five agents under isolated
+cognitive frames. Run head-to-head on 2026-08-17 against a single unstructured agent on the same
+genuinely-open seed (`00-inbox/idea-smart-pig-report-as-cleaning-verification.md`), with pass criteria
+pre-registered before either arm ran, the single agent won on the thing that mattered: it swept six
+facility heater cards, found five prior smart-pig instances, and so **corrected a false premise in the
+seed itself** — the seed's wake condition assumed F-501 was the first instance and therefore waited on
+F-201 in January 2027. The five-frame arm never made the sweep and inherited the false premise into
+all five frames simultaneously, which is the specific failure mode of isolation: a wrong shared brief
+sends every branch down the same wrong path at once, and isolation guarantees none of them can catch
+it. About forty cited specifics across both arms were then read back against the actual files, and
+almost all were real, so this was not a fabrication result — it was a recon result.
+
+The fix that follows is not fewer frames but a mandatory recon phase ahead of them, run in the
+orchestrator's own context rather than delegated, because an agent told to generate will build on
+whatever the brief asserts instead of checking it (config `5347158` added it as Phase 0). Recon must
+be shared verbatim into every frame prompt; that does not break isolation, which forbids one agent
+seeing another's *ideas*, not the frames starting from the same checked ground.
+
+Two method defects are worth carrying forward to any future arm test. **Completion order de-blinds the
+arms** whenever one of them spawns sub-agents and the other does not — the fan-out arm is
+structurally slower, so unlabelled presentation is theatre. And **a parent agent's self-reported token
+count excludes the agents it spawned**, so the cost axis of a fan-out-versus-single comparison cannot
+be recovered from the parent's report; it has to be instrumented before the run or it is unmeasured.
+The 2026-08-17 test lost its cost axis to exactly this.
+
+The standing question the test leaves open: with recon mandatory, do five isolated frames produce
+angles a single grounded pass does not? A single agent does recon for free, which is how the winning
+arm won. Two independent results now point the same way.
+
+Source: Claude Code sessions `06a84965` and `8e7a4b72`, 2026-08-17; config `475ce58`, `5347158`.
+
+**A negative grep is not evidence that work never landed — check which direction the file moved.** A
+2026-08-17 session grepped a fixture README for the rule count recorded in an orphan commit, got zero
+matches, and read that as "the reconciliation never landed" — then tried to cherry-pick the orphan
+commit, which conflicted. The conflict is what revealed the truth: main was at sixteen rules, the
+orphan commit was the fourteen-rule version, and applying it would have deleted two rules added since.
+Absence of the old value meant the file had moved *past* it, not fallen short of it. Before treating a
+missing marker as missing work, read the current state of the target and establish which side is newer.
+
+Source: Claude Code session `1cca7483`, 2026-08-17.
+
 ## Anti-patterns
 
 (Placeholder — add observed failure modes here. Format: what goes wrong, why, what to do instead.)

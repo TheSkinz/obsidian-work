@@ -88,17 +88,57 @@ picker), `keep-coding-instructions`, and `force-for-plugin` (plugin styles only)
 `~/.claude/settings.json` at user level rather than through `/config`, which writes to project-level
 `.claude/settings.local.json` and would scope it to one repo.
 
-It is deliberately a **thin reinforcer**, not a second copy of the rules. It carries only the rules
-that decay late in long main-thread sessions — no bullets in prose, no closing recap, concise by
-default, arrow chains for unfamiliar sequences, direct pushback — and an explicit line naming global
-CLAUDE.md and [[output-preferences]] as authority. Session-mode inference, ask-vs-proceed, pre-build
-rules, and document-output rules were **not** copied in: they live in `01-context/output-preferences.md`,
-they reach subagents, and duplicating them is exactly the drift this design avoids.
+It was first written as a **thin reinforcer** carrying five rules that decay late in long main-thread
+sessions — no bullets in prose, no closing recap, concise by default, arrow chains for unfamiliar
+sequences, direct pushback — plus an explicit line naming global CLAUDE.md and [[output-preferences]]
+as authority. Session-mode inference, ask-vs-proceed, pre-build rules, and document-output rules were
+**not** copied in: they live in `01-context/output-preferences.md`, they reach subagents, and
+duplicating them is exactly the drift this design avoids.
+
+**That version lasted a few hours. See the section below for what is actually live.**
 
 A stray `C:\Users\Jwuts\.claude\.claude\settings.local.json` exists on this machine, an artifact of
 running claude with cwd set to `~/.claude`. It currently holds only an accumulated permissions
 allowlist. If `/config` is ever run from that directory it will write an `outputStyle` there and
 shadow the user-level value.
+
+## The reinforcer-only style was a placebo — cut to one rule the same day
+
+Config `8afdb26` (2026-08-17) replaced all five rules with one. The file is now nine lines, shorter
+than it was in its first form, and the config is smaller than before the style existed at all.
+
+The reason it was cut is the more useful finding. **A style that restates rules already in CLAUDE.md
+in a different position reinforces nothing, and the session that wrote it was the evidence.** Those
+five rules were in force twice over — once in CLAUDE.md, once in the new style file — and the
+conversation ran long, enumerated, and tail-heavy throughout. Placement plus a reminder loop is a real
+mechanism for a rule the model would otherwise forget, but not for one it is already reading and
+already not following. A reinforcer with no new instruction in it reinforces nothing.
+
+What survived is the single rule Jesse names as the one he actually wants: end the response by naming
+what is outstanding specifically enough to act on — the task, where it lives, what it costs — then the
+suggested action with its reason, and close with nothing when nothing is outstanding. CLAUDE.md already
+says close with forward-looking suggestions; the style adds only the specificity requirement, and gets
+the reminder loop CLAUDE.md does not have. His own framing of the rest: they "sounded nice" but are
+disposable if they cost anything.
+
+**"Answer first" was considered and deliberately dropped.** It collides with the recon-before-drafting
+hard constraint — a future session reading the style cold, with none of this context, could take it as
+licence to lead with a confident conclusion before opening the files, which is the exact failure the
+vault's epistemics exist to prevent. It could have been written as "the conclusion leads once you have
+it," but a rule that needs a proviso to stop it causing the failure it was meant to avoid is not worth
+its line.
+
+**A second rule was drafted and dropped for over-firing.** "State any open decision as a question with
+a recommendation" applied literally ends every turn with a question, which is the confirmation-seeking
+CLAUDE.md bans. Bounding it to genuine forks — Lane 4, irreversible, a real choice — is what the
+surviving rule's "when nothing is outstanding, close with nothing" clause does instead.
+
+The general lesson, which is why this is recorded rather than just changed: **ask which single
+preference actually matters before building machinery around a list of them.** A stated list read as
+a specification produced five rules; the same list read as a ranking produced one, and the one was
+already sufficient.
+
+Source: Claude Code session `06a84965`, 2026-08-17; config `8afdb26`.
 
 ## Links
 
