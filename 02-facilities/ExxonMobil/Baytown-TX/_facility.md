@@ -176,15 +176,25 @@ standby (98 hrs combined) was not planned in the quote at all.
 - [[F-371A]]
 - [[F-501]] — HU5A
 - [[F-201]] — 27GF1A, Treat Gas
-- **Pipestill 3 (PS3)** — decoked January 2026 as job USA26007. No heater card and no heater ID recorded; the job register and the workup both describe the scope only as "PS3 Heater". Distinct from the PS8 units (F-802, F-902).
+- **Pipestill 3 (PS3)** — decoked January 2026 as job USA26007, four heaters: **F-306, F-305, F-302, F-301**. No heater cards and no HU-prefixed heater IDs recorded for any of the four; the job register, the workup and the signed change order all name them only by these bare PS3 tags. **PS3's "F-301" is not the vault's [[F-301]] card** — that card is `HU9-F301-SplitterReboiler`, a different unit and a different heater that happens to share the number. Do not conflate them if PS3 work ever gets a card of its own. Distinct from the PS8 units (F-802, F-902).
 
 ## Completed work not held on a heater card
 
-**Pipestill 3 decoke, January 2026 — DSP#25070 → job USA26007.** PO AM4510698312, contracted **$162,576.42**, started 01/28/2026, invoiced **$199,756.00** on invoice 128587, billed through GEP. Source: the `2026 Job Numbers.xlsx` register on SharePoint (Jesse, 2026-08-18), which is authority — not derived from the workup.
+**Pipestill 3 decoke, January 2026 — DSP#25070 → job USA26007.** Scope: mechanical decoke of PS3's F-306, F-305, F-302 and F-301. PO AM4510698312, contracted **$162,576.42**, mobilized 01/28/2026, executed 01/31/2026. Source: the `2026 Job Numbers.xlsx` register on SharePoint (Jesse, 2026-08-18) for the base facts; the signed change order below (Jesse's Downloads, added to Google Drive 2026-08-18) for the price history — neither is derived from the workup.
 
-The invoice ran **$37,179.58 over the contracted value, 122.9% of quote.** That figure is recorded as-is, not explained: the register carries no change-order or scope note and the vault holds no receipts, shift logs or actuals for this job. Do not read it as an estimating miss without them.
+**Signed change order, 2/6/2026 — the invoice overage is fully authorized, with room to spare.** Field discovery on F-306: the coil configuration was 6 coils looped to **4 passes**, not the 2 passes the job was priced against, requiring a change-over and extended decoking time. Support doc: "Updated F-306 pigging configuration with correct labeling provided." Company-approved by Jesse Utsey, 2/6/2026; the contractor-approval block is unsigned on the copy retained, which is normal — that side is ExxonMobil's.
 
-Two workup copies exist and the register settles which governs: `Jobs\USA26007 PS3 2026-02\` totals $162,576.42 on every total it carries and matches the contracted value, so it is authoritative; the `_History\Exxon Baytown_PS3 Heaters\` copy at $169,947.76 is a superseded higher revision sitting where superseded revisions belong. Both are internally consistent and both read `DSP#: 25070` in both cells — this pair was never a defect. No action taken or needed.
+| | Amount |
+|---|---|
+| Original contract price | $162,576.42 |
+| Change order (scope change + completion date) | +$44,113.49 |
+| **New contract price** | **$206,689.91** |
+| Invoiced (invoice 128587, billed through GEP) | $199,756.00 |
+| **Invoice vs. authorized price** | **$6,933.91 under** |
+
+This replaces the earlier reading here, which compared the invoice only to the *original* $162,576.42 and called the $37,179.58 gap unexplained. It is explained, by a scope change discovered in the field and authorized in writing before the invoice — and the invoice came in under the authorized ceiling, not over it. General lesson, consistent with [[DSP26071]]'s "governing rate" finding: **the original contract value is not the number to invoice-check against once a change order exists.** Check the invoice against the change-order price, not the quote.
+
+Two workup copies exist and the register settles which governs: `Jobs\USA26007 PS3 2026-02\` totals $162,576.42 on every total it carries and matches the *original* contracted value, so it is authoritative for the base quote; the `_History\Exxon Baytown_PS3 Heaters\` copy at $169,947.76 is a superseded higher revision sitting where superseded revisions belong. Neither workup reflects the change order — it is a separate signed document, not a workup revision. Both copies internally consistent, both read `DSP#: 25070` in both cells — this pair was never a defect. No action needed on the workups.
 
 ---
 
