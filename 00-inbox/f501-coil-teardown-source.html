@@ -1,0 +1,875 @@
+<meta charset="utf-8">
+<title>F-501 Coil Teardown</title>
+<style>
+  :root{
+    --bg:#03050c; --panel:#080d18d9; --border:#22304d; --text:#dce6ff; --muted:#6f809f;
+    --accent:#49d6ff; --warn:#ffab4a; --hot:#ff4d4d; --new:#8affc1;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+    font-family:'Segoe UI',system-ui,sans-serif;overflow:hidden;height:100%;}
+  #stage{position:fixed;inset:0;}
+  #stage canvas{display:block;filter:saturate(1.22) contrast(1.08);}
+  #vignette{position:fixed;inset:0;pointer-events:none;z-index:2;
+    background:radial-gradient(ellipse at 50% 45%, transparent 32%, rgba(1,2,7,0.76) 100%);}
+  .panel{position:fixed;background:var(--panel);border:1px solid var(--border);
+    border-radius:10px;padding:10px 14px;backdrop-filter:blur(8px);font-size:12px;
+    color:var(--muted);z-index:6;}
+
+  #title{top:18px;left:18px;font-size:14px;color:var(--text);letter-spacing:.03em;
+    pointer-events:none;}
+  #title b{color:var(--accent);font-weight:600;}
+  #title small{display:block;color:var(--muted);font-size:11px;margin-top:3px;}
+
+  #caption{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);z-index:6;
+    text-align:center;pointer-events:none;max-width:660px;}
+  #capTitle{font-size:21px;color:var(--text);letter-spacing:.04em;
+    text-shadow:0 0 24px rgba(73,214,255,.5);transition:opacity .55s;}
+  #capSub{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.55;transition:opacity .55s;}
+  #capSub em{color:var(--warn);font-style:normal;}
+  #capSub b{color:var(--text);font-weight:600;}
+
+  #hud{top:18px;right:18px;min-width:236px;line-height:1.7;}
+  #hud .row{display:flex;justify-content:space-between;gap:16px;}
+  #hud .row span:last-child{color:var(--text);font-variant-numeric:tabular-nums;}
+  #hud .hdr{color:var(--accent);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+    margin-bottom:5px;}
+
+  #legend{right:18px;bottom:92px;min-width:190px;}
+  #legend .hdr{color:var(--accent);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+    margin-bottom:8px;}
+  #legend .k{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:11px;}
+  #legend .sw{width:22px;height:8px;border-radius:2px;}
+
+  #controls{left:18px;right:18px;bottom:18px;display:flex;align-items:center;gap:12px;
+    flex-wrap:wrap;justify-content:center;}
+  #controls button{background:#111a2b;border:1px solid var(--border);color:var(--text);
+    padding:8px 13px;border-radius:7px;cursor:pointer;font-size:12px;white-space:nowrap;}
+  #controls button:hover{border-color:var(--accent);color:var(--accent);}
+  #controls button.active{border-color:var(--accent);color:var(--accent);background:#14243c;}
+  .sep{width:1px;height:20px;background:var(--border);}
+
+  .tag{position:fixed;z-index:5;pointer-events:none;transform:translate(-50%,-50%);
+    font-size:11px;letter-spacing:.04em;white-space:nowrap;opacity:0;transition:opacity .45s;
+    text-shadow:0 0 12px rgba(0,0,0,.95);}
+  .tag .id{color:var(--text);font-weight:600;}
+  .tag.show{opacity:1;}
+
+  #about{top:76px;left:50%;transform:translateX(-50%);max-width:610px;text-align:left;
+    display:none;font-size:11.5px;line-height:1.6;}
+  #about b{color:var(--text);}
+
+  #recDot{display:none;position:fixed;top:18px;left:50%;transform:translateX(-50%);
+    z-index:8;align-items:center;gap:8px;background:#1a0d12d9;border:1px solid #7a2436;
+    border-radius:20px;padding:6px 14px;font-size:11.5px;color:#ffb3b3;letter-spacing:.08em;}
+  #recDot i{width:9px;height:9px;border-radius:50%;background:#ff4d4d;
+    box-shadow:0 0 10px #ff4d4d;display:inline-block;}
+</style>
+
+<div id="stage"></div>
+<div id="vignette"></div>
+
+<div id="title" class="panel">
+  ExxonMobil Baytown &middot; HU5A <b>F-501</b> &middot; Pass B
+  <small>814 ft of coil &middot; smart-pig inspection 2026-08-13</small>
+</div>
+
+<div id="recDot"><i></i> RECORDING &mdash; keep this tab in front</div>
+
+<div id="about" class="panel">
+  Source: <b>Steady Flux Technologies</b> intelligent pig report <b>26-0663-002 Rev. A</b>,
+  inspection 2026-08-13, ExxonMobil Baytown HU5A F-501, Pass B. Geometry is true to the report's
+  segment tables: 25 straights, 24 bends, 9,768 in.
+  <br><br>
+  In close-up the <b>bore is drawn to the measured wall</b> &mdash; where metal is missing the
+  inner surface pushes out toward the outer skin, so the gap you see between them is the wall that
+  is actually left. Each segment carries <b>one</b> recorded minimum at one recorded distance from
+  its upstream weld; between those points the surface is interpolated and is <b>not</b> a measured
+  thickness map. Only <b>B_8_C</b> has a recorded circumferential (clock) position &mdash; every
+  other minimum is shown uniformly around the pipe.
+  <br><br>
+  No minimum allowable wall threshold was provided by the owner, so this shows measured condition
+  only and makes no fitness-for-service call.
+</div>
+
+<div id="hud" class="panel">
+  <div class="hdr">Position</div>
+  <div class="row"><span>Segment</span><span id="hSeg">&mdash;</span></div>
+  <div class="row"><span>Section</span><span id="hSection">&mdash;</span></div>
+  <div class="row"><span>Nominal wall</span><span id="hNom">&mdash;</span></div>
+  <div class="row"><span>Min wall</span><span id="hWall">&mdash;</span></div>
+  <div class="row"><span>Metal lost</span><span id="hLost">&mdash;</span></div>
+  <div class="row"><span>Ovality</span><span id="hOval">&mdash;</span></div>
+</div>
+
+<div id="legend" class="panel">
+  <div class="hdr">Remaining wall</div>
+  <div class="k"><div class="sw" style="background:#49d6ff"></div>near nominal</div>
+  <div class="k"><div class="sw" style="background:#ffe14a"></div>moderate loss</div>
+  <div class="k"><div class="sw" style="background:#ff4d4d"></div>heavy loss</div>
+  <div class="k"><div class="sw" style="background:#8affc1"></div>new steel (2026-08)</div>
+</div>
+
+<div id="caption"><div id="capTitle"></div><div id="capSub"></div></div>
+
+<div id="controls" class="panel">
+  <button id="btnPlay">&#10074;&#10074; pause</button>
+  <button id="btnPrev">&#9664; prev</button>
+  <button id="btnNext">next &#9654;</button>
+  <div class="sep"></div>
+  <button id="btnGhost">wall cutaway: auto</button>
+  <button id="btnNominal">basis: as reported</button>
+  <div class="sep"></div>
+  <button id="btnFree">free orbit</button>
+  <button id="aboutBtn">about this data</button>
+  <button id="btnRec" style="display:none">&#9679; record tour</button>
+</div>
+
+<!--THREEJS_INLINE_HERE-->
+
+<script>
+(function(){
+"use strict";
+try {
+
+/* =====================================================================
+   1. REAL INSPECTION DATA - F-501 Pass B, Steady Flux 26-0663-002 Rev. A
+===================================================================== */
+const OD = 5.563, ORAD = OD/2;
+const NOMINAL = { convection:0.400, crossover:0.464, radiant:0.464 };
+const BORE    = { convection:4.763, crossover:4.635, radiant:4.635 };
+
+const SEG = [
+  {id:'B_1_C',  section:'convection', type:'S',   len:250.0, wall:0.435, pct:null, dist:101.0, oval:1.2},
+  {id:'B_1B_C', section:'convection', type:'B180',len:15.7,  wall:0.458, pct:null, dist:14.6,  oval:null},
+  {id:'B_2_C',  section:'convection', type:'S',   len:226.0, wall:0.421, pct:null, dist:66.9,  oval:1.7},
+  {id:'B_2B_C', section:'convection', type:'B180',len:15.7,  wall:0.467, pct:null, dist:14.9,  oval:null},
+  {id:'B_3_C',  section:'convection', type:'S',   len:226.0, wall:0.435, pct:null, dist:19.6,  oval:2.6},
+  {id:'B_3B_C', section:'convection', type:'B180',len:15.7,  wall:0.458, pct:null, dist:8.7,   oval:null},
+  {id:'B_4_C',  section:'convection', type:'S',   len:226.0, wall:0.417, pct:null, dist:195.1, oval:1.6},
+  {id:'B_4B_C', section:'convection', type:'B180',len:15.7,  wall:0.408, pct:null, dist:14.6,  oval:null},
+  {id:'B_5_C',  section:'convection', type:'S',   len:226.0, wall:0.412, pct:null, dist:109.2, oval:1.8},
+  {id:'B_5B_C', section:'convection', type:'B180',len:15.7,  wall:0.463, pct:null, dist:14.9,  oval:null},
+  {id:'B_6_C',  section:'convection', type:'S',   len:226.0, wall:0.417, pct:null, dist:83.0,  oval:1.6},
+  {id:'B_6B_C', section:'convection', type:'B180',len:15.7,  wall:0.449, pct:null, dist:14.3,  oval:null},
+  {id:'B_7_C',  section:'convection', type:'S',   len:226.0, wall:0.421, pct:null, dist:106.5, oval:1.9},
+  {id:'B_7B_C', section:'convection', type:'B180',len:15.7,  wall:0.435, pct:null, dist:5.9,   oval:null},
+  {id:'B_8_C',  section:'convection', type:'S',   len:226.0, wall:0.224, pct:43.9, dist:195.7, oval:2.2, clockDeg:210, worst:true},
+  {id:'B_8B_C', section:'convection', type:'B180',len:18.9,  wall:0.435, pct:null, dist:18.5,  oval:null},
+  {id:'B_9_C',  section:'convection', type:'S',   len:226.0, wall:0.431, pct:null, dist:127.5, oval:1.9},
+  {id:'B_9B_C', section:'convection', type:'B90', len:9.4,   wall:0.431, pct:null, dist:4.0,   oval:null},
+
+  {id:'B_1_X',  section:'crossover',  type:'S',   len:113.0, wall:0.472, pct:null, dist:55.5,  oval:0.1},
+  {id:'B_1B_X', section:'crossover',  type:'B90', len:9.4,   wall:0.481, pct:null, dist:8.3,   oval:null},
+
+  {id:'B_1_R',   section:'radiant', type:'S',   len:477.0, wall:0.412, pct:11.2, dist:68.7,  oval:1.2},
+  {id:'B_1B_R',  section:'radiant', type:'B180',len:18.9,  wall:0.417, pct:10.2, dist:4.4,   oval:null},
+  {id:'B_2_R',   section:'radiant', type:'S',   len:477.0, wall:0.394, pct:15.1, dist:235.7, oval:1.7, honestWorst:true},
+  {id:'B_2B_R',  section:'radiant', type:'B180',len:18.9,  wall:0.490, pct:null, dist:17.6,  oval:null},
+  {id:'B_3_R',   section:'radiant', type:'S',   len:477.0, wall:0.408, pct:12.2, dist:389.2, oval:1.6},
+  {id:'B_3B_R',  section:'radiant', type:'B180',len:18.9,  wall:0.444, pct:4.3,  dist:9.8,   oval:null},
+  {id:'B_4_R',   section:'radiant', type:'S',   len:477.0, wall:0.435, pct:6.2,  dist:35.3,  oval:2.0,
+     pup:{offset:39.9, wall:0.357, pct:23.0}},
+  {id:'B_4B_R',  section:'radiant', type:'B180',len:18.9,  wall:0.472, pct:null, dist:17.0,  oval:null},
+  {id:'B_5_R',   section:'radiant', type:'S',   len:477.0, wall:0.403, pct:13.1, dist:220.0, oval:1.1},
+  {id:'B_5B_R',  section:'radiant', type:'B180',len:18.9,  wall:0.440, pct:5.2,  dist:17.8,  oval:null},
+  {id:'B_6_R',   section:'radiant', type:'S',   len:477.0, wall:0.417, pct:10.2, dist:450.3, oval:1.8},
+  {id:'B_6B_R',  section:'radiant', type:'B180',len:18.9,  wall:0.458, pct:1.3,  dist:17.4,  oval:null},
+  {id:'B_7_R',   section:'radiant', type:'S',   len:477.0, wall:0.421, pct:9.2,  dist:207.1, oval:1.9},
+  {id:'B_7B_R',  section:'radiant', type:'B180',len:18.9,  wall:0.431, pct:7.2,  dist:17.7,  oval:null},
+  {id:'B_8_R',   section:'radiant', type:'S',   len:477.0, wall:0.449, pct:3.3,  dist:81.3,  oval:1.9},
+  {id:'B_8B_R',  section:'radiant', type:'B180',len:18.9,  wall:0.467, pct:null, dist:18.2,  oval:null},
+  {id:'B_9_R',   section:'radiant', type:'S',   len:477.0, wall:0.426, pct:8.2,  dist:460.6, oval:1.2},
+  {id:'B_9B_R',  section:'radiant', type:'B180',len:18.9,  wall:0.435, pct:6.2,  dist:17.4,  oval:null},
+  {id:'B_10_R',  section:'radiant', type:'S',   len:477.0, wall:0.412, pct:11.2, dist:7.9,   oval:1.1},
+  {id:'B_10B_R', section:'radiant', type:'B180',len:18.9,  wall:0.458, pct:1.3,  dist:17.8,  oval:null},
+  {id:'B_11_R',  section:'radiant', type:'S',   len:477.0, wall:0.431, pct:7.2,  dist:0.1,   oval:1.6,
+     pup:{offset:434.7, wall:0.321, pct:30.9}},
+  {id:'B_11B_R', section:'radiant', type:'B180',len:18.9,  wall:0.412, pct:11.2, dist:17.2,  oval:null},
+  {id:'B_12_R',  section:'radiant', type:'S',   len:477.0, wall:0.417, pct:10.2, dist:252.4, oval:1.3},
+  {id:'B_12B_R', section:'radiant', type:'B180',len:18.9,  wall:0.440, pct:5.2,  dist:8.5,   oval:null},
+  {id:'B_13_R',  section:'radiant', type:'S',   len:477.0, wall:0.417, pct:10.2, dist:42.8,  oval:1.6},
+  {id:'B_13B_R', section:'radiant', type:'B180',len:18.9,  wall:0.440, pct:5.2,  dist:17.6,  oval:null},
+  {id:'B_14_R',  section:'radiant', type:'S',   len:477.0, wall:0.417, pct:10.2, dist:472.7, oval:1.6},
+  {id:'B_14B_R', section:'radiant', type:'B180',len:18.9,  wall:0.444, pct:4.3,  dist:17.2,  oval:null},
+  {id:'B_15_R',  section:'radiant', type:'S',   len:507.0, wall:0.444, pct:4.3,  dist:166.3, oval:1.7},
+];
+
+/* =====================================================================
+   2. PATH BUILDER (true scale; bend length = arc length)
+===================================================================== */
+function buildPath(){
+  const pts=[]; let pos=new THREE.Vector3(0,1400,0), dir=new THREE.Vector3(1,0,0);
+  function straight(seg){
+    const steps=Math.max(2,Math.round(seg.len/5));
+    for(let i=1;i<=steps;i++){
+      const d=seg.len*i/steps;
+      pts.push({p:pos.clone().add(dir.clone().multiplyScalar(d)), seg, dFromStart:d});
+    }
+    pos=pts[pts.length-1].p.clone();
+  }
+  function arc(seg, n, angle, dropAxis, dropSign){
+    const radius=seg.len/angle; let ts=1;
+    function endFor(s){
+      const right=new THREE.Vector3().crossVectors(dir,n).normalize().multiplyScalar(s);
+      const c=pos.clone().add(right.clone().multiplyScalar(radius));
+      const r0=pos.clone().sub(c);
+      const q=new THREE.Quaternion().setFromAxisAngle(n,-s*angle);
+      return {c, e:c.clone().add(r0.clone().applyQuaternion(q))};
+    }
+    let {c,e}=endFor(ts);
+    const drift = dropAxis==='y' ? (e.y-pos.y) : (e.z-pos.z);
+    if (Math.sign(drift||1)!==dropSign){ ts=-1; ({c,e}=endFor(ts)); }
+    const steps=Math.max(14,Math.round(angle/(Math.PI/24)));
+    for(let i=1;i<=steps;i++){
+      const a=angle*i/steps, r0=pos.clone().sub(c);
+      const q=new THREE.Quaternion().setFromAxisAngle(n,-ts*a);
+      pts.push({p:c.clone().add(r0.clone().applyQuaternion(q)), seg, dFromStart:radius*a});
+    }
+    dir=dir.clone().applyQuaternion(new THREE.Quaternion().setFromAxisAngle(n,-ts*angle)).normalize();
+    pos=pts[pts.length-1].p.clone();
+  }
+  const Y=new THREE.Vector3(0,1,0), Z=new THREE.Vector3(0,0,1), X=new THREE.Vector3(1,0,0);
+  SEG.forEach(seg=>{
+    if (seg.type==='S') return straight(seg);
+    if (seg.section==='convection' && seg.type==='B180') return arc(seg,Z,Math.PI,'y',-1);
+    if (seg.section==='radiant'    && seg.type==='B180') return arc(seg,X,Math.PI,'z', 1);
+    if (seg.id==='B_9B_C') return arc(seg,Y,Math.PI/2,'z', 1);
+    if (seg.id==='B_1B_X') return arc(seg,X,Math.PI/2,'y',-1);
+  });
+  return pts;
+}
+const RAW=buildPath(), N=RAW.length;
+let cum=0; RAW.forEach((pt,i)=>{ if(i>0) cum+=pt.p.distanceTo(RAW[i-1].p); pt.cum=cum; });
+const PATH_LEN=RAW[N-1].cum, TOTAL_FT=PATH_LEN/12;
+
+function findIdx(segId,d){
+  let best=0,err=Infinity;
+  for(let i=0;i<N;i++){ if(RAW[i].seg.id!==segId) continue;
+    const e=Math.abs(RAW[i].dFromStart-d); if(e<err){err=e;best=i;} }
+  return best;
+}
+
+/* =====================================================================
+   3. WALL MODEL - inches of metal actually left at a point + clock angle.
+   This drives BOTH colour and geometry: the bore is drawn at
+   (outer radius - remaining wall), so missing metal is visible as the
+   inner surface pushing out toward the outer skin.
+===================================================================== */
+const dataState = { asReported:true };
+function lossAt(pt){                     // axial loss in inches (no clock mask)
+  const seg=pt.seg, nom=NOMINAL[seg.section];
+  if (seg.pup){
+    const dP=Math.abs(pt.dFromStart-seg.pup.offset);
+    if (dP<6){
+      if (!dataState.asReported) return {loss:0, isNew:true};
+      const g=Math.exp(-(dP*dP)/(2*3.2*3.2));
+      return {loss:Math.max(0,nom-seg.pup.wall)*g, isNew:false};
+    }
+  }
+  const base=Math.max(0, nom-seg.wall);
+  const sig = seg.type==='S' ? 60 : 9;
+  const d=Math.abs(pt.dFromStart-seg.dist);
+  return {loss: base*Math.exp(-(d*d)/(2*sig*sig)), isNew:false};
+}
+/* The report's clock positions are physical: 12:00 is the top of the pipe as
+   installed. The parallel-transport normal is an arbitrary mathematical frame,
+   so the angle has to be re-measured against true world-up projected into the
+   tube's cross-section, or "7:00" ends up pointing somewhere meaningless. */
+const WORLD_UP=new THREE.Vector3(0,1,0);
+const _up=new THREE.Vector3(), _rt=new THREE.Vector3(), _d=new THREE.Vector3();
+function clockMask(seg, ang, i){
+  if (seg.clockDeg==null) return 1;
+  const t=tan[i];
+  let a;
+  if (Math.abs(t.dot(WORLD_UP))>0.9){
+    a=(THREE.MathUtils.radToDeg(ang)+360)%360;          // vertical run: no meaningful clock
+  } else {
+    _up.copy(WORLD_UP).addScaledVector(t,-WORLD_UP.dot(t)).normalize();   // 12:00
+    _rt.crossVectors(t,_up).normalize();                                   // 3:00
+    _d.copy(nor[i]).multiplyScalar(Math.cos(ang)).addScaledVector(bin[i],Math.sin(ang));
+    a=(THREE.MathUtils.radToDeg(Math.atan2(_d.dot(_rt), _d.dot(_up)))+360)%360;
+  }
+  const d=Math.min(Math.abs(a-seg.clockDeg), 360-Math.abs(a-seg.clockDeg));
+  return Math.exp(-(d*d)/(2*50*50));
+}
+const LOSS_FULL=0.45;                    // worst real reading is 43.9%
+function condColor(frac, isNew){
+  if (isNew) return new THREE.Color(0x8affc1);
+  const t=THREE.MathUtils.clamp(frac/LOSS_FULL,0,1);
+  const h=(t<0.6)?(0.55-(t/0.6)*0.41):(0.14-((t-0.6)/0.4)*0.14);
+  return new THREE.Color().setHSL(h,0.95,0.42+0.17*t);
+}
+function baseColor(section){
+  if (section==='convection') return new THREE.Color().setHSL(0.55,0.45,0.34);
+  if (section==='crossover')  return new THREE.Color().setHSL(0.49,0.45,0.36);
+  return new THREE.Color().setHSL(0.585,0.45,0.34);
+}
+
+/* =====================================================================
+   4. FRAMES
+===================================================================== */
+const tan=new Array(N), nor=new Array(N), bin=new Array(N);
+for(let i=0;i<N;i++){
+  const a=RAW[Math.max(0,i-1)].p, b=RAW[Math.min(N-1,i+1)].p;
+  tan[i]=b.clone().sub(a).normalize();
+}
+let u0=Math.abs(tan[0].y)<0.9?new THREE.Vector3(0,1,0):new THREE.Vector3(1,0,0);
+nor[0]=u0.clone().sub(tan[0].clone().multiplyScalar(u0.dot(tan[0]))).normalize();
+bin[0]=new THREE.Vector3().crossVectors(tan[0],nor[0]);
+for(let i=1;i<N;i++){
+  let n=nor[i-1].clone(); n.sub(tan[i].clone().multiplyScalar(n.dot(tan[i])));
+  if(n.lengthSq()<1e-6) n=bin[i-1].clone();
+  nor[i]=n.normalize(); bin[i]=new THREE.Vector3().crossVectors(tan[i],n);
+}
+
+/* =====================================================================
+   5. SCENE
+===================================================================== */
+const scene=new THREE.Scene();
+// preserveDrawingBuffer so the recorder can drawImage() this canvas into the
+// compositing canvas; without it the copy comes back blank.
+const renderer=new THREE.WebGLRenderer({antialias:true, powerPreference:'high-performance',
+  preserveDrawingBuffer:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(innerWidth,innerHeight);
+renderer.setClearColor(0x03050c,1);
+document.getElementById('stage').appendChild(renderer.domElement);
+const camera=new THREE.PerspectiveCamera(46, innerWidth/innerHeight, 0.4, 20000);
+
+scene.add(new THREE.AmbientLight(0x4a5f8f,1.0));
+const key=new THREE.DirectionalLight(0x9fd0ff,1.0); key.position.set(1,0.7,1); scene.add(key);
+const fill=new THREE.DirectionalLight(0xff9a5c,0.35); fill.position.set(-1,-0.3,-0.6); scene.add(fill);
+const spot=new THREE.PointLight(0xffffff,0.0,420,2); scene.add(spot);
+
+const bbox=new THREE.Box3().setFromPoints(RAW.map(p=>p.p));
+const bcenter=bbox.getCenter(new THREE.Vector3());
+const bsize=bbox.getSize(new THREE.Vector3());
+
+/* ---- tube builder: radius follows the measured wall ---- */
+const RING=18;
+function makeTube(i0,i1,opts){
+  opts=opts||{};
+  const pos=[],col=[],idx=[]; const n=i1-i0+1;
+  for(let i=i0;i<=i1;i++){
+    const pt=RAW[i], nom=NOMINAL[pt.seg.section];
+    const L=lossAt(pt);
+    for(let k=0;k<RING;k++){
+      const ang=(k/RING)*Math.PI*2;
+      const m=clockMask(pt.seg,ang,i);
+      const lost=L.loss*m;
+      let r;
+      if (opts.outer)      r=ORAD*(opts.scale||1);              // outer skin ghost
+      else if (opts.halo)  r=(ORAD-nom)*(opts.scale||1);        // glow shell, nominal bore
+      else                 r=ORAD-(nom-lost);                   // true bore from measured wall
+      const off=nor[i].clone().multiplyScalar(Math.cos(ang)*r)
+                 .add(bin[i].clone().multiplyScalar(Math.sin(ang)*r));
+      const v=pt.p.clone().add(off);
+      pos.push(v.x,v.y,v.z);
+
+      const base=baseColor(pt.seg.section);
+      let c;
+      if (opts.outer) c=new THREE.Color(0x7fa8d8);
+      else if (L.isNew) c=base.clone().lerp(new THREE.Color(0x8affc1),0.85);
+      else {
+        const frac=lost/nom;
+        c=base.clone().lerp(condColor(frac,false), Math.min(1,(frac/LOSS_FULL)*1.6));
+      }
+      const ring=Math.max(0,1-Math.abs((pt.cum%14))/1.6, 1-Math.abs((pt.cum%14)-14)/1.6);
+      c=c.clone().offsetHSL(0,0,ring*0.12);
+      col.push(c.r,c.g,c.b);
+    }
+  }
+  for(let i=0;i<n-1;i++) for(let k=0;k<RING;k++){
+    const a=i*RING+k,b=i*RING+((k+1)%RING),c2=(i+1)*RING+k,d=(i+1)*RING+((k+1)%RING);
+    idx.push(a,c2,b, b,c2,d);
+  }
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));
+  g.setAttribute('color',   new THREE.Float32BufferAttribute(col,3));
+  g.setIndex(idx); g.computeVertexNormals();
+  return g;
+}
+
+const tubeMat=new THREE.MeshStandardMaterial({vertexColors:true,roughness:0.42,metalness:0.30,
+  emissive:0x0d1830,emissiveIntensity:1.0,transparent:true,opacity:0.95,side:THREE.DoubleSide});
+const haloMat=new THREE.MeshBasicMaterial({vertexColors:true,transparent:true,opacity:0.10,
+  blending:THREE.AdditiveBlending,depthWrite:false,side:THREE.BackSide});
+let tubeMesh=new THREE.Mesh(makeTube(0,N-1,{}), tubeMat);
+let haloMesh=new THREE.Mesh(makeTube(0,N-1,{halo:true,scale:2.6}), haloMat);
+scene.add(tubeMesh); scene.add(haloMesh);
+
+const lineMat=new THREE.LineBasicMaterial({color:0x6fe4ff,transparent:true,opacity:0.42,
+  blending:THREE.AdditiveBlending,depthWrite:false});
+scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(RAW.map(p=>p.p)),lineMat));
+
+const grid=new THREE.GridHelper(2600,26,0x22436b,0x14263f);
+grid.position.set(bcenter.x,bbox.min.y-30,bcenter.z);
+grid.material.transparent=true; grid.material.opacity=0.26; grid.material.depthWrite=false;
+scene.add(grid);
+
+(function(){ // void dust
+  const C=1100,p=new Float32Array(C*3),c=new Float32Array(C*3),span=bsize.length();
+  for(let s=0;s<C;s++){
+    p.set([bcenter.x+(Math.random()-0.5)*span*2.4, bcenter.y+(Math.random()-0.5)*span*2.0,
+           bcenter.z+(Math.random()-0.5)*span*2.4], s*3);
+    const col=new THREE.Color().setHSL(0.55+Math.random()*0.12,0.7,0.45+Math.random()*0.3);
+    c.set([col.r,col.g,col.b],s*3);
+  }
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.Float32BufferAttribute(p,3));
+  g.setAttribute('color',new THREE.Float32BufferAttribute(c,3));
+  scene.add(new THREE.Points(g,new THREE.PointsMaterial({size:5,vertexColors:true,transparent:true,
+    opacity:0.45,blending:THREE.AdditiveBlending,depthWrite:false})));
+})();
+
+function rebuildCoil(){
+  scene.remove(tubeMesh); tubeMesh.geometry.dispose();
+  tubeMesh=new THREE.Mesh(makeTube(0,N-1,{}),tubeMat); scene.add(tubeMesh);
+  if (detail.mesh) buildDetail(detail.anom);
+}
+
+/* =====================================================================
+   6. ANOMALIES
+===================================================================== */
+const ANOM=[
+  { key:'B_8_C', segId:'B_8_C', at:195.7, kind:'hot', elev:-0.34, near:74,
+    title:'B_8_C &mdash; the one that matters',
+    sub:'Convection pass B, tube 8. <b>0.224 in left of a 0.400 in wall</b> &mdash; <em>0.176 in of metal gone</em>, internal, running nearly the full 226 in. The thin line sits at the <b>7:00 position</b>: the only clock reading in the whole report.' },
+  { key:'B_2_R', segId:'B_2_R', at:235.7, kind:'warm', elev:0.34, near:96,
+    title:'B_2_R &mdash; the honest radiant number',
+    sub:'<b>0.394 in left of 0.464 in</b>, 15.1% loss. The lowest reading in <b>original</b> radiant pipe &mdash; the real condition number once the new steel is set aside.' },
+  { key:'B_4_R', segId:'B_4_R', at:39.9, kind:'new', elev:0.30, near:84,
+    title:'B_4_R &mdash; weld pup, new steel',
+    sub:'Reads <em>23.0% loss</em> against the original 0.464 in nominal. It is a <b>7.3 in replacement insert welded in days before the inspection</b>. Watch the wall fill back in when the basis corrects.' },
+  { key:'B_11_R', segId:'B_11_R', at:434.7, kind:'new', elev:0.30, near:84,
+    title:'B_11_R &mdash; weld pup, new steel',
+    sub:'Reads <em>30.9% loss</em> &mdash; the second insert. Measured against the wrong nominal, brand-new pipe reads as the worst steel in the heater.' },
+];
+ANOM.forEach(a=>{ a.idx=findIdx(a.segId,a.at); a.pos=RAW[a.idx].p.clone(); });
+
+const KIND={hot:0xff4d4d,warm:0xffab4a,new:0x8affc1};
+const beacons=ANOM.map(a=>{
+  const col=KIND[a.kind], g=new THREE.Group();
+  const core=new THREE.Mesh(new THREE.SphereGeometry(1.0,12,12),
+    new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.95,blending:THREE.AdditiveBlending,depthWrite:false}));
+  const halo=new THREE.Mesh(new THREE.SphereGeometry(2.6,14,14),
+    new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.16,blending:THREE.AdditiveBlending,depthWrite:false}));
+  const ring=new THREE.Mesh(new THREE.TorusGeometry(5.0,0.28,8,36),
+    new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.55,blending:THREE.AdditiveBlending,depthWrite:false}));
+  g.add(core); g.add(halo); g.add(ring); g.position.copy(a.pos);
+  g.userData={core,halo,ring}; scene.add(g); return g;
+});
+
+const tagEls=ANOM.map(()=>{ const d=document.createElement('div'); d.className='tag';
+  document.body.appendChild(d); return d; });
+function refreshTags(){
+  ANOM.forEach((a,k)=>{
+    const isNew=(a.kind==='new' && !dataState.asReported);
+    const c=isNew?'var(--new)':a.kind==='hot'?'var(--hot)':a.kind==='new'?'var(--hot)':'var(--warn)';
+    let v;
+    if (isNew) v='new steel &mdash; not loss';
+    else if (a.key==='B_8_C') v='0.224 in &middot; 43.9%';
+    else if (a.key==='B_2_R') v='0.394 in &middot; 15.1%';
+    else if (a.key==='B_4_R') v='0.357 in &middot; 23.0%';
+    else v='0.321 in &middot; 30.9%';
+    tagEls[k].innerHTML='<span class="id">'+a.key+'</span> &nbsp;<span style="color:'+c+'">'+v+'</span>';
+  });
+}
+refreshTags();
+
+/* ---- detail rig: bright bore + translucent outer skin + scan ring ---- */
+const detail={anom:null, mesh:null, skin:null, ring:null, span:190};
+const scanRing=new THREE.Mesh(new THREE.TorusGeometry(4.6,0.16,10,48),
+  new THREE.MeshBasicMaterial({color:0x8bf0ff,transparent:true,opacity:0,
+    blending:THREE.AdditiveBlending,depthWrite:false}));
+scene.add(scanRing);
+
+function buildDetail(a){
+  if (detail.mesh){ scene.remove(detail.mesh); detail.mesh.geometry.dispose(); detail.mesh=null; }
+  if (detail.skin){ scene.remove(detail.skin); detail.skin.geometry.dispose(); detail.skin=null; }
+  detail.anom=a; if(!a) return;
+  let i0=a.idx,i1=a.idx;
+  while(i0>0    && RAW[a.idx].cum-RAW[i0].cum < detail.span) i0--;
+  while(i1<N-1  && RAW[i1].cum-RAW[a.idx].cum < detail.span) i1++;
+  detail.i0=i0; detail.i1=i1;
+  detail.mesh=new THREE.Mesh(makeTube(i0,i1,{}),
+    new THREE.MeshBasicMaterial({vertexColors:true,transparent:true,opacity:1,side:THREE.DoubleSide}));
+  detail.skin=new THREE.Mesh(makeTube(i0,i1,{outer:true}),
+    new THREE.MeshBasicMaterial({color:0x8fb6e8,transparent:true,opacity:0,
+      side:THREE.BackSide,depthWrite:false}));
+  scene.add(detail.mesh); scene.add(detail.skin);
+}
+
+/* =====================================================================
+   7. SHOT LIST - continuous orbit; dolly in, hold, dolly out, drift on
+===================================================================== */
+const SHOTS=[];
+SHOTS.push({t:'wide',dur:5.5,title:'F-501 Pass B',
+  sub:'814 ft of coil &mdash; 9 convection tubes, a crossover, 15 radiant tubes. Four locations in this pass are worth stopping on.'});
+ANOM.forEach((a,i)=>{
+  SHOTS.push({t:'in',   anom:i, dur:5.0, title:a.title, sub:a.sub});
+  SHOTS.push({t:'hold', anom:i, dur:6.0, title:a.title, sub:a.sub});
+  SHOTS.push({t:'out',  anom:i, dur:2.5});
+  if (i<ANOM.length-1) SHOTS.push({t:'wide',dur:2.5});
+});
+SHOTS.push({t:'wide',dur:6.0,title:'814 ft, one pass, one inspection',
+  sub:'Everything shown is measured &mdash; 25 straights, 24 bends, per-segment minimum wall from Steady Flux 26-0663-002 Rev. A.'});
+
+const tour={i:0,t:0,playing:true};
+const cam={orbit:0.5, elev:0.30, tgt:bcenter.clone(), rad:0};
+function fitRadius(margin){
+  const v=THREE.MathUtils.degToRad(camera.fov);
+  const h=2*Math.atan(Math.tan(v/2)*camera.aspect);
+  const w=Math.sqrt(bsize.x*bsize.x+bsize.z*bsize.z);
+  return Math.max((bsize.y*0.5*margin)/Math.tan(v/2), (w*0.5*margin)/Math.tan(h/2));
+}
+const capT=document.getElementById('capTitle'), capS=document.getElementById('capSub');
+let capTimer=null;
+const plainCap={t:'',s:''};
+const stripTags=h=>String(h).replace(/<[^>]*>/g,'')
+  .replace(/&mdash;/g,'—').replace(/&middot;/g,'·')
+  .replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();
+function setCaption(t,s){
+  capT.style.opacity=0; capS.style.opacity=0;
+  clearTimeout(capTimer);
+  capTimer=setTimeout(()=>{ capT.innerHTML=t; capS.innerHTML=s;
+    plainCap.t=stripTags(t); plainCap.s=stripTags(s);
+    capT.style.opacity=1; capS.style.opacity=1; },230);
+}
+function gotoShot(i){
+  tour.i=((i%SHOTS.length)+SHOTS.length)%SHOTS.length; tour.t=0;
+  const s=SHOTS[tour.i];
+  if (s.title!==undefined) setCaption(s.title||'', s.sub||'');
+  const a=(s.anom!=null)?ANOM[s.anom]:null;
+  if (a!==detail.anom) buildDetail(a);
+}
+gotoShot(0);
+
+const ghostMode={mode:'auto'};      // auto | on | off
+let ghostAmt=0, dimAmt=0;
+
+function evalShot(dt,tdt){
+  const s=SHOTS[tour.i];
+  if (tour.playing) tour.t+=tdt;
+  const ph=THREE.MathUtils.clamp(tour.t/s.dur,0,1);
+  const a=(s.anom!=null)?ANOM[s.anom]:null;
+
+  let k=0;                                   // 0 = wide, 1 = at the defect
+  if (s.t==='in')   k=THREE.MathUtils.smoothstep(ph,0,1);
+  else if (s.t==='hold') k=1;
+  else if (s.t==='out')  k=1-THREE.MathUtils.smoothstep(ph,0,1);
+
+  // one continuous orbit for the whole piece; a touch faster while held close
+  cam.orbit += dt*THREE.MathUtils.lerp(0.085, 0.30, k);
+
+  const wideR=fitRadius(1.48);
+  const nearR=a?a.near:wideR;
+  const tgt=a?bcenter.clone().lerp(a.pos,k):bcenter.clone();
+  const rad=THREE.MathUtils.lerp(wideR,nearR,k);
+  const elev=THREE.MathUtils.lerp(0.30, a?a.elev:0.30, k);
+
+  cam.tgt.lerp(tgt, 1-Math.pow(0.002,dt));
+  cam.rad = cam.rad? THREE.MathUtils.lerp(cam.rad,rad,1-Math.pow(0.002,dt)) : rad;
+  cam.elev= THREE.MathUtils.lerp(cam.elev,elev,1-Math.pow(0.002,dt));
+
+  const dir=new THREE.Vector3(Math.cos(cam.orbit),cam.elev,Math.sin(cam.orbit)).normalize();
+  camera.position.copy(cam.tgt.clone().add(dir.multiplyScalar(cam.rad)));
+  camera.up.set(0,1,0); camera.lookAt(cam.tgt);
+
+  // dim the coil and raise the cutaway as we close in
+  dimAmt   = THREE.MathUtils.lerp(dimAmt,   k, dt*3.0);
+  const wantGhost = ghostMode.mode==='on' ? 1 : ghostMode.mode==='off' ? 0 : k;
+  ghostAmt = THREE.MathUtils.lerp(ghostAmt, wantGhost, dt*3.0);
+
+  tubeMat.opacity           = THREE.MathUtils.lerp(0.95,0.16,dimAmt);
+  tubeMat.emissiveIntensity = THREE.MathUtils.lerp(1.0,0.35,dimAmt);
+  haloMat.opacity           = THREE.MathUtils.lerp(0.10,0.03,dimAmt);
+  lineMat.opacity           = THREE.MathUtils.lerp(0.42,0.12,dimAmt);
+  spot.intensity            = 0.55*dimAmt;
+  if (a) spot.position.copy(a.pos);
+  if (detail.mesh) detail.mesh.material.opacity = dimAmt;
+  if (detail.skin) detail.skin.material.opacity = 0.30*ghostAmt;
+
+  // scan ring sweeps the segment on the way in
+  if (a && s.t==='in'){
+    const i=Math.round(THREE.MathUtils.lerp(detail.i0,detail.i1,ph));
+    scanRing.position.copy(RAW[i].p);
+    scanRing.quaternion.setFromUnitVectors(new THREE.Vector3(0,0,1),tan[i]);
+    scanRing.material.opacity=Math.sin(ph*Math.PI)*0.85;
+  } else scanRing.material.opacity=Math.max(0,scanRing.material.opacity-dt*2.5);
+
+  if (recState.on && s.t==='hold' && ANOM[s.anom]&&ANOM[s.anom].key==='B_4_R'
+      && ph>0.55 && !recState.flipped){
+    recState.flipped=true; document.getElementById('btnNominal').click();
+  }
+  if (ph>=1 && tour.playing){
+    if (recState.on && tour.i===SHOTS.length-1){ stopRec(); tour.playing=false; return; }
+    gotoShot(tour.i+1);
+  }
+}
+
+/* =====================================================================
+   8. UI
+===================================================================== */
+const $=id=>document.getElementById(id);
+const mode={free:false};
+let fYaw=0.7,fPitch=0.3,fDist=0,drag=false,lx=0,ly=0;
+renderer.domElement.addEventListener('pointerdown',e=>{drag=true;lx=e.clientX;ly=e.clientY;});
+addEventListener('pointerup',()=>drag=false);
+addEventListener('pointermove',e=>{ if(!drag||!mode.free) return;
+  const dx=e.clientX-lx,dy=e.clientY-ly; lx=e.clientX; ly=e.clientY;
+  fYaw-=dx*0.006; fPitch=THREE.MathUtils.clamp(fPitch-dy*0.006,-1.25,1.25); });
+addEventListener('wheel',e=>{ if(!mode.free) return;
+  fDist=THREE.MathUtils.clamp(fDist+e.deltaY*0.9, 60, fitRadius(1.48)*2.2); },{passive:true});
+
+$('btnPlay').onclick=()=>{ tour.playing=!tour.playing;
+  $('btnPlay').innerHTML=tour.playing?'&#10074;&#10074; pause':'&#9654; play'; };
+$('btnNext').onclick=()=>{ gotoShot(tour.i+1); tour.playing=true; $('btnPlay').innerHTML='&#10074;&#10074; pause'; };
+$('btnPrev').onclick=()=>{ gotoShot(tour.i-1); tour.playing=true; $('btnPlay').innerHTML='&#10074;&#10074; pause'; };
+$('btnGhost').onclick=()=>{ ghostMode.mode = ghostMode.mode==='auto'?'on':ghostMode.mode==='on'?'off':'auto';
+  $('btnGhost').textContent='wall cutaway: '+ghostMode.mode;
+  $('btnGhost').classList.toggle('active', ghostMode.mode==='on'); };
+$('btnNominal').onclick=()=>{ dataState.asReported=!dataState.asReported;
+  $('btnNominal').textContent='basis: '+(dataState.asReported?'as reported':'corrected for new steel');
+  $('btnNominal').classList.toggle('active',!dataState.asReported);
+  rebuildCoil(); refreshTags(); };
+$('btnFree').onclick=()=>{ mode.free=!mode.free;
+  if(mode.free && !fDist) fDist=fitRadius(1.48);
+  $('btnFree').classList.toggle('active',mode.free);
+  tour.playing=!mode.free;
+  $('btnPlay').innerHTML=tour.playing?'&#10074;&#10074; pause':'&#9654; play';
+  if(mode.free) setCaption('Free orbit','Drag to rotate, scroll to zoom. The cutaway and basis toggles still apply.'); };
+$('aboutBtn').onclick=()=>{ const a=$('about'); a.style.display=a.style.display==='block'?'none':'block'; };
+
+/* ---- recorder (local only; artifact sandbox blocks page downloads) ----
+   captureStream() only sees canvas pixels, and every label on this page is an
+   HTML overlay sitting on top of the canvas. So the recording composites:
+   the WebGL frame is drawn into a 2D canvas and the overlay is re-drawn into
+   it with Canvas2D, and THAT canvas is what gets recorded. ------------------ */
+const recCanvas=document.createElement('canvas');
+const rc=recCanvas.getContext('2d');
+const REC_MAX_W=1920;   // a 2x-DPR canvas is ~3800px wide; that is wasted bitrate
+function sizeRecCanvas(gl){
+  const k=Math.min(1, REC_MAX_W/gl.width);
+  const w=Math.round(gl.width*k/2)*2, h=Math.round(gl.height*k/2)*2;   // even dims for mp4
+  if (recCanvas.width!==w||recCanvas.height!==h){ recCanvas.width=w; recCanvas.height=h; }
+}
+function rr(x,y,w,h,r){ rc.beginPath(); rc.moveTo(x+r,y); rc.arcTo(x+w,y,x+w,y+h,r);
+  rc.arcTo(x+w,y+h,x,y+h,r); rc.arcTo(x,y+h,x,y,r); rc.arcTo(x,y,x+w,y,r); rc.closePath(); }
+function panel(x,y,w,h,s){ rc.fillStyle='rgba(8,13,24,0.88)'; rc.strokeStyle='#22304d';
+  rc.lineWidth=1*s; rr(x,y,w,h,10*s); rc.fill(); rc.stroke(); }
+function wrap(text,maxW){
+  const words=String(text).split(/\s+/), lines=[]; let cur='';
+  for(const w of words){ const t=cur?cur+' '+w:w;
+    if(rc.measureText(t).width>maxW && cur){ lines.push(cur); cur=w; } else cur=t; }
+  if(cur) lines.push(cur); return lines;
+}
+const F=(sz,s,w)=>((w||400)+' '+(sz*s)+'px "Segoe UI",system-ui,sans-serif');
+
+function drawOverlay(){
+  const W=recCanvas.width, H=recCanvas.height;
+  const s=H/790;                                  // scale relative to design height
+  rc.textBaseline='top';
+
+  // title, top-left
+  rc.font=F(14,s,600);
+  const tw=Math.max(rc.measureText('ExxonMobil Baytown · HU5A F-501 · Pass B').width,
+                    rc.measureText('814 ft of coil · smart-pig inspection 2026-08-13').width);
+  panel(18*s,18*s,tw+28*s,52*s,s);
+  rc.fillStyle='#dce6ff'; rc.font=F(14,s,600);
+  rc.fillText('ExxonMobil Baytown · HU5A F-501 · Pass B',32*s,30*s);
+  rc.fillStyle='#6f809f'; rc.font=F(11,s);
+  rc.fillText('814 ft of coil · smart-pig inspection 2026-08-13',32*s,49*s);
+
+  // HUD, top-right
+  const rows=[['Segment',$('hSeg').textContent],['Section',$('hSection').textContent],
+    ['Nominal wall',$('hNom').textContent],['Min wall',$('hWall').textContent],
+    ['Metal lost',$('hLost').textContent],['Ovality',$('hOval').textContent]];
+  const hw=250*s, hh=(28+rows.length*18)*s, hx=W-18*s-hw, hy=18*s;
+  panel(hx,hy,hw,hh,s);
+  rc.fillStyle='#49d6ff'; rc.font=F(10,s,600);
+  rc.fillText('POSITION',hx+14*s,hy+10*s);
+  rc.font=F(11.5,s);
+  rows.forEach((r,i)=>{
+    const y=hy+28*s+i*18*s;
+    rc.fillStyle='#6f809f'; rc.textAlign='left';  rc.fillText(r[0],hx+14*s,y);
+    rc.fillStyle='#dce6ff'; rc.textAlign='right'; rc.fillText(r[1],hx+hw-14*s,y);
+    rc.textAlign='left';
+  });
+
+  // legend, bottom-right
+  const lg=[['#49d6ff','near nominal'],['#ffe14a','moderate loss'],
+            ['#ff4d4d','heavy loss'],['#8affc1','new steel (2026-08)']];
+  const lw=200*s, lh=(30+lg.length*17)*s, lx=W-18*s-lw, ly=H-92*s-lh;
+  panel(lx,ly,lw,lh,s);
+  rc.fillStyle='#49d6ff'; rc.font=F(10,s,600);
+  rc.fillText('REMAINING WALL',lx+14*s,ly+10*s);
+  rc.font=F(11,s);
+  lg.forEach((k,i)=>{ const y=ly+30*s+i*17*s;
+    rc.fillStyle=k[0]; rr(lx+14*s,y+3*s,22*s,8*s,2*s); rc.fill();
+    rc.fillStyle='#6f809f'; rc.fillText(k[1],lx+44*s,y); });
+
+  // anomaly tags, projected
+  rc.textAlign='left';
+  ANOM.forEach((an,k)=>{
+    if(!tagEls[k].classList.contains('show')) return;
+    const p=an.pos.clone().project(camera);
+    const x=(p.x*0.5+0.5)*W, y=(-p.y*0.5+0.5)*H-26*s;
+    const txt=stripTags(tagEls[k].innerHTML);
+    rc.font=F(11,s,600);
+    const w=rc.measureText(txt).width;
+    rc.fillStyle='rgba(3,5,12,0.72)'; rr(x-w/2-6*s,y-3*s,w+12*s,18*s,4*s); rc.fill();
+    rc.fillStyle='#dce6ff'; rc.textAlign='center'; rc.fillText(txt,x,y);
+    rc.textAlign='left';
+  });
+
+  // caption, bottom-centre
+  if (plainCap.t){
+    rc.textAlign='center';
+    rc.fillStyle='#dce6ff'; rc.font=F(21,s,400);
+    rc.fillText(plainCap.t,W/2,H-150*s);
+    rc.fillStyle='#8fa0c0'; rc.font=F(12.5,s);
+    const lines=wrap(plainCap.s,660*s).slice(0,3);
+    lines.forEach((ln,i)=>rc.fillText(ln,W/2,H-120*s+i*17*s));
+    rc.textAlign='left';
+  }
+}
+
+const recState={on:false,flipped:false};
+let mediaRec=null;
+function startRec(){
+  if (recState.on) return;
+  const gl=renderer.domElement;
+  sizeRecCanvas(gl);
+  const mime=MediaRecorder.isTypeSupported('video/mp4')?'video/mp4':'video/webm';
+  const stream=recCanvas.captureStream(30);
+  mediaRec=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:3500000});
+  const chunks=[];
+  mediaRec.ondataavailable=e=>{ if(e.data&&e.data.size) chunks.push(e.data); };
+  mediaRec.onstop=()=>{
+    const blob=new Blob(chunks,{type:mime});
+    if(!blob.size){ setCaption('Recording captured no frames',
+      'This tab has to stay <b>visible and in front</b> for the whole take &mdash; browsers stop rendering hidden tabs.'); return; }
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='f501-coil-tour.'+(mime.indexOf('mp4')>=0?'mp4':'webm');
+    document.body.appendChild(a); a.click();
+    setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},6000);
+    setCaption('Saved',(Math.round(blob.size/1048576*10)/10)+' MB &mdash; check your Downloads folder.');
+  };
+  if(!dataState.asReported) $('btnNominal').click();
+  mode.free=false; $('btnFree').classList.remove('active');
+  recState.on=true; recState.flipped=false;
+  $('btnRec').style.visibility='hidden'; $('recDot').style.display='flex';
+  gotoShot(0); tour.playing=true; cam.rad=0;
+  mediaRec.start(1000);
+}
+function stopRec(){
+  if(!recState.on) return; recState.on=false;
+  $('btnRec').style.visibility='visible'; $('recDot').style.display='none';
+  try{ mediaRec.stop(); }catch(e){}
+}
+$('btnRec').onclick=startRec;
+if(/^(127\.0\.0\.1|localhost)$/.test(location.hostname)) $('btnRec').style.display='';
+
+window.__testComposite=()=>{
+  const gl=renderer.domElement;
+  sizeRecCanvas(gl);
+  rc.drawImage(gl,0,0,recCanvas.width,recCanvas.height); drawOverlay();
+  const im=new Image(); im.src=recCanvas.toDataURL();
+  im.style.cssText='position:fixed;inset:0;width:100vw;height:100vh;z-index:99999';
+  im.id='__composite'; document.body.appendChild(im);
+  return recCanvas.width+'x'+recCanvas.height;
+};
+window.__tour=tour; window.__goto=gotoShot; window.__cam=cam; window.__anom=ANOM;
+window.__snap=(i)=>{ const a=ANOM[i]; cam.tgt.copy(a.pos); cam.rad=a.near; cam.elev=a.elev; };
+window.__rec={start:startRec,stop:stopRec,state:recState};
+
+/* =====================================================================
+   9. LOOP
+===================================================================== */
+let last=performance.now(); const tmp=new THREE.Vector3();
+function tick(now){
+  const raw=(now-last)/1000; last=now;
+  const dt=Math.min(0.05,raw), tdt=Math.min(0.5,raw);
+  requestAnimationFrame(tick);
+
+  if (mode.free){
+    const d=new THREE.Vector3(Math.cos(fPitch)*Math.sin(fYaw),Math.sin(fPitch),Math.cos(fPitch)*Math.cos(fYaw));
+    camera.position.copy(bcenter.clone().add(d.multiplyScalar(fDist)));
+    camera.up.set(0,1,0); camera.lookAt(bcenter);
+    dimAmt=THREE.MathUtils.lerp(dimAmt,0,dt*3);
+    tubeMat.opacity=THREE.MathUtils.lerp(tubeMat.opacity,0.95,dt*3);
+    tubeMat.emissiveIntensity=THREE.MathUtils.lerp(tubeMat.emissiveIntensity,1.0,dt*3);
+    haloMat.opacity=THREE.MathUtils.lerp(haloMat.opacity,0.10,dt*3);
+    lineMat.opacity=THREE.MathUtils.lerp(lineMat.opacity,0.42,dt*3);
+    spot.intensity=0; scanRing.material.opacity=0;
+    if(detail.mesh) detail.mesh.material.opacity=0;
+    if(detail.skin) detail.skin.material.opacity=0;
+  } else evalShot(dt,tdt);
+
+  const pulse=0.5+0.5*Math.sin(now*0.0028);
+  beacons.forEach((g,k)=>{
+    const a=ANOM[k],u=g.userData;
+    const muted=(a.kind==='new' && !dataState.asReported);
+    const col=muted?0x8affc1:KIND[a.kind];
+    u.core.material.color.setHex(col); u.halo.material.color.setHex(col); u.ring.material.color.setHex(col);
+    const amp=muted?0.25:(detail.anom===a?1.0:0.6);
+    u.core.material.opacity=amp*(0.55+0.45*pulse);
+    u.halo.material.opacity=amp*(0.10+0.10*pulse);
+    u.ring.material.opacity=amp*(0.30+0.30*pulse);
+    u.ring.quaternion.copy(camera.quaternion);
+    g.scale.setScalar(THREE.MathUtils.clamp(camera.position.distanceTo(a.pos)/260,0.30,4.0));
+    u.ring.scale.setScalar(1+0.16*pulse);
+  });
+
+  const a=detail.anom;
+  if (a){
+    const seg=SEG.find(s=>s.id===a.segId);
+    const nom=NOMINAL[seg.section];
+    const isNewSteel=(a.kind==='new' && !dataState.asReported);
+    const shownWall=(a.kind==='new') ? (isNewSteel?nom:seg.pup.wall) : seg.wall;
+    $('hSeg').textContent=a.key;
+    $('hSection').textContent=seg.section[0].toUpperCase()+seg.section.slice(1);
+    $('hNom').textContent=nom.toFixed(3)+' in';
+    $('hWall').textContent=isNewSteel?'new steel':shownWall.toFixed(3)+' in';
+    $('hLost').textContent=isNewSteel?'none':(Math.max(0,nom-shownWall)).toFixed(3)+' in';
+    $('hOval').textContent=seg.oval!=null?seg.oval+'%':'not recorded';
+  } else {
+    $('hSeg').textContent='full coil'; $('hSection').textContent='Pass B';
+    $('hNom').textContent='—'; $('hWall').textContent='—';
+    $('hLost').textContent='—'; $('hOval').textContent=Math.round(TOTAL_FT)+' ft total';
+  }
+
+  ANOM.forEach((an,k)=>{
+    const el=tagEls[k];
+    tmp.copy(an.pos).project(camera);
+    const on=tmp.z<1&&Math.abs(tmp.x)<1.05&&Math.abs(tmp.y)<1.05;
+    const rel=(detail.anom===an)||(!detail.anom&&camera.position.distanceTo(an.pos)<1400);
+    if(on&&rel){ el.style.left=((tmp.x*0.5+0.5)*innerWidth)+'px';
+      el.style.top=((-tmp.y*0.5+0.5)*innerHeight-26)+'px'; el.classList.add('show'); }
+    else el.classList.remove('show');
+  });
+
+  renderer.render(scene,camera);
+
+  if (recState.on){
+    const gl=renderer.domElement;
+    sizeRecCanvas(gl);
+    rc.drawImage(gl,0,0,recCanvas.width,recCanvas.height);
+    drawOverlay();
+  }
+}
+requestAnimationFrame(tick);
+
+addEventListener('resize',()=>{ camera.aspect=innerWidth/innerHeight;
+  camera.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight); });
+
+} catch(err){
+  document.title="ERROR: "+err.message;
+  document.body.insertAdjacentHTML("beforeend",
+    "<pre style=\"position:fixed;top:40px;left:16px;color:#ff6666;background:#000;padding:10px;z-index:9999;max-width:80vw;white-space:pre-wrap;font-size:11px\">"+err.stack+"</pre>");
+  console.error("APP ERROR",err);
+}
+})();
+</script>
