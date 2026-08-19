@@ -1,7 +1,9 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-08-16
+related:
+  - "[[2026-08-19-idea-research-backtest-visually-broken-document]]"
 tags: [idea, back-test, validation, generator, cross-cutting, future]
 ---
 
