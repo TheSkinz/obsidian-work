@@ -15,7 +15,7 @@
 ## Facilities & Heater Cards
 
 - [[_directory]] — Facilities Directory
-- [[_facility]] — CHS — McPherson Refinery, McPherson, KS `(CHS/McPherson-KS)`
+- [[02-facilities/CHS/McPherson-KS/_facility|_facility]] — CHS — McPherson Refinery, McPherson, KS `(CHS/McPherson-KS)`
 - [[DSP24005]] — DSP# 24005.2 — CHS McPherson 2025 Plant-Wide Turnaround `(CHS/McPherson-KS)`
 - [[HF-0011]] — HF-0011 — Vacuum · CHS McPherson `(CHS/McPherson-KS)`
 - [[HF-0012]] — HF-0012 — Coker · CHS McPherson `(CHS/McPherson-KS)`
@@ -28,7 +28,7 @@
 - [[HP-0025]] — HP-0025 — Unifiner · CHS McPherson `(CHS/McPherson-KS)`
 - [[USA25025-flow-tests]] — USA25025 — Flow Tests `(CHS/McPherson-KS)`
 - [[USA25025-job-record]] — USA25025 — CHS McPherson 2025 Plant-Wide Turnaround `(CHS/McPherson-KS)`
-- [[_facility]] — ExxonMobil — Baytown, TX `(ExxonMobil/Baytown-TX)`
+- [[02-facilities/ExxonMobil/Baytown-TX/_facility|_facility]] — ExxonMobil — Baytown, TX `(ExxonMobil/Baytown-TX)`
 - [[DSP25084]] — DSP25084 — ExxonMobil Baytown PS8 F-802 Crude Heater Decoke `(ExxonMobil/Baytown-TX)`
 - [[DSP25123]] — DSP25123 — ExxonMobil Baytown PS8 F-901 Kerosene Furnace Decoke & Smart Pigging `(ExxonMobil/Baytown-TX)`
 - [[DSP26039]] — DSP26039 — ExxonMobil Baytown HU9 F-301 & F-371A 2027 TA `(ExxonMobil/Baytown-TX)`
@@ -44,11 +44,11 @@
 - [[USA26041-job-sheet]] — USA26041 — ExxonMobil Baytown Refinery, Baytown, TX `(ExxonMobil/Baytown-TX)`
 - [[01-BA-105]] — 01-BA-105 Raw Oil Charge Preheater — Flint Hills Resources, Corpus Christi, TX `(Flint-Hills/Corpus-Christi-TX)`
 - [[02-BA-201]] — 02-BA-201 Debutanizer Reboiler — Flint Hills Resources, Corpus Christi, TX `(Flint-Hills/Corpus-Christi-TX)`
-- [[_facility]] — Flint Hills Resources — Corpus Christi, TX `(Flint-Hills/Corpus-Christi-TX)`
+- [[02-facilities/Flint-Hills/Corpus-Christi-TX/_facility|_facility]] — Flint Hills Resources — Corpus Christi, TX `(Flint-Hills/Corpus-Christi-TX)`
 - [[DSP26006]] — DSP# 26006 — Flint Hills Corpus Christi Emergency Decoke, January 2026 `(Flint-Hills/Corpus-Christi-TX)`
-- [[_facility]] — Formosa Plastics Corporation, Texas — Point Comfort, TX `(Formosa/Point-Comfort-TX)`
+- [[02-facilities/Formosa/Point-Comfort-TX/_facility|_facility]] — Formosa Plastics Corporation, Texas — Point Comfort, TX `(Formosa/Point-Comfort-TX)`
 - [[VR-401C]] — MM2 VR-401C — Formosa Point Comfort, TX `(Formosa/Point-Comfort-TX)`
-- [[_facility]] — HF Sinclair — Navajo Refinery, Artesia, NM `(HF-Sinclair/Artesia-NM)`
+- [[02-facilities/HF-Sinclair/Artesia-NM/_facility|_facility]] — HF Sinclair — Navajo Refinery, Artesia, NM `(HF-Sinclair/Artesia-NM)`
 - [[DSP26080]] — DSP26080 — HF Sinclair Navajo Refinery February 2027 Outage `(HF-Sinclair/Artesia-NM)`
 - [[H-2421]] — H-2421 HDU Charge Heater — HF Sinclair Navajo Refinery `(HF-Sinclair/Artesia-NM)`
 - [[H-2501]] — H-2501 Hot Oil Furnace — HF Sinclair Navajo Refinery `(HF-Sinclair/Artesia-NM)`
@@ -58,22 +58,22 @@
 - [[USA26038-job-report]] — USA26038 — HF Sinclair Navajo Refinery Job Report (H-19 & H-20) `(HF-Sinclair/Artesia-NM)`
 - [[USA26038-job-sheet]] — USA26038 — HF Sinclair Navajo Refinery, Artesia, NM `(HF-Sinclair/Artesia-NM)`
 - [[USA26040-job-sheet]] — USA26040 — HF Sinclair Navajo Refinery, Artesia, NM `(HF-Sinclair/Artesia-NM)`
-- [[_facility]] — Marathon — Carson Refinery, CA `(Marathon/Carson-CA)`
+- [[02-facilities/Marathon/Carson-CA/_facility|_facility]] — Marathon — Carson Refinery, CA `(Marathon/Carson-CA)`
 - [[RW-0014-214.9]] — RW-0014-214.9 Coker Heater No. 2 — Marathon (Andeavor) Carson, CA `(Marathon/Carson-CA)`
 - [[RW-0015-214.09]] — RW-0015-214.09 Coker Heater No. 3 — Marathon (ARCO) Carson, CA `(Marathon/Carson-CA)`
 - [[210-1401A]] — 210-1401A Crude Heater — Marathon Garyville, LA `(Marathon/Garyville-LA)`
 - [[210-1402B]] — 210-1402B Crude Heater — Marathon Garyville, LA `(Marathon/Garyville-LA)`
 - [[210-1403A]] — 210-1403A Vacuum Heater — Marathon Garyville, LA `(Marathon/Garyville-LA)`
 - [[210-1404B]] — 210-1404B Vacuum Heater — Marathon Garyville, LA `(Marathon/Garyville-LA)`
-- [[_facility]] — Marathon — Garyville, LA `(Marathon/Garyville-LA)`
+- [[02-facilities/Marathon/Garyville-LA/_facility|_facility]] — Marathon — Garyville, LA `(Marathon/Garyville-LA)`
 - [[DSP26058]] — DSP26058 — Marathon Garyville 1Q2027 TAR `(Marathon/Garyville-LA)`
-- [[_facility]] — Phillips 66 — Ponca City Refinery, OK `(P66/Ponca-City-OK)`
+- [[02-facilities/P66/Ponca-City-OK/_facility|_facility]] — Phillips 66 — Ponca City Refinery, OK `(P66/Ponca-City-OK)`
 - [[DSP26030_H28_H29]] — P66 Ponca City H-28 & H-29 Coker Decoke Proposal — May 2026 `(P66/Ponca-City-OK)`
 - [[H-28]] — H-28 Coker — Phillips 66 Ponca City, OK `(P66/Ponca-City-OK)`
 - [[H-29]] — H-29 Coker — Phillips 66 Ponca City, OK `(P66/Ponca-City-OK)`
-- [[_facility]] — PBF Energy — Toledo Refinery, Toledo, OH `(PBF/Toledo-OH)`
+- [[02-facilities/PBF/Toledo-OH/_facility|_facility]] — PBF Energy — Toledo Refinery, Toledo, OH `(PBF/Toledo-OH)`
 - [[H-311]] — H-311 — PBF Energy Toledo, OH `(PBF/Toledo-OH)`
-- [[_facility]] — Suncor Énergie — Montreal, QC (Raffinerie de Montréal) `(Suncor/Montreal-QC)`
+- [[02-facilities/Suncor/Montreal-QC/_facility|_facility]] — Suncor Énergie — Montreal, QC (Raffinerie de Montréal) `(Suncor/Montreal-QC)`
 - [[_walkdown-summary]] — Suncor Montreal — Field Walk-Down Summary (5 Heaters) `(Suncor/Montreal-QC)`
 - [[B-1001]] — B-1001 Crude Oil Heater — Suncor Montreal, QC `(Suncor/Montreal-QC)`
 - [[B-101]] — B-101 Vacuum Feed Heater — Suncor Montreal, QC `(Suncor/Montreal-QC)`
@@ -81,11 +81,11 @@
 - [[B-103]] — B-103 Preflash Reboiler Furnace — Suncor Montreal, QC `(Suncor/Montreal-QC)`
 - [[B-151]] — B-151 Convection Section — Suncor Montreal, QC `(Suncor/Montreal-QC)`
 - [[7-1-F-1]] — 7-1 F-1 Column Feed Heater — Syncrude Fort McMurray, AB `(Syncrude/Fort-McMurray-AB)`
-- [[_facility]] — Syncrude — Mildred Lake, AB `(Syncrude/Fort-McMurray-AB)`
-- [[_facility]] — Valero — Port Arthur, TX `(Valero/Port-Arthur-TX)`
+- [[02-facilities/Syncrude/Fort-McMurray-AB/_facility|_facility]] — Syncrude — Mildred Lake, AB `(Syncrude/Fort-McMurray-AB)`
+- [[02-facilities/Valero/Port-Arthur-TX/_facility|_facility]] — Valero — Port Arthur, TX `(Valero/Port-Arthur-TX)`
 - [[H-102A]] — H-102A Vacuum Heater — Valero Port Arthur, TX `(Valero/Port-Arthur-TX)`
 - [[H-102B]] — H-102B Vacuum Heater — Valero Port Arthur, TX `(Valero/Port-Arthur-TX)`
-- [[_facility]] — Westlake South — Westlake, LA `(Westlake-Chemical/Westlake-LA)`
+- [[02-facilities/Westlake-Chemical/Westlake-LA/_facility|_facility]] — Westlake South — Westlake, LA `(Westlake-Chemical/Westlake-LA)`
 - [[DSP26095]] — DSP26095 — Westlake South H-101 (TE II) EDC Furnace Decoke, September 2026 `(Westlake-Chemical/Westlake-LA)`
 - [[H-101]] — H-101 TE II EDC Furnace — Westlake South, Westlake, LA `(Westlake-Chemical/Westlake-LA)`
 
@@ -202,7 +202,7 @@
 
 ## LLMs
 
-- [[overview]] — ChatGPT — Overview `(chatgpt)`
+- [[07-llms/chatgpt/overview|overview]] — ChatGPT — Overview `(chatgpt)`
 - [[chatgpt-copilot-workflow-architecture]] — ChatGPT + Microsoft 365 Copilot — Workflow Architecture Operating Manual
 - [[chat]] — Claude Chat (claude.ai) `(claude)`
 - [[code]] — Claude Code `(claude)`
@@ -214,12 +214,12 @@
 - [[output-styles]] — Claude Code — Output Styles `(claude)`
 - [[prefs-signal-log]] `(claude)`
 - [[heater-extraction-agent]] — Copilot Heater Extraction Agent `(copilot)`
-- [[overview]] — Microsoft Copilot — Overview `(copilot)`
+- [[07-llms/copilot/overview|overview]] — Microsoft Copilot — Overview `(copilot)`
 - [[diagram-creation]] — Diagram Creation Inside LLMs
 - [[gem-drawing-extraction]] — Gemini Gem — Fired Heater Tube Drawing Extraction `(gemini)`
 - [[drawing-extraction-strategy]] — Grok — Heater Drawing Extraction Strategy `(grok)`
-- [[overview]] — Grok — Overview `(grok)`
-- [[overview]] — Local Models — Overview `(local-models)`
+- [[07-llms/grok/overview|overview]] — Grok — Overview `(grok)`
+- [[07-llms/local-models/overview|overview]] — Local Models — Overview `(local-models)`
 - [[pdf-extraction]] — PDF Extraction — Cross-Platform Best Practices
 - [[prompt-engineering]] — Prompt Engineering
 - [[self-improving-systems]] — Self-Improving Systems
