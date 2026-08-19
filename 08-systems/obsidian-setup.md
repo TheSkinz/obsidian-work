@@ -28,4 +28,10 @@ See vault `CLAUDE.md` for the authoritative folder list. Short version: `01-cont
 
 ## Known issues
 
-(Placeholder — document any sync conflicts, plugin conflicts, or startup issues as they occur.)
+**Bare wikilinks whose basename is not unique resolve arbitrarily.** Obsidian resolves `[[stem]]` by basename, and when more than one note in the vault carries that basename it picks one without warning — the link stays well-formed, lint sees a live target, and the reader lands on a real but wrong note. Confirmed 2026-08-19 on `INDEX.md`: four notes are named `overview.md` (`07-llms/chatgpt`, `07-llms/grok`, `07-llms/copilot`, `07-llms/local-models`), `tools/vault_index.py` emitted a bare `[[overview]]` for each, and the row labelled "ChatGPT — Overview" opened Grok's note. The generator now path-qualifies any basename that collides vault-wide (commit `55c0b28`), and `02-facilities/Westlake-Chemical/Westlake-LA/DSP26095.md` had the same defect by hand on a bare `[[_facility]]` link, fixed in `1fde1d5`.
+
+The class is wider than the tooling that guards it. `vault_lint.py`'s `LINK-FACILITY` rule fires only on bare `_facility` links, so it caught the Westlake case and was blind to the four `overview.md` files; `DEAD-LINK` is blind to both, because it reports links that resolve to *nothing*, not links that resolve to the *wrong thing*. The general form — flag any `[[stem]]` whose stem matches more than one file vault-wide — is unbuilt and seeded as an idea, not a decision. Related: [[2026-08-14-prestaged-obsidian-link-retargeting-guard]], [[2026-07-30-obsidian-link-expansion-mis-resolved]].
+
+(Sync conflicts, plugin conflicts, and startup issues: none recorded yet.)
+
+*Source: session 2026-08-19 (`5bbaa6a0`), harvested by the Vault Capture Loop.*
