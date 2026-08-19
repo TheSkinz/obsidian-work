@@ -2,7 +2,7 @@
 type: idea-seed
 status: gated
 created: 2026-08-15
-revisit-trigger: "A second smart-pig vendor inspection report is obtained as a held file — Quest Integrity on Valero Port Arthur H-102B (the unflattering case: 0.25\" coke ring on Pass 6B, cleared before rig-out) is the one to ask for first, or Quest on Syncrude 7-1-F-1 / Flint Hills 01-BA-105 / 02-BA-201 -> unpark and research whether the vendor's report becomes proposal language, close-out language, or both — event: check when any vendor inspection report is filed to a job folder"
+revisit-trigger: "A second smart-pig vendor inspection report reaches USADebusk as a held file -> unpark and research whether the vendor's report becomes proposal language, close-out language, or both. The back catalog cannot supply it: every prior instance is Quest, and Quest does not release project reports (Jesse, 2026-08-19) — Steady Flux is the only vendor that has. So this waits on a future smart-pig job with a sharing vendor, or on Valero forwarding the customer's copy of the H-102B report if that ask is ever cheap — event: check when any vendor inspection report is filed to a job folder"
 related:
   - "[[2026-08-19-idea-research-smart-pig-report-verification-gated]]"
 tags: [idea, estimating, proposals, smart-pig, future]

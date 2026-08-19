@@ -80,21 +80,49 @@ it does not satisfy the gate as stated, but it identifies **which** report to re
 suggests the answer may be favorable rather than fatal: the close-out claim survives an unflattering
 finding if the finding is followed by vendor-confirmed clearance.
 
+## Correction — 2026-08-19, Jesse: the back catalog is not obtainable
+
+**Quest does not share project reports the way Steady Flux does.** That kills the outreach this note
+originally recommended, and it changes the gate's character rather than just its target.
+
+Every prior smart-pig instance in the vault is Quest or Quest Integrity — Syncrude 7-1-F-1 (both
+jobs), Flint Hills 01-BA-105 and 02-BA-201, Valero Port Arthur H-102A and H-102B. Steady Flux, on
+F-501, is the **only** vendor that has ever put its report in USADebusk's hands. So the back catalog
+is not a document-access problem that a request solves; it is closed.
+
+The consequence is that the seed's own 2026-08-17 correction — "the blocker is document access, not
+elapsed time... asking Quest or the customer for one of the four earlier reports may be faster than
+waiting on a quote" — is now wrong on both halves. Elapsed time *is* the blocker, and the gate
+reverts to being exactly what that correction said it was not: **a future job**, and specifically one
+where the vendor is Steady Flux, or another vendor that shares, or where the customer forwards the
+report to us.
+
+One route survives and is Jesse's call, not a research finding: the report belongs to the customer,
+so asking Valero rather than Quest is a different channel with a different answer. It is a
+relationship ask on a closed job, which may not be worth spending.
+
 ## Recommended Action
 
-**Keep parked; make one request.** Ask Quest Integrity or Valero for the H-102B inspection report
-from the Port Arthur job. It is the single highest-value document for this seed — it is the
-unflattering case, we already know what it found, and it would let the "does this survive a bad
-report" question be answered against real vendor text instead of a guess. A Syncrude or Flint Hills
-report would open the gate too but tests a weaker case.
+**Keep parked. No outreach to Quest.** The gate stands and now waits on a future smart-pig job whose
+report actually reaches us — Steady Flux being the demonstrated case. Nothing to do until one lands.
+
+Optionally, and only if the relationship makes it cheap: ask Valero directly for the H-102B report.
+It is still the unflattering case worth testing against, and the customer holds a copy even though
+the vendor will not release one. Kill this line if it costs any goodwill.
 
 No build, no proposal language, and no close-out language until a second report is in hand.
 
+**Worth keeping regardless of this seed:** *Quest does not release project reports; Steady Flux does.*
+That is a vendor-selection fact with commercial weight beyond this idea — if a vendor's report is an
+asset we want, that is an argument for who gets recommended when the customer asks. It has no
+canonical home today (the business-normal register was researched 2026-08-02 and never built), so it
+lives here until Jesse routes it.
+
 ## Decision
 
-- [ ] Approved — request the H-102B report from Quest Integrity / Valero
-- [ ] Approved with edits — request a different report instead
-- [ ] Rejected — leave gated with no outreach
+- [ ] Approved — keep parked, no outreach at all
+- [ ] Approved — keep parked, but ask Valero for the H-102B report
+- [ ] Route the Quest-vs-Steady-Flux report-access fact to a durable home (which?)
 - [ ] Ungate anyway — the H-102B secondhand narrative is enough to research on
 
 ## Apply Log
