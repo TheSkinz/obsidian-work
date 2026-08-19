@@ -1,4 +1,5 @@
 <!-- vault-loop: operational — full-document audit of Steady Flux 26-0663-002 Rev. A, findings beyond the two already on the heater card. Lane 4 where it touches domain values (Treat Gas nominal basis); the rest is vendor-document record. Capture loop cannot write this content. -->
+<!-- vault-prestaged: 2026-08-19-prestaged-treat-gas-loss-nominal-basis.md -->
 ---
 type: note
 status: inbox

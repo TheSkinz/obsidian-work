@@ -1,4 +1,5 @@
 <!-- vault-loop: operational — ExxonMobil/F-501 estimating loose end, superseded by its own retirement block but not a terminal-allowlist status. Capture loop cannot write this content. -->
+<!-- vault-prestaged: skipped — already covered: the note retired itself the same day it was opened (`status: closed-unactioned`, Jesse sent the request by text), so there is no decision left in it. Its only live vault relevance is as evidence for the terminal-allowlist gap, and it is already cited by name in DQ-018 as the fifth correctly-retired note stuck in `00-inbox/`. Nothing to queue that DQ-018 does not already carry. -->
 ---
 type: note
 status: closed-unactioned
