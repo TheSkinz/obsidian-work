@@ -68,7 +68,7 @@ Per bid, which copy is authoritative, and what happens to the stray — deleted 
 
 **D (additive). Close the detection gap at the `Bids/ → Jobs/` move.** The source note's own follow-on: the award move is what creates most of these pairs, and nothing checks the two copies match at the moment of the move. Existing coverage is per-bid and on-demand only — `backtest_workup.py` disambiguates its five hard-coded cases via `prefer`, `presend_gate.py --find` reports ambiguity when someone runs it on a quote number, and `health.md`'s Bid folder column is presence-and-recency by design. Nothing sweeps. This could be a one-off estate sweep (the missing half of the 2026-07-25 quotation scan) or a standing check; deciding which is part of the option.
 
-- [ ] Approved
+- [x] Approved
 - [ ] Approved with edits
 - [ ] Rejected
 - [ ] Needs more research

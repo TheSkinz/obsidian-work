@@ -172,7 +172,7 @@ folder no lint rule scans. That is one confirmed instance and I did not sweep fo
 
 ## Decision
 
-- [ ] Approve as scoped — reject 1, spec-edit 2, park 3, correct 4
+- [x] Approve as scoped — reject 1, spec-edit 2, park 3, correct 4
 - [ ] Approve item 2 only (name the pass), defer the rest
 - [ ] Build the disk check anyway
 - [ ] Park the whole thing — the ad-hoc sweep is good enough
