@@ -1,8 +1,9 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-08-16
 related:
+  - "[[2026-08-20-idea-research-isometric-rig-diagram]]"
   - "[[rig-diagram-corpus]]"
   - "[[2026-08-16-backtest-rig-diagram-layout-engine]]"
   - "[[idea-rig-layout-diagram]]"
