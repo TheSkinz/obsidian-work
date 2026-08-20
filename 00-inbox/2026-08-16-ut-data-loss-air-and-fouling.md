@@ -1,4 +1,5 @@
 <!-- vault-loop: operational — Jesse-supplied field knowledge on UT smart-pig data-loss causes, Lane 4 (domain truth). Not written to any heater card or skill pending his ruling. Capture loop cannot write this content. -->
+<!-- vault-prestaged: 2026-08-20-prestaged-ut-data-loss-air-and-fouling.md -->
 ---
 type: note
 status: inbox
