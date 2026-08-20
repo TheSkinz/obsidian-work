@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — F-501/USA26041 artifact record plus two open build items (re-point the Grok Build prompt, record the MP4). The transferable platform findings were harvested to 07-llms/claude/code.md; the F-501 content itself belongs to the heater card and the capture loop cannot write it. -->
 ---
 type: note
 status: inbox

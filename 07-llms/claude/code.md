@@ -312,6 +312,18 @@ Two further items are noted but not actionable on this account: `claude self-hos
 
 Source: official Claude Code changelog at https://code.claude.com/docs/en/changelog, read 2026-08-17; Mythos 5 access terms verified against https://www.anthropic.com/news/claude-fable-5-mythos-5.
 
+## Getting a video out of an animated artifact hits three separate walls, and none of them raise an error
+
+Building an animated three.js page as a published artifact and trying to produce a shareable MP4 from it runs into three constraints in sequence. Each one fails silently, which is why they are worth writing down once.
+
+**The artifact sandbox blocks page-initiated downloads.** A published artifact runs under a CSP that prevents the page from starting its own download, so the usual `Blob` plus `<a download>` save does nothing at all for a viewer — no error, no file. The workable pattern is to gate the record control on the page being served from `localhost` and re-serve the same source file locally when a file genuinely has to come out of it. Shipping the button in the published version is worse than omitting it: it is a dead control that looks functional.
+
+**`canvas.captureStream()` records canvas pixels and nothing else.** Every HTML element layered over the canvas — HUD, captions, legend, title, tags — is DOM, not canvas, so the first recording came back with the 3D animation intact and every word missing. Two fixes work. `getDisplayMedia({ preferCurrentTab: true })` captures the whole tab including DOM but prompts for permission on every run. Compositing is the cleaner one and needs no permission: draw the WebGL frame into an offscreen 2D canvas each tick, re-draw the overlay into it with Canvas2D, and record *that* canvas. Compositing also controls exactly what lands in frame, which is how the record button itself gets kept out of its own recording.
+
+**A backgrounded tab throttles `requestAnimationFrame` to roughly 1 fps.** With `document.hidden` true, an animation that accumulates its own clock from a per-frame delta falls silently behind real time — a capped 50 ms delta advanced a timeline 1.22 s across 14 s of wall time. This is a bug in ordinary use, not only during capture: switch tabs and come back, and the animation is far behind where it should be. Drive the timeline from wall-clock time rather than accumulated frame deltas, and keep the tab in front while recording, because a hidden tab composites no frames and captures nothing.
+
+Source: Claude Code session `a21b4502`, 2026-08-19 (F-501 Pass B coil teardown visualization). The page itself and its open items are recorded at `00-inbox/2026-08-19-f501-coil-teardown-visualization.md`.
+
 ## Links
 
 - [[output-styles]] — the system-prompt layer, and why the vault's output rules stay in CLAUDE.md
