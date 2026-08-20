@@ -203,6 +203,8 @@
 - [[2026-08-19-idea-research-smart-pig-report-verification-gated]] — Idea Research — Smart-Pig Report as Cleaning Verification (gated, not researched)
 - [[2026-08-19-prestaged-treat-gas-loss-nominal-basis]] — Review — Is F-501's Treat Gas "9–14.5% loss, general thinning" measured against the right baseline, and does the card change?
 - [[2026-08-20-idea-research-isometric-rig-diagram]] — Idea Research — Isometric Site Plan Built From DeBusk's Existing Equipment Renders
+- [[2026-08-20-prestaged-ut-data-loss-air-and-fouling]] — Review — Where does "air and fouling are the standing causes of UT data loss" land, and does F-501's B_8_C reading get a data-quality caveat?
+- [[2026-08-20-syncrude-geometry-per-pass-misread]] — Review — Syncrude 7-1F-1 geometry was one pass read as the whole heater
 
 ## LLMs
 
