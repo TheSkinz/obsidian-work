@@ -102,6 +102,7 @@
 - [[process-flow]] — Process Flow & Pig Travel `(concepts)`
 - [[quote-lifecycle]] — Quote Lifecycle `(concepts)`
 - [[rfq-intake-protocol]] — RFQ Intake Protocol `(concepts)`
+- [[source-reconciliation]] — Source Reconciliation `(concepts)`
 - [[equipment-library]] — Equipment Library `(equipment)`
 - [[h-2421]] — H-2421 Ground Truth — extraction record `(ground-truth)`
 - [[h-28]] — H-28 Ground Truth — extraction record `(ground-truth)`

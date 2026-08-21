@@ -36,3 +36,5 @@ Best suited to text-layer PDFs in a business-document context. Copilot via Micro
 When the goal is structured data (tube counts, dimensions, job numbers), specify the exact fields and format required upfront. Asking for free-text summaries and then trying to parse them downstream is slower and less reliable than prompting for a structured output (table or JSON) from the first call.
 
 For repeating structured tasks (like heater card population), a dedicated Gem or system prompt with field definitions outperforms ad-hoc prompting.
+
+Extraction quality is only half the problem. Deciding whether an extracted value means what it appears to mean — whether a cell is data or template boilerplate, whether two sources genuinely disagree — is tool-agnostic and lives in [[source-reconciliation]].
