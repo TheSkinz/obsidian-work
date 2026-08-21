@@ -17,7 +17,14 @@ continuing. This is the **evidence half**: every component, what it has actually
 verdict. No decisions are made here and nothing has been retired.
 
 **How to use it.** Overwrite the `Verdict` column. That is the whole interaction — one sitting, one artifact,
-rather than one review note per finding. This note deliberately carries **no `## Decision` checkbox block**,
+rather than one review note per finding.
+
+> **Updated 2026-08-21.** Every `Verdict` cell is now **pre-filled with a recommendation**, not a ruling.
+> Nothing has been executed, stopped or deleted. Read down the columns and overwrite only the ones you
+> disagree with; silence on a row is your approval of it. See **Verdict pass — what this adds up to** near the
+> end for the shape of it and for the two items no verdict covers.
+
+This note deliberately carries **no `## Decision` checkbox block**,
 because the checkbox mechanism assumes one decision per note and this holds about thirty. That also means it
 does not count toward the health dashboard's "review notes awaiting decision" metric. Flagging that openly
 rather than quietly enjoying it.
@@ -76,12 +83,12 @@ separate passes reason downstream of a wrong "RESOLVED" flag on the Syncrude hea
 
 | Component | Cadence (actual) | Output | Effect rate | Evidence | Verdict |
 |---|---|---|---|---|---|
-| Capture loop | Daily since 08-10; 29 commits | Inbox routing | Inbox grew 21 → 54 while it ran daily | Runs reliably, but the thing it exists to drain has tripled | |
-| Idea-research loop | Daily since 08-16; 26 notes | 26 review notes | 14 effect / 6 no-effect / 6 open (54%) | Largest single producer of asks | |
-| Pre-staging loop | Daily since 08-13; 17 notes | 17 review notes | 9 / 4 / 4 (53%) | Second largest producer | |
-| Agent/review loop | On demand; 10 notes | 10 review notes | 9 / 1 / 0 (**90%**) | Highest-yield loop in the system, and the only one that *clears* rather than generates | |
-| Skill-drift loop | 62 d; 3 notes | 3 review notes | 3 / 0 / 0 (**100%**) | Small, cheap, perfect record | |
-| Consolidation loop | 31 d; 2 runs ever (07-18, 08-15) | Sweeps | The 08-15 run is what cleared the backlog to zero | Rare but high-impact | |
+| Capture loop | Daily since 08-10; 29 commits | Inbox routing | Inbox grew 21 → 54 while it ran daily | Runs reliably, but the thing it exists to drain has tripled | **Stop.** It is a net producer now — the 08-21 run ingested 1 and harvested 2. Built for the drop-files-and-they-get-filed workflow retired 2026-07-28 |
+| Idea-research loop | Daily since 08-16; 26 notes | 26 review notes | 14 effect / 6 no-effect / 6 open (54%) | Largest single producer of asks | **Stop.** Reads `01-context/` in 1 of 85 loop runs, so it proposes without knowing active jobs — the likely cause of the 46% miss rate. Seeds keep accruing; research one on demand when it matters. Monthly if you want it kept |
+| Pre-staging loop | Daily since 08-13; 17 notes | 17 review notes | 9 / 4 / 4 (53%) | Second largest producer | **Stop.** Same shape, same context blindness, same rate. Monthly if kept |
+| Agent/review loop | On demand; 10 notes | 10 review notes | 9 / 1 / 0 (**90%**) | Highest-yield loop in the system, and the only one that *clears* rather than generates | **Keep, and schedule it monthly.** The one cadence inversion worth making — it is the only loop that reduces the backlog |
+| Skill-drift loop | 62 d; 3 notes | 3 review notes | 3 / 0 / 0 (**100%**) | Small, cheap, perfect record | **Keep unchanged.** Defect-triggered — commits only when it finds drift, so it costs nothing when there is nothing to say |
+| Consolidation loop | 31 d; 2 runs ever (07-18, 08-15) | Sweeps | The 08-15 run is what cleared the backlog to zero | Rare but high-impact | **Keep monthly.** The only thing that has ever cleared the review pile to zero |
 
 **Reading.** The two loops that *generate* asks run daily at a ~53% effect rate. The two that *clear* them run
 on demand or monthly at 90–100%. The system is tuned backwards. The cheapest single change available is
@@ -92,17 +99,17 @@ schedule instead of on demand.
 
 | Component | Refs | Last touched | Evidence | Verdict |
 |---|---|---|---|---|
-| `vault_lint.py` | 168 | 08-16 | Core gate, 16 rules, wired into hooks | |
-| `vault_health.py` | 89 | 08-16 | Core dashboard; but see metric rows below | |
-| `vault_index.py` | 43 | 08-18 | Generates INDEX.md, 246 lines | |
-| `estimating_rollup.py` | 57 | 07-29 | Output regenerated **15 times** — live | |
-| `pig_usage_rollup.py` | 23 | 07-26 | Output `pig-usage-rollup.md` generated **once, 2026-07-26, never again**. 25 days stale and presents as current | |
-| `sharepoint_export.py` | 20 | 08-11 | Writes to `_OUTPUTS/sharepoint`, which exists; referenced in commits through 08-20 | |
-| `baseline_staleness.py` | 11 | 08-16 | Feeds health; reports 6 of 6 baselines behind — permanently | |
-| `config_frontmatter_lint.py` | 4 | 08-16 | Config-repo lint, lowest reference count of the live tools | |
-| `audit_commit.py` | 12 | 07-28 | Referenced only from July plan files and one memory — **not wired into any hook or setting** | |
-| `audit_worktree.py` | 5 | 07-27 | Same — one-off scripts from the July harness audit, kept as if infrastructure | |
-| `tools/fixtures/` | — | — | Contains an `08-systems` fixture directory; that folder does exist (5 notes) but is undocumented in CLAUDE.md | |
+| `vault_lint.py` | 168 | 08-16 | Core gate, 16 rules, wired into hooks | **Keep.** Defect-triggered and the vault's only hard gate. Opened by 18 of 80 attended sessions — the most-read script here. Change the rule tiers, not the tool |
+| `vault_health.py` | 89 | 08-16 | Core dashboard; but see metric rows below | **Keep.** `health.md` is the single most-read note in the vault (30 of 80 attended, 84 of 85 loop runs). This is the surfacing mechanism you rely on because you don't track triggers. Trim its metric set, keep the tool |
+| `vault_index.py` | 43 | 08-18 | Generates INDEX.md, 246 lines | **Keep.** Cheap, and it shrinks once `archive/` goes. Its value is as a grep surface rather than a read — INDEX.md was opened directly in 1 attended session |
+| `estimating_rollup.py` | 57 | 07-29 | Output regenerated **15 times** — live | **Keep.** Feeds estimating, which is business work rather than system work. Opened by 5 attended sessions |
+| `pig_usage_rollup.py` | 23 | 07-26 | Output `pig-usage-rollup.md` generated **once, 2026-07-26, never again**. 25 days stale and presents as current | **Delete the output; keep the script unwired.** The stale-artifact-presenting-as-current class the silence audit names. Pig data has a live future use (the per-project pig load list), so regenerate on demand rather than leaving a fossil in place |
+| `sharepoint_export.py` | 20 | 08-11 | Writes to `_OUTPUTS/sharepoint`, which exists; referenced in commits through 08-20 | **Keep.** Live and customer-adjacent. Note its `--check` was green throughout the 2026-08-11 incident while the library held the wrong file — DQ-016 is the fix and is still open |
+| `baseline_staleness.py` | 11 | 08-16 | Feeds health; reports 6 of 6 baselines behind — permanently | **Keep the script, drop its dashboard row.** Run `--verbose` on demand at replay time. See the metrics table |
+| `config_frontmatter_lint.py` | 4 | 08-16 | Config-repo lint, lowest reference count of the live tools | **Keep.** Low refs because it is defect-triggered. Its glob was widened 2026-08-16 after the blind spot that let a scheduled loop's unparseable frontmatter through |
+| `audit_commit.py` | 12 | 07-28 | Referenced only from July plan files and one memory — **not wired into any hook or setting** | **Delete.** One-off from the July harness audit, wired to nothing since |
+| `audit_worktree.py` | 5 | 07-27 | Same — one-off scripts from the July harness audit, kept as if infrastructure | **Delete.** Same |
+| `tools/fixtures/` | — | — | Contains an `08-systems` fixture directory; that folder does exist (5 notes) but is undocumented in CLAUDE.md | **Keep.** It is the lint self-test corpus and the reason the 16-rule check is trustworthy. Fix the CLAUDE.md gap instead — see Folder domains |
 
 **CLAUDE.md documents four tools. There are eleven.**
 
@@ -113,60 +120,65 @@ Currently firing: **43 warnings, 0 errors**, in only four classes — `INBOX-AGE
 
 | Rule | Now | Ever acted on | Note | Verdict |
 |---|---|---|---|---|
-| `INBOX-AGE` | 15 | yes | Permanent. Tracks the inbox backlog — a symptom, not a lint problem | |
-| `ORPHAN` | 13 | 13 commits | Permanent. Some targets are June concept notes that will never be linked | |
-| `DEAD-LINK` | 11 | 7 commits | Permanent. Arguably belongs in the **error** tier — a dead link is a defect, not a preference | |
-| `STATUS-VOCAB` | 4 | 6 commits | All four are `status: verified` on heater/ground-truth notes. Either add `verified` to the vocabulary or fix four files. Trivial, and open since July | |
-| `SECRET` | 0 | never fired | Keep regardless — cheap insurance, and the one rule whose firing would be catastrophic to miss | |
-| Other 11 rules | 0 | all have commit history | Guards that have fired and been cleared. Working as intended | |
+| `INBOX-AGE` | 15 | yes | Permanent. Tracks the inbox backlog — a symptom, not a lint problem | **Retire the rule.** `health.md` already reports inbox age. A lint warning clearable only by a decision session is not a lint finding, and this is 15 of the 43 |
+| `ORPHAN` | 13 | 13 commits | Permanent. Some targets are June concept notes that will never be linked | **Keep, exempt terminal-status notes.** The rule has earned its place 13 times, but a closed or superseded note nobody intends to link should not keep flagging |
+| `DEAD-LINK` | 11 | 7 commits | Permanent. Arguably belongs in the **error** tier — a dead link is a defect, not a preference | **Promote to error.** Already narrowed 2026-08-16 to stop flagging prose about wikilinks, so the 11 standing are real. One session clears them and the gate holds after |
+| `STATUS-VOCAB` | 4 | 6 commits | All four are `status: verified` on heater/ground-truth notes. Either add `verified` to the vocabulary or fix four files. Trivial, and open since July | **Add `verified` to the vocabulary.** It is a status the vault genuinely uses on ground-truth notes. Open since July for want of a one-line ruling |
+| `SECRET` | 0 | never fired | Keep regardless — cheap insurance, and the one rule whose firing would be catastrophic to miss | **Keep.** Zero firings is the success condition, not evidence of waste |
+| Other 11 rules | 0 | all have commit history | Guards that have fired and been cleared. Working as intended | **Keep all.** Defect-triggered, silent when clean, all with commit history proving they fire |
 
 **A warning tier that never reaches zero trains you to ignore the report.** 43 standing warnings is the whole
 signal value of `vault_lint` warnings being spent on four classes nobody intends to clear.
+
+**Net effect if the four verdicts above are adopted:** retiring `INBOX-AGE` removes 15, adding `verified` to
+the vocabulary removes 4, and promoting `DEAD-LINK` moves 11 out of warnings into the error gate that must be
+cleared to zero. Warnings drop from 43 to roughly 13, all `ORPHAN`, and fall further once terminal notes are
+exempted. The warning tier becomes readable again for the first time since July.
 
 ## Health dashboard metrics
 
 | Metric | Evidence | Verdict |
 |---|---|---|
-| Open decision rows | Useful. Cap 10 set when the queue was young | |
-| Review notes awaiting decision | Permanently FAIL since ~08-10 | |
-| Lint errors / warnings | Errors useful; warnings permanently 43 | |
-| Inbox items / median / oldest | Oldest permanently FAIL | |
-| Days since last commit | Useful | |
-| Loop heartbeats | Proves firing, not effect — see structural finding | |
-| Pending quotes expired | 0, and has caught real cases | |
-| Dormant triggers fired | **0 ever.** 9 rows listed; the 08-15 sweep already ruled triggers a weaker carrier than the queue | |
-| **Regression baselines behind** | Reports "**6 of 6**" with status **ok** — a metric with no pass condition, so it can never fail and never informs | |
-| Regression baselines unjudgeable | 0 | |
+| Open decision rows | Useful. Cap 10 set when the queue was young | **Keep, cap unchanged.** The cap's real function — pausing generating loops when jammed — mostly disappears if those loops stop, but the row stays the honest count of what you owe |
+| Review notes awaiting decision | Permanently FAIL since ~08-10 | **Keep.** It is not broken; it is correctly reporting a real backlog, and it reconciled exactly this run (12 open notes − 2 without a Decision block = 10). It should go green on its own once generation stops |
+| Lint errors / warnings | Errors useful; warnings permanently 43 | **Keep both, after the rule changes.** Warnings become meaningful again at ~13; errors gain the 11 promoted dead links and must clear |
+| Inbox items / median / oldest | Oldest permanently FAIL | **Keep, fix the counting.** `inbox_stats()` counts files rather than notes and picks up a stray `.html` source artifact — 56 reported against 55 notes. The oldest-item FAIL is the same backlog fact and should also self-clear |
+| Days since last commit | Useful | **Keep.** Cheap and honest |
+| Loop heartbeats | Proves firing, not effect — see structural finding | **Keep, for the surviving loops only.** Drops from 5 rows to 3 (review, consolidation, skill-drift). With three defect-triggered loops, "it fired and finished" is the right claim to make |
+| Pending quotes expired | 0, and has caught real cases | **Keep — the highest-value row on this dashboard.** The only metric tied to live commercial exposure rather than to system hygiene |
+| Dormant triggers fired | **0 ever.** 9 rows listed; the 08-15 sweep already ruled triggers a weaker carrier than the queue | **Retire the metric and the section.** Zero firings across 9 rows in two months. Promote the three machine-checkable conditions to their own health rows (`rfq-intake` 11/12, routine rows 5/10, note count 315/450) and drop the six event-shaped ones — "check at the next M365 session" is a note to a reader who never arrives |
+| **Regression baselines behind** | Reports "**6 of 6**" with status **ok** — a metric with no pass condition, so it can never fail and never informs | **Retire the row.** A metric that cannot fail is decoration. Keep `baseline_staleness.py --verbose` for on-demand use at replay time |
+| Regression baselines unjudgeable | 0 | **Keep.** This is the real gate — a baseline nobody can check is exactly the state the tool exists to end |
 
 ## Conventions and structure
 
 | Component | Evidence | Verdict |
 |---|---|---|
-| Decision queue | Charter says "the single place every open decision lives." **False today** — 6 open decisions sit in `06-insights/` review notes with no queue row | |
-| — DQ-018's source | Lives in **`archive/`**, which CLAUDE.md says not to auto-load. A live decision whose context is unreachable by default | |
-| Dormant triggers | 9 rows, 0 fired ever, already ruled a weak carrier | |
-| Regression baselines | 6 fixtures, all 6 behind, judged ok | |
-| Commercial pipeline | 3 quote rows; caught the DSP26095 stale-note case | |
-| `archive/` | 74 notes — as large as `02-facilities/` | |
-| `templates/` | 9 templates | |
-| `06-insights/` | 63 notes, near-parity with `02-facilities/` (74). Process artifacts approaching the volume of domain content | |
-| `INDEX.md` | 246 lines, regenerated | |
+| Decision queue | Charter says "the single place every open decision lives." **False today** — 6 open decisions sit in `06-insights/` review notes with no queue row | **Keep, and make the charter true.** The mechanism is right, the set is incomplete. Either add the 6 orphaned decisions as rows, or add a health row counting open review notes with no queue row — defect-triggered, silent when clean, and it would have caught this |
+| — DQ-018's source | Lives in **`archive/`**, which CLAUDE.md says not to auto-load. A live decision whose context is unreachable by default | **Fix before anything else touches `archive/`.** Either rule DQ-018 and close it, or move its source note back into `06-insights/`. This one blocks the `archive/` deletion below |
+| Dormant triggers | 9 rows, 0 fired ever, already ruled a weak carrier | **Retire.** Two months, nine rows, zero firings, and the 08-15 sweep already reached this conclusion once. The three machine-checkable conditions become health rows; the rest lapse |
+| Regression baselines | 6 fixtures, all 6 behind, judged ok | **Keep the fixtures, drop the "behind" reporting.** Replay on demand. `unjudgeable` stays as the gate |
+| Commercial pipeline | 3 quote rows; caught the DSP26095 stale-note case | **Keep.** With retrieval, this is one of only two functions here pointed at money rather than at the system itself |
+| `archive/` | 74 notes — as large as `02-facilities/` | **Delete the folder.** 3 of 74 notes opened across all 165 sessions; 71 have never been read by anyone. Git history preserves every one. True deletion is Lane 4, so this needs your explicit yes — and DQ-018 must be resolved first |
+| `templates/` | 9 templates | **Keep, trim to what is used.** 5 of 9 ever opened. `_idea-seed-template.md` is the 4th most-read note in attended sessions (17), and stays relevant even if the idea loop stops — you will still capture seeds by hand |
+| `06-insights/` | 63 notes, near-parity with `02-facilities/` (74). Process artifacts approaching the volume of domain content | **Keep unchanged — the volume flag is answered.** The usage audit found matching *demand* parity: 26 attended sessions opened `06-insights/` against 28 for `02-facilities/`. Equal volume at equal readership is not bloat |
+| `INDEX.md` | 246 lines, regenerated | **Keep.** Cheap, leaned on by CLAUDE.md, and it shrinks substantially once `archive/` is gone |
 
 ## Folder domains
 
 | Folder | Notes | In CLAUDE.md? | Verdict |
 |---|---|---|---|
-| `02-facilities/` | 74 | yes | |
-| `04-knowledge/` | 50 | yes | |
-| `06-insights/` | 63 | yes | |
-| `00-inbox/` | 54 | yes | |
-| `archive/` | 74 | yes (do-not-load) | |
-| `07-llms/` | 22 | **no** | |
-| `templates/` | 9 | yes | |
-| `08-systems/` | 5 | **no** | |
-| `09-interests/` | 2 | **no** | |
-| `01-context/` | 7 | yes | |
-| `50-dashboards/` | 4 | yes | |
+| `02-facilities/` | 74 | yes | **Keep, stop chasing precision on dormant cards.** 28 attended sessions, but 13 cards have never been opened by anyone. The 2026-07-06 facility-data note already says this; the usage data is the first evidence for it |
+| `04-knowledge/` | 50 | yes | **Keep.** 40 attended sessions. Retire the loop specs belonging to any loop that stops |
+| `06-insights/` | 63 | yes | **Keep.** Demand parity with `02-facilities/` settles the volume question — see Conventions |
+| `00-inbox/` | 54 | yes | **Keep.** It should begin draining on its own once the capture loop stops adding to it faster than you clear it |
+| `archive/` | 74 | yes (do-not-load) | **Delete** — see Conventions. Resolve DQ-018 first |
+| `07-llms/` | 22 | **no** | **Keep, and document it in CLAUDE.md.** 17 attended sessions — more read demand than `08-systems`, `09-interests` and `archive/` combined |
+| `templates/` | 9 | yes | **Keep, trim to 5** — see Conventions |
+| `08-systems/` | 5 | **no** | **Keep, and document it in CLAUDE.md.** Only 3 attended sessions, but it holds the Outlook architecture record — low frequency, high stakes when wrong, as 2026-08-11 showed |
+| `09-interests/` | 2 | **no** | **Keep, and document it in CLAUDE.md.** 2 notes, 0 attended reads, no cost. CLAUDE.md already says to expect non-USADebusk domains; this is that |
+| `01-context/` | 7 | yes | **Keep, and fix the startup protocol — the highest-value action in this audit.** Read in 43% of attended sessions and 1 of 85 loop runs, against a CLAUDE.md instruction to read it every session. Four of its seven notes are top-ten attended reads |
+| `50-dashboards/` | 4 | yes | **Keep.** The most-read folder in the vault. Whatever else changes, this is the part that works |
 
 ## Usage finding — added 2026-08-20, from the session list
 
@@ -461,6 +473,65 @@ file carries a status field, so nothing is broken — but the condition July set
 non-dotfile under `00-inbox/` recursively, skipping only `preserved-dsps/`, so the extra is
 `f501-coil-teardown-source.html` — a source artifact, not a note. The metric counts files, not notes. It is
 one item and it is not wrong so much as differently defined, but the same counting rule feeds INBOX-AGE.
+
+---
+
+# Verdict pass — what this adds up to
+
+Drafted 2026-08-21 at Jesse's request. **Recommendations, not rulings. Nothing has been executed.**
+
+## The shape
+
+Of 54 rows, **41 are keep, 9 are stop or delete, and 4 are keep-but-change.** This is not a bloat problem
+with a bloat answer. Almost everything here works; what is mistuned is *when* things speak.
+
+The organising distinction is **defect-triggered versus schedule-triggered.** Lint rules, the pre-send gate,
+the commercial-pipeline row, the skill-drift loop and every check the silence audit says is missing all stay
+silent unless something is actually wrong — and they run at 90–100% effect. The daily loops speak on a timer
+whether or not there is anything to say, and run at ~53%. Every red row on the dashboard traces back to that
+imbalance, and the whole verdict set is one move: stop the timers, keep the checks.
+
+## What actually stops
+
+| | |
+|---|---|
+| Stop | Capture loop, idea-research loop, pre-staging loop |
+| Schedule | Agent/review loop → monthly (the one inversion) |
+| Delete | `archive/` (74 notes, 71 never read), `audit_commit.py`, `audit_worktree.py`, `pig-usage-rollup.md` |
+| Retire | `INBOX-AGE` lint rule, dormant-triggers section, "regression baselines behind" metric |
+
+Everything else is kept. Retrieval, the dashboards, `01-context/`, the lint gate, the commercial pipeline,
+the estimating rollup, the heater cards and the eval all stay.
+
+## Sequence
+
+`Resolve DQ-018` → `stop the three loops` → `clear the promoted DEAD-LINK errors` → `delete archive/` →
+`regenerate INDEX.md + health.md` → `update CLAUDE.md`.
+
+DQ-018 is genuinely first: its source note lives in `archive/`, so deleting the folder before ruling on it
+destroys the context for a live decision.
+
+## Two things no verdict above covers
+
+**The missing checks.** The silence audit found that the components that would have caught the real misses do
+not exist, and both are defect-triggered — silent unless something is wrong, so they cost nothing per day and
+add zero asks. The heater-card rollup invariant (`Heater total ÷ Per circuit` must be an identical integer
+across sections) is roughly 40 lines, passes on all 26 cards that fill the table today, and fails on the
+pre-fix Syncrude card. The queue-completeness check (open review notes carrying a Decision block but no queue
+row) is smaller still and currently finds 6. Neither is on any table above because the audit inventoried what
+exists, not what is absent. **Building these is the one addition worth making, and it is the opposite of the
+work being retired.**
+
+**The CLAUDE.md documentation gap.** Three folders (`07-llms/`, `08-systems/`, `09-interests/`) are
+undocumented, and CLAUDE.md names four tools where eleven exist. One editing pass, no decision required.
+
+## What this does not resolve
+
+Whether the vault is worth its remaining cost at all. The audit's sharpest number — 61% of attended sessions
+being system maintenance — should fall sharply if the three loops stop, because they are the direct source of
+roughly two asks a day. That is the prediction. **Re-measure it in a month rather than assuming it.** If
+system sessions are still the majority with the generators off, the problem is structural rather than
+rate-based, and the answer is a smaller vault rather than a slower one.
 
 ---
 
