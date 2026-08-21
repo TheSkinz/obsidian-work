@@ -1,10 +1,12 @@
 ---
 type: idea-seed
-status: unexplored
+status: gated
 created: 2026-08-17
-revisit-trigger: "A second job report loses hand edits to a re-render, OR Jesse decides re-rendering over a delivered document should be routine rather than avoided -> unpark this and design the marker/splice mechanism"
+revisit-trigger: "A second job report loses hand edits to a re-render, OR Jesse decides re-rendering over a delivered document should be routine rather than avoided -> unpark this and design the marker/splice mechanism — event: checked at the /report render step, when the output path already holds a file"
 tags: [idea, fieldpm, job-report, generator, future]
-related: [[2026-08-17-triage-job-report-generator-layout-gaps]]
+related:
+  - "[[2026-08-17-triage-job-report-generator-layout-gaps]]"
+  - "[[2026-08-21-idea-research-generator-owns-marked-spans-gated]]"
 ---
 
 # The generator owns marked spans, not layout

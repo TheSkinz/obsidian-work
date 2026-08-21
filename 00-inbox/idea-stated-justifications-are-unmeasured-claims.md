@@ -1,9 +1,11 @@
 ---
 type: idea-seed
-status: unexplored
+status: researched
 created: 2026-08-17
 tags: [idea, generator, validation, cross-cutting, future]
-related: [[2026-08-17-triage-job-report-generator-layout-gaps]]
+related:
+  - "[[2026-08-17-triage-job-report-generator-layout-gaps]]"
+  - "[[2026-08-21-idea-research-stated-justifications-unmeasured]]"
 ---
 
 # A design's stated justification is a claim, and ours go unmeasured
