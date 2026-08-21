@@ -205,6 +205,7 @@
 - [[2026-08-20-idea-research-isometric-rig-diagram]] — Idea Research — Isometric Site Plan Built From DeBusk's Existing Equipment Renders
 - [[2026-08-20-prestaged-ut-data-loss-air-and-fouling]] — Review — Where does "air and fouling are the standing causes of UT data loss" land, and does F-501's B_8_C reading get a data-quality caveat?
 - [[2026-08-20-syncrude-geometry-per-pass-misread]] — Review — Syncrude 7-1F-1 geometry was one pass read as the whole heater
+- [[2026-08-20-vault-architecture-audit-evidence]] — Vault architecture audit — evidence pass
 
 ## LLMs
 

@@ -8,7 +8,7 @@
 | Review notes awaiting decision | 10 | <= 5 | FAIL |
 | Lint errors | 0 | 0 | ok |
 | Lint warnings | 43 | (backlog) | ok |
-| Inbox items | 54 | - | ok |
+| Inbox items | 55 | - | ok |
 | Inbox median age | 4 d | < 14 d | ok |
 | Inbox oldest item | 31 d | < 30 d | FAIL |
 | Days since last commit | 0 d | - | ok |
@@ -28,7 +28,7 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 | Idea-research loop | 2026-08-20 (0 d ago) | 2026-08-20 (0 d ago) | 30 d | ok |
 | Pre-staging loop | 2026-08-20 (0 d ago) | 2026-08-20 (0 d ago) | 30 d | ok |
 | Consolidation loop | 2026-08-15 (5 d ago) | 2026-08-15 (5 d ago) | 31 d | ok |
-| Skill-drift loop | 2026-08-01 (19 d ago) | 2026-08-01 (19 d ago) | 62 d | ok |
+| Skill-drift loop | 2026-08-01 (20 d ago) | 2026-08-01 (19 d ago) | 62 d | ok |
 
 ## Commercial pipeline
 
@@ -51,7 +51,7 @@ Every recorded wake-up condition (`revisit-trigger:` frontmatter) — parked ide
 | [[2026-07-24-parallel-friction-factor-deferred]] | Actuals rollup carries 3-4 routine multi-pass rows with a recorded Mode -> decide whether the Duration Model gets a mode-friction term — event: check when a multi-pass TA lands actuals | event — checked at the step the condition names |
 | [[2026-08-11-outlook-doc-three-copies]] | Next session touching Outlook, Copilot grounding, or the OneDrive eviction -> read Phase 1 Outlook Operating Procedure - Reference.docx, decide which of the three folder-structure documents survives, and check whether it holds the five email-rule bodies that exist nowhere else — event: check at the next M365 session | event — checked at the step the condition names |
 | [[idea-generator-owns-marked-spans-not-layout]] | A second job report loses hand edits to a re-render, OR Jesse decides re-rendering over a delivered document should be routine rather than avoided -> unpark this and design the marker/splice mechanism | event — checked at the step the condition names |
-| [[idea-llm-navigable-vault-map]] | Vault reaches 450 live notes (292 at the time of writing, 2026-08-15) -> re-run the retrieval eval in [[knowledge-system-evaluation-questions]]; if it shows failures, this idea unparks, and if it does not, re-park at the next threshold [machine: note-count>=450] | live notes: 312 of 450 |
+| [[idea-llm-navigable-vault-map]] | Vault reaches 450 live notes (292 at the time of writing, 2026-08-15) -> re-run the retrieval eval in [[knowledge-system-evaluation-questions]]; if it shows failures, this idea unparks, and if it does not, re-park at the next threshold [machine: note-count>=450] | live notes: 314 of 450 |
 | [[idea-smart-pig-report-as-cleaning-verification]] | A second smart-pig vendor inspection report reaches USADebusk as a held file -> unpark and research whether the vendor's report becomes proposal language, close-out language, or both. The back catalog cannot supply it: every prior instance is Quest, and Quest does not release project reports (Jesse, 2026-08-19) — Steady Flux is the only vendor that has. So this waits on a future smart-pig job with a sharing vendor, or on Valero forwarding the customer's copy of the H-102B report if that ask is ever cheap — event: check when any vendor inspection report is filed to a job folder | event — checked at the step the condition names |
 | [[rfq-intake-protocol]] | About 12 quote notes under a settled rate-table heading convention -> build the cross-quote rate-history rollup [machine: quote-count>=12] | quote notes: 11 of 12 |
 | [[2026-07-19-rate-model-grain-review]] | First bid under a multi-year or master agreement -> build the contract-note type (proposal C, rejected 2026-07-19) — event: check at RFQ intake | event — checked at the step the condition names |

@@ -150,6 +150,15 @@ Use `review_after`, `last_reviewed`, and `status: stale` to build review queues.
 
 Speculative ideas (`type: idea-seed` in `00-inbox/`) get bounded, unattended web research on a nightly schedule rather than sitting until someone manually revisits them. One seed per run, findings land as a review note in `06-insights/`, the seed's status flips to `researched`. Never decides, never builds. See [[vault-idea-loop-spec]].
 
+## Architecture Audit
+
+An evidence pass over every loop, tool, lint rule, dashboard metric and structural convention — what each has
+actually caused, measured from git rather than from inspection — is at
+[[2026-08-20-vault-architecture-audit-evidence]] (2026-08-20). Verdicts are Jesse's and are recorded as a
+column in that note. Its headline finding: the 2026-08-15 sweep cleared the review pile to zero and the queue
+to two, and both were back at ten within five days, because three loops fire daily and the only clearing
+resource is Jesse. Re-run the same method rather than re-deriving one.
+
 ## First Pilot Scope
 
 For the first phase, apply this only to new review notes, new source notes, unresolved contradictions, and dashboard views. Do not mass-edit existing job, facility, heater, or proposal notes until the review loop is proven.
