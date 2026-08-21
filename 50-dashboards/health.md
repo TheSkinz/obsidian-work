@@ -7,15 +7,14 @@
 | Open decision rows | 10 | <= 10 | ok |
 | Review notes awaiting decision | 12 | <= 5 | FAIL |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 44 | (backlog) | ok |
-| Inbox items | 56 | - | ok |
+| Lint warnings | 5 | (backlog) | ok |
+| Inbox items | 55 | - | ok |
 | Inbox median age | 5 d | < 14 d | ok |
 | Inbox oldest item | 32 d | < 30 d | FAIL |
 | Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
 | Pending quotes expired | 0 | 0 | ok |
-| Dormant triggers fired | 0 | 0 | ok |
-| Regression baselines behind | 6 of 6 | (replay sweep) | ok |
+| Open decisions not in the queue | 8 — 2026-08-16-idea-research-rollup-rig-in-column-is-mixed-method, 2026-08-17-idea-research-frozen-baselines-unexercised-defects, 2026-08-18-idea-research-researched-status-outlives-build, 2026-08-19-idea-research-backtest-visually-broken-document, 2026-08-19-idea-research-smart-pig-report-verification-gated, 2026-08-20-idea-research-isometric-rig-diagram, 2026-08-21-idea-research-generator-owns-marked-spans-gated, 2026-08-21-idea-research-stated-justifications-unmeasured | 0 | FAIL |
 | Regression baselines unjudgeable | 0 | 0 | ok |
 
 ## Loop heartbeats
@@ -24,9 +23,6 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 
 | Loop | Last fired | Last heartbeat | Cadence | Status |
 |---|---|---|---|---|
-| Capture loop | 2026-08-21 (0 d ago) | 2026-08-20 (1 d ago) | 7 d | running |
-| Idea-research loop | 2026-08-21 (0 d ago) | 2026-08-21 (0 d ago) | 30 d | ok |
-| Pre-staging loop | 2026-08-20 (0 d ago) | 2026-08-20 (1 d ago) | 30 d | ok |
 | Consolidation loop | 2026-08-15 (6 d ago) | 2026-08-15 (6 d ago) | 31 d | ok |
 | Skill-drift loop | 2026-08-01 (20 d ago) | 2026-08-01 (20 d ago) | 62 d | ok |
 
@@ -42,21 +38,17 @@ One row per pending quote, plus any quote whose execution date is within 90 days
 | [[DSP26080]] | pending | - | 2027-02 | no validity date recorded | no bid folder path recorded |
 | [[DSP26085]] | pending | 2026-09-29 | 2027-01 | ok | ok |
 
-## Dormant triggers
+## Threshold gauges
 
-Every recorded wake-up condition (`revisit-trigger:` frontmatter) — parked ideas, deferred builds, rejected-with-revisit decisions. Machine-checkable conditions carry a `[machine: …]` token the script evaluates; event-shaped ones name the workflow step that checks them. A trigger retires when the field is removed from its note (fire → act → remove).
+Machine-checkable wake-up conditions only — a `revisit-trigger:` carrying a `[machine: …]` token this script can actually evaluate. A gauge retires when the field is removed from its note (fire → act → remove).
+
+Narrowed from the former **Dormant triggers** registry on 2026-08-21. That table listed nine conditions, six of them event-shaped ("check at the next M365 session"), and **none fired in two months** — nothing evaluates an event-shaped trigger and no workflow step reads this table, so they were reminders addressed to nobody. The event-shaped conditions still sit in their own notes' frontmatter; they are just no longer rendered here as though something were watching them.
 
 | Source | Condition | Check |
 |---|---|---|
-| [[2026-07-24-parallel-friction-factor-deferred]] | Actuals rollup carries 3-4 routine multi-pass rows with a recorded Mode -> decide whether the Duration Model gets a mode-friction term — event: check when a multi-pass TA lands actuals | event — checked at the step the condition names |
-| [[2026-08-11-outlook-doc-three-copies]] | Next session touching Outlook, Copilot grounding, or the OneDrive eviction -> read Phase 1 Outlook Operating Procedure - Reference.docx, decide which of the three folder-structure documents survives, and check whether it holds the five email-rule bodies that exist nowhere else — event: check at the next M365 session | event — checked at the step the condition names |
-| [[idea-generator-owns-marked-spans-not-layout]] | A second job report loses hand edits to a re-render, OR Jesse decides re-rendering over a delivered document should be routine rather than avoided -> unpark this and design the marker/splice mechanism — event: checked at the /report render step, when the output path already holds a file | event — checked at the step the condition names |
 | [[idea-llm-navigable-vault-map]] | Vault reaches 450 live notes (292 at the time of writing, 2026-08-15) -> re-run the retrieval eval in [[knowledge-system-evaluation-questions]]; if it shows failures, this idea unparks, and if it does not, re-park at the next threshold [machine: note-count>=450] | live notes: 317 of 450 |
-| [[idea-smart-pig-report-as-cleaning-verification]] | A second smart-pig vendor inspection report reaches USADebusk as a held file -> unpark and research whether the vendor's report becomes proposal language, close-out language, or both. The back catalog cannot supply it: every prior instance is Quest, and Quest does not release project reports (Jesse, 2026-08-19) — Steady Flux is the only vendor that has. So this waits on a future smart-pig job with a sharing vendor, or on Valero forwarding the customer's copy of the H-102B report if that ask is ever cheap — event: check when any vendor inspection report is filed to a job folder | event — checked at the step the condition names |
 | [[rfq-intake-protocol]] | About 12 quote notes under a settled rate-table heading convention -> build the cross-quote rate-history rollup [machine: quote-count>=12] | quote notes: 11 of 12 |
-| [[2026-07-19-rate-model-grain-review]] | First bid under a multi-year or master agreement -> build the contract-note type (proposal C, rejected 2026-07-19) — event: check at RFQ intake | event — checked at the step the condition names |
 | [[2026-07-31-prestaged-routine-service-derate-seed-data]] | 10 routine mode-normalized rows in the actuals rollup -> revisit the ft/hr service derate (n=5 at ruling, 2026-08-01) [machine: routine-rows>=10] | routine rows: 5 of 10 |
-| [[2026-08-17-triage-job-report-generator-layout-gaps]] | Next job report compiled with /report -> before rendering, check where Jesse places the images. If he puts them inline again rather than in the dedicated Images section, that is the second data point and the generator should learn inline placement — event: check at the /report step | event — checked at the step the condition names |
 
 ## Regression baselines
 
