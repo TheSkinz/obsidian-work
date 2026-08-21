@@ -237,6 +237,19 @@ def inbox_stats(root: Path) -> tuple[int, int | None, int | None]:
     stray `.html` source artifact was reported as an inbox item and the metric
     read 56 against 55 notes. Source material dropped in the inbox is not a
     thing to route.
+
+    Count and ages measure different populations, as of 2026-08-21. `count` is
+    every note: a retained record should stay visible in a row that carries no
+    target. The **ages** measure pending work only, skipping notes with a
+    terminal `status`, gated seeds, and `<!-- ROUTED` capture records whose
+    content already landed elsewhere. Without the split a filed record ages
+    forever and eventually turns the row red permanently on work nobody will
+    ever action -- the defect that retired the INBOX-AGE lint rule the same day.
+    `count_pending_reviews()` skips TERMINAL_STATUS for the same reason, and the
+    retired lint rule skipped GATED_STATUS so a parked seed would not decay into
+    permanent noise. The ROUTED match is anchored to line start: one inbox note
+    quotes the marker inside backticks while discussing it, and a substring
+    match would silently exclude a live note.
     """
     inbox = root / vault_lint.INBOX_DIR
     if not inbox.is_dir():
@@ -253,6 +266,15 @@ def inbox_stats(root: Path) -> tuple[int, int | None, int | None]:
         if any(rel.startswith(s + "/") for s in INBOX_SKIP_SUBDIRS):
             continue
         count += 1
+        try:
+            text = p.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            continue
+        status = vault_lint.parse_frontmatter(text).get("status", "").strip().lower()
+        if status in vault_lint.TERMINAL_STATUS or status == vault_lint.GATED_STATUS:
+            continue
+        if re.search(r"^<!-- ROUTED", text[:200], re.MULTILINE):
+            continue
         d = git_last_commit_date(root, str(p.relative_to(root)))
         if d is not None:
             ages.append((today - d).days)

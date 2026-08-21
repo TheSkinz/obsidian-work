@@ -9,8 +9,8 @@
 | Lint errors | 0 | 0 | ok |
 | Lint warnings | 5 | (backlog) | ok |
 | Inbox items | 56 | - | ok |
-| Inbox median age | 5 d | < 14 d | ok |
-| Inbox oldest item | 25 d | < 30 d | ok |
+| Inbox median age | 4 d | < 14 d | ok |
+| Inbox oldest item | 24 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
 | Pending quotes expired | 0 | 0 | ok |
