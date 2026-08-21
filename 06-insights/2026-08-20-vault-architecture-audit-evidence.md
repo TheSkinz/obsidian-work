@@ -224,8 +224,249 @@ record. Skill *content* is a separate audit with a different method and should n
 audited: hook scripts in `~/.claude/hooks/`, and whether the six loops' scheduling actually matches their
 declared cadences in the scheduler rather than in the ledger.
 
+---
+
+# Audit 1 — Usage audit (demand)
+
+**Method.** 165 session transcripts exist on disk for this vault. Each was classified as a loop run or an
+attended session by whether its first user turn carries a `<scheduled-task name=` marker: **85 loop, 80
+attended**. Demand for a note is then "how many sessions opened it", measured as a tool call carrying a
+`file_path` under that path — Read, Edit, Write.
+
+**Two confounds, stated because they change how the numbers read.** First, `search_session_transcripts` and
+any plain substring count are worthless here: CLAUDE.md is injected into every session, so 151 of 165
+transcripts "mention" `00-inbox/` and 155 mention `02-facilities/` without anyone having opened a file. Every
+number below is a file-open, not a mention. Second, a `cat`/`sed` read through Bash carries no `file_path`
+and is invisible to this channel. Measured on `01-context/` specifically, the Bash channel adds 7 attended
+sessions on top of 27, so **treat every attended count below as a floor, roughly 20–25% low.**
+
+## Folder demand
+
+| Folder | Notes on disk | Sessions that opened a file (of 165) | Loop (85) | Attended (80) |
+|---|---|---|---|---|
+| `50-dashboards/` | 4 | 117 | 84 | 33 |
+| `00-inbox/` | 55 | 116 | 70 | 46 |
+| `04-knowledge/` | 50 | 114 | 74 | 40 |
+| `06-insights/` | 64 | 64 | 38 | 26 |
+| `02-facilities/` | 74 | 36 | 8 | 28 |
+| `tools/` | — | 36 | 11 | 25 |
+| `templates/` | 9 | 33 | 13 | 20 |
+| `07-llms/` | 22 | 31 | 14 | 17 |
+| `01-context/` | 7 | 28 | 1 | 27 |
+| `08-systems/` | 5 | 7 | 4 | 3 |
+| `archive/` | 74 | 4 | 1 | 3 |
+| `09-interests/` | 2 | 2 | 2 | 0 |
+
+## Most-read individual notes, attended sessions only (of 80)
+
+| Note | Sessions |
+|---|---|
+| `50-dashboards/health.md` | 30 |
+| `change-log.md` | 28 |
+| `tools/vault_lint.py` | 18 |
+| `templates/_idea-seed-template.md` | 17 |
+| `01-context/active-jobs.md` | 13 |
+| `tools/vault_health.py` | 12 |
+| `01-context/estimating-approach.md` | 11 |
+| `50-dashboards/decision-queue.md` | 10 |
+| `07-llms/claude/code.md` | 10 |
+| `01-context/company-context.md` | 10 |
+
+## Coverage — supply with no demand
+
+| Folder | On disk | Ever opened by any session | Never opened |
+|---|---|---|---|
+| `02-facilities/` | 74 | 65 | 13 |
+| `06-insights/` | 64 | 58 | 7 (all 2026-06-26 → 07-05) |
+| `04-knowledge/` | 50 | 51 (incl. since-moved files) | 2 |
+| `archive/` | 74 | 3 | **71** |
+| `09-interests/` | 2 | 2 | 0 attended |
+
+The 13 never-opened heater and facility notes are Flint Hills Corpus Christi (4), Marathon Carson (3),
+Formosa Point Comfort (2), PBF Toledo (2), Westlake H-101, and ExxonMobil F-201.
+
+## Findings
+
+**The session-startup protocol is not being executed.** CLAUDE.md says to read every file in `01-context/`
+before responding. Counting both channels, 34 of 80 attended sessions did — 43%. For loop sessions it is
+**1 of 85.** The three loops generating roughly two asks a day are running without the context that holds
+Jesse's active jobs, output preferences and estimating approach. This is the single most consequential
+finding of the three audits, and it is invisible to every existing metric because nothing measures whether an
+instruction was followed.
+
+**The audit's own claim about `01-context/` was wrong and is corrected here.** The usage-finding section
+above asserts "seven notes loaded every session." They are not. What is true is narrower and still supports
+the same conclusion: all seven are read by somebody, they occupy four of the top ten attended-read slots, and
+they generate almost no commits — so the effect-based method does undervalue them. The demand is real; the
+"every session" was an assumption, not a measurement.
+
+**The two files CLAUDE.md exempts are exactly the two least-read files in the folder.** `active-jobs` 13,
+`estimating-approach` 11, `company-context` 10, `output-preferences` 8, `equipment-fleet` 7, then
+`system-workflow-reference` 3 and `workflow-map` 2. The exemption was written on judgment and the usage data
+independently confirms it.
+
+**`archive/` is 74 notes — 21% of the vault's markdown — with 3 files ever opened across 165 sessions.**
+It is already excluded from auto-load, so this costs disk and `INDEX.md` lines, not context. The one place it
+bites is that DQ-018's source note lives there (verified: `archive/2026-08-15-retirement-sweep-what-else-has-outlived-its-reason.md`).
+
+**The dashboard is doing its job.** `50-dashboards/` is the most-read folder in the vault, `health.md` the
+most-read single note in attended sessions, and 84 of 85 loop runs open it. Whatever else changes, the
+surfacing mechanism is the part that is actually load-bearing.
+
+**Process artifacts and domain content have near-identical read demand.** `06-insights/` was opened by 26
+attended sessions against `02-facilities/`'s 28, at 64 notes against 74. The volume parity the audit flagged
+above is matched by demand parity — which is an argument against reading the parity as bloat.
+
+---
+
+# Audit 2 — Silence audit (what the system failed to catch)
+
+**Method.** Correction-shaped commits were pulled from all 493 commits in history and a sample read in full.
+For each, the question is not "was it fixed" but "which existing rule, loop, gate or metric should have
+caught it, and why didn't it."
+
+| Miss | Stood for | Should have caught it | Why it didn't |
+|---|---|---|---|
+| Syncrude 7-1F-1: one pass recorded as the whole heater; `~6 ft/hr` derived from it | 13 months, marked **Verified**, survived 3 review passes | Nothing. The schema demands both scales; no check compares them | See below — the check is cheap and did not exist |
+| Vault's Outlook folder model (9-folder commercial pipeline) was fabricated | 2026-06-29 → 08-11 | Nothing. No component compares a vault claim to the external system it describes | Every gate reconciles vault-to-vault |
+| Outlook categories fabricated a second time, hours after the folders were caught | same evening | The rule was already written (`tenant-reality-first`) and had just fired | A written rule is not a gate |
+| DSP26085: canonical store held a superseded quotation for a live bid | ~1 month | `presend_gate.py`, `backtest_workup.py` | Both reconcile files **within** CANON. A run in that window would have compared two superseded files and said SEND |
+| `manual/` §7.1/7.2/8.2/11.3 had USADebusk installing and removing launchers/receivers | months | Nothing. `usadebusk-estimating` had it right the whole time | No component cross-checks the manual against the skills |
+| `config_frontmatter_lint.py` reported 9 of 9 skills clean while a scheduled loop's SKILL.md would not parse | until an external tool (`agnix`) walked the whole tree | The tool itself | A checker's blind spot is its glob, and a clean report from a narrow glob reads identically to a clean tree |
+| `lint-report.md` claimed 34 warnings against an actual 52 | 2 weeks | Nothing. No freshness gate on generated artifacts | Same class as `pig-usage-rollup.md`, 25 days stale and presenting as current |
+| POINTER-DEAD source pointers dead after folder moves | recurring, ~3 instances/4 weeks | The rule exists and fires | At `warning` tier, buried in 43 standing warnings. Two sat 9 days (DQ-019) |
+| Obsidian resolved a Syncrude `[[_facility]]` to PBF Toledo | one session | Nothing automated | Caught by reading every changed line — discipline, not tooling |
+| Decision queue charter "the single place every open decision lives" is false | since at least 08-16 | Nothing checks queue-to-review-note coverage | The dashboard counts rows; it never asks whether the set is complete |
+| DQ-018's live source note sits in `archive/`, which CLAUDE.md says not to auto-load | since 08-16 | Nothing checks that a live queue row's context is reachable | — |
+| Six domain errors in the generated rig diagram (frac tank in the loop, pumper out-scaling the heater, reversed return flow) | until Jesse looked at the render | Nothing can | Domain semantics in derived output is not machine-checkable |
+
+**Verified count on the queue-charter miss.** `06-insights/` currently holds 12 notes at `status: open`. Ten
+carry a `## Decision` block; five have a queue row. **Six open decisions have a Decision block and no queue
+row** — independently reproducing the audit's earlier claim. (The twelfth is this note, which declares its own
+exemption; the eleventh is the Syncrude note. Both lack a Decision block, which is also the exact
+reconciliation of `health.md`'s "Review notes awaiting decision: 10" against 12 open notes — the metric is
+correct.)
+
+## The Syncrude miss reproduces, and the missing check is arithmetic
+
+`_canonical-heater-card.md` requires the Config Rollup to carry both a `Per circuit` and a `Heater total`
+row for every section — "this row is the estimating multiplication base." That means the invariant
+`Heater total ÷ Per circuit = an integer circuit count, identical across sections` is machine-checkable on
+every card that fills the table. Run read-only against the vault as it stands: **41 cards carry the section,
+26 fill it numerically, and all 26 satisfy the invariant** once single-pass sections (F-501 Treat Gas, F-901
+Superheat Steam — both already annotated as such in their Notes column) are exempted.
+
+Run against the Syncrude card as it stood before the 2026-08-20 fix, it fails:
+
+| Scale | Section | Total Tubes | Ratio |
+|---|---|---|---|
+| Per circuit | Convection | 2 | 16 ÷ 2 = 8 ✓ |
+| Per circuit | Radiant | **~4** | 31 ÷ 4 = 7.75 ✗ |
+
+The card recorded the radiant per-circuit count as the literal string `~4` and its Notes column invented a
+physical explanation for the residue — "uneven — some coils 4, some 3 tubes" — a heater asymmetry that the
+2026-08-20 pass confirmed does not exist. The same row is annotated "**Verified** ... resolves the earlier
+per-circuit-vs-total ambiguity." The system asked itself this exact question on 2026-07-23, answered it
+backwards, and stamped it verified. **A review gate was not what was missing. A check was.**
+
+## The classes
+
+Five shapes account for every miss above. Nothing reconciles a vault claim against the external system it
+describes, and every gate that exists compares vault-to-vault or canon-to-canon. Generated artifacts drift
+silently because no metric asks when an output was last regenerated against its input. A checker's scope is
+its blind spot, and a narrow-glob clean report is indistinguishable from a clean tree. Nothing checks the
+system's own structural invariants — queue completeness, source reachability, rollup arithmetic — because
+every current metric counts rows rather than testing relationships. And domain semantics in derived output is
+not machine-checkable at all, which is a fact to design around rather than a gap to close.
+
+**The system has closed silences before.** CHECKBOX-DELTA was built specifically because a stray Obsidian
+click recorded a decision the vault never made and WORD-DELTA reported only losses. The bid-folder soft signal
+exists because DSP26095's note read "not yet priced" while its folder held a finished quotation.
+`baseline_staleness.py` exists for the same reason. The silence-closing mechanism works. What is absent is
+any routine that goes looking — every one of those three was built after a human tripped over the miss.
+
+---
+
+# Audit 3 — Retrieval eval re-run
+
+**Grading.** Adversarial, per the brief. Each question was answered by retrieving from the vault this
+session; then, before accepting a pass, the specific note was reopened and checked that it still says what
+the answer claims. Anything answerable from loaded context rather than retrieval was treated as a fail.
+Cross-references inside retrieved notes were followed and verified rather than assumed.
+
+| ID | July 2026-07-23 | This run | Source verified this session | Adversarial note |
+|---|---|---|---|---|
+| KS-001 | pass | pass | `knowledge-system-governance.md:20-33` — 6-rank table, "create a contradiction note instead of blending" | Latent: the contradiction rule at line 33 carries no carve-out marker, but lines 62 and 72 exempt all of `02-facilities/`. A retrieval that reads only the section the question names gets a rule that is wrong for the vault's largest folder |
+| KS-002 | pass | pass — **but the criterion cannot fail** | `_canonical-heater-card.md:18-19, 28` schema authority; `:74-76` "atomic facts only, per-circuit never totals"; CLAUDE.md Schema authority | See below |
+| KS-003 | pass | pass | `sops/sop-formatting-standard.md:3` Authority line; CLAUDE.md "one canonical home"; `usadebusk-sop` SKILL.md:111 defers to it | Cleanest result in the set — three independent sources agree and none has drifted |
+| KS-004 | pass (scan) | pass (scan) | 55 inbox notes read directly: 19 `inbox` / 12 `open` / 8 `researched` / 7 `closed-unactioned` / 5 `unexplored` / 4 `gated`; every file carries a status | July's stated revisit condition has now been met — see below |
+| KS-005 | pass | pass | `health.md` + `decision-queue.md` + `status`/`review_after` frontmatter | Reconciles exactly: 12 open notes − 2 without a Decision block = the dashboard's 10 |
+| USA-001 | pass | pass | `usadebusk-core` SKILL.md:10 service naming; :66, :68 Trimax lock, `dual-pumper` banned, `TriMax` dead string | Resolves to the config repo, not the vault |
+| USA-002 | pass | pass | `concepts/industry-foundation.md:56-60` pH ≥10.0, 1–2 ft/s, chloride ≤250/≤500 ppm; `_canonical-heater-card.md:38-46` conditional block, omit entirely on carbon steel | Followed the exemplar's cross-reference to `210-1403A` — the card exists and really is stainless. Reference is live |
+| USA-003 | pass | pass | `_canonical-heater-card.md:176-178` "Status only — never facts"; `usadebusk-core`:119 pumping-unit type is not a card field | — |
+| USA-004 | pass | pass | `usadebusk-sop` SKILL.md:188-203, 12-item list; :255 never generate until confirmed | All five items the criterion names are on the list — metallurgy (#8) and water source (#9) both flagged "Never assume" |
+| USA-005 | pass (deep) | **criterion stale** | `knowledge-system-governance.md:72` facility-data note | See below |
+
+**Headline: 9 clean passes and one stale criterion — but the raw score is the least useful thing here.**
+
+## USA-005's pass criterion now encodes a rule the vault reversed
+
+The question asks how a completed job report should feed back into facility and heater knowledge. Its pass
+criterion, written 2026-06-26, reads "Proposes reviewable updates instead of directly rewriting canonical
+notes." Since the 2026-07-06 facility-data ruling, that is the **wrong** answer for the destination the
+question names: heater-card and facility content is Lane 1 in full, "including correcting existing facts and
+resolving discrepancies between sources ... No contradiction note, no confidence-tier/verified-gate
+ceremony."
+
+An agent that answers this question correctly today fails the written criterion, and an agent that answers it
+by the pre-July rule passes. In July this was graded "pass (deep)" precisely because retrieval found the
+carve-out — and that run recorded the risk as a *stale lead paragraph* in the governance note. **That half
+got fixed:** line 18 now carries the exclusion inline and in bold. The eval's own criterion was never updated
+and still holds the superseded rule. The note's `review_after: 2026-09-26` means nothing would have surfaced
+this until late September.
+
+The eval set is not exempt from the drift it was built to detect. This is the finding a self-graded run
+cannot produce, because the grader and the criterion agree.
+
+## KS-002 passes on a criterion too weak to catch the failure it guards
+
+The brief flagged KS-002's criterion — "does not infer heater facts from jobs alone" — as precisely the
+Syncrude failure mode, and asked that it be probed rather than accepted.
+
+Probed, and the answer is that **the schema was right and the criterion is irrelevant to what went wrong.**
+`_canonical-heater-card.md:74-76` says "ATOMIC FACTS ONLY. Per-circuit measurements, never totals/sums," and
+the Config Rollup requires both scales stated separately. The Syncrude error did not infer heater facts from
+jobs. It read a drawing correctly and mis-assigned its *scale* — a per-pass title block recorded into the
+heater-total row — then divided down to manufacture a per-circuit figure. Every downstream number inherited
+it, including the actuals rollup.
+
+KS-002 as written cannot fail on that case, and neither can any of the other nine questions. The eval tests
+whether the right note is found; nothing in it tests whether the retrieved value is internally coherent. The
+arithmetic check in Audit 2 catches it in one pass. This is the gap the brief suspected, confirmed and
+located: not a retrieval failure, a missing validation.
+
+## July's two latent risks, revisited
+
+The stale lead paragraph on `knowledge-system-governance` is **closed** — the Lane-1 exclusion is now in the
+opening Operating Principle, so a retrieval that stops there no longer gets the pre-July rule.
+
+KS-004's "scan, not lookup" is **still open, and July's own revisit condition has now been met.** That run
+recorded it as "fine at this size ... if inbox volume grows, a generated inbox-by-status view would convert
+this from a scan to a lookup." The folder was 26 files then and is 55 now. The scan still works, and every
+file carries a status field, so nothing is broken — but the condition July set for reconsidering has passed.
+
+## Incidental, from running the eval
+
+`health.md` reports 56 inbox items against 55 notes. `inbox_stats()` in `vault_health.py` counts every
+non-dotfile under `00-inbox/` recursively, skipping only `preserved-dsps/`, so the extra is
+`f501-coil-teardown-source.html` — a source artifact, not a note. The metric counts files, not notes. It is
+one item and it is not wrong so much as differently defined, but the same counting rule feeds INBOX-AGE.
+
+---
+
 ## Apply Log
 
 | Date | Action | By |
 |---|---|---|
 | 2026-08-20 | Evidence pass run at Jesse's request. Read-only against git and the vault; nothing retired, no rulings made, no queue rows added. Corrected my own earlier overstatement that the system rarely clears its output — measured effect rate is 76% of closed notes. | Claude |
+| 2026-08-20 | All three briefed audits run and appended above. Read-only against git, the vault, the config repo and 165 session transcripts; no new notes, no queue rows, nothing retired, no verdicts filled in. Corrected this note's own unmeasured claim that `01-context/` is "loaded every session" — it is 43% of attended sessions and 1 of 85 loop runs. | Claude |
