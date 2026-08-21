@@ -19,7 +19,7 @@ none and the renderer never wrote `w:tblBorders`) and **never drawn the gold rul
 KPI band**. Both defects shipped in every report the generator produced, through a back-test that
 reported PASS, because the back-test only ever compared extracted numbers. The generator was
 right about 207 operating hours and wrong about what the page looked like, and only the numbers
-were being asked. This connects to [[feedback-backtest-before-build]] — that rule says reconcile
+were being asked. This connects to the `feedback-backtest-before-build` agent memory — that rule says reconcile
 a spec's model against real artifacts to exact match, and the gap here is *what counts as the
 match surface*.
 

@@ -7,9 +7,8 @@ every check here used to be something an agent had to notice while reading.
 
 Rules (code | severity):
     OP-FRONTMATTER  warning  operational notes should carry source + verified
-    DEAD-LINK       warning  [[wikilink]] whose target exists nowhere in repo
+    DEAD-LINK       error    [[wikilink]] whose target exists nowhere in repo
     SECRET          error    credential-shaped string committed to the vault
-    INBOX-AGE       warning  inbox item older than 14 days, or untracked in git
     STATUS-VOCAB    warning  status: value outside the known vocabulary
     CONF-CONFLICT   error    confidence: high on an AI-inferred source
     ORPHAN          warning  knowledge-layer note with no inbound wikilinks
@@ -23,13 +22,23 @@ Rules (code | severity):
     WORD-DELTA      warning  words left a note (--staged / --worktree only; see below)
     CHECKBOX-DELTA  warning  a decision box moved on an already-closed note (ditto)
 
-Only SECRET, CONF-CONFLICT and YAML-COMMENT are errors (exit 1). Everything
-else is a warning so the vault is never "failing" for want of a bulk backfill —
-warnings are the to-do list, errors are the stop-the-line list. YAML-COMMENT
-earns error status because it is silent data loss, not a backfill: the value
-is already gone from Obsidian and from every script, and the fix is one pair
-of quotes. New lint rules require a fixture under tools/fixtures/ (no fixture,
-no rule).
+SECRET, CONF-CONFLICT, YAML-COMMENT and DEAD-LINK are errors (exit 1).
+Everything else is a warning so the vault is never "failing" for want of a bulk
+backfill — warnings are the to-do list, errors are the stop-the-line list.
+YAML-COMMENT earns error status because it is silent data loss, not a backfill:
+the value is already gone from Obsidian and from every script, and the fix is
+one pair of quotes. New lint rules require a fixture under tools/fixtures/ (no
+fixture, no rule).
+
+DEAD-LINK promoted to error 2026-08-21 (architecture audit). A dead link is a
+defect, not a preference: the rule was already narrowed on 2026-08-16 to stop
+flagging prose about wikilinks, so what it reports now is real. It sat at
+warning tier inside a 43-warning backlog nobody read.
+
+INBOX-AGE retired 2026-08-21 (same audit). It fired 15 times permanently and
+measured the inbox backlog, which `50-dashboards/health.md` already reports
+directly. A lint warning clearable only by a decision session is not a lint
+finding, and it was a third of the standing warning count on its own.
 
 WORD-DELTA and CHECKBOX-DELTA are diff rules, not tree rules: they compare
 against HEAD, so they run only under --staged or --worktree and never appear in
@@ -124,6 +133,12 @@ ALLOWED_STATUS = {
     # lifecycle
     "inbox", "draft", "active", "reviewed", "for-review", "stale",
     "deprecated", "complete", "open", "closed-unactioned", "expired",
+    # `verified` is a real status the ground-truth and heater layers use for a
+    # fact confirmed against a primary source. Added 2026-08-21 (architecture
+    # audit) — it had been firing STATUS-VOCAB on four files since July purely
+    # because nobody had made the one-line call between adding it here and
+    # rewriting the four notes.
+    "verified",
     # review/decision outcomes
     "resolved", "unresolved", "pending", "superseded",
     "decided-blocked", "approved-blocked", "awarded", "lost",
@@ -229,7 +244,7 @@ POINTER_RE = re.compile(r"`((?:[A-Za-z]:\\|/)[^`\n]{3,})`")
 WORD_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9._#/'-]*")
 TRAILING_PUNCT = ".,;:'-"
 
-ERROR_CODES = {"SECRET", "CONF-CONFLICT", "YAML-COMMENT"}
+ERROR_CODES = {"SECRET", "CONF-CONFLICT", "YAML-COMMENT", "DEAD-LINK"}
 
 
 class Finding:
@@ -454,6 +469,13 @@ def check_orphans(root: Path, notes: dict[Path, str]) -> list[Finding]:
     `related:` entries included). Generated files (INDEX.md, dashboards) are
     already excluded as sources by the GENERATED marker, so a generated index
     can't satisfy this check — only a real link from a real note does.
+
+    Terminal-status notes are exempt (added 2026-08-21, architecture audit).
+    A note that is resolved, superseded, complete or otherwise closed is a
+    finished record; nothing is meant to rediscover it, so "link it or archive
+    it" is advice with no action behind it. Before this exemption the rule
+    stood permanently at 13, and its targets were mostly June concept notes
+    that were never going to be linked. Live notes still fire.
     """
     inbound: set[str] = set()
     for path, text in notes.items():
@@ -471,6 +493,8 @@ def check_orphans(root: Path, notes: dict[Path, str]) -> list[Finding]:
         if not any(rel.startswith(d + "/") for d in ORPHAN_DIRS):
             continue
         if path.name.startswith("_") or path.name.upper() == "README.MD":
+            continue
+        if parse_frontmatter(text).get("status", "").strip().lower() in TERMINAL_STATUS:
             continue
         if path.stem.lower() not in inbound:
             findings.append(Finding("ORPHAN", path,
@@ -966,8 +990,9 @@ def run_lint(root: Path, with_git: bool = True) -> list[Finding]:
     findings += check_operational_frontmatter(root, notes)
     findings += check_dead_links(root, notes)
     findings += check_secrets(root, notes)
-    if with_git:
-        findings += check_inbox_age(root)
+    # INBOX-AGE retired 2026-08-21 — see the module docstring. check_inbox_age()
+    # is kept below and still callable on demand; it is simply no longer part of
+    # the standing lint run.
     findings += check_status_vocab(root, notes)
     findings += check_confidence_conflict(root, notes)
     findings += check_orphans(root, notes)
@@ -1007,17 +1032,8 @@ def self_test() -> int:
     """Every rule must fire on its fixture. Fixture tree mimics vault layout."""
     fixtures = Path(__file__).resolve().parent / "fixtures"
     findings = run_lint(fixtures, with_git=False)
-    # INBOX-AGE: an untracked inbox file must be flagged. Committed fixtures are
-    # tracked (and fresh), so create a throwaway untracked file for this check.
-    temp = fixtures / INBOX_DIR / "untracked-temp-selftest.md"
-    temp.parent.mkdir(parents=True, exist_ok=True)
-    temp.write_text("self-test scratch — safe to delete\n", encoding="utf-8")
-    try:
-        findings += check_inbox_age(fixtures)
-    finally:
-        temp.unlink(missing_ok=True)
     # POINTER-DEAD needs a machine-local absolute path, so its fixture is built
-    # at runtime too (same pattern as the INBOX-AGE untracked check above).
+    # at runtime rather than committed.
     pd_note = fixtures / "02-facilities" / "pointer-dead-temp-selftest.md"
     pd_note.parent.mkdir(parents=True, exist_ok=True)
     missing = fixtures / "02-facilities" / "missing-target-selftest.pdf"
@@ -1066,7 +1082,7 @@ def self_test() -> int:
 
     fired = {f.code for f in findings}
     expected = {"OP-FRONTMATTER", "DEAD-LINK", "SECRET", "STATUS-VOCAB",
-                "CONF-CONFLICT", "INBOX-AGE", "ORPHAN",
+                "CONF-CONFLICT", "ORPHAN",
                 "REVIEW-OVERDUE", "SUPERSEDED", "DURATIONS-HEADER", "TUBE-GEOM-HEADER",
                 "LINK-FACILITY",
                 "POINTER-DEAD", "YAML-COMMENT", "WORD-DELTA", "CHECKBOX-DELTA"}

@@ -6,9 +6,11 @@ confidence: high
 created: 2026-07-20
 review_after: 2026-10-20
 related:
-  - [[project-harness-audit-2026-07]]
-  - [[project-vault-five-loop-system]]
-  - [[project-usadebusk-claude-arch]]
+  # Agent-memory files, not vault notes — they live in the Claude Code memory
+  # store outside this repo, so they are named rather than wikilinked.
+  - "memory: project-harness-audit-2026-07"
+  - "memory: project-vault-five-loop-system"
+  - "memory: project-usadebusk-claude-arch"
 tags: [reference, harness, knowledge-system, skills, config]
 ---
 
@@ -112,7 +114,7 @@ account-level skills uploaded through the Claude web/desktop app, not from
 `~/.claude` or `settings.json`. Confirmed on-disk frontmatter matches the *bare*
 listing exactly; the `anthropic-skills:` text is the older pre-boundary version.
 
-This was open item #1 from [[project-harness-audit-2026-07]] (logged 2026-07-06).
+This was open item #1 from the `project-harness-audit-2026-07` agent memory (logged 2026-07-06).
 **RESOLVED 2026-07-20.** Located at claude.ai › Settings › Capabilities › Skills
 (the "Author: You" rows — 9 uploads: 7 usadebusk-*, adversarial-review,
 idea-triage; the fieldpm upload was dated 3/25/26, matching the stale-party date

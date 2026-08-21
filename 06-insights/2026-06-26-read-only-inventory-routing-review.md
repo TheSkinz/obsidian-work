@@ -7,7 +7,8 @@ confidence: medium
 created: 2026-06-26
 review_after: 2026-07-03
 related:
-  - [[read-only-inventory-task-do-elegant-summit]]
+  # Source note deleted before this review was superseded; named, not linked.
+  - "deleted: read-only-inventory-task-do-elegant-summit"
   - [[vault-source-of-truth]]
   - [[2026-06-26-vault-source-of-truth-review]]
   - [[vault-agent-loop-spec]]
