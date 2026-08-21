@@ -168,6 +168,48 @@ signal value of `vault_lint` warnings being spent on four classes nobody intends
 | `01-context/` | 7 | yes | |
 | `50-dashboards/` | 4 | yes | |
 
+## Usage finding — added 2026-08-20, from the session list
+
+The tables above measure what each component **produces**. They do not measure what Jesse **uses**, and that
+is the gap. A note read every session is valuable even if it never causes a commit; this audit's method
+systematically undervalues anything that informs without changing a file. `01-context/` is the clearest
+example — seven notes loaded every session, almost no commits, and probably the most valuable folder here.
+
+First cut at demand, from the 40 most recent sessions (2026-08-13 → 08-21):
+
+| Session type | Count | Note |
+|---|---|---|
+| Loops running unattended | 22 | 7 prestaging, 7 capture, 7 idea-research, 1 consolidation |
+| Jesse working **on the system** | 11 | output style ×2, retirement sweep, work inventory, review-queue, health FAIL, lint fixture README, rig-diagram gate, job-report generator gaps, Claude Code updates, title mismatch |
+| Jesse working **on USADebusk** | 7 | Baytown F-501 job report, F-501 change order, F-501 smart pig, Steady Flux inspection audit, change-order template, DQ-022 on DSP26085, Grok build ideas |
+
+**61% of the sessions Jesse actually sat in were system maintenance, not business work.** That is the sharpest
+number in this audit and it belongs in front of every verdict below.
+
+## Audits not yet run — the next session's brief
+
+Three, all read-only, all appending **to this note** rather than creating new ones. Estimated well under 90
+minutes total.
+
+1. **Usage audit, properly.** Extend the table above: which notes and folders are actually read in sessions,
+   via `search_session_transcripts`. Measures demand where the rest of this note measures supply. **Run this
+   before retiring anything** — the effect-based method above cannot see consumption.
+2. **Silence audit.** What has the system *failed* to catch. Sample corrections in git history and ask, for
+   each, which rule/loop/gate should have caught it and did not. This session alone supplied three: the
+   13-month per-pass geometry error that three review passes walked past, the decision queue's charter being
+   false, and DQ-018's source living in `archive/`. This is the only audit that finds **missing** components
+   rather than surplus ones.
+3. **Retrieval eval re-run.** Ten questions with pass criteria in
+   [[knowledge-system-evaluation-questions]], baseline at [[2026-07-23-retrieval-eval-run]]. Cheap and
+   comparative. Note KS-002's pass criterion — "does not infer heater facts from jobs alone" — is precisely
+   the failure mode of the Syncrude geometry error, so probe that question rather than accepting a pass.
+
+**Constraints on that run, non-negotiable:** read-only; no new notes; no queue rows; nothing retired; no
+verdicts filled in. This audit diagnosed decision capacity as the bottleneck, so a run that returns three
+fresh documents makes the verdict session worse, not better.
+
+Model: Opus at normal effort. Fable was considered and rejected — breadth is not the missing input.
+
 ## Not audited
 
 The nine skills in the config repo, beyond confirming the skill-drift loop that watches them has a 3-for-3
