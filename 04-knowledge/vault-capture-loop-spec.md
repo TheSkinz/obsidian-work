@@ -110,9 +110,11 @@ If `00-inbox/` holds 3+ untagged notes on one theme with no existing home, propo
 
 Added 2026-07-28 as an idea-seed-only sweep; **extended to all note types 2026-07-29** (Jesse, in-session). A finished note left in `00-inbox/` is noise that inflates the inbox count and buries live items — and the type it happens to carry never made that more or less true. At the end of inbox ingestion, move any file whose `status` is in this **exact allowlist** to `archive/`:
 
-`executed` · `resolved` · `complete` · `superseded` · `spec-complete`
+`executed` · `resolved` · `complete` · `superseded` · `spec-complete` · `closed-unactioned`
 
 The extension was measured, not assumed: on 2026-07-29 a 49-item inbox held 19 terminal-status notes, of which the seed-only rule covered 9 and left **10** — `type: note`, `task`, `capture`, `spec`, `insight` — sitting indefinitely. Six of those ten also carried a defer marker, so the Pre-Staging Loop was queued to spend runs analyzing questions already closed. `2026-07-23-three-dead-source-pointers.md` was the worked case: opened and resolved the same day, body headed RESOLVED, still in the queue five days later.
+
+**`closed-unactioned` added 2026-08-21** (Jesse, DQ-018). It was terminal to `vault_lint.py` but absent here, so a correctly-retired commitment stayed in `00-inbox/` permanently — four such notes when the question was raised on 2026-08-16, **seven** by the time it was ruled. The "deliberate, a retirement should stay visible" reading was rejected on the list's own contents: `superseded` was already here and is the same shape, a commitment that ended without being done. Note that adding a status here is **inert on its own** while the capture loop is disabled (2026-08-21) — the sweep runs at the end of inbox ingestion and nothing else calls it, so the seven were moved by hand in the same pass.
 
 Rules that make this safe (all of them now apply to every type, not just seeds):
 
