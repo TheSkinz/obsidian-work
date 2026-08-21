@@ -204,6 +204,13 @@ minutes total.
    comparative. Note KS-002's pass criterion — "does not infer heater facts from jobs alone" — is precisely
    the failure mode of the Syncrude geometry error, so probe that question rather than accepting a pass.
 
+   **This eval is self-graded, which is its main failure mode.** An agent that answers the ten questions and
+   then marks its own answers will pass itself, and a "10/10" result is worse than no result because it
+   manufactures confidence. Grade adversarially: for each question, try to *fail* the answer before passing
+   it — name the specific note each claim came from, check that note still says what the answer claims, and
+   treat "I know this from context" as a fail rather than a pass, because the eval measures **retrieval**,
+   not recall. Record the July baseline's result alongside each so the comparison is visible.
+
 **Constraints on that run, non-negotiable:** read-only; no new notes; no queue rows; nothing retired; no
 verdicts filled in. This audit diagnosed decision capacity as the bottleneck, so a run that returns three
 fresh documents makes the verdict session worse, not better.
