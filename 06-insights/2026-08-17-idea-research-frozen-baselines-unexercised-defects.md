@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -119,11 +119,12 @@ script.
 
 - [ ] Approved — run the one-shot audit pass now
 - [ ] Approved with edits
-- [ ] Rejected
+- [x] Rejected — **ruled 2026-08-21.** Dropped as the weakest of the three DQ-028 items: it audits regression machinery rather than customer-facing output, and the "regression baselines behind" metric was retired the day before for a related reason. If a replay ever produces a wrong figure, that is the miss that re-raises this.
 - [ ] Needs more source material
 
 ## Apply Log
 
 | Date | Action | By | Notes |
 |---|---|---|---|
+| 2026-08-21 | Rejected as part of the DQ-028 ruling. Nothing built, nothing run. | Claude | Not rejected as wrong — the reasoning holds and the note stays readable if it is ever re-raised. Rejected on priority: it audits the regression suite, which is vault machinery, while the two items approved alongside it guard a customer-facing document. The trigger to revisit is a replay producing a figure nobody can trace to a stated rule. |
 |  |  |  |  |

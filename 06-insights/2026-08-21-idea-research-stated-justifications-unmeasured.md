@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -192,7 +192,7 @@ implemented — this note is evidence for a decision, not the decision.
 
 ## Decision
 
-- [ ] Approved — run the one-time sweep and amend the layout-rule convention
+- [x] Approved — run the one-time sweep and amend the layout-rule convention — **ruled and done 2026-08-21.** See Apply Log; the widths claim measured *true*, which was not the expected result.
 - [ ] Approved, measurement only — render and settle the widths question, skip the convention change
 - [ ] Approved with edits
 - [ ] Rejected — the because-clauses are fine as they stand
@@ -202,4 +202,8 @@ implemented — this note is evidence for a decision, not the decision.
 
 | Date | Action | By | Notes |
 |---|---|---|---|
+| 2026-08-21 | **Item 1 — widths claim measured. It is TRUE, and that is the interesting part.** | Claude | `render_job_report.py` sets 0.8" left and right margins on US Letter, so the text column is exactly 6.90", and the flagged spec sums to 6.90 exactly. Rendered a fixture to PDF and measured drawn content: it ends 7.73" against a 7.70" text edge on every page — a 0.03" cell-padding hairline. The comment was right. **But every other table in the same renderer declares 7.00"–7.70"**, so the comment read as a house convention that does not exist, and a structural check written to enforce it fired on 17 of 18 tables in a report that shipped and was accepted. The unmeasured part was never the number; it was the implied generality. Comment date-stamped and corrected to say so. |
+| 2026-08-21 | **Item 2 — layout-rule class amended.** `04-knowledge/_canonical-job-sheet.md`. | Claude | Lane 4, approved by Jesse in session. LAYOUT rules keep "no attribution needed"; a layout rule stating a reason about rendered output now records the date it was last checked against a rendered artifact. A date stamp, not an attribution — the point is when it was seen, not who decided it. |
+| 2026-08-21 | **Item 4 — folded into tier one, as the note recommended.** | Claude | The cheap-to-assert claims became the BORDERS and KPI-RULE checks in `assert_structure.py` (config repo `0f64003`). The widths claim was tried there and removed: see above. |
+| 2026-08-21 | Item 3 — the remaining because-clause sweep is NOT done. | Claude | Roughly a dozen clauses across both renderers still unread. Scoped as an afternoon's pass; deliberately not started at the end of a long session rather than half-done. The convention from item 2 now applies to them as they are touched, which is the mechanism that keeps this from recurring. |
 |  |  |  |  |

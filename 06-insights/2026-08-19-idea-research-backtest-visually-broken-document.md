@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -145,7 +145,7 @@ is barred from making. Nothing here was implemented.
 
 ## Decision
 
-- [ ] Approved — build tier one (structural assertions) and document tier two as a layout-change checkpoint
+- [x] Approved — build tier one (structural assertions) and document tier two as a layout-change checkpoint — **ruled and built 2026-08-21**, config repo `0f64003`. See Apply Log.
 - [ ] Approved, tier one only — skip documenting the raster step
 - [ ] Approved with edits
 - [ ] Rejected — the numbers-only back-test plus the landed border fix is enough
@@ -155,4 +155,7 @@ is barred from making. Nothing here was implemented.
 
 | Date | Action | By | Notes |
 |---|---|---|---|
+| 2026-08-21 | **Tier one built and verified.** `skills/usadebusk-fieldpm/back-test/assert_structure.py`, config repo `0f64003`. | Claude | Two checks — BORDERS and KPI-RULE — reading the written OOXML directly. Clean on all three fixtures rendered from their real workbooks; stripping `w:tblBorders` to recreate the pre-2026-08-16 document fires 15 findings, so it catches the incident that motivated the seed. `--self-test` proves each check fires on its own defect. |
+| 2026-08-21 | Three false-positive classes found by running it, each now exempt. | Claude | Callout boxes carry a gold left bar as cell-level `w:tcBorders`, not `w:tblBorders`. Figure tables hold an image and caption — a border around a photograph is wrong; these surfaced only because all three fixtures were run, since 26038 and 25025 carry no images. And a **width check was written and removed after measuring** — it fired on 17 of 18 tables in a report that shipped and was accepted; rendering to PDF showed content ends 0.03" past the text edge on every page, so the layout engine normalises the declared widths and the check was asserting a defect the renderer does not produce. |
+| 2026-08-21 | Tier two recorded as a habit, not a gate. | Claude | Rasterize-and-look documented in the scripts README as a layout-change checkpoint. No pixel-diff harness, no tolerance knob, no baseline images — the note's own prior-art finding. |
 |  |  |  |  |

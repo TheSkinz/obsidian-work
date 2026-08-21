@@ -21,6 +21,16 @@ TWO CLASSES OF RULE LIVE HERE — read the difference before adding one (convent
 after a domain rule was written from inference and had to be corrected twice):
   LAYOUT rules — page budget, table merges, the connbox, render pipeline, naming. Design decisions,
     verifiable by rendering the page, safe to change on judgment. No attribution needed.
+    **But verifiable is not verified (added 2026-08-21).** A layout rule that states a reason about
+    the rendered output — "6.90 inches, full text width", "fits the page budget", "avoids the
+    orphan" — must record the date it was last checked against a rendered artifact. Without a date
+    it is an assertion nobody has looked at, and it will be inherited and reasoned from as though
+    someone had. This is a date stamp, not an attribution: the point is when it was seen, not who
+    decided it. The failure this prevents: the job-report renderer carried `# 6.90" — full text
+    width` on one table for months. Measured 2026-08-21 it was correct — and every OTHER table in
+    the same renderer declares 7.00"–7.70", so the comment read as a house convention that did not
+    exist. A tier-one structural check written to enforce it fired on 17 of 18 tables in a report
+    that had shipped and been accepted.
   DOMAIN rules — billing, customer scope, equipment, pig sizing, crew structure, terminology. These
     assert how USADebusk actually operates, they are SILENT when wrong, and they propagate into
     heater cards and crew sheets. A domain rule MUST carry either `(Jesse, YYYY-MM-DD)` or a cited
