@@ -324,6 +324,20 @@ Building an animated three.js page as a published artifact and trying to produce
 
 Source: Claude Code session `a21b4502`, 2026-08-19 (F-501 Pass B coil teardown visualization). The page itself and its open items are recorded at `00-inbox/2026-08-19-f501-coil-teardown-visualization.md`.
 
+## The desktop app is an MSIX package, and a live process with package identity turns an update into an unlaunchable app
+
+The Claude Code desktop app on Windows installs as an **MSIX/Store package**, not a normal program. It lives at `%LOCALAPPDATA%\Packages\Claude_pzs8sxrjxfjjc\` with the payload under `C:\Program Files\WindowsApps\Claude_<version>`. This is why the ordinary places to look for it all come back empty: no entry under `%LOCALAPPDATA%\Programs\`, nothing in `Program Files` or `Program Files (x86)`, no registry uninstall key, no `Claude*.exe` under `AppData`. `WindowsApps` is ACL-restricted, so a directory listing there reports *nothing* rather than erroring — a check that looks clean and is actually blind. Concluding "not installed" from that set of negatives is wrong, and it was concluded once before being corrected mid-session.
+
+**The failure mode.** Windows refuses to replace an MSIX package while any process carrying that package identity is alive. When the 2026-08-20 update to `1.34493.0.0` landed with the old `1.32885.1.0` still running, the servicing log recorded `Marking package {Claude_1.34493.0.0} for deferred registration because {Claude_1.32885.1.0} is still running`. The new version later registered fine — `Status: Ok`, old folder gone — but the **old container's PSM job object was never torn down**, and every launch afterwards died at `0x80070020` (`ERROR_SHARING_VIOLATION`): `Cannot create the Desktop AppX container for package Claude_1.34493.0.0_x64__pzs8sxrjxfjjc because an error was encountered converting the job`. The app never reached its own logger — `main.log` stopped at 19:43:12 while two launch attempts wrote nothing at all, which is the tell that the process is dying before initialization rather than crashing inside it.
+
+**A job object is kernel state, so a reboot is the only exit.** Every userland holder was ruled out first and none of them was the cause: Chrome fully closed, `chrome-native-host.exe` gone, and `CoworkVMService` (running `cowork-svc.exe` from inside the package directory) stopped and confirmed not to help before being restarted. Zero processes held package identity and the launch still failed identically.
+
+**Two distinct holders, one earlier in the sequence.** Before the orphaned job, the update itself was being blocked by `chrome-native-host.exe` — the Claude Chrome extension's native messaging host, spawned by Chrome, running out of the package folder. Killing that PID clears the lock but only briefly: Chrome respawns the host whenever the extension pings, observed cycling every 10–20 minutes across an evening. The reliable form is `Close Chrome completely > verify no chrome.exe in Task Manager > launch Claude desktop > let the update finish > reopen Chrome`.
+
+**The standing habit that prevents all of it:** quit Claude desktop *and* close Chrome completely before letting a desktop update apply. The `deferred registration` warning in the servicing log is the early tell — if the old version is alive when the update lands, the orphaned-job state follows and a reboot is the only way out. This recurs on every desktop update while the Chrome extension is active.
+
+Source: Claude Code sessions `8355d1d4` and `135d0b6d`, 2026-08-20/21, on desktop package `1.34493.0.0`, CLI `2.1.238`.
+
 ## Links
 
 - [[output-styles]] — the system-prompt layer, and why the vault's output rules stay in CLAUDE.md

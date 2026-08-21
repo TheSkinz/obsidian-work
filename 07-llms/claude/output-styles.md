@@ -140,6 +140,41 @@ already sufficient.
 
 Source: Claude Code session `06a84965`, 2026-08-17; config `8afdb26`.
 
+## Replaced by the built-in `Concise`, 2026-08-20 — and a same-named custom file shadows a built-in
+
+Global `outputStyle` in `~/.claude/settings.json` moved from the custom `Jesse Default` to Anthropic's
+**built-in `Concise`**, which ships in Claude Code 2.1.238 and is not in the four-built-in list above —
+that list was written against 2.1.220 and is now incomplete. `jesse-default.md` is retained unmodified
+as the fallback. The built-in's six rules are lead with the result, cut narration, short by default,
+state things plainly, give full detail on request, and never trade correctness for brevity.
+
+**A custom style sharing a built-in's name shadows the built-in.** A stand-in `concise.md` was written
+during the same session on the false premise that no built-in existed, and it silently loaded in place
+of the real one — no warning, no collision notice. It was deleted. The rule that follows: never name a
+custom style after a built-in. The false premise itself came from a stale package copy in the tool
+environment reporting 2.1.220 while the real install was 2.1.238; see the virtualized-filesystem
+section in [[code]].
+
+**The gap that was deliberately not fixed.** The built-in closes with "Where these rules conflict with
+more general communication or formatting guidance elsewhere in your instructions, these rules win",
+which nominally outranks the Output section of global `CLAUDE.md`. Two differences were identified.
+The built-in permits bullets for real structure where `CLAUDE.md` bans them in prose — cosmetic,
+accepted. More consequentially, the built-in has **no equivalent of the close-with-the-outstanding-task
+rule**, the one output rule Jesse has confirmed actually matters. Nothing was built, because the
+override clause fires only *where the rules conflict* and the built-in is **silent** on the closing
+rule rather than contradicting it. Silence is not a conflict, so the `CLAUDE.md` rule stands unopposed.
+A `jesse-concise.md` would have bought one cosmetic fix in exchange for maintaining a local copy
+against a first-party file Anthropic keeps updating.
+
+**The watch condition.** If responses under built-in `Concise` start ending without the outstanding
+task named — gesturing at "a few open items", or just stopping — that is the evidence the silence
+argument was wrong. The fix at that point is ~10 minutes: write `~/.claude/output-styles/jesse-concise.md`
+carrying the built-in's six rules plus the named-task close and the no-bullets-in-prose ban, repoint
+`outputStyle` at it, and **name it anything but `Concise`**.
+
+Source: Claude Code sessions `70d52879` and `e3c6349f`, 2026-08-20; capture record
+`00-inbox/2026-08-20-concise-output-style-watch.md`.
+
 ## Links
 
 - https://code.claude.com/docs/en/output-styles
