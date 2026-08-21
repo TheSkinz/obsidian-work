@@ -16,6 +16,7 @@ Rules (code | severity):
     SUPERSEDED      warning  note declares superseded_by but is still marked live
     DURATIONS-HEADER warning heater-card Task-Durations header off the canonical schema
     TUBE-GEOM-HEADER warning heater-card Tube-Geometry header off the canonical schema
+    ROLLUP-SCALE    warning  heater-card Config Rollup: heater total is not a whole multiple of per circuit
     LINK-FACILITY   warning  wikilink into the wrong facility, or a bare ambiguous [[_facility]]
     POINTER-DEAD    warning  recorded absolute source path no longer resolves
     YAML-COMMENT    error    unquoted frontmatter value silently truncated by a ` #` comment
@@ -225,6 +226,7 @@ TUBE_GEOM_HEADER = (
     "Return Bend Type",
 )
 TUBE_GEOM_HEADING_RE = re.compile(r"^#{1,6}\s+Tube Geometry\s*$", re.IGNORECASE)
+CONFIG_ROLLUP_HEADING_RE = re.compile(r"^#{1,6}\s+Config Rollup", re.IGNORECASE)
 MD_TABLE_SEP_RE = re.compile(r"^\|[\s|:\-]*-[\s|:\-]*$")  # the |---|---| divider row (needs a dash)
 
 # POINTER-DEAD scope: the vault-as-index boundary is only recorded in
@@ -694,6 +696,130 @@ def check_tube_geom_header(root: Path, notes: dict[Path, str]) -> list[Finding]:
     return findings
 
 
+ROLLUP_HEDGE_RE = re.compile(r"^(~|≈|±|\+/-|approx\.?|about|ca\.)\s*[\d.]+$", re.IGNORECASE)
+
+
+def _rollup_number(cell: str) -> tuple[float | None, bool]:
+    """Read a Config Rollup count/length cell.
+
+    Returns (value, hedged). Bold markers and thousands commas are stripped.
+    A hedged numeric (`~4`, `≈ 4`, `approx 4`) returns (None, True) — it is not
+    usable arithmetic AND it is a finding in its own right, because this table
+    is a derived multiplication base rather than an observation. A blank or an
+    explicit `(not recorded)` returns (None, False): unfilled is not wrong.
+    """
+    s = cell.replace("*", "").replace(",", "").strip()
+    try:
+        return float(s), False
+    except ValueError:
+        return None, bool(ROLLUP_HEDGE_RE.match(s))
+
+
+def check_rollup_scale(root: Path, notes: dict[Path, str]) -> list[Finding]:
+    """ROLLUP-SCALE: a heater card's Config Rollup must be internally coherent —
+    `Heater total` must be `Per circuit` x the same whole circuit count in every
+    section.
+
+    Why this rule exists. The canonical card requires both scales precisely
+    because they are the estimating multiplication base, which makes the
+    relationship between them checkable and means a scale error is arithmetic
+    rather than a matter of opinion. Syncrude 7-1F-1 recorded a per-pass drawing
+    figure into the heater-total row on 2026-07-23, derived per-circuit by
+    dividing it back down, marked the row **Verified**, and stood for thirteen
+    months while three separate review passes read past it. Everything
+    downstream inherited the error, including a ~6 ft/hr benchmark and the
+    estimating actuals rollup. Retrospectively this rule fires on that card:
+    convection gives 16/2 = 8, radiant gives 31/4 = 7.75, and the mismatch is
+    the defect. No review gate was missing. This check was.
+
+    Single-pass sections are exempt: where `Heater total` equals `Per circuit`
+    the section runs once through the heater (F-501 Treat Gas, F-901 Superheat
+    Steam), so its ratio is legitimately 1 while the pigged sections are 2 or 4.
+    Exempting by *value* rather than by parsing the Notes prose keeps the rule
+    from depending on how a caveat happens to be worded.
+
+    A hedged count (`~4`) is a finding on its own, and this is the branch that
+    actually catches Syncrude. Replayed against the real 2026-07-23 card, the
+    ratio test alone stays SILENT: the radiant per-circuit cell read `~4`, which
+    is not arithmetic, so that row dropped out and the surviving convection
+    ratio of 8 looked clean. The residue had already been hidden inside the
+    approximation before any checker saw it. Config Rollup is a derived
+    multiplication base — the canonical card says never invent a value Tube
+    Geometry cannot back — so an approximate count here is by definition
+    invented, and that is the shape the error takes in practice.
+
+    Blank and `(not recorded)` cells are skipped without comment: unfilled is
+    not wrong. A card that skips every row produces no finding; this rule
+    reports incoherence, never incompleteness. Warning, not error: the fix is a
+    re-derivation against the source drawing, which is desk work rather than a
+    one-character correction.
+    """
+    findings = []
+    for path, text in notes.items():
+        per_circuit: dict[str, float] = {}
+        heater_total: dict[str, float] = {}
+        hedged: list[str] = []
+        in_section = False
+        for line in body_lines_outside_fences(text):
+            if MD_HEADING_RE.match(line):
+                in_section = bool(CONFIG_ROLLUP_HEADING_RE.match(line))
+                continue
+            if not in_section:
+                continue
+            s = line.strip()
+            if not s.startswith("|") or MD_TABLE_SEP_RE.match(s):
+                continue
+            cells = split_table_row(line)
+            if len(cells) < 4:
+                continue
+            scale = cells[0].replace("*", "").strip().casefold()
+            sec = cells[1].replace("*", "").strip().casefold()
+            if not sec or scale not in ("per circuit", "heater total"):
+                continue
+            tubes, is_hedged = _rollup_number(cells[3])
+            if is_hedged:
+                hedged.append(f"{scale} / {sec} = {cells[3].strip()}")
+                continue
+            if tubes is None:
+                continue
+            if scale == "per circuit":
+                per_circuit[sec] = tubes
+            else:
+                heater_total[sec] = tubes
+
+        if hedged:
+            findings.append(Finding("ROLLUP-SCALE", path,
+                f"Config Rollup carries an approximate count ({'; '.join(hedged)}) "
+                f"— this table is a derived multiplication base and must be exact; "
+                f"an approximation here usually hides a scale error"))
+
+        ratios: dict[str, float] = {}
+        for sec, pc in per_circuit.items():
+            ht = heater_total.get(sec)
+            if ht is None or pc <= 0:
+                continue
+            r = ht / pc
+            if abs(r - 1.0) < 1e-9:
+                continue  # single-pass section — legitimately 1
+            ratios[sec] = r
+        if not ratios:
+            continue
+
+        bad = {s: r for s, r in ratios.items() if abs(r - round(r)) > 0.01}
+        counts = {round(r) for r in ratios.values()}
+        if bad:
+            detail = ", ".join(f"{s} = {r:g}" for s, r in sorted(bad.items()))
+            findings.append(Finding("ROLLUP-SCALE", path,
+                f"Config Rollup: Heater total / Per circuit is not a whole "
+                f"circuit count ({detail}) — one of the two scales is wrong"))
+        elif len(counts) > 1:
+            detail = ", ".join(f"{s} = {round(r)}" for s, r in sorted(ratios.items()))
+            findings.append(Finding("ROLLUP-SCALE", path,
+                f"Config Rollup: sections disagree on the circuit count "
+                f"({detail}) — they should all be the same multiple"))
+    return findings
+
+
 def check_yaml_comment(root: Path, notes: dict[Path, str]) -> list[Finding]:
     """YAML-COMMENT: an unquoted frontmatter value YAML will not read as written.
 
@@ -1000,6 +1126,7 @@ def run_lint(root: Path, with_git: bool = True) -> list[Finding]:
     findings += check_superseded(root, notes)
     findings += check_durations_header(root, notes)
     findings += check_tube_geom_header(root, notes)
+    findings += check_rollup_scale(root, notes)
     findings += check_link_facility(root, notes)
     findings += check_pointer_dead(root, notes)
     findings += check_yaml_comment(root, notes)
@@ -1084,6 +1211,7 @@ def self_test() -> int:
     expected = {"OP-FRONTMATTER", "DEAD-LINK", "SECRET", "STATUS-VOCAB",
                 "CONF-CONFLICT", "ORPHAN",
                 "REVIEW-OVERDUE", "SUPERSEDED", "DURATIONS-HEADER", "TUBE-GEOM-HEADER",
+                "ROLLUP-SCALE",
                 "LINK-FACILITY",
                 "POINTER-DEAD", "YAML-COMMENT", "WORD-DELTA", "CHECKBOX-DELTA"}
     missing = expected - fired
