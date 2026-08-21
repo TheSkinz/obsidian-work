@@ -4,8 +4,8 @@
 
 | Metric | Value | Target | Status |
 |---|---|---|---|
-| Open decision rows | 10 | <= 10 | ok |
-| Review notes awaiting decision | 12 | <= 5 | FAIL |
+| Open decision rows | 11 | <= 10 | FAIL |
+| Review notes awaiting decision | 7 | <= 5 | FAIL |
 | Lint errors | 0 | 0 | ok |
 | Lint warnings | 5 | (backlog) | ok |
 | Inbox items | 55 | - | ok |
@@ -14,12 +14,12 @@
 | Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
 | Pending quotes expired | 0 | 0 | ok |
-| Open decisions not in the queue | 8 — 2026-08-16-idea-research-rollup-rig-in-column-is-mixed-method, 2026-08-17-idea-research-frozen-baselines-unexercised-defects, 2026-08-18-idea-research-researched-status-outlives-build, 2026-08-19-idea-research-backtest-visually-broken-document, 2026-08-19-idea-research-smart-pig-report-verification-gated, 2026-08-20-idea-research-isometric-rig-diagram, 2026-08-21-idea-research-generator-owns-marked-spans-gated, 2026-08-21-idea-research-stated-justifications-unmeasured | 0 | FAIL |
+| Open decisions not in the queue | 0 | 0 | ok |
 | Regression baselines unjudgeable | 0 | 0 | ok |
 
 ## Loop heartbeats
 
-Two signals per loop: **Last fired** comes from the local run ledger (`50-dashboards/.loop-runs.json`, written by every run as its first and last action) and proves the scheduler is alive; **Last heartbeat** is the loop's closing commit and proves a run finished with output. `FAIL: started, never finished` = a run fired but never closed out (crash or interrupted). `FAIL: scheduler silent` = no firing within the staleness window — the task is disabled, deregistered, or the machine was off. **pending** = no data yet. The review/agent loop is on-demand by design and not listed. The skill-drift loop is scheduled monthly and tracked here as of 2026-07-25; it commits only when it finds drift, so its heartbeat window is deliberately loose.
+Two signals per loop: **Last fired** comes from the local run ledger (`50-dashboards/.loop-runs.json`, written by every run as its first and last action) and proves the scheduler is alive; **Last heartbeat** is the loop's closing commit and proves a run finished with output. `FAIL: started, never finished` = a run fired but never closed out (crash or interrupted). `FAIL: scheduler silent` = no firing within the staleness window — the task is disabled, deregistered, or the machine was off. **pending** = no data yet. The review loop moved from on-demand to monthly on 2026-08-21 and is listed here now; it is allowed to commit nothing in a month with nothing worth deciding, so its git heartbeat carries wide slack while the ledger still proves the scheduler fired. listed. The skill-drift loop is scheduled monthly and tracked here as of 2026-07-25; it commits only when it finds drift, so its heartbeat window is deliberately loose.
 
 | Loop | Last fired | Last heartbeat | Cadence | Status |
 |---|---|---|---|---|
@@ -70,7 +70,7 @@ One row per frozen fixture in `~/.claude/regression/frozen/`. Each reads its own
 
 ## Notes
 
-- **Decision queue:** [[decision-queue]] — 10 open. Cap is 10; over cap, proposal-generating loops pause.
-- **Review notes awaiting decision:** 12 in `06-insights/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
+- **Decision queue:** [[decision-queue]] — 11 open. Cap is 10; over cap, proposal-generating loops pause.
+- **Review notes awaiting decision:** 7 in `06-insights/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
 - **Lint warnings** are the standing to-do list, not failures — today mostly ORPHAN (notes with no inbound link), INBOX-AGE and DEAD-LINK. The provenance-frontmatter backfill this line used to name was **cleared to zero on 2026-08-16**; OP-FRONTMATTER no longer appears. Detail: run `python tools/vault_lint.py --report` → `50-dashboards/lint-report.md`.
 - **Heartbeats overdue** means a loop row shows FAIL — either the scheduler stopped firing (check the task's enabled state in the desktop app) or a run started and never finished (check the app's session history for that run). A loop that fires and no-ops cleanly shows ok with no new commit — that is healthy, not silent.

@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -120,7 +120,7 @@ lives here until Jesse routes it.
 
 ## Decision
 
-- [ ] Approved — keep parked, no outreach at all
+- [x] Approved — keep parked, no outreach at all — **ruled 2026-08-21.** Overtaken: the 2026-08-19 finding that Quest does not release project reports already settles this. The gate waits on a future smart-pig job with a sharing vendor, and that trigger is recorded on the seed itself.
 - [ ] Approved — keep parked, but ask Valero for the H-102B report
 - [ ] Route the Quest-vs-Steady-Flux report-access fact to a durable home (which?)
 - [ ] Ungate anyway — the H-102B secondhand narrative is enough to research on
@@ -129,4 +129,5 @@ lives here until Jesse routes it.
 
 | Date | Action | By | Notes |
 |---|---|---|---|
+| 2026-08-21 | Closed as overtaken. Jesse ruled "keep parked, no outreach." | Claude | The 2026-08-19 finding that Quest does not release project reports had already answered this; the note was open for a decision that events had made. No queue row. |
 |  |  |  |  |

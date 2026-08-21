@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -120,11 +120,12 @@ an unverified guess as fact, which is the same trap the seed itself is flagging 
 
 - [ ] Approved — Jesse classifies remaining outlier rows, then extend the footnote convention into a rollup-visible qualifier (bundle with per-rig-coilset schema change)
 - [ ] Approved with edits
-- [ ] Park — revisit next time the Task Durations schema is opened for another reason
+- [x] Park — revisit next time the Task Durations schema is opened for another reason — **ruled 2026-08-21.** Not queued separately: this note's ask *is* part of the per-coilset schema bundle already open as **DQ-017**, and a second row for a subset of one decision is how the queue stopped being "the single place every open decision lives." Folded into DQ-017's ask instead.
 - [ ] Drop
 
 ## Apply Log
 
 | Date | Action | By | Notes |
 |---|---|---|---|
+| 2026-08-21 | Folded into DQ-017 rather than queued separately. | Claude | The ask is a subset of the per-coilset schema bundle already open as DQ-017. A second row for part of one decision is the pattern that made the queue's charter false. |
 |  |  |  |  |

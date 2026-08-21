@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -146,7 +146,7 @@ this artifact becomes, call it a site plan in customer-facing text.
 **Mutually exclusive — pick one.**
 
 - [ ] Run step 1 (ask internally about source models), then re-decide
-- [ ] Park the seed now — the site plan is not worth the ask
+- [x] Park the seed now — the site plan is not worth the ask — **ruled 2026-08-21.** Overtaken by the 2026-08-16 ruling on the rig diagram: use the four shipped diagrams, build no generator. Asking internally for source models reopens a question already closed.
 - [ ] Drop entirely
 - [ ] Something else / needs discussion
 
@@ -158,4 +158,5 @@ this artifact becomes, call it a site plan in customer-facing text.
 
 | Date | Action | By | Notes |
 |---|---|---|---|
+| 2026-08-21 | Closed as overtaken. Jesse ruled "park the seed now." | Claude | The 2026-08-16 ruling — use the four shipped diagrams, build no generator — already closed this. FossFLOW was not recorded separately; if an isometric editor is ever wanted, the seed carries the reference. |
 |  |  |  |  |

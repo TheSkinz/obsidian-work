@@ -49,7 +49,8 @@ INBOX_SKIP_SUBDIRS = ("preserved-dsps",)
 #      (fired without completed) from a quiet no-op (completed, no commit).
 #   2. The git heartbeat (commit-subject prefix): proof a run finished with
 #      output. Kept as fallback for loops with no ledger telemetry yet.
-# The review/agent loop is on-demand by design and not listed at all.
+# The review loop was on-demand by design until 2026-08-21; it is now monthly
+# and carries a row below.
 # Skill-drift IS listed as of 2026-07-25. It was delisted 2026-07-19 on the
 # belief that an unattended run would stall for lack of config-repo write
 # authority; that premise was false (settings.json runs defaultMode "auto"
@@ -571,7 +572,10 @@ def build(root: Path) -> str:
         "proves a run finished with output. `FAIL: started, never finished` = a run fired but "
         "never closed out (crash or interrupted). `FAIL: scheduler silent` = no firing within "
         "the staleness window — the task is disabled, deregistered, or the machine was off. "
-        "**pending** = no data yet. The review/agent loop is on-demand by design and not "
+        "**pending** = no data yet. The review loop moved from on-demand to monthly on "
+        "2026-08-21 and is listed here now; it is allowed to commit nothing in a month with "
+        "nothing worth deciding, so its git heartbeat carries wide slack while the ledger "
+        "still proves the scheduler fired. "
         "listed. The skill-drift loop is scheduled monthly and tracked here as of 2026-07-25; "
         "it commits only when it finds drift, so its heartbeat window is deliberately loose.",
         "",

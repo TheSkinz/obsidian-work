@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -182,3 +182,5 @@ folder no lint rule scans. That is one confirmed instance and I did not sweep fo
 
 | Date | Action | By | Notes |
 |---|---|---|---|
+| 2026-08-21 | **Applied.** The decision was ticked 2026-08-18 and never carried out — found by the new "Open decisions not in the queue" health row, which is exactly the gap it was built for. | Claude | **1 (reject the disk check)** — recorded, nothing built. **2 (name the reconciliation pass)** — done: `vault-consolidation-loop-spec.md` step 5, report-only, both directions, and it reads `archive/` explicitly since `SKIP_SCAN` hides that folder from every lint rule. **3 (park the commit-keyword mechanism)** — parked, unchanged. **4 (`archive/idea-pig-load-list-generator.md` status)** — NOT applied; still needs Jesse. See below. |
+| 2026-08-21 | Item 4 left open deliberately. | Claude | The note sits at `status: complete` while its own closing paragraph says the load-list generator "was not built and is not closed by this." Arguably `complete` is true for the note's scope — the shared rollup script shipped — and false for its title. Changing it is a claim about work, so it is Jesse's call, not a formatting fix. Recorded here rather than queued: it is one line, not a decision worth a queue row. |

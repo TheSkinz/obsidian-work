@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: idea-research
 source_authority: inferred
 confidence: medium
@@ -78,7 +78,7 @@ which is the next `/report` render over an existing file.
 
 ## Decision
 
-- [ ] Approved — leave gated
+- [x] Approved — leave gated — **ruled 2026-08-21.** The gate's condition is unchanged and unmet; nothing here needed a decision, only a confirmation that the status quo stands.
 - [ ] Un-gate and research now anyway
 - [ ] Drop the seed
 - [ ] Needs more source material
@@ -87,4 +87,5 @@ which is the next `/report` render over an existing file.
 
 | Date | Action | By |
 |---|---|---|
+| 2026-08-21 | Closed. Jesse ruled "leave gated" — the gate's condition is unchanged and unmet, so the status quo stands and no queue row is warranted. | Claude |
 |  |  |  |
