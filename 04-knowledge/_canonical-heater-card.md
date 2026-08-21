@@ -220,21 +220,32 @@ DERIVED but hand-entered (no formula layer) — re-sum on any edit, do not trust
         into Pig. Add a Flow Test column only when a real receipt breaks the hours out.
   "–" = task confirmed did NOT occur (e.g. no smart pig on this job).
   "?" = task occurred-status unrecorded / unknown — distinct from "–".
-  CONDITION (second-to-last column) — what state the coil was in, because a decoke's hours are only
-        evidence for the NEXT decoke of the same condition. Vocabulary:
+  CONDITION (second-to-last column) — the JOB CLASS this decoke belongs to, because a decoke's
+        hours are only evidence for the NEXT decoke of the same class. Vocabulary:
           `routine`  = normal service fouling, planned/TA scope.
-          `crash`    = furnace was crashed/upset; significantly dirtier than routine.
+          `crash`    = UNSCHEDULED MOBILIZATION. The facility hit operational trouble and
+                       needed a crew cleaning on a moment's notice. It is a callout label,
+                       NOT a fouling grade (Jesse, 2026-08-20) — the coil is usually dirty,
+                       but not by definition, and this column does not record how dirty.
                        Classification rule (Jesse, 2026-07-19): if the job details say
                        "emergency" (emergency mob / emergency project), it is a crash.
           `first`    = first-ever clean on this heater, no prior baseline.
-          `unknown`  = scope condition not recoverable from the source documents.
+          `unknown`  = job class not recoverable from the source documents.
+        NAMING NOTE: the column is called `Condition` and the name is now a slight misnomer —
+        it holds job class, not coil condition. Kept as-is deliberately for schema stability
+        (the header is lint-locked by DURATIONS-HEADER across every card). Whether callout
+        type and coil condition become separate columns is DQ-017's call, bundled with the
+        per-coilset re-grain; do not rename or split this column ahead of that ruling.
         Append `, hours-blended` when the source report did not separate task hours
         cleanly and the split across columns is an allocation, not a measurement.
         Append `, combined-heaters` when the job pigged more than one heater and the
         recorded hours are the JOB total, not this heater's share — the same row then
         appears on each heater's card. Suppresses ft/hr in the rollup, which would
         otherwise charge the full combined hours against one heater's footage.
-        NEVER estimate a routine job from crash rows — see usadebusk-estimating.
+        NEVER estimate a routine job from crash rows, or a crash mob from routine rows —
+        they are different job classes and their hours are not interchangeable. That
+        prohibition stands on its own; it does not rest on a claim that crash coils are
+        dirtier, which is not something this table measures. See usadebusk-estimating.
   MODE (last column) = passes pigged SIMULTANEOUSLY during the Pig task: single 1 / double 2 /
         triple 3, ×rigs if more than one pumper ran in parallel; a looped path counts as 1.
         Blank = unrecorded. The estimating rollup divides ft/elapsed-hr by Mode to report a

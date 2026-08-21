@@ -379,17 +379,22 @@ def build(root: Path) -> str:
         f"- **{len(actuals)} row(s) across {len(jobs)} job(s)** is enough to look at and not "
         "enough to fit. Treat any single heater's ft/pig as an anecdote.",
         "- Condition comes from each card's Task Durations row for the same Job #, not from "
-        "the pig table — a job with pig rows but no durations row shows `unknown`. Same "
-        "rule as durations: a crashed furnace eats more pigs than routine service, so "
-        "crash and routine figures must not be pooled.",
+        "the pig table — a job with pig rows but no durations row shows `unknown`. It holds "
+        "**job class**, not coil condition: `crash` is a callout label meaning an unscheduled "
+        "mobilization, not a fouling grade (Jesse, 2026-08-20 / DQ-026). Same pooling rule as "
+        "durations — crash and routine figures must not be pooled, because they are different "
+        "job classes whose consumption is not interchangeable. Do **not** restate that gap as "
+        "a crashed furnace eating more pigs: nothing here measures coke.",
         "- **Bore and condition are confounded in this dataset — do not read the bore table "
         "as a bore effect.** The only two crash points are H-19 and H-20, and both sit at "
         "the same 3.068\" bore. So the low ft/pig at small bore and the low ft/pig on crash "
         "jobs are the same two rows counted twice, and nothing here separates them. "
         "Untangling it needs either a crash job at a large bore or a routine job at a small "
-        "one; until one lands, condition is the better-supported reading, because it splits "
+        "one; until one lands, job class is the better-supported reading, because it splits "
         "cleanly (crash 15–43 against routine 41–212) while bore does not order at all — "
-        "6.065\" spans 43–212 on its own.",
+        "6.065\" spans 43–212 on its own. \"Better-supported\" here means it orders the data, "
+        "not that the mechanism is known — the class is a callout label, so what drives the "
+        "split is unidentified.",
         "- If a real effect looks worth using, the next step is a decision about shrinkage "
         "estimation, not a formula written straight off these rows.",
     ]

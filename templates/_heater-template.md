@@ -112,8 +112,10 @@ tags: [heater-card, <Client>, <heater-type>]
 ## Task Durations
 <!-- ACTUALS ONLY — elapsed hours per decoke, one row per job. Estimates never appear here.
      Stand-By tracked but excluded from Total. "–" = confirmed did not occur; "?" = unrecorded.
-     Condition = routine | crash | first | unknown (a job's hours are evidence only for the
-     next decoke of the SAME condition; "emergency" in the job details means crash).
+     Condition = JOB CLASS, not coil condition: routine | crash | first | unknown (a job's
+     hours are evidence only for the next decoke of the SAME class). `crash` = unscheduled
+     mobilization, a callout label and not a fouling grade (Jesse, 2026-08-20); "emergency"
+     in the job details means crash. Column name kept for schema stability — see the exemplar.
      Append `, hours-blended` if task hours weren't cleanly separated in the source, and
      `, combined-heaters` if the hours are a multi-heater job total. Mode = passes pigged
      simultaneously (single 1 / double 2 / triple 3; looped path = 1; blank = unrecorded). Full

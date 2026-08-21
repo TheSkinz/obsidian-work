@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: session-finding
 source_authority: observed
 confidence: high
@@ -52,14 +52,15 @@ Method note for reuse: the geometry was recovered by rendering **zoomed `pdftopp
 
 ## Open asks
 
-Two, both queued. Neither is settled here.
+Two, both queued. Neither is settled here. — **Both closed 2026-08-21; see the Apply Log below and the DQ rows for the rulings.**
 
-**A. What happens to the rollup's `crash` class** — see DQ-026.
+**A. What happens to the rollup's `crash` class** — see DQ-026. **Ruled: re-label, keep the class.** `crash` is now defined vault-wide as a job class / callout label (unscheduled mobilization), the causal fouling claim is struck from every live-guidance surface, and the 6-row mean stays published as the emergency-quote basis — but may no longer be cited as evidence about coil condition. No schema change; the callout-vs-condition column split folds into DQ-017.
 
-**B. Whether the outlier rule enters the duration model** — see DQ-027.
+**B. Whether the outlier rule enters the duration model** — see DQ-027. **Ruled: yes, now.** The spread check is written into `01-context/estimating-approach.md` and the `usadebusk-estimating` skill, with this note's CND25004 case (48 / 35 / 36) as the worked example. The recording convention folds into DQ-017, which owns the per-coilset grain.
 
 ## Apply Log
 
 | Date | Action | By |
 |---|---|---|
 | 2026-08-20 | Rebuilt `7-1-F-1.md` geometry, identity, configuration, metallurgy and Open Flags from the drawings; struck ~6 ft/hr; quarantined the CND25004 48-hr coil set; regenerated `estimating-actuals-rollup.md` (Syncrude footage 2,311 → 17,893 ft; both rows still excluded from the condition means on blank `Mode`, unchanged). No Task Durations hours altered. Heater-card content is Lane 1 in full per the governance facility-data note. Queued DQ-026 and DQ-027 for the Lane 4 consequences. | Claude |
+| 2026-08-21 | **Both open asks ruled and applied; note closed.** DQ-026 — `crash` re-defined as job class / callout label across `_canonical-heater-card.md`, `_heater-template.md`, `estimating_rollup.py` (prose, `by coil condition` → `by job class`, new confound callout), the regenerated rollup, `estimating-approach.md`, and `usadebusk-estimating` SKILL.md; the mean and every figure in the rollup are unchanged (verified byte-identical), only the stated cause moved. DQ-027 — per-coilset outlier check added to `estimating-approach.md` and the skill as a new Outlier check bullet, citing this note's CND25004 48/35/36 case, plus a pointer in the rollup's "Reading this" noting the spread is not visible from that table. Column split (DQ-026) and outlier-recording convention (DQ-027) both folded into DQ-017. Status `open` → `resolved`. | Claude |

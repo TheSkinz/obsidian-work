@@ -199,8 +199,10 @@ def build(root: Path) -> str:
             f"| {tag} | {client} | {r[0]} | {r[1]} | {cond} | {r[2]} | {mode_s} | {r[3]} | "
             f"{r[4]} | {r[5]} | {r[7]} | {r[8]} | {r[9]} | {foot_s} | {fthr_s} | {norm_s} |")
 
-    # Condition segmentation — crash and routine rows must never be averaged together.
+    # Job-class segmentation — crash and routine rows must never be averaged together.
     # Segment on the mode-normalized per-pig rate so different modes are comparable.
+    # `crash` is a CALLOUT label (unscheduled mobilization), not a fouling grade
+    # (Jesse, 2026-08-20 / DQ-026) — the segmentation is by job class, not coil state.
     by_cond: dict[str, list[float]] = {}
     unnormalized = 0
     for tag, client, r, footage, fthr, norm in actual_rows:
@@ -211,16 +213,27 @@ def build(root: Path) -> str:
             continue
         key = (r[10].strip() or "unknown").split(",")[0].strip().lower()
         by_cond.setdefault(key, []).append(norm)
-    lines += ["", "## ft/hr per pig by coil condition", ""]
+    lines += ["", "## ft/hr per pig by job class", ""]
     lines += [
         "Mode-normalized per-pig rates (elapsed ÷ Mode), so jobs run in different modes "
         "compare on one basis. A decoke's hours are evidence only for the next decoke of the "
-        "**same condition**. A crashed furnace runs significantly dirtier than routine "
-        "service fouling, so crash rows must not be used to estimate a routine clean (or "
+        "**same job class**, so crash rows must not be used to estimate a routine clean (or "
         "vice versa). Classification rule: job details saying \"emergency\" mean `crash` "
         "(Jesse, 2026-07-19).",
         "",
-        "| Condition | Rows w/ norm rate | Range (ft/hr per pig) | Mean |",
+        "> **What `crash` means, and what this gap is not** (Jesse, 2026-08-20 / DQ-026). "
+        "`crash` labels an **unscheduled mobilization** — the facility hit operational trouble "
+        "and needed a crew on a moment's notice. It is a callout label, not a fouling grade: "
+        "the coil is usually dirty, but not by definition, and nothing in this table measures "
+        "how dirty. **Do not read the crash-vs-routine gap as a coke measurement.** It is also "
+        "confounded — four of the six crash rows are multi-mode (2–3) large vacuum heaters, so "
+        "the ÷Mode normalization is doing work that a fouling reading would wrongly credit to "
+        "coke. The crash mean is still the right basis for pricing an **emergency quote**, "
+        "because emergency jobs are what carry whatever the gap actually reflects — schedule "
+        "pressure, unfamiliar heater, night work, fouling, or all of it. It is the wrong basis "
+        "for a planned clean, and the wrong evidence for any claim about coil condition.",
+        "",
+        "| Job class | Rows w/ norm rate | Range (ft/hr per pig) | Mean |",
         "|---|---|---|---|",
     ]
     if not by_cond:
@@ -259,6 +272,12 @@ def build(root: Path) -> str:
         f"- With **{len(actual_rows)}** actual job row(s), this is a growing dataset, not a "
         "calibrated model. Treat per-job ft/hr as anecdotes until several same-service "
         "jobs accumulate.",
+        "- **Check the per-coilset spread before deriving a rate from any row** (Jesse, "
+        "2026-08-20 / DQ-027). Coils on one heater clean within a few hours of each other; a "
+        "coil set 12–24 hrs off its siblings means a problem specific to that coil that decoke, "
+        "or corrupt data. Derive off the sets that cluster, never the outlier, and say in the "
+        "duration math that you excluded it. Rows here are per-job heater totals, so the spread "
+        "is not visible from this table — go to the card's Field Notes / job report.",
         "- Rig-In/Rig-Out actuals well off the "
         f"{BENCH_RIG_IN:.0f}/{BENCH_RIG_OUT:.0f} hr defaults, or ft/hr consistently off "
         f"{BENCH_FT_PER_HR:.0f}, are the signal to revisit the Duration Model — raise it "
