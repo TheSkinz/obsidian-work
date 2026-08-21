@@ -19,10 +19,11 @@ verdict. No decisions are made here and nothing has been retired.
 **How to use it.** Overwrite the `Verdict` column. That is the whole interaction — one sitting, one artifact,
 rather than one review note per finding.
 
-> **Updated 2026-08-21.** Every `Verdict` cell is now **pre-filled with a recommendation**, not a ruling.
-> Nothing has been executed, stopped or deleted. Read down the columns and overwrite only the ones you
-> disagree with; silence on a row is your approval of it. See **Verdict pass — what this adds up to** near the
-> end for the shape of it and for the two items no verdict covers.
+> **Updated 2026-08-21 — verdicts drafted, then approved and EXECUTED.** Jesse approved the full pass,
+> including the Lane 4 items and both missing checks. The `Verdict` cells below are what was recommended;
+> what actually happened, including **three corrections where a verdict turned out to be wrong on contact**,
+> is in **Execution log — 2026-08-21** at the end. Read that before acting on any cell here: three of them no
+> longer describe reality.
 
 This note deliberately carries **no `## Decision` checkbox block**,
 because the checkbox mechanism assumes one decision per note and this holds about thirty. That also means it
@@ -532,6 +533,75 @@ being system maintenance — should fall sharply if the three loops stop, becaus
 roughly two asks a day. That is the prediction. **Re-measure it in a month rather than assuming it.** If
 system sessions are still the majority with the generators off, the problem is structural rather than
 rate-based, and the answer is a smaller vault rather than a slower one.
+
+---
+
+# Execution log — 2026-08-21
+
+Jesse approved the whole verdict pass, Lane 4 items and both missing checks included. What follows is what
+was actually done, and where a verdict did not survive contact.
+
+## Executed as recommended
+
+| Area | Done |
+|---|---|
+| Loops | Capture, idea-research and pre-staging **disabled** in the scheduler — disabled, not deleted, so restoring one is a single `enabled: true` plus its row back in `LOOP_HEARTBEATS`. Review loop **created on a monthly schedule** (`vault-review-loop`, 04:00 on the 8th), reversing its "deliberately not scheduled" rule. Consolidation and skill-drift untouched |
+| Lint | `DEAD-LINK` → error and all 11 cleared; `INBOX-AGE` retired; `ORPHAN` exempts terminal-status notes; `verified` added to the vocabulary. **43 warnings → 5, 0 errors.** Self-test 16 rules |
+| New check 1 | `ROLLUP-SCALE` lint rule with fixture — see below, the first version was wrong |
+| New check 2 | `Open decisions not in the queue` health row. **Found 8 on its first run** and names them: the 6 the audit found by hand plus 2 the idea loop added that morning before it was disabled |
+| Health metrics | `Dormant triggers fired` retired, section narrowed to `Threshold gauges` rendering only the 3 machine-checkable conditions; `Regression baselines behind` retired; inbox counting fixed to notes-only (56 → 55); stopped loops removed from the heartbeat registry |
+| Deletions | `tools/audit_commit.py`, `tools/audit_worktree.py`, and 17 spent `archive/` notes |
+| Docs | CLAUDE.md now documents all eleven tools and the three undocumented folders; `system-workflow-reference.md` and `vault-agent-loop-spec.md` rewritten so they no longer describe a six-loop system |
+
+## Three verdicts that were wrong
+
+**`archive/` could not be deleted wholesale, and the read-demand argument was the wrong test.** The verdict
+graded it on reads — 3 of 74 opened across 165 sessions — and never checked inbound links. **40 of the 74 are
+wikilinked from live notes**, including the H-2421 and H-2501 heater cards, `change-log.md`,
+`decision-queue.md` and two `04-knowledge/` build specs. Deleting the folder would have converted ~40 live
+citations into dead links, which are now *errors*. Scope narrowed to unreferenced notes only.
+
+**"Git history preserves every one" is false, and this is the one that could have lost data.** `archive/` is
+in `.gitignore`. Of the 34 unreferenced notes, only 17 are tracked; the other 17 — the pre-canonical
+heater-card snapshots plus an `ai-config` snapshot — exist **on disk and nowhere else**. They were left in
+place. They cost nothing to keep: gitignored content carries no repo weight and `INDEX.md` has never covered
+`archive/`, so the stated cost of that verdict was largely imaginary in the first place. **Recorded in
+CLAUDE.md** so no future session repeats the assumption.
+
+**The pig rollup was regenerated, not deleted.** It has 5 live inbound references, so deleting it would have
+created dead links. Regenerating removes the actual defect — it was stamped 2026-07-26 and presenting as
+current. Worth noting it was not merely date-stale: **41 lines changed on regeneration.**
+
+## The new lint rule failed its first honest test
+
+The `ROLLUP-SCALE` ratio check — heater total ÷ per circuit must be the same whole number in every section —
+fires on a clean reconstruction of the Syncrude defect. Replayed against the **real** 2026-07-23 card via
+git, it caught nothing.
+
+The reason is the whole lesson. The radiant per-circuit cell read `~4`, not `4`. A hedged number is not
+arithmetic, so that row dropped out of the comparison and the surviving convection ratio of 8 read as clean.
+The residue had already been hidden inside the approximation before any checker saw it — and the card's Notes
+column had invented an uneven 3-vs-4-tube coil split to explain the approximation, a physical asymmetry that
+does not exist.
+
+So the rule gained a second branch, and it is the load-bearing one: **an approximate count anywhere in Config
+Rollup is a finding on its own.** That table is derived and hand-entered — the exemplar says never invent a
+value Tube Geometry cannot back — so `~4` is by definition invented. The fixture now carries `~4` verbatim,
+with the earlier clean-`4` mistake written into the fixture body so it is not quietly reintroduced. The rule
+now fires on the real card and stays silent across all 41 live cards.
+
+This is the audit's own finding turned on itself: a check verified against a fixture you wrote is a check
+verified against your own assumption.
+
+## State now
+
+`0 errors, 5 warnings` (was 0 / 43). `archive/` 74 → 57 on disk. Two dashboard rows still FAIL and should:
+12 review notes awaiting decision, and the 8 open decisions outside the queue. Both clear as Jesse rules,
+and neither is now being added to by anything on a timer.
+
+**The prediction to re-measure in a month:** 61% of attended sessions were system maintenance. If that has
+not fallen sharply with the generators off, the problem is structural rather than rate-based, and the answer
+is a smaller vault rather than a slower one.
 
 ---
 

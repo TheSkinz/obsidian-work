@@ -10,7 +10,11 @@
 
 Folder layout is discoverable from `ls` and `INDEX.md`. Only the non-obvious parts are recorded here.
 
-- `tools/` — vault automation scripts: `vault_lint.py` (rule set defined by and authoritative from the script itself — no count here to drift), `vault_health.py` → `50-dashboards/health.md`, `vault_index.py` → `INDEX.md`, `estimating_rollup.py` → `04-knowledge/estimating-actuals-rollup.md`
+- `tools/` — vault automation scripts. Generators: `vault_lint.py` (rule set defined by and authoritative from the script itself — no count here to drift), `vault_health.py` → `50-dashboards/health.md`, `vault_index.py` → `INDEX.md`, `estimating_rollup.py` → `04-knowledge/estimating-actuals-rollup.md`, `pig_usage_rollup.py` → `04-knowledge/pig-usage-rollup.md` (run on demand — it is not wired to a loop, so re-run it before citing it). Checkers: `baseline_staleness.py` (regression fixtures; `--verbose` on demand), `config_frontmatter_lint.py` (the config repo, not this one), `sharepoint_export.py` (projects notes to the SharePoint library). `fixtures/` is the lint self-test corpus — a new lint rule requires a fixture there.
+- `07-llms/` — how the LLM tools themselves behave: Claude Code release facts, Copilot, Grok. Not USADebusk domain content.
+- `08-systems/` — the non-vault systems Jesse operates in, principally the Outlook/M365 record. Read it from the system before trusting it; both tiers of that document were fabricated once.
+- `09-interests/` — personal, non-USADebusk. Expected, not an anomaly.
+- `archive/` — **gitignored.** Notes here are not all in git history, so a file in `archive/` may exist only on disk. Never treat deletion from `archive/` as recoverable without checking `git ls-files` first.
 
 Root-level files: `change-log.md` (decisions-only log), `INDEX.md`, `Identity.md`. `03-jobs/` and `05-projects/` are gone. Do not reference or recreate them — job actuals now live inside heater cards.
 

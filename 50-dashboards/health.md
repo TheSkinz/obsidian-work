@@ -24,6 +24,7 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 | Loop | Last fired | Last heartbeat | Cadence | Status |
 |---|---|---|---|---|
 | Consolidation loop | 2026-08-15 (6 d ago) | 2026-08-15 (6 d ago) | 31 d | ok |
+| Review loop | - | 2026-08-20 (1 d ago) | 90 d | ok |
 | Skill-drift loop | 2026-08-01 (20 d ago) | 2026-08-01 (20 d ago) | 62 d | ok |
 
 ## Commercial pipeline

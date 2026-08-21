@@ -71,6 +71,13 @@ INBOX_SKIP_SUBDIRS = ("preserved-dsps",)
 # any of them is one `enabled: true` plus its row back in this list.
 LOOP_HEARTBEATS = [
     ("Consolidation loop", "vault-consolidation-loop", "vault-consolidate:", 31, 62),
+    # Review loop put on a monthly schedule 2026-08-21 (was on-demand since
+    # 2026-06-26). It is the highest-effect loop in the system — 9 of 10 notes
+    # caused a real change — and it is propose-only, so an unattended run stays
+    # inside its own boundaries. It is explicitly allowed to write nothing when
+    # nothing warrants a decision, so its git heartbeat carries wide slack (90 d)
+    # while the ledger still proves the scheduler fired (40 d).
+    ("Review loop", "vault-review-loop", "vault-review:", 90, 40),
     # Skill-drift fires monthly (0 3 1 * *) but commits only when it finds
     # drift, so its git heartbeat cadence carries the same slack as the idea
     # loop's: 62 d monitoring-grade, not its 31 d run cadence.
