@@ -11,6 +11,13 @@ tags: [job-sheet, HF-Sinclair, USA26040]
 
 # USA26040 — HF Sinclair Navajo Refinery, Artesia, NM
 
+> ⚠ **JOB POSTPONED — DO NOT ISSUE THIS SHEET AS PRINTED.** (Jesse, 2026-08-21.) The job was pushed to
+> an unconfirmed date and we are waiting to hear back from HF Sinclair; there is no USA26040 project yet.
+> **Every date below is lapsed** — the Tue Aug 4 / Wed Aug 5 07:00 / Thu Aug 6 11:00 schedule and the
+> "Planned outage — August 2026" project type all refer to a window that passed without execution.
+> Crew assignments and equipment staging are equally unreliable at a new date. Re-render from the
+> work-up once HF Sinclair confirms; the scope, connections and equipment sections are still good.
+
 > Vault-native copy of the printable crew job sheet. The canonical printable version is
 > `USA26040-job-sheet.pdf` (rendered from `USA26040-job-sheet.html`). A job sheet is static —
 > created at bid-win from the quoted work-up. Actuals and timeline live on the job report, never here.
