@@ -9,7 +9,7 @@
 | Lint errors | 0 | 0 | ok |
 | Lint warnings | 5 | (backlog) | ok |
 | Inbox items | 54 | - | ok |
-| Inbox median age | 4 d | < 14 d | ok |
+| Inbox median age | 3 d | < 14 d | ok |
 | Inbox oldest item | 24 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
@@ -62,7 +62,7 @@ One row per frozen fixture in `~/.claude/regression/frozen/`. Each reads its own
 | Fixture | Commits behind | Status |
 |---|---|---|
 | f1-rfq-to-proposal | claude-config 9 · vault 3 | behind |
-| f2-vault-ingest-dryrun | claude-config 2 | behind |
+| f2-vault-ingest-dryrun | claude-config 3 | behind |
 | f3-fieldpm-extract | claude-config 16 | behind |
 | f4-sop-formatting-pass | claude-config 3 · vault 0 | behind |
 | f5-pig-sizing | claude-config 2 | behind |
