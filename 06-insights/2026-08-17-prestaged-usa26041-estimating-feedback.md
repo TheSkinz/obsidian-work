@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: pre-staged
 source_authority: inferred
 confidence: medium
@@ -40,21 +40,21 @@ Should any of the three USA26041 model-level findings (pig-unit cost built from 
 
 - [ ] Approved
 - [ ] Approved with edits
-- [ ] Rejected
+- [x] Rejected
 - [ ] Needs more research
 
 **B. Move the per-diem basis now, hold the other two at n=1.** Finding (3) is arguably not a sample-size question at all — "calendar days on site" vs. "shift/person-day count" is a structural billing-model choice, and the note's arithmetic (4 calendar days vs. a 2-day quote assumption) demonstrates the shift-count basis mis-estimates duration risk on jobs that run T&M beyond plan, independent of how many data points exist. Findings (1) and (2) are genuinely single-job cost/duration observations that fit the n=1-hold pattern more cleanly.
 
 - [ ] Approved
 - [ ] Approved with edits
-- [ ] Rejected
+- [x] Rejected
 - [ ] Needs more research
 
 **C. Move all three now.** Rejected by the note's own framing (explicitly asks whether n=1 is enough) and by precedent (DQ-005), but included for completeness since the pig-unit real-cost breakdown is unusually well-evidenced (six itemized receipt costs, not an estimate) even at n=1.
 
 - [ ] Approved
 - [ ] Approved with edits
-- [ ] Rejected
+- [x] Rejected
 - [ ] Needs more research
 
 ## Risks and Counter-Arguments
@@ -63,10 +63,19 @@ Option A's risk is the one the source note itself flags — three real findings 
 
 ## Decision
 
-*(Pending — Jesse to review.)*
+**Ruled 2026-08-21 (Jesse). All three options above rejected as framed; a three-way split replaces them.** A, B and C each assume the right question is "how many data points do we have," and on two of the three findings that is not the question.
+
+**Per diem — no change. Option B's supporting figure was already overturned.** B argued the per-diem basis should move now because "calendar days on site vs shift count" is structural rather than statistical, and it rested that on the Source Material row citing `change-log.md`'s "24 person-days entitled vs 15 billed = 9 unbilled ($1,350)." **That is the phantom gap Jesse ruled on 2026-08-15, twice — reported first at $1,800, then at $1,350, wrong both times.** The correction is filed in `04-knowledge/concepts/business-normal-facts.md`: a zero or short per-diem line on the mob and demob tabs of a ticket breakdown is **not** unbilled per diem, because those days bill as lump sum with the per diem carried inside; the receipt's "Per Diem: 6" records headcount, not a claim. This note cited the superseded change-log entry and not the correction two rows below it. Strip the phantom out and the finding shrinks from 12-vs-24 to **12 quoted against 15 billed on the T&M portion** — three person-days, caused by the job spanning more calendar days than the shift count assumed. That is a duration-span miss with per diem sitting downstream of it, not a wrong pricing basis. `Per Diem | Daily per person | 1 PD per 12-hr shift` stands; the basis question is not opened.
+
+**Pig unit — no skill change, but the data is preserved.** The finding is real and needs no second job: the blended $103.50 sits above **every** one of the six observed unit costs, the highest being $81.40. But this note's own recon established that $103.50 exists only as the DSP26071 quote's materials line and was never a `usadebusk-estimating` default — so there is no skill value to correct, and the prerequisite question it flagged (does a size-mix pig cost belong in the skill at all, or stay a per-contract quote decision) remains the real open item. The asset here was the six receipt costs, which existed only in an inbox note the capture loop would eventually route away. **Filed as actuals on [[F-501]]'s Pig Specifications table** alongside the quoted line, with the quoted-vs-actual arithmetic.
+
+**Rig-out — not n=1, and the only finding that earns real work.** Both this note and its source held rig-out at n=1 without cross-tabulating `04-knowledge/estimating-actuals-rollup.md`, which **already carries roughly fourteen rows with both a Rig-In and a Rig-Out figure**. They do not support the mirror rule uniformly: F-501 7→14 and F-802 4→20 break it hard in the same direction, H-19 10→30 and H-20 22→38 likewise, while four CHS turnaround rows run rig-out *under* rig-in. That is enough evidence to test the rule and not enough to conclude from here, because the Rig-In column is the known mixed-method column DQ-017 absorbed on 2026-08-21. **Filed as [[idea-rig-out-vs-rig-in-mirror-rule]]**, gated on DQ-017 for the numeric half — reading rows against their source receipts is fine now; fitting a rule to them is not.
+
+**Net:** `usadebusk-estimating` is unchanged by this note. One Lane 1 card edit, one gated idea seed, and one correction to how this note read its own sources.
 
 ## Apply Log
 
 | Date | Action | By |
 |---|---|---|
 | 2026-08-17 | Note filed by pre-staging loop from `00-inbox/2026-08-15-usa26041-estimating-feedback.md`. Checked for existing coverage: change-log entries from 2026-08-15 record the same actuals as facts on the job card (with n=1/Condition-`first` caveat already applied to the rig-out/pigging figures) but do not touch `usadebusk-estimating`; the per-diem shift-basis rule and the absence of a company-wide pig-unit cost table were confirmed by reading the skill directly; DQ-009's 2026-08-15 rig-in/rig-out fix was confirmed to address a different defect (missing pump-mode driver) than this note's duration-risk finding. `git log` grepped for prior estimating-model commits addressing any of the three findings — none found. `decision-queue.md` checked — not already queued. No vault or config-repo content modified beyond the source marker. | Claude (pre-staging loop) |
+| 2026-08-21 | **Ruled and applied; note closed.** All three options rejected, three-way split recorded above. Per diem: no change — Option B's supporting figure was the phantom gap already overturned 2026-08-15, and this note cited the superseded `change-log.md` entry rather than the correction in `business-normal-facts.md`. Pig unit: six real receipt costs filed as actuals on [[F-501]]'s Pig Specifications table with the quoted-vs-actual arithmetic; no skill change, prerequisite question left open. Rig-out: re-classified as **not n=1** after cross-tabulating the rollup (~14 rows carry both Rig-In and Rig-Out; the split looks facility-shaped), filed as [[idea-rig-out-vs-rig-in-mirror-rule]] gated on DQ-017. `usadebusk-estimating` unchanged. DQ-020 closed. Status `open` → `resolved`. | Claude |

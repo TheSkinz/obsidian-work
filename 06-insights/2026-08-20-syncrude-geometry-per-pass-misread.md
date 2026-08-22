@@ -16,7 +16,7 @@ tags: [review, estimating, actuals, syncrude, heater-card]
 
 ## Trigger
 
-Jesse opened a session on 2026-08-20 for the CAD26001 Syncrude mobilization (mob 08-25, rig-in 08-26) and, in the course of it, corrected two of my readings and then supplied drawings he had not seen before. The drawings overturned the heater card's geometry. The chain matters more than the endpoint, so it is recorded in order.
+Jesse opened a session on 2026-08-20 for the CAD26001 Syncrude mobilization (mob 08-25, rig-in 08-26) [**job number corrected 2026-08-21 to `CND26001`** — `CAD` is not a real prefix (Jesse); the wrong number is left in this sentence as the record of what was believed that day] and, in the course of it, corrected two of my readings and then supplied drawings he had not seen before. The drawings overturned the heater card's geometry. The chain matters more than the endpoint, so it is recorded in order.
 
 ## What happened, in sequence
 
