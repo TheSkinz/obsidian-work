@@ -19,11 +19,14 @@ Reference working note, not a quote. Rates and elections are per-job inputs.
 | Looping | **8 → 4 circuits at the radiant outlet flanges** | Jesse, 2026-08-21 |
 | Circuit length | **4,474 ft** (2 × 2,237) | Derived |
 | Pairing | Undecided — **and duration-neutral**, coils are uniform | Jesse, 2026-08-21 |
-| Equipment | 2× Trimax (5 + 6), Support 5 + 6. No filter press assigned | [[active-jobs]] |
+| Equipment | 2× Trimax (5 + 6), Support 5 + 6. **No filtration — not used on this heater, settled** | [[active-jobs]]; Jesse, 2026-08-21 |
+| **Mode** | **Both Trimax in double mode; all 4 looped circuits pigged simultaneously** — one pass set, 0 rig-overs | **Stated by Jesse, 2026-08-21** (not derived) |
 | Job class | `routine` — planned TA | Card Job History |
 | Connections | All launchers and receivers **at grade** | Card, Jesse 2026-08-20 |
 
 **Pairing does not affect hours.** All 8 coils are identical, so every pairing gives the same 4,474 ft circuit. What pairing changes is loop-spool routing at the outlet end, not the duration. Do not hold the estimate for it.
+
+**Mode was confirmed on 2026-08-21 and no figure below moved** — the build-up had already assumed two circuits per Trimax in one set, which is what Jesse stated. The change is that the 70 / 37 hr pigging figures and the 104 / 71 raw totals now rest on a stated equipment plan rather than on my inference.
 
 ## Rate selection
 
@@ -40,7 +43,7 @@ That leaves two clustering sets, and **they do not agree on the question that ma
 
 ```
 per circuit   4,474 ft ÷ 64 ft/hr = 69.9  →  70 hrs   (circuit round-up)
-sets          4 circuits, 2 per Trimax     →  1 set, 0 rig-overs
+sets          4 circuits, 2 per Trimax (double)     →  1 set, 0 rig-overs
 allowance     NONE ADDED — see below
 elapsed pig                                   70 hrs
 ```
@@ -49,7 +52,7 @@ elapsed pig                                   70 hrs
 
 ```
 per circuit   4,474 ft ÷ 124 ft/hr = 36.1  →  37 hrs
-sets          4 circuits, 2 per Trimax      →  1 set, 0 rig-overs
+sets          4 circuits, 2 per Trimax (double)      →  1 set, 0 rig-overs
 elapsed pig                                    37 hrs
 ```
 
@@ -79,8 +82,10 @@ Evidence currently splits. The drawing shows 1 & 8's outlet spools already paire
 
 Until it is settled, **carry A (104 raw) as the estimate** — it is the defensible reading, and the residual risk on this heater runs one-directional toward longer, not shorter.
 
-## The exposure that dwarfs both readings
+## Stand-by history — recorded, not forecast
 
-**Stand-by, not pigging.** CND25004 ran ~192 hrs of stand-by against 119 pig hrs, and CND24002 ran 36 — both waiting on the plant to de-inventory, drain, blind, and install the temporary 90s that bring both connection points to grade. Those 90s are a plant-side prerequisite and are the standing stand-by source on this heater. Whatever the pigging line resolves to, **the schedule risk on CND26001 is the plant's readiness, and it has historically been larger than the entire pigging duration.** Active-jobs notes the plant is reportedly running ahead of schedule this time, which would reverse the pattern — worth confirming rather than assuming.
+CND25004 ran ~192 hrs of stand-by against 119 pig hrs; CND24002 ran 36. Both were waiting on the plant to de-inventory, drain, blind, and install the temporary 90s that bring the connection points to grade.
 
-Also unpriced: no filter press is assigned, and nothing covers filtration if Syncrude elects it.
+**This is history and nothing more. Do not carry it into the estimate.** Stand-by on this heater is customer-caused, and USADebusk neither controls it nor can anticipate it (Jesse, 2026-08-21): *"We will have to clean the heater when they are ready whenever that may be."* It is not a risk line, not a pad, not an open item, and not a thing to confirm with Syncrude. The customer's own note that the plant is running ahead of schedule changes none of that and is not evidence about what will happen — a schedule note is not a commitment, and on-time, a shift early and a shift late are all the same job to us.
+
+The general rule this instance sits under is in `usadebusk-estimating`: customer-caused stand-by is not an estimating input, while stand-by USADebusk's own equipment profile causes — the F-802 filter-press case — is foreseeable and stays statable. This job has no filtration at all, so that side does not arise here.
