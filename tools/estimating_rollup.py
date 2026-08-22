@@ -105,6 +105,44 @@ def num(cell: str | None) -> float | None:
     return float(m.group(0)) if m else None
 
 
+def rig_method(r: list[str]) -> str:
+    """What KIND of number this row's rig columns hold (DQ-017 Q3).
+
+    The Rig-In column is known mixed-method: a cell may be a clean single-rig
+    elapsed measurement, a sum across rigs, a two-heater job total, several
+    tasks collapsed into one figure, or a number from a job whose own sources
+    disagree. Printed side by side they read as one series, and fitting a
+    duration rule to that series is how a defect becomes a rule.
+
+    DELIBERATELY CONSERVATIVE. The default is `unmarked`, NOT `clean` — it
+    means no method problem is *recorded*, not that the figure was verified.
+    HF-0011 is why: its Rig-Out of 3 is the BILLED figure, with a further 8 hrs
+    customer-signed and never billed, and no token on that row says so. A
+    positive `clean` claim would have swept that row into a rule.
+
+    Only `combined-heaters`, multi-rig `hours-blended`, and `rig-quarantined`
+    are mechanically decidable. The `*` glyph is NOT: it marks "the card
+    footnotes this cell" and means different things on different rows —
+    bundled rig-in+over+out at Valero, an absent-by-design side of a rig-over
+    pair at Flint Hills. So it resolves to `see card` rather than a guess.
+    """
+    cond = r[10].lower()
+    if "rig-quarantined" in cond:
+        return "quarantined"
+    # `*` on a rig cell: the card carries a footnote. Reasons differ per row and
+    # are not machine-readable — do not collapse them into one label.
+    if any("*" in r[i] for i in (3, 6, 7)):
+        return "see card"
+    if "combined-heaters" in cond:
+        return "combined"
+    if "hours-blended" in cond:
+        rigs = num(r[2])
+        # Multi-rig blended rows SUM across rigs rather than measuring elapsed
+        # (7-1 F-1 CND25004: rig-in 14 = 6 + 6 + 2 over three coil sets).
+        return "2-rig-sum" if rigs and rigs > 1 else "blended"
+    return "unmarked"
+
+
 def heater_cards(root: Path):
     for p in sorted((root / FACILITIES).rglob("*.md")):
         if p.name.startswith("_"):
@@ -183,12 +221,12 @@ def build(root: Path) -> str:
         "## Actuals",
         "",
         "| Heater | Client | Date | Job # | Condition | Rigs | Mode | Rig-In | Pig | "
-        "Smart Pig | Rig-Out | Stand-By | Total | Heater footage (ft) | "
+        "Smart Pig | Rig-Out | Rig method | Stand-By | Total | Heater footage (ft) | "
         "ft / elapsed pig-hr | ft/hr per pig (norm) |",
-        "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
+        "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
     ]
     if not actual_rows:
-        lines.append("| _no actuals recorded yet_ | | | | | | | | | | | | | | | |")
+        lines.append("| _no actuals recorded yet_ | | | | | | | | | | | | | | | | |")
     for tag, client, r, footage, fthr, norm in actual_rows:
         foot_s = f"{footage:,.0f}" if footage else "(not recorded)"
         fthr_s = f"{fthr:.0f}" if fthr else "-"
@@ -197,7 +235,42 @@ def build(root: Path) -> str:
         cond = r[10].strip() or "unknown"
         lines.append(
             f"| {tag} | {client} | {r[0]} | {r[1]} | {cond} | {r[2]} | {mode_s} | {r[3]} | "
-            f"{r[4]} | {r[5]} | {r[7]} | {r[8]} | {r[9]} | {foot_s} | {fthr_s} | {norm_s} |")
+            f"{r[4]} | {r[5]} | {r[7]} | {rig_method(r)} | {r[8]} | {r[9]} | {foot_s} | "
+            f"{fthr_s} | {norm_s} |")
+
+    lines += [
+        "",
+        "> **`Rig method` — read this before comparing any two rig figures** (DQ-017 Q3). "
+        "The Rig-In and Rig-Out columns are **mixed-method**: cells that print alike were "
+        "produced five different ways, and a rule fitted across them inherits the defect. "
+        "`unmarked` = no method problem is *recorded* — **not** a verified measurement; "
+        "HF-0011's Rig-Out of 3 is the billed figure with a further 8 hrs customer-signed "
+        "and never billed, and nothing on that row says so. `combined` = the hours are a "
+        "multi-heater job total written on each card. `2-rig-sum` = summed across rigs, not "
+        "elapsed (7-1 F-1 CND25004's rig-in 14 = 6 + 6 + 2 across three coil sets). "
+        "`blended` = the source did not separate this row's tasks cleanly; the card says "
+        "which. `see card` = the cell carries a `*` footnote, and the reasons genuinely "
+        "differ — Valero bundles rig-in + rig-over + rig-out into one \"Rigging\" figure, "
+        "while the Flint Hills pair is one continuous rig-over where each heater's missing "
+        "side is absent by design. `quarantined` = the job's own sources do not reconcile "
+        "(both HF Sinclair heaters, USA25051/USA26038 — see their card row notes). "
+        "**Only `unmarked` rows are candidates for deriving anything, and they are "
+        "candidates, not evidence.**",
+    ]
+
+    # `unmarked` alone is not the derivable set: a row can be unmarked and still be
+    # missing one of the two figures (HP-0007 records no Rig-In). Count the pairs.
+    unmarked = [x for x in actual_rows if rig_method(x[2]) == "unmarked"]
+    pairs = [x for x in unmarked if num(x[2][3]) is not None and num(x[2][7]) is not None]
+    lines += [
+        "",
+        f"> **{len(pairs)} of {len(actual_rows)} rows carry a rig-in/rig-out pair that is "
+        f"both `unmarked` and complete** ({len(unmarked)} rows are `unmarked`, but not all "
+        "record both figures). That is the whole population available for any question "
+        "about how rig-out relates to rig-in — small enough that a difference between a "
+        "handful of jobs will look like a difference between facilities. Count the "
+        "distinct **jobs** behind these rows before reading a pattern into them.",
+    ]
 
     # Job-class segmentation — crash and routine rows must never be averaged together.
     # Segment on the mode-normalized per-pig rate so different modes are comparable.
@@ -278,10 +351,15 @@ def build(root: Path) -> str:
         "or corrupt data. Derive off the sets that cluster, never the outlier, and say in the "
         "duration math that you excluded it. Rows here are per-job heater totals, so the spread "
         "is not visible from this table — go to the card's Field Notes / job report.",
-        "- Rig-In/Rig-Out actuals well off the "
-        f"{BENCH_RIG_IN:.0f}/{BENCH_RIG_OUT:.0f} hr defaults, or ft/hr consistently off "
-        f"{BENCH_FT_PER_HR:.0f}, are the signal to revisit the Duration Model — raise it "
-        "with Jesse rather than editing the skill from here.",
+        "- **Rig-In/Rig-Out actuals well off the "
+        f"{BENCH_RIG_IN:.0f}/{BENCH_RIG_OUT:.0f} hr defaults are a signal only on "
+        "`unmarked` rows** — check the `Rig method` column first. A `combined`, "
+        "`2-rig-sum`, `blended`, `see card` or `quarantined` row is far off the default "
+        "because of how the number was produced, not because the job ran long, and "
+        "reading it as a duration signal is the specific error this column exists to "
+        "prevent. ft/hr consistently off "
+        f"{BENCH_FT_PER_HR:.0f} is the other signal. Either way, raise it with Jesse "
+        "rather than editing the skill from here.",
     ]
     return "\n".join(lines) + "\n"
 

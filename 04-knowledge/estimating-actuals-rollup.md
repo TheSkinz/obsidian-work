@@ -8,33 +8,37 @@ Benchmarks as stated in `usadebusk-estimating`: **100 ft/hr** pigging (nominal f
 
 ## Actuals
 
-| Heater | Client | Date | Job # | Condition | Rigs | Mode | Rig-In | Pig | Smart Pig | Rig-Out | Stand-By | Total | Heater footage (ft) | ft / elapsed pig-hr | ft/hr per pig (norm) |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| HF-0011 | CHS | 2025-03-29 | USA25025 | routine, hours-blended | 1 | ? | 6 | 96 | 18 | 3 | 51 | 123 | 5,004 | 52 | - |
-| HF-0012 | CHS | 2025-03-24 | USA25025 | routine | 1 | 3 | 11 | 85 | 10.5 | 6 | 28.5 | 114.5 | 12,036 | 142 | 47 |
-| HF-009A | CHS | 2025-03-23 | USA25025 | routine, combined-heaters | 1 | 2 | 16 | 77.5 | 12 | 7 | ? | 112.5 | 7,812 | - | - |
-| HF-009B | CHS | 2025-03-23 | USA25025 | routine, combined-heaters | 1 | 2 | 16 | 77.5 | 12 | 7 | ? | 112.5 | 7,812 | - | - |
-| HP-0002 | CHS | 2025-04-02 | USA25025 | routine | 1 | 1 | 2 | 13 | 3 | 6 | ? | 24 | 1,100 | 85 | 85 |
-| HP-0003 | CHS | 2025-04-01 | USA25025 | routine, combined-heaters | 1 | ? | 6 | 26 | – | ? | ? | 32 | 1,188 | - | - |
-| HP-0006 | CHS | 2025-04-01 | USA25025 | routine, combined-heaters | 1 | ? | 6 | 26 | 4 | ? | ? | 36 | 616 | - | - |
-| HP-0007 | CHS | 2025-03-30 | USA25025 | routine | 1 | 1 | ? | 15 | 4 | 5 | ? | 24 | 765 | 51 | 51 |
-| HP-0025 | CHS | 2025-03-31 | USA25025 | routine | 1 | 1 | 6 | 9 | 3 | 6 | ? | 24 | 2,328 | 259 | 259 |
-| F-501 | ExxonMobil | 2026-08-12 | USA26041 | first | 1 | 3 | 7 | 16 | 6 | 14 | 11 | 43 | 3,588 | 224 | 75 |
-| F-802 | ExxonMobil | 2026-04-28 | USA26022 | routine | 2 | 5 | 4 | 55 | 6 | 20 | 49 | 85 | 14,280 | 260 | 52 |
-| 01-BA-105 | Flint Hills Resources | 2026-01-20 | USA26005 | crash, hours-blended | 1 | 2 | 10.5 | 29 | –* | –* | 40.5 | 39.5 | (not recorded) | - | - |
-| 02-BA-201 | Flint Hills Resources | 2026-01-23 | USA26005 | crash | 1 | 2 | –* | 10 | 5 | 7 | – | 25 | (not recorded) | - | - |
-| H-19 | HF Sinclair | 2025-08-17 | USA25051 | crash | 1 | 1 | 10 | 103 | – | 30 | 41 | 143 | 4,934 | 48 | 48 |
-| H-19 | HF Sinclair | 2026-07-13 | USA26038 | crash | 1 | 1 | 7 | 74 | 6 | 2 | 55 | 89 | 4,934 | 67 | 67 |
-| H-20 | HF Sinclair | 2025-08-17 | USA25051 | crash | 1 | 1 | 22 | 69 | – | 38 | 63 | 129 | 2,868 | 42 | 42 |
-| H-20 | HF Sinclair | 2026-07-11 | USA26038 | crash | 1 | 2 | 5 | 98 | – | 13.5 | 19 | 118 | 2,868 | 29 | 15 |
-| H-28 | P66 | 2024-01-20 | 24012 | crash, combined-heaters | 1 | ? | 14 | 143 | – | 15 | 31 | 172 | 1,865 | - | - |
-| H-28 | P66 | 2025-05-10 | USA25041 | routine, combined-heaters | 1 | ? | 5 | 117 | – | 9 | 1 | 131 | 1,865 | - | - |
-| H-29 | P66 | 2024-01-20 | 24012 | crash, combined-heaters | 1 | ? | 14 | 143 | – | 15 | 31 | 172 | 2,373 | - | - |
-| H-29 | P66 | 2025-05-10 | USA25041 | routine, combined-heaters | 1 | ? | 5 | 117 | – | 9 | 1 | 131 | 2,373 | - | - |
-| 7-1 F-1 | Syncrude | 2024-04-05 | CND24002 | routine, hours-blended | 2 | ? | 9.5 | 68.5 | 9 | 7.5 | 36 | 96 | 17,893 | 261 | - |
-| 7-1 F-1 | Syncrude | 2025-09-07 | CND25004 | routine, hours-blended | 2 | ? | 14 | 119 | 18 | 13 | 192 | 164 | 17,893 | 150 | - |
-| H-102A | Valero | 2026-03-26 | USA26025 | crash | 1 | 3 | 27* | 232 | 16 | –* | 176 | 275 | 9,248 | 40 | 13 |
-| H-102B | Valero | 2026-03-26 | USA26025 | crash | 1 | 3 | 34.5* | 242.5 | 31 | –* | 179 | 308 | 9,248 | 38 | 13 |
+| Heater | Client | Date | Job # | Condition | Rigs | Mode | Rig-In | Pig | Smart Pig | Rig-Out | Rig method | Stand-By | Total | Heater footage (ft) | ft / elapsed pig-hr | ft/hr per pig (norm) |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| HF-0011 | CHS | 2025-03-29 | USA25025 | routine, hours-blended | 1 | ? | 6 | 96 | 18 | 3 | blended | 51 | 123 | 5,004 | 52 | - |
+| HF-0012 | CHS | 2025-03-24 | USA25025 | routine | 1 | 3 | 11 | 85 | 10.5 | 6 | unmarked | 28.5 | 114.5 | 12,036 | 142 | 47 |
+| HF-009A | CHS | 2025-03-23 | USA25025 | routine, combined-heaters | 1 | 2 | 16 | 77.5 | 12 | 7 | combined | ? | 112.5 | 7,812 | - | - |
+| HF-009B | CHS | 2025-03-23 | USA25025 | routine, combined-heaters | 1 | 2 | 16 | 77.5 | 12 | 7 | combined | ? | 112.5 | 7,812 | - | - |
+| HP-0002 | CHS | 2025-04-02 | USA25025 | routine | 1 | 1 | 2 | 13 | 3 | 6 | unmarked | ? | 24 | 1,100 | 85 | 85 |
+| HP-0003 | CHS | 2025-04-01 | USA25025 | routine, combined-heaters | 1 | ? | 6 | 26 | – | ? | combined | ? | 32 | 1,188 | - | - |
+| HP-0006 | CHS | 2025-04-01 | USA25025 | routine, combined-heaters | 1 | ? | 6 | 26 | 4 | ? | combined | ? | 36 | 616 | - | - |
+| HP-0007 | CHS | 2025-03-30 | USA25025 | routine | 1 | 1 | ? | 15 | 4 | 5 | unmarked | ? | 24 | 765 | 51 | 51 |
+| HP-0025 | CHS | 2025-03-31 | USA25025 | routine | 1 | 1 | 6 | 9 | 3 | 6 | unmarked | ? | 24 | 2,328 | 259 | 259 |
+| F-501 | ExxonMobil | 2026-08-12 | USA26041 | first | 1 | 3 | 7 | 16 | 6 | 14 | unmarked | 11 | 43 | 3,588 | 224 | 75 |
+| F-802 | ExxonMobil | 2026-04-28 | USA26022 | routine | 2 | 5 | 4 | 55 | 6 | 20 | unmarked | 49 | 85 | 14,280 | 260 | 52 |
+| 01-BA-105 | Flint Hills Resources | 2026-01-20 | USA26005 | crash, hours-blended | 1 | 2 | 10.5 | 29 | –* | –* | see card | 40.5 | 39.5 | (not recorded) | - | - |
+| 02-BA-201 | Flint Hills Resources | 2026-01-23 | USA26005 | crash | 1 | 2 | –* | 10 | 5 | 7 | see card | – | 25 | (not recorded) | - | - |
+| H-19 | HF Sinclair | 2025-08-17 | USA25051 | crash, rig-quarantined | 1 | 1 | 10 | 103 | – | 30 | quarantined | 41 | 143 | 4,934 | 48 | 48 |
+| H-19 | HF Sinclair | 2026-07-13 | USA26038 | crash, rig-quarantined | 1 | 1 | 7 | 74 | 6 | 2 | quarantined | 55 | 89 | 4,934 | 67 | 67 |
+| H-20 | HF Sinclair | 2025-08-17 | USA25051 | crash, rig-quarantined | 1 | 1 | 22 | 69 | – | 38 | quarantined | 63 | 129 | 2,868 | 42 | 42 |
+| H-20 | HF Sinclair | 2026-07-11 | USA26038 | crash, rig-quarantined | 1 | 2 | 5 | 98 | – | 13.5 | quarantined | 19 | 118 | 2,868 | 29 | 15 |
+| H-28 | P66 | 2024-01-20 | 24012 | crash, combined-heaters | 1 | ? | 14 | 143 | – | 15 | combined | 31 | 172 | 1,865 | - | - |
+| H-28 | P66 | 2025-05-10 | USA25041 | routine, combined-heaters | 1 | ? | 5 | 117 | – | 9 | combined | 1 | 131 | 1,865 | - | - |
+| H-29 | P66 | 2024-01-20 | 24012 | crash, combined-heaters | 1 | ? | 14 | 143 | – | 15 | combined | 31 | 172 | 2,373 | - | - |
+| H-29 | P66 | 2025-05-10 | USA25041 | routine, combined-heaters | 1 | ? | 5 | 117 | – | 9 | combined | 1 | 131 | 2,373 | - | - |
+| 7-1 F-1 | Syncrude | 2024-04-05 | CND24002 | routine, hours-blended | 2 | ? | 9.5 | 68.5 | 9 | 7.5 | 2-rig-sum | 36 | 96 | 17,893 | 261 | - |
+| 7-1 F-1 | Syncrude | 2025-09-07 | CND25004 | routine, hours-blended | 2 | ? | 14 | 119 | 18 | 13 | 2-rig-sum | 192 | 164 | 17,893 | 150 | - |
+| H-102A | Valero | 2026-03-26 | USA26025 | crash | 1 | 3 | 27* | 232 | 16 | –* | see card | 176 | 275 | 9,248 | 40 | 13 |
+| H-102B | Valero | 2026-03-26 | USA26025 | crash | 1 | 3 | 34.5* | 242.5 | 31 | –* | see card | 179 | 308 | 9,248 | 38 | 13 |
+
+> **`Rig method` — read this before comparing any two rig figures** (DQ-017 Q3). The Rig-In and Rig-Out columns are **mixed-method**: cells that print alike were produced five different ways, and a rule fitted across them inherits the defect. `unmarked` = no method problem is *recorded* — **not** a verified measurement; HF-0011's Rig-Out of 3 is the billed figure with a further 8 hrs customer-signed and never billed, and nothing on that row says so. `combined` = the hours are a multi-heater job total written on each card. `2-rig-sum` = summed across rigs, not elapsed (7-1 F-1 CND25004's rig-in 14 = 6 + 6 + 2 across three coil sets). `blended` = the source did not separate this row's tasks cleanly; the card says which. `see card` = the cell carries a `*` footnote, and the reasons genuinely differ — Valero bundles rig-in + rig-over + rig-out into one "Rigging" figure, while the Flint Hills pair is one continuous rig-over where each heater's missing side is absent by design. `quarantined` = the job's own sources do not reconcile (both HF Sinclair heaters, USA25051/USA26038 — see their card row notes). **Only `unmarked` rows are candidates for deriving anything, and they are candidates, not evidence.**
+
+> **5 of 25 rows carry a rig-in/rig-out pair that is both `unmarked` and complete** (6 rows are `unmarked`, but not all record both figures). That is the whole population available for any question about how rig-out relates to rig-in — small enough that a difference between a handful of jobs will look like a difference between facilities. Count the distinct **jobs** behind these rows before reading a pattern into them.
 
 ## ft/hr per pig by job class
 
@@ -78,4 +82,4 @@ Mode-normalized per-pig rates (elapsed ÷ Mode), so jobs run in different modes 
 
 - With **25** actual job row(s), this is a growing dataset, not a calibrated model. Treat per-job ft/hr as anecdotes until several same-service jobs accumulate.
 - **Check the per-coilset spread before deriving a rate from any row** (Jesse, 2026-08-20 / DQ-027). Coils on one heater clean within a few hours of each other; a coil set 12–24 hrs off its siblings means a problem specific to that coil that decoke, or corrupt data. Derive off the sets that cluster, never the outlier, and say in the duration math that you excluded it. Rows here are per-job heater totals, so the spread is not visible from this table — go to the card's Field Notes / job report.
-- Rig-In/Rig-Out actuals well off the 6/6 hr defaults, or ft/hr consistently off 100, are the signal to revisit the Duration Model — raise it with Jesse rather than editing the skill from here.
+- **Rig-In/Rig-Out actuals well off the 6/6 hr defaults are a signal only on `unmarked` rows** — check the `Rig method` column first. A `combined`, `2-rig-sum`, `blended`, `see card` or `quarantined` row is far off the default because of how the number was produced, not because the job ran long, and reading it as a duration signal is the specific error this column exists to prevent. ft/hr consistently off 100 is the other signal. Either way, raise it with Jesse rather than editing the skill from here.

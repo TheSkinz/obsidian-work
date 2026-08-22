@@ -242,6 +242,18 @@ DERIVED but hand-entered (no formula layer) — re-sum on any edit, do not trust
         recorded hours are the JOB total, not this heater's share — the same row then
         appears on each heater's card. Suppresses ft/hr in the rollup, which would
         otherwise charge the full combined hours against one heater's footage.
+        Append `, rig-quarantined` (added 2026-08-21, DQ-017 Q3) when this job's RIG
+        figures must not feed a duration rule — the job's own sources disagree, the
+        configuration changed mid-job, or the rig moved to another heater rather than
+        demobbing. The hours stay in the table as billing actuals; the token blocks
+        derivation only, and the card's row note carries the reason. In use on all four
+        HF Sinclair rows (Jesse, 2026-08-21: USA25051 "was chaotic… not a great project
+        to get reliable data from"). Reach for it when the reason is job-specific and
+        the numbers are otherwise real — not for a figure you merely doubt.
+        THESE QUALIFIERS ARE APPENDED AFTER A COMMA and never replace the job class:
+        `estimating_rollup.py` keys job-class segmentation on the text BEFORE the first
+        comma, so `crash, rig-quarantined` still counts as `crash`. Writing a qualifier
+        into the first position would silently move a published mean.
         NEVER estimate a routine job from crash rows, or a crash mob from routine rows —
         they are different job classes and their hours are not interchangeable. That
         prohibition stands on its own; it does not rest on a claim that crash coils are
