@@ -5,10 +5,13 @@ created: 2026-08-21
 tags: [estimating, duration, syncrude, CND26001, 7-1-F-1]
 ---
 
-# CND26001 duration build-up — looped 8→4, and the one number that moves it three shifts
+# CND26001 duration build-up — looped 8→4, settled at 84 hrs / 7 shifts
 
-Worked 2026-08-21 after Jesse confirmed the looping election. **Time-boxed: mob 2026-08-25.**
+Worked 2026-08-21 after Jesse confirmed the looping election, and **closed the same day** when he
+resolved the CND25004 coils 1 & 8 question that had been the one open input. **Mob 2026-08-25.**
 Reference working note, not a quote. Rates and elections are per-job inputs.
+
+**Answer: 84 hrs, 7 shifts** — rig-in 8 · pig 47 · smart pig 18 · rig-out 8 = 81 raw, landed at 84.
 
 ## Inputs
 
@@ -26,61 +29,59 @@ Reference working note, not a quote. Rates and elections are per-job inputs.
 
 **Pairing does not affect hours.** All 8 coils are identical, so every pairing gives the same 4,474 ft circuit. What pairing changes is loop-spool routing at the outlet end, not the duration. Do not hold the estimate for it.
 
-**Mode was confirmed on 2026-08-21 and no figure below moved** — the build-up had already assumed two circuits per Trimax in one set, which is what Jesse stated. The change is that the 70 / 37 hr pigging figures and the 104 / 71 raw totals now rest on a stated equipment plan rather than on my inference.
+**Mode was confirmed by Jesse on 2026-08-21**, matching what the build-up had assumed — two circuits per Trimax in one set. It matters more than it first appeared: because each Trimax runs *two* looped circuits rather than the one that earned the 124 ft/hr precedent, it is the reason a parallel allowance applies at all. See Rate basis.
 
 ## Rate selection
 
 Condition- and heater-matched actuals exist, so they govern over the 100 ft/hr benchmark. Per the outlier rule, the 48-hr set (Trimax 5, coils 2/3/4, 47 ft/hr) is **excluded** — it ran the same rig configuration and mode as the 35-hr set on the same heater and came out 13 hrs apart, which is a problem specific to that coil set, not how this heater cleans. Stated here because an unstated exclusion is indistinguishable from cherry-picking.
 
-That leaves two clustering sets, and **they do not agree on the question that matters:**
+That leaves two clustering sets, and **the governing one is now settled:**
 
-- **Trimax 6, coils 5/6/7, triple mode, 35 hrs → 64 ft/hr per pig.** Unambiguous: three separate coils, elapsed against one coil's footage. Embeds triple-mode parallel friction.
-- **Trimax 6, coils 1 & 8, double mode, 36 hrs → 62 ft/hr *or* 124 ft/hr.** Unresolved. If 1 & 8 ran **looped**, the 36 hrs covered 4,474 ft in series and the rate is 124.
+- **Trimax 6, coils 1 & 8, LOOPED into one 4,474 ft circuit, 36 hrs → 124 ft/hr per pig.** **RESOLVED 2026-08-21** (Jesse): 1 & 8 were looped and were the only looped pair on CND25004. It was a deliberate test of whether a looped pair is too much footage for one circuit and whether it could still be done in a similar time. It could — and that result is why CND26001 loops all eight. **This is a direct precedent for exactly the operation CND26001 runs**, on this heater, this service, this job class.
+- **Trimax 6, coils 5/6/7, triple mode, 35 hrs → 64 ft/hr per pig.** Retained as the parallel-friction reference below, not as the rate.
 
-## The two readings
+**The test result, in the numbers:** 4,474 ft looped in 36 hrs against 2,237 ft per coil unlooped in 35 hrs. Double the footage per circuit for one hour more elapsed. The looped circuit is not close to a limit.
 
-**A — 1 & 8 ran UNLOOPED (fall back to the 64 ft/hr triple set).**
+## Rate basis and the one allowance that applies
 
-```
-per circuit   4,474 ft ÷ 64 ft/hr = 69.9  →  70 hrs   (circuit round-up)
-sets          4 circuits, 2 per Trimax (double)     →  1 set, 0 rig-overs
-allowance     NONE ADDED — see below
-elapsed pig                                   70 hrs
-```
+**124 ft/hr is the rate. But it was earned single-circuit, and CND26001 is not.** On CND25004 the sets ran **sequentially** — when Trimax 6 pigged the looped 1 & 8, that circuit had the rig's undivided attention. CND26001 asks **each Trimax to run two looped circuits at once**. So unlike the 64 ft/hr triple figure, **124 does not already embed multi-circuit friction**, and the 25–40% band applies on top of it. This is the one place the precedent does not transfer clean.
 
-**B — 1 & 8 ran LOOPED (124 ft/hr is a direct precedent for this exact operation).**
+**Where in the band, and why.** Sitting at the **low end, 25%**, on the grounds the skill names: single bore throughout with no telescoping and no size sequencing, all connections at grade, a known heater on its third campaign with the same rig pair, and only **two** circuits per rig — the mildest multi-circuit case there is. Against that, CND25004's own data suggests going from one circuit to three roughly halved each pig's speed (0.00805 vs 0.01565 hr/ft), so one-to-two could plausibly sit at the top of the band instead.
+
+**It does not matter — and that is the useful part.** Both ends of the band land on the same shift count:
 
 ```
-per circuit   4,474 ft ÷ 124 ft/hr = 36.1  →  37 hrs
-sets          4 circuits, 2 per Trimax (double)      →  1 set, 0 rig-overs
-elapsed pig                                    37 hrs
+25%   37 × 1.25 = 46.25  →  47 hrs   →  raw total 81  →  84 hrs = 7 shifts
+40%   37 × 1.40 = 51.8   →  52 hrs   →  raw total 86  →  84 hrs = 7 shifts
 ```
 
-**No parallel-friction allowance is stacked on either.** The 25–40% band applies to a rate that has not already been degraded; both of these are set-elapsed against one coil's footage on *this heater*, so they already embed their own job's friction. Adding the band on top double-counts — the skill's own caution. Directionally the CND26001 profile is no worse than the source: 2 circuits per Trimax across two rigs and two crews is milder than one Trimax running three.
+The estimate is **insensitive to the allowance judgment**, so no effort is worth spending narrowing it. Carrying **25% / 47 pigging hrs** as the stated figure.
+
+```
+per circuit   4,474 ft ÷ 124 ft/hr = 36.1  →  37 hrs   (circuit round-up — step 1)
+allowance     37 × 1.25 = 46.25            →  47 hrs   (allowance on the ROUNDED 37, then
+                                                        round the set — step 2)
+sets          4 circuits, 2 per Trimax (double) → 1 set, 0 rig-overs
+elapsed pig                                       47 hrs
+```
 
 ## Build-up
 
-| Line | A (unlooped basis) | B (looped basis) | Basis |
-|---|---|---|---|
-| Rig-in | 8 | 8 | Large tier. All at grade, but 8 circuit lines across 2 Trimax at double. **Vault rig-in actuals deliberately not used** — mixed-method column, per the skill. |
-| Pig | 70 | 37 | Above |
-| Smart pig | 18 | 18 | CND25004 actual. Quest smart-pigged all 8 coils on both prior jobs; **election for CND26001 is TBD**. |
-| Rig-over | 0 | 0 | `ceil(4 ÷ 4) − 1 = 0` — all four circuits run at once |
-| Rig-out | 8 | 8 | Mirrors rig-in |
-| **Raw total** | **104** | **71** | |
-| Shift landing | 8.7 shifts | 5.9 shifts | |
+| Line | Hrs | Basis |
+|---|---|---|
+| Rig-in | 8 | Large tier. All at grade, but 8 circuit lines across 2 Trimax at double. **Vault rig-in actuals deliberately not used** — mixed-method column, per the skill. |
+| Pig | 47 | Above: 124 ft/hr precedent + 25% parallel allowance |
+| Smart pig | 18 | CND25004 actual (CND24002 ran 9). Quest smart-pigged all 8 coils on **both** prior campaigns, so it carries on the recurrence — not treated as an open election. |
+| Rig-over | 0 | `ceil(4 ÷ 4) − 1 = 0` — all four circuits run at once |
+| Rig-out | 8 | Mirrors rig-in |
+| **Raw total** | **81** | |
+| **Landed** | **84 — 7 shifts** | +3, small and one-directional |
 
-**Reading A trips the mid-band diagnostic.** 104 sits 8 above 96 and 4 below 108 — both landings are large, which per the rule means an input is unresolved rather than the job genuinely falling between shifts. **Do not book a pad.** The softest line is named below and it is worth 33 hours, far more than any landing adjustment.
+**The landing is stable.** 81 sits 9 above 72 and 3 below 84, so it is not in the middle third and the mid-band diagnostic does not fire — the nearer boundary is also the one the residual risk points toward. And as shown above, a 40% allowance instead of 25% raises the raw to 86 and **still lands on 84**. The shift count does not move on any judgment left in this build-up.
 
-**Reading B lands at 72 (6 shifts) on its own**, +1 from raw — the signature of a build-up whose inputs are settled.
+**Shift-boundary fragility:** 81 raw against an 84 landing leaves **3 hours of slack** before the job needs an eighth shift. That is thin. The line most likely to consume it is smart pig, which ran 18 hrs on CND25004 but 9 on CND24002 — if it lands nearer 9, the total drops to 72 and the job is 6 shifts, not 7. **That is the swing worth watching**, and it is the same size as the whole landing adjustment.
 
-## The one thing worth resolving before mob
-
-**Did CND25004's coils 1 & 8 run looped?** It is worth **33 pigging hours — close to three shifts** — and it is the difference between a clean 6-shift job and a 9-shift one. Resolvable two ways: the CND25004 ticket breakdown, or Jesse's recollection.
-
-Evidence currently splits. The drawing shows 1 & 8's outlet spools already paired at grade, and they were the one non-triple grouping on that job — both point looped. Against that, the set is recorded as **double mode**, and by the card's own convention Mode counts passes pigged *simultaneously*, so a looped 1 & 8 would have been mode 1. That is a ticket label, not proof.
-
-Until it is settled, **carry A (104 raw) as the estimate** — it is the defensible reading, and the residual risk on this heater runs one-directional toward longer, not shorter.
+**For comparison, what looping buys.** CND25004 pigged the same 8 coils in three sequential sets for **119 pig hours**. CND26001 does all 8 in one set of 4 looped circuits for **47**. The test that produced the 124 ft/hr figure is the reason.
 
 ## Stand-by history — recorded, not forecast
 
