@@ -13,6 +13,15 @@ Reference working note, not a quote. Rates and elections are per-job inputs.
 
 **Answer: 84 hrs, 7 shifts** — rig-in 8 · pig 47 · smart pig 18 · rig-out 8 = 81 raw, landed at 84.
 
+> [!important] Scope — this is a reference expectation, not an estimate, and nothing here is an open item.
+> **CND26001 is already quoted, awarded, and about to execute for the third time** (Jesse, 2026-08-21).
+> There is no bid to price and no number anyone is going to re-open before mob. **If the job goes over,
+> it goes to a change order and other people negotiate it** — that is not Jesse's line and not this note's.
+> So the shift-landing, band-position and boundary-slack machinery below is **bid-time apparatus applied
+> after the fact.** It was worth computing for exactly two reasons and no others: (1) it says what to
+> expect on site, and (2) it becomes the quote-vs-actual comparison once the Task Durations row is filled
+> in after the job. **Do not read any line below as a thing to confirm, chase, tighten, or raise.**
+
 ## Inputs
 
 | Input | Value | Source |
@@ -79,7 +88,7 @@ elapsed pig                                       47 hrs
 
 **The landing is stable.** 81 sits 9 above 72 and 3 below 84, so it is not in the middle third and the mid-band diagnostic does not fire — the nearer boundary is also the one the residual risk points toward. And as shown above, a 40% allowance instead of 25% raises the raw to 86 and **still lands on 84**. The shift count does not move on any judgment left in this build-up.
 
-**Shift-boundary fragility:** 81 raw against an 84 landing leaves **3 hours of slack** before the job needs an eighth shift. That is thin. The line most likely to consume it is smart pig, which ran 18 hrs on CND25004 but 9 on CND24002 — if it lands nearer 9, the total drops to 72 and the job is 6 shifts, not 7. **That is the swing worth watching**, and it is the same size as the whole landing adjustment.
+**Smart pig is the widest line** — 18 hrs on CND25004 against 9 on CND24002. At the low end the total is 72 and the job runs 6 shifts rather than 7. Noted so the range is on the record, **not as something to pin down**: see the scope note below.
 
 **For comparison, what looping buys.** CND25004 pigged the same 8 coils in three sequential sets for **119 pig hours**. CND26001 does all 8 in one set of 4 looped circuits for **47**. The test that produced the 124 ft/hr figure is the reason.
 
