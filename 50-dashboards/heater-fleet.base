@@ -1,0 +1,64 @@
+filters:
+  and:
+    - note.type == "heater"
+
+properties:
+  note.heater-tag:
+    displayName: Heater
+  note.heater-type:
+    displayName: Type
+  note.service:
+    displayName: Service
+  note.facility:
+    displayName: Facility
+  note.client:
+    displayName: Client
+  note.verified:
+    displayName: Verified
+
+views:
+  - type: table
+    name: By client
+    groupBy:
+      property: note.client
+    order:
+      - note.heater-tag
+      - note.heater-type
+      - note.service
+      - note.facility
+      - note.verified
+
+  - type: table
+    name: By type
+    groupBy:
+      property: note.heater-type
+    order:
+      - note.heater-tag
+      - note.service
+      - note.client
+      - note.facility
+      - note.verified
+
+  - type: table
+    name: Never verified
+    filters:
+      and:
+        - note.verified == "never"
+    groupBy:
+      property: note.client
+    order:
+      - note.heater-tag
+      - note.service
+      - note.facility
+      - note.source
+
+  - type: table
+    name: Verification log
+    filters:
+      and:
+        - note.verified != "never"
+    order:
+      - note.verified
+      - note.heater-tag
+      - note.client
+      - note.source

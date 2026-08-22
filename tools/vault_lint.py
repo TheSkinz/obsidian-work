@@ -16,12 +16,20 @@ Rules (code | severity):
     SUPERSEDED      warning  note declares superseded_by but is still marked live
     DURATIONS-HEADER warning heater-card Task-Durations header off the canonical schema
     TUBE-GEOM-HEADER warning heater-card Tube-Geometry header off the canonical schema
+    HEATER-TYPE-VOCAB error  heater-card heater-type outside the canonical vocabulary
+    VERIFIED-FORMAT error    heater-card verified: is not a date or `never`
     ROLLUP-SCALE    warning  heater-card Config Rollup: heater total is not a whole multiple of per circuit
     LINK-FACILITY   warning  wikilink into the wrong facility, or a bare ambiguous [[_facility]]
     POINTER-DEAD    warning  recorded absolute source path no longer resolves
     YAML-COMMENT    error    unquoted frontmatter value silently truncated by a ` #` comment
     WORD-DELTA      warning  words left a note (--staged / --worktree only; see below)
     CHECKBOX-DELTA  warning  a decision box moved on an already-closed note (ditto)
+
+HEATER-TYPE-VOCAB and VERIFIED-FORMAT are errors on DQ-006's TUBE-GEOM-HEADER
+precedent: both were migrated to zero on 2026-08-21, so they fire on no existing
+file and are pure drift protection with no backlog. A warning that starts at zero
+just joins a pile nobody reads; an error that starts at zero can only ever mean
+someone typed a new value, which is exactly the event worth stopping for.
 
 SECRET, CONF-CONFLICT, YAML-COMMENT and DEAD-LINK are errors (exit 1).
 Everything else is a warning so the vault is never "failing" for want of a bulk
@@ -246,7 +254,8 @@ POINTER_RE = re.compile(r"`((?:[A-Za-z]:\\|/)[^`\n]{3,})`")
 WORD_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9._#/'-]*")
 TRAILING_PUNCT = ".,;:'-"
 
-ERROR_CODES = {"SECRET", "CONF-CONFLICT", "YAML-COMMENT", "DEAD-LINK"}
+ERROR_CODES = {"SECRET", "CONF-CONFLICT", "YAML-COMMENT", "DEAD-LINK",
+               "HEATER-TYPE-VOCAB", "VERIFIED-FORMAT"}
 
 
 class Finding:
@@ -696,6 +705,84 @@ def check_tube_geom_header(root: Path, notes: dict[Path, str]) -> list[Finding]:
     return findings
 
 
+# Canonical heater-type vocabulary — mirrors `04-knowledge/_canonical-heater-card.md`,
+# the template, and usadebusk-vault-ingest. `coker` was added 2026-08-21: the estimating
+# derate names coker as a fouling class ("harder fouling (coker / crude / vacuum)") but
+# the vocabulary had no value for it, so five cards used it off-schema. The spec was
+# wrong, not just the data. Change it here and in all three of those files together.
+HEATER_TYPES = {"crude", "vacuum", "coker", "reboiler", "other"}
+
+# `verified` answers exactly one question — when was this card last checked against a
+# primary source — so it is a date or the literal `never`. Before 2026-08-21 the field
+# was undocumented (absent from the exemplar's frontmatter block) while OP-FRONTMATTER
+# already lint-checked its PRESENCE, and ten cards had put a prose sentence in it, one
+# of them forty words long. What was checked belongs in `## Notes`; this field is typed.
+VERIFIED_RE = re.compile(r"^(\d{4}-\d{2}-\d{2}|never)$")
+
+
+def _heater_cards(notes: dict[Path, str]):
+    """Yield (path, frontmatter) for notes that are actual heater cards.
+
+    Keyed on `type: heater` rather than the folder, so a fixture under
+    tools/fixtures/ exercises these rules exactly as a live card does.
+
+    Underscore-prefixed files are excluded: `_canonical-heater-card.md` and
+    `_heater-template.md` both declare `type: heater` but hold PLACEHOLDER
+    syntax in their frontmatter (`<crude | vacuum | …>`, `<YYYY-MM-DD | never>`),
+    which by construction can never satisfy a value rule. This is the same
+    "files starting with _ are exemplars/indexes" convention estimating_rollup.py
+    already uses to keep the exemplar out of the actuals table.
+
+    Note this applies only to VALUE rules. The header locks (DURATIONS-HEADER,
+    TUBE-GEOM-HEADER) deliberately DO check the exemplar, because there the
+    exemplar carries the real canonical row and checking it is the point.
+    """
+    for path, text in notes.items():
+        if path.name.startswith("_"):
+            continue
+        fm = parse_frontmatter(text)
+        if fm.get("type", "").strip() == "heater":
+            yield path, fm
+
+
+def check_heater_type_vocab(root: Path, notes: dict[Path, str]) -> list[Finding]:
+    """HEATER-TYPE-VOCAB: heater-card `heater-type` must be in the canonical set.
+
+    The failure this locks is real and was fleet-wide: 14 of 41 cards carried a
+    value off the schema, and the collisions were invisible one card at a time —
+    `vacuum heater` beside `vacuum`, `coker heater` beside `coker`, three
+    spellings across `crude`/`charge heater`/`crude charge heater`. The
+    descriptive string belongs in `service`, which already exists for it.
+    """
+    findings = []
+    for path, fm in _heater_cards(notes):
+        val = fm.get("heater-type", "").strip()
+        if val and val not in HEATER_TYPES:
+            findings.append(Finding("HEATER-TYPE-VOCAB", path,
+                f"heater-type {val!r} is not in the canonical vocabulary "
+                f"{sorted(HEATER_TYPES)} — the descriptive name belongs in `service:`"))
+    return findings
+
+
+def check_verified_format(root: Path, notes: dict[Path, str]) -> list[Finding]:
+    """VERIFIED-FORMAT: heater-card `verified` must be YYYY-MM-DD or `never`.
+
+    Presence is already checked by OP-FRONTMATTER; this checks the value, which
+    nothing did until 2026-08-21. Scoped to `type: heater` deliberately — other
+    layers use `verified` more loosely and were not migrated, so widening this
+    rule means migrating them first.
+    """
+    findings = []
+    for path, fm in _heater_cards(notes):
+        val = fm.get("verified", "").strip().strip("'\"")
+        if val and not VERIFIED_RE.match(val):
+            findings.append(Finding("VERIFIED-FORMAT", path,
+                f"verified: {val[:60]!r}{'…' if len(val) > 60 else ''} is not a date or "
+                f"`never` — put the date here and what was checked in `## Notes` "
+                f"as a **Verification:** paragraph"))
+    return findings
+
+
 ROLLUP_HEDGE_RE = re.compile(r"^(~|≈|±|\+/-|approx\.?|about|ca\.)\s*[\d.]+$", re.IGNORECASE)
 
 
@@ -1126,6 +1213,8 @@ def run_lint(root: Path, with_git: bool = True) -> list[Finding]:
     findings += check_superseded(root, notes)
     findings += check_durations_header(root, notes)
     findings += check_tube_geom_header(root, notes)
+    findings += check_heater_type_vocab(root, notes)
+    findings += check_verified_format(root, notes)
     findings += check_rollup_scale(root, notes)
     findings += check_link_facility(root, notes)
     findings += check_pointer_dead(root, notes)
@@ -1211,6 +1300,7 @@ def self_test() -> int:
     expected = {"OP-FRONTMATTER", "DEAD-LINK", "SECRET", "STATUS-VOCAB",
                 "CONF-CONFLICT", "ORPHAN",
                 "REVIEW-OVERDUE", "SUPERSEDED", "DURATIONS-HEADER", "TUBE-GEOM-HEADER",
+                "HEATER-TYPE-VOCAB", "VERIFIED-FORMAT",
                 "ROLLUP-SCALE",
                 "LINK-FACILITY",
                 "POINTER-DEAD", "YAML-COMMENT", "WORD-DELTA", "CHECKBOX-DELTA"}

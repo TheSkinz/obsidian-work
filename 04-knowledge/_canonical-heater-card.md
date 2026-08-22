@@ -7,11 +7,26 @@ facility: <Client>-<City>-<ST>
   # ↑ JOIN KEY — must exactly match the facility-id in this site's _facility.md.
   #   Commands use this to find the facility record for any heater.
 client: <Client name>
-heater-type: <crude | vacuum | reboiler | other>
+heater-type: <crude | vacuum | coker | reboiler | other>
 service: <e.g. Crude Heater, Splitter Reboiler — descriptive, optional if heater-type covers it>
 configuration: <e.g. Looped-at-Radiant-outlet-flanges, Individual-Passes>
 last-updated: <YYYY-MM-DD>
+source: <what this card was built from — document name(s), job number(s), or a person>
+verified: <YYYY-MM-DD | never>
+  # ↑ `source` and `verified` were LOAD-BEARING BUT UNDOCUMENTED until 2026-08-21 — every
+  #   card carried them and OP-FRONTMATTER lints for their presence, but this block never
+  #   listed them and nothing stated a format. Ten cards had put a prose sentence where a
+  #   date belongs, which is what that omission produced.
+  #   `verified` is now STRICTLY a date or the literal `never`, enforced by VERIFIED-FORMAT.
+  #   It answers ONE question: when was this card last checked against a primary source.
+  #   `never` is a real, expected value — it means nobody has checked, which is worth
+  #   recording, not hiding. Do not write "partially", a range, or a caveat here.
+  #   WHAT WAS VERIFIED, and what pointedly was not, goes in `## Notes` as a
+  #   `**Verification:**` paragraph. That is where "not field-verified: launcher elevation"
+  #   belongs — it is genuinely useful and it is genuinely not a date.
 tags: [heater-card, <Client>, <heater-type>]
+  # ↑ carries the heater-type value — move it when heater-type moves, or the tag and the
+  #   field disagree and only the field is linted.
 ---
 
 <!--

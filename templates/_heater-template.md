@@ -5,10 +5,15 @@ heater-tag: <e.g. F-802, 210-1401A>
 unit: <e.g. PS8, Unit 210, HU9 — omit if not applicable>
 facility: <Client>-<City>-<ST>
 client: <Client name>
-heater-type: <crude | vacuum | reboiler | other>
+heater-type: <crude | vacuum | coker | reboiler | other>
 service: <e.g. Crude Heater, Splitter Reboiler — optional if heater-type covers it>
 configuration: <e.g. Looped-at-Radiant-outlet-flanges, Individual-Passes>
 last-updated: <YYYY-MM-DD>
+source: <document(s), job number(s) or person this card was built from>
+verified: <YYYY-MM-DD | never>
+  # ↑ strictly a date or `never` (lint: VERIFIED-FORMAT). It records WHEN the card was last
+  #   checked against a primary source — nothing else. What was checked, and what was not,
+  #   goes in `## Notes` as a `**Verification:**` paragraph.
 tags: [heater-card, <Client>, <heater-type>]
 ---
 
