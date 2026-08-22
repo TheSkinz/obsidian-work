@@ -1,7 +1,6 @@
 filters:
   and:
     - note.type == "heater"
-
 properties:
   note.heater-tag:
     displayName: Heater
@@ -15,50 +14,49 @@ properties:
     displayName: Client
   note.verified:
     displayName: Verified
-
 views:
   - type: table
     name: By client
     groupBy:
-      property: note.client
+      property: client
+      direction: ASC
     order:
-      - note.heater-tag
-      - note.heater-type
-      - note.service
-      - note.facility
-      - note.verified
-
+      - heater-tag
+      - heater-type
+      - service
+      - facility
+      - verified
   - type: table
     name: By type
     groupBy:
-      property: note.heater-type
+      property: heater-type
+      direction: ASC
     order:
-      - note.heater-tag
-      - note.service
-      - note.client
-      - note.facility
-      - note.verified
-
+      - heater-tag
+      - service
+      - client
+      - facility
+      - verified
   - type: table
     name: Never verified
     filters:
       and:
         - note.verified == "never"
     groupBy:
-      property: note.client
+      property: client
+      direction: ASC
     order:
-      - note.heater-tag
-      - note.service
-      - note.facility
-      - note.source
-
+      - heater-tag
+      - service
+      - facility
+      - source
   - type: table
     name: Verification log
     filters:
       and:
         - note.verified != "never"
     order:
-      - note.verified
-      - note.heater-tag
-      - note.client
-      - note.source
+      - verified
+      - heater-tag
+      - client
+      - source
