@@ -256,6 +256,73 @@ DERIVED but hand-entered (no formula layer) — re-sum on any edit, do not trust
 
 ---
 
+## Coilset Durations
+
+<!-- Added 2026-08-21 (Jesse, DQ-017 Phase 1). OPTIONAL section — omit it entirely on cards
+with no per-coilset data; it is not a lint-locked fixture and its absence is not a gap.
+
+WHAT THIS IS. One row per COILSET as actually run — the grain at which a decoke is really
+measured. `## Task Durations` stays authoritative at the heater level and is NOT changed by
+this section; these rows SUM to the parent row of the same Job #. Where they do not sum, the
+parent row carries `hours-blended` and that marker is what says so.
+
+WHY IT EXISTS. A heater-level row cannot show that one coilset ran 13 hours off its siblings,
+and cannot yield a per-pig travel rate without the ÷Mode approximation. Both were real
+failures: the struck ~6 ft/hr Syncrude figure was built on an outlier coilset that nothing on
+the card marked as one (DQ-027), and the ÷Mode column is an approximation the parent table
+labels as such. This section fixes both by recording what one pig actually did.
+
+  COILS — the set as run: `2/3/4`, `1&8 (looped)`. Name the coils, not a rig-internal label.
+
+  RIG — which Trimax ran this set (`TM5`, `TM6`). Blank on single-rig jobs is fine.
+
+  MODE — SIMULTANEOUS CIRCUITS in this set, which CAN DIVERGE FROM THE TICKET'S LABEL.
+        CND25004's 1 & 8 set was written "double mode" because two passes were handled, but
+        the pair was LOOPED into ONE circuit — Mode is 1 here. Read the ticket's mode word as
+        a passes-handled count and record what actually ran in parallel.
+
+  CIRCUIT FT — FOOTAGE ONE PIG TRAVELS. NOT the set total. A triple-mode set of coils 2/3/4
+        is three pigs each traversing one coil (2,237 ft on 7-1-F-1), NOT one 6,711 ft
+        circuit. A looped pair is one pig traversing both coils (4,474 ft). Reading this as a
+        set total is the same per-pass-vs-heater-total error that produced the struck ~6 ft/hr
+        figure — the definition is load-bearing, not pedantry.
+        This is what makes the rate a MEASUREMENT: `ft/hr per pig = Circuit ft ÷ Pig`, with no
+        ÷Mode approximation. On CND25004 it reproduces 47 / 64 / 124 ft/hr exactly.
+
+  TASK HOURS — same conventions as `## Task Durations`: elapsed, `–` = confirmed did not
+        occur, `?` = unrecorded. Total = Rig-In + Pig + Smart Pig + Rig-Over + Rig-Out.
+
+  NO STAND-BY COLUMN, deliberately. Stand-by is a PER-RIG figure, not a per-set one — on
+        CND25004 the 192 hrs split 84 (TM5) / 108 (TM6), and TM6 ran two sets with the 108
+        unallocated between them. Stand-By stays on the parent Task Durations row.
+
+  COIL CONDITION — how dirty the coil actually WAS. Vocabulary (Jesse, 2026-08-21):
+          `light` · `moderate` · `heavy` · `unknown`
+        This is the column `Condition` on `## Task Durations` is NOT. That one holds JOB CLASS
+        (crash / routine / first) and stays unrenamed and unsplit — DQ-026 kept it that way
+        because splitting moves the lint-locked DURATIONS-HEADER across every card and most
+        historical rows would land `unknown`. Recording condition HERE costs neither. Expect
+        it blank on migrated historical rows; fouling was recorded at job level, not per set.
+
+  FLAG — the per-set data-quality marker DQ-027 had nowhere to put:
+          `clean`   = a real, cleanly-separated measurement for this set.
+          `outlier` = this set ran well off its siblings (12–24 hrs) on the same heater, same
+                      rig config, same mode. Coils on one heater clean within a few hours of
+                      each other (Jesse, 2026-08-20), so a spread that wide means a problem
+                      specific to that coil on that decoke, or corrupt data. ESTIMATE OFF THE
+                      SETS THAT CLUSTER, NEVER THE OUTLIER, and say in the duration math which
+                      set you excluded — an unstated exclusion is indistinguishable from
+                      cherry-picking. Worked case: CND25004's 48-hr set against its 35/36 hr
+                      siblings, which agree within 3%.
+          `blended` = the source allocated these hours rather than measuring them.
+          `unknown` = quality not recoverable from the source documents.
+-->
+| Job # | Coils | Rig | Mode | Circuit ft | Rig-In | Pig | Smart Pig | Rig-Over | Rig-Out | Total | Coil condition | Flag |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| | | | | | | | | | | | | |
+
+---
+
 ## SOPs
 
 <!-- Card-specific procedural notes/links, if any. Leave header present even if empty. -->

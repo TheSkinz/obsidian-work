@@ -126,6 +126,28 @@ tags: [heater-card, <Client>, <heater-type>]
 
 ---
 
+## Coilset Durations
+<!-- OPTIONAL — delete this section on cards with no per-coilset data; its absence is not a gap.
+     One row per COILSET as run. Rows SUM to the parent Task Durations row of the same Job #;
+     where they don't, the parent carries `hours-blended`. Task Durations is unchanged by this.
+     Coils = the set as run (`2/3/4`, `1&8 (looped)`). Rig = which Trimax.
+     Mode = SIMULTANEOUS CIRCUITS, which can differ from the ticket's word — a looped pair
+     written "double mode" ran as ONE circuit, so Mode 1.
+     Circuit ft = FOOTAGE ONE PIG TRAVELS, never the set total. Triple-mode 2/3/4 = one coil's
+     footage (three pigs at once); a looped pair = both coils. Then ft/hr per pig = Circuit ft
+     ÷ Pig, a measurement rather than the parent table's ÷Mode approximation.
+     No Stand-By column — stand-by is per-rig, not per-set; it stays on the parent row.
+     Coil condition = how dirty the coil WAS: light | moderate | heavy | unknown. This is NOT
+     Task Durations' `Condition`, which is job class. Blank on most historical rows.
+     Flag = clean | outlier | blended | unknown. `outlier` = this set ran 12–24 hrs off its
+     siblings on the same heater/rig/mode — estimate off the sets that CLUSTER, never the
+     outlier, and state which set you excluded. Full spec in 04-knowledge/_canonical-heater-card.md. -->
+| Job # | Coils | Rig | Mode | Circuit ft | Rig-In | Pig | Smart Pig | Rig-Over | Rig-Out | Total | Coil condition | Flag |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| | | | | | | | | | | | | |
+
+---
+
 ## SOPs
 
 ---
