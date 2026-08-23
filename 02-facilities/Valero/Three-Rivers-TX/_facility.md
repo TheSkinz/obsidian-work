@@ -23,7 +23,7 @@ tags: [facility, Valero]
 | Site contact phone | (not recorded) |
 | Escort requirements | (not recorded) |
 
-Distance from the Deer Park shop is roughly **240–250 one-way road miles** — bracketed from a sourced Houston→Three Rivers figure of 218–223 mi via US-59/US-77 plus Deer Park's offset east of Houston. Not a routed figure; route it against the shop address before any mob/demob number goes to a customer.
+Distance from the Deer Park shop is **240 one-way road miles**, the figure DSP#26100 mobilised against. (A 240–250 bracket had been estimated before the workup landed; the quote settles it.)
 
 ---
 
@@ -77,6 +77,12 @@ Source: `DSP_26094_Valero_TXC_H58_furnace_Decoke_July_2026.xlsx`, `Rate Sheet` t
 **The drain-hose and pressure-hose lines matter at this site.** The $500 pumper rate includes hoses, so these bill only for hose beyond that complement — and with every planned connection at grade on the radiant outlet flanges, a long pumper-to-flange run converts directly into a daily revenue line rather than absorbed cost. Measure the run rather than estimating it.
 
 **The 15% markup tier is stated against the pigs line.** Whether the same tier governs a large subcontract pass-through (the SteadyFlux intelligent-pigging scope is $262,600) is a contract question, not an arithmetic one. Confirm before applying it.
+
+---
+
+## Quotes
+
+- [[DSP26100]] — Aug 2026 emergency decoke + smart pig, all three heaters. $415,220.82, sent 2026-08-22, valid to 2027-03-10.
 
 ---
 

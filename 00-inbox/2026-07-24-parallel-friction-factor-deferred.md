@@ -1,5 +1,12 @@
 <!-- vault-loop: operational — duration-model pricing question, Lane 4 (04-knowledge scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
-<!-- vault-prestaged: skipped — already covered by the `usadebusk-estimating` skill (config commit 71efec5, Jesse 2026-07-28): parallel-friction is now a written 25-40% band applied to any multi-circuit pass set, replacing the "deliberately left unpriced" state this note describes. The note's own revisit-trigger (a 3rd/4th routine multi-pass row) never fired — Jesse ruled a bounded range off the existing 2-row evidence instead of waiting on more rows -->
+<!-- vault-prestaged: RESOLVED 2026-08-23 — this note was right and the rule that superseded it is struck.
+     The 25-40% band (config commit 71efec5, 2026-07-28) has been removed from `usadebusk-estimating`.
+     Jesse, 2026-08-23: "I don't remember ever making a rule like that." Parallel is free — a designated
+     pigging tech is assigned to each pass, runs their own pump and circuit and changes their own pig in
+     30 seconds to 5 minutes; double mode takes no longer than single. This note's own confound analysis
+     ("both rows carry service and geometry confounds... some of that gap is double-counted fouling rather
+     than parallelism") was the correct reading, and its warning that "Claude reached for exactly +25% twice,
+     unprompted... a model artifact, not evidence" describes what the band actually encoded. -->
 ---
 type: note
 status: inbox
