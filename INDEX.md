@@ -85,6 +85,10 @@
 - [[02-facilities/Valero/Port-Arthur-TX/_facility|_facility]] — Valero — Port Arthur, TX `(Valero/Port-Arthur-TX)`
 - [[H-102A]] — H-102A Vacuum Heater — Valero Port Arthur, TX `(Valero/Port-Arthur-TX)`
 - [[H-102B]] — H-102B Vacuum Heater — Valero Port Arthur, TX `(Valero/Port-Arthur-TX)`
+- [[100-H-1]] — 100-H-1 Crude Charge Heater — Valero Three Rivers, TX `(Valero/Three-Rivers-TX)`
+- [[100-H-2]] — 100-H-2 Crude Charge Heater — Valero Three Rivers, TX `(Valero/Three-Rivers-TX)`
+- [[02-facilities/Valero/Three-Rivers-TX/_facility|_facility]] — Valero — Three Rivers, TX `(Valero/Three-Rivers-TX)`
+- [[H-1102]] — H-1102 Crude Preflash Reboiler — Valero Three Rivers, TX `(Valero/Three-Rivers-TX)`
 - [[02-facilities/Westlake-Chemical/Westlake-LA/_facility|_facility]] — Westlake South — Westlake, LA `(Westlake-Chemical/Westlake-LA)`
 - [[DSP26095]] — DSP26095 — Westlake South H-101 (TE II) EDC Furnace Decoke, September 2026 `(Westlake-Chemical/Westlake-LA)`
 - [[H-101]] — H-101 TE II EDC Furnace — Westlake South, Westlake, LA `(Westlake-Chemical/Westlake-LA)`
