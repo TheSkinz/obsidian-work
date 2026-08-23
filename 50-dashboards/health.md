@@ -11,7 +11,7 @@
 | Inbox items | 55 | - | ok |
 | Inbox median age | 5 d | < 14 d | ok |
 | Inbox oldest item | 26 d | < 30 d | ok |
-| Days since last commit | 1 d | - | ok |
+| Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
 | Pending quotes expired | 0 | 0 | ok |
 | Open decisions not in the queue | 0 | 0 | ok |
@@ -62,12 +62,12 @@ One row per frozen fixture in `~/.claude/regression/frozen/`. Each reads its own
 
 | Fixture | Commits behind | Status |
 |---|---|---|
-| f1-rfq-to-proposal | claude-config 9 · vault 5 | behind |
+| f1-rfq-to-proposal | claude-config 10 · vault 6 | behind |
 | f2-vault-ingest-dryrun | claude-config 4 | behind |
 | f3-fieldpm-extract | claude-config 16 | behind |
 | f4-sop-formatting-pass | claude-config 3 · vault 0 | behind |
 | f5-pig-sizing | claude-config 2 | behind |
-| f6-duration-mobdemob | claude-config 11 · vault 5 | behind |
+| f6-duration-mobdemob | claude-config 12 · vault 6 | behind |
 
 ## Notes
 
