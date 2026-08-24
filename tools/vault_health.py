@@ -8,7 +8,7 @@ discipline.
 
 What it trends (the numbers you can act on in one glance):
     - open decision rows        (from 50-dashboards/decision-queue.md)
-    - review notes awaiting a decision (unchecked Decision boxes in 06-insights)
+    - review notes awaiting a decision (unchecked Decision boxes in 06-reviews)
     - inbox items + median age  (git commit dates)
     - lint errors / warnings    (tools/vault_lint.py)
     - days since last commit    (basic liveness signal)
@@ -167,17 +167,17 @@ def count_open_decisions(root: Path) -> int:
 
 
 def count_pending_reviews(root: Path) -> int:
-    """Review notes in 06-insights with at least one unchecked Decision box.
+    """Review notes in 06-reviews with at least one unchecked Decision box.
 
     This is the 'what needs Jesse' number: loops write review notes with
     empty checkboxes, and an unreviewed pile is where compounding stalls.
     Surfaced at session startup via CLAUDE.md's health-check rule.
     """
-    insights = root / "06-insights"
-    if not insights.is_dir():
+    reviews = root / "06-reviews"
+    if not reviews.is_dir():
         return 0
     pending = 0
-    for p in sorted(insights.glob("*.md")):
+    for p in sorted(reviews.glob("*.md")):
         try:
             text = p.read_text(encoding="utf-8", errors="replace")
         except OSError:
@@ -208,13 +208,13 @@ def unqueued_decisions(root: Path) -> list[str]:
     just counting. Second of the two checks the 2026-08-20 architecture audit
     found missing; defect-triggered, silent when the queue is whole.
     """
-    insights = root / "06-insights"
+    reviews = root / "06-reviews"
     q = root / QUEUE_REL
-    if not insights.is_dir() or not q.is_file():
+    if not reviews.is_dir() or not q.is_file():
         return []
     queue_text = q.read_text(encoding="utf-8")
     missing = []
-    for p in sorted(insights.glob("*.md")):
+    for p in sorted(reviews.glob("*.md")):
         try:
             text = p.read_text(encoding="utf-8", errors="replace")
         except OSError:
@@ -688,7 +688,7 @@ def build(root: Path) -> str:
         "",
         f"- **Decision queue:** [[decision-queue]] — {open_dec} open. Cap is 10; "
         "over cap, proposal-generating loops pause.",
-        f"- **Review notes awaiting decision:** {pending_rev} in `06-insights/` with unchecked "
+        f"- **Review notes awaiting decision:** {pending_rev} in `06-reviews/` with unchecked "
         "Decision boxes. Any session that sees this above 0 should offer to walk through them — "
         "unreviewed proposals are where compounding stalls.",
         "- **Lint warnings** are the standing to-do list, not failures — today mostly ORPHAN "

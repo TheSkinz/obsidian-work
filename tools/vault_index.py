@@ -31,7 +31,7 @@ SECTIONS = [
     ("01-context", "Context (auto-loaded every session)"),
     ("02-facilities", "Facilities & Heater Cards"),
     ("04-knowledge", "Knowledge"),
-    ("06-insights", "Insights & Reviews"),
+    ("06-reviews", "Reviews"),
     ("07-llms", "LLMs"),
     ("08-systems", "Systems"),
     ("09-interests", "Interests"),

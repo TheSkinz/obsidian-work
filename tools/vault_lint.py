@@ -72,7 +72,7 @@ the whole idea: on 2026-07-19 B-101.md sat *dirty in the working tree* carrying
 an exact content reversal, never staged, camouflaged by table auto-formatting.
 Nothing staged, nothing to compare, no finding. --worktree is that gap closed —
 run it at session start to catch a revert that is sitting on disk right now.
-(Jesse's approval of proposal A, 06-insights/2026-07-28-prestaged-stale-editor-
+(Jesse's approval of proposal A, 06-reviews/2026-07-28-prestaged-stale-editor-
 buffer-guard.md.)
 
 Usage:
@@ -195,7 +195,7 @@ FENCE_RE = re.compile(r"^\s*(```|~~~)")
 # Excluded by design: 00-inbox (transient), 01-context (auto-loaded every
 # session), 02-facilities (navigated by folder path, not links),
 # 50-dashboards (generated). Files starting with "_" are exemplars/indexes.
-ORPHAN_DIRS = ("04-knowledge", "06-insights", "07-llms", "08-systems", "09-interests")
+ORPHAN_DIRS = ("04-knowledge", "06-reviews", "07-llms", "08-systems", "09-interests")
 
 # Canonical heater-card Task-Durations header — mirrors the exemplar
 # `04-knowledge/_canonical-heater-card.md`. The exemplar is the human-facing
@@ -1040,7 +1040,7 @@ def checkbox_delta(before: str, after: str) -> list[str]:
 # and every remaining hit is a single word from an idea-seed status flip
 # (`unexplored` -> `researched`). Real content loss across all 43: zero. That 100%
 # is why the loops could not simply be switched to --worktree; see
-# 06-insights/2026-08-06-prestaged-checkbox-delta-trigger.md.
+# 06-reviews/2026-08-06-prestaged-checkbox-delta-trigger.md.
 #
 # KNOWINGLY INSIDE THIS: `50-dashboards/decision-queue.md`, which is hand-
 # maintained rather than script-owned. A marker-based test (skip files carrying
@@ -1076,7 +1076,7 @@ def check_diff_rules(root: Path, mode: str = "staged") -> list[Finding]:
                  the working tree carrying a content reversal, never staged, so
                  the staged-only rule could not see it. Added 2026-07-28 on
                  Jesse's approval of proposal A in
-                 06-insights/2026-07-28-prestaged-stale-editor-buffer-guard.md.
+                 06-reviews/2026-07-28-prestaged-stale-editor-buffer-guard.md.
     """
     findings: list[Finding] = []
     listing = (["git", "diff", "--cached", "--name-only", "--diff-filter=M", "--", "*.md"]

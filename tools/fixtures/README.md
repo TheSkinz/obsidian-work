@@ -21,11 +21,11 @@ errors, every other rule is a warning.
 | `02-facilities/TestClient/Test-City-TX/T-400.md` | LINK-FACILITY (both halves) | warning |
 | `04-knowledge/bad-status.md` | STATUS-VOCAB | warning |
 | `00-inbox/marker-before-frontmatter.md` | STATUS-VOCAB (regression) | warning |
-| `06-insights/dead-link-note.md` | DEAD-LINK | warning |
-| `06-insights/conf-conflict.md` | CONF-CONFLICT | error |
-| `06-insights/review-overdue.md` | REVIEW-OVERDUE | warning |
-| `06-insights/superseded-note.md` | SUPERSEDED | warning |
-| `06-insights/yaml-comment-note.md` | YAML-COMMENT | error |
+| `06-reviews/dead-link-note.md` | DEAD-LINK | warning |
+| `06-reviews/conf-conflict.md` | CONF-CONFLICT | error |
+| `06-reviews/review-overdue.md` | REVIEW-OVERDUE | warning |
+| `06-reviews/superseded-note.md` | SUPERSEDED | warning |
+| `06-reviews/yaml-comment-note.md` | YAML-COMMENT | error |
 | `07-llms/orphan-fixture-note.md` | ORPHAN | warning |
 | `08-systems/secret-note.md` | SECRET | error |
 | `00-inbox/untracked-temp-selftest.md` (built at runtime) | INBOX-AGE | warning |
