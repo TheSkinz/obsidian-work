@@ -10,6 +10,39 @@ tags: [inbox, field-ops, job-sheet, visualization, tools, approved-unexecuted]
 
 # Owed — coil visualization, Tier 2 + Tier 3 + Tier 1
 
+> **RESHAPED 2026-08-24 (Jesse). The validator half is built; the renderer is deferred.**
+> `tools/coil_geometry_audit.py` → `04-knowledge/coil-geometry-audit.md` now reports which
+> heater cards carry coil geometry complete enough to work from — **17 of 44** — and names
+> what blocks the other 27. Tier 2/3 (SVG) and Tier 1 (Mermaid) remain approved in principle
+> from 2026-08-01 but are **explicitly unscheduled**, pending what the audit shows.
+>
+> **Three claims in the 2026-08-15 re-test below are now false.** Recorded rather than
+> silently corrected, because the re-test was accurate when written and the pattern matters:
+>
+> 1. **"gates [[idea-rig-layout-diagram]], which has been parked on it since 2026-07-30"** —
+>    that seed is `status: closed-unactioned` and sits in `archive/`. Closed, not waiting.
+> 2. **"the older of the two surviving owed items"** — the other one
+>    ([[2026-08-01-baseline-staleness-detector-owed]]) was built 2026-08-16. This was the
+>    only survivor.
+> 3. **"extract `buildGeometry()`"** understates the work. That function is 136 lines of
+>    JavaScript (`apps/pig-tracker/pig-tracker.html:393-528`) and `tools/` is stdlib Python,
+>    so as specified this is a **port**, not a lift. The algorithm is written and correct;
+>    the code is not reusable.
+>
+> **And the flagship QA argument has weakened.** The exploration's case was that h-28's
+> "2 tubes cannot split evenly across 4 coils" is a footnote a renderer would force open.
+> `02-facilities/P66/Ponca-City-OK/H-28.md` now records it in Config Rollup as
+> `4 (+2 heater-wide)` and reconciles arithmetically, so `ROLLUP-SCALE` is satisfied and the
+> card surfaces the irregularity itself. What survived is narrower but real, and the audit
+> catches it: the card's Tube Geometry row records `Tubes/Circuit` as **`2 heater-wide`** — a
+> per-circuit column answered at heater scale, which `num()` reads as `2.0` and understates
+> by the circuit count. Six rows across the fleet carry that defect.
+>
+> **When the renderer is built, the path is a JSON handoff, not a Python port** — a Python
+> extractor emits the data object and an HTML file renders it, the pattern
+> `apps/rig-diagram/rig-diagram.html` already uses with headless Chrome, already in
+> production for `USA26040-job-sheet.pdf`.
+
 > **Re-tested and kept, 2026-08-15** (retirement sweep). Both questions come back yes.
 >
 > **Still answerable as specified?** Yes, and verified rather than assumed: `buildGeometry()` is still at `apps/pig-tracker/pig-tracker.html:393`, `04-knowledge/ground-truth/` still holds both `h-2421.md` and `h-28.md` to prove output against, and `estimating_rollup.py` still exports the markdown-table parsers this is meant to reuse. Every prerequisite the note names is intact.

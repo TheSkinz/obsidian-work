@@ -3,12 +3,24 @@
 
 ---
 type: note
-status: inbox
+status: complete
 created: 2026-08-01
-tags: [inbox, knowledge-system, regression, hooks, approved-unexecuted]
+tags: [inbox, knowledge-system, regression, hooks, built]
 ---
 
 # Owed — baseline staleness detector for the regression battery
+
+> **BUILT AND CLOSED 2026-08-16 — this is no longer owed.** `tools/baseline_staleness.py`
+> exists and runs (`6be657e`, "baseline staleness detector: 6 of 6 baselines are behind").
+> Both steps below landed: the six `frozen/*.md` files carry a parseable `baseline_commits:`
+> field, and the checker reads it per repo. The `Regression baselines unjudgeable` row on
+> `50-dashboards/health.md` is its surface; the "behind" count was deliberately **not** kept
+> as a metric — retired 2026-08-21 because "6 of 6 with status ok" is a metric with no pass
+> condition, so `--verbose` on demand replaces it.
+>
+> Found stale 2026-08-24: the 2026-08-15 re-test below kept this note one day before the
+> work was done, and nothing closed it afterwards. The re-test block is left as written —
+> it was accurate when written. Everything under it is now historical.
 
 > **Re-tested and kept, 2026-08-15** (retirement sweep). Both of the sweep's questions come back yes, so this survives rather than retires — and recording that is as much the sweep's output as a retirement is.
 >
