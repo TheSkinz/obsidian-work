@@ -231,7 +231,7 @@
 - [[heater-extraction-agent]] — Copilot Heater Extraction Agent `(copilot)`
 - [[07-llms/copilot/overview|overview]] — Microsoft Copilot — Overview `(copilot)`
 - [[diagram-creation]] — Diagram Creation Inside LLMs
-- [[gem-drawing-extraction]] — Gemini Gem — Fired Heater Tube Drawing Extraction `(gemini)`
+- [[gem-drawing-extraction]] — Gemini Gem — Fired Heater Tube Drawing Extraction (retired) `(gemini)`
 - [[drawing-extraction-strategy]] — Grok — Heater Drawing Extraction Strategy `(grok)`
 - [[f501-coil-flythrough-build-prompt]] — Grok Build prompt — F-501 Pass B POV flythrough (wormhole style) `(grok)`
 - [[07-llms/grok/overview|overview]] — Grok — Overview `(grok)`

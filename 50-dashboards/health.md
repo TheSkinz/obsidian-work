@@ -63,7 +63,7 @@ One row per frozen fixture in `~/.claude/regression/frozen/`. Each reads its own
 | Fixture | Commits behind | Status |
 |---|---|---|
 | f1-rfq-to-proposal | claude-config 10 · vault 6 | behind |
-| f2-vault-ingest-dryrun | claude-config 4 | behind |
+| f2-vault-ingest-dryrun | claude-config 5 | behind |
 | f3-fieldpm-extract | claude-config 16 | behind |
 | f4-sop-formatting-pass | claude-config 3 · vault 0 | behind |
 | f5-pig-sizing | claude-config 2 | behind |
