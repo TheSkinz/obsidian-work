@@ -44,7 +44,7 @@ Skills drive specialized behavior. When a task touches USADebusk work, the relev
 - Claude Code is session-scoped; context is rebuilt each session from `01-context/` and memory. Long context is summarized automatically, but deep state from early in a session can drift.
 - File write on Windows uses PowerShell-style paths. Bash tool uses POSIX syntax inside Git Bash — path mismatches can cause silent failures if mixing shells. See [[windows-config]] for the OneDrive KFM redirection trap and shell-path details.
 - Large vault glob operations can be slow; prefer targeted reads over broad auto-scans.
-- Vision / image reading works but hasn't been benchmarked against Gemini for engineering drawings. See [[gem-drawing-extraction]] for current production standard.
+- Vision / image reading works but has never been benchmarked for engineering drawings. The Gemini Gem that used to hold that ground was retired 2026-07-07 and nothing replaced it, so there is **no tool of record for drawing extraction** — see [[gem-drawing-extraction]]. Cross-check any extracted value against the drawing before it reaches a proposal or a heater card.
 
 ## Underutilized capabilities
 

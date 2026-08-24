@@ -46,7 +46,7 @@ This agent reads and extracts from drawings. It does not edit source files, upda
 
 | Dimension | Copilot Agent | Claude / Gemini |
 |---|---|---|
-| Primary tool | Copilot Studio / Agent Builder | Gemini Gem v8.1 + usadebusk-core |
+| Primary tool | Copilot Studio / Agent Builder | `usadebusk-core` skills (the Gemini Gem v8.1 this was scoped against retired 2026-07-07, unreplaced) |
 | Knowledge substrate | SharePoint (modular .md files) | Skills in ~/.claude/skills/ |
 | Evidence tracking | Rule maturity + failure library | Anchor/Estimate/Blank evidence classes |
 | Audit mechanism | Separate Auditor agent | Human review + vault cross-check |

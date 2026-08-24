@@ -23,9 +23,9 @@ Practical limit: Claude Code currently caps PDF reads at 20 pages per call for l
 
 ## Gemini
 
-Strong performer on scanned documents and engineering drawings. The Fired Heater Tube Drawing Gem (v8.1) is the validated production path for drawing extraction — see [[gem-drawing-extraction]]. Gemini also handles multi-page PDFs well when the full document is uploaded to a Gem or via API.
+**Retired 2026-07-07.** The Fired Heater Tube Drawing Gem (v8.1) was the production path for drawing extraction until then; **nothing has been benchmarked to replace it**, so no tool currently holds that role — see [[gem-drawing-extraction]]. Recorded here because the section used to say the opposite, and because the finding below outlived the tool.
 
-Known limitation: Gemini cannot reliably self-diagnose extraction errors (see the confabulation finding in [[gem-drawing-extraction]]).
+Standing limitation, tool-independent: a vision model cannot reliably self-diagnose extraction errors (see the confabulation finding in [[gem-drawing-extraction]]). Validate extracted values against the drawing, not against the model's own account of them.
 
 ## Copilot
 
@@ -35,6 +35,6 @@ Best suited to text-layer PDFs in a business-document context. Copilot via Micro
 
 When the goal is structured data (tube counts, dimensions, job numbers), specify the exact fields and format required upfront. Asking for free-text summaries and then trying to parse them downstream is slower and less reliable than prompting for a structured output (table or JSON) from the first call.
 
-For repeating structured tasks (like heater card population), a dedicated Gem or system prompt with field definitions outperforms ad-hoc prompting.
+For repeating structured tasks (like heater card population), a dedicated system prompt or skill with field definitions outperforms ad-hoc prompting. (The principle was learned on a Gemini Gem, but it is about the field definitions, not the vehicle.)
 
 Extraction quality is only half the problem. Deciding whether an extracted value means what it appears to mean — whether a cell is data or template boilerplate, whether two sources genuinely disagree — is tool-agnostic and lives in [[source-reconciliation]].

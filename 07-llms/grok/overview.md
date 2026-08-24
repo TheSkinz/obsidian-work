@@ -10,14 +10,14 @@ xAI's Grok platform. Primary uses: forensic multi-model engineering workflows, v
 
 ## Forensic engineering workflow
 
-Multi-model approach combining Grok vision analysis, `code_execution` OCR preprocessing (pytesseract + Pillow), and Gemini/Claude cross-validation to extract technical data from poor-quality refinery drawings. Recreated outputs in Visio or Mermaid — see [[diagram-creation]] for format-choice guidance.
+Multi-model approach combining Grok vision analysis, `code_execution` OCR preprocessing (pytesseract + Pillow), and Claude cross-validation to extract technical data from poor-quality refinery drawings. Recreated outputs in Visio or Mermaid — see [[diagram-creation]] for format-choice guidance.
 
 Applied to:
 - Marathon Detroit 70H1 Coker Furnace
 - Paulsboro P5-F2
 - Shell Oil direct fired heater (F-1235)
 
-This is treated as the operational standard for forensic mechanical engineering tasks on degraded or low-resolution drawings — not a one-off experiment.
+This is a repeatable method rather than a one-off experiment, but it is **not the standard for anything** — it has never been benchmarked. The Gemini Gem that formerly held the drawing-extraction role retired 2026-07-07 and no successor was named, so no tool is of record for this task (see [[gem-drawing-extraction]]). An earlier version of this line called the method "the operational standard"; that claim had no benchmark behind it and was corrected 2026-08-24.
 
 See [[drawing-extraction-strategy]] for the canonical two-pass tile method distilled from the Grok repo's heater-drawing-analysis skill.
 

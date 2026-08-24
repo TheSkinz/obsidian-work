@@ -53,4 +53,4 @@ Not "fewest tokens on one lucky page." Reliable geometry with evidence in a few 
 
 ## Status
 
-Experimental, single pilot (Valero Jean-Gaulin TA2027) as of 2026-07-09. Not yet benchmarked against Claude's drawing extraction path (Gemini Gem retired, extraction moved to Claude — see [[gem-drawing-extraction]]). Promote this method into a shared USADebusk skill only after it validates across a second package.
+Experimental, single pilot (Valero Jean-Gaulin TA2027) as of 2026-07-09. Not benchmarked against anything — the Gemini Gem retired 2026-07-07 and **no successor was ever benchmarked**, so there is no incumbent to measure against (see [[gem-drawing-extraction]]). An earlier version of this line said extraction had "moved to Claude"; that was never established, and [[code]] says outright that Claude vision is unbenchmarked for drawings. Promote this method into a shared USADebusk skill only after it validates across a second package.
