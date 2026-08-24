@@ -390,7 +390,16 @@ def check_dead_links(root: Path, notes: dict[Path, str]) -> list[Finding]:
     known = set()
     for p in root.rglob("*.md"):  # resolution set includes archive/ deliberately
         rel = p.relative_to(root).as_posix()
-        if rel.startswith((".git/", ".obsidian/", "tools/fixtures/")):
+        # `.claude/` excluded 2026-08-24. SKIP_SCAN already kept task worktrees
+        # under `.claude/worktrees/<name>/` from being scanned FOR problems, but
+        # this resolution set is separate and did not skip them — so a worktree's
+        # stale copy of a since-deleted note silently SATISFIED a wikilink that is
+        # dead on main. Found when pruning a worktree flipped the vault from 0
+        # errors to 1: `[[2026-07-19-fable5-closeout-handoff]]` had been dead since
+        # 7af7461 (2026-08-21) and the worktree had been masking it ever since.
+        # A fix against false warnings had quietly created a way to suppress true
+        # errors; the two skip lists must agree about what is not a real note.
+        if rel.startswith((".git/", ".obsidian/", "tools/fixtures/", ".claude/")):
             continue
         known.add(p.stem.lower())
     findings = []

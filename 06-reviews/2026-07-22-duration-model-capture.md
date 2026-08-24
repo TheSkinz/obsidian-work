@@ -7,7 +7,11 @@ confidence: high
 created: 2026-07-22
 review_after: 2026-08-22
 related:
-  - "[[2026-07-19-fable5-closeout-handoff]]"
+  # Source note retired 2026-08-21 (7af7461, "harvest its two reasoning traces");
+  # its durable content went to 04-knowledge/concepts/source-reconciliation.md.
+  # Named, not linked — same convention as 2026-06-26-read-only-inventory-routing-review.
+  - "retired: 2026-07-19-fable5-closeout-handoff"
+  - "[[source-reconciliation]]"
   - "[[estimating-actuals-rollup]]"
   - "[[estimating-approach]]"
   - "[[DSP26080]]"
