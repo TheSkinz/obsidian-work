@@ -35,6 +35,12 @@ SECTIONS = [
     ("07-llms", "LLMs"),
     ("08-systems", "Systems"),
     ("09-interests", "Interests"),
+    # `apps` added 2026-08-24. It was in neither map — not here, not in the vault
+    # CLAUDE.md — the same condition that let 06-insights drift for seven weeks.
+    # Registering it alone was not enough: every .md under apps/ was a README and
+    # SKIP_NAMES drops those, so the section rendered empty. The two tools now
+    # carry real notes; the folder READMEs stay READMEs.
+    ("apps", "Apps & Artifacts"),
 ]
 
 SKIP_NAMES = {"README.md"}

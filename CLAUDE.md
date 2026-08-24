@@ -15,6 +15,7 @@ Folder layout is discoverable from `ls` and `INDEX.md`. Only the non-obvious par
 - `07-llms/` — how the LLM tools themselves behave: Claude Code release facts, Copilot, Grok. Not USADebusk domain content.
 - `08-systems/` — the non-vault systems Jesse operates in, principally the Outlook/M365 record. Read it from the system before trusting it; both tiers of that document were fabricated once.
 - `09-interests/` — personal, non-USADebusk. Expected, not an anomaly.
+- `apps/` — self-contained browser tools, no build step and no server: open the `.html` directly. Two of them. `pig-tracker/` is live, and its `buildGeometry()` (`pig-tracker.html:393`) is **cited by approved unexecuted work** — grep for `pig-tracker.html` before moving or renaming it, because nothing lints repo-relative paths. `rig-diagram/` is **back-test evidence under a standing do-not-use ruling** (`06-reviews/2026-08-16-backtest-rig-diagram-layout-engine.md`) — not a path, not to be wired to heater cards; its domain content lives at `04-knowledge/rig-diagram-corpus.md`. The two PDFs beside it are its proofs and stay put.
 - `archive/` — **gitignored.** Notes here are not all in git history, so a file in `archive/` may exist only on disk. Never treat deletion from `archive/` as recoverable without checking `git ls-files` first.
 
 Root-level files: `change-log.md` (decisions-only log), `INDEX.md`, `Identity.md`. `03-jobs/` and `05-projects/` are gone. Do not reference or recreate them — job actuals now live inside heater cards.

@@ -1,3 +1,15 @@
+---
+type: reference
+status: complete
+source_authority: primary
+confidence: high
+created: 2026-08-16
+related:
+  - "[[rig-diagram-corpus]]"
+  - "[[2026-08-16-backtest-rig-diagram-layout-engine]]"
+tags: [reference, visualization, back-test, field-ops]
+---
+
 # Rig Diagram — back-test prototype
 
 **Status: back-test evidence, not production tooling.** Filed so it is not lost the way the

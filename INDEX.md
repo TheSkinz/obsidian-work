@@ -253,3 +253,8 @@
 - [[ai-image-generation]] — AI Image Generation
 - [[tesla-efficiency]] — Tesla Efficiency Analysis
 
+## Apps & Artifacts
+
+- [[pig-tracker]] — Pig Travel Tracker `(pig-tracker)`
+- [[rig-diagram]] — Rig Diagram — back-test prototype `(rig-diagram)`
+
