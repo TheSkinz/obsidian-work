@@ -44,7 +44,7 @@ Reads:
 
 Writes:
 
-- One review note per run in `06-insights/`, `review_type: pre-staged`.
+- One review note per run in `06-reviews/`, `review_type: pre-staged`.
 - One row in `50-dashboards/decision-queue.md`.
 - A `<!-- vault-prestaged: <review-note-filename> -->` marker on the processed inbox item, so it is never reprocessed.
 
@@ -73,13 +73,13 @@ Low to run, high in what it refuses to do. Every run either produces exactly one
    - **Execution correction** — a concrete fix with an obvious right answer and no open question (the worked example: `2026-07-24-dsp26085-submitted-wrong-quote-number.md` is a correction to make, not a decision to weigh). Mark it `<!-- vault-prestaged: skipped — execution correction, needs doing not deciding -->`, add **no** queue row and **no** review note, and report it in the run summary so it surfaces as a to-do rather than a decision. Then return to step 3 for the next-oldest candidate; skips do not count against the one-item budget.
    - **Already covered** — the answer already exists. Same treatment, marker reason `already covered by [[note]]`.
 
-     **Search implementation, not just prose — this is the failure the first run hit (2026-07-28).** That run searched `knowledge-system-governance.md`, found nothing, and proposed building a content-vs-formatting diff gate that had shipped the day before as lint rule `WORD-DELTA` plus a PreToolUse hook. A governance document is where a policy would be recorded, not where a tool lives. Before writing "genuinely unaddressed," check all four: `04-knowledge/` and `06-insights/` prose, **`tools/`** (grep the lint rules and scripts), **`~/.claude/hooks/`**, and **recent `git log`** — a thing built in the last week is exactly what a knowledge doc will not mention yet.
+     **Search implementation, not just prose — this is the failure the first run hit (2026-07-28).** That run searched `knowledge-system-governance.md`, found nothing, and proposed building a content-vs-formatting diff gate that had shipped the day before as lint rule `WORD-DELTA` plus a PreToolUse hook. A governance document is where a policy would be recorded, not where a tool lives. Before writing "genuinely unaddressed," check all four: `04-knowledge/` and `06-reviews/` prose, **`tools/`** (grep the lint rules and scripts), **`~/.claude/hooks/`**, and **recent `git log`** — a thing built in the last week is exactly what a knowledge doc will not mention yet.
 
      When a partial match turns up, do **not** silently drop the item. Write the note with the existing mechanism cited and the proposal narrowed to the genuine remaining gap — a partially-solved problem usually has a sharper question in it than an unexamined one.
    - **Genuine open question** — proceed to step 5.
 
    This step exists because the alternative is manufacturing ceremony: sixteen review notes for items where several need a two-minute fix is worse than sixteen raw inbox notes, because each one carries an implied claim of analysis.
-5. Gather context read-only and draft the review note in `06-insights/`, filename `YYYY-MM-DD-prestaged-<slug>.md`, using the standard review-note template: Trigger, Source Material (a real table with real citations — every row must point at a file actually read), The Question, Proposed Change (each option carrying its own `Approved / Approved with edits / Rejected / Needs more research` checkboxes), Risks and Counter-Arguments, Decision, Apply Log.
+5. Gather context read-only and draft the review note in `06-reviews/`, filename `YYYY-MM-DD-prestaged-<slug>.md`, using the standard review-note template: Trigger, Source Material (a real table with real citations — every row must point at a file actually read), The Question, Proposed Change (each option carrying its own `Approved / Approved with edits / Rejected / Needs more research` checkboxes), Risks and Counter-Arguments, Decision, Apply Log.
 
    **Frontmatter is mandatory and load-bearing:** `review_type: pre-staged`, `source_authority: inferred`, `status: open`. A pre-staged note is an *unreviewed inference*, and without these a future session may read a machine-drafted Source Material table as settled vault truth.
 6. Append one row to `50-dashboards/decision-queue.md`: `id` = next monotonic `DQ-NNN` (scan the whole file, including closed and expired rows, for the highest existing number; never reuse), `opened` = today, `source` = link to the new review note, `ask` = the one-line question, `risk` = tier per the queue's own rule (`high` for pricing, SOP, safety, field-execution, customer-facing or heater-card facts; `med` for structure, schema or convention; `low` for reversible content), `status` = `open`. Update the "N open rows" line beneath the table.
@@ -92,7 +92,7 @@ Low to run, high in what it refuses to do. Every run either produces exactly one
 | Action | Limits |
 |---|---|
 | Read any vault note | Read-only, always. |
-| Create one review note per run in `06-insights/` | Standard template; `review_type: pre-staged`, `source_authority: inferred`, `status: open` mandatory; every Source Material row must cite a file actually read. |
+| Create one review note per run in `06-reviews/` | Standard template; `review_type: pre-staged`, `source_authority: inferred`, `status: open` mandatory; every Source Material row must cite a file actually read. |
 | Append one row to `50-dashboards/decision-queue.md` | One per run; monotonic id; never edit or close an existing row. |
 | Add a `<!-- vault-prestaged: -->` marker to an inbox item | Comment only; no content change. |
 | Run `tools/vault_lint.py --worktree` before committing | Pre-commit gate; must be 0 errors. `--worktree` is required, not optional — it is what runs the diff rules. |

@@ -34,7 +34,7 @@ The real containment is procedural, not permissional, and it is worth stating pl
 
 ## Scope
 
-Reads: every `SKILL.md` and reference file under `~/.claude/skills/`; vault knowledge layers (`04-knowledge/`, `06-insights/`, `07-llms/`, `08-systems/`); `04-knowledge/estimating-actuals-rollup.md`; the two CLAUDE.md files; git log of the config repo since the last run; **the agent memory directory** (`~/.claude/projects/C--Users-Jwuts-obsidian-work/memory/` — index + topic files), audited as a drift surface only, never edited by this loop; and **the regression suite** (`~/.claude/regression/` — `README.md`, `fixtures/`, and the `frontmatter` of every file in `frozen/`).
+Reads: every `SKILL.md` and reference file under `~/.claude/skills/`; vault knowledge layers (`04-knowledge/`, `06-reviews/`, `07-llms/`, `08-systems/`); `04-knowledge/estimating-actuals-rollup.md`; the two CLAUDE.md files; git log of the config repo since the last run; **the agent memory directory** (`~/.claude/projects/C--Users-Jwuts-obsidian-work/memory/` — index + topic files), audited as a drift surface only, never edited by this loop; and **the regression suite** (`~/.claude/regression/` — `README.md`, `fixtures/`, and the `frontmatter` of every file in `frozen/`).
 
 **On `~/.claude/regression/` (added 2026-07-25).** This surface demonstrably drifts, and it drifts silently in the one direction that matters: the regression suite is the instrument that detects skill degradation, so when it goes stale the detector is broken and nothing reports it. Two confirmed instances on 2026-07-25 alone — the `README.md` was wrong about the provenance of all six frozen fixtures, and F6's frozen output recommended equipment that no longer exists in `04-knowledge/equipment/equipment-library.md`. A frozen output encoding a retired rule does not fail loudly; it silently redefines a regression as the standard.
 
@@ -45,7 +45,7 @@ Audit rules for this surface, which differ from the skills surface:
 
 Writes:
 
-- One review note per run in `06-insights/` (`YYYY-MM-DD-skill-drift-review.md`, `review_type: skill-drift`) — or a clean no-op report when nothing drifted.
+- One review note per run in `06-reviews/` (`YYYY-MM-DD-skill-drift-review.md`, `review_type: skill-drift`) — or a clean no-op report when nothing drifted.
 - When findings exist: a proposal branch in the config repo (`~/.claude`), named `drift/YYYY-MM`, containing the proposed skill edits as commits, pushed to origin. **Never merged by the loop.** Jesse reviews the review note, then merges or discards the branch.
 
 Never edits skills on `main`. Never touches vault operational content, pricing values, or SOP values directly — proposed changes to those live only on the unmerged branch and take effect only when Jesse merges.
@@ -71,7 +71,7 @@ Low for detection, zero authority for application. Every proposed edit is a diff
 2. Read all skills; read vault layers changed since the last `skill-drift:` heartbeat (git log date-bounded); read the actuals rollup; read the regression suite's `README.md`, fixtures, and `frozen/` frontmatter.
 3. Detect drift per the six classes above. Quote exact lines — no finding without a quote (audit discipline).
 4. If nothing found: write nothing, commit nothing, report a clean no-op, stop.
-5. Write the review note in `06-insights/`: per finding — severity, file:line, current text, proposed text, evidence, lane classification. Decision checkboxes for Jesse. Apply Log empty.
+5. Write the review note in `06-reviews/`: per finding — severity, file:line, current text, proposed text, evidence, lane classification. Decision checkboxes for Jesse. Apply Log empty.
 6. Create branch `drift/YYYY-MM` from `main` in the config repo, apply the proposed edits, commit (one commit per skill touched, staged-file count checked), push the branch. Do not open a PR automatically and do not merge. If `drift/YYYY-MM` already exists (a second run in the same calendar month), suffix a letter — `drift/YYYY-MMb`, then `c` — and say so in the review note's Trigger section rather than reusing or force-updating the existing branch.
 7. Run `py -3 tools/vault_lint.py` (0 errors required), then commit and push the vault review note: `skill-drift: <YYYY-MM> — N findings, branch drift/YYYY-MM` (or no commit on a no-op). The `skill-drift:` prefix is the heartbeat.
 
@@ -80,7 +80,7 @@ Low for detection, zero authority for application. Every proposed edit is a diff
 | Action | Limits |
 |---|---|
 | Read skills, vault, config-repo git log | Read-only. |
-| One review note per run in `06-insights/` | Standard template; every finding quoted. |
+| One review note per run in `06-reviews/` | Standard template; every finding quoted. |
 | Create + push a `drift/YYYY-MM` branch in the config repo | Proposals only; never merge; never touch `main`. |
 | Commit/push the vault review note | `skill-drift:` prefix, staged-count discipline. |
 

@@ -148,7 +148,7 @@ Use `review_after`, `last_reviewed`, and `status: stale` to build review queues.
 
 ### Idea Research
 
-Speculative ideas (`type: idea-seed` in `00-inbox/`) get bounded, unattended web research on a nightly schedule rather than sitting until someone manually revisits them. One seed per run, findings land as a review note in `06-insights/`, the seed's status flips to `researched`. Never decides, never builds. See [[vault-idea-loop-spec]].
+Speculative ideas (`type: idea-seed` in `00-inbox/`) get bounded, unattended web research on a nightly schedule rather than sitting until someone manually revisits them. One seed per run, findings land as a review note in `06-reviews/`, the seed's status flips to `researched`. Never decides, never builds. See [[vault-idea-loop-spec]].
 
 ## Architecture Audit
 

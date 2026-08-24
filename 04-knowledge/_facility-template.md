@@ -77,7 +77,7 @@ carry one (Baytown, Navajo, Ponca City, Port Arthur) label it with the
 specific quote and heaters it came from — keep that labeling; those blocks
 are historical record of one contract, not a facility rate schedule.
 
-Decided 2026-07-19, proposal A of 06-insights/2026-07-19-rate-model-grain-review.
+Decided 2026-07-19, proposal A of 06-reviews/2026-07-19-rate-model-grain-review.
 -->
 
 ---

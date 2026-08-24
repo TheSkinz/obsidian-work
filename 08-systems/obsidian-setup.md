@@ -24,7 +24,7 @@ Standard community plugins (templater, dataview, etc.) — (Placeholder: documen
 
 ## Folder structure
 
-See vault `CLAUDE.md` for the authoritative folder list. Short version: `01-context/` auto-loads, `02-facilities/` and `04-knowledge/` load on demand, `00-inbox/` is capture, `06-insights/` is session output, `07-llms/` / `08-systems/` / `09-interests/` are the new personal knowledge layers (added June 2026).
+See vault `CLAUDE.md` for the authoritative folder list. Short version: `01-context/` auto-loads, `02-facilities/` and `04-knowledge/` load on demand, `00-inbox/` is capture, `06-reviews/` is session output, `07-llms/` / `08-systems/` / `09-interests/` are the new personal knowledge layers (added June 2026).
 
 ## Known issues
 

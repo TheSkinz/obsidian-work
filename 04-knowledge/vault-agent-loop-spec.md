@@ -85,7 +85,7 @@ Check these areas in order:
 |---:|---|---|
 | 1 | `50-dashboards/decision-queue.md` | Open rows waiting on Jesse. Work already prepared beats work still to be found. |
 | 2 | `50-dashboards/health.md` and the lint report | Mechanical signal — FAIL rows, overdue reviews, dead links. Read it instead of rescanning by hand. |
-| 3 | `06-insights/` | Open reviews (including `review_type: pre-staged`), contradictions, prior loop notes. |
+| 3 | `06-reviews/` | Open reviews (including `review_type: pre-staged`), contradictions, prior loop notes. |
 | 4 | `00-inbox/` | Unprocessed source notes and routing candidates. |
 | 5 | `04-knowledge/` | Governance, canonical rules, evaluation questions, stale/due notes. |
 | 6 | `02-facilities/` | Read-only context when the selected item needs a specific facility or heater. Not a review target — Lane 1. |
@@ -109,9 +109,9 @@ Never scan the whole vault deeply unless the selected item requires it.
 | Action | Limits |
 |---|---|
 | Read vault notes | Stay within canonical vault unless source evidence requires a referenced local source path. |
-| Create review notes in `06-insights/` | Must include trigger, evidence, proposed change, risks, decision checklist, and apply log. |
-| Create contradiction notes in `06-insights/` | Must quote or precisely paraphrase the conflicting claims and link sources. |
-| Create question notes in `06-insights/` or `04-knowledge/` | Must include expected sources and retrieval failure type. |
+| Create review notes in `06-reviews/` | Must include trigger, evidence, proposed change, risks, decision checklist, and apply log. |
+| Create contradiction notes in `06-reviews/` | Must quote or precisely paraphrase the conflicting claims and link sources. |
+| Create question notes in `06-reviews/` or `04-knowledge/` | Must include expected sources and retrieval failure type. |
 | Create draft/source-derived scaffolds | Only when explicitly approved or clearly requested; must be marked `status: draft`, `source_authority: secondary`, and `confidence: medium` or lower. |
 | Append to `change-log.md` | Only after a real approved change is applied. |
 

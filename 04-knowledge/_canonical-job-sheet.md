@@ -63,7 +63,7 @@ THE SIX BLOCKS ARE A FLOOR, NOT A CEILING (layout rule, 2026-08-15):
   was closed — but it was implicit, and the third instance is what made the ambiguity cost
   something. Stated now so the next sheet with an extra section is not read as a defect. (The
   standard convention in both document-template and machine-schema design: open by default, with
-  closing it the deliberate act. See `06-insights/2026-08-12-idea-research-job-sheet-third-instance-no-migration.md`.)
+  closing it the deliberate act. See `06-reviews/2026-08-12-idea-research-job-sheet-third-instance-no-migration.md`.)
 
 USA26041'S OWN SHEET STAYS UNMIGRATED UNTIL ITS JOB REPORT CLOSES IT OUT (2026-08-15):
   Its Crew Assignment and Billing Reference tables are NOT to be retrofitted to the merged
@@ -371,7 +371,7 @@ in this exemplar exist largely to hold that line.
 
 A tools/render_job_sheet.py wrapper was scoped and explicitly deferred on 2026-07-18. Two manual
 runs in, it is still not friction — leave it deferred.
-See 06-insights/2026-07-18-idea-research-job-sheet-type-formalization.md.
+See 06-reviews/2026-07-18-idea-research-job-sheet-type-formalization.md.
 
 PAGE BUDGET: Letter portrait, 0.55in × 0.6in margins ≈ 9.4in usable height. Six blocks fit with
 room to spare; nine did not. If a future section is proposed, something else comes off.

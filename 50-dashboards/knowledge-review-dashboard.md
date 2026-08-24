@@ -19,7 +19,7 @@ SORT file.mtime DESC
 
 ```dataview
 TABLE review_type, status, confidence, review_after, file.mtime as "Updated"
-FROM "00-inbox" OR "06-insights" OR "04-knowledge"
+FROM "00-inbox" OR "06-reviews" OR "04-knowledge"
 WHERE type = "review" AND status != "complete"
 SORT file.mtime DESC
 ```
@@ -28,7 +28,7 @@ SORT file.mtime DESC
 
 ```dataview
 TABLE status, confidence, review_after, file.mtime as "Updated"
-FROM "00-inbox" OR "04-knowledge" OR "06-insights"
+FROM "00-inbox" OR "04-knowledge" OR "06-reviews"
 WHERE type = "contradiction" AND status != "resolved"
 SORT file.mtime DESC
 ```
@@ -37,7 +37,7 @@ SORT file.mtime DESC
 
 ```dataview
 TABLE question_type, status, confidence, review_after, file.mtime as "Updated"
-FROM "00-inbox" OR "04-knowledge" OR "06-insights"
+FROM "00-inbox" OR "04-knowledge" OR "06-reviews"
 WHERE type = "question" AND status != "complete"
 SORT file.mtime DESC
 ```
@@ -46,7 +46,7 @@ SORT file.mtime DESC
 
 ```dataview
 TABLE type, status, last_reviewed, review_after, file.mtime as "Updated"
-FROM "01-context" OR "02-facilities" OR "04-knowledge" OR "06-insights"
+FROM "01-context" OR "02-facilities" OR "04-knowledge" OR "06-reviews"
 WHERE status = "stale" OR (review_after AND review_after <= date(today))
 SORT review_after ASC
 ```

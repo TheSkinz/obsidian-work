@@ -42,7 +42,7 @@ Reads:
 
 Writes:
 
-- One new review note per run in `06-insights/`, using the standard review-note pattern (see [[vault-agent-loop-spec]] Output Artifact Requirements) with `review_type: idea-research`.
+- One new review note per run in `06-reviews/`, using the standard review-note pattern (see [[vault-agent-loop-spec]] Output Artifact Requirements) with `review_type: idea-research`.
 - The source idea-seed note: flips `status: unexplored` to `status: researched` and adds a `related:` link to the new review note. No other edit to the idea-seed's content.
 
 Never touches `02-facilities/`, `04-knowledge/` canonical content (other than its own spec file, which it does not self-edit), pricing, SOPs, skills, or any operational content. If an idea-seed's subject turns out to be operational rather than speculative, this loop stops and defers to [[vault-agent-loop-spec]] instead of researching it.
@@ -64,8 +64,8 @@ Low, but not silent. Every run either produces one evidence-gathering artifact (
 
    The rule this encodes: a seed that ships with its own test-before-build condition has already told you what to check first, and checking it costs a minute against a research cycle. This was added 2026-07-25 after the LLM-navigable-vault-map seed consumed a full run rediscovering a gate that had closed two days earlier, with the next seed in the queue gated the same way.
 4. Read the seed's "Tentative read" and "To explore" sections as the research brief.
-5. Research: web search for prior art, existing tools, or power-user solutions to the problem the idea describes. Also check what's already built in this vault (`04-knowledge/`, `06-insights/`) and in the deployed skills (`~/.claude/skills/`) that might already cover the idea, partially or fully — many ideas turn out to be already-solved or already-partially-built, and that's a valid, valuable finding.
-6. Write a review note in `06-insights/` (filename pattern `YYYY-MM-DD-idea-research-<slug>.md`) using the standard template: Trigger (why this seed was picked), Evidence (sources found, with links), Interpretation (sound / trap / premature / already covered, and why), Recommended Action (build now / bounded one-shot investigation / park / drop), Decision (empty checkboxes for Jesse), Apply Log (empty, filled in after Jesse acts).
+5. Research: web search for prior art, existing tools, or power-user solutions to the problem the idea describes. Also check what's already built in this vault (`04-knowledge/`, `06-reviews/`) and in the deployed skills (`~/.claude/skills/`) that might already cover the idea, partially or fully — many ideas turn out to be already-solved or already-partially-built, and that's a valid, valuable finding.
+6. Write a review note in `06-reviews/` (filename pattern `YYYY-MM-DD-idea-research-<slug>.md`) using the standard template: Trigger (why this seed was picked), Evidence (sources found, with links), Interpretation (sound / trap / premature / already covered, and why), Recommended Action (build now / bounded one-shot investigation / park / drop), Decision (empty checkboxes for Jesse), Apply Log (empty, filled in after Jesse acts).
 7. Update the idea-seed: `status: researched`, add `related: [[<new review note>]]`.
 8. Run `python tools/vault_lint.py` (use `py -3` if `python` is not on PATH); it must report **0 errors** before committing. Fix any error the run introduced — warnings are acceptable. Do **not** append a run summary to `change-log.md`: per the 2026-07-05 narrowing rule, `change-log.md` is decisions-only and the run record lives in the commit message and git log.
 9. Commit and push: `git add` only this run's touched paths (the review note and the idea-seed file), commit message `vault-idea-research: <YYYY-MM-DD> — researched <slug>` (or `— gated <slug>` when the run only closed gates), push to `origin`. **This `vault-idea-research:` subject prefix is the loop's heartbeat.** Because the loop only commits when a seed exists (empty-queue nights are silent no-ops), `tools/vault_health.py` tracks it at a monitoring cadence of 30 days, not the nightly run cadence — a FAIL means the scheduler died or the seed queue has been empty for 60+ days, not that one night was missed. Keep the prefix exact.
@@ -75,7 +75,7 @@ Low, but not silent. Every run either produces one evidence-gathering artifact (
 | Action | Limits |
 |---|---|
 | Read any vault note, skill file, or the web | Read-only. |
-| Create one review note per run in `06-insights/` | Must use the standard template; must cite sources. |
+| Create one review note per run in `06-reviews/` | Must use the standard template; must cite sources. |
 | Update the processed idea-seed's `status` and `related:` frontmatter | Frontmatter only; never rewrite its body. |
 | Set a seed to `status: gated` and add its `revisit-trigger:` | Only when the seed's own stated gate is verified shut **from files**. Frontmatter only. Never invent a gate the seed does not state, and never gate a seed to avoid hard research. |
 | Run `tools/vault_lint.py` before committing | Pre-commit gate; must be 0 errors. Read-only check. |

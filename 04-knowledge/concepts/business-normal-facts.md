@@ -68,4 +68,4 @@ Recording a fact here does not make it permanent truth. These are business-norma
 
 ## Provenance
 
-Resolved from `06-insights/2026-08-02-idea-research-business-normal-register.md` (approved 2026-08-15), which researched `[[idea-business-normal-register]]` and recommended against building a new register artifact in favor of naming the existing convention and giving tier 3 a vault copy. Underlying rulings are Jesse's, 2026-07-29 and 2026-07-30, recorded in `change-log.md`.
+Resolved from `06-reviews/2026-08-02-idea-research-business-normal-register.md` (approved 2026-08-15), which researched `[[idea-business-normal-register]]` and recommended against building a new register artifact in favor of naming the existing convention and giving tier 3 a vault copy. Underlying rulings are Jesse's, 2026-07-29 and 2026-07-30, recorded in `change-log.md`.
