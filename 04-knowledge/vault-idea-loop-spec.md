@@ -1,6 +1,6 @@
 ---
 type: governance
-status: active
+status: deprecated
 source_authority: primary
 confidence: high
 created: 2026-06-30
@@ -15,6 +15,8 @@ tags: [knowledge-system, agent-loop, idea-research, governance]
 ---
 
 # Vault Idea Research Loop Spec
+
+> **STOPPED 2026-08-21 — this loop does not run.** The scheduled task is disabled; it was the largest producer of asks (54% effect). Idea seeds still accrue in `00-inbox/`; research one on demand when it matters. The spec is kept because the loop is disabled, not deleted, and can be re-enabled. `status: deprecated` above means "no longer running", not "superseded" — nothing replaced it. Current status of all six loops: `01-context/system-workflow-reference.md`.
 
 The third loop, distinct from the other two in kind rather than just scope. [[vault-capture-loop-spec]] files and harvests; [[vault-agent-loop-spec]] reviews the operational core. This loop does neither — it investigates. It picks one speculative idea-seed, does bounded web research on it, and reports findings back for Jesse to decide on. It never files, never harvests, never touches operational content, and never decides or implements anything itself.
 

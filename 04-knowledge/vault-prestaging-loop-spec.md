@@ -1,6 +1,6 @@
 ---
 type: governance
-status: active
+status: deprecated
 source_authority: primary
 confidence: high
 created: 2026-07-28
@@ -16,6 +16,8 @@ tags: [knowledge-system, agent-loop, pre-staging, governance]
 ---
 
 # Vault Pre-Staging Loop Spec
+
+> **STOPPED 2026-08-21 — this loop does not run.** The scheduled task is disabled (53% effect, same context blindness as the Idea Research loop). The spec is kept because the loop is disabled, not deleted, and can be re-enabled. `status: deprecated` above means "no longer running", not "superseded" — nothing replaced it. Current status of all six loops: `01-context/system-workflow-reference.md`.
 
 The sixth loop, and the one that closes the system's throughput gap. [[vault-capture-loop-spec]] files and harvests but **defers** anything operational; [[vault-agent-loop-spec]] is the only consumer of those deferrals and fires **only when Jesse says so**. The result measured on 2026-07-28: transcript dispositions running 41 `defer` to 9 `harvested`, 16 inbox notes carrying the defer marker, and a decision queue sitting at 0 of its cap of 10. The analysis machinery was idle while the input pile grew.
 

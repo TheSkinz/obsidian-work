@@ -1,6 +1,6 @@
 ---
 type: governance
-status: active
+status: deprecated
 source_authority: primary
 confidence: high
 created: 2026-06-30
@@ -16,6 +16,8 @@ tags: [knowledge-system, agent-loop, capture, governance]
 ---
 
 # Vault Capture Loop Spec
+
+> **STOPPED 2026-08-21 — this loop does not run.** The scheduled task is disabled; it had become a net producer of work (its last run ingested 1 item and harvested 2). The spec is kept because the loop is disabled, not deleted, and can be re-enabled. `status: deprecated` above means "no longer running", not "superseded" — nothing replaced it. Current status of all six loops: `01-context/system-workflow-reference.md`.
 
 The scheduled, low-effort half of the vault automation. Its job: quietly file what you drop in `00-inbox/` and harvest durable findings from recent sessions, so knowledge lands in the right place without you doing it by hand. Companion to [[vault-agent-loop-spec]], which handles the high-stakes operational core on-demand.
 
