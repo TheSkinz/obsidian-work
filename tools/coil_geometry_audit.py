@@ -116,12 +116,48 @@ LEAD_NUM_RE = re.compile(rf"^{APPROX}({DIGITS})\s*(.*)$", re.DOTALL)
 # understating by the circuit count. H-28's radiant segment 2 of 2 is the live
 # instance -- 2 tubes recorded heater-wide across 4 passes, the exact "2 tubes
 # cannot split evenly across 4 coils" case the 2026-07-30 exploration named.
-SCALE_QUALIFIER_RE = re.compile(
-    r"\b(heater[-\s]?wide|heater[-\s]?total|per[-\s]heater|total)\b", re.IGNORECASE)
+#
+# JUDGE THE QUALIFIER THAT IMMEDIATELY FOLLOWS THE NUMBER, NOT THE WHOLE CELL.
+# The first cut of this searched the entire remainder for a scale word and
+# produced two false positives out of six findings -- enough to discredit the
+# whole report:
+#   B-1001  "18/circuit (36 heater-total ÷ 2 circuits)"  -- 18 IS per-circuit and
+#           matches Config Rollup; the total is only cited in the derivation.
+#   B-151   "~152 × ~22.4 avg ≈ 3,405 ft (approx, single pass total)" -- a
+#           single-pass heater, where per-circuit and heater total are the same
+#           number by definition.
+# What the number is labelled AS decides its scale. What the parenthetical
+# happens to mention does not.
+SCALE_LEADING_RE = re.compile(
+    r"^(total|heater[-\s]?wide|heater[-\s]?total|per[-\s]heater)\b", re.IGNORECASE)
+PER_CIRCUIT_LEADING_RE = re.compile(
+    r"^(/|per[-\s])\s*(circuit|pass|leg)\b", re.IGNORECASE)
 
-OK, ABSENT, EMPTY, COMPOUND, QUALIFIED, SCALE = (
-    "ok", "recorded-absent", "unfilled", "compound", "qualified", "scale-mismatch")
+OK, ABSENT, EMPTY, COMPOUND, QUALIFIED, HEATER, SCALE, IRREDUCIBLE = (
+    "ok", "recorded-absent", "unfilled", "compound", "qualified",
+    "heater-scale", "scale-mismatch", "heater-scale only (irreducible)")
 USABLE = {OK, QUALIFIED}
+
+# A heater-scale value splits two ways, and conflating them sends someone to
+# "fix" a correct card (Jesse, 2026-08-24):
+#   SCALE       -- a per-circuit column carrying a heater total WHEN A PER-CIRCUIT
+#                  VALUE EXISTS. Our error. B-102's "16 total (8/pass × 2 passes)".
+#   IRREDUCIBLE -- the card faithfully recording a heater-wide fact that CANNOT be
+#                  per-circuit. H-28's "2 heater-wide": 2 tubes across 4 passes do
+#                  not divide, and which pass carries them is unstated at source.
+#                  A customer-data gap, not a card defect.
+# Both still block a drawing. Only the first is ours to fix.
+#
+# The tell is NOT in the cell. The first attempt looked for a "N/pass" figure in
+# the same cell, which mislabelled B-102's length cells as irreducible -- they
+# offer no per-leg figure of their own, but Config Rollup carries ~1,847, so they
+# are plainly reducible. What actually distinguishes the two is whether the CARD
+# anywhere says the quantity does not distribute evenly. H-28's Config Rollup
+# per-circuit cell reads "4 (+2 heater-wide)" and its note says the two 5.76"
+# tubes "don't distribute evenly"; B-102's says nothing of the kind.
+NON_DISTRIBUTING_RE = re.compile(
+    r"(heater[-\s]?wide|do(es)?n'?t\s+distribute|not\s+distribute|"
+    r"cannot\s+(be\s+)?(split|divided?)|uneven)", re.IGNORECASE)
 
 
 def classify_cell(cell: str) -> tuple[str, float | None]:
@@ -146,8 +182,18 @@ def classify_cell(cell: str) -> tuple[str, float | None]:
         # Content, but it does not even start with a number.
         return COMPOUND, None
     value, rest = float(m.group(1).replace(",", "")), m.group(2)
-    if SCALE_QUALIFIER_RE.search(rest):
-        return SCALE, None
+    if SCALE_LEADING_RE.match(rest):
+        # Heater-scale, but WHICH KIND cannot be decided from this cell. Whether a
+        # per-circuit value exists is a fact about the card, not about the string
+        # -- B-102's length cells state no per-leg figure of their own, yet Config
+        # Rollup carries ~1,847, so they are our error and not irreducible. The
+        # caller resolves HEATER -> SCALE or IRREDUCIBLE against Config Rollup.
+        return HEATER, None
+    if PER_CIRCUIT_LEADING_RE.match(rest):
+        # Explicitly labelled per-circuit. That label resolves the ambiguity the
+        # digit rule below guards against, so a derivation in the parenthetical
+        # is provenance, not a second value.
+        return QUALIFIED, value
     if re.search(r"\d", rest):
         # A second number in the cell -- multi-valued (mixed bores per pass,
         # "46 (2 + 44)", "40/circuit (80 heater-total / 2)"). Not resolvable here.
@@ -165,12 +211,19 @@ def classify_zone(section: str) -> str | None:
     return None
 
 
-def audit_row(row: list[str]) -> dict:
-    """Check one Tube Geometry segment row. Returns its zone and its blockers."""
+def audit_row(row: list[str], resolve) -> dict:
+    """Check one Tube Geometry segment row. Returns its zone and its blockers.
+
+    `resolve(zone, state)` turns the cell-local HEATER verdict into SCALE or
+    IRREDUCIBLE using the card's Config Rollup; see config_rollup_per_circuit().
+    """
     r = (row + [""] * len(COLS))[:len(COLS)]
     section = r[C_SECTION].strip()
     zone = classify_zone(section)
     blockers = []
+
+    def state_of(idx: int) -> str:
+        return resolve(zone, classify_cell(r[idx])[0])
 
     if zone is None:
         # Service-named sections ("Treat Gas", "Superheat Steam") land here. They
@@ -184,12 +237,12 @@ def audit_row(row: list[str]) -> dict:
     # at tally time does not work: the cells themselves contain em dashes and
     # parentheses, so any stripper truncates mid-cell.
     for label, idx in (("tube count", C_TUBES), ("bore ID", C_ID)):
-        state, _ = classify_cell(r[idx])
+        state = state_of(idx)
         if state in USABLE:
             continue
         # Quote the cell only where the text IS the finding; for a plain absence
         # the cause already says everything.
-        detail = r[idx].strip() if state in (COMPOUND, SCALE) else ""
+        detail = r[idx].strip() if state in (COMPOUND, SCALE, IRREDUCIBLE) else ""
         blockers.append((f"{label} {state}", detail))
 
     # Length is satisfied by EITHER column, so it only blocks when both fail --
@@ -197,32 +250,140 @@ def audit_row(row: list[str]) -> dict:
     # gave us a length" together with "the length is there but is not a plain
     # number" would hide the difference between a gap we cannot close and one we
     # can, which is the whole point of separating the states.
-    avg_state, _ = classify_cell(r[C_AVGLEN])
-    lc_state, _ = classify_cell(r[C_LENCIRC])
+    avg_state, lc_state = state_of(C_AVGLEN), state_of(C_LENCIRC)
     if avg_state not in USABLE and lc_state not in USABLE:
         quoted = [r[i].strip() for i, st in
-                  ((C_AVGLEN, avg_state), (C_LENCIRC, lc_state)) if st in (COMPOUND, SCALE)]
+                  ((C_AVGLEN, avg_state), (C_LENCIRC, lc_state)) if st in (COMPOUND, SCALE, IRREDUCIBLE)]
         blockers.append((f"no usable length (avg {avg_state}, per-circuit {lc_state})",
                          " / ".join(quoted)))
 
     return {"section": section, "zone": zone, "blockers": blockers}
 
 
+# Config Rollup columns: Scale | Section | Pipe ID(s) | Total Tubes | Total Length | Notes
+CR_SCALE, CR_SECTION, CR_TUBES = 0, 1, 3
+
+
+def zones_named(section: str) -> tuple[str, ...]:
+    """Every zone a Config Rollup Section names, in canonical order.
+
+    Config Rollup rows are NOT always one zone. Several cards carry a single
+    combined row -- HP-0003's "Convection + Radiant" with "22 (12 conv + 10 rad)"
+    -- because the source quote gave per-pass totals only. Prefix-matching such a
+    row to "convection" alone charges the whole circuit's tube count to one zone
+    and invents a contradiction on a card that reconciles perfectly.
+    """
+    s = (section or "").strip()
+    return tuple(z for z, pat in ZONE_PATTERNS
+                 if re.search(r"\b" + pat.pattern.lstrip("^"), s, re.IGNORECASE))
+
+
+def config_rollup_per_circuit(text: str) -> list[dict]:
+    """Per-circuit rows of Config Rollup.
+
+    Returns one entry per row: {"zones", "raw", "value", "non_distributing"}.
+    Config Rollup is the estimating reference and carries BOTH scales explicitly
+    in its Scale column, which is why it can adjudicate what Tube Geometry's
+    per-circuit columns should hold.
+    """
+    out: list[dict] = []
+    for row in estimating_rollup.table_rows(
+            estimating_rollup.section_lines(text, "Config Rollup")):
+        r = (row + [""] * 6)[:6]
+        if r[CR_SCALE].strip().lower() != "per circuit":
+            continue
+        zones = zones_named(r[CR_SECTION])
+        if not zones:
+            continue
+        raw = r[CR_TUBES].strip()
+        state, value = classify_cell(raw)
+        if value is None and state not in (ABSENT, EMPTY):
+            # Leading number with provenance that classify_cell would not take
+            # (e.g. "22/leg (16 × 6\" + 6 × 8\")"). The Scale column already
+            # asserts per-circuit, so the leading number is the per-circuit value.
+            m = LEAD_NUM_RE.match(raw)
+            if m:
+                value = float(m.group(1).replace(",", ""))
+        out.append({"zones": zones, "raw": raw, "value": value,
+                    "non_distributing": bool(NON_DISTRIBUTING_RE.search(raw))})
+    return out
+
+
 def audit_card(text: str) -> dict:
     lines = estimating_rollup.section_lines(text, "Tube Geometry")
     rows = estimating_rollup.table_rows(lines)
     if not rows:
-        return {"rows": [], "blockers": [("no Tube Geometry table", "", "")], "segments": 0}
-    results = [audit_row(r) for r in rows]
+        return {"rows": [], "blockers": [("no Tube Geometry table", "", "")],
+                "segments": 0, "contradictions": []}
+
+    rollup = config_rollup_per_circuit(text)
+
+    def rows_for(zone: str | None) -> list[dict]:
+        return [cr for cr in rollup if zone in cr["zones"]]
+
+    def resolve(zone: str | None, state: str) -> str:
+        if state != HEATER:
+            return state
+        crs = rows_for(zone)
+        # No per-circuit row to adjudicate against, or the card itself says the
+        # quantity does not distribute -> the heater-scale figure is the only
+        # honest one there is. Otherwise a per-circuit value exists and this
+        # column should have carried it.
+        if not crs or any(cr["non_distributing"] for cr in crs):
+            return IRREDUCIBLE
+        return SCALE
+
+    results = [audit_row(r, resolve) for r in rows]
     # (section, cause, detail) -- kept as fields so the tally can group on cause
     # alone without parsing a rendered string back apart.
     blockers = [(res["section"] or "(unnamed section)", cause, detail)
                 for res in results for cause, detail in res["blockers"]]
-    return {"rows": results, "blockers": blockers, "segments": len(results)}
+
+    # CROSS-CHECK: Tube Geometry's per-circuit tube counts, summed by zone,
+    # against Config Rollup's Per circuit row for that zone. Nothing else does
+    # this -- ROLLUP-SCALE checks Config Rollup's INTERNAL arithmetic only, which
+    # is why B-102 carried heater totals in per-circuit columns from its
+    # 2026-07-07 ingest until a tool built for something else tripped over it.
+    #
+    # Only compare when BOTH sides parse cleanly. A cross-check that manufactures
+    # alarms on honestly-messy cards gets ignored, which is how the original
+    # defect survived.
+    contradictions = []
+    for cr in rollup:
+        if cr["value"] is None or cr["non_distributing"]:
+            continue
+        seg_values = []
+        for res, raw in zip(results, rows):
+            if res["zone"] not in cr["zones"]:
+                continue
+            cell = ((raw + [""] * len(COLS))[:len(COLS)])[C_TUBES]
+            state, value = classify_cell(cell)
+            if state == HEATER:
+                # The defect case. A per-circuit column holding a heater total
+                # still parses to a number, and comparing it IS the point -- an
+                # earlier cut skipped every non-clean cell and so stepped over
+                # B-102, the one card known to be broken.
+                m = LEAD_NUM_RE.match(cell.strip())
+                value = float(m.group(1).replace(",", "")) if m else None
+            elif state not in USABLE:
+                value = None
+            if value is None:
+                seg_values = None
+                break
+            seg_values.append(value)
+        if not seg_values:
+            continue
+        total = sum(seg_values)
+        if abs(total - cr["value"]) > 0.01:
+            contradictions.append(
+                (" + ".join(cr["zones"]), total, cr["value"], cr["raw"]))
+
+    return {"rows": results, "blockers": blockers, "segments": len(results),
+            "contradictions": contradictions}
 
 
 def build(root: Path) -> str:
-    renderable, blocked = [], []
+    renderable, blocked, contradictions = [], [], []
     total_segments = 0
     zone_counts: dict[str, int] = {}
 
@@ -237,6 +398,9 @@ def build(root: Path) -> str:
         entry = {"tag": tag, "client": client, "rel": path.relative_to(root).as_posix(),
                  "segments": res["segments"], "blockers": res["blockers"]}
         (blocked if res["blockers"] else renderable).append(entry)
+        for zone, tg_total, cr_value, cr_raw in res.get("contradictions", []):
+            contradictions.append((tag, client, path.relative_to(root).as_posix(),
+                                   zone, tg_total, cr_value, cr_raw))
 
     total = len(renderable) + len(blocked)
     out = [
@@ -255,9 +419,27 @@ def build(root: Path) -> str:
         f"Segment rows examined: **{total_segments}**. Zones: "
         + ", ".join(f"{k} {v}" for k, v in sorted(zone_counts.items())) + ".",
         "",
-        "## Cards you can work from",
-        "",
     ]
+    # Contradictions first: a card that disagrees with itself is a stronger
+    # finding than a card that is merely incomplete, and it is the one class here
+    # that can put a wrong number in front of a customer.
+    out += ["## Tube Geometry contradicts Config Rollup", ""]
+    if contradictions:
+        out += ["A card's per-circuit tube counts must sum to its Config Rollup "
+                "`Per circuit` row for the same zone. Where they do not, one of the two "
+                "is wrong and the card cannot be trusted for estimating until it is settled. "
+                "Rows are skipped, not guessed, wherever either side is compound, absent, "
+                "or recorded as not distributing evenly.",
+                "",
+                "| Heater | Client | Zone | Tube Geometry sum | Config Rollup per circuit |",
+                "|---|---|---|---|---|"]
+        out += [f"| [[{t}]] | {c} | {z} | {tg:g} | {cr:g} (`{raw}`) |"
+                for t, c, _rel, z, tg, cr, raw in
+                sorted(contradictions, key=lambda x: (x[1], x[0]))]
+    else:
+        out.append("- none — every comparable card reconciles")
+
+    out += ["", "## Cards you can work from", ""]
     if renderable:
         out += ["| Heater | Client | Segments |", "|---|---|---|"]
         out += [f"| [[{e['tag']}]] | {e['client']} | {e['segments']} |"
