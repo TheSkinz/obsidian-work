@@ -1,0 +1,280 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CND26001 Job Sheet</title>
+<style>
+  @page { size: Letter; margin: 0.55in 0.6in; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1a1a1a;
+    font-size: 8.5pt;
+    line-height: 1.25;
+    margin: 0;
+  }
+  .running-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2.5px solid #FCC30A;
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+  }
+  .logo {
+    font-size: 21pt;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+  .logo .ud { color: #1a1a1a; }
+  .logo .debusk { color: #FCC30A; }
+  .header-id { text-align: right; }
+  .header-id .jobnum { font-size: 13pt; font-weight: 800; letter-spacing: 0.5px; }
+  .header-id .scope { font-size: 9pt; color: #444; margin-top: 2px; }
+  section { margin-bottom: 6px; }
+  h2 {
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin: 0 0 3px 0;
+    padding-left: 8px;
+    border-left: 4px solid #FCC30A;
+    line-height: 1.1;
+  }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 2px; }
+  th, td {
+    border: 1px solid #d2d2d2;
+    padding: 1.5px 5px;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 8pt;
+  }
+  th {
+    background: #262626;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 7pt;
+    letter-spacing: 0.3px;
+  }
+  tbody tr:nth-child(even) td { background: #f7f7f7; }
+  .kv td:nth-child(odd) { font-weight: 700; width: 13%; background: #f0f0f0; }
+  td.num { text-align: center; }
+  th.num { text-align: center; }
+  table.fixed { table-layout: fixed; }
+  td.rowlabel { font-weight: 700; background: #f0f0f0; }
+  .note { font-size: 7.6pt; color: #555; margin: 2px 0 0 0; }
+  .b { font-weight: 700; }
+  .mut { color: #888; font-weight: 400; }
+  .two-col { display: flex; gap: 12px; align-items: flex-start; }
+  .two-col > table { flex: 1; }
+
+  .connbox {
+    margin-top: 4px;
+    border: 1px solid #bfbfbf;
+    border-left: 4px solid #FCC30A;
+    background: #fcfcfc;
+    padding: 5px 8px;
+  }
+  .spec-strip {
+    display: flex;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+  }
+  .spec { flex: 1; padding: 0 9px; border-left: 1px solid #e8e8e8; }
+  .spec:first-child { border-left: 0; padding-left: 0; }
+  .spec .sl {
+    font-size: 6.9pt; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.3px; color: #777; margin-bottom: 1px;
+  }
+  .spec .sv { font-size: 9.2pt; font-weight: 700; }
+  .spec .sv.hi { color: #8a6400; }
+  .cline { display: flex; gap: 9px; align-items: baseline; padding: 0.5px 0; font-size: 7.7pt; line-height: 1.32; }
+  .cline .lb {
+    flex: 0 0 62px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.3px; font-size: 6.9pt; color: #555; text-align: right;
+  }
+  .cline .vl { flex: 1; min-width: 0; }
+
+  .foot {
+    border-top: 1px solid #ddd; padding-top: 4px; margin-top: 4px;
+    font-size: 7pt; color: #999; text-align: center;
+  }
+
+  /* ---- page 2 ---- */
+  .page-break { page-break-before: always; }
+  .figgrid { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 9px; }
+  .figgrid .col-l { flex: 0 0 2.95in; }
+  .figgrid .col-r { flex: 1; }
+  .fig-wide { width: 92%; margin: 0 auto; }
+  figure { margin: 0; break-inside: avoid; page-break-inside: avoid; }
+  figure img { width: 100%; height: auto; display: block; border: 1px solid #c8c8c8; }
+  figcaption {
+    font-size: 7.4pt; line-height: 1.3; color: #444;
+    padding-left: 7px; border-left: 3px solid #FCC30A; margin-top: 4px;
+  }
+  figcaption .fl {
+    display: block; font-size: 7pt; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.4px; color: #1a1a1a;
+  }
+</style>
+</head>
+<body>
+
+<div class="running-header">
+  <div class="logo"><span class="ud">USA</span><span class="debusk">DEBUSK</span></div>
+  <div class="header-id">
+    <div class="jobnum">CND26001</div>
+    <div class="scope">Syncrude Mildred Lake &mdash; Fort McMurray, AB</div>
+  </div>
+</div>
+
+<section>
+  <h2>Project Details</h2>
+  <table class="kv">
+    <tr><td>Scope</td><td class="b">7-1 F-1 Bitumen Column Feed Heater &mdash; w/ Smart Pigging</td><td>Job #</td><td class="b">CND26001</td></tr>
+    <tr><td>Facility</td><td>Syncrude Mildred Lake &mdash; Fort McMurray, AB</td><td>Quote</td><td class="mut">No DSP work-up on file</td></tr>
+    <tr><td>Mode</td><td>Double mode &times; 2 rigs &mdash; 4 looped circuits, all pigged simultaneously</td><td>PO #</td><td>1300060001</td></tr>
+    <tr><td>Project Type</td><td>Planned outage &mdash; August 2026 (third campaign)</td><td>PM</td><td>Dacorey Slater</td></tr>
+    <tr><td>Lodging</td><td>Camp</td><td>Training</td><td>CSO / Syncrude Site Specific</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>Schedule</h2>
+  <div class="two-col">
+    <table>
+      <tr><th>Mobilization</th><th>Rig-In / Start</th><th>Projected Complete</th></tr>
+      <tr><td class="num">Tue Aug 25, 2026</td><td class="num b">Wed Aug 26, 2026</td><td class="num">~7 shifts from rig-in</td></tr>
+    </table>
+    <table>
+      <tr><th class="num">Rig-In</th><th class="num">Pig</th><th class="num">Smart Pig</th><th class="num">Rig-Out</th><th class="num">Total</th></tr>
+      <tr><td class="num">8</td><td class="num">47</td><td class="num">18</td><td class="num">8</td><td class="num b" style="background:#fdf1d6;">84 hrs</td></tr>
+    </table>
+  </div>
+  <div class="note">7 shifts. <span class="b">Rig-over 0</span> &mdash; all 4 circuits run at once.</div>
+</section>
+
+<section>
+  <h2>Crew &amp; Labor</h2>
+  <table class="fixed">
+    <tr>
+      <th style="width:11%;">Shift</th>
+      <th style="width:20%;">Role</th>
+      <th>Assigned</th>
+      <th class="num" style="width:12%;">Ea. Hrs</th>
+    </tr>
+    <tr><td class="rowlabel">Day</td><td>Project Manager</td><td class="b">Dacorey Slater</td><td class="num">12</td></tr>
+    <tr><td class="rowlabel">Day</td><td>Operator</td><td>Marshall Douglas &middot; Travis Trenholm &middot; Peter Campbell &middot; Jason Harman</td><td class="num">12</td></tr>
+    <tr><td class="rowlabel">Night</td><td>Supervisor</td><td class="b">Sam Mixon</td><td class="num">12</td></tr>
+    <tr><td class="rowlabel">Night</td><td>Operator</td><td>Jesse Utsey &middot; Danilo &middot; Rodney Lynch &middot; JC</td><td class="num">12</td></tr>
+  </table>
+  <div class="note">No DSP work-up is on file for this job, so <span class="b">no quoted resource plan or billing basis is carried here</span>. Roster is the mobilized crew of 10 &mdash; 5 dayshift / 5 nightshift. PM runs dayshift.</div>
+</section>
+
+<section>
+  <h2>Equipment</h2>
+  <table class="fixed">
+    <tr>
+      <th class="num" style="width:7%;">Qty</th>
+      <th style="width:20%;">Billable As</th>
+      <th>Asset</th>
+      <th class="num" style="width:9%;">Hrs</th>
+      <th style="width:31%;">Status</th>
+    </tr>
+    <tr><td class="num">2</td><td class="rowlabel">Trimax Pumper</td><td>Trimax 5 &middot; Trimax 6</td><td class="num b">84</td><td>Trimax 6 &mdash; confirm still staged in Canada</td></tr>
+    <tr><td class="num">2</td><td class="rowlabel">Support Unit</td><td>Support 5 &middot; Support 6</td><td class="num b">84</td><td>Travel as a set with their Trimax</td></tr>
+    <tr><td class="num">4</td><td class="rowlabel">Crew Truck</td><td>4 &times; rental</td><td class="num b">84</td><td>Confirm inspections / travel ready</td></tr>
+  </table>
+  <div class="note"><span class="b">No filtration on this heater</span> &mdash; settled, not a per-job election. FR coveralls with reflective striping mandatory. Site driving authorization via Marshall.</div>
+</section>
+
+<section>
+  <h2>7-1 F-1 &mdash; Coil Data &amp; Connections</h2>
+  <table class="fixed">
+    <tr>
+      <th style="width:15%;">Section</th>
+      <th class="num" style="width:8%;">Coils</th>
+      <th class="num" style="width:10%;">Pipe OD</th>
+      <th class="num" style="width:8%;">Wall</th>
+      <th class="num" style="width:9%;">Pipe ID</th>
+      <th class="num" style="width:11%;">Tube Lgth</th>
+      <th class="num" style="width:11%;">Tubes/Coil</th>
+      <th class="num" style="width:10%;">Ft/Coil</th>
+      <th class="num" style="width:18%;">Metallurgy</th>
+    </tr>
+    <tr><td class="rowlabel">Convection</td><td class="num">8</td><td class="num">6.625</td><td class="num">0.280</td><td class="num b">6.065</td><td class="num">65.0'</td><td class="num">16</td><td class="num">1,040'</td><td class="num">P5 + Incoloy 825</td></tr>
+    <tr><td class="rowlabel">Radiant</td><td class="num">8</td><td class="num">6.625</td><td class="num">0.280</td><td class="num b">6.065</td><td class="num">38.6'</td><td class="num">31</td><td class="num">1,197'</td><td class="num">P5 + Incoloy 825</td></tr>
+  </table>
+
+  <div class="connbox">
+    <div class="spec-strip">
+      <div class="spec"><div class="sl">Inlets</div><div class="sv">6" 300# RFWN</div></div>
+      <div class="spec"><div class="sl">Outlets</div><div class="sv">6" 300# RFWN</div></div>
+      <div class="spec"><div class="sl">Launchers</div><div class="sv">8 &times; 6" &middot; at grade</div></div>
+      <div class="spec"><div class="sl">Circuits</div><div class="sv hi">4 looped &middot; 4,474' ea.</div></div>
+    </div>
+    <div class="cline"><span class="lb">Circuits</span><span class="vl"><span class="b">8 coils looped into 4 circuits with temporary 180s at the radiant outlet flanges &mdash; 1&amp;8 &middot; 2&amp;7 &middot; 3&amp;6 &middot; 4&amp;5.</span> Follows the physical outlet-spool pairing. Launcher and receiver both land at the control-valve-station end.</span></div>
+    <div class="cline"><span class="lb">Temp 90s</span><span class="vl">Plant installs temporary 90&deg; elbows at both ends &mdash; CV station and radiant outlets. Those are what bring both connection points to grade; plant-side prerequisite.</span></div>
+    <div class="cline"><span class="lb">Location</span><span class="vl">Inlets at the control valve station. Outlets at the radiant outlet flanges. All 8 launchers and 8 receivers at grade &mdash; nothing on this heater is rigged at elevation.</span></div>
+    <div class="cline"><span class="lb">Water</span><span class="vl">Hydrant. Soda-ash solution mixed in tank &mdash; Syncrude site practice.</span></div>
+    <div class="cline"><span class="lb">Coil</span><span class="vl">Heater total 376 tubes / 17,893 ft. Single 6.065" bore throughout &mdash; no telescoping, no size sequencing.</span></div>
+  </div>
+</section>
+
+<section>
+  <h2>Carry-Forward &mdash; Prior Decokes (CND24002 Apr 2024 &middot; CND25004 Sep 2025)</h2>
+  <table class="fixed">
+    <tr><th style="width:44%;">Watch For</th><th>Action</th></tr>
+    <tr><td class="b">Hardest, heaviest coke in the last 3 radiant tubes &mdash; 29, 30, 31 &mdash; at the outlet of every coil</td><td>Expect the size progression to stall there. Plan polishing passes on the outlet end.</td></tr>
+    <tr><td class="b">Pig runs expected at 12&ndash;15 min</td><td>Materially longer means the coil is fighting &mdash; log it on the capture sheet.</td></tr>
+    <tr><td>Pitch / resid on multiple passes</td><td>Kicksolve is the precedent remedy.</td></tr>
+    <tr><td>Coils full of resid on arrival; TIs left in coils</td><td>Fill / flush before cleaning. Plant pulls TIs from the convection-to-radiant crossovers.</td></tr>
+    <tr><td>Stand-by waiting on plant de-inventory, drain, blinds and temp 90s &mdash; 36 hrs in 2024, ~192 hrs in 2025</td><td>History, not a forecast. Customer-caused. Record the <span class="b">cause</span> on the capture sheet, don't chase it.</td></tr>
+    <tr><td>Dewater</td><td>10.5" swab, 1600 cfm compressor.</td></tr>
+  </table>
+</section>
+
+<div class="foot">CND26001 &middot; PO 1300060001 &middot; 7-1 F-1 &middot; Internal crew document &mdash; actuals return via the CND26001 coilset capture sheet</div>
+
+<!-- ============ PAGE 2 ============ -->
+<div class="page-break"></div>
+
+<div class="running-header">
+  <div class="logo"><span class="ud">USA</span><span class="debusk">DEBUSK</span></div>
+  <div class="header-id">
+    <div class="jobnum">CND26001</div>
+    <div class="scope">7-1 F-1 &mdash; Reference Drawings</div>
+  </div>
+</div>
+
+<div class="figgrid">
+  <div class="col-l">
+    <figure>
+      <img src="CND26001-fig1-connections.jpg" alt="Annotated aerial showing connection points on 7-1 and 7-2">
+      <figcaption><span class="fl">Fig 1 &mdash; Connection Points</span>
+        Launchers at the control valve station convection inlet flanges; receivers and loop 180s at the radiant outlet flanges. Numbers are coils 1&ndash;8.
+        <span class="b">7-2 F-1 is a mirror image</span> &mdash; plenums, floor access doors, stairways and outlet-tube movement all opposite hand. We work 7-1.
+      </figcaption>
+    </figure>
+  </div>
+  <div class="col-r">
+    <figure>
+      <img src="CND26001-fig3-pass-routing.jpg" alt="Pass routing plan showing Cells A through E and Passes 1 through 8">
+      <figcaption><span class="fl">Fig 3 &mdash; Pass Routing, Cells A&ndash;E</span>
+        All 8 passes traced through the radiant cells. Every coil is uniform &mdash; 47 tubes, 2,237 ft &mdash; which is why any pairing gives the same 4,474 ft circuit.
+      </figcaption>
+    </figure>
+  </div>
+</div>
+
+<figure class="fig-wide">
+  <img src="CND26001-fig2-elevations.jpg" alt="OEM longitudinal and sectional elevations">
+  <figcaption><span class="fl">Fig 2 &mdash; Longitudinal &amp; Sectional Elevations</span>
+    6.625" OD Sch 40 tubes, A-335 P-5, 63'-6" effective convection length. Sectional views looking from the 'Z' and 'T' ends. Inlets 1, 2, 7 &amp; 8 at EL. 66'-9"; inlets 3, 4, 5 &amp; 6 on 6"-300# RF WN flanges. Colour banding is per pass.
+  </figcaption>
+</figure>
+
+</body>
+</html>

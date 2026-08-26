@@ -59,7 +59,7 @@ tags: [job-sheet, HF-Sinclair, USA26040]
 |---|---|---|---|---|---|---|
 | Day | Supervisor | Jesse Utsey | 1 | 1 | 16 | 16 |
 | Day | Operator | | 2 | 2 | 16 | 32 |
-| Night | Supervisor | Sam | 1 | 1 | 12 | 12 |
+| Night | Supervisor | Sam Mixon | 1 | 1 | 12 | 12 |
 | Night | Operator | | 2 | 1 | 12 | 24 |
 | **Per Diem — 3 day × 2 days + 3 night × 1 day = 9 days** | | | **6** | **5** | | **84** |
 
