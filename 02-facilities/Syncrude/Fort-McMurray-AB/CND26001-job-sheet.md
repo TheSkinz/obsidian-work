@@ -9,7 +9,12 @@ last-updated: 2026-08-25
 tags: [job-sheet, Syncrude, CND26001]
 ---
 
+![DeBusk Services Canada](debusk-services-canada-logo.png)
+
 # CND26001 — Syncrude Mildred Lake, Fort McMurray, AB
+
+> Canadian job — branded **DeBusk Services Canada**, not USADebusk. Naming and logo only; the job
+> is sold, planned, mobilized and executed exactly the same way as US work.
 
 > Vault-native copy of the printable crew job sheet. The canonical printable version is
 > `CND26001-job-sheet.pdf` (rendered from `CND26001-job-sheet.html`). A job sheet is static —
@@ -53,12 +58,12 @@ tags: [job-sheet, Syncrude, CND26001]
 
 ## Crew & Labor
 
-| Shift | Role | Assigned | Ea. Hrs |
-|---|---|---|---|
-| Day | Project Manager | Dacorey Slater | 12 |
-| Day | Operator | Marshall Douglas · Travis Trenholm · Peter Campbell · Jason Harman | 12 |
-| Night | Supervisor | Sam Mixon | 12 |
-| Night | Operator | Jesse Utsey · Danilo · Rodney Lynch · JC | 12 |
+| Shift | Role | Assigned |
+|---|---|---|
+| Day | Project Manager | Dacorey Slater |
+| Day | Operator | Marshall Douglas · Travis Trenholm · Peter Campbell · Jason Harman |
+| Night | Supervisor | Sam Mixon |
+| Night | Operator | Jesse Utsey · Danilo Ramirez · Rodney Lynch · JC |
 
 No DSP work-up is on file for this job, so **no quoted resource plan or billing basis is carried
 here**. Roster is the mobilized crew of 10 — 5 dayshift / 5 nightshift. PM runs dayshift.
