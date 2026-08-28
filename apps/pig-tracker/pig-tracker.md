@@ -44,6 +44,40 @@ half true — correct as serpentine mechanics, wrong as heater flow, and it went
 seven months the tool has existed because nothing in the vault checked the drawing against a real
 coil. Anything extracted from `buildGeometry()` must take the post-2026-08-28 version.
 
+### The bend regression that rode in on it
+
+Flipping the row order silently broke the U-bends, and it shipped. Convection draws its bends
+`ltr ? sweep-flag 1 : 0`; radiant drew `ltr ? 0 : 1`. That opposition was *correct* while radiant
+rows ran bottom-to-top — flipping the rows to run top-to-bottom made the two banks agree in
+direction, so the flags had to agree too. They were not changed, and the radiant bends bulged into
+the bank until Jesse caught it by eye.
+
+**The verification is what failed, not the fix.** That pass asserted row positions and path
+continuity, and a bend curving the wrong way is perfectly continuous and lands on exactly the right
+row — it is only wrong to *look at*. Position and continuity do not test curvature. The check that
+does: sample the path, take each local x-extremum, and assert the apex lies `r` **beyond** the
+straight-run limit rather than inside it, with the outward-bend count equalling `tubes - 1` per
+bank. Run it against the convection bank too — it is the known-good reference, and both banks must
+report the same signature.
+
+## Velocity reads ft/s, driven from GPM (2026-08-28)
+
+Jesse: *"Operators only have a flow meter that reads gallons per minute. We have to calculate the ft
+per second, so it's easier for an operator to adjust the speed by increasing or decreasing the
+GPM's / flow."* So **GPM stays the input** — it is the instrument actually in front of the operator
+— and ft/s is the derived number given prominence, since that is what means something at the pig.
+
+`velocityFtSecAt()` returns ft/s; `24.51·gpm/ID²` is kept with an explicit `/60` rather than folded
+into a new constant. A **bidirectional ft/s field** sits beside the GPM entry: it reads live off the
+slider, and typing a target back-solves `gpm = ftsec · 60 · ID² / 24.51` and moves the slider there.
+One field is both readout and target. The fixed-ft/s mode survives as an override that ignores bore,
+and disables the coupled field while active.
+
+**The slider range was raised 500 → 1250 GPM because it could not reach this job's operating band.**
+The carry-forward note expects 12–15 min pig runs; on a 4,474 ft circuit that is 5.0–6.2 ft/s, which
+at 6.065" bore needs **448–559 GPM**. The old cap of 500 put the fast end of the expected range out
+of reach. 1250 is the Waterous CMU's lowest NFPA rating (`04-knowledge/equipment/equipment-library.md`).
+
 ## Looped circuits — the mirrored-leg model (added 2026-08-28)
 
 A circuit carrying a `legs: ["Coil 1", "Coil 8"]` array is **looped**: its `segments` describe ONE

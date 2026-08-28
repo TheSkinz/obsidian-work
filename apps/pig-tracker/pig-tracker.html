@@ -241,7 +241,7 @@
       <div class="ro-pair"><span class="ro-label">Complete</span><span class="ro-value mono" id="pctText">0%</span></div>
       <div class="pct-track"><div class="pct-fill" id="pctFill"></div></div>
       <hr class="sep">
-      <div class="ro-pair"><span class="ro-label">Velocity at pig</span><span class="ro-value mono" id="velocity">0.0 ft/min</span></div>
+      <div class="ro-pair"><span class="ro-label">Velocity at pig</span><span class="ro-value mono" id="velocity">0.00 ft/s</span></div>
       <div class="ro-pair"><span class="ro-label"></span><span style="font-size:12px;color:var(--muted);" class="mono" id="velocitySub"></span></div>
       <div class="ro-pair"><span class="ro-label">Elapsed</span><span class="ro-value mono" id="elapsed">00:00</span></div>
       <hr class="sep">
@@ -262,10 +262,10 @@
 
     <div class="mode-toggle">
       <label><input type="radio" name="mode" value="gpm" id="modeGpm" checked> GPM</label>
-      <input type="range" id="gpmSlider" min="0" max="500" step="5" value="100" aria-label="GPM slider">
+      <input type="range" id="gpmSlider" min="0" max="1250" step="5" value="100" aria-label="GPM slider">
       <input type="number" id="gpmInput" value="100" min="0" step="1" aria-label="GPM">
-      <label><input type="radio" name="mode" value="direct" id="modeDirect"> ft/min</label>
-      <input type="number" id="ftminInput" value="0" min="0" step="1" aria-label="feet per minute" disabled>
+      <label><input type="radio" name="mode" value="direct" id="modeDirect"> ft/s fixed</label>
+      <input type="number" id="ftsecInput" value="0" min="0" step="0.1" aria-label="feet per second" disabled>
     </div>
   </div>
 </div>
@@ -494,7 +494,7 @@ function buildGeometry() {
       u.ePx = px;
       if (j < nRad - 1) {
         const y2 = radRowY[j + 1];
-        d += ltr ? ` A ${r},${r} 0 0 0 ${radR},${y2}` : ` A ${r},${r} 0 0 1 ${radL},${y2}`;
+        d += ltr ? ` A ${r},${r} 0 0 1 ${radR},${y2}` : ` A ${r},${r} 0 0 0 ${radL},${y2}`;
         px += Math.PI * r;
       }
     });
@@ -798,19 +798,24 @@ function locate(distance_ft) {
 function isGpmMode() { return document.getElementById("modeGpm").checked; }
 function currentGpm() { return parseFloat(document.getElementById("gpmInput").value) || 0; }
 
-function velocityFtMinAt(distance_ft) {
+// Returns ft/SECOND. Operators read gallons per minute off a flow meter, so GPM
+// stays the input everywhere; ft/s is what the number actually means at the pig.
+function velocityFtSecAt(distance_ft) {
   if (isGpmMode()) {
     const id = segIdInches(locate(distance_ft).i);
-    return 24.51 * currentGpm() / (id * id);
+    return 24.51 * currentGpm() / (id * id) / 60;   // 24.51·gpm/ID² is ft/min
   }
-  return parseFloat(document.getElementById("ftminInput").value) || 0;
+  return parseFloat(document.getElementById("ftsecInput").value) || 0;
 }
+
+// Inverse of the GPM branch above: what flow gives this speed at this bore?
+function gpmForFtSec(ftsec, id) { return ftsec * 60 * id * id / 24.51; }
 
 function etaSecondsFrom(distance_ft) {
   const lo = state.direction === 1 ? distance_ft : 0;
   const hi = state.direction === 1 ? totalLength : distance_ft;
   if (!isGpmMode()) {
-    const v = (parseFloat(document.getElementById("ftminInput").value) || 0) / 60;
+    const v = parseFloat(document.getElementById("ftsecInput").value) || 0;   // already ft/s
     return v > 0 ? (hi - lo) / v : Infinity;
   }
   const gpm = currentGpm();
@@ -883,13 +888,14 @@ function renderFrame() {
   document.getElementById("pctText").textContent = `${pct.toFixed(1)}%`;
   document.getElementById("pctFill").style.width = `${pct}%`;
 
-  const vFtMin = velocityFtMinAt(state.distance_ft);
-  const vFtSec = vFtMin / 60;
-  document.getElementById("velocity").textContent = `${vFtMin.toFixed(1)} ft/min`;
+  const vFtSec = velocityFtSecAt(state.distance_ft);
+  const vFtMin = vFtSec * 60;
+  document.getElementById("velocity").textContent = `${vFtSec.toFixed(2)} ft/s`;
   const idHere = segIdInches(i);
   document.getElementById("velocitySub").textContent = isGpmMode()
-    ? `${vFtSec.toFixed(2)} ft/s · ${currentGpm()} gpm · ID ${idHere}"`
-    : `${vFtSec.toFixed(2)} ft/s · direct`;
+    ? `${vFtMin.toFixed(1)} ft/min · ${currentGpm()} gpm · ID ${idHere}"`
+    : `${vFtMin.toFixed(1)} ft/min · fixed`;
+  syncFtSecField();
   document.getElementById("elapsed").textContent = fmtTime(state.elapsedSec);
 
   const etaSec = etaSecondsFrom(state.distance_ft);
@@ -923,7 +929,7 @@ function advance(dtSec) {
   const dir = state.direction;
   let guard = 0;
   while (remainingT > 1e-9 && guard++ <= segments.length + 2) {
-    const v = velocityFtMinAt(d) / 60;
+    const v = velocityFtSecAt(d);
     if (v <= 0) break;
     const { i } = locate(d);
     const segStart = cumStart[i], segEnd = segStart + segments[i].length_ft;
@@ -1054,8 +1060,8 @@ function updateDirectionButtons() {
 
 function flowDesc() {
   return isGpmMode()
-    ? `${currentGpm()} gpm (${velocityFtMinAt(state.distance_ft).toFixed(1)} ft/min at pig)`
-    : `${(parseFloat(document.getElementById("ftminInput").value) || 0).toFixed(1)} ft/min direct`;
+    ? `${currentGpm()} gpm (${velocityFtSecAt(state.distance_ft).toFixed(2)} ft/s at pig)`
+    : `${(parseFloat(document.getElementById("ftsecInput").value) || 0).toFixed(2)} ft/s fixed`;
 }
 
 function handleDirectionClick(clickedDirection) {
@@ -1104,8 +1110,40 @@ document.getElementById("stopBtn").addEventListener("click", () => {
 // GPM slider <-> number sync + debounced flow-change logging
 const gpmInput = document.getElementById("gpmInput");
 const gpmSlider = document.getElementById("gpmSlider");
-const ftminInput = document.getElementById("ftminInput");
+const ftsecInput = document.getElementById("ftsecInput");
 let flowLogTimer = null, lastLoggedFlow = null;
+
+// Coupled ft/s field, injected next to the GPM entry rather than added to the
+// markup: the control bar and the stylesheet both sit above line 393, and
+// buildGeometry() must not move. Same reason as the leg indicator.
+gpmInput.insertAdjacentHTML("afterend",
+  '<span class="chk" style="gap:6px;white-space:nowrap">=' +
+  '<input type="number" id="ftsecAtPig" value="0" min="0" step="0.1"' +
+  ' aria-label="feet per second at pig" style="width:74px">ft/s at pig</span>');
+const ftsecAtPig = document.getElementById("ftsecAtPig");
+
+// GPM -> ft/s, called every frame from renderFrame(). Looks the element up by
+// id rather than closing over the const below, which is still in its temporal
+// dead zone the first time renderFrame() runs. Skipped while the field has
+// focus so it cannot fight the operator's typing.
+function syncFtSecField() {
+  const el = document.getElementById("ftsecAtPig");
+  if (!el || document.activeElement === el) return;
+  el.value = isGpmMode() ? velocityFtSecAt(state.distance_ft).toFixed(2) : "";
+}
+
+// ft/s -> GPM, at the bore the pig is in right now.
+ftsecAtPig.addEventListener("input", () => {
+  if (!isGpmMode()) return;
+  const want = parseFloat(ftsecAtPig.value);
+  if (!(want >= 0)) return;
+  const id = segIdInches(locate(state.distance_ft).i);
+  const gpm = Math.round(gpmForFtSec(want, id));
+  gpmInput.value = gpm;
+  gpmSlider.value = Math.min(gpm, parseFloat(gpmSlider.max));
+  scheduleFlowLog();
+  renderFrame();
+});
 
 function scheduleFlowLog() {
   clearTimeout(flowLogTimer);
@@ -1120,13 +1158,14 @@ function scheduleFlowLog() {
 
 gpmSlider.addEventListener("input", () => { gpmInput.value = gpmSlider.value; scheduleFlowLog(); renderFrame(); });
 gpmInput.addEventListener("input", () => { gpmSlider.value = gpmInput.value; scheduleFlowLog(); renderFrame(); });
-ftminInput.addEventListener("input", () => { scheduleFlowLog(); renderFrame(); });
+ftsecInput.addEventListener("input", () => { scheduleFlowLog(); renderFrame(); });
 
 function applyMode() {
   const gpmMode = isGpmMode();
   gpmInput.disabled = !gpmMode;
   gpmSlider.disabled = !gpmMode;
-  ftminInput.disabled = gpmMode;
+  ftsecInput.disabled = gpmMode;
+  if (ftsecAtPig) ftsecAtPig.disabled = !gpmMode;
   renderFrame();
 }
 document.querySelectorAll('input[name="mode"]').forEach(el => el.addEventListener("change", applyMode));
