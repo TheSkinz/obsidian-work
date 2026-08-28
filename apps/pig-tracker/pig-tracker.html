@@ -527,8 +527,45 @@ function buildGeometry() {
   };
 }
 
-function pxOfDistance(dft) {
+// ---------------------------------------------------------------------------
+// Looped circuits ("mirrored legs")
+//
+// A looped circuit runs two identical coils in series: launcher -> coil A
+// convection -> radiant -> temporary 180 at the radiant outlet -> coil B
+// radiant -> convection -> receiver, both ends landing at the same place.
+//
+// Because the two coils are identical, the drawing of coil A IS the drawing of
+// coil B. So buildGeometry() is fed ONE leg and never learns about the loop:
+// the pig sweeps the same picture forward on leg 1 and backward on leg 2,
+// which is also what it physically does, since it returns outlet -> inlet
+// through the second coil. That also makes the tube identity fall out right —
+// entering leg 2 puts the pig in radiant tube 31, where it really is.
+//
+// `units` / `zoneCounts` / `geoSegments` are leg-scoped. `segments` /
+// `cumStart` / `totalLength` cover the whole circuit.
+//
+// NOTE ON PLACEMENT: everything the loop needs is defined at or below this
+// point on purpose. buildGeometry() must stay at line 393-528 — that range is
+// cited by repo-relative path in ten notes, two of them records that should
+// not be rewritten. See apps/pig-tracker/pig-tracker.md.
+// ---------------------------------------------------------------------------
+let geoSegments = [];   // one leg — buildGeometry()'s input
+let legCount = 1;
+let legLength = 0;
+let legLabels = [];
+
+// Circuit distance -> which leg, and how far along the DRAWN leg.
+// Leg 2 retraces the drawing backward, so its local distance counts down.
+function toLeg(dft) {
   const dd = Math.min(Math.max(dft, 0), totalLength);
+  // `<` not `<=`: at exactly legLength the pig is at the 180 entering the
+  // second coil, which is what locate() reports too. Keep the two agreeing.
+  if (legCount < 2 || dd < legLength) return { leg: 0, local: dd };
+  return { leg: 1, local: Math.max(0, 2 * legLength - dd) };
+}
+
+function pxOfLocal(local) {
+  const dd = Math.min(Math.max(local, 0), legLength);
   let u = units[units.length - 1];
   for (const cand of units) {
     if (dd < cand.ftStart + cand.len_ft) { u = cand; break; }
@@ -537,19 +574,26 @@ function pxOfDistance(dft) {
   return (u.mS + t * (u.mE - u.mS)) * pxScale;
 }
 
+function pxOfDistance(dft) { return pxOfLocal(toLeg(dft).local); }
+
+// Inverse of pxOfDistance, resolved onto whichever leg the pig is on now — on
+// a mirrored circuit one point on the drawing is two places in the circuit.
 function distanceOfPx(pxIn) {
   const p = Math.min(Math.max(pxIn / pxScale, 0), units[units.length - 1].mE);
+  let local = legLength;
   for (const u of units) {
     if (p <= u.mE) {
       const t = u.mE > u.mS ? (p - u.mS) / (u.mE - u.mS) : 0;
-      return Math.min(Math.max(u.ftStart + t * u.len_ft, 0), totalLength);
+      local = Math.min(Math.max(u.ftStart + t * u.len_ft, 0), legLength);
+      break;
     }
   }
-  return totalLength;
+  const onLeg2 = legCount > 1 && toLeg(state.distance_ft).leg === 1;
+  return Math.min(Math.max(onLeg2 ? 2 * legLength - local : local, 0), totalLength);
 }
 
 function unitAtDistance(dft) {
-  const dd = Math.min(Math.max(dft, 0), totalLength);
+  const dd = toLeg(dft).local;
   for (const u of units) if (dd < u.ftStart + u.len_ft) return u;
   return units[units.length - 1];
 }
@@ -674,17 +718,41 @@ function circuitByRef(ref) {
   return ref.type === "b" ? BUILTIN_CIRCUITS[ref.idx] : customCircuits[ref.idx];
 }
 
+// Leg 1 forward, leg 2 reversed — the pig returns outlet -> inlet through the
+// second coil. Labels carry the coil so the readout can name it.
+function buildFlatSegments() {
+  if (legCount < 2) return geoSegments.map(s => ({ ...s }));
+  const out = [];
+  legLabels.forEach((label, li) => {
+    const run = li % 2 === 0 ? geoSegments : [...geoSegments].reverse();
+    run.forEach(s => out.push({ ...s, label: `${label} — ${s.label}`, leg: li }));
+  });
+  return out;
+}
+
 function loadCircuit(ref) {
   currentRef = ref;
   circuit = circuitByRef(ref);
-  segments = circuit.segments;
+  circuitSelect.value = `${ref.type}:${ref.idx}`;   // keep the dropdown honest on init too
+
+  // A circuit with a `legs` array is looped: `segments` describes ONE coil and
+  // `legs` names the coils it runs through in order.
+  geoSegments = circuit.segments;
+  legLabels = Array.isArray(circuit.legs) && circuit.legs.length > 1 ? circuit.legs.slice() : [];
+  legCount = legLabels.length > 1 ? legLabels.length : 1;
+  legLength = geoSegments.reduce((a, s) => a + s.length_ft, 0);
+
+  // buildGeometry() reads the `segments` global, so hand it the single leg and
+  // draw, then expand `segments` to the whole circuit for the physics.
+  segments = geoSegments;
+  const geo = buildGeometry();
+  drawStatic(geo);
+
+  segments = buildFlatSegments();
   cumStart = [];
   let acc = 0;
   for (const s of segments) { cumStart.push(acc); acc += s.length_ft; }
   totalLength = acc;
-
-  const geo = buildGeometry();
-  drawStatic(geo);
 
   state.distance_ft = 0;
   state.direction = 1;
@@ -697,8 +765,11 @@ function loadCircuit(ref) {
 
   const ids = [...new Set(segments.map(s => s.id_in || circuit.default_id_inches))].sort((a, b) => a - b);
   const idText = ids.length === 1 ? `ID ${ids[0]}"` : `ID ${ids[0]}–${ids[ids.length - 1]}"`;
+  const loopText = legCount > 1
+    ? ` · looped ${legLabels.join(" + ")}, ${legLength.toFixed(0)} ft per coil`
+    : "";
   document.getElementById("circuitMeta").textContent =
-    `${segments.length} segments · ${totalLength.toFixed(1)} ft · ${idText}`;
+    `${segments.length} segments · ${totalLength.toFixed(1)} ft · ${idText}${loopText}`;
   addLog(`Circuit loaded: ${circuit.name} (${totalLength.toFixed(1)} ft)`);
 }
 
@@ -780,8 +851,18 @@ function renderFrame() {
 
   const { i, into } = locate(state.distance_ft);
   const u = unitAtDistance(state.distance_ft);
+  // `units` and `zoneCounts` are leg-scoped, so tube numbers read within the
+  // coil the pig is actually in — "tube 12 / 31", never 12 / 62.
   document.getElementById("zoneTube").textContent =
     `${ZONE_NAMES[u.zone]} · tube ${u.zoneIdx + 1} / ${zoneCounts[u.zone]}`;
+  const legEl = document.getElementById("legLine");
+  if (legEl) {
+    const legNow = toLeg(state.distance_ft).leg;
+    legEl.style.display = legCount > 1 ? "" : "none";
+    legEl.textContent = legCount > 1
+      ? `Leg ${legNow + 1} of ${legCount} · ${legLabels[legNow]}`
+      : "";
+  }
   document.getElementById("curSegment").textContent = segments[i].label;
   document.getElementById("intoSegment").textContent =
     `${into.toFixed(1)} / ${segments[i].length_ft.toFixed(1)} ft`;
@@ -1274,10 +1355,60 @@ document.getElementById("bImportFile").addEventListener("change", e => {
 });
 
 // ---------------------------------------------------------------------------
+// CND26001 — Syncrude 7-1 F-1 Bitumen Column Feed Heater, Fort McMurray AB
+//
+// Third campaign on this heater (August 2026). Eight coils looped into four
+// circuits with temporary 180s at the radiant outlet flanges — 1&8, 2&7, 3&6,
+// 4&5 — both Trimax in double mode, all four circuits pigged simultaneously.
+// Launcher and receiver both land at the control-valve-station end.
+//
+// Geometry from 02-facilities/Syncrude/Fort-McMurray-AB/7-1-F-1.md, Config
+// Rollup, verified 2026-08-20. Every coil is uniform: 16 convection tubes at
+// 65.0 ft (1,040 ft) + 31 radiant at 38.6 ft (1,197 ft) = 2,237 ft, single
+// 6.065" bore throughout, no telescoping. Any pairing gives the same 4,474 ft.
+//
+// NOT INCLUDED — the convection-to-radiant crossover and the temporary 180 at
+// the outlet. No length for either is recorded anywhere in the vault; the
+// card's 2,237 ft is tube footage only. ETA therefore runs slightly short and
+// the pig lands a little after the app says. Add `crossover` segments here if
+// the footage is ever measured (the Suncor B-103 preset shows the shape).
+//
+// Appended from below rather than written into BUILTIN_CIRCUITS at its
+// declaration: buildGeometry() must stay at lines 393-528 (see the placement
+// note above it). `const` forbids reassignment, not mutation.
+// ---------------------------------------------------------------------------
+const F1_COIL_SEGMENTS = [
+  { id: "conv", label: "Convection — 16 tubes @ 65.0 ft", zone: "convection", tubes: 16, length_ft: 1040 },
+  { id: "rad",  label: "Radiant — 31 tubes @ 38.6 ft",    zone: "radiant",    tubes: 31, length_ft: 1197 }
+];
+
+[["1", "8"], ["2", "7"], ["3", "6"], ["4", "5"]].forEach(([a, b]) => {
+  BUILTIN_CIRCUITS.push({
+    name: `CND26001 — Circuit ${a} & ${b} · Syncrude 7-1 F-1`,
+    default_id_inches: 6.065,
+    legs: [`Coil ${a}`, `Coil ${b}`],
+    segments: F1_COIL_SEGMENTS
+  });
+});
+
+// Fallback if a circuit gets broken out of the loop in the field.
+BUILTIN_CIRCUITS.push({
+  name: "7-1 F-1 — single coil, unlooped · Syncrude",
+  default_id_inches: 6.065,
+  segments: F1_COIL_SEGMENTS
+});
+
+// Injected at runtime: the readout markup sits above line 393 and must not move.
+document.getElementById("zoneTube").insertAdjacentHTML("beforebegin",
+  '<div id="legLine" class="mono" style="font-size:12px;color:var(--cyan);margin-bottom:3px;display:none"></div>');
+
+// ---------------------------------------------------------------------------
 // Init
 // ---------------------------------------------------------------------------
 rebuildCircuitSelect();
-loadCircuit({ type: "b", idx: 0 });
+// Open on the live job's first circuit, not the synthetic test.
+const startIdx = Math.max(0, BUILTIN_CIRCUITS.findIndex(c => c.name.startsWith("CND26001")));
+loadCircuit({ type: "b", idx: startIdx });
 applyMode();
 lastLoggedFlow = flowDesc();
 requestAnimationFrame(tick);
