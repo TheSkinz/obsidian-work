@@ -424,7 +424,7 @@ function buildGeometry() {
   const rowY = [];
   for (let i = 0; i < nConv; i++) rowY.push(topY + (i + 0.5) * pitch);
   const radRowY = [];
-  for (let j = 0; j < nRad; j++) radRowY.push(topY + (nRad - 1 - j + 0.5) * pitch);
+  for (let j = 0; j < nRad; j++) radRowY.push(topY + (j + 0.5) * pitch);
 
   const convUnits = units.filter(u => u.zone === "convection");
   const xoUnits   = units.filter(u => u.zone === "crossover");
@@ -454,12 +454,12 @@ function buildGeometry() {
   }
 
   if (both) {
-    // bridge: convection exit -> down -> across -> up into radiant bottom row
+    // bridge: convection BOTTOM -> below the conv bank -> across -> radiant TOP row
     const convExitX = (nConv - 1) % 2 === 0 ? convR : convL;
     const convExitY = rowY[nConv - 1];
     const radEntryY = radRowY[0];
     const bridgeStartPx = px;
-    const legs = [[convExitX, bridgeY], [radL - r, bridgeY], [radL - r, radEntryY], [radL, radEntryY]];
+    const legs = [[convExitX, convBot + 20], [radL - r, convBot + 20], [radL - r, radEntryY], [radL, radEntryY]];
     let prev = [convExitX, convExitY];
     legs.forEach(p => {
       d += ` L ${p[0]},${p[1]}`;
@@ -498,12 +498,12 @@ function buildGeometry() {
         px += Math.PI * r;
       }
     });
-    // R stub: up and out the top of the radiant bank
+    // R stub: down and out the BOTTOM of the radiant bank — the outlet is at grade
     const radExitX = (nRad - 1) % 2 === 0 ? radR : radL;
     const radExitY = radRowY[nRad - 1];
-    d += ` L ${radExitX},${topY - 30}`;
-    px += radExitY - (topY - 30);
-    rStub = { x: radExitX, y: topY - 30, vertical: true };
+    d += ` L ${radExitX},${radBot + 30}`;
+    px += (radBot + 30) - radExitY;
+    rStub = { x: radExitX, y: radBot + 30, vertical: true };
   } else {
     // convection-only: R stub exits the last row horizontally, away from the bank
     const exitLeft = (nConv - 1) % 2 !== 0;
@@ -654,7 +654,7 @@ function drawStatic(geo) {
   for (let j = 0; j < geo.nRad; j++) {
     const n = j + 1;
     if (n === 1 || n === geo.nRad || n % 5 === 0)
-      num(geo.radRect.x1 + boxPad + 6, geo.topY + (geo.nRad - 1 - j + 0.5) * geo.pitch, n, "start");
+      num(geo.radRect.x1 + boxPad + 6, geo.topY + (j + 0.5) * geo.pitch, n, "start");
   }
 
   pathEl = add("path", { d: geo.d, fill: "none", stroke: "var(--tube)", "stroke-width": 2.5, "stroke-linecap": "round", "stroke-linejoin": "round" });
@@ -670,19 +670,26 @@ function drawStatic(geo) {
       add("line", { x1: x + 4, y1: y - s, x2: x + 4, y2: y + s, stroke: "var(--ink)", "stroke-width": 2 });
     }
   };
+  // On a looped circuit the drawn R end is the temporary 180 at the radiant
+  // outlet, not the receiver — both the launcher and the receiver land at the
+  // B end. Labelling that stub "RECEIVER" would tell a crew something false.
+  const looped = legCount > 1;
+  const bSub = looped ? "LAUNCHER / RECEIVER" : "LAUNCHER";
+  const rSub = looped ? "180 LOOP" : "RECEIVER";
+
   flange(geo.bStub.x, geo.bStub.y, false);
   add("text", { x: geo.bStub.x - 4, y: geo.bStub.y - 14, class: "node-label", "text-anchor": "start" }).textContent = "B";
-  add("text", { x: geo.bStub.x - 4, y: geo.bStub.y + 24, class: "node-sub", "text-anchor": "start" }).textContent = "LAUNCHER";
+  add("text", { x: geo.bStub.x - 4, y: geo.bStub.y + 24, class: "node-sub", "text-anchor": "start" }).textContent = bSub;
 
   flange(geo.rStub.x, geo.rStub.y, geo.rStub.vertical);
   if (geo.rStub.vertical) {
-    add("text", { x: geo.rStub.x + 12, y: geo.rStub.y + 4, class: "node-label" }).textContent = "R";
-    add("text", { x: geo.rStub.x + 12, y: geo.rStub.y + 14, class: "node-sub" }).textContent = "RECEIVER";
+    add("text", { x: geo.rStub.x + 12, y: geo.rStub.y + 4, class: "node-label" }).textContent = looped ? "180" : "R";
+    add("text", { x: geo.rStub.x + 12, y: geo.rStub.y + 14, class: "node-sub" }).textContent = rSub;
   } else {
     const anchor = geo.rStub.left ? "end" : "start";
     const dx = geo.rStub.left ? -10 : 10;
-    add("text", { x: geo.rStub.x + dx, y: geo.rStub.y - 10, class: "node-label", "text-anchor": anchor }).textContent = "R";
-    add("text", { x: geo.rStub.x + dx, y: geo.rStub.y + 20, class: "node-sub", "text-anchor": anchor }).textContent = "RECEIVER";
+    add("text", { x: geo.rStub.x + dx, y: geo.rStub.y - 10, class: "node-label", "text-anchor": anchor }).textContent = looped ? "180" : "R";
+    add("text", { x: geo.rStub.x + dx, y: geo.rStub.y + 20, class: "node-sub", "text-anchor": anchor }).textContent = rSub;
   }
 
   add("text", { x: 12, y: geo.vbH - 10, class: "svg-hint" }).textContent = "CLICK COIL TO SET PIG POSITION";

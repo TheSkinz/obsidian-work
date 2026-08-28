@@ -20,6 +20,30 @@ A circuit is defined in the builder as an ordered list of segments, each carryin
 
 From that data it renders an SVG coil elevation and runs a live readout against it: ETA and arrival clock, the zone and tube the pig is currently in, current and next segment, distance covered and remaining, percent complete, velocity, elapsed time, and a copyable log.
 
+## Flow direction — the crossover enters the radiant at the TOP (fixed 2026-08-28)
+
+Jesse, 2026-08-28: **the crossover pipe connects the bottom of the convection to the top of the
+radiant.** The engine had it entering the radiant at the *bottom*: `radRowY` was built inverted
+(`nRad - 1 - j`), so `radRowY[0]` was the bottom row, and the bridge dropped below both banks to
+climb into it — line 457's own comment read *"up into radiant bottom row."*
+
+A second error followed from the same inversion. Entering at the bottom and serpentining upward
+means the coil **exits out the top**, which put the receiver at elevation and contradicted
+[[7-1-F-1]]'s Connection Info: *"All launchers and receivers are at grade. Nothing on this heater is
+rigged at elevation."* Entering at the top and exiting at the bottom corrects both, and on a looped
+circuit it puts the temporary 180 at the radiant outlet flanges, which is where the real one is.
+
+This was an **engine** fix, so it changed the drawing for every circuit, not just the CND26001
+presets. That is correct — the old direction was wrong for any fired heater. The tube numbering in
+`drawStatic` mirrored the same inversion and was flipped to match, so radiant tube 1 now sits at the
+top and 31 at the bottom, running with the flow rather than against it.
+
+**Bearing on the owed extraction.** [[2026-08-01-coil-visualization-build-owed]] justifies itself
+partly on the premise that *"the layout engine is already written and already correct."* That was
+half true — correct as serpentine mechanics, wrong as heater flow, and it went unnoticed for the
+seven months the tool has existed because nothing in the vault checked the drawing against a real
+coil. Anything extracted from `buildGeometry()` must take the post-2026-08-28 version.
+
 ## Looped circuits — the mirrored-leg model (added 2026-08-28)
 
 A circuit carrying a `legs: ["Coil 1", "Coil 8"]` array is **looped**: its `segments` describe ONE
@@ -42,6 +66,10 @@ correct for free — entering leg 2 puts the pig in radiant tube 31, where it re
 whole circuit.
 
 Unlooped circuits take the `legCount === 1` path and behave exactly as before.
+
+On a looped circuit the drawn `R` end is the **temporary 180**, not the receiver — both the launcher
+and the receiver land at the B end. The stubs are labelled accordingly (`180 / 180 LOOP` and
+`LAUNCHER / RECEIVER`) rather than telling a crew the outlet is a receiver.
 
 ## Built-in circuits for CND26001
 
