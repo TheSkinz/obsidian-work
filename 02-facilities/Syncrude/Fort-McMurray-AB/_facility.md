@@ -33,14 +33,14 @@ tags: [facility, Syncrude]
 |---|---|
 | Crane | (not recorded) |
 | Filter press | (not recorded) |
-| Water supply | Hydrant / soda ash solution noted on CND25004 report |
-| Soda ash neutralization | Used/mixed in tank per CND25004 source report; confirm before treating as site standard |
+| Water supply | Hydrant / soda ash solution noted on CAD25004 report |
+| Soda ash neutralization | Used/mixed in tank per CAD25004 source report; confirm before treating as site standard |
 
 ---
 
 ## Site Safety and Procedures
 
-- CSO / Syncrude Site Specific training noted on CND25004 source report.
+- CSO / Syncrude Site Specific training noted on CAD25004 source report.
 
 ---
 
@@ -49,7 +49,7 @@ tags: [facility, Syncrude]
 **Plant 7 runs two Bitumen Column Feed Heaters, side by side: `7-1 F-1` and `7-2 F-1`.** They are the same
 design, built together ("one heater shown — two heaters req'd" on the Foster Wheeler GA).
 
-- [[7-1-F-1|7-1 F-1 Column Feed Heater]] — the heater USADebusk has worked (CND24002 April 2024, CND25004 Sept 2025)
+- [[7-1-F-1|7-1 F-1 Column Feed Heater]] — the heater USADebusk has worked (CAD24002 April 2024, CAD25004 Sept 2025)
 - **7-2 F-1** — sister heater, no card yet. Not worked by USADebusk on any recorded job.
 
 ### Naming — settled 2026-08-20
@@ -78,4 +78,4 @@ Same heater, different register: `7-2 F-1` on engineering drawings, `7-2F-001` i
 
 ## Notes
 
-Created from routed source report `CND25004.md`. Treat site facts as source-derived until reviewed against customer/job-control documentation. Heater identity corrected 2026-07-06: Jesse confirmed 7-1 F-1, not 7-2 F-1. The source job number (CND25004 vs. CND24002) remains an open question — see the heater card's Field Notes.
+Created from routed source report `CAD25004.md`. Treat site facts as source-derived until reviewed against customer/job-control documentation. Heater identity corrected 2026-07-06: Jesse confirmed 7-1 F-1, not 7-2 F-1. The source job number (CAD25004 vs. CAD24002) remains an open question — see the heater card's Field Notes.

@@ -40,7 +40,7 @@ First run of the Vault Skill-Drift Loop (previously `pending` on the health dash
 
 - **File:** `skills/usadebusk-vault-ingest/SKILL.md:71`
 - **Current:** "### Known clients (32 active)" — list runs "…Sniper-Elite, Suncor, Targa, Valero, Westlake" with no Syncrude.
-- **Vault truth:** `02-facilities/Syncrude/Fort-McMurray-AB/` exists with a live heater card (7-1 F-1) and a recorded job actual (CND25004 in the rollup).
+- **Vault truth:** `02-facilities/Syncrude/Fort-McMurray-AB/` exists with a live heater card (7-1 F-1) and a recorded job actual (CAD25004 in the rollup).
 - **Proposed:** add `Syncrude`, retitle "(33 active)". Without it, any Syncrude document would be flagged `client: UNKNOWN` and routed to inbox despite the client having a facility folder and job history.
 - **Lane:** mechanical fact.
 

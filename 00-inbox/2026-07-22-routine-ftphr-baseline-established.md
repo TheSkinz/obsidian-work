@@ -31,7 +31,7 @@ Open threads left by the audit:
   (soda ash metallurgy-driven); Suncor is a customer-instruction override (soda ash across all 5 heaters
   incl. carbon-steel B-151). usadebusk-core skill + all affected cards updated; min-2"-firewater-hose
   rule added to usadebusk-equipment.
-- ~~**7-1-F-1 CND25004 task hours**~~ **RESOLVED 2026-07-23** — ticket breakdown ingested (Rig-In 14 /
+- ~~**7-1-F-1 CAD25004 task hours**~~ **RESOLVED 2026-07-23** — ticket breakdown ingested (Rig-In 14 /
   Pig 119 / Smart 18 / Rig-Out 13 / SB 192 / Total 164, 2 Trimax). Did NOT become a routine anchor: it's
   a 2-rig hours-blended sum (Mode blank) and the heater footage is still unverified, so the rollup shows
   fthr=19 but excludes it from the per-pig means. **The remaining gap is footage verification** — resolve

@@ -304,7 +304,7 @@ labels as such. This section fixes both by recording what one pig actually did.
   RIG — which Trimax ran this set (`TM5`, `TM6`). Blank on single-rig jobs is fine.
 
   MODE — SIMULTANEOUS CIRCUITS in this set, which CAN DIVERGE FROM THE TICKET'S LABEL.
-        CND25004's 1 & 8 set was written "double mode" because two passes were handled, but
+        CAD25004's 1 & 8 set was written "double mode" because two passes were handled, but
         the pair was LOOPED into ONE circuit — Mode is 1 here. Read the ticket's mode word as
         a passes-handled count and record what actually ran in parallel.
 
@@ -314,13 +314,13 @@ labels as such. This section fixes both by recording what one pig actually did.
         set total is the same per-pass-vs-heater-total error that produced the struck ~6 ft/hr
         figure — the definition is load-bearing, not pedantry.
         This is what makes the rate a MEASUREMENT: `ft/hr per pig = Circuit ft ÷ Pig`, with no
-        ÷Mode approximation. On CND25004 it reproduces 47 / 64 / 124 ft/hr exactly.
+        ÷Mode approximation. On CAD25004 it reproduces 47 / 64 / 124 ft/hr exactly.
 
   TASK HOURS — same conventions as `## Task Durations`: elapsed, `–` = confirmed did not
         occur, `?` = unrecorded. Total = Rig-In + Pig + Smart Pig + Rig-Over + Rig-Out.
 
   NO STAND-BY COLUMN, deliberately. Stand-by is a PER-RIG figure, not a per-set one — on
-        CND25004 the 192 hrs split 84 (TM5) / 108 (TM6), and TM6 ran two sets with the 108
+        CAD25004 the 192 hrs split 84 (TM5) / 108 (TM6), and TM6 ran two sets with the 108
         unallocated between them. Stand-By stays on the parent Task Durations row.
 
   COIL CONDITION — how dirty the coil actually WAS. Vocabulary (Jesse, 2026-08-21):
@@ -339,7 +339,7 @@ labels as such. This section fixes both by recording what one pig actually did.
                       specific to that coil on that decoke, or corrupt data. ESTIMATE OFF THE
                       SETS THAT CLUSTER, NEVER THE OUTLIER, and say in the duration math which
                       set you excluded — an unstated exclusion is indistinguishable from
-                      cherry-picking. Worked case: CND25004's 48-hr set against its 35/36 hr
+                      cherry-picking. Worked case: CAD25004's 48-hr set against its 35/36 hr
                       siblings, which agree within 3%.
           `blended` = the source allocated these hours rather than measuring them.
           `unknown` = quality not recoverable from the source documents.

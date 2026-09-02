@@ -1401,7 +1401,7 @@ document.getElementById("bImportFile").addEventListener("change", e => {
 });
 
 // ---------------------------------------------------------------------------
-// CND26001 — Syncrude 7-1 F-1 Bitumen Column Feed Heater, Fort McMurray AB
+// CAD26001 — Syncrude 7-1 F-1 Bitumen Column Feed Heater, Fort McMurray AB
 //
 // Third campaign on this heater (August 2026). Eight coils looped into four
 // circuits with temporary 180s at the radiant outlet flanges — 1&8, 2&7, 3&6,
@@ -1430,7 +1430,7 @@ const F1_COIL_SEGMENTS = [
 
 [["1", "8"], ["2", "7"], ["3", "6"], ["4", "5"]].forEach(([a, b]) => {
   BUILTIN_CIRCUITS.push({
-    name: `CND26001 — Circuit ${a} & ${b} · Syncrude 7-1 F-1`,
+    name: `CAD26001 — Circuit ${a} & ${b} · Syncrude 7-1 F-1`,
     default_id_inches: 6.065,
     legs: [`Coil ${a}`, `Coil ${b}`],
     segments: F1_COIL_SEGMENTS
@@ -1453,7 +1453,7 @@ document.getElementById("zoneTube").insertAdjacentHTML("beforebegin",
 // ---------------------------------------------------------------------------
 rebuildCircuitSelect();
 // Open on the live job's first circuit, not the synthetic test.
-const startIdx = Math.max(0, BUILTIN_CIRCUITS.findIndex(c => c.name.startsWith("CND26001")));
+const startIdx = Math.max(0, BUILTIN_CIRCUITS.findIndex(c => c.name.startsWith("CAD26001")));
 loadCircuit({ type: "b", idx: startIdx });
 applyMode();
 lastLoggedFlow = flowDesc();

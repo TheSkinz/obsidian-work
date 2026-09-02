@@ -210,10 +210,10 @@ and `:398`:
 
 Live cards already disagree. `02-facilities/Syncrude/Fort-McMurray-AB/7-1-F-1.md:259` and `:283`:
 
-> `### CND24002 — April 2024 TA`
-> `### CND25004 — September 2025`
+> `### CAD24002 — April 2024 TA`
+> `### CAD25004 — September 2025`
 
-The skill knows about CND# elsewhere — `:85` ("`CND#####` job numbers in the Frontmatter Template"), `:104` ("Same for `USA#` and `CND#`"), `:451` (`job_number: [USA##### or CND##### or null]`) — so this is internal inconsistency, not an unrecorded fact. It becomes live in the next few weeks: CND26001 mobilized 2026-08-25 and its actuals land on the same card that already carries two CND Field Notes subsections.
+The skill knows about CAD# elsewhere — `:85` ("`CAD#####` job numbers in the Frontmatter Template"), `:104` ("Same for `USA#` and `CAD#`"), `:451` (`job_number: [USA##### or CAD##### or null]`) — so this is internal inconsistency, not an unrecorded fact. It becomes live in the next few weeks: CAD26001 mobilized 2026-08-25 and its actuals land on the same card that already carries two CAD Field Notes subsections.
 
 **Proposed:** generalize the four `USA#####` occurrences at `:373`, `:388`, `:398`, `:411` to the job number. `:391` ("Field Notes entries require a real job number") is already correct and is untouched.
 
@@ -259,11 +259,11 @@ Not a memory finding but worth carrying with it: `07-llms/claude/code.md:191` ma
 
 > "Dormant — no active mobilization (last active: USA26038, HF Sinclair Navajo H19/H20, demobbed 2026-07-17)."
 
-Since then the vault records USA26041 (ExxonMobil Baytown F-501, completed 2026-08-14, Jesse ran the job) and CND26001 (Syncrude 7-1 F-1, mob 2026-08-25, rig-in 08-26) — `01-context/active-jobs.md`.
+Since then the vault records USA26041 (ExxonMobil Baytown F-501, completed 2026-08-14, Jesse ran the job) and CAD26001 (Syncrude 7-1 F-1, mob 2026-08-25, rig-in 08-26) — `01-context/active-jobs.md`.
 
 I did not propose an edit, for two reasons. First, "last active" is ambiguous between *the last job* and *the last job this skill was used on*, and `07-llms/claude/code.md:189` records that the skill's lifetime invocation counter was zero because its frontmatter would not parse until 2026-07-28 — so under the second reading the string may be literally correct and there is no file that settles which was meant. Second, the same note at `:191` rules explicitly against touching this field: *"Not trimmed: editing the exact field that silently disabled the skill for three weeks is not worth 17 tokens."*
 
-What would settle it: your reading of the phrase. If it means the last mobilization, the string is two jobs stale and CND26001 raises the separate question of whether `status: dormant` is still right at all.
+What would settle it: your reading of the phrase. If it means the last mobilization, the string is two jobs stale and CAD26001 raises the separate question of whether `status: dormant` is still right at all.
 
 ---
 

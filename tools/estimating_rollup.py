@@ -138,7 +138,7 @@ def rig_method(r: list[str]) -> str:
     if "hours-blended" in cond:
         rigs = num(r[2])
         # Multi-rig blended rows SUM across rigs rather than measuring elapsed
-        # (7-1 F-1 CND25004: rig-in 14 = 6 + 6 + 2 over three coil sets).
+        # (7-1 F-1 CAD25004: rig-in 14 = 6 + 6 + 2 over three coil sets).
         return "2-rig-sum" if rigs and rigs > 1 else "blended"
     return "unmarked"
 
@@ -247,7 +247,7 @@ def build(root: Path) -> str:
         "HF-0011's Rig-Out of 3 is the billed figure with a further 8 hrs customer-signed "
         "and never billed, and nothing on that row says so. `combined` = the hours are a "
         "multi-heater job total written on each card. `2-rig-sum` = summed across rigs, not "
-        "elapsed (7-1 F-1 CND25004's rig-in 14 = 6 + 6 + 2 across three coil sets). "
+        "elapsed (7-1 F-1 CAD25004's rig-in 14 = 6 + 6 + 2 across three coil sets). "
         "`blended` = the source did not separate this row's tasks cleanly; the card says "
         "which. `see card` = the cell carries a `*` footnote, and the reasons genuinely "
         "differ — Valero bundles rig-in + rig-over + rig-out into one \"Rigging\" figure, "

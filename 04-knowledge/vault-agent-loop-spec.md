@@ -19,7 +19,7 @@ tags: [knowledge-system, agent-loop, vault-review, governance]
 
 # Vault Agent Loop Spec
 
-This note defines the scheduled command loop for maintaining the USADebusk Obsidian vault. It turns the proven CND25004 pilot workflow into a repeatable agent loop with strict approval boundaries.
+This note defines the scheduled command loop for maintaining the USADebusk Obsidian vault. It turns the proven CAD25004 pilot workflow into a repeatable agent loop with strict approval boundaries.
 
 ## Loop Name
 

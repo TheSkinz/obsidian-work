@@ -38,7 +38,7 @@ was broken down before the final report existed.
 ## What the sample actually is
 
 Six USADebusk jobs are known to have carried a customer-elected smart pig: Syncrude 7-1-F-1 on
-CND24002 and CND25004, Flint Hills 01-BA-105 and 02-BA-201, Valero H-102B, and ExxonMobil F-501.
+CAD24002 and CAD25004, Flint Hills 01-BA-105 and 02-BA-201, Valero H-102B, and ExxonMobil F-501.
 Only two of the six — Valero and F-501 — record the rig-out sequence relative to inspection
 acceptance at all. The other four record the smart-pig election and hours but say nothing either way
 about acceptance before rig-out, so they are silent rather than supporting evidence.

@@ -39,7 +39,7 @@ the gate, not a future job.
 
 **Corrected 2026-08-17.** This seed originally read that DSP26085 (F-201, Jan 2027) "would be the
 second instance." That is wrong, and it set the gate five months out for no reason. Smart pigging has
-been elected on at least five prior USADebusk jobs: Syncrude 7-1-F-1 on both CND24002 and CND25004
+been elected on at least five prior USADebusk jobs: Syncrude 7-1-F-1 on both CAD24002 and CAD25004
 (Quest, all 8 coils each), Flint Hills 01-BA-105 and 02-BA-201 (Quest, all 4 coils each), and Valero
 Port Arthur H-102B (Quest Integrity, all 8 passes). The Syncrude card even carries the claim shape
 this seed is reaching for — the heaviest-fouled radiant tubes at the outlet, where "smart pig found

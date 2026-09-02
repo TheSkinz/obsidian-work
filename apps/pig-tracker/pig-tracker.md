@@ -33,7 +33,7 @@ means the coil **exits out the top**, which put the receiver at elevation and co
 rigged at elevation."* Entering at the top and exiting at the bottom corrects both, and on a looped
 circuit it puts the temporary 180 at the radiant outlet flanges, which is where the real one is.
 
-This was an **engine** fix, so it changed the drawing for every circuit, not just the CND26001
+This was an **engine** fix, so it changed the drawing for every circuit, not just the CAD26001
 presets. That is correct — the old direction was wrong for any fired heater. The tube numbering in
 `drawStatic` mirrored the same inversion and was flipped to match, so radiant tube 1 now sits at the
 top and 31 at the bottom, running with the flow rather than against it.
@@ -105,7 +105,7 @@ On a looped circuit the drawn `R` end is the **temporary 180**, not the receiver
 and the receiver land at the B end. The stubs are labelled accordingly (`180 / 180 LOOP` and
 `LAUNCHER / RECEIVER`) rather than telling a crew the outlet is a receiver.
 
-## Built-in circuits for CND26001
+## Built-in circuits for CAD26001
 
 Five presets ship for Syncrude 7-1 F-1 — the four looped circuits of the August 2026 campaign
 (**1&8 · 2&7 · 3&6 · 4&5**, 4,474 ft each) plus a single unlooped coil (2,237 ft) as a field

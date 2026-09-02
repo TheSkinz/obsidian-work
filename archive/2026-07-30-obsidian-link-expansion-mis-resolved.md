@@ -19,7 +19,7 @@ Found at session close-out 2026-07-30, in changes that had been sitting uncommit
 
 Obsidian rewrote bare `[[_facility]]` wikilinks to full paths across 23 notes. Inside `02-facilities/` every expansion resolved to the note's own facility folder and is correct — with 12 facility folders each holding a `_facility.md`, the bare link is genuinely ambiguous and the expansion is an improvement.
 
-**One resolved to the wrong facility.** `archive/2026-06-26-cnd25004-candidate-canonical-updates.md` is a Syncrude (Fort McMurray, AB) note; both of its `[[_facility]]` links were expanded to `02-facilities/PBF/Toledo-OH/_facility`. Corrected in commit `1d0e522` to `02-facilities/Syncrude/Fort-McMurray-AB/_facility`. The same commit also removed a stray word inserted mid-sentence in `06-insights/2026-07-28-idea-research-rollup-per-rig-coilset-grain.md` ("extracting structured **up** fields").
+**One resolved to the wrong facility.** `archive/2026-06-26-cad25004-candidate-canonical-updates.md` is a Syncrude (Fort McMurray, AB) note; both of its `[[_facility]]` links were expanded to `02-facilities/PBF/Toledo-OH/_facility`. Corrected in commit `1d0e522` to `02-facilities/Syncrude/Fort-McMurray-AB/_facility`. The same commit also removed a stray word inserted mid-sentence in `06-insights/2026-07-28-idea-research-rollup-per-rig-coilset-grain.md` ("extracting structured **up** fields").
 
 ## Why this matters
 

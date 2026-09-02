@@ -1,31 +1,31 @@
 ---
 type: job-sheet
-job-number: CND26001
+job-number: CAD26001
 client: Syncrude
 facility: Syncrude-Fort-McMurray-AB
 source: PO 1300060001 — no DSP work-up exists in the vault for this job
 verified: 2026-08-25
 last-updated: 2026-08-25
-tags: [job-sheet, Syncrude, CND26001]
+tags: [job-sheet, Syncrude, CAD26001]
 ---
 
 ![DeBusk Services Canada](debusk-services-canada-logo.png)
 
-# CND26001 — Syncrude Mildred Lake, Fort McMurray, AB
+# CAD26001 — Syncrude Mildred Lake, Fort McMurray, AB
 
 > Canadian job — branded **DeBusk Services Canada**, not USADebusk. Naming and logo only; the job
 > is sold, planned, mobilized and executed exactly the same way as US work.
 
 > Vault-native copy of the printable crew job sheet. The canonical printable version is
-> `CND26001-job-sheet.pdf` (rendered from `CND26001-job-sheet.html`). A job sheet is static —
+> `CAD26001-job-sheet.pdf` (rendered from `CAD26001-job-sheet.html`). A job sheet is static —
 > created at bid-win from the quoted work-up. Actuals and timeline live on the job report, never here.
 
 > [!note] No work-up on file
-> **No DSP quotation or work-up for CND26001 exists in this vault.** PO 1300060001 is the only
+> **No DSP quotation or work-up for CAD26001 exists in this vault.** PO 1300060001 is the only
 > commercial artifact recorded. This sheet therefore carries **no quoted resource plan, no Qty column
 > and no man-hour totals** — the Crew & Labor block is a roster, not a billing basis. The duration
 > figures below come from the reference build-up
-> [[2026-08-21-cnd26001-looping-duration-both-ways]], not from a quotation. `source:` records this
+> [[2026-08-21-cad26001-looping-duration-both-ways]], not from a quotation. `source:` records this
 > honestly rather than naming a DSP number that does not exist.
 
 ---
@@ -34,7 +34,7 @@ tags: [job-sheet, Syncrude, CND26001]
 
 | Field | Value | Field | Value |
 |---|---|---|---|
-| Scope | 7-1 F-1 Bitumen Column Feed Heater — w/ Smart Pigging | Job # | CND26001 |
+| Scope | 7-1 F-1 Bitumen Column Feed Heater — w/ Smart Pigging | Job # | CAD26001 |
 | Facility | Syncrude Mildred Lake — Fort McMurray, AB | Quote | No DSP work-up on file |
 | Mode | Double mode × 2 rigs — 4 looped circuits, all pigged simultaneously | PO # | 1300060001 |
 | Project Type | Planned outage — August 2026 (third campaign) | PM | Dacorey Slater |
@@ -102,7 +102,7 @@ Full tube geometry, config rollup and pig spec history: [[7-1-F-1]].
 
 ---
 
-## Carry-Forward Notes — Prior Decokes (CND24002 Apr 2024 · CND25004 Sep 2025)
+## Carry-Forward Notes — Prior Decokes (CAD24002 Apr 2024 · CAD25004 Sep 2025)
 
 | Watch For | Action |
 |---|---|
@@ -117,18 +117,18 @@ Full tube geometry, config rollup and pig spec history: [[7-1-F-1]].
 
 ## Reference Drawings (page 2 of the printable)
 
-![Fig 1 — connection points](CND26001-fig1-connections.jpg)
+![Fig 1 — connection points](CAD26001-fig1-connections.jpg)
 
 **Fig 1 — Connection Points.** Launchers at the control valve station convection inlet flanges;
 receivers and loop 180s at the radiant outlet flanges. Numbers are coils 1–8. **7-2 F-1 is a mirror
 image** — plenums, floor access doors, stairways and outlet-tube movement all opposite hand. We work 7-1.
 
-![Fig 3 — pass routing](CND26001-fig3-pass-routing.jpg)
+![Fig 3 — pass routing](CAD26001-fig3-pass-routing.jpg)
 
 **Fig 3 — Pass Routing, Cells A–E.** All 8 passes traced through the radiant cells. Every coil is
 uniform — 47 tubes, 2,237 ft — which is why any pairing gives the same 4,474 ft circuit.
 
-![Fig 2 — elevations](CND26001-fig2-elevations.jpg)
+![Fig 2 — elevations](CAD26001-fig2-elevations.jpg)
 
 **Fig 2 — Longitudinal & Sectional Elevations.** 6.625" OD Sch 40 tubes, A-335 P-5, 63'-6" effective
 convection length. Sectional views looking from the 'Z' and 'T' ends. Inlets 1, 2, 7 & 8 at EL. 66'-9";
@@ -138,12 +138,12 @@ inlets 3, 4, 5 & 6 on 6"-300# RF WN flanges. Colour banding is per pass.
 
 ## Notes
 
-Printable deliverable: `CND26001-job-sheet.pdf` (source `CND26001-job-sheet.html`), alongside this
+Printable deliverable: `CAD26001-job-sheet.pdf` (source `CAD26001-job-sheet.html`), alongside this
 file — two pages, project and heater data on page 1, the three reference drawings on page 2.
 
-Actuals return path is [[cnd26001-coilset-capture-sheet]] — per-circuit clock times, coil condition
+Actuals return path is [[cad26001-coilset-capture-sheet]] — per-circuit clock times, coil condition
 and pigs run, which feed `## Coilset Durations` on [[7-1-F-1]] at ingest.
 
-**Duration figures are the record of what was planned, not something to re-derive.** CND26001 is
+**Duration figures are the record of what was planned, not something to re-derive.** CAD26001 is
 already awarded and executing; an overrun goes to a change order negotiated by other people. See
-[[2026-08-21-cnd26001-looping-duration-both-ways]] for the build-up and its scope caveat.
+[[2026-08-21-cad26001-looping-duration-both-ways]] for the build-up and its scope caveat.

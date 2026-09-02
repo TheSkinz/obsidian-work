@@ -1,6 +1,6 @@
 ---
 type: flow-test-record
-job-number: CND26001
+job-number: CAD26001
 client: Syncrude
 facility: Syncrude-Fort-McMurray-AB
 heaters: [7-1-F-1]
@@ -14,20 +14,20 @@ passes-3-4-note: >
   them into a customer deliverable, and do not feed them to the job-report generator's
   Verification of Pass Cleanliness section, as measured results. As-scanned values preserved
   under Provenance.
-tags: [flow-test, Syncrude, Fort-McMurray, CND26001]
+tags: [flow-test, Syncrude, Fort-McMurray, CAD26001]
 ---
 
-# CND26001 — Flow Tests
+# CAD26001 — Flow Tests
 
 Transcribed 2026-09-02 from the four field sheets of the August 2026 decoke of [[7-1-F-1]]. Companion to
-[[CND26001-job-sheet]]. This note is the structured source — read it instead of re-reading the scans. The
+[[CAD26001-job-sheet]]. This note is the structured source — read it instead of re-reading the scans. The
 rest of the job data (durations, pig usage, receipts) had not arrived when this was written; nothing here
 has been carried onto the heater card yet.
 
 **The sheets cover all eight coils as four looped circuits — passes 1+2, 3+4, 5+6, 7+8.** That is the
 looping plan executing as designed, and it is the first field evidence of it. Trimax 5 ran passes 1+2 off
 its LEFT discharge and passes 7+8 off RIGHT — two looped circuits from one rig at once, which is the
-double-mode arrangement the CND26001 build-up assumed and which CND25004 never tested (there, the one
+double-mode arrangement the CAD26001 build-up assumed and which CAD25004 never tested (there, the one
 looped pair had a Trimax to itself).
 
 Each sheet records a four-step GPM ladder with RPM and PSI before and after the decoke. **GPM is the
@@ -116,7 +116,7 @@ Smart pigging: Quest, per the sheets. Filtration: none.
 ## Coil condition — post-decoke
 
 Jesse, 2026-09-02. This is the field account, not a flow-sheet reading; it is here because it is what the
-Δ PSI figures have to be read against. Carry it to [[7-1-F-1]] Field Notes with the rest of the CND26001
+Δ PSI figures have to be read against. Carry it to [[7-1-F-1]] Field Notes with the rest of the CAD26001
 actuals.
 
 All eight tube coils exhibited **nominal coking, consistent with historical run times.** The thickest
@@ -129,8 +129,8 @@ their own decoking division, and verbal communication on the job is the ceiling 
 (Jesse, 2026-09-02; see [[business-normal-facts]]). The account above is the record — it is not a
 placeholder for a document we are going to obtain.
 
-Two things follow. First, the residual at tubes 29–31 is **this heater's recurring signature, not a CND26001
-finding** — the CND24002 report recorded the heaviest and hardest deposits in exactly those three tubes at
+Two things follow. First, the residual at tubes 29–31 is **this heater's recurring signature, not a CAD26001
+finding** — the CAD24002 report recorded the heaviest and hardest deposits in exactly those three tubes at
 the outlet, with the smart pig finding minimal fouling there and calling it typical of previous decokes
 (see [[7-1-F-1]] Field Notes). Two decokes apart, same three tubes. Second, since all eight coils were
 nominal, **the spread in Δ PSI across circuits is not a coil-condition effect.** With the scrapped passes
@@ -154,8 +154,10 @@ read as one. The passes 3+4 row is a placeholder, not a measurement; see frontma
 ## Provenance
 
 Values read from the scan pages. Identity fields were normalized to the job of record per Jesse's ruling
-2026-09-02 — the field sheets carry several header errors (a wrong customer name, a wrong job number, a
-wrong year, and abbreviated heater names) which are not reproduced here. **Numeric cells were not
+2026-09-02 — the field sheets carry several header errors (a wrong customer name, a wrong year, and
+abbreviated heater names) which are not reproduced here. **The job number was not one of them:** one
+sheet wrote `CAD26001` and was correct; it was normalised to `CND26001` that morning on the strength of
+a ruling reversed later the same day, and that normalisation was the error, not the sheet. **Numeric cells were not
 normalized**: every RPM, PSI and GPM above is as written, with the ambiguous ones re-read on zoomed 300–600
 dpi crops and noted inline. The one exception is passes 3+4 — see below.
 

@@ -59,7 +59,7 @@ invisible to every guard the vault had. It fires only when the note's status was
 ALREADY resolved or superseded before the edit: closing a review note means
 ticking its boxes and setting the status in one go, which is the workflow, not a
 defect. A record that was already closed changing its mind is the anomaly.
-Added 2026-07-28 after a stray Live Preview click ticked "Approve CND25004.md as
+Added 2026-07-28 after a stray Live Preview click ticked "Approve CAD25004.md as
 first pilot item" on a superseded note and --worktree passed it clean.
 
     --staged    HEAD vs the git index — the pre-commit shape, what is about to
@@ -370,7 +370,7 @@ def check_operational_frontmatter(root: Path, notes: dict[Path, str]) -> list[Fi
 # `change-log.md` states where a file was and what a link used to say at the time;
 # the capture-loop spec is explicit that its references are not to be rewritten.
 # Linting them produces findings whose only correct fix is to falsify the record —
-# e.g. the 2026-06-29 row reading "converted [[USA]]/[[CND]] wikilinks to plain
+# e.g. the 2026-06-29 row reading "converted [[USA]]/[[CAD]] wikilinks to plain
 # text", which reports two dead links precisely because it documents removing them.
 DEAD_LINK_EXEMPT = ("change-log.md",)
 
@@ -655,7 +655,7 @@ def check_link_facility(root: Path, notes: dict[Path, str]) -> list[Finding]:
 
     KNOWN LIMIT, STATED PLAINLY. `archive/` is in SKIP_SCAN, so this rule cannot
     see the one bare link still live in
-    `archive/2026-06-26-cnd25004-candidate-canonical-updates.md`. That file was
+    `archive/2026-06-26-cad25004-candidate-canonical-updates.md`. That file was
     fixed by hand instead. This rule is forward protection for the live vault,
     not a sweep of the estate. Warning, not error.
     """
@@ -1020,7 +1020,7 @@ def checkbox_delta(before: str, after: str) -> list[str]:
     an "x", and WORD-DELTA reports only losses. In a vault whose governance runs
     on decision checkboxes, a silently *recorded* decision is at least as bad as
     a silently reverted sentence. Found 2026-07-28 when a stray Live Preview
-    click ticked "Approve CND25004.md as first pilot item" on an already-
+    click ticked "Approve CAD25004.md as first pilot item" on an already-
     superseded note and every existing guard passed it clean.
 
     Labels repeat — a review note with proposals A/B/C carries three identical

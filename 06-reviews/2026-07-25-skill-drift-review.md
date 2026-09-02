@@ -88,9 +88,9 @@ And the `doc_type` enum at `usadebusk-vault-ingest/SKILL.md:413` has no `job-she
 > - Never spell out the state name
 > - Examples: `Ponca-City-OK`, `Garyville-LA`, `Port-Arthur-TX`, `Corpus-Christi-TX`
 
-**Evidence:** the vault carries two Canadian sites under exactly this convention — `02-facilities/Suncor/Montreal-QC/` and `02-facilities/Syncrude/Fort-McMurray-AB/` — and the same skill supports Canada elsewhere: `SKILL.md:412` has `job_number: [USA##### or CND##### or null]` and `:413` has `job_region: [US | CA | null]`. The rule as written covers neither `QC` nor `AB`, and its example list "(TX, LA, OK, CA, etc.)" now carries a live ambiguity, since `CA` reads as California in a US list and as Canada in the `job_region` field two sections down.
+**Evidence:** the vault carries two Canadian sites under exactly this convention — `02-facilities/Suncor/Montreal-QC/` and `02-facilities/Syncrude/Fort-McMurray-AB/` — and the same skill supports Canada elsewhere: `SKILL.md:412` has `job_number: [USA##### or CAD##### or null]` and `:413` has `job_region: [US | CA | null]`. The rule as written covers neither `QC` nor `AB`, and its example list "(TX, LA, OK, CA, etc.)" now carries a live ambiguity, since `CA` reads as California in a US list and as Canada in the `job_region` field two sections down.
 
-**Proposed:** widen the format to state-or-province, name the Canadian abbreviations explicitly with a pointer to `job_region`/`CND#####`, add `Fort-McMurray-AB` and `Montreal-QC` to the examples, and drop the bare `CA` from the US example list.
+**Proposed:** widen the format to state-or-province, name the Canadian abbreviations explicitly with a pointer to `job_region`/`CAD#####`, add `Fort-McMurray-AB` and `Montreal-QC` to the examples, and drop the bare `CA` from the US example list.
 
 ### F6 · core lists Jesse's role as PM; global CLAUDE.md calls that title stale — MEDIUM · Lane 1
 

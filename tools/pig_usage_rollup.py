@@ -50,12 +50,12 @@ PS_COLS = ["Size", "Type", "Qty", "Unit Cost", "Billed As", "Source"]
 # some other measurement (tool length on Honeycomb rows, for example).
 MAX_PLAUSIBLE_PIG_OD = 20.0
 
-JOB_RE = re.compile(r"\b(USA\d{5}|CND\d{5})\b")
+JOB_RE = re.compile(r"\b(USA\d{5}|CAD\d{5})\b")
 QUOTE_RE = re.compile(r"\bDSP\d{4,5}", re.IGNORECASE)
 
 
 def job_number(source: str) -> str | None:
-    """The USA#####/CND##### that sources an actual row. None if not an actual."""
+    """The USA#####/CAD##### that sources an actual row. None if not an actual."""
     m = JOB_RE.search(source or "")
     return m.group(1) if m else None
 
@@ -173,7 +173,7 @@ def build(root: Path) -> str:
             })
         if not saw_actual:
             gaps.append(f"{tag} ({client}) — Pig Specifications rows present but none "
-                        "sourced to a USA#####/CND##### job (quoted or unsourced)")
+                        "sourced to a USA#####/CAD##### job (quoted or unsourced)")
 
     cards_with = len({a["tag"] for a in actuals})
     jobs = sorted({a["job"] for a in actuals})
@@ -188,7 +188,7 @@ def build(root: Path) -> str:
         "config repo).",
         "",
         "> **The actuals wall is the `Source` column.** A row sourced to a `USA#####` or "
-        "`CND#####` is what a job really consumed and is counted here. A row sourced to a "
+        "`CAD#####` is what a job really consumed and is counted here. A row sourced to a "
         "`DSP#####` is a quoted figure and is excluded — quoted and actual pig counts must "
         "never be summed together. Rows with neither are excluded and reported as a gap.",
         "",
