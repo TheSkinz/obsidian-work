@@ -17,23 +17,23 @@ USADebusk's proprietary trailer-mounted pigging pumper. Transports cleaning pigs
 - 3× pump/engine assemblies (Waterous CMU Series Two-Stage Centrifugal Pump, one per assembly)
 
 **Internal routing (per assembly):**
-- Return water from receiver enters via Fig. 200 RAD port at trailer rear
+- Return water from the receiving spool enters via the return-side Fig. 200 port at trailer rear (**Red** in the default direction)
 - Routes via fixed pipe along trailer ceiling toward clean tank
 - Diverter (90° plunger, operator-controlled from cab) sits at junction above dirty/clean tank
   - Default: water flows to clean tank
   - Thrown (when effluent cloudy): water diverts to dirty tank
 - Pump inlet: right side of clean tank
-- Pump discharge: right side of pump → out to launcher via Fig. 200 CONV port
+- Pump discharge: right side of pump → out to the launching spool via the feed-side Fig. 200 port (**Blue** in the default direction)
 
 **Rear connections:**
-- Two Fig. 200 (3") ports at rear of trailer, side by side — one CONV, one RAD
+- **A Blue and a Red Fig. 200 (3") port per pump assembly** — so six at the rear of a triple Trimax, one pair per side (left, centre, right) (Jesse, 2026-09-02). ⚠ The card previously read "two ports at rear of trailer", which counted one assembly's pair as the whole trailer; the six-port figure follows from Jesse's statement and has **not** been eyeballed on a unit
 - Both serve as either feed or return depending on selected pig travel direction
 - Valve manifold on Trimax controls direction from cab — no hose swapping
-- **In the field these two ports are called by colour — Red and Blue** (Jesse, 2026-09-02), and that is the naming the decoking data sheets use. `R/B` in a field record means Red/Blue
+- **In the field the ports are called by colour — Red and Blue** (Jesse, 2026-09-02), and that is the naming the decoking data sheets use. `R/B` in a field record means Red/Blue
 - **Blue is the feed port and Red the return, in the default direction.** Direction of pig travel is written **blue to red** (default) or **red to blue**. The sheet's PRE/POST DECOKE FLOW TEST box is a printed pair of colour bars with a double-headed arrow, marked by the tech to show which way that test ran
-- **The colour belongs to the port and its hose set, not to a coil section.** Each circuit gets one Blue launcher/receiver and one Red one. Which end of the coil a given spool lands on depends on the flange connection it is bolted to — it may be the first tube of the convection or of the radiant. So Blue and CONV coincide only in the standard hookup, where the feed goes to the convection inlet and travel is convection-to-radiant per `manual/08-phase-i-rig-in.md` §8.4. **A colour direction does not by itself tell you which coil section the pig entered** — read the flange connection, not the colour
+- **The colour belongs to the port and its hose set, not to a coil section.** Each circuit gets one Blue launcher/receiver and one Red one. Which end of the coil a given spool lands on depends on the flange connection it is bolted to — it may be the first tube of the convection or of the radiant. **CONV and RAD are heater sections, not port names** (Jesse, 2026-09-02) — a section is *assigned* to a port per job, and calling a port "the CONV port" states a hookup convention as though it were plumbing. Blue serves the convection inlet only in the standard hookup. **A colour direction does not by itself tell you which coil section the pig entered** — read the flange connection, not the colour
 
-**The default flow path, one circuit (Jesse, 2026-09-02):** clean tank → pump → **Blue port** at the trailer rear → 3" hoses → **Blue launcher/receiver** → first tube of the circuit → through the remaining tubes → **Red launcher/receiver** → 3" hoses → **Red port** → back to the clean tank, via the diverter described above. On a looped circuit the two spools sit at the inlets of the two coils and the loop joins them at the far end.
+**The default flow path, one circuit (Jesse, 2026-09-02):** clean tank → pump → **Blue port** at the trailer rear → 3" hoses → **Blue launcher/receiver** → first tube of the circuit → through the remaining tubes → **Red launcher/receiver** → 3" hoses → **Red port** → back to the clean tank, via the diverter described above. On a looped circuit the two spools sit at the same end of the two coils and the loop 180s join them at the far end — so one heater end carries every spool and the other carries none.
 
 - When smart pigging, blocker valves are fitted to each active Red/Blue port to hold the specific flow the smart pig run needs, then reopened for the flow test (see `manual/08-phase-i-rig-in.md` §8.2)
 
@@ -96,8 +96,8 @@ USADebusk Filter Press #1 specs (all three are this model):
 
 ## Pig Launchers / Receivers
 
-- Attached directly to convection inlet flanges (launcher) and radiant outlet flanges (receiver)
-- Same form factor — labeled by function and location
+- **Attached to whichever coil flanges the job's configuration calls for.** Convection inlet and radiant outlet is the common unlooped arrangement, **not a rule** — on a looped circuit both spools land at the *same* end of the heater and the loop 180s occupy the other, so there is no spool at the looped end at all. Read the job's looping election, never assume the split (corrected 2026-09-02)
+- **Same form factor, and the same unit** — a launcher/receiver both launches and receives. "Launcher" and "receiver" name the role a spool is playing on a given run, not two kinds of hardware
 - Flange size matches heater flange; customer fabricates adapters when flange rating/size differs
 - Fig. 200 hose connection at rear of Trimax connects to launcher/receiver via jetting hose
 

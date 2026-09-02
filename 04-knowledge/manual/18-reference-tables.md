@@ -63,7 +63,7 @@ Applying the governing tube ID plus 0.250 inch rule to common sizes. The smalles
 | Clean tank | 3,000 gallons, shared |
 | Dirty tank | 2,000 gallons, shared |
 | Pump | Waterous CMU series two-stage centrifugal, one per assembly |
-| Rear connections | Two 3" Fig. 200 ports, convection side and radiant side |
+| Rear connections | A Blue and a Red 3" Fig. 200 port per pump assembly; heater section is assigned per job |
 | Direction control | Valve manifold at operator station; no hose changes required |
 | Trailer envelope | 48'-3" L × 8'-6" W × 12'-11" H approximate |
 | Support unit envelope | 48'-6" L × 8'-6" W × 9'-4" H approximate |

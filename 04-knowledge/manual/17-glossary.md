@@ -47,7 +47,7 @@ Terms defined here are those the manual actually uses. Where local facility usag
 | Maximum pig OD | The largest pig permitted in a circuit: governing tube ID plus 0.250 inches. |
 | Launcher | The vessel mounted on the coil inlet flange from which pigs are launched. |
 | Receiver | The vessel mounted on the coil outlet flange in which pigs are recovered. Same form factor as a launcher, distinguished by function. |
-| Jumper spool | A temporary 180 degree spool connecting two outlet flanges to join two passes into one continuous circuit. |
+| Jumper spool | A temporary 180 degree spool joining two passes into one continuous circuit, connecting the corresponding flanges at the same end of both passes. The end is a per-job election — radiant outlets or convection inlets — and the looped end carries no launcher or receiver. |
 | Trimax | USADebusk's trailer-mounted pigging pumper. The standard unit is a Triple, carrying three independent pumping assemblies sharing one clean and one dirty tank. |
 | Second Trimax | A second pumping unit deployed on the same job, each unit carrying its own tanks and assemblies. |
 | Clean tank | The tank supplying water to the pump. Receives return water when effluent runs clear. |

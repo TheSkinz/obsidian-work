@@ -24,7 +24,7 @@ Operators generally schedule decoking into a planned turnaround, using pressure 
 
 ## 2.3 What a pig is and what it does
 
-A pig is a cleaning device sized to the tube bore and propelled through the coil by water. It travels the full length of a circuit from the launcher at one end to the receiver at the other, removing deposit mechanically as it goes.
+A pig is a cleaning device sized to the tube bore and propelled through the coil by water. It travels the full length of a circuit from the launching spool to the receiving one, removing deposit mechanically as it goes. On an unlooped pass those sit at opposite ends of the coil; on a looped circuit both sit at the same end.
 
 USADebusk uses several pig types across a single job. Foam pigs are soft, carry no abrasive elements, and are used to open the path and establish flow. Tungsten carbide pigs are the primary cleaning tool: a urethane body with tungsten carbide pins embedded during molding. When the pig is at or under tube bore, the pins extend and dig into the deposit. When the pig is deliberately oversized, the urethane body compresses and the pins lay back, and the difference in hardness between coke and tube wall means the pins cut the deposit while deflecting off the steel behind it without damaging the tube. Harder-durometer pigs are used on heavy fouling and pitch-laden tubes, and oversized soft urethane swabs are used for final cleanup and verification.
 

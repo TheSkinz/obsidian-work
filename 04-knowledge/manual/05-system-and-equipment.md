@@ -22,7 +22,7 @@ Where a heater has more circuits than one unit can serve, or where schedule requ
 | Pump | Waterous CMU series two-stage centrifugal, one per assembly |
 | Normal operating pressure | 150–300 PSI |
 | Maximum system pressure | 600 PSI |
-| Rear connections | Two 3" Fig. 200 ports, one convection side and one radiant side |
+| Rear connections | A Blue and a Red 3" Fig. 200 port per pump assembly. The heater section each serves is a per-job assignment, not a property of the port |
 | Trailer envelope | 48'-3" L × 8'-6" W × 12'-11" H approximate |
 
 Direction of pig travel is set from the cab through the valve manifold. Reversing direction does not require disconnecting or swapping hoses.
@@ -35,7 +35,7 @@ A support unit trailer accompanies the pumper carrying additional equipment and 
 
 ## 5.2 Launchers and receivers
 
-Launchers and receivers are the same form factor, distinguished by function and location. The launcher mounts to the coil inlet flange and the receiver to the coil outlet flange. Pigs are loaded at the launcher, and recovered at the receiver after each pass.
+Launchers and receivers are the same unit; launcher and receiver name the role a spool plays on a given run. Which coil flange each mounts to is set by the job's configuration — commonly inlet and outlet on an unlooped pass, but on a looped circuit both mount at the same end and the loop spool takes the other. Pigs are loaded at the launcher, and recovered at the receiver after each pass.
 
 USADebusk stocks launchers in sizes 3 inch through 12 inch, in quantity, so that multi-circuit jobs can be equipped without staging between passes. Sizes 3, 4, 6, and 8 inch carry 300 pound connections on barrel and valve; 10 and 12 inch carry 150 pound. This rating convention is consistent across the industry.
 
@@ -87,7 +87,7 @@ Additional filtration capacity is provided by deploying an additional press rath
 
 ## 5.6 Jumper spools
 
-A jumper spool is a 180 degree spool piece that connects the outlet flange of one pass to the outlet flange of an adjacent pass, joining the two into one continuous cleaning circuit. Spools are fabricated by the customer to the quantity, size, and flange rating identified during engineering.
+A jumper spool is a 180 degree spool piece that joins two adjacent passes into one continuous cleaning circuit, connecting the corresponding flanges at the same end of both — outlets or inlets, per job. Spools are fabricated by the customer to the quantity, size, and flange rating identified during engineering.
 
 ## 5.7 Supporting equipment
 

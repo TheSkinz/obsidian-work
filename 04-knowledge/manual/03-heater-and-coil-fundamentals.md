@@ -30,12 +30,12 @@ A coil is the complete tube assembly for one heater: individual straight tubes j
 
 ```mermaid
 flowchart TD
-    A["Convection inlet<br/>(launcher)"] --> B["Convection section<br/>serpentine, return bends<br/>alternate ends"]
+    A["Convection inlet"] --> B["Convection section<br/>serpentine, return bends<br/>alternate ends"]
     B --> C["Convection outlet"]
     C --> D["Cross-over piping<br/>reducer sits here when<br/>tube IDs differ"]
     D --> E["Radiant inlet"]
     E --> F["Radiant section<br/>highest heat flux<br/>hardest fouling"]
-    F --> G["Radiant outlet<br/>(receiver)"]
+    F --> G["Radiant outlet"]
 ```
 
 *Figure 3-1. Coil topology for one pass, shown in the standard convection-to-radiant cleaning direction. Tube count per section is heater-specific.*

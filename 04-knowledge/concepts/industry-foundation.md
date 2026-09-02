@@ -86,7 +86,7 @@ Why refineries need it: coke reduces heat transfer efficiency, increases tube sk
 | Diverter | Operator-controlled valve on Trimax directing return water to dirty or clean tank |
 | Fig. 200 | Hose connection fitting type used at Trimax rear ports (3") |
 | Camlock | Quick-connect hose fitting used throughout filtration circuit (3" standard) |
-| Jumper spool | Temporary 180° loop spool connecting two radiant outlet flanges |
+| Jumper spool | Temporary 180° loop spool joining two passes into one circuit, connecting the corresponding flanges at the *same* end of both — radiant outlets or convection inlets, per job. There is no default end; both are common. The looped end then carries no launcher or receiver |
 | SIMOPS | Simultaneous operations — multi-heater jobs requiring resource overlap management |
 | Pitch | Heavy, viscous fouling variant — harder to remove than standard coke; common in coker/crude |
 | Hard coke | Petroleum coke that has thermally consolidated — requires progressive pig sizing |

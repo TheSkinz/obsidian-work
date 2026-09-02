@@ -8,20 +8,20 @@
 
 ## 9.1 The flow path
 
-Water is drawn from the clean tank, pressurised by the pump assembly, and delivered through the convection-side Fig. 200 port and jetting hose to the launcher. It propels the pig through the coil. At the far end the pig is recovered in the receiver, and the water continues back through the radiant-side jetting hose into the pumper, along the internal ceiling pipe, past the diverter, and into either the clean or the dirty tank depending on what the operator sees in it.
+Water is drawn from the clean tank, pressurised by the pump assembly, and delivered through the feed-side Fig. 200 port — Blue in the default direction — and jetting hose to the launching spool. It propels the pig through the coil. At the far end the pig is recovered in the receiving spool, and the water continues back through that spool's jetting hose to the return-side port, along the internal ceiling pipe, past the diverter, and into either the clean or the dirty tank depending on what the operator sees in it.
 
 ```mermaid
 flowchart LR
     CT["Clean tank"] --> P["Pump assembly"]
-    P --> FC["Fig. 200<br/>CONV port"]
+    P --> FC["Fig. 200<br/>BLUE port (feed)"]
     FC --> H1["Jetting hose"]
-    H1 --> L["Launcher<br/>(coil inlet)"]
+    H1 --> L["Launching spool<br/>(coil inlet)"]
     L --> C["Convection tubes"]
     C --> X["Cross-over"]
     X --> R["Radiant tubes"]
-    R --> RC["Receiver<br/>(coil outlet)"]
+    R --> RC["Receiving spool<br/>(coil outlet)"]
     RC --> H2["Jetting hose"]
-    H2 --> FR["Fig. 200<br/>RAD port"]
+    H2 --> FR["Fig. 200<br/>RED port (return)"]
     FR --> CP["Internal ceiling pipe"]
     CP --> D{"Diverter"}
     D -->|"effluent clear"| CT
@@ -83,7 +83,9 @@ Where convection and radiant tube sizes differ, the reducer in the cross-over is
 
 ## 9.6 Looped circuits
 
-Where two passes are joined by a jumper spool at their outlet flanges, the pig runs the first pass in the normal direction, transits the spool, and returns through the second pass in the reverse direction, exiting at that pass's inlet.
+Where two passes are joined by a jumper spool, the pig runs the first pass in the normal direction, transits the spool, and returns through the second pass in the reverse direction, exiting at the same end it launched from.
+
+**The loop can be made at either end of the passes — outlets or inlets — and there is no default; it is a per-job election.** The consequence for rigging is the one most easily missed reading a sequence written for unlooped passes: **both the launcher and the receiver land at the unlooped end, and the looped end carries no spool at all.** The figure below shows a loop at the outlets; loop at the inlets and it mirrors.
 
 ```mermaid
 flowchart LR

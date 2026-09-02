@@ -8,8 +8,8 @@
 
 **Rig-In** *(fixed event — hours and scheduling belong to the estimate, not this note; see the Duration Model in `usadebusk-estimating`)*
 1. Position Trimax pumper, clean tank, dirty tank adjacent to heater
-2. Customer's pipe-fitters install USADebusk pig launchers on convection inlet flanges (adapters as required) — see Role boundary below
-3. Customer's pipe-fitters install USADebusk pig receivers on radiant outlet flanges (adapters as required)
+2. Customer's pipe-fitters install the USADebusk launcher/receivers on the coil flanges the job's configuration calls for (adapters as required) — see Role boundary below. Unlooped, that is one at the convection inlet and one at the radiant outlet per pass; **looped, both land at the same end and the loop 180s take the other**
+3. Where passes are looped, the fitters install the customer-fabricated 180° spools at the looped end — radiant outlets or convection inlets, per job
 4. Route Fig. 200 jetting hoses from Trimax rear ports to launcher/receiver connections
 5. Connect filtration circuit *(only when filtration is Elected — read the heater card Job Options)*: dirty tank → 4×3 pump → filter press → clean tank; otherwise effluent drains to coke pit / oily water sewer
 6. Fill system and pressure test
@@ -48,14 +48,14 @@
 ## Flow path — standard single pass (convection-to-radiant)
 
 ```
-Trimax Clean Tank → Waterous Pump → Fig.200 CONV port → Jetting Hose →
-Pig Launcher (Conv. Inlet Flange) → Convection Tubes (serpentine) →
-Cross-over → Radiant Tubes → Pig Receiver (Rad. Outlet Flange) →
-Jetting Hose → Fig.200 RAD port → Internal ceiling pipe →
+Trimax Clean Tank → Waterous Pump → Fig.200 BLUE port → Jetting Hose →
+Launcher/receiver (Conv. Inlet Flange) → Convection Tubes (serpentine) →
+Cross-over → Radiant Tubes → Launcher/receiver (Rad. Outlet Flange) →
+Jetting Hose → Fig.200 RED port → Internal ceiling pipe →
 Diverter → Clean Tank (clear) or Dirty Tank (cloudy)
 ```
 
-For reversed direction (radiant-to-convection): return water comes back via CONV port. Valve manifold on Trimax controls direction — no manual hose swapping required.
+**This is the standard unlooped hookup, not a fixed mapping.** Blue is the feed port and Red the return; which coil flange each serves is a per-job assignment following where the spool is bolted. CONV and RAD name heater *sections*, never ports (Jesse, 2026-09-02). For reversed direction (red to blue): return water comes back via the Blue port. Valve manifold on Trimax controls direction — no manual hose swapping required.
 
 **Filtration loop (concurrent — only when filtration is Elected; see the heater card Job Options):**
 ```
@@ -68,8 +68,9 @@ The filtration loop operates independently from the main pigging process and doe
 ## Looped circuit (jumper spool configuration)
 
 When two passes are looped via 180° jumper spool:
-- Spool connects Radiant Outlet Pass 1 to Radiant Outlet Pass 2
-- Pig travels: Conv. Inlet Pass 1 → full Pass 1 coil → Rad. Outlet Pass 1 → Jumper Spool → Rad. Outlet Pass 2 → full Pass 2 coil (reverse direction) → Conv. Inlet Pass 2
+- Spool connects the corresponding flanges at the **same end** of both passes. **The end is a per-job election with no default** — CAD26001 and ExxonMobil F-901/F-802 loop at the radiant outlets; Valero Three Rivers and ExxonMobil F-501 loop at the convection inlets
+- **Both the launcher and the receiver land at the unlooped end, and the looped end carries no spool at all** — the 180s take their place. That is the consequence most easily missed when reading a rig-in sequence written for unlooped passes
+- Pig travels (loop at the outlets): Conv. Inlet Pass 1 → full Pass 1 coil → Rad. Outlet Pass 1 → Jumper Spool → Rad. Outlet Pass 2 → full Pass 2 coil (reverse direction) → Conv. Inlet Pass 2. Loop at the inlets and the path mirrors — launch and recover at the radiant outlets
 - Creates longer circuit — extended pig transit, a function of footage, pipe ID, and GPM (observed ~6–30 min across looped jobs, not a fixed range)
 - Longer blind period between launches requires careful monitoring
 - Final pig size may need to be larger (e.g., 6.5" vs. 6.25") to achieve full wall contact on long combined circuits

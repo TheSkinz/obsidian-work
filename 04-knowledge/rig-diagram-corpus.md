@@ -112,8 +112,9 @@ govern any diagram of it — not style preferences.
   hoses through or past it. Its hose runs **directly into the Trimax pumper**.
 - **Launchers and receivers bolt to the heater flanges.** There is one jetting-hose run, pumper
   → launcher/receiver. Drawing a second hose from the launcher to the heater is wrong — the
-  launcher *is* on the heater. (Matches `usadebusk-sop`: install launchers on convection inlet
-  flanges, receivers on radiant outlet flanges.)
+  launcher *is* on the heater. **Which flanges they bolt to is a per-job election, not a fixed
+  convection-inlet/radiant-outlet split** — on a looped circuit both land at the same end and the
+  180s take the other (corrected 2026-09-02; see `manual/08-phase-i-rig-in.md` §8.2).
 - **Scale: the Trimax is about the size of a frac tank.** It is a trailer. It must never be
   drawn taller or larger than the heater, and the rig as a whole does not need to be tall or
   long. Jesse notes this was a standing failure in the chat-built versions — the pumper came out

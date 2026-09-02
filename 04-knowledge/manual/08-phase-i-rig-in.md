@@ -20,23 +20,23 @@ Where any of these is outstanding, the outstanding item is raised before equipme
 
 1. **Position equipment.** The Trimax pumper, with its clean and dirty tanks, is spotted adjacent to the heater within hose reach of every launcher and receiver position. Where filtration is elected, the filter press and transfer pump are positioned with it. Where a second Trimax is deployed, both units are spotted before hoses are run.
 
-2. **Launchers are hung.** The customer's pipe-fitters offload the USADebusk launchers from the support trailer and install them on the coil inlet flanges, with customer-fabricated adapters where the heater connection differs in size or rating from the launcher. This is the customer's scope, not USADebusk's — see Section 7.3.
+2. **Launcher/receivers are hung.** The customer's pipe-fitters offload the USADebusk launcher/receivers from the support trailer and install them on the coil flanges the configuration calls for, with customer-fabricated adapters where the heater connection differs in size or rating. This is the customer's scope, not USADebusk's — see Section 7.3.
 
-3. **Receivers are hung.** The fitters install the USADebusk receivers on the coil outlet flanges, with adapters as required.
+   **Where they land depends on whether the passes are looped, and there is no default.** Unlooped, each pass takes one at the inlet and one at the outlet. **Looped, both land at the unlooped end of the pair and the looped end takes no spool at all** — the 180s occupy those flanges. A heater looping four pairs therefore has every spool at one end of the unit. Two spools are the same hardware; launcher and receiver name the role each plays on a run.
 
-4. **Jumper spools are installed.** Where passes are to be looped, the fitters install the customer-fabricated 180 degree spool between the designated outlet flanges, joining the two passes into one continuous circuit.
+3. **Jumper spools are installed.** Where passes are to be looped, the fitters install the customer-fabricated 180 degree spool between the corresponding flanges at the **same end** of both passes — radiant outlets or convection inlets, per the job's election — joining the two into one continuous circuit.
 
-> **NOTE.** Steps 2 through 4 are performed by the customer's pipe-fitters, typically concurrently with USADebusk hose routing rather than ahead of it. USADebusk does not bolt the coil flanges. Where USADebusk will be *waiting* on the fitters rather than working alongside them, that wait is a priced rig-in adder — see the Duration Model in `usadebusk-estimating`.
+> **NOTE.** Steps 2 and 3 are performed by the customer's pipe-fitters, typically concurrently with USADebusk hose routing rather than ahead of it. USADebusk does not bolt the coil flanges. Where USADebusk will be *waiting* on the fitters rather than working alongside them, that wait is a priced rig-in adder — see the Duration Model in `usadebusk-estimating`.
 
-5. **Route jetting hoses.** Fig. 200 jetting hose runs from the Trimax rear ports to the launcher and receiver connections for each circuit. Hose runs are laid to avoid traffic routes and to keep connections accessible.
+4. **Route jetting hoses.** Fig. 200 jetting hose runs from the Trimax rear ports to the launcher and receiver connections for each circuit. Hose runs are laid to avoid traffic routes and to keep connections accessible.
 
-6. **Connect the filtration circuit.** Only where filtration is elected: dirty tank to the 4×3 transfer pump, pump to the filter press, press back to the clean tank, all in 3 inch camlock. Where filtration is not elected, the dirty tank is instead connected to the designated coke pit or oily water sewer discharge point.
+5. **Connect the filtration circuit.** Only where filtration is elected: dirty tank to the 4×3 transfer pump, pump to the filter press, press back to the clean tank, all in 3 inch camlock. Where filtration is not elected, the dirty tank is instead connected to the designated coke pit or oily water sewer discharge point.
 
-7. **Fill and pressure test.** The system is filled and pressure tested. Every connection made during rig-in is checked under pressure. No launch occurs until the test is satisfactory.
+6. **Fill and pressure test.** The system is filled and pressure tested. Every connection made during rig-in is checked under pressure. No launch occurs until the test is satisfactory.
 
-8. **Confirm valve manifold positions.** The manifold for each assembly is set for the intended direction of pig travel, and the setting is verified at the operator station.
+7. **Confirm valve manifold positions.** The manifold for each assembly is set for the intended direction of pig travel, and the setting is verified at the operator station.
 
-9. **Run the baseline flow test.** The BEFORE flow test is performed on every circuit and recorded. This must occur before the first pig launch, and after the preconditions below are met. Section 10 covers the method.
+8. **Run the baseline flow test.** The BEFORE flow test is performed on every circuit and recorded. This must occur before the first pig launch, and after the preconditions below are met. Section 10 covers the method.
 
 > **CAUTION.** The baseline flow test cannot be recovered once pigging has started. A circuit launched without a recorded baseline has no reference against which to demonstrate improvement, and that is the primary objective evidence the job produces.
 
@@ -59,7 +59,9 @@ Every circuit is identified consistently across the launcher, the receiver, the 
 
 ## 8.4 Direction of travel
 
-The standard direction is inlet to outlet, which on a conventional heater means convection to radiant: the pig enters at the convection inlet, travels the convection section, passes through the cross-over, travels the radiant section, and is recovered at the radiant outlet.
+On an **unlooped** pass the standard direction is inlet to outlet, which on a conventional heater means convection to radiant: the pig enters at the convection inlet, travels the convection section, passes through the cross-over, travels the radiant section, and is recovered at the radiant outlet.
+
+**On a looped circuit the pig is recovered at the same kind of flange it launched from**, because both spools sit at the unlooped end. Looped at the radiant outlets, it launches and is recovered at convection inlets — convection to radiant, through the 180, then radiant to convection. Looped at the convection inlets, the mirror. Read the job's looping election before assuming which end recovers; the unlooped description above does not apply.
 
 Direction is reversible from the operator station through the valve manifold, without disconnecting or swapping hoses. Reverse running is used where the progression calls for it, and the capability is confirmed as part of manifold checkout at rig-in.
 

@@ -94,7 +94,7 @@ striping mandatory. Site driving authorization via Marshall.
 >
 > **Circuits** — **8 coils looped into 4 circuits with temporary 180s at the radiant outlet flanges — 1&8 · 2&7 · 3&6 · 4&5** (Jesse, 2026-08-25). Follows the physical outlet-spool pairing. Launcher and receiver both land at the control-valve-station end.
 > **Temp 90s** — plant installs temporary 90° elbows at both ends, CV station and radiant outlets. Those are what bring both connection points to grade; plant-side prerequisite.
-> **Location** — inlets at the control valve station, outlets at the radiant outlet flanges. All 8 launchers and 8 receivers at grade; nothing on this heater is rigged at elevation.
+> **Location** — inlets at the control valve station, outlets at the radiant outlet flanges. Under the looped election all 16 pigging spools land at the CV station end and the radiant outlets carry the 4 temporary 180s instead. Everything at grade; nothing on this heater is rigged at elevation.
 > **Water** — hydrant. Soda-ash solution mixed in tank, Syncrude site practice.
 > **Coil** — heater total 376 tubes / 17,893 ft. Single 6.065" bore throughout — no telescoping, no size sequencing.
 
@@ -119,8 +119,10 @@ Full tube geometry, config rollup and pig spec history: [[7-1-F-1]].
 
 ![Fig 1 — connection points](CAD26001-fig1-connections.jpg)
 
-**Fig 1 — Connection Points.** Launchers at the control valve station convection inlet flanges;
-receivers and loop 180s at the radiant outlet flanges. Numbers are coils 1–8. **7-2 F-1 is a mirror
+**Fig 1 — Connection Points.** Both the launcher and the receiver of each circuit are at the control
+valve station convection inlet flanges; the temporary 180s are at the radiant outlet flanges. Because the
+coils are looped there, **no launcher or receiver lands at the radiant outlet end at all** — the 180s take
+their place. Numbers are coils 1–8. **7-2 F-1 is a mirror
 image** — plenums, floor access doors, stairways and outlet-tube movement all opposite hand. We work 7-1.
 
 ![Fig 3 — pass routing](CAD26001-fig3-pass-routing.jpg)
