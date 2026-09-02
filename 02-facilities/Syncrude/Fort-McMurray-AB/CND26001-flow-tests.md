@@ -6,6 +6,14 @@ facility: Syncrude-Fort-McMurray-AB
 heaters: [7-1-F-1]
 source: 4 scanned field sheets — `Downloads/Doc 09-01-2026 18-05-51.pdf` (Jesse-supplied 2026-09-01)
 verified: 2026-09-02
+passes-3-4-status: placeholder-not-measured
+passes-3-4-note: >
+  The scanned passes 3+4 sheet is a mistaken copy that the crew scrapped (Jesse, 2026-09-02);
+  its readings are unusable. The figures carried in the body are the mean of the other three
+  circuits, standing in until the official copy is located. NOT a measurement — do not render
+  them into a customer deliverable, and do not feed them to the job-report generator's
+  Verification of Pass Cleanliness section, as measured results. As-scanned values preserved
+  under Provenance.
 tags: [flow-test, Syncrude, Fort-McMurray, CND26001]
 ---
 
@@ -57,19 +65,19 @@ Smart pigging: Quest, per the sheets. Filtration: none.
 
 ## 7-1 F-1 — Passes 3 + 4 (looped)
 
-2026-08-29 · pumper not recorded · pipe ID not recorded · scan page 3 · PSI column unlabeled on both sides · test operator Travis Trenholm
+2026-08-29 · pumper not recorded · pipe ID not recorded · scan page 3 · test operator Travis Trenholm
 
 | GPM | Before RPM | Before PSI | After RPM | After PSI | Δ PSI |
 |---|---|---|---|---|---|
-| 800 | 1600 | 400 | 1500 | 280 | 120 |
-| 700 | 1450 | 300 | 1400 | 240 | 60 |
-| 600 | 1200 | 200 | 1200 | 190 | 10 |
-| 500 | 1050 | 180 | 1000 | 140 | 40 |
+| 800 | 1620 | 285 | 1560 | 260 | 25 |
+| 700 | 1430 | 230 | 1370 | 205 | 25 |
+| 600 | 1225 | 170 | 1175 | 140 | 30 |
+| 500 | 1045 | 125 | 970 | 100 | 25 |
 
-- Note — this is the **Pass Cleanliness sign-off form**, not a Decoking Data Sheet. Its table is headed simply RPM / PSI / GPM with no PIG FORCE vs DIGITAL distinction, so which instrument produced these readings is unrecorded. Read the Δ as internally consistent but not directly comparable to the PF-column circuits.
-- Note — before 500 GPM PSI is written over a struck-through earlier figure; I read **180** (verified on a 300 dpi crop, not the full-page render)
-- Note — the 600 GPM row is out of step with the rest of the ladder: Δ is 10 PSI where its neighbours read 60 and 40. (Its after RPM is also identical to its before RPM, but RPM carries no weight here — see preamble.) Recorded as written.
+- Note — figures pending the official sheet; see frontmatter `passes-3-4-status`.
+- Note — this circuit came in on the **Pass Cleanliness sign-off form**, not a Decoking Data Sheet. Its table is headed simply RPM / PSI / GPM, with no PIG FORCE vs DIGITAL distinction.
 - Note — sign-off section: effluent return and visual condition of cleaning pigs both initialed by DeBusk and by the client (KN). **Final white gauge foam is N/A on the DeBusk side** but carries a client initial. Customer signature present.
+- Note — coil condition on this circuit was no better or worse than the rest (Jesse, 2026-09-02); all eight coils came out nominal.
 
 ## 7-1 F-1 — Passes 5 + 6 (looped)
 
@@ -83,7 +91,7 @@ Smart pigging: Quest, per the sheets. Filtration: none.
 | 500 | 1065 | 115 | 1010 | 102 | 13 |
 
 - Note — both sides recorded in DIGITAL PSI; the PIG FORCE column is blank on this sheet
-- Note — **this circuit shows the smallest pressure drop of the four** — Δ of 15/15/10/13 PSI against 35/35/25/25 on passes 1+2 and 120/60/10/40 on passes 3+4. Coil condition does not explain it: all eight coils came out nominal (see Coil condition below), so the spread across circuits is not a fouling difference. Not adjudicated here.
+- Note — **this circuit shows the smallest pressure drop of the measured circuits** — Δ of 15/15/10/13 PSI against 35/35/25/25 on passes 1+2 and –/35/50/35 on passes 7+8. Coil condition does not explain it: all eight coils came out nominal (see Coil condition below), so the spread is not a fouling difference. This is also the only circuit read on the DIGITAL column. Not adjudicated here.
 - Note — project manager D. Slater, day supervisor Marshall Douglas, night supervisor Sam Mixon; day operators T. Trenholm and J. Harman
 - Note — post test operator name is a scrawl reading "DRam"; the signature is initials only. Left as written rather than guessed at.
 
@@ -113,28 +121,35 @@ All eight tube coils exhibited **nominal coking, consistent with historical run 
 deposits — about **1/8" thick** — were in the **radiant tubes**, and they came off easily once the first
 oversized pig (**6.25"**) was run through each coil. Coils were inspected after the decoke: the last three
 radiant tubes (**tubes 29, 30, 31**) showed a few spots of light fouling, within those same three tubes, in
-select coils. **Quest Integrity holds the data identifying the exact passes and locations.**
+select coils. **Quest Integrity holds the data identifying the exact passes and locations** — and that is
+where it stays. Quest does not share reports and should not be expected to; they are a competitor with
+their own decoking division, and verbal communication on the job is the ceiling for what reaches us
+(Jesse, 2026-09-02; see [[business-normal-facts]]). The account above is the record — it is not a
+placeholder for a document we are going to obtain.
 
 Two things follow. First, the residual at tubes 29–31 is **this heater's recurring signature, not a CND26001
 finding** — the CND24002 report recorded the heaviest and hardest deposits in exactly those three tubes at
 the outlet, with the smart pig finding minimal fouling there and calling it typical of previous decokes
 (see [[7-1-F-1]] Field Notes). Two decokes apart, same three tubes. Second, since all eight coils were
-nominal, **the four-fold spread in Δ PSI across circuits (15 to 120 PSI at the top step) is not a coil-
-condition effect.** Something else produces it — instrument column, gauge, or circuit hydraulics — and the
-flow sheets alone cannot say which.
+nominal, **the spread in Δ PSI across circuits is not a coil-condition effect.** With the scrapped passes
+3+4 sheet set aside, the measured circuits run 15 to 35 PSI at the top step — a narrower spread than it
+first appeared, and one that instrument column alone may account for (1+2 and 7+8 read PIG FORCE, 5+6
+reads DIGITAL). The flow sheets cannot settle it either way.
 
 ## Summary — Δ PSI at matched GPM
 
 | Circuit | 800 GPM | 700 GPM | 600 GPM | 500 GPM |
 |---|---|---|---|---|
 | Passes 1 + 2 | 35 | 35 | 25 | 25 |
-| Passes 3 + 4 | 120 | 60 | 10 | 40 |
+| Passes 3 + 4 | 25 | 25 | 30 | 25 |
 | Passes 5 + 6 | 15 | 15 | 10 | 13 |
 | Passes 7 + 8 | – | 35 | 50 | 35 |
 
-Every value in this table is computed from the before/after PSI above, not copied from a sheet. Passes 3+4
-is the largest reduction and passes 5+6 the smallest by a wide margin; the two are not measured on the same
-PSI column, which is a real limit on comparing them (3+4's column is unlabeled, 5+6's is DIGITAL).
+Every value in this table is computed from the before/after PSI above, not copied from a sheet. Passes 5+6
+is the smallest reduction of the four; since all eight coils came out nominal, that spread is not a coil-
+condition difference. Note also that the four circuits were not all measured on the same PSI column — 1+2
+and 7+8 on PIG FORCE, 5+6 on DIGITAL — which is a real limit on comparing them against each other. The
+passes 3+4 row is a placeholder, not a measurement; see frontmatter `passes-3-4-status`.
 
 ## Provenance
 
@@ -142,4 +157,29 @@ Values read from the scan pages. Identity fields were normalized to the job of r
 2026-09-02 — the field sheets carry several header errors (a wrong customer name, a wrong job number, a
 wrong year, and abbreviated heater names) which are not reproduced here. **Numeric cells were not
 normalized**: every RPM, PSI and GPM above is as written, with the ambiguous ones re-read on zoomed 300–600
-dpi crops and noted inline.
+dpi crops and noted inline. The one exception is passes 3+4 — see below.
+
+### Passes 3 + 4 — the scrapped sheet, as scanned
+
+Jesse, 2026-09-02: the passes 3+4 sheet in the scan is a mistaken copy the crew scrapped and replaced; the
+official copy has not been located. Its readings are preserved here and are not to be used.
+
+| GPM | Before RPM | Before PSI | After RPM | After PSI | Δ PSI |
+|---|---|---|---|---|---|
+| 800 | 1600 | 400 | 1500 | 280 | 120 |
+| 700 | 1450 | 300 | 1400 | 240 | 60 |
+| 600 | 1200 | 200 | 1200 | 190 | 10 |
+| 500 | 1050 | 180 | 1000 | 140 | 40 |
+
+The 500 GPM before PSI is written over a struck-through earlier figure; read as 180 on a 300 dpi crop.
+
+**Both columns are out of family, which is why the sheet cannot be repaired by correcting one of them.**
+Taking the true Δ as resembling the other circuits (≈35/35/25/25), a bad *before* column alone implies
+errors of +85 / +25 / **−15** / +15 — an error that changes sign across the ladder, which no single
+miscopied column produces. Independently, the *after* column is 40–50 PSI high at the low steps against
+all three other circuits, which agree with each other within 2 PSI at 500 GPM. On the 600 GPM row the
+after RPM is identical to the before RPM — worthless as a cleanliness indicator, but a fingerprint of a
+value copied across rather than recorded, and that is the row whose Δ collapses to 10.
+
+Recovery path: the official sheet, or the correct numbers from the crew. Nothing in this note reconstructs
+them.
