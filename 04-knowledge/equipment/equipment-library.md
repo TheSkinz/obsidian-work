@@ -29,8 +29,15 @@ USADebusk's proprietary trailer-mounted pigging pumper. Transports cleaning pigs
 - Two Fig. 200 (3") ports at rear of trailer, side by side — one CONV, one RAD
 - Both serve as either feed or return depending on selected pig travel direction
 - Valve manifold on Trimax controls direction from cab — no hose swapping
-- **In the field these two ports are called by colour — Red and Blue** (Jesse, 2026-09-02), and that is the naming the decoking data sheets use. `R/B` in a field record means Red/Blue. Direction of pig travel is written as **red to blue** or **blue to red**; the sheet's PRE/POST DECOKE FLOW TEST box is a printed pair of colour bars with a double-headed arrow, marked by the tech to show which way that test ran. **Which colour corresponds to CONV and which to RAD is not established here** — do not assume the mapping, and do not translate a colour direction into convection-to-radiant without confirming it
+- **In the field these two ports are called by colour — Red and Blue** (Jesse, 2026-09-02), and that is the naming the decoking data sheets use. `R/B` in a field record means Red/Blue
+- **Blue is the feed port and Red the return, in the default direction.** Direction of pig travel is written **blue to red** (default) or **red to blue**. The sheet's PRE/POST DECOKE FLOW TEST box is a printed pair of colour bars with a double-headed arrow, marked by the tech to show which way that test ran
+- **The colour belongs to the port and its hose set, not to a coil section.** Each circuit gets one Blue launcher/receiver and one Red one. Which end of the coil a given spool lands on depends on the flange connection it is bolted to — it may be the first tube of the convection or of the radiant. So Blue and CONV coincide only in the standard hookup, where the feed goes to the convection inlet and travel is convection-to-radiant per `manual/08-phase-i-rig-in.md` §8.4. **A colour direction does not by itself tell you which coil section the pig entered** — read the flange connection, not the colour
+
+**The default flow path, one circuit (Jesse, 2026-09-02):** clean tank → pump → **Blue port** at the trailer rear → 3" hoses → **Blue launcher/receiver** → first tube of the circuit → through the remaining tubes → **Red launcher/receiver** → 3" hoses → **Red port** → back to the clean tank, via the diverter described above. On a looped circuit the two spools sit at the inlets of the two coils and the loop joins them at the far end.
+
 - When smart pigging, blocker valves are fitted to each active Red/Blue port to hold the specific flow the smart pig run needs, then reopened for the flow test (see `manual/08-phase-i-rig-in.md` §8.2)
+
+**Terminology.** The equipment is a **launcher/receiver** — a pigging spool that both launches and receives. "Launcher" alone is long-standing internal shorthand and is what most of this vault says; it does not denote a launch-only device, and there is no separate receiver unit.
 
 **Operating note:** High-volume / low-pressure system. High volume is the distinguishing characteristic — pigs are propelled by flow, not pressure alone.
 

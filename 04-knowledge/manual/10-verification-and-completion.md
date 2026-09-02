@@ -12,7 +12,7 @@ A coil is declared clean against measured criteria, not against opinion. This se
 
 The flow test is a pump curve measurement taken twice on every circuit: once at rig-in before the first pig is launched, and once after the final pig pass. The comparison between them is the primary quantitative evidence the job produces.
 
-**Method.** The circuit is run at a target flow rate and the corresponding pump speed and operating pressure are recorded. The AFTER test is run at the same flow rate as the BEFORE test.
+**Method.** The circuit is run at a target flow rate and the corresponding pump speed and operating pressure are recorded. The AFTER test is run at the same flow rate as the BEFORE test, **and in the same direction.** Both tests are run as the same closed loop — blue to red by default. Reversing direction between the two tests breaks the comparison the same way changing the flow rate does.
 
 **Flow rate is the controlled constant.** This is the whole basis of the comparison. Holding flow equal and observing the pressure required to achieve it isolates the change in resistance of the coil itself. A test run at a different flow rate than its baseline measures nothing.
 

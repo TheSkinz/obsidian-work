@@ -110,7 +110,7 @@ Smart pigging: Quest, per the sheets. Filtration: none.
 - Note — the pre side is the one sheet where both PSI columns were filled: 250 / 185 / 135 against 255 / 190 / 140 at 700 / 600 / 500 GPM. The table uses the first of the two throughout.
 - Note — the 800 GPM step is written N/A on both sides. The ladder on this circuit ran 700/600/500 only, so there is no top-step Δ.
 - Note — sheet is marked `PAGE # N/A — COVER SHEET`, and the JOB # field was left blank.
-- Note — **direction of travel: `B → R`, Blue to Red**, hand-written beneath the pre-decoke flow test box. Red and Blue are the two Fig. 200 ports at the pumper rear (Jesse, 2026-09-02; see [[equipment-library]]). The printed box is a pair of colour bars with a double-headed arrow, marked by the tech to show which way the test ran — on this scan the right bar reads RED and the left bar's label is lost to the scan, which the `B → R` annotation resolves. **This is the only one of the four sheets where the direction was marked**; the other three left the printed arrow blank.
+- Note — **direction of travel: `B → R`, Blue to Red**, hand-written beneath the pre-decoke flow test box. That is the default direction (Jesse, 2026-09-02; see [[equipment-library]]), so the annotation confirms the standard arrangement rather than flagging an exception. Blue is the feed port at the pumper rear, Red the return. This is the only one of the four sheets where direction was marked; the other three left the printed arrow blank, which given the default is a recording omission and not evidence they ran the other way.
 - Note — day supervisor D. Slater, night supervisor S. Mixon; day operators P. Campbell and M. Douglas, night J. Utsey
 
 ## Coil condition — post-decoke
