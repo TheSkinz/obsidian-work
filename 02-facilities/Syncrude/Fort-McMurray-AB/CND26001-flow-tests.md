@@ -1,0 +1,122 @@
+---
+type: flow-test-record
+job-number: CND26001
+client: Syncrude
+facility: Syncrude-Fort-McMurray-AB
+heaters: [7-1-F-1]
+source: 4 scanned field sheets — `Downloads/Doc 09-01-2026 18-05-51.pdf` (Jesse-supplied 2026-09-01)
+verified: 2026-09-02
+tags: [flow-test, Syncrude, Fort-McMurray, CND26001]
+---
+
+# CND26001 — Flow Tests
+
+Transcribed 2026-09-02 from the four field sheets of the August 2026 decoke of [[7-1-F-1]]. Companion to
+[[CND26001-job-sheet]]. This note is the structured source — read it instead of re-reading the scans. The
+rest of the job data (durations, pig usage, receipts) had not arrived when this was written; nothing here
+has been carried onto the heater card yet.
+
+**The sheets cover all eight coils as four looped circuits — passes 1+2, 3+4, 5+6, 7+8.** That is the
+looping plan executing as designed, and it is the first field evidence of it. Trimax 5 ran passes 1+2 off
+its LEFT discharge and passes 7+8 off RIGHT — two looped circuits from one rig at once, which is the
+double-mode arrangement the CND26001 build-up assumed and which CND25004 never tested (there, the one
+looped pair had a Trimax to itself).
+
+Each sheet records a four-step GPM ladder with RPM and PSI before and after the decoke. **GPM is the
+controlled constant** (`sop-formatting-standard.md` §7) — the ladder is read down the same 800/700/600/500
+steps on both sides, and a clean coil reaches each step at lower RPM and lower PSI. The crews filled
+either the **PIG FORCE PSI** or the **DIGITAL PSI** column, sheet by sheet, and on passes 7+8 the pre side
+filled both; the column actually used is recorded per circuit below. Δ PSI is computed (before − after),
+**never fabricated**, and always from the same PSI column on both sides.
+
+Footage was left blank on all four sheets. Pipe ID is recorded on the sheets as 6" (passes 1+2, 5+6) and
+6.026" (passes 7+8); the heater's ID of record is **6.065"** and that is what the [[pig-tracker]] circuits
+use — the 6.026" entry is a field-sheet slip, not a correction. Note also that the flow-test ladder runs
+500–800 GPM, above the 448–559 GPM pigging band the tracker targets. That is expected: flow tests are
+water-only with no pig in the circuit, and 800 GPM must never be read back as a pigging rate.
+
+Smart pigging: Quest, per the sheets. Filtration: none.
+
+## 7-1 F-1 — Passes 1 + 2 (looped)
+
+2026-08-28 · Trimax 5, LEFT discharge · pipe ID 6" · scan page 2 · PSI column pre PF / post PF · test operator pre Peter Campbell, post James McDaniel
+
+| GPM | Before RPM | Before PSI | After RPM | After PSI | Δ PSI |
+|---|---|---|---|---|---|
+| 800 | 1600 | 280 | 1500 | 245 | 35 |
+| 700 | 1400 | 230 | 1330 | 195 | 35 |
+| 600 | 1200 | 170 | 1150 | 145 | 25 |
+| 500 | 1025 | 125 | 950 | 100 | 25 |
+
+- Note — both sides recorded in PIG FORCE PSI; the DIGITAL PSI column is blank on this sheet
+- Note — day supervisor D. Slater, night supervisor Sam Mixon; day operator Peter Campbell, night James McDaniel
+- Note — manual by-pass confirmed closed on both sides
+
+## 7-1 F-1 — Passes 3 + 4 (looped)
+
+2026-08-29 · pumper not recorded · pipe ID not recorded · scan page 3 · PSI column unlabeled on both sides · test operator Travis Trenholm
+
+| GPM | Before RPM | Before PSI | After RPM | After PSI | Δ PSI |
+|---|---|---|---|---|---|
+| 800 | 1600 | 400 | 1500 | 280 | 120 |
+| 700 | 1450 | 300 | 1400 | 240 | 60 |
+| 600 | 1200 | 200 | 1200 | 190 | 10 |
+| 500 | 1050 | 180 | 1000 | 140 | 40 |
+
+- Note — this is the **Pass Cleanliness sign-off form**, not a Decoking Data Sheet. Its table is headed simply RPM / PSI / GPM with no PIG FORCE vs DIGITAL distinction, so which instrument produced these readings is unrecorded. Read the Δ as internally consistent but not directly comparable to the PF-column circuits.
+- Note — before 500 GPM PSI is written over a struck-through earlier figure; I read **180** (verified on a 300 dpi crop, not the full-page render)
+- Note — the 600 GPM row is out of step with the rest of the ladder: after RPM 1200 is identical to before RPM 1200, and Δ is 10 PSI where its neighbours read 60 and 40. Either the after RPM was copied from the before column or that step was not truly re-run. Recorded as written.
+- Note — sign-off section: effluent return and visual condition of cleaning pigs both initialed by DeBusk and by the client (KN). **Final white gauge foam is N/A on the DeBusk side** but carries a client initial. Customer signature present.
+
+## 7-1 F-1 — Passes 5 + 6 (looped)
+
+2026-08-28 · Trimax 6, LEFT discharge · pipe ID 6" · scan page 1 · PSI column pre DIG / post DIG · test operator pre Jason Harman, post "DRam" (illegible)
+
+| GPM | Before RPM | Before PSI | After RPM | After PSI | Δ PSI |
+|---|---|---|---|---|---|
+| 800 | 1645 | 285 | 1620 | 270 | 15 |
+| 700 | 1440 | 215 | 1395 | 200 | 15 |
+| 600 | 1225 | 150 | 1180 | 140 | 10 |
+| 500 | 1065 | 115 | 1010 | 102 | 13 |
+
+- Note — both sides recorded in DIGITAL PSI; the PIG FORCE column is blank on this sheet
+- Note — **this circuit barely moved.** Δ of 15/15/10/13 PSI against 35/35/25/25 on passes 1+2 and 120/60/10/40 on passes 3+4, and the RPM drop is correspondingly small (25 RPM at the top step against 100 on passes 1+2). Whether that means the circuit started clean or the cleaning under-delivered is not answerable from the flow sheets alone — the smart-pig data and the pig-condition observations decide it. Not adjudicated here.
+- Note — project manager D. Slater, day supervisor Marshall Douglas, night supervisor Sam Mixon; day operators T. Trenholm and J. Harman
+- Note — post test operator name is a scrawl reading "DRam"; the signature is initials only. Left as written rather than guessed at.
+
+## 7-1 F-1 — Passes 7 + 8 (looped)
+
+2026-08-28 · Trimax 5, RIGHT discharge · pipe ID 6.026" as written (see preamble) · scan page 4 · PSI column pre PF **and** DIG both filled / post PF · test operator pre M. Douglas, post James McDaniel
+
+| GPM | Before RPM | Before PSI | After RPM | After PSI | Δ PSI |
+|---|---|---|---|---|---|
+| 800 | N/A | N/A | N/A | N/A | – |
+| 700 | 1450 | 250 | 1385 | 215 | 35 |
+| 600 | 1250 | 185 | 1190 | 135 | 50 |
+| 500 | 1050 | 135 | 950 | 100 | 35 |
+
+- Note — the pre side is the one sheet where **both** PSI columns were filled. PIG FORCE reads 250 / 185 / 135 and DIGITAL reads 255 / 190 / 140 at 700 / 600 / 500 GPM — a consistent 5 PSI offset. The table above and every Δ use the PIG FORCE column on both sides so the comparison is like-for-like; the DIGITAL readings are recorded here and are not folded into the Δ.
+- Note — the 800 GPM step is written N/A on both sides. The ladder on this circuit ran 700/600/500 only, so there is no top-step Δ.
+- Note — sheet is marked `PAGE # N/A — COVER SHEET`, and the JOB # field was left blank. `B → R` is hand-written beneath the pre-decoke flow test box.
+- Note — day supervisor D. Slater, night supervisor S. Mixon; day operators P. Campbell and M. Douglas, night J. Utsey
+
+## Summary — Δ PSI at matched GPM
+
+| Circuit | 800 GPM | 700 GPM | 600 GPM | 500 GPM |
+|---|---|---|---|---|
+| Passes 1 + 2 | 35 | 35 | 25 | 25 |
+| Passes 3 + 4 | 120 | 60 | 10 | 40 |
+| Passes 5 + 6 | 15 | 15 | 10 | 13 |
+| Passes 7 + 8 | – | 35 | 50 | 35 |
+
+Every value in this table is computed from the before/after PSI above, not copied from a sheet. Passes 3+4
+is the largest reduction and passes 5+6 the smallest by a wide margin; the two are not measured on the same
+PSI column, which is a real limit on comparing them (3+4's column is unlabeled, 5+6's is DIGITAL).
+
+## Provenance
+
+Values read from the scan pages. Identity fields were normalized to the job of record per Jesse's ruling
+2026-09-02 — the field sheets carry several header errors (a wrong customer name, a wrong job number, a
+wrong year, and abbreviated heater names) which are not reproduced here. **Numeric cells were not
+normalized**: every RPM, PSI and GPM above is as written, with the ambiguous ones re-read on zoomed 300–600
+dpi crops and noted inline.
