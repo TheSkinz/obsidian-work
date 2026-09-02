@@ -25,19 +25,25 @@ The flow test is a pump curve measurement taken twice on every circuit: once at 
 
 > **CAUTION.** The BEFORE test cannot be reconstructed once pigging has begun. A circuit that was launched without a recorded baseline can be cleaned, but the result cannot be demonstrated quantitatively.
 
+**A flow test measures the resistance of everything in the flow path, not just the coil.** Any restriction between the pump and the coil is read back as coil resistance and cannot be separated from it afterward. That is why §8.2 states preconditions for the baseline, and why a reading that falls outside the pattern of the other circuits on the same heater is treated as a suspect measurement rather than as a finding about the coil. Section 8.2 carries the failure modes to check.
+
+**When a test is suspect, the flow test is what failed — not the cleaning.** Do not read a weak or erratic Δ as evidence that a circuit was cleaned less well. The completion determination does not rest on the flow test alone; see §10.2.
+
 <!-- GRAPHIC 10-1: before/after flow test comparison. Two pressure readings at the same GPM, before and after, with the delta called out as the cleaning result. A simple paired-bar or gauge-pair treatment reads better here than a pump curve; the point is the delta at constant flow, not the curve shape. -->
 
 ## 10.2 Completion criteria
 
-Three criteria must all be met before a circuit is declared complete. They are cumulative, not alternatives, and each covers what the others miss.
+Two criteria carry the completion determination, and a third corroborates it. The first two are cumulative and each covers what the other misses.
 
 **1. Effluent discharge duration of 3 to 5 seconds or less per pass.** As the bore opens, the effluent slug following a pig shortens. A short, sharp discharge indicates the pig is displacing little loose material.
 
 **2. Effluent runs consistently clear.** Consistency matters as much as clarity. A single clear pass following a cloudy one is not a result; clear effluent sustained across successive passes is.
 
-**3. Measurable pressure reduction at equivalent flow rate between the before and after flow tests.** This is the objective, instrumented confirmation, and it is what distinguishes a completed coil from one that merely stopped producing visible debris.
+**3. Measurable pressure reduction at equivalent flow rate between the before and after flow tests — corroborating.** Where both tests are valid, this is the instrumented confirmation of what the first two criteria observed, and it is the strongest single piece of evidence the job produces for the customer. It does not, on its own, decide completion.
 
-The first two are observed continuously through the work. The third is measured once, at the end, and is the formal close of the cleaning.
+The first two are observed continuously through the work, across every pass, by the crew running the circuit. The third is measured twice — once at rig-in, once at the end — and either measurement can be compromised by conditions that have nothing to do with the coil (§8.2). A circuit meeting criteria 1 and 2, whose flow test is invalid or unavailable, is complete; what is lost is the quantitative demonstration, not the cleaning. A circuit failing criteria 1 or 2 is not complete regardless of what the flow test shows.
+
+The practical consequence: **the determination is made in the field, on effluent behaviour, and the flow test confirms it afterward.** Reversing that order — treating a Δ PSI figure as the thing that declares a coil clean — puts the decision on the least reliable of the three.
 
 ## 10.3 Why all three
 

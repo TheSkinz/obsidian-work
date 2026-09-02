@@ -35,10 +35,13 @@ controlled constant** (`sop-formatting-standard.md` §7) — the ladder is read 
 steps on both sides, and **the drop in PSI at a matched GPM step is the measurement.** RPM is only the
 pump speed needed to hold that step — it is recorded because the sheet has a column for it, and it is not
 the result (Jesse, 2026-09-02). Read the Δ PSI column; the RPM columns are transcribed for completeness
-and carry no weight. The crews filled
-either the **PIG FORCE PSI** or the **DIGITAL PSI** column, sheet by sheet, and on passes 7+8 the pre side
-filled both; the column actually used is recorded per circuit below. Δ PSI is computed (before − after),
-**never fabricated**, and always from the same PSI column on both sides.
+and carry no weight. Δ PSI is computed (before − after), **never fabricated**.
+
+The sheet carries two PSI columns, PIG FORCE and DIGITAL. **They are the same reading** and should agree
+on every project; techs sometimes enter a value under the wrong one (Jesse, 2026-09-02). Which column a
+given sheet used is not meaningful and is not tracked here. The passes 7+8 sheet is the one place both
+were filled, and they agree within 5 PSI on readings of 135–255 — which is the point. Why the template
+carries both columns is not recorded.
 
 Footage was left blank on all four sheets. Pipe ID is recorded on the sheets as 6" (passes 1+2, 5+6) and
 6.026" (passes 7+8); the heater's ID of record is **6.065"** and that is what the [[pig-tracker]] circuits
@@ -50,7 +53,7 @@ Smart pigging: Quest, per the sheets. Filtration: none.
 
 ## 7-1 F-1 — Passes 1 + 2 (looped)
 
-2026-08-28 · Trimax 5, LEFT discharge · pipe ID 6" · scan page 2 · PSI column pre PF / post PF · test operator pre Peter Campbell, post James McDaniel
+2026-08-28 · Trimax 5, LEFT discharge · pipe ID 6" · scan page 2 · test operator pre Peter Campbell, post James McDaniel
 
 | GPM | Before RPM | Before PSI | After RPM | After PSI | Δ PSI |
 |---|---|---|---|---|---|
@@ -59,7 +62,6 @@ Smart pigging: Quest, per the sheets. Filtration: none.
 | 600 | 1200 | 170 | 1150 | 145 | 25 |
 | 500 | 1025 | 125 | 950 | 100 | 25 |
 
-- Note — both sides recorded in PIG FORCE PSI; the DIGITAL PSI column is blank on this sheet
 - Note — day supervisor D. Slater, night supervisor Sam Mixon; day operator Peter Campbell, night James McDaniel
 - Note — manual by-pass confirmed closed on both sides
 
@@ -81,7 +83,7 @@ Smart pigging: Quest, per the sheets. Filtration: none.
 
 ## 7-1 F-1 — Passes 5 + 6 (looped)
 
-2026-08-28 · Trimax 6, LEFT discharge · pipe ID 6" · scan page 1 · PSI column pre DIG / post DIG · test operator pre Jason Harman, post "DRam" (illegible)
+2026-08-28 · Trimax 6, LEFT discharge · pipe ID 6" · scan page 1 · test operator pre Jason Harman, post "DRam" (illegible)
 
 | GPM | Before RPM | Before PSI | After RPM | After PSI | Δ PSI |
 |---|---|---|---|---|---|
@@ -90,14 +92,13 @@ Smart pigging: Quest, per the sheets. Filtration: none.
 | 600 | 1225 | 150 | 1180 | 140 | 10 |
 | 500 | 1065 | 115 | 1010 | 102 | 13 |
 
-- Note — both sides recorded in DIGITAL PSI; the PIG FORCE column is blank on this sheet
-- Note — **this circuit shows the smallest pressure drop of the measured circuits** — Δ of 15/15/10/13 PSI against 35/35/25/25 on passes 1+2 and –/35/50/35 on passes 7+8. Coil condition does not explain it: all eight coils came out nominal (see Coil condition below), so the spread is not a fouling difference. This is also the only circuit read on the DIGITAL column. Not adjudicated here.
+- Note — **this circuit shows the smallest pressure drop of the measured circuits** — Δ of 15/15/10/13 PSI against 35/35/25/25 on passes 1+2 and –/35/50/35 on passes 7+8. Coil condition does not explain it: all eight coils came out nominal (see Coil condition below), so the spread is not a fouling difference. Per the standing base rate, a weak or erratic reading is a failed measurement rather than a finding about the coil — see [[business-normal-facts]].
 - Note — project manager D. Slater, day supervisor Marshall Douglas, night supervisor Sam Mixon; day operators T. Trenholm and J. Harman
 - Note — post test operator name is a scrawl reading "DRam"; the signature is initials only. Left as written rather than guessed at.
 
 ## 7-1 F-1 — Passes 7 + 8 (looped)
 
-2026-08-28 · Trimax 5, RIGHT discharge · pipe ID 6.026" as written (see preamble) · scan page 4 · PSI column pre PF **and** DIG both filled / post PF · test operator pre M. Douglas, post James McDaniel
+2026-08-28 · Trimax 5, RIGHT discharge · pipe ID 6.026" as written (see preamble) · scan page 4 · test operator pre M. Douglas, post James McDaniel
 
 | GPM | Before RPM | Before PSI | After RPM | After PSI | Δ PSI |
 |---|---|---|---|---|---|
@@ -106,7 +107,7 @@ Smart pigging: Quest, per the sheets. Filtration: none.
 | 600 | 1250 | 185 | 1190 | 135 | 50 |
 | 500 | 1050 | 135 | 950 | 100 | 35 |
 
-- Note — the pre side is the one sheet where **both** PSI columns were filled. PIG FORCE reads 250 / 185 / 135 and DIGITAL reads 255 / 190 / 140 at 700 / 600 / 500 GPM — a consistent 5 PSI offset. The table above and every Δ use the PIG FORCE column on both sides so the comparison is like-for-like; the DIGITAL readings are recorded here and are not folded into the Δ.
+- Note — the pre side is the one sheet where both PSI columns were filled: 250 / 185 / 135 against 255 / 190 / 140 at 700 / 600 / 500 GPM. The table uses the first of the two throughout.
 - Note — the 800 GPM step is written N/A on both sides. The ladder on this circuit ran 700/600/500 only, so there is no top-step Δ.
 - Note — sheet is marked `PAGE # N/A — COVER SHEET`, and the JOB # field was left blank. `B → R` is hand-written beneath the pre-decoke flow test box.
 - Note — day supervisor D. Slater, night supervisor S. Mixon; day operators P. Campbell and M. Douglas, night J. Utsey
@@ -132,9 +133,9 @@ finding** — the CND24002 report recorded the heaviest and hardest deposits in 
 the outlet, with the smart pig finding minimal fouling there and calling it typical of previous decokes
 (see [[7-1-F-1]] Field Notes). Two decokes apart, same three tubes. Second, since all eight coils were
 nominal, **the spread in Δ PSI across circuits is not a coil-condition effect.** With the scrapped passes
-3+4 sheet set aside, the measured circuits run 15 to 35 PSI at the top step — a narrower spread than it
-first appeared, and one that instrument column alone may account for (1+2 and 7+8 read PIG FORCE, 5+6
-reads DIGITAL). The flow sheets cannot settle it either way.
+3+4 sheet set aside, the measured circuits run 15 to 35 PSI at the top step. Per the standing base rate,
+that spread is the expected behaviour of the instrument, not a signal about the coils, and it is not to be
+chased (see [[business-normal-facts]]).
 
 ## Summary — Δ PSI at matched GPM
 
@@ -145,11 +146,9 @@ reads DIGITAL). The flow sheets cannot settle it either way.
 | Passes 5 + 6 | 15 | 15 | 10 | 13 |
 | Passes 7 + 8 | – | 35 | 50 | 35 |
 
-Every value in this table is computed from the before/after PSI above, not copied from a sheet. Passes 5+6
-is the smallest reduction of the four; since all eight coils came out nominal, that spread is not a coil-
-condition difference. Note also that the four circuits were not all measured on the same PSI column — 1+2
-and 7+8 on PIG FORCE, 5+6 on DIGITAL — which is a real limit on comparing them against each other. The
-passes 3+4 row is a placeholder, not a measurement; see frontmatter `passes-3-4-status`.
+Every value in this table is computed from the before/after PSI above, not copied from a sheet. All eight
+coils came out nominal, so the spread between circuits is not a coil-condition difference and is not to be
+read as one. The passes 3+4 row is a placeholder, not a measurement; see frontmatter `passes-3-4-status`.
 
 ## Provenance
 
@@ -173,13 +172,7 @@ official copy has not been located. Its readings are preserved here and are not 
 
 The 500 GPM before PSI is written over a struck-through earlier figure; read as 180 on a 300 dpi crop.
 
-**Both columns are out of family, which is why the sheet cannot be repaired by correcting one of them.**
-Taking the true Δ as resembling the other circuits (≈35/35/25/25), a bad *before* column alone implies
-errors of +85 / +25 / **−15** / +15 — an error that changes sign across the ladder, which no single
-miscopied column produces. Independently, the *after* column is 40–50 PSI high at the low steps against
-all three other circuits, which agree with each other within 2 PSI at 500 GPM. On the 600 GPM row the
-after RPM is identical to the before RPM — worthless as a cleanliness indicator, but a fingerprint of a
-value copied across rather than recorded, and that is the row whose Δ collapses to 10.
-
-Recovery path: the official sheet, or the correct numbers from the crew. Nothing in this note reconstructs
-them.
+Both the before and the after readings sit outside the pattern of the other three circuits, so the sheet
+cannot be salvaged by correcting one column. That is as far as this goes: a failed measurement is not a
+puzzle to solve with arithmetic, and reconstructing what it "should" have read would be fabricating a
+measurement. Recovery path is the official sheet or the correct numbers from the crew.

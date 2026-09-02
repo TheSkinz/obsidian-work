@@ -16,10 +16,13 @@ Transcribed 2026-07-23 from the 15 field Decoking Data Sheets and rendered into 
 (`USA25025-CHS-McPherson-Plant Wide TA-Job Report.pdf`), which has not been sent to CHS. Companion to
 [[USA25025-job-record]]. This note is the structured source — read it instead of re-reading the scans.
 
-Each sheet records four GPM steps with RPM and PSI before and after the decoke. The crews filled
-either the **PIG FORCE PSI** or the **DIGITAL PSI** column, sheet by sheet, and on three sheets the
-two sides used different columns; the column actually used is recorded per sheet below. The report
-prints the value as plain PSI, per Jesse 2026-07-23. Δ PSI is computed (before − after), never
+Each sheet records four GPM steps with RPM and PSI before and after the decoke. GPM is the controlled
+constant and **the drop in PSI at a matched GPM step is the measurement**; RPM is only the pump speed
+needed to hold the step and carries no weight (Jesse, 2026-09-02). The sheet carries two PSI columns,
+PIG FORCE and DIGITAL — **they are the same reading**, should agree on every project, and techs sometimes
+enter a value under the wrong one. Which column a sheet used is not meaningful; the per-sheet notation
+recorded here from the 2026-07-23 pass is retained only as transcription fidelity and should not be
+reasoned from. The report prints the value as plain PSI, per Jesse 2026-07-23. Δ PSI is computed (before − after), never
 fabricated. Every value was cross-checked against the scan's OCR text layer; ambiguous cells were
 adjudicated by Jesse 2026-07-23 and the calls are noted inline.
 
@@ -51,7 +54,7 @@ HP-0003 or HP-0006** — those heaters are simply absent from the report's Flow 
 | 500 | 1375 | 250 | 1280 | 170 | 80 |
 | 450 | 1240 | 180 | 1160 | 135 | 45 |
 
-- Note — pre side recorded in PIG FORCE PSI, post side in DIGITAL PSI
+- Note — the two sides were entered under different PSI columns; the columns are the same reading, so this does not affect the Δ
 
 ## HF-0012 — Coker Pass 3
 
@@ -64,7 +67,7 @@ HP-0003 or HP-0006** — those heaters are simply absent from the report's Flow 
 | 500 | 1320 | 250 | 1375 | 200 | 50 |
 | 450 | 1200 | 200 | 1150 | 170 | 30 |
 
-- Note — pre side PIG FORCE PSI, post side DIGITAL PSI
+- Note — the two sides were entered under different PSI columns; the columns are the same reading, so this does not affect the Δ
 - Note — post 500 GPM RPM reads 1375 — higher than the 550 GPM row (1400) is fine, but it is out of step with the rest of the ladder
 
 ## HF-0012 — Coker Pass 4
@@ -140,7 +143,7 @@ HP-0003 or HP-0006** — those heaters are simply absent from the report's Flow 
 | 600 | 1200 | 130 | 1150 | 100 | 30 |
 | 550 | 1100 | 110 | 1000 | 95 | 15 |
 
-- Note — pre side DIGITAL PSI, post side PIG FORCE PSI
+- Note — the two sides were entered under different PSI columns; the columns are the same reading, so this does not affect the Δ
 - Note — post 700 GPM row corrected on the sheet — 1300 / 140 written above struck-through figures
 
 ## HF-0011 — Vacuum Pass 2

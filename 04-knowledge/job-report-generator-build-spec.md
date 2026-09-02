@@ -163,7 +163,7 @@ Sources: **JS** = job sheet · **TB** = ticket-breakdown xlsx · **HC** = heater
 | Pigs Used: intro range + legend | ⚙ (min/max size) + fixed legend |
 | Heater Data tables | HC + JS coil data; **as-built passes confirmed by PM** where they differ from quoted |
 | Heater Result paragraph + amber callout | PM |
-| Flow Tests tables (RPM/PSI before/after) | FT |
+| Flow Tests tables (RPM/PSI before/after) | FT — **a pass flagged suspect in the source record is omitted, not printed** (see Suspect flow tests) |
 | Flow Tests Δ PSI | ⚙ (BEFORE PSI − AFTER PSI at matched GPM) — **only where AFTER data exists; never fabricated** |
 | Images | PM attaches |
 | Project Summary / Close prose | PM |
@@ -172,6 +172,26 @@ Sources: **JS** = job sheet · **TB** = ticket-breakdown xlsx · **HC** = heater
 **PM writes:** eyebrow/condition call, footnote text, stand-by cause attribution, as-built pass
 confirmation, all Result paragraphs, all callouts, Images, Summary/Close prose, REV.
 **Generator produces:** everything else.
+
+### Suspect flow tests
+
+About 60% of projects carry a flow-test error, usually confined to one aspect of one pass, usually minor
+(Jesse, 2026-09-02). The causes are physical — a coil not yet packed, a throttled effluent route, a
+blocker valve not reopened after a smart pig run, a valve whose ball is not travelling fully open — and
+the tech often cannot explain it. See `manual/08-phase-i-rig-in.md` §8.2 preconditions.
+
+**The report never explains this.** Reliability caveats, hedges about instrument error, and notes that a
+reading is doubtful do not go in a customer document, in any form, ever. Neither does a Δ the crew does
+not stand behind.
+
+The rule is **omit, never annotate.** A pass whose source record flags it suspect is left out of the Flow
+Tests section — no row, no footnote, no explanation of the gap. This is the same principle already
+governing Δ PSI where AFTER data is missing: print what is sound, print nothing else, and never fabricate
+a substitute. A source record may carry internal stand-in figures for working purposes; those are not
+report inputs, and a status field marking them non-measured is what keeps them out.
+
+Which passes are suspect is a judgement made with Jesse when the error surfaces, case by case — not a test
+the generator applies on its own. The generator's obligation is to honour the flag in the source record.
 
 ## Back-test plan
 

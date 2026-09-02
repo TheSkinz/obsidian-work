@@ -36,9 +36,22 @@ Where any of these is outstanding, the outstanding item is raised before equipme
 
 8. **Confirm valve manifold positions.** The manifold for each assembly is set for the intended direction of pig travel, and the setting is verified at the operator station.
 
-9. **Run the baseline flow test.** The BEFORE flow test is performed on every circuit and recorded. This must occur before the first pig launch. Section 10 covers the method.
+9. **Run the baseline flow test.** The BEFORE flow test is performed on every circuit and recorded. This must occur before the first pig launch, and after the preconditions below are met. Section 10 covers the method.
 
 > **CAUTION.** The baseline flow test cannot be recovered once pigging has started. A circuit launched without a recorded baseline has no reference against which to demonstrate improvement, and that is the primary objective evidence the job produces.
+
+### Preconditions for a valid flow test
+
+A flow test measures the resistance of the entire flow path. Anything restricting that path is recorded as coil resistance and cannot be separated out afterward. Confirm each of the following before the ladder is run, on both the BEFORE and the AFTER test:
+
+- **The coil is completely filled.** A test run before the circuit is packed is measuring a partly air-filled coil.
+- **Every valve in the circuit is fully open** — not only the manifold set for direction of pig travel, but every valve between the pumper and the coil.
+- **The effluent route is open and unrestricted.** A throttled return reads back as coil resistance.
+- **The reading is taken after flow stabilises** at each GPM step, not on the way up to it.
+
+**Blocker valves are the one deliberate restriction, and the one most easily forgotten.** When smart pigging, blocker valves are fitted to each active R/B port on the back of the pumper and used to hold the specific flow the smart pig run requires. They must be opened fully again before any flow test. A blocker left throttled after a smart pig run produces an AFTER test that reads high and a Δ that looks small — the same signature as a coil that did not clean.
+
+> **CAUTION — a failure the operator station cannot show.** A launcher, receiver, or blocker valve whose stem is bent, or whose ball is not travelling fully open, restricts flow while indicating open. There is no reading at the station that distinguishes it, and the tech running the test has no way to know. This is not an operator error and it is not caught by the checklist above; it is a hardware condition. **Suspect it first when a baseline falls outside the pattern of the other circuits on the same heater.** Valves are never set partly open deliberately — blocker valves during a smart pig run are the sole exception — so a restriction that is not a blocker is a mechanical fault, not a setting.
 
 ## 8.3 Circuit identification
 
