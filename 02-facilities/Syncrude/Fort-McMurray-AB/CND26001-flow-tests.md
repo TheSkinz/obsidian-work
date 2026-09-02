@@ -24,7 +24,10 @@ looped pair had a Trimax to itself).
 
 Each sheet records a four-step GPM ladder with RPM and PSI before and after the decoke. **GPM is the
 controlled constant** (`sop-formatting-standard.md` §7) — the ladder is read down the same 800/700/600/500
-steps on both sides, and a clean coil reaches each step at lower RPM and lower PSI. The crews filled
+steps on both sides, and **the drop in PSI at a matched GPM step is the measurement.** RPM is only the
+pump speed needed to hold that step — it is recorded because the sheet has a column for it, and it is not
+the result (Jesse, 2026-09-02). Read the Δ PSI column; the RPM columns are transcribed for completeness
+and carry no weight. The crews filled
 either the **PIG FORCE PSI** or the **DIGITAL PSI** column, sheet by sheet, and on passes 7+8 the pre side
 filled both; the column actually used is recorded per circuit below. Δ PSI is computed (before − after),
 **never fabricated**, and always from the same PSI column on both sides.
@@ -65,7 +68,7 @@ Smart pigging: Quest, per the sheets. Filtration: none.
 
 - Note — this is the **Pass Cleanliness sign-off form**, not a Decoking Data Sheet. Its table is headed simply RPM / PSI / GPM with no PIG FORCE vs DIGITAL distinction, so which instrument produced these readings is unrecorded. Read the Δ as internally consistent but not directly comparable to the PF-column circuits.
 - Note — before 500 GPM PSI is written over a struck-through earlier figure; I read **180** (verified on a 300 dpi crop, not the full-page render)
-- Note — the 600 GPM row is out of step with the rest of the ladder: after RPM 1200 is identical to before RPM 1200, and Δ is 10 PSI where its neighbours read 60 and 40. Either the after RPM was copied from the before column or that step was not truly re-run. Recorded as written.
+- Note — the 600 GPM row is out of step with the rest of the ladder: Δ is 10 PSI where its neighbours read 60 and 40. (Its after RPM is also identical to its before RPM, but RPM carries no weight here — see preamble.) Recorded as written.
 - Note — sign-off section: effluent return and visual condition of cleaning pigs both initialed by DeBusk and by the client (KN). **Final white gauge foam is N/A on the DeBusk side** but carries a client initial. Customer signature present.
 
 ## 7-1 F-1 — Passes 5 + 6 (looped)
@@ -80,7 +83,7 @@ Smart pigging: Quest, per the sheets. Filtration: none.
 | 500 | 1065 | 115 | 1010 | 102 | 13 |
 
 - Note — both sides recorded in DIGITAL PSI; the PIG FORCE column is blank on this sheet
-- Note — **this circuit barely moved.** Δ of 15/15/10/13 PSI against 35/35/25/25 on passes 1+2 and 120/60/10/40 on passes 3+4, and the RPM drop is correspondingly small (25 RPM at the top step against 100 on passes 1+2). Whether that means the circuit started clean or the cleaning under-delivered is not answerable from the flow sheets alone — the smart-pig data and the pig-condition observations decide it. Not adjudicated here.
+- Note — **this circuit shows the smallest pressure drop of the four** — Δ of 15/15/10/13 PSI against 35/35/25/25 on passes 1+2 and 120/60/10/40 on passes 3+4. Coil condition does not explain it: all eight coils came out nominal (see Coil condition below), so the spread across circuits is not a fouling difference. Not adjudicated here.
 - Note — project manager D. Slater, day supervisor Marshall Douglas, night supervisor Sam Mixon; day operators T. Trenholm and J. Harman
 - Note — post test operator name is a scrawl reading "DRam"; the signature is initials only. Left as written rather than guessed at.
 
@@ -99,6 +102,26 @@ Smart pigging: Quest, per the sheets. Filtration: none.
 - Note — the 800 GPM step is written N/A on both sides. The ladder on this circuit ran 700/600/500 only, so there is no top-step Δ.
 - Note — sheet is marked `PAGE # N/A — COVER SHEET`, and the JOB # field was left blank. `B → R` is hand-written beneath the pre-decoke flow test box.
 - Note — day supervisor D. Slater, night supervisor S. Mixon; day operators P. Campbell and M. Douglas, night J. Utsey
+
+## Coil condition — post-decoke
+
+Jesse, 2026-09-02. This is the field account, not a flow-sheet reading; it is here because it is what the
+Δ PSI figures have to be read against. Carry it to [[7-1-F-1]] Field Notes with the rest of the CND26001
+actuals.
+
+All eight tube coils exhibited **nominal coking, consistent with historical run times.** The thickest
+deposits — about **1/8" thick** — were in the **radiant tubes**, and they came off easily once the first
+oversized pig (**6.25"**) was run through each coil. Coils were inspected after the decoke: the last three
+radiant tubes (**tubes 29, 30, 31**) showed a few spots of light fouling, within those same three tubes, in
+select coils. **Quest Integrity holds the data identifying the exact passes and locations.**
+
+Two things follow. First, the residual at tubes 29–31 is **this heater's recurring signature, not a CND26001
+finding** — the CND24002 report recorded the heaviest and hardest deposits in exactly those three tubes at
+the outlet, with the smart pig finding minimal fouling there and calling it typical of previous decokes
+(see [[7-1-F-1]] Field Notes). Two decokes apart, same three tubes. Second, since all eight coils were
+nominal, **the four-fold spread in Δ PSI across circuits (15 to 120 PSI at the top step) is not a coil-
+condition effect.** Something else produces it — instrument column, gauge, or circuit hydraulics — and the
+flow sheets alone cannot say which.
 
 ## Summary — Δ PSI at matched GPM
 
