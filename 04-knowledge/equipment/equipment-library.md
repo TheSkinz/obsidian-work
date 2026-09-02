@@ -29,6 +29,8 @@ USADebusk's proprietary trailer-mounted pigging pumper. Transports cleaning pigs
 - Two Fig. 200 (3") ports at rear of trailer, side by side — one CONV, one RAD
 - Both serve as either feed or return depending on selected pig travel direction
 - Valve manifold on Trimax controls direction from cab — no hose swapping
+- **In the field these two ports are called by colour — Red and Blue** (Jesse, 2026-09-02), and that is the naming the decoking data sheets use. `R/B` in a field record means Red/Blue. Direction of pig travel is written as **red to blue** or **blue to red**; the sheet's PRE/POST DECOKE FLOW TEST box is a printed pair of colour bars with a double-headed arrow, marked by the tech to show which way that test ran. **Which colour corresponds to CONV and which to RAD is not established here** — do not assume the mapping, and do not translate a colour direction into convection-to-radiant without confirming it
+- When smart pigging, blocker valves are fitted to each active Red/Blue port to hold the specific flow the smart pig run needs, then reopened for the flow test (see `manual/08-phase-i-rig-in.md` §8.2)
 
 **Operating note:** High-volume / low-pressure system. High volume is the distinguishing characteristic — pigs are propelled by flow, not pressure alone.
 
