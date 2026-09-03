@@ -146,8 +146,14 @@ tags: [heater-card, <Client>, <heater-type>]
      Task Durations' `Condition`, which is job class. Blank on most historical rows.
      Graded against observables, in order: Clean ID vs. tube ID, progression steps and stalled
      sizes, return duration, measured thickness only where actually measured, recovered
-     fragments. It records EFFORT, not material — `heavy` means hard to clean, not hard
-     deposit, which a pig run does not establish. Never infer to fill a blank; write unknown.
+     fragments. `heavy` means HARD TO CLEAN — an effort grade, not a claim about the deposit,
+     since slow hours also follow from restrictions, pig fit, flow or tube deformation. A
+     fragment you actually handled CAN be described in Field Notes (hard/brittle/powdery,
+     chunks/chips/fines, wet/oily/tarry, layered) — describe from the piece, never from the
+     clock. Never infer a grade to fill a blank; write unknown.
+     Localized hard spot: record in Field Notes only when the crew reported one; never record
+     its absence. Not the same as the `outlier` Flag — an outlier coil is a fluke, a hard spot
+     within a coil is normal.
      Flag = clean | outlier | blended | unknown. `outlier` = this set ran 12–24 hrs off its
      siblings on the same heater/rig/mode — estimate off the sets that CLUSTER, never the
      outlier, and state which set you excluded. Full spec in 04-knowledge/_canonical-heater-card.md. -->

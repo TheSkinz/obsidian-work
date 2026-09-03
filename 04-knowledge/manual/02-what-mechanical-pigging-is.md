@@ -18,6 +18,10 @@ The deposit is layered rather than homogeneous, and that is why progressive pig 
 
 **We see this ourselves, and that is the stronger evidence.** Where a pig fractures a large piece off the wall and it is recovered in the launcher, receiver or pigging spool, the layering is visible in the piece. Recovered fragments are the only direct look at deposit structure a pig run produces, and they are worth inspecting and photographing every time one comes back — Section 10 treats them as evidence rather than debris. What a fragment cannot tell us is what the deposit is made of; composition, morphology and formation mechanism are not established by looking at it.
 
+The material itself varies, and the variation is visible in what comes back. Some deposit fractures off the wall as competent pieces that hold together in the hand; some arrives brittle, breaking apart readily; some comes back as a powder. Size varies independently of that, from chunks through chips to fines, and on pitch and resid service the return is not dry material at all but wet, oily or tarry. All of that is observation, and the vocabulary for it is in [[17-glossary]]. **What drives the difference is not something this work establishes.** Jesse, 2026-09-03: *"I can't give an informed opinion for why and the different circumstances for the different types of fouling we see and the reason for it."* Recording the form without an explanation is the right posture, not a gap — and a described-form record across enough jobs is what would eventually support an explanation.
+
+A distinction worth holding, because it is easy to lose. Describing a piece somebody picked up is an observation. Concluding that a deposit was hard *because the cleaning went slowly* is an inference, and a weak one — slow progress also follows from a bore restriction, a pig that no longer fits the section, insufficient flow, or a tube deformed enough that the pig cannot conform to it. Describe from the piece, never from the clock.
+
 ## 2.2 What coke costs the operator
 
 Coke on the tube wall is an insulating layer between the flame and the process fluid. Four consequences follow, and they compound.

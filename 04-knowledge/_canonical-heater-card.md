@@ -350,9 +350,25 @@ labels as such. This section fixes both by recording what one pig actually did.
                        short of max pig OD.
           `unknown`  = the source does not support a call. NEVER infer `moderate` to fill a
                        blank — the same rule that governs job class governs this.
-        Difficulty is recorded as EFFORT, not as a material property. `heavy` says the coil
-        was hard to clean; it does not say the deposit was hard, which is not something a pig
-        run establishes. See `04-knowledge/manual/17-glossary.md` § Fouling.
+        `heavy` says the coil was HARD TO CLEAN. It is an effort grade, and it does not carry
+        a claim about the deposit — slow progress also follows from bore restriction, pig fit,
+        flow, or tube deformation, so hours are not evidence of what the material was.
+        THIS IS NOT A BAN ON DESCRIBING THE DEPOSIT (corrected 2026-09-03). A fragment
+        recovered in the spool and handled CAN be described — `hard` / `brittle` / `powdery`,
+        `chunks` / `chips` / `fines`, `wet` / `oily` / `tarry`, `layered` — because that is an
+        observation, not an inference. Record it in Field Notes. What stays out of reach is
+        composition, mechanism, and why the deposit formed that way. Describe from the piece,
+        never from the clock. See `04-knowledge/manual/17-glossary.md` § Fouling.
+
+        LOCALIZED HARD SPOT — a confined section where the last of the wall fouling resists
+        removal: several pigs run in one area for very little progress, late in the job, and
+        it can take a significant share of total pig hours. Record it in Field Notes WHEN THE
+        CREW RECORDED IT — where it was (pass, section, approximate tube position), roughly
+        how many runs and hours went into it, and what came back there. It does NOT occur on
+        every heater (Jesse, 2026-09-03), so **its absence is never recorded** — a card that
+        says nothing about a hard spot means nobody reported one, not that there was none.
+        Do not confuse it with the `outlier` Flag below: an outlier COIL is a fluke or corrupt
+        data, while a hard spot WITHIN a coil is normal and part of the job.
 
   FLAG — the per-set data-quality marker DQ-027 had nowhere to put:
           `clean`   = a real, cleanly-separated measurement for this set.
