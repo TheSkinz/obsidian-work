@@ -16,9 +16,16 @@ tags: [job-sheet, Syncrude, CAD26001]
 > Canadian job — branded **DeBusk Services Canada**, not USADebusk. Naming and logo only; the job
 > is sold, planned, mobilized and executed exactly the same way as US work.
 
-> Vault-native copy of the printable crew job sheet. The canonical printable version is
-> `CAD26001-job-sheet.pdf` (rendered from `CAD26001-job-sheet.html`). A job sheet is static —
+> Vault-native copy of the printable crew job sheet. The printable is
+> `CAD26001-job-sheet.html` — print it from the browser. A job sheet is static —
 > created at bid-win from the quoted work-up. Actuals and timeline live on the job report, never here.
+>
+> **No rendered PDF for this job (retired 2026-09-02, Jesse).** One existed, dated 2026-08-25, but the
+> HTML gained eight days of corrections it never received — including the reversed loop location — and
+> there is no renderer in `tools/` to regenerate it faithfully. A stale twin of a crew document is worse
+> than none. Recoverable from git if it is ever wanted. **Note this diverges from the canonical pattern:**
+> `_canonical-job-sheet.md` and `templates/_job-sheet-template.md` still prescribe HTML → PDF, and
+> USA26038 and USA26040 both keep their PDFs.
 
 > [!note] The work-up: DSP #CAN24120
 > **Located 2026-09-02 in the OneDrive job folder** — `DSP #CAN24120 7-1F-1 Bitumen Column Feed Heater
@@ -150,11 +157,34 @@ inlets 3, 4, 5 & 6 on 6"-300# RF WN flanges. Colour banding is per pass.
 
 ## Notes
 
-Printable deliverable: `CAD26001-job-sheet.pdf` (source `CAD26001-job-sheet.html`), alongside this
-file — two pages, project and heater data on page 1, the three reference drawings on page 2.
+Printable deliverable: `CAD26001-job-sheet.html`, alongside this file — two pages, project and heater
+data on page 1, the three reference drawings on page 2. Print from the browser; there is no PDF twin
+(see the note at the top of this file).
 
 Actuals return path is [[cad26001-coilset-capture-sheet]] — per-circuit clock times, coil condition
 and pigs run, which feed `## Coilset Durations` on [[7-1-F-1]] at ingest.
+
+---
+
+## Source Files
+
+Recorded 2026-09-02. Every path below was confirmed to resolve on disk the day it was written —
+`rfq-intake-protocol.md:26`: *"an unrecorded path is how a bid trail goes cold."* Syncrude had no
+recorded file estate at all before this.
+
+**Job folder** — `OneDrive/USADeBusk/Facilities/Syncrude/Syncrude Fort McMurray AB/Jobs/CAD26001 Syncrude Fort McMurray/`
+
+| File | Sub-path | What it is |
+|---|---|---|
+| `DSP #CAN24120 7-1F-1 Bitumen Column Feed Heater 2026 .pdf` | `OneDrive_1_9-2-2026/` | The quotation. T&M, $177,068 CAD, quoted 2024-09-25. **Found 2026-09-02** — the vault asserted until then that no work-up existed, because the search was scoped to the vault and this was in OneDrive. |
+| `CAD26001 Syncrude Fort Mac 7-1F-1 Bitumen  2 TriMax Ticket Breakdown.xlsx` | `OneDrive_1_9-2-2026/` | **Kelly's** billing workbook and the source of every hour and pig count on the job report. Not edited from the vault. Two corrections are outstanding against it — see Pig Specifications on [[7-1-F-1]]. Note the double space in the filename. |
+| `CAD26001 7-1F-Bitumen Service Tickets.pdf` | `OneDrive_1_9-2-2026/` | 15 pages, tickets 11301–11309 and 10401–10406. Source of the stand-by causes and the shift narrative. |
+| `CAD26001 7-1F-1 Flow Test Sheets.pdf` | (job folder root) | The four scanned field sheets behind [[CAD26001-flow-tests]]. **Moved here from `Downloads/` and renamed 2026-09-02** — it was sitting in the most sweepable directory on the machine under a scanner-generated name. |
+| `CAD26001 Syncrude 7-1F-1 Job Report.docx` | (job folder root) | The delivered customer report. Hand-edited by Jesse after render; the generator config that reproduces it is `usadebusk-fieldpm/back-test/report_input_cad26001.py`. |
+
+`New 2 TriMax Ticket Breakdown.xlsx` also sits in `OneDrive_1_9-2-2026/`. **Checked 2026-09-02: 44
+tabs, zero live shifts** — an unused blank template, not job data. Recorded only so nobody mistakes it
+for a second breakdown.
 
 **Duration figures are the record of what was planned, not something to re-derive.** CAD26001 is
 already awarded and executing; an overrun goes to a change order negotiated by other people. See

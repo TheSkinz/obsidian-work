@@ -1,6 +1,6 @@
 ---
 type: note
-status: active
+status: complete
 created: 2026-08-21
 tags: [CAD26001, syncrude, 7-1-F-1, actuals, capture, DQ-017]
 related:
@@ -9,6 +9,28 @@ related:
 ---
 
 # CAD26001 — Coilset Capture Sheet
+
+> [!success] Closed 2026-09-02 — never filled in, and the job was ingested anyway
+> **Not one table below was completed on shift.** The actuals came from Kelly's ticket breakdown and
+> the 15-page service-ticket stack instead, and landed on [[7-1-F-1]]'s `## Coilset Durations` on
+> 2026-09-02.
+>
+> **Its one irreplaceable question got answered regardless.** Section 6 asks whether running two looped
+> circuits per rig cost more than the 25% allowance assumed. It did not: **TM5 124 ft/hr, TM6 144**,
+> against CAD25004's single-circuit 124. Computed from workbook hours ÷ drawing-derived footage, not
+> measured.
+>
+> **What was genuinely lost is section 2, the per-circuit clock** — the one thing the workbook cannot
+> reconstruct, because it books hours per rig and per shift, not per circuit. Two consequences: the
+> Coilset rows carry `?` for Coils, since the day and night ticket books disagree on which Trimax held
+> which circuits and Jesse ruled against recording a contested attribution; and the 124/144 figures rest
+> on an assumption nothing can now close, that both of a rig's circuits ran together for its whole
+> pigging window.
+>
+> **The lesson for the next one:** a capture sheet that depends on a busy night-shift operator filling
+> in tables competes with the job. What survived here is what a billing document already had to record.
+> Design the next sheet around the handful of fields no downstream artifact can reconstruct — for this
+> heater, that is per-circuit start/stop and nothing else.
 
 Carry this on shift. It feeds `## Coilset Durations` on [[7-1-F-1]] at ingest (DQ-017 Phase 1, ruled 2026-08-21).
 

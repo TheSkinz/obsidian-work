@@ -4,7 +4,7 @@ job-number: CAD26001
 client: Syncrude
 facility: Syncrude-Fort-McMurray-AB
 heaters: [7-1-F-1]
-source: 4 scanned field sheets — `Downloads/Doc 09-01-2026 18-05-51.pdf` (Jesse-supplied 2026-09-01)
+source: 4 scanned field sheets — `OneDrive/USADeBusk/Facilities/Syncrude/Syncrude Fort McMurray AB/Jobs/CAD26001 Syncrude Fort McMurray/CAD26001 7-1F-1 Flow Test Sheets.pdf` (Jesse-supplied 2026-09-01; moved out of `Downloads/` and renamed 2026-09-02 — see Source Files on [[CAD26001-job-sheet]])
 verified: 2026-09-02
 passes-3-4-status: placeholder-not-measured
 passes-3-4-note: >
@@ -120,8 +120,10 @@ Jesse, 2026-09-02. This is the field account, not a flow-sheet reading; it is he
 actuals.
 
 All eight tube coils exhibited **nominal coking, consistent with historical run times.** The thickest
-deposits — about **1/8" thick** — were in the **radiant tubes**, and they came off easily once the first
-oversized pig (**6.25"**) was run through each coil. Coils were inspected after the decoke: the last three
+deposits — about **1/8" thick** — were located in the **last few radiant tubes of each pass**, and they
+came off easily once the first oversized pig (**6.25"**) was run through each coil. *(Location sharpened
+2026-09-02: first recorded as "in the radiant tubes" generally, corrected by Jesse to the last few tubes
+of each pass. Not a detail — it puts the heaviest deposits in the same place as the residual below.)* Coils were inspected after the decoke: the last three
 radiant tubes (**tubes 29, 30, 31**) showed a few spots of light fouling, within those same three tubes, in
 select coils. **Quest Integrity holds the data identifying the exact passes and locations** — and that is
 where it stays. Quest does not share reports and should not be expected to; they are a competitor with

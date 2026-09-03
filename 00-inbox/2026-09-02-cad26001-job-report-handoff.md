@@ -1,11 +1,40 @@
 ---
 type: note
-status: inbox
+status: resolved
 created: 2026-09-02
-tags: [inbox, CAD26001, syncrude, job-report, handoff, owed]
+tags: [CAD26001, syncrude, job-report, handoff, resolved]
+resolved: 2026-09-02
 ---
 
 # Handoff — build the CAD26001 job report
+
+> [!success] Closed 2026-09-02 — report delivered. Two load-bearing claims below were wrong.
+> The report was built and delivered the same day. This note did its job: read cold, it carried the
+> looping election, the omit-never-annotate rule, the dormant-skill state and the workbook cell
+> geometry, none of which the reader would have re-derived. **But two of its central claims did not
+> survive contact, and both are recorded here rather than quietly archived, because the failure mode is
+> reusable.**
+>
+> **1. "No ticket-breakdown workbook exists for this job."** It existed. `CAD26001 Syncrude Fort Mac
+> 7-1F-1 Bitumen  2 TriMax Ticket Breakdown.xlsx`, in the OneDrive job folder, populated and extracting
+> clean. **The search that produced the claim was scoped to the vault**, and the note says so in
+> parentheses — but the conclusion was written as if it were about the world. Phase 1 of this handoff,
+> a whole `usadebusk-ops` receipt-to-workbook rebuild, did not need doing. **The vault is the index,
+> OneDrive is the store: a "does not exist" finding from a vault-only search is a finding about the
+> index.**
+>
+> **2. "The renderer asserts your grouping reconciles to the workbook total, so a wrong guess fails
+> loudly rather than silently."** It does not. `build_standby` sums the config's rows into its own
+> TOTAL and separately prints the workbook's figure in the grey line beneath; a mismatch renders two
+> disagreeing numbers on the same page and exits 0. The only `assert` is in `build_duration`. The
+> stand-by grouping had to be reconciled by hand.
+>
+> Also superseded: the loop location. This note inherited "temporary 180s at the radiant outlet flanges"
+> from five vault files. **They went in at the convection inlets.** Corrected everywhere 2026-09-02.
+>
+> Outcome, all committed: report at `.../Jobs/CAD26001 Syncrude Fort McMurray/CAD26001 Syncrude 7-1F-1
+> Job Report.docx`; actuals, `## Coilset Durations`, Field Notes and pig rows on [[7-1-F-1]];
+> DSP #CAN24120 recorded on [[CAD26001-job-sheet]].
 
 Written 2026-09-02 to be read cold. Nothing here depends on the session that produced it. The job is finished; the receipts are on Jesse's desktop; the report has not been started.
 
