@@ -331,6 +331,29 @@ labels as such. This section fixes both by recording what one pig actually did.
         historical rows would land `unknown`. Recording condition HERE costs neither. Expect
         it blank on migrated historical rows; fouling was recorded at job level, not per set.
 
+        CRITERIA (DQ-030, 2026-09-03). The grade is a judgment, but it is made against
+        observables, not impressions. Weigh in this order — the first two are measurements,
+        the rest corroborate:
+          1. Clean ID reached, against the section's tube ID. Reaching tube ID + 0.250"
+             is the clean result; falling short is the strongest single signal.
+          2. Progression steps needed to reach it, and any size that stalled.
+          3. Return duration — seconds of discoloured return per pass, early and late.
+          4. Deposit thickness, ONLY where actually measured (smart pig, cut-out, or a
+             recovered fragment thick enough to measure). Never estimated to fill this in.
+          5. Recovered fragments — whether large pieces came off the wall, and whether
+             they show layering.
+        Rough bands, offered as calibration and not as a formula:
+          `light`    = reached max pig OD with little or no progression, return cleared fast,
+                       nothing notable recovered.
+          `moderate` = normal progression, sustained dirty return, some fragments.
+          `heavy`    = stalled sizes, extended progression, bore restrictions, or a Clean ID
+                       short of max pig OD.
+          `unknown`  = the source does not support a call. NEVER infer `moderate` to fill a
+                       blank — the same rule that governs job class governs this.
+        Difficulty is recorded as EFFORT, not as a material property. `heavy` says the coil
+        was hard to clean; it does not say the deposit was hard, which is not something a pig
+        run establishes. See `04-knowledge/manual/17-glossary.md` § Fouling.
+
   FLAG — the per-set data-quality marker DQ-027 had nowhere to put:
           `clean`   = a real, cleanly-separated measurement for this set.
           `outlier` = this set ran well off its siblings (12–24 hrs) on the same heater, same

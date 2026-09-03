@@ -19,7 +19,7 @@ Terms defined here are those the manual actually uses. Where local facility usag
 | Return bend | A cast 180 degree fitting joining adjacent tubes. |
 | Plug header | A box header with removable plugs at the tube ends. An older design; tube-to-tube traversal is less direct than through a cast return bend. |
 | Convection section | The upper coil section, heated indirectly by flue gas. Lower tube skin temperatures. |
-| Radiant section | The lower or inner section, exposed to direct flame radiation. Highest heat flux and hardest fouling. |
+| Radiant section | The lower or inner section, exposed to direct flame radiation. Highest heat flux and where fouling is heaviest. |
 | Cross-over | External piping connecting the convection outlet to the radiant inlet. Contains the size reducer where section bores differ. |
 | Tube ID | Tube inner diameter. The dimension pig sizing keys off. |
 | Governing tube ID | The smallest inner diameter present anywhere in a circuit. Sets the maximum pig OD for that entire circuit. |
@@ -28,12 +28,44 @@ Terms defined here are those the manual actually uses. Where local facility usag
 
 ## Fouling
 
+Our evidence is hydraulic and mechanical. A pig run establishes what the coil did and what the tools did — what size passed, where a pig stalled, how long the return ran discoloured, what came back, how many progression steps it took, and what the flow test moved. It does not establish what the deposit is made of. Composition, morphology and formation mechanism are not observable from a pig run and are never asserted from one; where they matter they come from the customer's inspection data or a laboratory result. `Fouling` and `deposit` are therefore the default nouns, and `coke` is used where composition was actually established rather than as a general synonym.
+
+Two vocabularies do different jobs. **Expectation language** describes what we predict going in, from service type and unit history, and belongs in estimating and bid intake. **Finding language** describes what we observed coming out, and belongs in job reports, Field Notes and heater-card actuals. Neither does the other's work: an estimate may say we expect hard coke, and a report may not say we found it.
+
+### The material
+
 | Term | Definition |
 |---|---|
-| Coke | Carbon-rich deposit formed on the tube wall by thermal cracking of the process fluid. |
-| Hard coke | Coke that has thermally consolidated. Requires progressive pig sizing to remove. |
-| Pitch | A heavy, viscous fouling variant, harder to mobilize than standard coke. Common in coker and crude service. |
-| Decoking | Removal of coke deposits from the tube interior. |
+| Fouling / Deposit | The default nouns. Any accumulation on the tube wall, composition unstated. |
+| Internal fouling | The same accumulation named as a whole phenomenon. The general industry term. |
+| Coke | Carbon-rich deposit formed on the tube wall by thermal cracking of the process fluid. Used where composition was established — a laboratory result, a cut-out, or the customer stating it. |
+| Decoking | Removal of deposits from the tube interior. Retained as the name of the service regardless of the default-noun rule; it is what the work is called. |
+| Descaling | The same operation named for non-carbon deposits. Paired with decoking in industry usage. |
+
+### Expectation language — what we predict going in
+
+| Term | Definition |
+|---|---|
+| Expected fouling type | The fouling anticipated from service type and unit history, before any pig is run. An estimating input, never a finding. |
+| Standard coke | The baseline expectation on most heater service. |
+| Hard coke | Coke expected to have thermally consolidated, requiring progressive pig sizing to remove. Drives the ft/hour derate. |
+| Pitch | A heavy, viscous fouling variant expected in coker and crude service, harder to mobilize than standard coke. |
+| Layered fouling | Deposit expected to carry distinct layers from successive incomplete cleans, the older layer harder. Anticipated where a heater has a long steam-air history or has never been pigged. |
+
+### Finding language — what we observed coming out
+
+| Term | Definition |
+|---|---|
+| Clean ID | The largest pig OD that passed the full circuit without obstruction. The primary evidence of the result. |
+| Bore restriction | Deposit narrowing the flow path, stated with the pig size that would not pass. |
+| Localized / General | Whether fouling concentrated at identifiable locations or ran the length of the pass. |
+| Circumferential ring | A band of deposit at one axial location. |
+| Residual fouling | Deposit remaining after cleaning. |
+| Return clarity / Return duration | The colour of the return and the seconds it ran discoloured per pass. |
+| Recovered fragments | Pieces fractured off the tube wall and collected in the launcher, receiver or pigging spool. Large pieces can be inspected directly, and layering visible in them is the one direct evidence of deposit structure a pig run produces. |
+| Pig condition on return | Wear, gouging, appendage loss. Evidence of what the pig met. |
+| Progression steps | The sequence of pig sizes run to reach the Clean ID, and any size that stalled. Difficulty is recorded as effort — steps, stalls, hours — never as a claim about the material. |
+| Over-cleaning | Tube wall loss caused by excess runs or oversizing, seen as grooving on the inside wall. A failure mode of the method, not a condition of the coil. |
 
 ## Method and equipment
 

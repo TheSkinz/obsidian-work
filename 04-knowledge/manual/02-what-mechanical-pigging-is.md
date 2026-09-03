@@ -10,9 +10,13 @@
 
 Fired heater tubes carry process fluid through a zone of high heat flux. Under those conditions the fluid thermally cracks, and a carbon-rich byproduct deposits on the inside of the tube wall. That deposit is petroleum coke, and it accumulates over the course of a run.
 
-Deposition is not uniform. The radiant section sees direct flame radiation and the highest heat flux, and the radiant outlet is the hottest point in the coil. That is where the hardest and heaviest fouling is typically found. The convection section, heated indirectly by flue gas, runs at lower tube skin temperatures and generally fouls less severely.
+Deposition is not uniform. The radiant section sees direct flame radiation and the highest heat flux, and the radiant outlet is the hottest point in the coil. That is where fouling is heaviest and hardest to remove. The convection section, heated indirectly by flue gas, runs at lower tube skin temperatures and generally fouls less severely.
 
 Fouling character varies by service. Standard coke thermally consolidates into a hard deposit that resists removal. Pitch, common in coker and crude service, is a heavy viscous fouling variant that behaves differently and is harder to mobilize.
+
+The deposit is layered rather than homogeneous, and that is why progressive pig sizing works rather than being merely cautious. The published work reports two layers — an outer porous layer over a harder crust against the tube wall (Atkins, 1962, as reported in Jegla, Kohoutek and Stehlík, *Design and Operating Aspects Influencing Fouling Inside Radiant Coils of Fired Heaters*, Heat Exchanger Fouling and Cleaning, 2011). Successive incomplete cleans compound this: material left behind insulates the wall at that point, the area runs hotter, and new deposit forms on top of the old, which hardens with each cycle. Quest Integrity's ADCV case study documents a vacuum furnace where the older layer had hardened past what a metal studded pig could remove, and where sustained overheating had deformed the tube enough that a pig could no longer conform to it.
+
+**We see this ourselves, and that is the stronger evidence.** Where a pig fractures a large piece off the wall and it is recovered in the launcher, receiver or pigging spool, the layering is visible in the piece. Recovered fragments are the only direct look at deposit structure a pig run produces, and they are worth inspecting and photographing every time one comes back — Section 10 treats them as evidence rather than debris. What a fragment cannot tell us is what the deposit is made of; composition, morphology and formation mechanism are not established by looking at it.
 
 ## 2.2 What coke costs the operator
 
@@ -34,7 +38,9 @@ Cleaning is progressive. The first pass opens a path; each subsequent pass runs 
 
 The propelling medium is water, delivered at high volume and moderate pressure. High volume is the distinguishing characteristic of the system: the pig is driven by flow, not by pressure alone. Normal operating pressure sits in a moderate band well below the mechanical limits of the coil, which keeps the coil under conditions comparable to ordinary hydrostatic service rather than exposing it to the thermal cycling and stress that other decoking methods impose.
 
-Water propulsion also produces something no thermal method produces: a physical record. Every pass returns a pig that can be inspected, and returns effluent whose clarity and discharge duration are observable in real time. Combined with the before and after flow tests described in Section 10, that gives an objective basis for declaring a coil clean rather than an inferred one.
+Water propulsion also produces something no thermal method produces: a physical record. Every pass returns a pig that can be inspected for wear, gouging and appendage loss, and returns effluent whose clarity and discharge duration are observable in real time. It also returns the deposit itself — fines and flakes in the effluent, and sometimes pieces large enough to hold and examine. Combined with the before and after flow tests described in Section 10, that gives an objective basis for declaring a coil clean rather than an inferred one.
+
+What that record does and does not cover is worth stating plainly, because it sets the limit of what we can claim. It is evidence about behaviour: what size passed, where a pig stalled, how long the return ran dirty, what came back, and what the flow test moved. It is not evidence about material. Deposit composition, morphology and formation mechanism, and the metallurgical condition of the tube itself, are outside what a pig run establishes — they belong to the customer's inspection data or a laboratory result.
 
 ## 2.5 What mechanical cleaning enables
 

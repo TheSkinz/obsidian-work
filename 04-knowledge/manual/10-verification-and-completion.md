@@ -49,6 +49,16 @@ The practical consequence: **the determination is made in the field, on effluent
 
 Each criterion alone can be satisfied by a coil that is not clean. Effluent can run clear because a pig is passing through a bore it is no longer contacting. Discharge time can shorten for the same reason. And a pressure improvement can be real while a section of the circuit remains fouled behind a partial obstruction. Together, and taken with a final pass at full permitted pig OD returning a pig in good condition, they establish that the pig has been in contact with the tube wall along the length of the circuit and that the circuit's resistance has measurably fallen.
 
+**Name the Clean ID when the result is stated.** The largest pig OD that passed the full circuit without obstruction is the hardest number the job produces, and it is the one most often left out of the record. A circuit that took a pig at tube ID plus 0.250 inches is saying something a Δ PSI figure cannot: that a body wider than the bore travelled the whole length in contact with the wall. Where the Clean ID falls short of the permitted maximum, that is itself the finding, and it belongs in the record with the size that would not pass.
+
+**Recovered fragments are evidence, not debris.** Where a pig fractures a piece off the wall large enough to inspect, what it shows — layering above all, and thickness where it can be measured — is the only direct look at deposit structure the job produces. Record and photograph it. It does not establish composition (§2.4).
+
+### Answering the objection
+
+Inspection vendors publish the argument that these criteria do not settle the question. Quest Integrity's ADCV material states that cleaning to return colour, a foam-pig confirmation run and a before-and-after flow test leaves it *"unknown"* whether a coil is completely clean, and their case studies carry examples of residual fouling found after a conventional clean was called complete. The objection is not answered by avoiding it, and it should not be, because §10.3 concedes the same point about each criterion taken alone.
+
+What answers it is the joint basis, stated rather than assumed: three criteria that fail in different ways, plus the Clean ID reached against the section's tube ID, plus the returned pig's condition, plus in-line inspection confirmation where the scope carries it. Where a document states a cleaning result, it should state that basis. The strongest version of our position is the honest one — the criteria are sufficient together and none of them is sufficient alone, and the job record shows which were met.
+
 ## 10.4 Per-circuit determination
 
 Completion is determined per circuit, not per heater. Circuits foul differently, particularly between passes with different firing exposure, and one circuit reaching criteria does not release the others. Each circuit carries its own before and after tests and its own completion record.

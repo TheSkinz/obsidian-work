@@ -144,6 +144,10 @@ tags: [heater-card, <Client>, <heater-type>]
      No Stand-By column — stand-by is per-rig, not per-set; it stays on the parent row.
      Coil condition = how dirty the coil WAS: light | moderate | heavy | unknown. This is NOT
      Task Durations' `Condition`, which is job class. Blank on most historical rows.
+     Graded against observables, in order: Clean ID vs. tube ID, progression steps and stalled
+     sizes, return duration, measured thickness only where actually measured, recovered
+     fragments. It records EFFORT, not material — `heavy` means hard to clean, not hard
+     deposit, which a pig run does not establish. Never infer to fill a blank; write unknown.
      Flag = clean | outlier | blended | unknown. `outlier` = this set ran 12–24 hrs off its
      siblings on the same heater/rig/mode — estimate off the sets that CLUSTER, never the
      outlier, and state which set you excluded. Full spec in 04-knowledge/_canonical-heater-card.md. -->

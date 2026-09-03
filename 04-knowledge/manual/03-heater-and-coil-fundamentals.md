@@ -24,7 +24,7 @@ A coil is the complete tube assembly for one heater: individual straight tubes j
 
 **Convection section.** The upper section, heated indirectly by flue gas. Tubes are conventionally arranged horizontally in parallel rows, with return bends alternating ends so that a pig reverses direction at each tube. Lower tube skin temperatures and generally lighter fouling.
 
-**Radiant section.** The lower or inner section, exposed to direct flame radiation. Highest heat flux, hardest fouling, and the radiant outlet is the most fouling-prone location in the coil. Tube arrangement varies genuinely between horizontal and vertical depending on heater type, and is confirmed per heater rather than assumed.
+**Radiant section.** The lower or inner section, exposed to direct flame radiation. Highest heat flux, heaviest fouling, and the radiant outlet is the most fouling-prone location in the coil. Tube arrangement varies genuinely between horizontal and vertical depending on heater type, and is confirmed per heater rather than assumed.
 
 **Cross-over.** The external piping connecting the convection outlet to the radiant inlet. Where convection and radiant tube sizes differ, the reducer that makes the transition sits in this piping.
 
@@ -34,7 +34,7 @@ flowchart TD
     B --> C["Convection outlet"]
     C --> D["Cross-over piping<br/>reducer sits here when<br/>tube IDs differ"]
     D --> E["Radiant inlet"]
-    E --> F["Radiant section<br/>highest heat flux<br/>hardest fouling"]
+    E --> F["Radiant section<br/>highest heat flux<br/>heaviest fouling"]
     F --> G["Radiant outlet"]
 ```
 

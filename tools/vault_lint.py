@@ -18,6 +18,7 @@ Rules (code | severity):
     TUBE-GEOM-HEADER warning heater-card Tube-Geometry header off the canonical schema
     HEATER-TYPE-VOCAB error  heater-card heater-type outside the canonical vocabulary
     VERIFIED-FORMAT error    heater-card verified: is not a date or `never`
+    DEAD-STRING     error    retired terminology reintroduced into a live note
     ROLLUP-SCALE    warning  heater-card Config Rollup: heater total is not a whole multiple of per circuit
     LINK-FACILITY   warning  wikilink into the wrong facility, or a bare ambiguous [[_facility]]
     POINTER-DEAD    warning  recorded absolute source path no longer resolves
@@ -257,8 +258,40 @@ POINTER_RE = re.compile(r"`((?:[A-Za-z]:\\|/)[^`\n]{3,})`")
 WORD_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9._#/'-]*")
 TRAILING_PUNCT = ".,;:'-"
 
+# DEAD-STRING: retired terminology. Same contract as HEATER-TYPE-VOCAB — the
+# term is migrated to zero BEFORE the rule is armed, so it carries no backlog and
+# a hit can only ever mean someone reintroduced it, which is exactly the event
+# worth stopping for.
+#
+# `soft coke` retired 2026-09-03 (DQ-030, Jesse). It appeared in exactly one live
+# file, `04-knowledge/concepts/industry-foundation.md`, was defined nowhere in the
+# vault, and in refining it names a coke-drum VCM property — a false friend rather
+# than a loose synonym. The replacement vocabulary is in
+# `04-knowledge/manual/17-glossary.md` § Fouling.
+DEAD_STRINGS = {
+    "soft coke": "retired 2026-09-03 (DQ-030) — undefined here, and it names a "
+                 "coke-drum VCM property in refining. Use the fouling vocabulary "
+                 "in 04-knowledge/manual/17-glossary.md",
+}
+# Files whose JOB is to name a retired term: the glossary and the note recording
+# the retirement. Decision records necessarily quote the string they retired, so
+# `06-reviews/` and the decision queue are exempt wholesale — the same carve-out
+# CHECKBOX-DELTA already makes for decision-queue.md, and for the same reason.
+DEAD_STRING_EXEMPT = (
+    "04-knowledge/manual/17-glossary.md",
+    "04-knowledge/concepts/industry-foundation.md",
+    "50-dashboards/decision-queue.md",
+    "06-reviews",
+    "change-log.md",
+    # `_OUTPUTS/` is the generated SharePoint projection, copied verbatim from
+    # sources this rule already checks. Linting it double-reports every real hit
+    # and, worse, reports the exempt sources' own retirement notes as drift. Fix
+    # the source and re-run `tools/sharepoint_export.py`; never edit here.
+    "_OUTPUTS",
+)
+
 ERROR_CODES = {"SECRET", "CONF-CONFLICT", "YAML-COMMENT", "DEAD-LINK",
-               "HEATER-TYPE-VOCAB", "VERIFIED-FORMAT"}
+               "HEATER-TYPE-VOCAB", "VERIFIED-FORMAT", "DEAD-STRING"}
 
 
 class Finding:
@@ -773,6 +806,30 @@ def check_heater_type_vocab(root: Path, notes: dict[Path, str]) -> list[Finding]
             findings.append(Finding("HEATER-TYPE-VOCAB", path,
                 f"heater-type {val!r} is not in the canonical vocabulary "
                 f"{sorted(HEATER_TYPES)} — the descriptive name belongs in `service:`"))
+    return findings
+
+
+def check_dead_string(root: Path, notes: dict[Path, str]) -> list[Finding]:
+    """DEAD-STRING: retired terminology reintroduced into a live note.
+
+    Armed at zero backlog (see DEAD_STRINGS), so any hit is new drift. The
+    definitional homes and the decision records that retired the term are exempt
+    — a rule that fires on the note explaining the retirement is a rule nobody
+    can clear, and `a lint warning clearable only by a decision session is not a
+    lint` applies just as hard to an error.
+    """
+    findings = []
+    for path, text in notes.items():
+        rel = path.relative_to(root).as_posix()
+        if any(rel == e or rel.startswith(e + "/") for e in DEAD_STRING_EXEMPT):
+            continue
+        lowered = text.lower()
+        for dead, guidance in DEAD_STRINGS.items():
+            if dead in lowered:
+                line = next((i for i, ln in enumerate(text.splitlines(), 1)
+                             if dead in ln.lower()), 0)
+                findings.append(Finding("DEAD-STRING", path,
+                    f"line {line}: {dead!r} is a retired term — {guidance}"))
     return findings
 
 
@@ -1291,6 +1348,7 @@ def run_lint(root: Path, with_git: bool = True) -> list[Finding]:
     findings += check_durations_header(root, notes)
     findings += check_tube_geom_header(root, notes)
     findings += check_heater_type_vocab(root, notes)
+    findings += check_dead_string(root, notes)
     findings += check_verified_format(root, notes)
     findings += check_rollup_scale(root, notes)
     findings += check_link_facility(root, notes)
@@ -1408,7 +1466,7 @@ def self_test() -> int:
     expected = {"OP-FRONTMATTER", "DEAD-LINK", "SECRET", "STATUS-VOCAB",
                 "CONF-CONFLICT", "ORPHAN",
                 "REVIEW-OVERDUE", "SUPERSEDED", "DURATIONS-HEADER", "TUBE-GEOM-HEADER",
-                "HEATER-TYPE-VOCAB", "VERIFIED-FORMAT",
+                "HEATER-TYPE-VOCAB", "VERIFIED-FORMAT", "DEAD-STRING",
                 "ROLLUP-SCALE",
                 "LINK-FACILITY",
                 "POINTER-DEAD", "JOBSHEET-PDF-STALE",
