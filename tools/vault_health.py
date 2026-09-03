@@ -598,7 +598,7 @@ def build(root: Path) -> str:
         "2026-08-21 and is listed here now; it is allowed to commit nothing in a month with "
         "nothing worth deciding, so its git heartbeat carries wide slack while the ledger "
         "still proves the scheduler fired. "
-        "listed. The skill-drift loop is scheduled monthly and tracked here as of 2026-07-25; "
+        "The skill-drift loop is scheduled monthly and tracked here as of 2026-07-25; "
         "it commits only when it finds drift, so its heartbeat window is deliberately loose.",
         "",
         "| Loop | Last fired | Last heartbeat | Cadence | Status |",

@@ -2,7 +2,7 @@
 <!-- vault-prestaged: skipped — already covered, note is self-resolved. All five items carry inline "ANSWERED AND CLOSED 2026-07-25" or "APPLIED, not held" headers with the rulings and target files already named (filter-press fleet count, USA26038 demob concept, Crew Travel rename, F1 intake-contradiction rule, F2 derived-value omit rule). No open question remains; the marker was simply never added when the note was closed out. -->
 ---
 type: note
-status: open
+status: resolved
 created: 2026-07-25
 tags: [inbox, skill-drift, lane-4, awaiting-decision]
 related:

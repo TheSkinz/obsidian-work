@@ -11,6 +11,8 @@ related:
   - [[knowledge-system-governance]]
   - [[estimating-actuals-rollup]]
   - [[2026-07-25-skill-drift-review]]
+  - [[2026-08-01-skill-drift-review]]
+  - [[2026-09-01-skill-drift-review]]
 tags: [knowledge-system, agent-loop, skill-drift, governance]
 ---
 

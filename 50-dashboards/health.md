@@ -7,11 +7,11 @@
 | Open decision rows | 6 | <= 10 | ok |
 | Review notes awaiting decision | 3 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 9 | (backlog) | ok |
+| Lint warnings | 8 | (backlog) | ok |
 | Inbox items | 64 | - | ok |
 | Inbox median age | 14 d | < 14 d | FAIL |
 | Inbox oldest item | 35 d | < 30 d | FAIL |
-| Days since last commit | 1 d | - | ok |
+| Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
 | Pending quotes expired | 0 | 0 | ok |
 | Open decisions not in the queue | 0 | 0 | ok |
@@ -19,11 +19,11 @@
 
 ## Loop heartbeats
 
-Two signals per loop: **Last fired** comes from the local run ledger (`50-dashboards/.loop-runs.json`, written by every run as its first and last action) and proves the scheduler is alive; **Last heartbeat** is the loop's closing commit and proves a run finished with output. `FAIL: started, never finished` = a run fired but never closed out (crash or interrupted). `FAIL: scheduler silent` = no firing within the staleness window — the task is disabled, deregistered, or the machine was off. **pending** = no data yet. The review loop moved from on-demand to monthly on 2026-08-21 and is listed here now; it is allowed to commit nothing in a month with nothing worth deciding, so its git heartbeat carries wide slack while the ledger still proves the scheduler fired. listed. The skill-drift loop is scheduled monthly and tracked here as of 2026-07-25; it commits only when it finds drift, so its heartbeat window is deliberately loose.
+Two signals per loop: **Last fired** comes from the local run ledger (`50-dashboards/.loop-runs.json`, written by every run as its first and last action) and proves the scheduler is alive; **Last heartbeat** is the loop's closing commit and proves a run finished with output. `FAIL: started, never finished` = a run fired but never closed out (crash or interrupted). `FAIL: scheduler silent` = no firing within the staleness window — the task is disabled, deregistered, or the machine was off. **pending** = no data yet. The review loop moved from on-demand to monthly on 2026-08-21 and is listed here now; it is allowed to commit nothing in a month with nothing worth deciding, so its git heartbeat carries wide slack while the ledger still proves the scheduler fired. The skill-drift loop is scheduled monthly and tracked here as of 2026-07-25; it commits only when it finds drift, so its heartbeat window is deliberately loose.
 
 | Loop | Last fired | Last heartbeat | Cadence | Status |
 |---|---|---|---|---|
-| Consolidation loop | 2026-08-15 (18 d ago) | 2026-08-15 (19 d ago) | 31 d | ok |
+| Consolidation loop | 2026-08-15 (19 d ago) | 2026-08-15 (19 d ago) | 31 d | ok |
 | Review loop | - | 2026-08-21 (13 d ago) | 90 d | ok |
 | Skill-drift loop | 2026-09-01 (2 d ago) | 2026-09-01 (2 d ago) | 62 d | ok |
 
@@ -48,8 +48,8 @@ Narrowed from the former **Dormant triggers** registry on 2026-08-21. That table
 
 | Source | Condition | Check |
 |---|---|---|
-| [[idea-llm-navigable-vault-map]] | Vault reaches 450 live notes (292 at the time of writing, 2026-08-15) -> re-run the retrieval eval in [[knowledge-system-evaluation-questions]]; if it shows failures, this idea unparks, and if it does not, re-park at the next threshold [machine: note-count>=450] | live notes: 336 of 450 |
-| [[rfq-intake-protocol]] | About 12 quote notes under a settled rate-table heading convention -> build the cross-quote rate-history rollup [machine: quote-count>=12] | quote notes: 12 of 12 — **FIRED** |
+| [[idea-llm-navigable-vault-map]] | Vault reaches 450 live notes (292 at the time of writing, 2026-08-15) -> re-run the retrieval eval in [[knowledge-system-evaluation-questions]]; if it shows failures, this idea unparks, and if it does not, re-park at the next threshold [machine: note-count>=450] | live notes: 337 of 450 |
+| [[rfq-intake-protocol]] | About 12 quote notes under a settled rate-table heading convention -> build the cross-quote rate-history rollup [machine: quote-count>=12] | quote notes: 13 of 12 — **FIRED** |
 | [[2026-07-31-prestaged-routine-service-derate-seed-data]] | 10 routine mode-normalized rows in the actuals rollup -> revisit the ft/hr service derate (n=5 at ruling, 2026-08-01) [machine: routine-rows>=10] | routine rows: 5 of 10 |
 
 ## Regression baselines
@@ -63,8 +63,8 @@ One row per frozen fixture in `~/.claude/regression/frozen/`. Each reads its own
 | Fixture | Commits behind | Status |
 |---|---|---|
 | f1-rfq-to-proposal | claude-config 11 · vault 8 | behind |
-| f2-vault-ingest-dryrun | claude-config 6 | behind |
-| f3-fieldpm-extract | claude-config 23 | behind |
+| f2-vault-ingest-dryrun | claude-config 9 | behind |
+| f3-fieldpm-extract | claude-config 25 | behind |
 | f4-sop-formatting-pass | claude-config 4 · vault 0 | behind |
 | f5-pig-sizing | claude-config 3 | behind |
 | f6-duration-mobdemob | claude-config 13 · vault 8 | behind |

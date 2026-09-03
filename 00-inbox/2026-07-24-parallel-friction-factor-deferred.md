@@ -9,7 +9,7 @@
      unprompted... a model artifact, not evidence" describes what the band actually encoded. -->
 ---
 type: note
-status: inbox
+status: resolved
 created: 2026-07-24
 revisit-trigger: "Actuals rollup carries 3-4 routine multi-pass rows with a recorded Mode -> decide whether the Duration Model gets a mode-friction term — event: check when a multi-pass TA lands actuals"
 tags: [inbox, estimating, actuals, duration-model, deferred]

@@ -50,6 +50,7 @@
 - [[VR-401C]] — MM2 VR-401C — Formosa Point Comfort, TX `(Formosa/Point-Comfort-TX)`
 - [[02-facilities/HF-Sinclair/Artesia-NM/_facility|_facility]] — HF Sinclair — Navajo Refinery, Artesia, NM `(HF-Sinclair/Artesia-NM)`
 - [[DSP26080]] — DSP26080 — HF Sinclair Navajo Refinery February 2027 Outage `(HF-Sinclair/Artesia-NM)`
+- [[DSP26092]] — DSP# 26092 — HF Sinclair Navajo, H-2421 HDU Charge Heater Decoke `(HF-Sinclair/Artesia-NM)`
 - [[H-2421]] — H-2421 HDU Charge Heater — HF Sinclair Navajo Refinery `(HF-Sinclair/Artesia-NM)`
 - [[H-2501]] — H-2501 Hot Oil Furnace — HF Sinclair Navajo Refinery `(HF-Sinclair/Artesia-NM)`
 - [[H-30]] — H-30 Reboiler — HF Sinclair Navajo Refinery `(HF-Sinclair/Artesia-NM)`
