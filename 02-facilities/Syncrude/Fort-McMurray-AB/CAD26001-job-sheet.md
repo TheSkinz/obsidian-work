@@ -3,9 +3,9 @@ type: job-sheet
 job-number: CAD26001
 client: Syncrude
 facility: Syncrude-Fort-McMurray-AB
-source: PO 1300060001 — no DSP work-up exists in the vault for this job
-verified: 2026-08-25
-last-updated: 2026-08-25
+source: "DSP #CAN24120 (quoted 2024-09-25) + PO 1300060001"
+verified: 2026-09-02
+last-updated: 2026-09-02
 tags: [job-sheet, Syncrude, CAD26001]
 ---
 
@@ -20,13 +20,22 @@ tags: [job-sheet, Syncrude, CAD26001]
 > `CAD26001-job-sheet.pdf` (rendered from `CAD26001-job-sheet.html`). A job sheet is static —
 > created at bid-win from the quoted work-up. Actuals and timeline live on the job report, never here.
 
-> [!note] No work-up on file
-> **No DSP quotation or work-up for CAD26001 exists in this vault.** PO 1300060001 is the only
-> commercial artifact recorded. This sheet therefore carries **no quoted resource plan, no Qty column
-> and no man-hour totals** — the Crew & Labor block is a roster, not a billing basis. The duration
-> figures below come from the reference build-up
-> [[2026-08-21-cad26001-looping-duration-both-ways]], not from a quotation. `source:` records this
-> honestly rather than naming a DSP number that does not exist.
+> [!note] The work-up: DSP #CAN24120
+> **Located 2026-09-02 in the OneDrive job folder** — `DSP #CAN24120 7-1F-1 Bitumen Column Feed Heater
+> 2026.pdf`. Quoted 2024-09-25 by Jason Harman, Time & Material, $177,068 CAD, valid to 2025-09-25;
+> the job executed August 2026 on PO 1300060001, which governs. **This corrects the note that stood
+> here until 2026-09-02, which asserted no work-up existed** — it was scoped to the vault, and the
+> quotation was in OneDrive all along.
+>
+> **Its execution plan is UNLOOPED and does not describe how this job ran:** rig-in 12 · pig 64 ·
+> smart pig 8 · rig-over 6 · stand-by 0 · rig-out 6 = **96 hrs / 8 shifts**, passes 1-6 then a
+> rig-over to 7 & 8, with a quoted crew of 15. The job was executed looped, 4 circuits at once, 0
+> rig-overs, with a mobilized crew of 10. The 84 hrs / 7 shifts below is the **looped** reference
+> build-up [[2026-08-21-cad26001-looping-duration-both-ways]] and is the figure that matches the
+> method actually used. Both are records, not things to re-derive.
+>
+> `CAN24120` is a file-naming slip by whoever wrote the quotation, **not a job-number series** — do
+> not build a prefix convention on it (Jesse, 2026-09-02).
 
 ---
 
@@ -35,7 +44,7 @@ tags: [job-sheet, Syncrude, CAD26001]
 | Field | Value | Field | Value |
 |---|---|---|---|
 | Scope | 7-1 F-1 Bitumen Column Feed Heater — w/ Smart Pigging | Job # | CAD26001 |
-| Facility | Syncrude Mildred Lake — Fort McMurray, AB | Quote | No DSP work-up on file |
+| Facility | Syncrude Mildred Lake — Fort McMurray, AB | Quote | DSP #CAN24120 |
 | Mode | Double mode × 2 rigs — 4 looped circuits, all pigged simultaneously | PO # | 1300060001 |
 | Project Type | Planned outage — August 2026 (third campaign) | PM | Dacorey Slater |
 | Lodging | Camp | Training | CSO / Syncrude Site Specific |
@@ -65,8 +74,9 @@ tags: [job-sheet, Syncrude, CAD26001]
 | Night | Supervisor | Sam Mixon |
 | Night | Operator | Jesse Utsey · Danilo Ramirez · Rodney Lynch · JC |
 
-No DSP work-up is on file for this job, so **no quoted resource plan or billing basis is carried
-here**. Roster is the mobilized crew of 10 — 5 dayshift / 5 nightshift. PM runs dayshift.
+DSP #CAN24120 quoted a crew of 15 (1 PM · 1 day supervisor · 6 day operators · 1 night supervisor ·
+6 night operators). **Roster below is the mobilized crew of 10** — 5 dayshift / 5 nightshift, PM runs
+dayshift. The gap between quoted and mobilized belongs on the job report, not here.
 
 ---
 
@@ -92,9 +102,9 @@ striping mandatory. Site driving authorization via Marshall.
 
 > **Inlets** 6" 300# RFWN · **Outlets** 6" 300# RFWN · **Launchers** 8 × 6" · at grade · **Circuits** 4 looped · 4,474' ea.
 >
-> **Circuits** — **8 coils looped into 4 circuits with temporary 180s at the radiant outlet flanges — 1&8 · 2&7 · 3&6 · 4&5** (Jesse, 2026-08-25). Follows the physical outlet-spool pairing. Launcher and receiver both land at the control-valve-station end.
+> **Circuits** — **8 coils looped into 4 circuits with a temporary 180 loop connection at the convection inlet flanges of each pass — 1&8 · 2&7 · 3&6 · 4&5** (Jesse, 2026-09-02, correcting the as-executed record). Launcher and receiver both land at the radiant outlet end.
 > **Temp 90s** — plant installs temporary 90° elbows at both ends, CV station and radiant outlets. Those are what bring both connection points to grade; plant-side prerequisite.
-> **Location** — inlets at the control valve station, outlets at the radiant outlet flanges. Under the looped election all 16 pigging spools land at the CV station end and the radiant outlets carry the 4 temporary 180s instead. Everything at grade; nothing on this heater is rigged at elevation.
+> **Location** — inlets at the control valve station, outlets at the radiant outlet flanges. Under the looped election the 4 temporary 180s land at the convection inlets and all 16 pigging spools land at the radiant outlet end instead. Everything at grade; nothing on this heater is rigged at elevation.
 > **Water** — hydrant. Soda-ash solution mixed in tank, Syncrude site practice.
 > **Coil** — heater total 376 tubes / 17,893 ft. Single 6.065" bore throughout — no telescoping, no size sequencing.
 
@@ -119,10 +129,10 @@ Full tube geometry, config rollup and pig spec history: [[7-1-F-1]].
 
 ![Fig 1 — connection points](CAD26001-fig1-connections.jpg)
 
-**Fig 1 — Connection Points.** Both the launcher and the receiver of each circuit are at the control
-valve station convection inlet flanges; the temporary 180s are at the radiant outlet flanges. Because the
-coils are looped there, **no launcher or receiver lands at the radiant outlet end at all** — the 180s take
-their place. Numbers are coils 1–8. **7-2 F-1 is a mirror
+**Fig 1 — Connection Points.** The temporary 180s are at the control valve station convection inlet
+flanges, one per pass; both the launcher and the receiver of each circuit are at the radiant outlet
+flanges. Because the coils are looped at the inlets, **no launcher or receiver lands at the convection
+inlet end at all** — the 180s take their place. Numbers are coils 1–8. **7-2 F-1 is a mirror
 image** — plenums, floor access doors, stairways and outlet-tube movement all opposite hand. We work 7-1.
 
 ![Fig 3 — pass routing](CAD26001-fig3-pass-routing.jpg)

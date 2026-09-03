@@ -28,7 +28,7 @@ Reference working note, not a quote. Rates and elections are per-job inputs.
 |---|---|---|
 | Coils | 8, uniform — 2,237 ft each (1,040 conv + 1,197 rad), 47 tubes | [[7-1-F-1]] Config Rollup, drawing-verified 2026-08-20 |
 | Bore | Single 6.065" ID throughout, no telescoping | Quest title block + coil revamp BOM |
-| Looping | **8 → 4 circuits at the radiant outlet flanges** | Jesse, 2026-08-21 |
+| Looping | **8 → 4 circuits, temporary 180s at the convection inlet flanges** | Jesse, 2026-08-21 (location corrected 2026-09-02 — recorded as the radiant outlets until then; duration-neutral either way, the circuit is 4,474 ft) |
 | Circuit length | **4,474 ft** (2 × 2,237) | Derived |
 | Pairing | Undecided — **and duration-neutral**, coils are uniform | Jesse, 2026-08-21 |
 | Equipment | 2× Trimax (5 + 6), Support 5 + 6. **No filtration — not used on this heater, settled** | [[active-jobs]]; Jesse, 2026-08-21 |

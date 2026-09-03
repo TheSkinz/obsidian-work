@@ -18,7 +18,7 @@ Carry this on shift. It feeds `## Coilset Durations` on [[7-1-F-1]] at ingest (D
 
 ## What the job is expected to be
 
-Third campaign on 7-1 F-1. **8 coils looped into 4 circuits at the radiant outlet flanges.** Both Trimax in **double mode** — each rig runs 2 looped circuits simultaneously, all 4 circuits at once, so **0 rig-overs**. Every coil is uniform at 2,237 ft, so **every looped circuit is 4,474 ft whatever the pairing.**
+Third campaign on 7-1 F-1. **8 coils looped into 4 circuits, temporary 180s at the convection inlet flanges** (location corrected 2026-09-02). Both Trimax in **double mode** — each rig runs 2 looped circuits simultaneously, all 4 circuits at once, so **0 rig-overs**. Every coil is uniform at 2,237 ft, so **every looped circuit is 4,474 ft whatever the pairing.**
 
 Quoted duration 84 hrs / 7 shifts (rig-in 8 · pig 47 · smart pig 18 · rig-out 8 = 81 raw). Basis is CAD25004's looped 1&8 at 124 ft/hr plus a 25% parallel allowance. **The allowance is the untested part** — 124 was earned with one Trimax on one circuit; this job asks each rig for two at once. What actually happens is the thing worth measuring.
 

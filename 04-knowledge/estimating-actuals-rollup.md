@@ -33,12 +33,13 @@ Benchmarks as stated in `usadebusk-estimating`: **100 ft/hr** pigging (nominal f
 | H-29 | P66 | 2025-05-10 | USA25041 | routine, combined-heaters | 1 | ? | 5 | 117 | – | 9 | combined | 1 | 131 | 2,373 | - | - |
 | 7-1 F-1 | Syncrude | 2024-04-05 | CAD24002 | routine, hours-blended | 2 | ? | 9.5 | 68.5 | 9 | 7.5 | 2-rig-sum | 36 | 96 | 17,893 | 261 | - |
 | 7-1 F-1 | Syncrude | 2025-09-07 | CAD25004 | routine, hours-blended | 2 | ? | 14 | 119 | 18 | 13 | 2-rig-sum | 192 | 164 | 17,893 | 150 | - |
+| 7-1 F-1 | Syncrude | 2026-08-26 | CAD26001 | routine, hours-blended | 2 | ? | 18 | 67 | 7 | 22.5 | 2-rig-sum | 61.5 | 114.5 | 17,893 | 267 | - |
 | H-102A | Valero | 2026-03-26 | USA26025 | crash | 1 | 3 | 27* | 232 | 16 | –* | see card | 176 | 275 | 9,248 | 40 | 13 |
 | H-102B | Valero | 2026-03-26 | USA26025 | crash | 1 | 3 | 34.5* | 242.5 | 31 | –* | see card | 179 | 308 | 9,248 | 38 | 13 |
 
 > **`Rig method` — read this before comparing any two rig figures** (DQ-017 Q3). The Rig-In and Rig-Out columns are **mixed-method**: cells that print alike were produced five different ways, and a rule fitted across them inherits the defect. `unmarked` = no method problem is *recorded* — **not** a verified measurement; HF-0011's Rig-Out of 3 is the billed figure with a further 8 hrs customer-signed and never billed, and nothing on that row says so. `combined` = the hours are a multi-heater job total written on each card. `2-rig-sum` = summed across rigs, not elapsed (7-1 F-1 CAD25004's rig-in 14 = 6 + 6 + 2 across three coil sets). `blended` = the source did not separate this row's tasks cleanly; the card says which. `see card` = the cell carries a `*` footnote, and the reasons genuinely differ — Valero bundles rig-in + rig-over + rig-out into one "Rigging" figure, while the Flint Hills pair is one continuous rig-over where each heater's missing side is absent by design. `quarantined` = the job's own sources do not reconcile (both HF Sinclair heaters, USA25051/USA26038 — see their card row notes). **Only `unmarked` rows are candidates for deriving anything, and they are candidates, not evidence.**
 
-> **5 of 25 rows carry a rig-in/rig-out pair that is both `unmarked` and complete** (6 rows are `unmarked`, but not all record both figures). That is the whole population available for any question about how rig-out relates to rig-in — small enough that a difference between a handful of jobs will look like a difference between facilities. Count the distinct **jobs** behind these rows before reading a pattern into them.
+> **5 of 26 rows carry a rig-in/rig-out pair that is both `unmarked` and complete** (6 rows are `unmarked`, but not all record both figures). That is the whole population available for any question about how rig-out relates to rig-in — small enough that a difference between a handful of jobs will look like a difference between facilities. Count the distinct **jobs** behind these rows before reading a pattern into them.
 
 ## ft/hr per pig by job class
 
@@ -52,7 +53,7 @@ Mode-normalized per-pig rates (elapsed ÷ Mode), so jobs run in different modes 
 | first | 1 | 75 | 75 |
 | routine | 5 | 47–259 | 99 |
 
-> 3 row(s) carry an elapsed rate but no `Mode`, so they are excluded from these per-pig means — add `Mode` to those Task Durations rows to include them.
+> 4 row(s) carry an elapsed rate but no `Mode`, so they are excluded from these per-pig means — add `Mode` to those Task Durations rows to include them.
 
 ## Coverage gaps
 
@@ -83,6 +84,6 @@ Mode-normalized per-pig rates (elapsed ÷ Mode), so jobs run in different modes 
 
 ## Reading this
 
-- With **25** actual job row(s), this is a growing dataset, not a calibrated model. Treat per-job ft/hr as anecdotes until several same-service jobs accumulate.
+- With **26** actual job row(s), this is a growing dataset, not a calibrated model. Treat per-job ft/hr as anecdotes until several same-service jobs accumulate.
 - **Check the per-coilset spread before deriving a rate from any row** (Jesse, 2026-08-20 / DQ-027). Coils on one heater clean within a few hours of each other; a coil set 12–24 hrs off its siblings means a problem specific to that coil that decoke, or corrupt data. Derive off the sets that cluster, never the outlier, and say in the duration math that you excluded it. Rows here are per-job heater totals, so the spread is not visible from this table — go to the card's Field Notes / job report.
 - **Rig-In/Rig-Out actuals well off the 6/6 hr defaults are a signal only on `unmarked` rows** — check the `Rig method` column first. A `combined`, `2-rig-sum`, `blended`, `see card` or `quarantined` row is far off the default because of how the number was produced, not because the job ran long, and reading it as a duration signal is the specific error this column exists to prevent. ft/hr consistently off 100 is the other signal. Either way, raise it with Jesse rather than editing the skill from here.
