@@ -53,3 +53,29 @@ quote that is still `status: pending`.
 
 Found during the ADHD-skill back-test, 2026-08-17; every instance above verified against the heater
 cards.
+
+**The unflattering case has a published base rate, 2026-09-03.** This seed's central question — *"whether
+it survives a job where the report is less flattering, which is the case that decides if this is a
+durable asset or cherry-picking"* — is partly answered by Quest Integrity's own ADCV white paper (v1.0,
+2020-12-07, read in full during the DQ-030 terminology work). Quest states that smart-pigging
+inspections have found **"varying amounts of leftover fouling that have followed decoking activities
+in a vast majority of heaters since 2001,"** footnoted to **"over 2,400 heater inspections."**
+
+Three consequences, none of which needed the second report this seed is gated on:
+
+- **The unflattering result is the base rate, not a contingency.** The seed treats it as the edge case to
+  survive; the leading ILI vendor publishes that it is the normal outcome of a conventional decoke.
+- **The gate was set correctly and now has a stated reason.** Leaning on a favourable report as proposal
+  language, against a vendor-published base rate that says most decokes leave fouling, is the exact
+  shape of cherry-picking the seed was worried about.
+- **It also raises the value of a clean result.** A vendor confirming minimal residual fouling means
+  more, not less, when that same vendor publishes that most cleans do not achieve it. Whether that is
+  usable turns on the first point, not on the strength of any single report.
+
+Note this cuts against the "obtain a second vendor report" framing of the gate. Quest does not release
+project reports, but the *result* reaches us anyway — USA26038's own job report states "a Quest smart
+pig confirmed only minimal residual coke," and the Syncrude card carries "smart pig found minimal
+fouling there, 'typical of previous decokes.'" A stated result may be enough to test the unflattering
+case even where a report is unobtainable, which would make the gate cheaper to clear than it reads.
+**Not unparked and the gate stands** — this is evidence added to the open question, not a decision.
+Related terminology work and the full source read: [[2026-09-03-fouling-terminology-vocabulary]].

@@ -331,8 +331,11 @@ labels as such. This section fixes both by recording what one pig actually did.
         historical rows would land `unknown`. Recording condition HERE costs neither. Expect
         it blank on migrated historical rows; fouling was recorded at job level, not per set.
 
-        CRITERIA (DQ-030, 2026-09-03). The grade is a judgment, but it is made against
-        observables, not impressions. Weigh in this order — the first two are measurements,
+        CRITERIA (DQ-030, 2026-09-03). MIRROR — the authority is
+        `04-knowledge/manual/17-glossary.md` § Fouling; a change edits both in the same
+        commit, same contract as DURATIONS_HEADER in tools/vault_lint.py. Nothing locks this
+        copy, so the monthly skill-drift review is what catches a lapse.
+        The grade is a judgment, but it is made against observables, not impressions. Weigh in this order — the first two are measurements,
         the rest corroborate:
           1. Clean ID reached, against the section's tube ID. Reaching tube ID + 0.250"
              is the clean result; falling short is the strongest single signal.

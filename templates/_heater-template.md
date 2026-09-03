@@ -151,6 +151,8 @@ tags: [heater-card, <Client>, <heater-type>]
      fragment you actually handled CAN be described in Field Notes (hard/brittle/powdery,
      chunks/chips/fines, wet/oily/tarry, layered) — describe from the piece, never from the
      clock. Never infer a grade to fill a blank; write unknown.
+     (Mirror — authority is 04-knowledge/manual/17-glossary.md § Fouling; change both in the
+     same commit.)
      Localized hard spot: record in Field Notes only when the crew reported one; never record
      its absence. Not the same as the `outlier` Flag — an outlier coil is a fluke, a hard spot
      within a coil is normal.
