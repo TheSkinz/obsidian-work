@@ -21,6 +21,7 @@ Rules (code | severity):
     ROLLUP-SCALE    warning  heater-card Config Rollup: heater total is not a whole multiple of per circuit
     LINK-FACILITY   warning  wikilink into the wrong facility, or a bare ambiguous [[_facility]]
     POINTER-DEAD    warning  recorded absolute source path no longer resolves
+    JOBSHEET-PDF-STALE warning job-sheet PDF is older than the HTML it renders from
     YAML-COMMENT    error    unquoted frontmatter value silently truncated by a ` #` comment
     WORD-DELTA      warning  words left a note (--staged / --worktree only; see below)
     CHECKBOX-DELTA  warning  a decision box moved on an already-closed note (ditto)
@@ -103,9 +104,11 @@ from __future__ import annotations
 
 import argparse
 import collections
+import os
 import re
 import subprocess
 import sys
+import time
 from datetime import date, datetime
 from pathlib import Path
 
@@ -916,6 +919,71 @@ def check_rollup_scale(root: Path, notes: dict[Path, str]) -> list[Finding]:
     return findings
 
 
+def check_jobsheet_pdf_stale(root: Path, notes: dict[Path, str]) -> list[Finding]:
+    """JOBSHEET-PDF-STALE: a job-sheet PDF older than the HTML it renders from.
+
+    A job sheet ships as a trio — the vault-native `.md`, a printable `.html`,
+    and a `.pdf` rendered from that HTML by hand through headless Chrome. There
+    is no generator in `tools/`, nothing regenerates the PDF when the HTML
+    changes, and the PDF is the copy that actually goes to a crew. So the HTML
+    can be corrected while the PDF someone is carrying still says the old thing,
+    and nothing anywhere notices.
+
+    This is not hypothetical. `CAD26001-job-sheet.pdf` was retired outright on
+    2026-09-02 after sitting eight days behind its HTML — including a reversed
+    loop location, which is the kind of error that puts a crew at the wrong end
+    of a heater. Retiring that one PDF did nothing for USA26038's and
+    USA26040's, which are exposed to exactly the same drift.
+
+    Compares filesystem mtimes rather than content: the question is only
+    "was the PDF rendered after the last HTML edit," and mtime answers it
+    without parsing either format. A missing PDF is not a finding — plenty of
+    job sheets legitimately have no printable, and CAD26001 is now one of them.
+
+    Severity — warning, but read this before leaving it there. The expectation
+    when this rule was commissioned was that it would fire on USA26038 and
+    USA26040 and land as a backlog item. It does not: measured 2026-09-03 it
+    fires on **nothing**. USA26040's PDF was re-rendered one minute after its
+    last HTML edit, and USA26038's pair carry identical mtimes. By the house
+    rule in the module docstring — a rule that starts at zero can only ever fire
+    when someone actually breaks the invariant, which is the event worth
+    stopping for — that makes it a candidate for `ERROR_CODES` alongside
+    TUBE-GEOM-HEADER and VERIFIED-FORMAT.
+
+    Left at warning deliberately, pending Jesse: promoting it makes lint exit 1
+    the moment a job-sheet HTML is edited and blocks the commit until the PDF is
+    re-rendered. That is arguably correct — a drifted pair should not be
+    committed — but it is a workflow change, not a lint tuning, and it was not
+    what was approved. One line in ERROR_CODES if he wants it.
+
+    mtime caveat: git does not store mtimes, so a fresh clone gives every file
+    the checkout time and this rule reads clean until something is edited. It
+    catches drift on a working vault, which is where the drift happens. That is
+    also why its fixture is built at runtime rather than committed — same
+    reason POINTER-DEAD builds its own.
+    """
+    findings = []
+    for html in sorted(root.rglob("*-job-sheet.html")):
+        if skip(html, root):
+            continue
+        pdf = html.with_suffix(".pdf")
+        if not pdf.exists():
+            continue
+        try:
+            html_m = html.stat().st_mtime
+            pdf_m = pdf.stat().st_mtime
+        except OSError:
+            continue
+        if pdf_m < html_m:
+            behind = (html_m - pdf_m) / 86400.0
+            gap = f"{behind:.1f} day(s)" if behind >= 1 else "less than a day"
+            findings.append(Finding(
+                "JOBSHEET-PDF-STALE", pdf,
+                f"PDF is {gap} older than {html.name} — re-render it or retire "
+                f"it; nothing regenerates job-sheet PDFs automatically"))
+    return findings
+
+
 def check_yaml_comment(root: Path, notes: dict[Path, str]) -> list[Finding]:
     """YAML-COMMENT: an unquoted frontmatter value YAML will not read as written.
 
@@ -1227,6 +1295,7 @@ def run_lint(root: Path, with_git: bool = True) -> list[Finding]:
     findings += check_rollup_scale(root, notes)
     findings += check_link_facility(root, notes)
     findings += check_pointer_dead(root, notes)
+    findings += check_jobsheet_pdf_stale(root, notes)
     findings += check_yaml_comment(root, notes)
     return findings
 
@@ -1269,6 +1338,36 @@ def self_test() -> int:
             fixtures, {pd_note: pd_note.read_text(encoding="utf-8")})
     finally:
         pd_note.unlink(missing_ok=True)
+    # JOBSHEET-PDF-STALE reads mtimes, and git does not store mtimes — a
+    # committed fixture pair would arrive with identical checkout times and
+    # never fire. So the pair is built here and back-dated explicitly, the same
+    # reason POINTER-DEAD builds its own above.
+    js_dir = fixtures / "02-facilities" / "TestClient"
+    js_dir.mkdir(parents=True, exist_ok=True)
+    js_html = js_dir / "USA00000-job-sheet.html"
+    js_pdf = js_dir / "USA00000-job-sheet.pdf"
+    js_html.write_text("<!-- self-test scratch — safe to delete -->\n",
+                       encoding="utf-8")
+    js_pdf.write_bytes(b"%PDF-1.4 self-test scratch\n")
+    now = time.time()
+    os.utime(js_pdf, (now - 8 * 86400, now - 8 * 86400))  # 8 days behind, the CAD26001 gap
+    os.utime(js_html, (now, now))
+    try:
+        js_hits = check_jobsheet_pdf_stale(fixtures, {})
+        if len(js_hits) != 1:
+            print(f"SELF-TEST FAILED — JOBSHEET-PDF-STALE fixture should yield "
+                  f"exactly one finding, got {len(js_hits)}")
+            return 2
+        # A PDF newer than its HTML is the healthy case and must NOT fire.
+        os.utime(js_pdf, (now + 60, now + 60))
+        if check_jobsheet_pdf_stale(fixtures, {}):
+            print("SELF-TEST FAILED — JOBSHEET-PDF-STALE fired on an up-to-date PDF")
+            return 2
+        findings += js_hits
+    finally:
+        js_html.unlink(missing_ok=True)
+        js_pdf.unlink(missing_ok=True)
+
     # WORD-DELTA compares two revisions rather than reading the tree, so its
     # fixture is a before/after pair fed straight to the comparison — the same
     # reason INBOX-AGE and POINTER-DEAD build theirs outside run_lint. The pair
@@ -1312,7 +1411,8 @@ def self_test() -> int:
                 "HEATER-TYPE-VOCAB", "VERIFIED-FORMAT",
                 "ROLLUP-SCALE",
                 "LINK-FACILITY",
-                "POINTER-DEAD", "YAML-COMMENT", "WORD-DELTA", "CHECKBOX-DELTA"}
+                "POINTER-DEAD", "JOBSHEET-PDF-STALE",
+                "YAML-COMMENT", "WORD-DELTA", "CHECKBOX-DELTA"}
     missing = expected - fired
     for f in findings:
         print(f"  fixture: {f}")
