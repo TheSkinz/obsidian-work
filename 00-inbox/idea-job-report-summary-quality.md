@@ -29,4 +29,6 @@ Idea seed captured 2026-09-03 for a future exploration session. The read below i
 
 **Gate:** none. Researchable now — the delivered reports and this session's revision trail are the corpus.
 
+**Partly explored 2026-09-03.** The terminology half of this is now worked up in [[2026-09-03-fouling-terminology-vocabulary]] — a decision packet awaiting Jesse's term-by-term rulings. It covers the vocabulary and the register question ("who is the reader of record"), and answers it with a three-register split rather than a single audience. It does **not** cover the *structure* question above — the three-move shape (scope executed → condition found → what it means next) is still open and still needs the back-test. Close this seed when both halves are settled.
+
 Related: [[CAD26001-job-sheet]], the delivered CAD26001 report, and `usadebusk-fieldpm/references/report-structure.md`.
