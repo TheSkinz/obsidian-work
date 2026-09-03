@@ -146,9 +146,14 @@ MANIFEST: list[tuple[str, str]] = [
 # Eval instruments and other hand-built staging files this script must not
 # claim ownership of or report as unexpected.
 NOT_PROJECTED = {
-    "MANUAL-09_Phase-II-Mechanical-Decoking-Rev-A.md",  # deliberate-error test file
     "_COLUMN-VALUES.md",
 }
+# `MANUAL-09_Phase-II-Mechanical-Decoking-Rev-A.md` sat here as a deliberate-error
+# test file until 2026-09-03, when Jesse confirmed its eval was finished and the
+# file was deleted. Removed from the set rather than left behind, so this does not
+# become a suppression rule for a file nobody can find. Recorded because the entry
+# read as an orphaned stale duplicate to two separate sessions — the comment was
+# the only thing saying otherwise, and it was nearly deleted for the wrong reason.
 
 FRONTMATTER = re.compile(r"\A---\r?\n.*?\r?\n---\r?\n", re.DOTALL)
 PROVENANCE = re.compile(r"^\*Source: `[^`]+` — exported \d{4}-\d{2}-\d{2}\*$")

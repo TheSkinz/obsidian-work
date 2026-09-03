@@ -950,11 +950,11 @@ def check_jobsheet_pdf_stale(root: Path, notes: dict[Path, str]) -> list[Finding
     stopping for — that makes it a candidate for `ERROR_CODES` alongside
     TUBE-GEOM-HEADER and VERIFIED-FORMAT.
 
-    Left at warning deliberately, pending Jesse: promoting it makes lint exit 1
-    the moment a job-sheet HTML is edited and blocks the commit until the PDF is
-    re-rendered. That is arguably correct — a drifted pair should not be
-    committed — but it is a workflow change, not a lint tuning, and it was not
-    what was approved. One line in ERROR_CODES if he wants it.
+    **Asked and answered 2026-09-03: it stays a warning.** Promoting it makes
+    lint exit 1 the moment a job-sheet HTML is edited and blocks the commit
+    until the PDF is re-rendered — a workflow change rather than a lint tuning,
+    and Jesse ruled against it. Do not re-open this on the "starts at zero"
+    argument alone; that argument was made and lost.
 
     mtime caveat: git does not store mtimes, so a fresh clone gives every file
     the checkout time and this rule reads clean until something is edited. It

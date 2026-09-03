@@ -1,6 +1,6 @@
 ---
 type: idea-seed
-status: complete
+status: unexplored
 created: 2026-07-19
 related:
   - [[2026-07-22-idea-research-pig-load-list-generator]]
@@ -8,6 +8,23 @@ tags: [idea, vault-system, future, estimating, field-ops]
 ---
 
 # Pig load list generator from heater cards
+
+> [!warning] Status corrected 2026-09-03 — this was NOT built
+> This note sat at `status: complete` from 2026-07-22, and the filename plus that status read as
+> though the pig **load list generator** exists. It does not. What shipped on 2026-07-22 was the
+> shared **rollup** script, `tools/pig_usage_rollup.py` — a different thing that answers a different
+> question. The **per-project pig load list is still wanted and still unbuilt** (Jesse).
+>
+> Set to `unexplored` rather than `researched`: the 2026-08-15 retirement sweep found that
+> `researched` means "Jesse has not decided," is untouchable by the Terminal-Note Sweep, and is
+> revisited by nothing — so a seed sent there has no path out. This one has never been explored to a
+> decision, which is what `unexplored` says.
+>
+> **Discoverability caveat:** this note lives in `archive/`, which `vault_lint.py` skips via
+> `SKIP_SCAN` and `INDEX.md` does not cover. The status change stops a future session concluding the
+> generator exists; it does **not** make the seed surface anywhere. What carries the intent today is
+> the agent-memory note `feedback-max-pig-od-field-purpose`. Moving it back to `00-inbox/` would make
+> it visible but would immediately become the oldest pending inbox note — Jesse's call, not made.
 
 Idea seed captured 2026-07-19 for a future exploration session. The read below is tentative — confirm intent with Jesse before designing.
 

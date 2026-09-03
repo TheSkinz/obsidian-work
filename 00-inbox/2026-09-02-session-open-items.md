@@ -35,7 +35,27 @@ Jesse renamed the folders he could find on 2026-09-02; some filenames remain. Th
 
 Nothing lints this. `POINTER-DEAD` only resolves absolute paths under `02-facilities/`, and these are relative `OneDrive/…` paths in `archive/` — they fail both gates and will never surface as broken.
 
-## 4. Stale SharePoint projection with no generator
+## 4. ~~Stale SharePoint projection with no generator~~ — MISREAD, then RESOLVED 2026-09-03
+
+> [!warning] The original entry below was wrong about what this file was. Read the correction first.
+> `MANUAL-09_Phase-II-Mechanical-Decoking-Rev-A.md` was **not** an orphaned stale duplicate. It was a
+> **deliberate-error test file** — an eval instrument, listed by name in `sharepoint_export.py`'s
+> `NOT_PROJECTED` set with the comment `# deliberate-error test file`, precisely so the exporter would
+> not claim ownership of it or report it as unexpected. It was *supposed* to contain a wrong string.
+> The observation that the manifest "does not know about it" was correct and was mistaken for an
+> accident when it was deliberate.
+>
+> **Two sessions in a row reached the same wrong conclusion from the same evidence**, because both
+> read the staging directory and neither read line 149 of the exporter. That is the lesson worth
+> keeping: a file that looks orphaned may be excluded on purpose, and the exclusion list is the place
+> that says so.
+>
+> **Resolved 2026-09-03.** Jesse confirmed the eval was finished; the file was deleted and its
+> `NOT_PROJECTED` entry removed, so the exporter no longer carries a suppression rule for a file
+> nobody can find. `sharepoint_export.py --check` runs clean. Note that `_OUTPUTS/` is untracked, so
+> the deletion is permanent.
+
+*Original entry, preserved as written:*
 
 `_OUTPUTS/sharepoint/MANUAL-09_Phase-II-Mechanical-Decoking-Rev-A.md` still contains "CONV port" after the 2026-09-02 correction. **`tools/sharepoint_export.py`'s manifest does not know about it**, so no amount of re-running the exporter will fix it — it is an orphaned duplicate beside the real projection, which did regenerate correctly.
 

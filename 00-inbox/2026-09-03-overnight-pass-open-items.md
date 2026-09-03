@@ -10,7 +10,18 @@ tags: [inbox, owed, lint, sharepoint, regression, overnight]
 Four items. None blocks anything. Everything Jesse approved that night was executed except item 1,
 which was stopped deliberately.
 
-## 1. The SharePoint retirement was approved on a wrong premise — NOT executed
+> [!success] Items 1 and 2 closed 2026-09-03 — see the resolution lines on each.
+> Items 3 and 4 remain open. Item 4's SOP half is now also closed.
+
+## 1. ~~The SharePoint retirement was approved on a wrong premise — NOT executed~~ **RESOLVED**
+
+**Resolved 2026-09-03.** Jesse confirmed the eval was finished. The file was deleted and its
+`NOT_PROJECTED` entry removed from `sharepoint_export.py`, so the exporter no longer carries a
+suppression rule for a file nobody can find; `--check` runs clean. The misreading was corrected in
+place on [[2026-09-02-session-open-items]] item 4 rather than deleted, so the *reason* it was nearly
+removed for the wrong cause stays on the record. Original write-up below.
+
+### Original entry
 
 Jesse ruled "retire" on `_OUTPUTS/sharepoint/MANUAL-09_Phase-II-Mechanical-Decoking-Rev-A.md`,
 on the reading given in [[2026-09-02-session-open-items]] item 4: an orphaned stale duplicate,
@@ -32,7 +43,14 @@ permanent, not recoverable from git as the overnight plan asserted.
 can go; if not, it should stay and the 09-02 note should be corrected rather than the file deleted.
 Nothing was changed either way.
 
-## 2. `JOBSHEET-PDF-STALE` is a candidate for `ERROR_CODES`
+## 2. ~~`JOBSHEET-PDF-STALE` is a candidate for `ERROR_CODES`~~ **RULED — stays a warning**
+
+**Ruled 2026-09-03: it stays at warning tier.** Promoting it blocks commits on an edited job-sheet
+HTML, which is a workflow change rather than lint tuning. The decision is now recorded in the rule's
+own docstring so it is not re-opened on the starts-at-zero argument, which was made and lost.
+Original write-up below.
+
+### Original entry
 
 Built and shipped as a warning. **It fires on nothing** — USA26040's PDF is one minute newer than its
 HTML, USA26038's pair carry identical mtimes. The plan expected a two-file backlog and there is none.
@@ -57,11 +75,17 @@ ruling. Recorded so the merge is not read later as having added a new debt it di
 
 Both pre-date this pass and neither was in scope.
 
-- **`usadebusk-sop/SKILL.md:89`** says *"CAD26001, F-901 and F-802 loop at the radiant outlets."*
-  [[7-1-F-1]] records the opposite as of 2026-09-02 — CAD26001's 180s went in at the **convection
-  inlets**. The 2026-09-01 drift review could not have caught this; it ran the day before the
-  correction. **Lane 4, so not touched.**
+- ~~**`usadebusk-sop/SKILL.md:89`** says *"CAD26001, F-901 and F-802 loop at the radiant outlets."*~~
+  **CORRECTED 2026-09-03** (config `6b6d4a8`). CAD26001 moved to the convection-inlet list; F-901 and
+  F-802 unchanged. The 2026-09-01 drift review could not have caught it — it ran the day before the
+  as-built correction, which is the standing gap in a monthly audit.
 - **`health.md`'s two inbox-age FAIL rows** (median 14 d against a <14 d target, oldest 35 d against
-  <30 d) were already in the committed dashboard and are not caused by this pass. Archiving the
-  terminal CAD26001 notes — the capture sheet at `complete`, the job-report handoff at `resolved` —
-  would clear both. Proposed in the 2026-09-03 recon, never approved, so not done.
+  <30 d) were already in the committed dashboard and are not caused by this pass. **STILL OPEN, and
+  the fix I first proposed was wrong.** Archiving the terminal CAD26001 notes would *not* clear them:
+  `inbox_stats()` (`tools/vault_health.py:233`) skips `TERMINAL_STATUS` when computing ages, so those
+  notes are already excluded and archiving them lowers only the count. The rows are driven by six
+  genuinely pending notes dating to 2026-07-27 — the oldest are
+  `2026-07-20-claudeai-skill-library-is-a-second-copy`,
+  `2026-07-20-local-toolchain-and-soffice-windows-bug` and
+  `2026-07-24-fixtures-work-better-as-rule-audit`. **Clearing this is inbox triage, not a yes/no**,
+  and it is the largest remaining piece of decision-free-ish work in the vault.
