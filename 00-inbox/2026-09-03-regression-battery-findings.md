@@ -44,6 +44,7 @@ The lines that should not have moved did not move, to the cent. F1 reproduced mo
 - [[2026-09-03-stated-values-only-vs-config-rollup-derived]] — two schema texts contradicting
 - [[2026-09-03-nearest-even-rounding-gaps]] — undefined ties, and an unbounded discretionary hatch
 - [[2026-09-03-regression-coverage-gaps]] — F2's uncompelled schema fields, no `/report` fixture, and the tool's inability to say "judged, not owed"
+- [[2026-09-03-sop-voice-pipefitter-role]] — whether an SOP body is customer-facing, and `9cddfaf` disagreeing with its own worked example
 
 ## Protocol change
 
