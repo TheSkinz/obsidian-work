@@ -21,7 +21,8 @@ Examples:
 - Running header: document number right-aligned, subtitle (Mechanical Decoking | [Heater] | [Facility]) below in lighter weight
 - Footer: "DeBusk Services Group | Deer Park, TX" left-aligned, page number right-aligned
 - Color scheme: gold (#FCC30A) for section divider horizontal rules and subsection header text; charcoal/black for body text and primary table header fills
-- Punctuation: no em dashes in body text or customer-facing language
+- Punctuation: no em dashes in body text or customer-facing language. The ban is on **sentence punctuation** — the `Phase N — Name` procedure headings keep their dash. Recast the sentence instead: comma, colon, full stop, or parenthesis.
+- Ranges are **written out**: `150 to 300 PSI`, `3 to 5 seconds`, `3.500 through 4.250`. Not `150-300`, not `150–300`. *(Made explicit 2026-09-03. The convention was already being enforced against drafted SOPs while living nowhere but a regression baseline's notes, so a document could fail a rule it had no way to read.)*
 
 ---
 

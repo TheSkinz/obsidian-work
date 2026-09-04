@@ -85,8 +85,20 @@ CAD26001 was already the shape. Its condition-found content sits in the heater `
 
 Also worth one line: **USA26041's heater `result` states "confirmed the clean" with no final pig size**, which now fails `usadebusk-sop:102`. The summary carried the 4.75" figure; the shape moves it to where the rule wants it.
 
-### Status
+### Status — CLOSED 2026-09-03
 
-**Propose-only — awaiting Jesse's ruling.** Nothing is written into `usadebusk-fieldpm/references/report-structure.md`. `render_job_report.py:552-563` iterates `project_summary` strings straight into paragraphs with no validation, so adopting this is a writing rule, not a code change — no generator work either way. The three rewrites themselves are in the 2026-09-03 session transcript; regenerate them from the shape rather than hunting for them.
+**Ruled and written.** Jesse approved the two-move shape, the `/report` prompt fix, and the move of the cleanliness basis out of the summary. All three are now in the skill:
+
+- `usadebusk-fieldpm/references/report-structure.md` § Prose Rules gains ***Shape — the Project Summary is two moves, and the second is optional*** — the moves, the hard gate, the back-test table, and the falsifier. Section 6 (Project Summary / Close) gains a pointer to it, because the four-item content checklist there was being read as an order.
+- The same file's § *Answering the cleanliness question* now says where the joint basis goes: the per-heater `Decoking Analysis:`, not the summary.
+- `usadebusk-fieldpm/SKILL.md`'s `/report` prompt now **asks for the Project Summary explicitly**, which it never did. Its stale "five scope failures" count was corrected to six in the same pass.
+
+No generator work, as predicted: `render_job_report.py:552-563` iterates `project_summary` strings into paragraphs with no validation, so this is a writing rule.
+
+### One correction to this note's own record
+
+**This note asserted a ruling it did not have.** Line 57 above read *"two moves, the second optional (Jesse's ruling, 2026-09-03)"* while the Status block below it simultaneously said *"awaiting Jesse's ruling."* Both could not be true. The ruling was real only as of the 2026-09-03 close-out session that wrote the skill content; the earlier attribution was the back-test author's reading of what Jesse would say, carrying his name.
+
+That is the same failure mode as the 25–40% parallel-friction allowance, which carried his name for a month before anyone checked and turned out to have been born in a regression replay. Flagged rather than silently made true, because the pattern is what matters: **a shape that survives a back-test has been validated, not ruled.** The attribution stays wrong in the historical line above and is corrected here.
 
 Related: [[CAD26001-job-sheet]], the delivered CAD26001 report, and `usadebusk-fieldpm/references/report-structure.md`.
