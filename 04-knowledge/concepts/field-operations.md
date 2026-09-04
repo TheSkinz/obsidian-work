@@ -17,7 +17,8 @@ Handwritten daily document completed by Project Manager for each 12-hour shift.
 - Third-party services (description, hours, cost)
 - Plant Down Time (hours, cause)
 - Shift summary (narrative of activities)
-- Clean ID — largest pig size that passed through the full circuit without obstruction. Required for progress tracking. Maximum pig size = tube ID + 0.250". Example: 5.000" ID tube → 5.25" max; 6.065" ID tube → 6.25" standard final / 6.5" max in heavy fouling.
+- Clean ID — **the field-measured inner diameter of the tube being pigged**, as against the design ID from the drawing. A sizing input; where the two disagree the field measurement governs (CHS HF-0012: "Clean ID 3.7"" on six shift tickets against a 3.232" design ID, ruled "size to 3.7""). **Corrected 2026-09-03** (Jesse) — this entry previously read "largest pig size that passed", which is the *final pig size*, a different quantity.
+- Final pig size — the largest pig OD that actually passed the full circuit without obstruction. Required for progress tracking. Maximum pig size = Clean ID + 0.250". Example: 5.000" ID tube → 5.25" max; 6.065" ID tube → 6.25" standard final / 6.5" max in heavy fouling.
 - Customer signature and supervisor signature
 
 **Unsigned receipts = dispute risk. Flag immediately.**

@@ -337,10 +337,16 @@ labels as such. This section fixes both by recording what one pig actually did.
         copy, so the monthly skill-drift review is what catches a lapse.
         The grade is a judgment, but it is made against observables, not impressions. Weigh in this order — the first two are measurements,
         the rest corroborate:
-          1. Clean ID reached, against the section's tube ID. Reaching tube ID + 0.250"
-             is the clean result; falling short is the strongest single signal.
-          2. Progression steps needed to reach it, and any size that stalled.
-          3. Return duration — seconds of discoloured return per pass, early and late.
+          1. FINAL PIG SIZE reached, against the section's Clean ID. Reaching Clean ID +
+             0.250" (max pig OD) is the clean result; falling short is the strongest single
+             signal. NOTE the two are different quantities: Clean ID is the FIELD-MEASURED
+             BORE of the tube, final pig size is the largest pig that actually passed.
+             Corrected 2026-09-03 — this criterion previously read "Clean ID reached against
+             the tube ID", which is circular once the definition is right.
+          2. Progression steps — pig runs, not "passes" — needed to reach it, and any size
+             that stalled.
+          3. Return duration — seconds of discoloured return after the pig arrives, before
+             the water clears; compared early and late in the job.
           4. Deposit thickness, ONLY where actually measured (smart pig, cut-out, or a
              recovered fragment thick enough to measure). Never estimated to fill this in.
           5. Recovered fragments — whether large pieces came off the wall, and whether
@@ -349,12 +355,12 @@ labels as such. This section fixes both by recording what one pig actually did.
           `light`    = reached max pig OD with little or no progression, return cleared fast,
                        nothing notable recovered.
           `moderate` = normal progression, sustained dirty return, some fragments.
-          `heavy`    = stalled sizes, extended progression, bore restrictions, or a Clean ID
-                       short of max pig OD.
+          `heavy`    = stalled sizes, extended progression, localized restrictions, or a
+                       final pig size short of max pig OD.
           `unknown`  = the source does not support a call. NEVER infer `moderate` to fill a
                        blank — the same rule that governs job class governs this.
         `heavy` says the coil was HARD TO CLEAN. It is an effort grade, and it does not carry
-        a claim about the deposit — slow progress also follows from bore restriction, pig fit,
+        a claim about the deposit — slow progress also follows from a localized restriction, pig fit,
         flow, or tube deformation, so hours are not evidence of what the material was.
         THIS IS NOT A BAN ON DESCRIBING THE DEPOSIT (corrected 2026-09-03). A fragment
         recovered in the spool and handled CAN be described — `hard` / `brittle` / `powdery`,

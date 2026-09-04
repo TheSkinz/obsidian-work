@@ -22,6 +22,7 @@ Terms defined here are those the manual actually uses. Where local facility usag
 | Radiant section | The lower or inner section, exposed to direct flame radiation. Highest heat flux and where fouling is heaviest. |
 | Cross-over | External piping connecting the convection outlet to the radiant inlet. Contains the size reducer where section bores differ. |
 | Tube ID | Tube inner diameter. The dimension pig sizing keys off. |
+| Clean ID | **The field-measured inner diameter of the tube being pigged** — the real bore, as against the design ID from the drawing. A sizing input, not a cleaning result. Where the two disagree the field measurement governs: CHS HF-0012 records "Clean ID 3.7"" on six independent shift tickets against a design ID of 3.232", and the card's ruling is "size to 3.7"". **Corrected 2026-09-03** (Jesse) — every prior definition in this system read "largest pig size that passed", which is the **final pig size** and a different quantity entirely. |
 | Governing tube ID | The smallest inner diameter present anywhere in a circuit. Sets the maximum pig OD for that entire circuit. |
 | Serpentine | Horizontal parallel tube rows with return bends alternating ends, so a pig reverses direction at each tube. |
 | Helical | A coil wrapping the shell circumference, found in radiant sections of vertical cylindrical heaters. |
@@ -58,16 +59,16 @@ Two vocabularies do different jobs. **Expectation language** describes what we p
 
 | Term | Definition |
 |---|---|
-| Clean ID | The largest pig OD that passed the full circuit without obstruction. The primary evidence of the result. |
-| Bore restriction | Deposit narrowing the flow path, stated with the pig size that would not pass. |
+| Final pig size | The largest pig OD that passed the full circuit without obstruction. The result the progression reached. **This is not the Clean ID** — see below. |
+| Localized restriction | An obstruction confined to one place in the circuit, stated with the pig size that would not pass. Not "bore restriction": if we are pigging, the restriction is in the bore by definition, and the word that carries meaning is whether it is confined or general. |
 | Localized / General | Whether fouling concentrated at identifiable locations or ran the length of the pass. |
 | Circumferential ring | A band of deposit at one axial location. |
 | Residual fouling | Deposit remaining after cleaning. |
-| Return clarity / Return duration | The colour of the return and the seconds it ran discoloured per pass. |
+| Return clarity / Return duration | The colour of the return, and the seconds it ran discoloured **after the pig arrives** before the water clears. |
 | Recovered fragments | Pieces fractured off the tube wall and collected in the launcher, receiver or pigging spool. Large pieces can be inspected directly, and layering visible in them is the one direct evidence of deposit structure a pig run produces. Described using the three axes below. |
 | Pig condition on return | Wear, gouging, appendage loss. Evidence of what the pig met. |
-| Progression steps | The sequence of pig sizes run to reach the Clean ID, and any size that stalled. Hours and steps are the record of how hard the coil was to clean; they are not evidence of what the deposit was, because slow progress also follows from bore restriction, pig fit, flow, or tube deformation. Describe a deposit from a fragment you handled, never from how long it took. |
-| Localized hard spot | A confined section where the last of the wall fouling resists removal — several pigs run in one area for very little progress, at the end of the job. It can account for a significant share of total pig hours. **It does not occur on every heater** (Jesse, 2026-09-03), and its absence is not recorded. Location varies and is written as free text: pass, section, approximate tube position. |
+| Progression steps | The sequence of pig sizes run to reach the final pig size, and any size that stalled. Counted in **pig runs** — never "passes", which is a tube path through the heater. Hours and steps are the record of how hard the coil was to clean; they are not evidence of what the deposit was, because slow progress also follows from a localized restriction, pig fit, flow, or tube deformation. Describe a deposit from a fragment you handled, never from how long it took. |
+| Localized hard spot | A confined section where the last of the wall fouling resists removal — several pig runs in one area for very little progress, at the end of the job. It can account for a significant share of total pig hours. **It does not occur on every heater** (Jesse, 2026-09-03), and its absence is not recorded. Location varies and is written as free text: pass, section, approximate tube position. |
 | Over-cleaning | Tube wall loss caused by excess runs or oversizing, seen as grooving on the inside wall. A failure mode of the method, not a condition of the coil. |
 
 ### Describing recovered material

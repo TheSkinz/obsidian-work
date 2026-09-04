@@ -25,7 +25,7 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 |---|---|---|---|---|
 | Consolidation loop | 2026-08-15 (19 d ago) | 2026-08-15 (19 d ago) | 31 d | ok |
 | Review loop | - | 2026-08-21 (13 d ago) | 90 d | ok |
-| Skill-drift loop | 2026-09-01 (2 d ago) | 2026-09-01 (2 d ago) | 62 d | ok |
+| Skill-drift loop | 2026-09-01 (3 d ago) | 2026-09-01 (2 d ago) | 62 d | ok |
 
 ## Commercial pipeline
 
@@ -62,12 +62,12 @@ One row per frozen fixture in `~/.claude/regression/frozen/`. Each reads its own
 
 | Fixture | Commits behind | Status |
 |---|---|---|
-| f1-rfq-to-proposal | claude-config 2 · vault 0 | behind |
-| f2-vault-ingest-dryrun | claude-config 11 | behind |
-| f3-fieldpm-extract | claude-config 27 | behind |
-| f4-sop-formatting-pass | claude-config 2 · vault 0 | behind |
-| f5-pig-sizing | claude-config 5 | behind |
-| f6-duration-mobdemob | claude-config 2 · vault 0 | behind |
+| f1-rfq-to-proposal | claude-config 3 · vault 0 | behind |
+| f2-vault-ingest-dryrun | claude-config 12 | behind |
+| f3-fieldpm-extract | claude-config 28 | behind |
+| f4-sop-formatting-pass | claude-config 3 · vault 0 | behind |
+| f5-pig-sizing | claude-config 6 | behind |
+| f6-duration-mobdemob | claude-config 3 · vault 0 | behind |
 
 ## Notes
 

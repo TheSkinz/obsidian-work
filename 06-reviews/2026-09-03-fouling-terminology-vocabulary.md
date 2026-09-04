@@ -275,4 +275,30 @@ Jesse added two field observations after the first round shipped, prefaced *"I d
 
 **Deliberately not done:** retro-editing the CAD26001 artifacts. The job sheet was delivered and the job is closed, editing the HTML would trip `JOBSHEET-PDF-STALE` against a PDF nothing regenerates (`render_job_sheet.py` deferred 2026-07-18), and the standing rule is to fix the canonical source rather than chase sent documents. `7-1-F-1.md:138`'s `Filtration | Not used — settled` also stays: it is the internal record of a settled decision and what stops filtration being estimated into the next Syncrude bid, not a deliverable. Flagged to Jesse as his call.
 
+## Round 3 — testing the vocabulary caught a domain error I had been building on all day
+
+Jesse asked to see the new terms used in a worked example before closing out. Writing two specimens surfaced four corrections, and one of them invalidates part of rounds 1 and 2.
+
+**`bore restriction` is retired — never heard in the field.** Jesse: *"I've never heard any engineer / refinery rep refer to a restriction as a 'bore restriction'. If we're pigging, isn't any restriction a 'bore restriction?'"* He is right on both counts: the adjective is vacuous because every restriction we meet is in the bore, and the word that carries meaning is whether it is confined or general. Replaced by **`localized restriction`**, which is also his suggestion and is consistent with `localized` already doing that work for fouling distribution. I had constructed the term from "reduced bore" in the literature and never tested it against someone who talks to refinery reps.
+
+**`passes` for pig runs was a collision I created.** `Pass` is defined in this glossary as one continuous tube path through the heater. Writing "eleven passes at 6.0"" beside "Pass 2" in the same paragraph is indefensible. It is **pig runs** throughout.
+
+**The return-duration definition was loose.** It read "the seconds it ran discoloured per pass" with no anchor for when the clock starts. Jesse: *"'under 5 seconds' means under 5 seconds of effluent return after the pig's arrival … before the water cleared up."* Corrected to seconds of discoloured return **after the pig arrives**, until the water clears.
+
+### The significant one: `Clean ID` never meant what this system said it meant
+
+Jesse: *"The pig OD should not ever be referred to as the 'Clean ID' anywhere. Clean ID is always referred to the ID of the pipe / tube being pigged."*
+
+**Clean ID is the field-measured inner diameter of the tube** — the real bore, as against the design ID on the drawing. It is a *sizing input*, not a cleaning result. The vault's own primary artifact says so and always did: `02-facilities/CHS/McPherson-KS/HF-0012.md` records *"Clean ID 3.7""* on six independent shift tickets against a design ID of 3.232", under the heading *"Field-measured coil ID 3.7", not 3.232""* and the ruling *"Size to 3.7"."*
+
+The wrong definition — *"largest pig size that passed through the full circuit"* — has been in `usadebusk-ops/SKILL.md:17` since the initial commit, and in `04-knowledge/concepts/field-operations.md` and `extraction-format.md` alongside it. **I did not introduce it, but I read it, never checked it against an artifact, and then promoted it all day** — into this glossary, `manual/10` as a whole paragraph headed "Name the Clean ID when the result is stated", criterion 1 of the coil-condition grading, `usadebusk-core`, `usadebusk-sop`'s completion criteria, `usadebusk-vault-ingest` and `report-structure.md`. Criterion 1 had become circular: *"Clean ID reached, against the section's tube ID"*, when Clean ID **is** the tube ID.
+
+This is the failure mode global CLAUDE.md names — the right document about the wrong subject — and the artifact that settles it was in the vault the whole time.
+
+**The quantity I was reaching for is real and is now named `final pig size`** (Jesse): the largest pig OD that actually passed the full circuit. `Max pig OD` remains the ceiling, Clean ID + 0.250". So the three are distinct: Clean ID is the measured bore, max pig OD is the permitted ceiling, final pig size is what the progression achieved. The `"90% clean"` retirement from round 1 now points at **final pig size**, not Clean ID.
+
+**One live data-integrity consequence, not yet actioned.** `extraction-format.md:54` instructed the extractor to read the receipt's Clean ID field as *"maximum pig size run"*. If crews write the measured bore there — and HF-0012's six tickets say they do — then extractions made under that instruction converted a geometry measurement into a pig size. The instruction is fixed; **auditing what was already ingested under it is not, and is a separate piece of work.**
+
+**Corrected in:** `17-glossary.md` (Clean ID moved to the Heater-and-coil table where it belongs, `final pig size` added to finding language) · `manual/02`, `09`, `10` · `_canonical-heater-card.md` + `templates/_heater-template.md` · `concepts/field-operations.md` · skills `usadebusk-ops` (the source), `-core`, `-sop`, `-fieldpm` (SKILL, `report-structure.md`, `extraction-format.md`), `-vault-ingest`.
+
 **Still open, and deliberately not closed here:** `[[idea-job-report-summary-quality]]`'s other half — the three-move summary structure (scope executed → condition found → what it means next). That is arguably the bigger lever on verbosity than the scope rule is, and it needs the standing back-test against two structurally different delivered reports before it governs anything. The seed stays open for it. Migration precedent and cost model is `[[2026-08-20-syncrude-geometry-per-pass-misread]]`, which re-labeled `crash` vault-wide and lists the six files it touched.

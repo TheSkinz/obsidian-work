@@ -144,9 +144,10 @@ tags: [heater-card, <Client>, <heater-type>]
      No Stand-By column — stand-by is per-rig, not per-set; it stays on the parent row.
      Coil condition = how dirty the coil WAS: light | moderate | heavy | unknown. This is NOT
      Task Durations' `Condition`, which is job class. Blank on most historical rows.
-     Graded against observables, in order: Clean ID vs. tube ID, progression steps and stalled
-     sizes, return duration, measured thickness only where actually measured, recovered
-     fragments. `heavy` means HARD TO CLEAN — an effort grade, not a claim about the deposit,
+     Graded against observables, in order: final pig size vs. the section's Clean ID (the
+     field-measured bore — NOT the same quantity, corrected 2026-09-03), progression steps in
+     pig runs and any stalled size, return duration after pig arrival, measured thickness only
+     where actually measured, recovered fragments. `heavy` means HARD TO CLEAN — an effort grade, not a claim about the deposit,
      since slow hours also follow from restrictions, pig fit, flow or tube deformation. A
      fragment you actually handled CAN be described in Field Notes (hard/brittle/powdery,
      chunks/chips/fines, wet/oily/tarry, layered) — describe from the piece, never from the
