@@ -15,7 +15,12 @@ The 2026-09-03 F2 regression replay passed nine of its ten diff keys and missed 
 
 ## Why it is a real miss and not a bad key
 
-`usadebusk-core/SKILL.md:154` — which F2 does load — already says:
+`usadebusk-core/SKILL.md:173` — which F2 does load — already says:
+
+> **Line reference corrected 2026-09-03.** This note was written citing `:154`; the pointer text
+> actually sits at **`:173`**, under `### Connection info (facts)`. The drift was caught before
+> the edit was made, which is the only reason it matters — a stale anchor is how the wrong line
+> gets patched. Grep for `Max pig OD` rather than trusting any line number in this note.
 
 > Max pig OD (governing tube ID + 0.250″, computed from the smallest ID across all sections/segments; the sizing rule and its looped-circuit oversized-final exception are canonical in `usadebusk-equipment`)
 

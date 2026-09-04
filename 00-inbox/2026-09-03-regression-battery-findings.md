@@ -44,7 +44,9 @@ The lines that should not have moved did not move, to the cent. F1 reproduced mo
 - [[2026-09-03-stated-values-only-vs-config-rollup-derived]] — two schema texts contradicting
 - [[2026-09-03-nearest-even-rounding-gaps]] — undefined ties, and an unbounded discretionary hatch
 - [[2026-09-03-regression-coverage-gaps]] — F2's uncompelled schema fields, no `/report` fixture, and the tool's inability to say "judged, not owed"
-- [[2026-09-03-sop-voice-pipefitter-role]] — whether an SOP body is customer-facing, and `9cddfaf` disagreeing with its own worked example
+- ~~[[2026-09-03-sop-voice-pipefitter-role]]~~ — **RULED 2026-09-03.** The split: `the customer's pipe-fitters` in procedure steps where the actor matters, `the customer` wherever the party is named rather than instructed
+
+**Also now closed:** [[idea-job-report-summary-quality]] — both halves. The structure half was ruled 2026-09-03 (two moves, the second optional) and written into `usadebusk-fieldpm/references/report-structure.md`, which had a dense constraint layer and no structure layer at all.
 
 ## Protocol change
 
@@ -84,4 +86,12 @@ Hours after that was written, the same session struck the **Clean ID** definitio
 
 F3 was excluded from that session's scope on staleness-count grounds — *"already 9, 25 and 3 behind"* — not from having read its content, so the exclusion never reached this. It also carries the identical arithmetic signature that exposed the error in the first place: a "Clean ID" of 4.125" against a 4.026" bore, the same shape as the specimen's 6.25" against a 6.065" bore that made Jesse look twice.
 
-**F3 owes a replay-and-re-cut in its own session**, ranked ahead of routine baseline debt because it is the last live copy of a definition ruled dead. Budget a full session: `usadebusk-fieldpm` carries `disable-model-invocation: true` so the agent must read `SKILL.md` and `references/` from disk, and the fixture input is deliberately ambiguous, so the judging call is genuinely hard. Reported, not touched, per Jesse 2026-09-03. See also [[2026-08-15-idea-frozen-baselines-may-carry-unexercised-convention-defects]], whose thesis this is a concrete instance of.
+~~**F3 owes a replay-and-re-cut in its own session**~~ — **DONE, later the same day.** Ranked ahead of routine baseline debt because it was the last live copy of a definition ruled dead. The reasoning above stands and is the durable part of this note; what follows is the outcome.
+
+**F3 was replayed blind under an allowlist fence and re-cut.** It passed all seven keys against a rubric pre-registered before the output was read. `grep -rn "maximum pig size" regression/frozen/` now returns only the corrected file's own provenance notes.
+
+**The judging call resolved differently than this note anticipated, and that is the finding.** The note expected a hard call on an ambiguous input. It was not ambiguous — **diff key 3 was VOID, not mis-worded.** It required a run to *surface a conflict* between the ticket's `Clean ID: 4"` and the narrative's `4.125"`, and under the corrected definition there is no conflict to surface: `4"` is nominal shorthand for the 4.026" bore, and the `4.125"` is the **final pig size**, a different quantity. The old key rewarded a false positive, so it was replaced rather than reworded.
+
+What settled it was recorded practice, not reasoning: **CHS HP-0025 carries field clean IDs of `6"` and `8"` on ticket 9298 against 6.065" and 7.981" bores, each annotated "confirms design."** Crews write nominal shorthand for a bore, and the card reads it as confirmation rather than as a discrepancy. Decimal practice also exists (HF-0012's `3.7"`, the Flint-Hills cards' exact `4.026"`) and does not defeat it — the usable conclusion is that **a nominal figure in the Clean ID field is not by itself evidence of a conflict.**
+
+Two things carried forward from the session: the fence changed shape to an **allowlist** (see the Protocol change section above, now superseded in the README), and F1/F6 were promoted, F4's em-dash drift patched at the rule and re-run clean. See also [[2026-08-15-idea-frozen-baselines-may-carry-unexercised-convention-defects]], whose thesis this remains a concrete instance of.

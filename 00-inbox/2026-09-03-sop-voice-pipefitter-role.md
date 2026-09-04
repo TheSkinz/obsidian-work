@@ -1,11 +1,27 @@
 ---
 type: finding
-status: open
+status: resolved
 created: 2026-09-03
-tags: [inbox, sop, skills, regression, needs-ruling]
+resolved: 2026-09-03
+tags: [inbox, sop, skills, regression]
 ---
 
 # Is an SOP body a customer-facing document?
+
+> **RULED 2026-09-03 (Jesse): the split — the third option below.** `the customer's pipe-fitters`
+> in procedure steps where the actor matters; `the customer` wherever the party is being named
+> rather than instructed. An SOP body therefore carries both, by section: fitters in the Section 6
+> steps, the customer in the Section 1 and 8 scope language. The question as posed — *is an SOP
+> body customer-facing?* — turned out to be the wrong cut: a single SOP is customer-facing in its
+> scope language and instructional in its steps, so the answer is per-section, not per-document.
+>
+> **Applied the same day.** `usadebusk-sop`'s Role boundary block now carries the split, and the
+> flat *"call them 'the customer' in customer-facing documents"* sentence that contradicted the
+> block's own procedure steps is gone — that mismatch was the actual defect, and leaving it would
+> have reproduced the ambiguity on the next SOP regardless of which reading won.
+>
+> **No F4 re-run.** F4's baseline, re-cut earlier the same day, already writes `Customer's
+> pipe-fitters` at all three procedure touch points, which the split ratifies.
 
 Surfaced by the 2026-09-03 F4 regression replay. Referenced by that baseline's `sop_voice_OPEN` frontmatter field, which is why this note exists — the field said the question was filed here and it had not been.
 
