@@ -29,6 +29,21 @@ Idea seed captured 2026-09-03 for a future exploration session. The read below i
 
 **Gate:** none. Researchable now — the delivered reports and this session's revision trail are the corpus.
 
-**Partly explored 2026-09-03.** The terminology half of this is now worked up in [[2026-09-03-fouling-terminology-vocabulary]] — a decision packet awaiting Jesse's term-by-term rulings. It covers the vocabulary and the register question ("who is the reader of record"), and answers it with a three-register split rather than a single audience. It does **not** cover the *structure* question above — the three-move shape (scope executed → condition found → what it means next) is still open and still needs the back-test. Close this seed when both halves are settled.
+**Terminology half CLOSED 2026-09-03; structure half still open.** [[2026-09-03-fouling-terminology-vocabulary]] carries the rulings and they are applied (DQ-030, closed same day). It settled the vocabulary, a **report scope rule written directly against the five corrections above**, and the reader question — answered as **one vocabulary vault-wide**, not a per-audience split. Jesse's ruling on that is the load-bearing input to what remains: *"the issues I've had with the job reports were more about verbosity and related concerns."* Four of the five corrections above are about **how much was said**, not which words; the fifth is an invented coinage. So the structure question is the remaining lever, and it is the bigger one.
+
+### Handoff for the structure session
+
+**Read first:** this note's five corrections, verbatim · `usadebusk-fieldpm/references/report-structure.md` § Prose Rules — six scope rules shipped 2026-09-03, which are the constraint any structure has to satisfy · [[2026-09-03-fouling-terminology-vocabulary]], so settled ground is not relitigated.
+
+**Corpus — must be two structurally different delivered reports**, per the standing back-test rule:
+- `02-facilities/HF-Sinclair/Artesia-NM/USA26038 Job Report.pdf` — delivered golden master, two heaters, one plugged pass, no smart pig on H-20
+- CAD26001 Syncrude 7-1-F-1 — eight looped coils, smart-pigged, and **the report Jesse revised four times**. Not in the vault; open it from the OneDrive job folder
+- `usadebusk-fieldpm/back-test/report_input_usa26041.py` and `report_input_usa25025.py` if a third shape is wanted
+
+**The trap:** the answer is probably that summaries should be *shorter*, and a three-move shape can easily become a template that makes them longer by giving every job three headings to fill. The 2026-09-03 corollary applies — an observation nobody made is absent from the document, never reported as absent. A shape requiring all three moves on every job reintroduces the defect just banned.
+
+**What settles it:** rewrite both delivered summaries under the proposed shape and compare against what shipped. **If it does not visibly shorten CAD26001's summary, it is the wrong shape.**
+
+**Also open, and separate work:** `extraction-format.md` instructed the extractor to read a receipt's `Clean ID` as "maximum pig size run". Clean ID is the field-measured bore (corrected 2026-09-03), so prior extractions may have converted geometry into pig sizes. The instruction is fixed; auditing what was ingested under it is not.
 
 Related: [[CAD26001-job-sheet]], the delivered CAD26001 report, and `usadebusk-fieldpm/references/report-structure.md`.
