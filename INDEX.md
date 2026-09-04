@@ -218,6 +218,7 @@
 - [[2026-08-21-idea-research-generator-owns-marked-spans-gated]] — Idea Research — The Generator Owns Marked Spans (gated, not researched)
 - [[2026-08-21-idea-research-stated-justifications-unmeasured]] — Idea Research — A Design's Stated Justification Is a Claim, and Ours Go Unmeasured
 - [[2026-09-01-skill-drift-review]] — Skill-Drift Review — 2026-09-01
+- [[2026-09-03-fouling-terminology-vocabulary]] — Decision packet — fouling and coke terminology
 
 ## LLMs
 
