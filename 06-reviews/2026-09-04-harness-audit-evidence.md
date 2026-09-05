@@ -92,13 +92,21 @@ through*, which is harder to see.
 | Mechanism | Kind | Fires | Walked past | Outcome actually changed |
 |---|---|---|---|---|
 | `01-context` startup protocol | Prose instruction | n/a | — | **7% of attended sessions read all five files**; 0 of 88 loop runs |
-| `staged-count-guard` | Hook with hatch | 12 blocks | 12 × `staged-ok` — **100%** | **Zero commits prevented, ever** |
+| `staged-count-guard` | Hook with hatch | 13 blocks | 9 hatched blind, 3 hatched after checking the staged set | **1 commit prevented, 3 verifications forced, 9 pure tax** *(corrected — this row first read "zero prevented")* |
 | `exec-guard` | Hook with hatch | 85 blocks | **416** commands carried `exec-ok`, ~372 pre-emptively | 44 paid the hatch and ran anyway; 38 switched tool |
 | `word-delta-guard` | Hook, warn-only | 17 firings / 10 sessions | 11 × `word-delta-ok` / 5 sessions | The one gate that lands |
 
 The tell is the ratio. `word-delta-guard` warns more often than it is hatched and is the only mechanism
-here with an honest claim to changing outcomes. `staged-count-guard` has a hatch rate of 100% — it has
-never once stopped a commit, only added a round trip to twelve of them.
+here with an honest claim to changing outcomes. `staged-count-guard` is hatched on 12 of 13 firings, but
+the hatch rate alone reads it wrong: three of those hatches came only after the staged set was explicitly
+checked, which is what the hatch is for, and one firing stopped a bad commit outright.
+
+> **Correction, 2026-09-04.** This section first reported "12 of 12 hatched, zero commits prevented."
+> That was wrong, and it was wrong in the direction that flattered the section's own argument. The
+> classifier searched the next few Bash commands after each block for `staged-ok` and matched one
+> belonging to a *different, later* commit in the same session. Re-classified: **13 blocks — 1 changed
+> the outcome, 3 were hatched only after verification, 9 were pure tax.** The audit graded its own
+> classifier and passed it, which is the failure this audit was commissioned to look for elsewhere.
 
 ### 3. A declared, enabled loop that has never run
 
@@ -141,7 +149,7 @@ All five are `PreToolUse`/`Bash` and all fail open. Three block (exit 2), two wa
 | Hook | Fired | Hatched | Outcome | Verdict |
 |---|---|---|---|---|
 | `usadebusk-exec-guard` | **85 blocks** / 63 sessions, last 2026-09-04. *measured (transcript, exact)* | **416** commands carried `exec-ok` in 41 sessions — only ~44 after a block, so **~372 (89%) were pre-emptive** | 44 paid the hatch and ran; 38 switched to a shell tool; 3 reworded. **Zero of the 501 events involved a human decision** — the agent that wanted to run the command also granted the exemption | |
-| `usadebusk-staged-count-guard` | **12 blocks** / 12 sessions, last 2026-09-03. Threshold 12; observed staged counts 14, 14, 19, 21, 24, 25, 26, 27, 29, 46, 76, 103 | **12 of 12 hatched (100%)** | **No commit has ever been prevented.** The threshold sits below the median real commit (25), so it fires on normal work and is waved through every time | |
+| `usadebusk-staged-count-guard` | **13 blocks** / 13 sessions, last 2026-09-03. Threshold 12; the 12 with a recorded count: 14, 14, 19, 21, 24, 25, 26, 27, 29, 46, 76, 103. *measured (transcript, exact) — **reclassified 2026-09-04, see the correction below*** | 9 hatched with no visible verification; 3 hatched only **after** the staged set was explicitly checked; 1 not hatched at all | **1 real save, 3 forced verifications, 9 pure tax.** The save: 2026-07-30, a blanket `git add -A` swept 27 CHS heater cards into a commit about two approval notes; the block was followed by `git reset` and a narrow re-stage. All 9 tax cases are deliberate bulk work — capture-loop runs, the `06-insights` rename, the CAD rename, spelling sweeps | **RAISED 12 → 25, 2026-09-04 (Jesse).** Kept blocking, kept the `staged-ok` hatch. Halves the fire rate (vault 6.1% → 2.4%, config 1.5% → 0%) and silences six bulk-by-design blocks while keeping the 29-file save and both verified-hatch cases. **25 is a ceiling, not a round number** — at 30 the only true positive disappears, so no threshold both raises precision and keeps the save. Pinned by two frontier tests. `7be001a` |
 | `usadebusk-git-guard` | **6 blocks**, last 2026-08-16, **0 true positives**. *measured (transcript, exact)* | No hatch exists | `C:\USADEBUSK\` **does not exist on this machine**. The pattern `/USADEBUSK[\\/]/i` matched: `OneDrive/USADeBusk/Facilities` as an *input path* to a document conversion (2×), the phrase `USADeBusk\Facilities` inside a **commit message** (2×), a Python heredoc writing `change-log.md` (1×), and its own test harness (1×). One block caused a commit message to be **degraded** — the canonical store name was deleted to get past the guard | **RETIRED 2026-09-04 (Jesse).** Hook deleted, unwired from `settings.json` (5 → 4 `PreToolUse` hooks), and the global `CLAUDE.md` paragraph replaced with one describing the four that remain. Nothing lost: the `deny` list already blocks force-push, amend, `reset --hard` and branch deletion. Verified — the exact command shape it used to block now passes all four remaining hooks. `ef30341` |
 | `usadebusk-word-delta-guard` | **17 firings** / 10 sessions, last 2026-08-25. *measured (transcript, exact)* | 11 × `word-delta-ok` in 5 sessions | The only hook whose firings outnumber its escapes. Scoped to `obsidian-work`, which is the session cwd, so its scope test resolves correctly | |
 | `usadebusk-fixture-replay-guard` | **0 firings, ever.** 29 config-repo commits touched a mapped `skills/*/SKILL.md` since 2026-08-15 | 4 × `replay-ok`, all in 1 session | **Structurally unable to fire.** See below | **FIXED 2026-09-04 (Jesse).** New `hooks/usadebusk-hook-cwd.mjs` resolves the repo from the command's own `cd` / `git -C` instead of the inherited cwd, and splits segments on newlines. Proven before/after against an isolated `.claude`-shaped repo: the three real command shapes were silent at HEAD and all fire now; cosmetic wording and `replay-ok` still stand it down. 16 new tests. Kept warn-only — not promoted to blocking. `96d06fb` |
@@ -168,8 +176,8 @@ already sit.
 > both guards, so the replay guard fires and the staged-count guard counts the repo actually being
 > committed. Demonstrated on an isolated `.claude`-shaped repo: staged-count passed silently at HEAD on
 > the vault's zero staged files while the target repo held 21, and blocks correctly after. **The
-> staged-count row's own verdict is untouched** — its 100% hatch rate and its threshold of 12 against a
-> median commit of 25 are a separate judgment and remain yours. Commits `96d06fb`, `ef30341`.
+> staged-count row's own verdict was left open at that point** and was ruled separately later the same
+> day — threshold 12 → 25. Commits `96d06fb`, `ef30341`, `7be001a`.
 
 ## C. The event surface that is empty
 
@@ -182,7 +190,7 @@ guard is `PreToolUse`/`Bash`. *measured (fs — `settings.json`)*
 | Vault CLAUDE.md: "Check `health.md` and surface any red rows" | **Computation.** Fixed file, fixed test | 37% of attended sessions, 6% of loop runs read it. `health.md` is nonetheless the single most-read file in the vault (44 reads) | |
 | Global CLAUDE.md: "Load `usadebusk-core` for any USADebusk task" | **Computation** in its trigger, judgment in which domain skill follows | `usadebusk-core` present in ~24 of 185 sessions; not Skill-loaded since 2026-08-22 | |
 | Vault CLAUDE.md: session close-out routine | **Judgment** — what counts as a durable finding is not computable | Fires in 60% of attended sessions since 2026-08-21 (12 of 20). *measured (transcript, floor)* | |
-| Global CLAUDE.md: "check the staged file count before committing" | **Computation** — already mechanized into `staged-count-guard` | Hook hatched 100% of the time; the prose survives alongside it | |
+| Global CLAUDE.md: "check the staged file count before committing" | **Computation** — already mechanized into `staged-count-guard` | Hook hatched on 12 of 13 firings, 3 of them after a real check; the prose survives alongside it. The prose half failed on 2026-09-04 in this very session, at 5 staged files against 4 intended — below any threshold the hook could carry | |
 
 **Recommendation — `SessionStart`. Mechanism now verified on this machine.** Per
 `code.claude.com/docs/en/hooks` (read 2026-09-04), a `SessionStart` hook's plain-text stdout is injected
@@ -355,4 +363,6 @@ exec guard, not a bypass.
 | 2026-09-04 | **Two open items closed, both on Jesse's word.** (1) He ran `ls C:\USADEBUSK` in his own terminal — nothing. The `git-guard` finding is confirmed off the sandbox. (2) He approved the `SessionStart` smoke test; it was executed and **passed** — a temporary hook was added, a fresh `claude -p` session returned the injected token verbatim, and `settings.json` was then reverted to a byte-identical state with `git status` clean. §C is updated from "unverified" to verified. Still no verdicts filled and no fix executed. | Claude |
 | 2026-09-04 | **Two verdicts given and executed.** `git-guard` RETIRED — hook deleted, unwired from `settings.json`, global `CLAUDE.md` paragraph rewritten to describe the four remaining hooks. `fixture-replay-guard` FIXED — a shared cwd resolver replaces the inherited-cwd lookup in both it and `staged-count-guard`; before/after proven on an isolated repo, 16 new tests, all 5 suites pass. Kept warn-only. Every other Verdict cell is still empty. Commits `96d06fb`, `ef30341`. | Claude |
 | 2026-09-04 | **Process error, recorded not amended.** The git-guard file deletion was pre-staged by an earlier `git rm` and rode into `96d06fb`, whose message does not mention it; the staged count was printed as 5 against an intended 4 and not checked before committing — the exact global CLAUDE.md constraint the `staged-count-guard` mechanizes, missed by hand at a count below its threshold. Not amended, per the no-rewrite ban. | Claude |
+| 2026-09-04 | **Third verdict: `staged-count-guard` threshold RAISED 12 → 25.** Swept against 588 vault and 266 config commits: 25 halves the fire rate (vault 6.1% → 2.4%, config 1.5% → 0%) and silences six bulk-by-design blocks while keeping the one real save (29 files) and both verified-hatch cases. 25 is a ceiling — at 30 the true positive is lost — so two frontier tests pin 29-blocks / 25-passes against future tuning. Kept blocking, kept the hatch. Live-checked both directions on an isolated repo. Global `CLAUDE.md` needed no edit; it states no threshold. `7be001a` | Claude |
+| 2026-09-04 | **Self-correction: this audit's staged-count numbers were wrong.** It reported "12 of 12 hatched, zero commits prevented." Re-classified: **13 blocks — 1 changed the outcome, 3 hatched only after the staged set was verified, 9 pure tax.** The original classifier scanned the next few Bash commands for `staged-ok` and matched one from a different, later commit in the same session. The error flattered the section's own argument, and the audit had graded its own classifier. Corrected in §B, in Headline 2, and in the §C instruction table. | Claude |
 | 2026-09-04 | **Correction found by the smoke test, not by the audit.** Starting a fresh session printed permission warnings from `obsidian-work/.claude/settings.local.json` — a **fifth** settings file, holding **107 of the machine's 139 allow rules**, which the audit's §E had not counted. Six of its `Write(...)` rules are inert (paired `Edit(...)` rules cover them, so nothing is lost). §E and the known-limits section are updated. The audit's path-list method is what missed it. | Claude |
