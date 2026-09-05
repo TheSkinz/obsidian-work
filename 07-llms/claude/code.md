@@ -340,6 +340,25 @@ The Claude Code desktop app on Windows installs as an **MSIX/Store package**, no
 
 Source: Claude Code sessions `8355d1d4` and `135d0b6d`, 2026-08-20/21, on desktop package `1.34493.0.0`, CLI `2.1.238`.
 
+## `totalToolUseCount` is undocumented, and absent more often than present
+
+**Do not size subagent work by summing `totalToolUseCount`.** The field appears on some `Agent` tool
+results and not others — measured 2026-09-05 at **47 of 117** across the local transcript corpus. Where it
+is present it is exact: those 47 sum to 513 against 513 actual subagent tool calls, per-agent delta zero.
+Where it is absent there is no signal that anything is missing, so a naive sum silently under-counts by
+about 63%.
+
+Checked against the official documentation on 2026-09-05: the field does not appear in the Tools reference,
+the Agent SDK TypeScript or Python references, the cost-and-usage-tracking guide, the subagents guide or
+the changelog. The cost-tracking page documents `modelUsage`, `total_cost_usd` and `usage.input_tokens` /
+`usage.output_tokens`, and nothing about tool-use counting. **Neither the field nor the conditions under
+which it is omitted are documented anywhere reachable.** That is the finding — not a defect to code around,
+a caveat to carry: the behaviour is real and reproducible, but nothing specifies it, so the omission
+pattern cannot be predicted and may change without notice.
+
+The authoritative count is a full transcript audit of `tool_use` records. When a measurement has to cite
+the field instead, say which it used and that the omission is undocumented.
+
 ## Links
 
 - [[output-styles]] — the system-prompt layer, and why the vault's output rules stay in CLAUDE.md

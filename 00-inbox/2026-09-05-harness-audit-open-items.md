@@ -7,6 +7,7 @@ tags: [harness, audit, open-items]
 related:
   - "[[2026-09-05-harness-audit-number-verification]]"
   - "[[2026-09-05-harness-route-usage-rescoped]]"
+  - "[[2026-09-05-execok-sentinel-backtest]]"
 ---
 
 # Harness audit — what is still open
@@ -14,6 +15,22 @@ related:
 Four items left over from the 2026-09-05 verification and re-measurement. Filed as one note rather than
 four because inbox median age is already a FAIL row. The path-checker item is **not** here — it was picked
 up in a fresh session the same day.
+
+> **Status, updated 2026-09-05 (same day, the fresh session).** Items 1, 2 and 4 are closed. Only item 3
+> remains, and it is date-blocked until 2026-09-08.
+>
+> - **1 → measured**, not yet decided. The replay is [[2026-09-05-execok-sentinel-backtest]] and it carries
+>   a `## Decision` checklist with three mutually exclusive options. Jesse's call.
+> - **2 → done**, and the item's premise was wrong on one point: this file does **not** load every session.
+>   Vault `CLAUDE.md` names `system-workflow-reference.md` and `workflow-map.md` as the two `01-context/`
+>   files that are reference, loaded on demand. The staleness was real and worse than described — five
+>   claims, not one, and the file contradicted itself twice. Fixed in `1740dae`.
+> - **4 → answered.** Undocumented, and the omission is unspecified. Recorded as a standing caveat in
+>   `07-llms/claude/code.md`, not as a defect to code around.
+> - **3 → still open**, unchanged and correctly so.
+>
+> The path-checker item shipped as lint rule `PATH-DEAD` plus a dead-vault-path check in
+> `tools/config_frontmatter_lint.py` (`8134253`).
 
 **1. `exec-ok` has gone reflexive — narrow it.** 183 of 558 uses were on commands
 `usadebusk-exec-guard` would never have touched, overwhelmingly `python tools/vault_lint.py # exec-ok` — a
