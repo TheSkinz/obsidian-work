@@ -19,12 +19,12 @@
 
 ## Loop heartbeats
 
-Two signals per loop: **Last fired** comes from the local run ledger (`50-dashboards/.loop-runs.json`, written by every run as its first and last action) and proves the scheduler is alive; **Last heartbeat** is the loop's closing commit and proves a run finished with output. `FAIL: started, never finished` = a run fired but never closed out (crash or interrupted). `FAIL: scheduler silent` = no firing within the staleness window — the task is disabled, deregistered, or the machine was off. **pending** = no data yet. The review loop moved from on-demand to monthly on 2026-08-21 and is listed here now; it is allowed to commit nothing in a month with nothing worth deciding, so its git heartbeat carries wide slack while the ledger still proves the scheduler fired. The skill-drift loop is scheduled monthly and tracked here as of 2026-07-25; it commits only when it finds drift, so its heartbeat window is deliberately loose.
+Two signals per loop: **Last fired** comes from the local run ledger (`50-dashboards/.loop-runs.json`, written by every run as its first and last action) and proves the scheduler is alive; **Last heartbeat** is the loop's closing commit and proves a run finished with output. `FAIL: started, never finished` = a run fired but never closed out (crash or interrupted). `FAIL: scheduler silent` = no firing within the staleness window — the task is disabled, deregistered, or the machine was off. **pending** = the ledger records no run for this task. A git heartbeat alone **cannot** promote that to `ok`: the commit prefix it greps is one Jesse also types by hand, so it cannot tell a scheduler run from his own work. This row read `ok` for `vault-review-loop` until 2026-09-05 off three attended commits — the loop had never fired at all. The Last-heartbeat column still shows the git date; only the status is withheld. The review loop moved from on-demand to monthly on 2026-08-21 and is listed here now; it is allowed to commit nothing in a month with nothing worth deciding, so its git heartbeat carries wide slack once the ledger proves the scheduler fired. The skill-drift loop is scheduled monthly and tracked here as of 2026-07-25; it commits only when it finds drift, so its heartbeat window is deliberately loose.
 
 | Loop | Last fired | Last heartbeat | Cadence | Status |
 |---|---|---|---|---|
 | Consolidation loop | 2026-08-15 (21 d ago) | 2026-08-15 (21 d ago) | 31 d | ok |
-| Review loop | - | 2026-08-21 (15 d ago) | 90 d | ok |
+| Review loop | - | 2026-08-21 (15 d ago) | 90 d | pending |
 | Skill-drift loop | 2026-09-01 (4 d ago) | 2026-09-01 (4 d ago) | 62 d | ok |
 
 ## Commercial pipeline

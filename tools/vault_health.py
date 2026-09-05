@@ -325,12 +325,16 @@ def loop_heartbeats(root: Path):
             else:
                 status = "ok"
         else:
-            # No ledger telemetry yet — fall back to the git heartbeat alone.
+            # No ledger telemetry: the scheduler has never recorded a run for this
+            # task. The git heartbeat CANNOT promote that to `ok`, because the commit
+            # prefix it greps is one a human also types — on 2026-09-05 this row read
+            # `ok` for `vault-review-loop`, which had never fired, off three attended
+            # commits Jesse made himself with the `vault-review:` prefix. A proxy that
+            # cannot tell a scheduler run from the operator's own work is not evidence
+            # a loop ran, so `pending` is the honest status until the ledger says
+            # otherwise. The git date is still shown in the heartbeat column.
             fired_s = "-"
-            if d is None:
-                status = "pending"
-            else:
-                status = "FAIL" if (today - d).days > 2 * cadence else "ok"
+            status = "pending"
 
         any_overdue = any_overdue or status.startswith("FAIL")
         rows.append((label, fired_s, hb, f"{cadence} d", status))
@@ -594,10 +598,15 @@ def build(root: Path) -> str:
         "proves a run finished with output. `FAIL: started, never finished` = a run fired but "
         "never closed out (crash or interrupted). `FAIL: scheduler silent` = no firing within "
         "the staleness window — the task is disabled, deregistered, or the machine was off. "
-        "**pending** = no data yet. The review loop moved from on-demand to monthly on "
+        "**pending** = the ledger records no run for this task. A git heartbeat alone "
+        "**cannot** promote that to `ok`: the commit prefix it greps is one Jesse also types "
+        "by hand, so it cannot tell a scheduler run from his own work. This row read `ok` for "
+        "`vault-review-loop` until 2026-09-05 off three attended commits — the loop had never "
+        "fired at all. The Last-heartbeat column still shows the git date; only the status is "
+        "withheld. The review loop moved from on-demand to monthly on "
         "2026-08-21 and is listed here now; it is allowed to commit nothing in a month with "
-        "nothing worth deciding, so its git heartbeat carries wide slack while the ledger "
-        "still proves the scheduler fired. "
+        "nothing worth deciding, so its git heartbeat carries wide slack once the ledger "
+        "proves the scheduler fired. "
         "The skill-drift loop is scheduled monthly and tracked here as of 2026-07-25; "
         "it commits only when it finds drift, so its heartbeat window is deliberately loose.",
         "",
