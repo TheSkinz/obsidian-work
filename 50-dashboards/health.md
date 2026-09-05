@@ -8,7 +8,7 @@
 | Review notes awaiting decision | 3 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
 | Lint warnings | 9 | (backlog) | ok |
-| Inbox items | 73 | - | ok |
+| Inbox items | 74 | - | ok |
 | Inbox median age | 15 d | < 14 d | FAIL |
 | Inbox oldest item | 37 d | < 30 d | FAIL |
 | Days since last commit | 0 d | - | ok |
@@ -48,7 +48,7 @@ Narrowed from the former **Dormant triggers** registry on 2026-08-21. That table
 
 | Source | Condition | Check |
 |---|---|---|
-| [[idea-llm-navigable-vault-map]] | Vault reaches 450 live notes (292 at the time of writing, 2026-08-15) -> re-run the retrieval eval in [[knowledge-system-evaluation-questions]]; if it shows failures, this idea unparks, and if it does not, re-park at the next threshold [machine: note-count>=450] | live notes: 347 of 450 |
+| [[idea-llm-navigable-vault-map]] | Vault reaches 450 live notes (292 at the time of writing, 2026-08-15) -> re-run the retrieval eval in [[knowledge-system-evaluation-questions]]; if it shows failures, this idea unparks, and if it does not, re-park at the next threshold [machine: note-count>=450] | live notes: 348 of 450 |
 | [[rfq-intake-protocol]] | About 12 quote notes under a settled rate-table heading convention -> build the cross-quote rate-history rollup [machine: quote-count>=12] | quote notes: 13 of 12 — **FIRED** |
 | [[2026-07-31-prestaged-routine-service-derate-seed-data]] | 10 routine mode-normalized rows in the actuals rollup -> revisit the ft/hr service derate (n=5 at ruling, 2026-08-01) [machine: routine-rows>=10] | routine rows: 5 of 10 |
 
