@@ -108,10 +108,25 @@ TRIGGER_NC_RE = re.compile(r"\[machine:\s*note-count\s*>=\s*(\d+)\]")
 ROLLUP_REL = "04-knowledge/estimating-actuals-rollup.md"
 
 # Commercial pipeline: read from `type: quote` frontmatter. `valid-through`
-# and `date-execution` tolerate YYYY-MM-DD and YYYY-MM (month reads as the
-# 1st). FAIL only for a quote that expired while still `pending` — that is
-# silent commercial exposure; everything else is informational.
-PIPELINE_EXPIRY_WARN_DAYS = 30
+# and `date-execution` tolerate YYYY-MM-DD and YYYY-MM (month reads as the 1st).
+#
+# EXPIRY IS NOT A SIGNAL, AND NEVER WAS (Jesse, 2026-09-05). This tool used to
+# count pending quotes past `valid-through` and FAIL the dashboard on them, on
+# the reasoning that an expired live bid is silent commercial exposure. That
+# reasoning was invented here: no knowledge doc, template or SOP ever stated it,
+# and the rule survived only because nothing challenged it.
+#
+# What Jesse actually says: "Validity on quotes isn't ever anything you'll need
+# to flag. We add it just in case something changes, and it becomes relevant."
+# Award timing is chaotic by the nature of the industry — facilities are picky
+# about when to schedule maintenance, and months can pass between a bid and a PO
+# without anything being wrong. A quote stays workable to its execution window;
+# DSP26085 is `valid-through` 2026-09-29 for a 2027-01 job and that is normal,
+# not exposure. So the gauge could only ever produce false alarms, in the
+# dashboard CLAUDE.md tells every session to check first.
+#
+# `valid-through` is still DISPLAYED — it is real data and becomes relevant if
+# something changes. It just raises nothing on its own.
 PIPELINE_HORIZON_DAYS = 90
 
 # A run older than this with "fired" but no "completed" is presumed dead,
@@ -428,38 +443,28 @@ def bid_folder_signal(fm: dict, text: str) -> str:
 
 
 def pipeline_rows(notes: dict):
-    """Return (rows, expired_count). One row per pending quote plus any quote
-    inside the execution horizon.
-    Row: (quote, status, valid, execution, signal, bid-folder)."""
+    """Return rows. One per pending quote, plus any quote inside the execution
+    horizon. Row: (quote, status, valid, execution, signal, bid-folder).
+
+    The only signal left is execution proximity — a job coming up is
+    operationally relevant. Expiry is not judged at all; see the note beside
+    PIPELINE_HORIZON_DAYS for why that gauge was removed rather than softened."""
     today = date.today()
     rows = []
-    expired = 0
     for path, fm in collect_quotes(notes):
         q = fm.get("quote-number") or path.stem
         link = f"[[{q}]]" if q == path.stem else f"[[{path.stem}|{q}]]"
         status = fm.get("status", "?")
-        vt = parse_day(fm.get("valid-through"))
         ex = parse_day(fm.get("date-execution"))
-        signal = None
-        if status == "pending":
-            if vt is None:
-                signal = "no validity date recorded"
-            elif vt < today:
-                signal = f"EXPIRED {(today - vt).days} d ago — record outcome or extension"
-                expired += 1
-            elif (vt - today).days <= PIPELINE_EXPIRY_WARN_DAYS:
-                signal = f"expires in {(vt - today).days} d"
-            else:
-                signal = "ok"
+        signal = "-"
         if ex and status in ("pending", "awarded") and today <= ex \
                 and (ex - today).days <= PIPELINE_HORIZON_DAYS:
-            note = f"execution in {(ex - today).days} d"
-            signal = f"{signal}; {note}" if signal and signal != "ok" else note
-        if signal:
+            signal = f"execution in {(ex - today).days} d"
+        if status == "pending" or signal != "-":
             rows.append((link, status, fm.get("valid-through") or "-",
                          fm.get("date-execution") or "-", signal,
                          bid_folder_signal(fm, notes[path])))
-    return rows, expired
+    return rows
 
 
 def count_routine_rows(root: Path) -> int | None:
@@ -546,7 +551,7 @@ def build(root: Path) -> str:
     since = days_since_last_commit(root)
     hb_rows, hb_overdue = loop_heartbeats(root)
     notes = vault_lint.collect_notes(root)
-    pipe_rows, expired = pipeline_rows(notes)
+    pipe_rows = pipeline_rows(notes)
     trig_rows, fired = trigger_rows(notes, root)
     base_rows, base_behind, base_judged = baseline_staleness.health_rows(root)
     base_unjudgeable = sum(1 for _, _, st in base_rows if st.startswith("FAIL"))
@@ -578,7 +583,6 @@ def build(root: Path) -> str:
         f"| Inbox oldest item | {inbox_max_s} | < 30 d | {flag(inbox_max is None or inbox_max < 30)} |",
         f"| Days since last commit | {since_s} | {dash} | {flag(True)} |",
         f"| Loop heartbeats overdue | {'yes' if hb_overdue else 'no'} | no | {flag(not hb_overdue)} |",
-        f"| Pending quotes expired | {expired} | 0 | {flag(expired == 0)} |",
         f"| Open decisions not in the queue | {unqueued_s} | 0 | {flag(not unqueued)} |",
         # "Dormant triggers fired" retired 2026-08-21 (architecture audit): 0
         # firings across 9 rows in two months, and the 2026-08-15 sweep had
@@ -620,9 +624,18 @@ def build(root: Path) -> str:
         "",
         "One row per pending quote, plus any quote whose execution date is within "
         f"{PIPELINE_HORIZON_DAYS} days. Read from `type: quote` frontmatter "
-        "(`status`, `valid-through`, `date-execution`). A pending quote past its "
-        "validity is the FAIL condition — record the outcome (awarded / lost / "
-        "expired / extension) on the quote note to clear it.",
+        "(`status`, `valid-through`, `date-execution`). **Nothing here is a FAIL "
+        "condition.** `valid-through` is shown because it is real data that becomes "
+        "relevant if something changes, but an expiring or expired quote raises "
+        "nothing: award timing is chaotic by the nature of the industry, facilities "
+        "are picky about when they schedule maintenance, and months can pass between "
+        "a bid and a PO without anything being wrong (Jesse, 2026-09-05). The old "
+        "expiry FAIL was invented by this script — no knowledge doc, template or SOP "
+        "ever stated it — and could only ever fire falsely. The one thing worth "
+        "flagging in this area is a **job number for an upcoming project with no PO**, "
+        "which is not built: see `01-context/active-jobs.md`, whose Awarded / "
+        "Pre-Execution table now carries a `PO` column so the condition becomes "
+        "observable before any alarm is written against it.",
         "",
         "**Bid folder** is a soft signal, not a gate: it resolves the note's own recorded "
         "bid-folder path and compares the newest artifact's date against the note's "
