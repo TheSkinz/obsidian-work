@@ -26,7 +26,7 @@ Jesse no longer uses claude.ai chat Projects — Claude Code is the primary inte
 | Sales & Proposals | Retired 2026-06-15 | `usadebusk-estimating` skill |
 | Technical Docs | Retired 2026-07-07 | `usadebusk-sop` skill |
 | Operations & Admin | Retired 2026-07-07 | `usadebusk-ops` skill |
-| Field Execution | Retired 2026-07-07 | `usadebusk-fieldpm` skill (dormant between mobilizations) |
+| Field Execution | Retired 2026-07-07 | `usadebusk-fieldpm` skill (job state lives in `active-jobs.md`; the skill's dormancy fields were removed 2026-09-04) |
 
 ---
 
