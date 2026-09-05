@@ -9,9 +9,10 @@ caught with it — **no fixture, no rule** (contract stated in the `vault_lint.p
 module docstring). A lint-rule change is a structural change: ship it with its
 passing fixture.
 
-All 16 rules, each with the fixture that proves it fires. Severity comes from
-`ERROR_CODES` in `vault_lint.py` — SECRET, CONF-CONFLICT and YAML-COMMENT are
-errors, every other rule is a warning.
+All 21 rules, each with the fixture that proves it fires. Severity comes from
+`ERROR_CODES` in `vault_lint.py` — SECRET, CONF-CONFLICT, YAML-COMMENT, DEAD-LINK,
+HEATER-TYPE-VOCAB, VERIFIED-FORMAT and DEAD-STRING are errors, every other rule is
+a warning.
 
 | Fixture | Rule it trips | Severity |
 |---|---|---|
@@ -19,30 +20,50 @@ errors, every other rule is a warning.
 | `02-facilities/TestClient/Test-City-TX/T-200.md` | DURATIONS-HEADER | warning |
 | `02-facilities/TestClient/Test-City-TX/T-300.md` | TUBE-GEOM-HEADER | warning |
 | `02-facilities/TestClient/Test-City-TX/T-400.md` | LINK-FACILITY (both halves) | warning |
+| `02-facilities/TestClient/Test-City-TX/T-500.md` | ROLLUP-SCALE | warning |
+| `02-facilities/TestClient/Test-City-TX/T-600.md` | HEATER-TYPE-VOCAB | error |
+| `02-facilities/TestClient/Test-City-TX/T-700.md` | VERIFIED-FORMAT | error |
+| `02-facilities/TestClient/Test-City-TX/T-800.md` | PATH-DEAD | warning |
 | `04-knowledge/bad-status.md` | STATUS-VOCAB | warning |
+| `04-knowledge/dead-string.md` | DEAD-STRING | error |
 | `00-inbox/marker-before-frontmatter.md` | STATUS-VOCAB (regression) | warning |
-| `06-reviews/dead-link-note.md` | DEAD-LINK | warning |
+| `06-reviews/dead-link-note.md` | DEAD-LINK | error |
 | `06-reviews/conf-conflict.md` | CONF-CONFLICT | error |
 | `06-reviews/review-overdue.md` | REVIEW-OVERDUE | warning |
 | `06-reviews/superseded-note.md` | SUPERSEDED | warning |
 | `06-reviews/yaml-comment-note.md` | YAML-COMMENT | error |
 | `07-llms/orphan-fixture-note.md` | ORPHAN | warning |
 | `08-systems/secret-note.md` | SECRET | error |
-| `00-inbox/untracked-temp-selftest.md` (built at runtime) | INBOX-AGE | warning |
 | `02-facilities/pointer-dead-temp-selftest.md` (built at runtime) | POINTER-DEAD | warning |
+| `02-facilities/TestClient/USA00000-job-sheet.{html,pdf}` (built at runtime) | JOBSHEET-PDF-STALE | warning |
 | `word-delta/before.md` + `after.md` | WORD-DELTA | warning |
 | `checkbox-delta/before.md` + `after.md` | CHECKBOX-DELTA | warning |
 
-Seventeen rows for sixteen rules: STATUS-VOCAB has two fixtures. `bad-status.md`
+Twenty-two rows for twenty-one rules: STATUS-VOCAB has two fixtures. `bad-status.md`
 is the plain case; `marker-before-frontmatter.md` is a regression test for
 `frontmatter_start()`, where a capture-loop marker on line 1 once hid the whole
 frontmatter block from every frontmatter rule.
 
-The two rows marked *built at runtime* are **not committed** — `self_test()`
-writes them, asserts, then deletes them. INBOX-AGE needs a file untracked in git,
-and a committed fixture is by definition tracked; POINTER-DEAD needs a
-machine-local absolute path, which cannot be committed. Do not add either to the
-tree.
+**This table was five rules behind on 2026-09-05** — ROLLUP-SCALE, HEATER-TYPE-VOCAB,
+VERIFIED-FORMAT, DEAD-STRING and JOBSHEET-PDF-STALE all had committed or runtime
+fixtures and no row, DEAD-LINK's severity was stale (promoted to error 2026-08-21),
+and the retired INBOX-AGE still had one. Reconciled while adding PATH-DEAD. The
+drift is the reason for the section at the bottom of this file; run that check.
+
+The rows marked *built at runtime* are **not committed** — `self_test()` writes
+them, asserts, then deletes them. POINTER-DEAD needs a machine-local absolute
+path, which cannot be committed; JOBSHEET-PDF-STALE compares mtimes, and git does
+not store mtimes, so a committed pair would arrive with identical checkout times
+and never fire. Do not add either to the tree. INBOX-AGE had a third such fixture
+until the rule was retired on 2026-08-21.
+
+PATH-DEAD's fixture is committed rather than built at runtime, unlike its
+absolute-path sibling POINTER-DEAD: a repo-relative path is machine-independent,
+so it resolves — or fails to — identically on any checkout. Most of `T-800.md` is
+the cases that must **not** fire (line citations, brace expansions, bracketed
+placeholders, an absolute path that is POINTER-DEAD's job). Those matter more than
+the two that do: the rule's whole design problem is false positives, and the vault
+run was measured at 100 findings before scoping and 3 after.
 
 The self-test prints more findings than there are rules, because ORPHAN and
 INBOX-AGE scan the whole fixture tree and so also fire incidentally on fixtures

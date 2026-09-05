@@ -22,6 +22,7 @@ Rules (code | severity):
     ROLLUP-SCALE    warning  heater-card Config Rollup: heater total is not a whole multiple of per circuit
     LINK-FACILITY   warning  wikilink into the wrong facility, or a bare ambiguous [[_facility]]
     POINTER-DEAD    warning  recorded absolute source path no longer resolves
+    PATH-DEAD       warning  backticked repo-relative path no longer resolves
     JOBSHEET-PDF-STALE warning job-sheet PDF is older than the HTML it renders from
     YAML-COMMENT    error    unquoted frontmatter value silently truncated by a ` #` comment
     WORD-DELTA      warning  words left a note (--staged / --worktree only; see below)
@@ -248,6 +249,61 @@ MD_TABLE_SEP_RE = re.compile(r"^\|[\s|:\-]*-[\s|:\-]*$")  # the |---|---| divide
 # and relative fragments (`OneDrive/Desktop/…`) never match.
 POINTER_DIRS = ("02-facilities",)
 POINTER_RE = re.compile(r"`((?:[A-Za-z]:\\|/)[^`\n]{3,})`")
+
+# PATH-DEAD: the repo-relative sibling of POINTER-DEAD, and deliberately on the
+# same POINTER_DIRS scope — see check_path_dead() for why the whole vault is not
+# a candidate scope.
+#
+# The top-level names are hardcoded, not read from disk, and that is the whole
+# point: deriving them from `ls` would drop a folder from the recognised set the
+# moment it was deleted, so the references that just went dead would stop being
+# recognised as paths at all. Retired names stay in the list forever.
+VAULT_TOP_DIRS = (
+    "00-inbox", "01-context", "02-facilities", "04-knowledge", "06-reviews",
+    "07-llms", "08-systems", "09-interests", "50-dashboards",
+    "apps", "archive", "assets", "templates", "tools", "_OUTPUTS",
+    # Retired. `03-jobs` and `05-projects` were dissolved into heater cards;
+    # `06-insights` was renamed to `06-reviews` on 2026-08-24 and that rename
+    # took twelve days to reach the scheduled-task prompts. Keeping the dead
+    # names here is what lets a reference to one be reported rather than ignored.
+    "03-jobs", "05-projects", "06-insights",
+)
+VAULT_ROOT_FILES = ("change-log.md", "CLAUDE.md", "Identity.md", "INDEX.md")
+RELPATH_RE = re.compile(
+    r"^(?:" + "|".join(re.escape(d) for d in VAULT_TOP_DIRS) + r")(?:/[^/\s]+)*/?$"
+    r"|^(?:" + "|".join(re.escape(f) for f in VAULT_ROOT_FILES) + r")$"
+)
+# A trailing `:33` or `:271–275` or `:33-34,42-45` is a line citation, not part of
+# the filename — `CLAUDE.md` itself writes `apps/pig-tracker/pig-tracker.html:393`.
+# Both hyphen and en-dash appear in the vault.
+LINE_CITATION_RE = re.compile(r":\d+(?:[-–]\d+)?(?:,\d+(?:[-–]\d+)?)*$")
+# Brace expansions (`{7-1-F-1,CAD26001-job-sheet}.md`), bracketed placeholders
+# (`02-facilities/[Client]/[City-State]/`) and ellipsis fragments name a shape,
+# not a file. Nothing can resolve them, so reporting them is guaranteed noise.
+PATH_PLACEHOLDER_CHARS = "{}[]<>*…�"
+
+# A path is JUDGED only when it names a file by extension or a directory in the
+# vault's own lowercase-hyphen convention. Anything else is a fragment, and the
+# fragments are what a path regex actually produces in running prose: a match
+# stops at the first character it does not accept, so `04-knowledge/pricing/Rate
+# Reference.md` arrives as `04-knowledge/pricing/Rate` and `06-reviews/YYYY-MM-DD-
+# triage-<topic>.md` as `06-reviews/YYYY-MM-DD-triage-`. Both are real text in
+# live skills, and reporting either as a dead path is a false positive that
+# points at nothing. Judging only the two resolvable shapes is silence where the
+# evidence is truncated, which is the correct behaviour for a fragment.
+JUDGEABLE_SUFFIXES = (".md", ".py", ".html", ".pdf", ".png", ".json",
+                      ".csv", ".xlsx", ".docx", ".mjs", ".txt", ".base")
+DIR_SEGMENT_RE = re.compile(r"^[a-z0-9_][a-z0-9._-]*$")
+
+
+def judgeable_path(cand: str) -> bool:
+    """Can this candidate be resolved at all, or is it a truncated fragment?"""
+    if any(c in cand for c in PATH_PLACEHOLDER_CHARS):
+        return False
+    if cand.lower().endswith(JUDGEABLE_SUFFIXES):
+        return True
+    # No extension: only a directory path in the vault's naming convention.
+    return all(DIR_SEGMENT_RE.match(seg) for seg in cand.split("/") if seg)
 
 # WORD-DELTA: a token is anything that can carry a fact. Interior punctuation is
 # kept because it is load-bearing here — `4.026`, `A106`, `Gr.B`, `ft/hr`,
@@ -1307,6 +1363,69 @@ def check_pointer_dead(root: Path, notes: dict[Path, str]) -> list[Finding]:
     return findings
 
 
+def check_path_dead(root: Path, notes: dict[Path, str]) -> list[Finding]:
+    """PATH-DEAD: a backticked repo-relative path that no longer resolves.
+
+    The relative-path sibling of POINTER-DEAD. POINTER-DEAD watches the file
+    estate outside the repo, where nothing syncs the pointer; this watches
+    references *inside* the repo, where nothing lints them either — which is why
+    seven dead `06-insights/` paths sat in the scheduled-task prompts for twelve
+    days after the 2026-08-24 rename, on loops that read them as instructions.
+
+    SCOPE IS POINTER_DIRS, AND THAT IS A MEASURED CHOICE, NOT A CONSERVATIVE ONE.
+    Run over the whole vault this rule finds 100 dead paths in 931 references —
+    but 70 of them are in `06-reviews/` and 13 more in `change-log.md`. Those are
+    records citing files that existed when the record was written and have since
+    been routed, archived or renamed. They are accurate history: the note is not
+    wrong, the file moved. Flagging them is unclearable except by falsifying the
+    record, and `a lint warning clearable only by a decision session is not a
+    lint finding` (the reasoning that retired INBOX-AGE) applies exactly. Most of
+    the rest are a path named in order to say it is GONE — `02-facilities/_directory.md`
+    on the template it reports removed, `CLAUDE.md` on the folders it forbids
+    recreating — which is the same carve-out DEAD_STRING_EXEMPT already makes for
+    definitional homes. That failure mode is a sentence shape, not a location, so
+    no exempt list fixes it; a narrower scope does. Inside `02-facilities/` a path
+    is a provenance pointer rather than prose about the vault, and there the rule
+    finds 3 in 17.
+
+    KNOWN LIMIT, STATED PLAINLY. Live instructions elsewhere are therefore not
+    covered — `07-llms/grok/drawing-extraction-strategy.md:22` still tells a
+    reader to run `tools/render_drawing_snippets.py`, which does not exist, and
+    this rule will not say so. The config tree, where the rename defect actually
+    fired, is covered by `tools/config_frontmatter_lint.py` instead.
+
+    Warning, not error: like POINTER-DEAD, a moved file is a to-do (re-point the
+    note), and the backlog is non-zero, so it fails the zero-backlog bar that
+    ERROR_CODES membership requires.
+    """
+    findings = []
+    for path, text in notes.items():
+        rel = path.relative_to(root).as_posix()
+        if not any(rel.startswith(d + "/") for d in POINTER_DIRS):
+            continue
+        seen: set[str] = set()
+        for line in body_lines_outside_fences(text):
+            for m in INLINE_CODE_RE.finditer(line):
+                raw = m.group(0).strip("`").strip()
+                # Trailing sentence punctuation, then the line citation, then a
+                # trailing slash — `06-reviews/` and `06-reviews` are one path.
+                cand = LINE_CITATION_RE.sub("", raw.rstrip(".,;:)]")).rstrip("/")
+                if not cand or cand in seen:
+                    continue
+                if not judgeable_path(cand):
+                    continue
+                if not RELPATH_RE.match(cand):
+                    continue
+                seen.add(cand)
+                try:
+                    if not (root / cand).exists():
+                        findings.append(Finding("PATH-DEAD", path,
+                            f"repo-relative path does not resolve: {cand}"))
+                except OSError:
+                    continue
+    return findings
+
+
 # --- driver -------------------------------------------------------------------
 
 GENERATED_MARKER = "GENERATED by tools/"
@@ -1353,6 +1472,7 @@ def run_lint(root: Path, with_git: bool = True) -> list[Finding]:
     findings += check_rollup_scale(root, notes)
     findings += check_link_facility(root, notes)
     findings += check_pointer_dead(root, notes)
+    findings += check_path_dead(root, notes)
     findings += check_jobsheet_pdf_stale(root, notes)
     findings += check_yaml_comment(root, notes)
     return findings
@@ -1469,7 +1589,7 @@ def self_test() -> int:
                 "HEATER-TYPE-VOCAB", "VERIFIED-FORMAT", "DEAD-STRING",
                 "ROLLUP-SCALE",
                 "LINK-FACILITY",
-                "POINTER-DEAD", "JOBSHEET-PDF-STALE",
+                "POINTER-DEAD", "PATH-DEAD", "JOBSHEET-PDF-STALE",
                 "YAML-COMMENT", "WORD-DELTA", "CHECKBOX-DELTA"}
     missing = expected - fired
     for f in findings:

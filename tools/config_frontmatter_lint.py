@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""config_frontmatter_lint.py — does every config file's frontmatter actually parse?
+"""config_frontmatter_lint.py — does every config file's frontmatter parse, and do
+the vault paths it names still exist?
 
 Step 3 of the baseline staleness detector approved 2026-08-01, built 2026-08-16.
 
@@ -29,6 +30,27 @@ half and is worth adopting, but installing a third-party package that reads the 
 config tree is a decision for Jesse, not an unattended one. This script is the
 dependency-free floor, and it covers the frozen fixtures agnix would not know about.
 
+SECOND CHECK — DEAD VAULT PATHS (added 2026-09-05). The name of this file is now
+narrower than its job; it is the config-repo lint, and renaming it would break the
+references to it in the vault `CLAUDE.md`, the fixture README and the handoff record,
+so the scope is recorded here instead.
+
+`06-insights/` was renamed to `06-reviews/` on 2026-08-24 and the rename never reached
+the scheduled-task prompts. It sat broken for twelve days across seven files and
+nothing reported it, because nothing lints repo-relative paths. Three were about to
+matter: `vault-review-loop` would have written its first-ever review note into the
+retired folder, `vault-consolidation-loop`'s HARD BOUNDARY named a dead path and so
+protected nothing, and `vault-audit-remeasure`'s first instruction read a file that
+does not exist. A path in these files is an *instruction to an unattended agent*, not
+prose, which is why the check is worth more here than anywhere in the vault.
+
+Unlike the vault's PATH-DEAD rule this does not require backticks: these prompts write
+paths bare as often as not, and the false-positive risk that forces the backtick
+requirement in vault notes does not exist here — measured at 80 references, 0 dead
+across the seven prompts, and exactly 7 dead before the rename was propagated.
+The top-level-directory list is imported from `vault_lint.py` rather than copied, so
+the next folder rename cannot leave the two checkers disagreeing.
+
 Usage:
     python tools/config_frontmatter_lint.py           report
     python tools/config_frontmatter_lint.py --strict  exit 1 on any finding
@@ -57,6 +79,57 @@ except ImportError:  # pragma: no cover - depends on the machine
 
 KEBAB_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 FLAT_KEY_RE = re.compile(r"^([A-Za-z0-9_-]+):\s*(.*)$")
+
+# The vault this config's prompts drive, and the path vocabulary to judge against.
+# Imported, never copied: two lists of vault folder names that can disagree is the
+# same failure this check exists to catch.
+VAULT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+try:
+    from vault_lint import (LINE_CITATION_RE, VAULT_ROOT_FILES,  # noqa: E402
+                            VAULT_TOP_DIRS, judgeable_path)
+    HAVE_PATHS = True
+except ImportError:  # pragma: no cover - vault_lint.py missing next to this file
+    HAVE_PATHS = False
+
+# Bare, not backticked — see the docstring. Bounded by a non-path character on the
+# left so `06-reviews` inside a longer token is not half-matched.
+if HAVE_PATHS:
+    CONFIG_PATH_RE = re.compile(
+        r"(?<![\w/\\.-])("
+        + "|".join(re.escape(d) for d in VAULT_TOP_DIRS)
+        + r")((?:/[\w.\-]+)*)"
+    )
+
+
+def dead_vault_paths(path: Path) -> list[str]:
+    """Vault-relative paths named in this config file that no longer resolve."""
+    if not HAVE_PATHS:
+        return []
+    findings, seen = [], set()
+    text = path.read_text(encoding="utf-8", errors="replace")
+    for line in text.splitlines():
+        for m in CONFIG_PATH_RE.finditer(line):
+            cand = LINE_CITATION_RE.sub("", m.group(0).rstrip(".,;:)]")).rstrip("/")
+            if not cand or cand in seen or not judgeable_path(cand):
+                continue
+            seen.add(cand)
+            # A skill bundles its own subdirectories, and `assets/` collides with a
+            # vault top-level name: usadebusk-fieldpm's `assets/Debusklogo.png` is
+            # real at skills/usadebusk-fieldpm/assets/, and reading it as a vault
+            # path reported a live file as dead. Resolve against the file's own
+            # directory first — that covers scripts/, references/ and back-test/
+            # too, and any future collision, rather than special-casing one name.
+            if (path.parent / cand).exists():
+                continue
+            if not (VAULT_ROOT / cand).exists():
+                findings.append(
+                    f"names vault path `{cand}`, which does not exist — a dead path "
+                    f"in a prompt an unattended agent follows as an instruction")
+    for root_file in VAULT_ROOT_FILES:
+        if root_file in text and not (VAULT_ROOT / root_file).exists():
+            findings.append(f"names vault file `{root_file}`, which does not exist")
+    return findings
 
 # Fields whose silent loss changes behaviour rather than cosmetics.
 LOAD_BEARING = ("name", "description", "disable-model-invocation", "status")
@@ -226,9 +299,18 @@ def main() -> int:
         print("  - SKILL.md in a location no glob in this tool covers — it is being "
               "checked by nothing. Widen the globs or state why it is exempt.")
 
+    if not HAVE_PATHS:
+        print("[!] vault_lint.py not importable — dead-vault-path checking is "
+              "skipped, only frontmatter checks run.")
+
     total = len(unclaimed)
     for path, kind in targets:
         findings = check(path, kind)
+        # Fixtures are frozen replay artifacts: they quote the vault as it was when
+        # the baseline was cut, so a path that has since moved is expected there and
+        # re-pointing one would falsify the baseline. Prompts are live instructions.
+        if kind != "fixture":
+            findings += dead_vault_paths(path)
         rel = path.relative_to(config).as_posix()
         if findings:
             total += len(findings)
