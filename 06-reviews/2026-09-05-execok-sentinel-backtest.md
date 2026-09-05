@@ -101,6 +101,65 @@ zero.
 standing friction on a habit with no measured consequence, which is the failure mode the WORD-DELTA replay
 exists to prevent.
 
+## Addendum — is the guard itself worth its friction? (2026-09-05, Jesse asked)
+
+Separate question from the sentinel: the gate is noticeable in daily use, so does it earn that. Measured
+from the hook's own block message in `tool_result` records — **102 real block events across 296 sessions**,
+about 1.1% of Bash traffic. Each block's next command in the same transcript was classified by asking the
+live `decide()` whether the follow-up still trips a rule:
+
+| Outcome | Count | Share |
+|---|---|---|
+| Same task, simpler tool — the gate improved the command | 40 | 39.2% |
+| Re-authorised identically with `# exec-ok` — pure latency | 32 | 31.4% |
+| Moved on to a different subject | 20 | 19.6% |
+| Reworked but still inline interpreter code | 8 | 7.8% |
+| Abandoned entirely | 2 | 2.0% |
+
+**A correction worth keeping, because it is this note's own subject matter.** The first pass counted 110
+blocks by matching any `tool_result` *containing* the block message. The hook's source file contains that
+string, so every `cat hooks/usadebusk-exec-guard.mjs` was scored as a rejection — the measurement matched a
+quotation of the thing instead of the thing, which is the same error class as PATH-DEAD firing on a note
+that names a retired folder, and as DEAD-LINK before `strip_inline_code()`. Discriminating on `is_error`
+gives 102. The conclusion did not move; the number did.
+
+The 39% is substantive, not cosmetic: `python -c` + `zipfile` → `unzip -p`; `python3 -c` + `json` →
+`grep -o`; `python -c "ast.parse(...)"` → `python -m py_compile`; `python -c` + `pathlib` walking markdown
+→ a shell `for` loop. The gate reads in practice as *"do you actually need an interpreter here?"*, and
+about two-fifths of the time the answer is no.
+
+**Verdict: keep it, unchanged.** Against the WORD-DELTA precedent — a gate firing on 70% of commits was
+killed, one firing on 7% was kept — this fires on 1.2% of traffic and improves the command in 39% of
+firings.
+
+**Stated limits.** "Same task" is a token-overlap proxy (shared filenames and path segments between the
+blocked command and its follow-up), not a semantic judgment. The 21% "moved on" bucket is genuinely
+ambiguous — the blocked action never happened, which may be a saved mistake or a lost thread; nothing here
+distinguishes them.
+
+**The founding premise cannot be re-tested from here, and should not be reported as dead.** The hook's
+comment justifies itself by auto mode re-adding `Bash(python -c ' *)` to the allow list (61 rules → 36 →
+back to 59 by 2026-07-29). Today `settings.json` carries 17 `Bash(` rules and `settings.local.json` 13,
+with zero arbitrary-execution entries — the only python rule is `Bash(python tools/vault_lint.py)`, one
+named script. But the hook exits 2 *before* the permission system runs, so no prompt is raised and no rule
+can be added. The clean allow list is exactly what a working guard produces, and exactly what a retired
+problem produces. Unresolvable without disabling the hook, which is not worth doing to answer it.
+
+**One real false positive, observed rather than measured.** Committing this addendum was itself blocked:
+the commit message body quotes the gated pattern as prose, inside a `git commit -F -` heredoc, with no
+interpreter invoked anywhere in the command. The rule matches the text of the message, not an invocation.
+That is a genuine defect of the same family the lint rules already carry `strip_inline_code()` for — a rule
+firing on writing *about* the thing it guards. **Frequency unmeasured**: the pass that would have counted it
+is the buggy one corrected above, so the honest statement is that it happened once, today, and nothing here
+establishes a rate. Worked around by passing the message as a file, not by reaching for the sentinel. If
+option A is adopted, this case is worth re-checking, since a prose match can never be in comment form.
+
+**The avoidable cost is behavioural, not configurable.** The 31% pure-latency bucket is inline interpreter
+code reached for where the shell would have done. Note also that `Write scratch.py && python scratch.py`
+is ungated and strictly more capable than `python -c`. That is not a hole to plug: it channels a genuine
+one-off computation into a form that can be read and re-run, instead of an opaque one-liner. Both scripts
+behind this note were written that way.
+
 ## Risks / Open Questions
 
 - The replay measures what the rules *would* decide, not what the hook actually did at the time. Hook
