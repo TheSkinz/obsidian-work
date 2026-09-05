@@ -44,7 +44,7 @@ SIMOPS (multi-heater jobs): Overlapping heater timeline visibility required — 
 | Equipment | Hourly task-based | Trimax Pumper (rates vary: Rig-In / Pigging / Stand-By) |
 | Support equipment | Hourly fixed | 4×3 Trash Pump, Filter Press (pumping / non-pumping), Support Units, Crew Trucks |
 | Labor | Hourly (12-hr shifts) | Supervisor/Lead (Day/Night), Technician/Operator (Day/Night) |
-| Per Diem | Fixed daily allowance | 1 PD per 12-hour shift per person |
+| Per Diem | Fixed daily allowance | 1 PD per 12-hour shift per person — **but the amount can be role-split**, see below |
 | Materials | Unit rate | Pigs (Foam, HR, TC, Swab — per pig), DEF (per shift) |
 | Third Party | Cost + markup | Vac truck, light plant, compressor, rental vehicles, flights |
 | Mob/Demob | Lump sum (95%) | Equipment (per mile), crew trucks (per mile), labor travel hours, per diem |
@@ -52,6 +52,13 @@ SIMOPS (multi-heater jobs): Overlapping heater timeline visibility required — 
 **Filter Press billing — two rates:**
 - Pumping rate: when Trimax is actively pigging
 - Non-pumping / stand-by rate: during rig-in, rig-out, stand-by
+
+**Per diem is one allowance per person per 12-hour shift, but the amount is not always one number.**
+The generic base is **$150 per crew member per shift regardless of position or title** (Jesse,
+2026-09-05). A facility can require it built to their own rules, and then it splits by role — Valero
+Port Arthur's DSP#26035 contract carries `Per Diem — Supervision $150/day` and `Per Diem — Operator
+$130/day`. Read the governing contract's own table before assuming a flat rate; the count × single-rate
+shortcut is right for a generic build and wrong wherever the contract splits it.
 
 ## Baseline rate table
 

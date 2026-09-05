@@ -178,6 +178,14 @@ via LibreOffice, since its docx pricing is image-embedded).
 | DSP26085 | T&M | 6-line, Total row 8 | $40,477.08 | $40,477.08 | 1:1 ✓ |
 | DSP26068.1 | Fixed Price | 7-line (+Training), Total row 9 | $112,642.23 | $112,642.23 | 1:1 ✓ (incl. Training) |
 
+> [!warning] The DSP26085 row is a **regression record, not the quote's value.** This run read the
+> `Bids\Exxon Baytown_F-201\` workbook, and $40,477.08 is genuinely what that file contained and what
+> the generator reproduced — the row is correct as a test result and is deliberately left unchanged.
+> But that copy was later ruled **superseded**: DSP26085's total is **$46,657.08**, the `Jobs\` copy,
+> per [[2026-08-18-prestaged-duplicate-workup-authoritative-copy]] and [[DSP26085]]. Do not read this
+> table as a source for the ExxonMobil Baytown 27GF1A F-201 Treat Gas heater's quoted value. Noted
+> 2026-09-05 after the superseded figure was found still live in `01-context/active-jobs.md`.
+
 **Verdict: mapping generalizes.** Three structurally different real jobs, every Section-7 line item
 and grand total reproduced exactly. The one non-generalizing element (Pricing Summary box bucketing)
 is isolated, documented above, and non-blocking.
