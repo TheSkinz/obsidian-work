@@ -19,8 +19,12 @@ up in a fresh session the same day.
 > **Status, updated 2026-09-05 (same day, the fresh session).** Items 1, 2 and 4 are closed. Only item 3
 > remains, and it is date-blocked until 2026-09-08.
 >
-> - **1 → measured**, not yet decided. The replay is [[2026-09-05-execok-sentinel-backtest]] and it carries
->   a `## Decision` checklist with three mutually exclusive options. Jesse's call.
+> - **1 → decided and applied**, later the same day. Jesse ruled **A + D** on the replay
+>   [[2026-09-05-execok-sentinel-backtest]]: the sentinel is honoured only in comment form, and the rules
+>   no longer read the body of a heredoc fed to a non-interpreter. Shipped in config `f206ecc`, queue row
+>   closed in `1addf22`. Option B — warning on unnecessary sentinel use — was rejected: 184 firings of
+>   standing friction against a habit with a measured cost of zero. The reflexive-suffix habit this item
+>   was written about is therefore **not** fixed and was not meant to be; only the latent hole was.
 > - **2 → done**, and the item's premise was wrong on one point: this file does **not** load every session.
 >   Vault `CLAUDE.md` names `system-workflow-reference.md` and `workflow-map.md` as the two `01-context/`
 >   files that are reference, loaded on demand. The staleness was real and worse than described — five
