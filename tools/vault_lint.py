@@ -1388,11 +1388,28 @@ def check_path_dead(root: Path, notes: dict[Path, str]) -> list[Finding]:
     is a provenance pointer rather than prose about the vault, and there the rule
     finds 3 in 17.
 
-    KNOWN LIMIT, STATED PLAINLY. Live instructions elsewhere are therefore not
-    covered — `07-llms/grok/drawing-extraction-strategy.md:22` still tells a
-    reader to run `tools/render_drawing_snippets.py`, which does not exist, and
-    this rule will not say so. The config tree, where the rename defect actually
-    fired, is covered by `tools/config_frontmatter_lint.py` instead.
+    THE AUTHORING CONVENTION THIS RULE ESTABLISHES: backticks mean "this is a
+    live path". A path named in order to say it is GONE — a note recording that a
+    template was removed, a card withdrawing a citation to an unpreserved archive
+    copy — is written WITHOUT backticks, so the filename stays legible without
+    claiming to be followable. That was settled 2026-09-05 after the first three
+    findings were cleared: two were genuine (F-301 and F-371A each cited a
+    pre-migration archive copy that was never committed and is not on disk) and
+    the third was `02-facilities/_directory.md` reporting a template it had itself
+    removed. Rewriting the first two honestly did not clear their warnings,
+    because the corrected prose still backticked the dead path — which exposed
+    that without a convention this rule carries a permanent, unclearable backlog
+    and becomes the wallpaper its scope was chosen to avoid. With the convention
+    the backlog is ZERO, so any hit is real drift. That also makes it a candidate
+    for `ERROR_CODES` on the DQ-006 precedent, deliberately not taken yet: let it
+    sit at warning until a hit has actually occurred in the wild.
+
+    KNOWN LIMIT, STATED PLAINLY. Live instructions outside POINTER_DIRS are not
+    covered. `07-llms/grok/drawing-extraction-strategy.md` told readers to
+    re-render snippets with a script git has never held; that was found by hand on
+    2026-09-05 and corrected, and this rule would not have said so. The config
+    tree, where the rename defect actually fired, is covered by
+    `tools/config_frontmatter_lint.py` instead.
 
     Warning, not error: like POINTER-DEAD, a moved file is a to-do (re-point the
     note), and the backlog is non-zero, so it fails the zero-backlog bar that

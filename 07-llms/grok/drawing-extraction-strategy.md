@@ -19,7 +19,7 @@ Customer heater packages are often **image / uncontrolled VIEW prints**, not cle
 1. **Pass A — overview:** render full pages cheaply (`--preset overview`, ~120 dpi); classify page type; mark high vs low yield.
 2. **Pass B — dense:** only high-value pages (`--preset dense`: 288 dpi, 3×3, max-edge 3500, skip-full, capped PNGs). Prefer one primary crop set (3×3 **or** title-block/corners), not all at once.
 3. Agent reads **winning tiles** with vision; writes `analysis/<Tag>.md` with evidence + confidence; drafts cards when solid.
-4. Snippets under `packages/*/snippets/` are **regenerable and gitignored** — delete freely; re-render via `tools/render_drawing_snippets.py`.
+4. Snippets under `packages/*/snippets/` are gitignored. **Do not assume they are regenerable from this repo** — this step cited `tools/render_drawing_snippets.py` as the renderer, and git has no record of that file ever existing (checked 2026-09-05). Until a renderer is identified, treat snippets as costly to reproduce and keep them rather than deleting freely.
 
 This matches how field engineers read drawings (overview, then zoom) and the architecture engineering-drawing research rediscovers: **region → high-res read → structure**. Generic agents often skip the zoom step and stall on full-page vision.
 
