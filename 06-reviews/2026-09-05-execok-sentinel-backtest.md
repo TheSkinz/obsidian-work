@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: contradiction
 source_authority: measured
 confidence: high
@@ -174,11 +174,39 @@ behind this note were written that way.
 
 ## Decision
 
-- [ ] **Option A** — sentinel honoured only in comment form
-- [ ] **Option B** — warn on unnecessary sentinel use
+**Option D was added after this note was first written**, when the addendum's own commit was blocked by the
+prose defect. A and D compose rather than compete, and Jesse ruled them together on 2026-09-05.
+
+- [x] **Option A** — sentinel honoured only in comment form
+- [ ] **Option B** — warn on unnecessary sentinel use — **rejected**: 184 firings of standing friction
+      against a habit with no measured consequence
 - [ ] **Option C** — no change
+- [x] **Option D** — rules no longer match inside a heredoc body fed to a non-interpreter
 - [ ] Needs more research
 
 ## Apply Log
 
-_(empty — nothing applied; this note is the measurement.)_
+**2026-09-05 — applied, config repo `f206ecc`.** `hooks/usadebusk-exec-guard.mjs` +
+`hooks/usadebusk-exec-guard.test.mjs`.
+
+`SENTINEL` is now `/#[^\n]*exec-ok/i` and `decide()` strips data-heredoc bodies *before* testing it, so a
+`# exec-ok` planted in a commit message cannot stand the gate down. `stripDataHeredocs()` removes the body
+of any heredoc whose receiving command is not an interpreter; one fed to `python`/`node` is a program and
+stays fully visible to the rules.
+
+**The replay caught a real bug before it shipped, and it is the reason this note's method mattered.** The
+first classifier draft omitted env-var assignments. Six real commands read
+`PYTHONIOENCODING=utf-8 python - <<'PYEOF'` with `# exec-ok` as the **Python program's own first line** —
+without env-var tolerance those heredocs are misread as *data*, their bodies stripped, the sentinel deleted
+with them, and all six newly blocked. Misreading code as data is the dangerous direction. Fixed and locked
+by two tests.
+
+**Verified against the live hook, not the simulation:** 0 newly blocked of 577 sentinel-carrying commands;
+101 of 102 historical blocks still block; the single freed block is the prose case (a `git add` naming
+`exec-guard-gh-api-gap.md` beside a commit heredoc), not an invocation. Test suite 28 cases, all pass.
+
+**End-to-end proof rather than a unit test:** the commit applying this change quotes the gated pattern in
+its own message and carries no sentinel. Under the old hook that exact commit was blocked.
+
+The guard itself is unchanged in scope and stays as it is — see the addendum above, which measured it at
+39.2% of blocks producing a better command.
