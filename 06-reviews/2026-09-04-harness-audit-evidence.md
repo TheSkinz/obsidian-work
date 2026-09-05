@@ -177,17 +177,21 @@ guard is `PreToolUse`/`Bash`. *measured (fs — `settings.json`)*
 | Vault CLAUDE.md: session close-out routine | **Judgment** — what counts as a durable finding is not computable | Fires in 60% of attended sessions since 2026-08-21 (12 of 20). *measured (transcript, floor)* | |
 | Global CLAUDE.md: "check the staged file count before committing" | **Computation** — already mechanized into `staged-count-guard` | Hook hatched 100% of the time; the prose survives alongside it | |
 
-**Recommendation — `SessionStart`, and it is documentation-only.** Per `code.claude.com/docs/en/hooks`
-(read 2026-09-04), a `SessionStart` hook's plain-text stdout is injected into the session as context.
-That would convert the three computations above from instructions with a 7% compliance rate into content
-that is simply present. **This is unverified on this machine** — no session hook has ever been run here,
-and proving it requires editing `settings.json` in the live runtime directory, which this audit's
-read-only constraint forbids. It was not attempted.
+**Recommendation — `SessionStart`. Mechanism now verified on this machine.** Per
+`code.claude.com/docs/en/hooks` (read 2026-09-04), a `SessionStart` hook's plain-text stdout is injected
+into the session as context. That would convert the three computations above from instructions with a 7%
+compliance rate into content that is simply present.
 
-> **Follow-up requiring Jesse's approval — not performed by this audit.** Smoke test: add a single
-> `SessionStart` hook to `settings.json` that echoes one identifiable line, open a fresh session, and
-> confirm the line appears in context. If it does, the startup protocol moves out of prose. If it does
-> not, the whole recommendation is void and the compliance problem stands unsolved.
+> **Smoke test — approved by Jesse and executed 2026-09-04. PASSED.** A temporary `SessionStart` hook was
+> added to `settings.json` emitting one line carrying an unguessable token. A fresh session was started
+> with `claude -p` and asked to echo any line beginning with `SMOKE-CHECK`. **It returned the line and the
+> token verbatim.** The token appeared nowhere in the prompt, so it can only have arrived through hook
+> injection. The hook and its script were then removed and `git status` in `~/.claude` confirmed clean —
+> `settings.json` is byte-identical to its pre-test state and still carries exactly its five `PreToolUse`
+> hooks and no others. *measured (live test, 2026-09-04)*
+
+The mechanism is real. What to put in the hook is a separate decision and is **not** made here — the
+payload for a startup hook is a design question, and the Verdict column is where it belongs.
 
 ## D. Always-resident context weight
 
@@ -214,8 +218,17 @@ that exemption is working.
 |---|---|---|---|
 | `settings.json` `"model": "opus[1m]"` | The only model pin anywhere. No `env`, no `statusLine`, no `agents` | Pins the model but not the effort level, which is the first lever | |
 | `autoMode` block | ~33 lines of prose policy inside `settings.json`, restating the data posture, repo visibility and git hard-bans already in global CLAUDE.md | Two copies of one policy. Neither is generated from the other, so drift is unpoliced — the same shape the vault audit found in content notes | |
+| **`obsidian-work/.claude/settings.local.json`** | **107 allow rules, 7,234 B — 77% of every allow rule on the machine.** *measured (fs, added 2026-09-04 after the smoke test surfaced it)* | **The audit's first pass counted three allowlist files and missed this one, the largest.** It was found only because starting a fresh session printed its warnings. Contains `Bash(python -c ' *)` — the exact rule `exec-guard` was built to defeat, still live, which corroborates that hook's stated rationale | |
+| — its 6 `Write(...)` rules | The harness itself warns at startup: `Write(path) is not matched by file permission checks — only Edit(path) rules are` | **Six dead rules**, one per vault folder. Harmless: every one is paired with an `Edit(...)` rule for the same path, and Edit rules cover all file-editing tools. Six lines of noise and six startup warnings, no lost permission | |
 | `~/.claude/settings.local.json` | 13 entries. Contains bare **`Bash(git push *)`** and `Bash(git commit -q -m ' *)`, plus frozen one-shots like `Bash(sed 's/.*obsidian-work.//')` | A wildcard push allow beside 5 specific one-shots | |
 | `~/.claude/.claude/settings.local.json` (nested) | 19 entries, all frozen one-shots. Contains **`Bash(git add *)`, `Bash(git commit -m ' *)`, `Bash(git push *)`**. Three entries target `C:\Users\Jwuts\claude-config` | That path is the stale clone location global CLAUDE.md corrects; `~/.claude` is the live runtime directory. Only applies when cwd is `~/.claude`. Easy to edit the wrong file over | |
+| `obsidian-work/.claude/settings.json` | 674 B, project-level, tracked in the vault repo | The only one of the five that is version-controlled | |
+
+**Five settings files, not three.** `~/.claude/settings.json`, `~/.claude/settings.local.json`,
+`~/.claude/.claude/settings.local.json`, `obsidian-work/.claude/settings.json`,
+`obsidian-work/.claude/settings.local.json`. The brief said three and this audit's first pass repeated it;
+both were counting only the config-repo side. Correcting it moves the allow-rule centre of gravity from
+32 rules to 139, and puts 107 of them in a file neither document had looked at.
 | `output-styles/jesse-default.md` | Exists (902 B), `outputStyle` is `"Concise"`. *measured (fs)* | Never selected. Its content — "name what is outstanding, then the suggested action" — is the one output rule that matters, and it is inert here; it survives only because global CLAUDE.md states it too | |
 
 ## F. Regression battery — `~/.claude/regression/`, 1.48 MB
@@ -287,10 +300,13 @@ opening turn — so the two are not in conflict. Take the carried-in figure as t
 - **The estimating skill's load-bearing fraction was not measured.** The method was built, produced a
   nonsense result (185/185 sessions for 13 of 18 sections), and was discarded rather than reported.
 - **Filesystem claims come from the tool sandbox**, which has previously shown files absent from the real
-  disk. The `C:\USADEBUSK\` non-existence finding underpins the `git-guard` verdict and is worth one
-  confirmation from your own terminal: `ls C:\USADEBUSK`.
-- **This audit did not test a `SessionStart` hook.** The recommendation in §C rests on documentation, not
-  on behaviour observed here.
+  disk. ~~The `C:\USADEBUSK\` non-existence finding needs confirmation from Jesse's own terminal.~~
+  **Closed 2026-09-04: Jesse ran `ls C:\USADEBUSK` and it returns nothing.** The `git-guard` finding —
+  6 firings, 0 true positives, protecting a directory that does not exist — is confirmed on the real disk.
+- ~~This audit did not test a `SessionStart` hook.~~ **Closed 2026-09-04: tested and passed.** See §C.
+- **The audit missed a settings file on its first pass** and found it only by starting a session. Anything
+  measured by reading a fixed list of paths shares that failure mode; the counts in §E are now five files,
+  but "five" is what was found, not what is provable.
 - **No component was read for quality.** A skill could be excellent prose and still show zero effect.
 
 ## Appendix — commands
@@ -318,11 +334,16 @@ exec guard, not a bypass.
 | Loop session attribution | First user turn's `<scheduled-task name="…">`, counted per task |
 | `vault-review-loop` never ran | `grep -rl 'scheduled-task name="vault-review-loop' ~/.claude/projects/` → only this session's own transcript |
 | Context weight | `wc -c` on `~/.claude/CLAUDE.md`, vault `CLAUDE.md`, and the five mandated `01-context` files |
-| `C:\USADEBUSK\` absent | `ls -d /c/USADEBUSK` → no such file or directory |
+| `C:\USADEBUSK\` absent | `ls -d /c/USADEBUSK` → no such file or directory; **confirmed independently by Jesse in his own terminal, 2026-09-04** |
 | Directory sizes | `du -sk` under `~/.claude` |
+| `SessionStart` injection works | Add `hooks.SessionStart` to `settings.json` pointing at a script that prints one line with an unguessable token; then from the vault: `claude -p "If your context contains a line beginning with SMOKE-CHECK, reply with that line verbatim and nothing else. Otherwise reply exactly: NONE."` The token must not appear in the prompt. Revert `settings.json` and confirm `git status` clean |
+| 5 settings files / 139 allow rules | `ls` the three `~/.claude` paths plus `obsidian-work/.claude/settings{,.local}.json`; count `permissions.allow` in each |
+| 6 inert `Write(...)` rules | Emitted by the harness itself at session start; also `[r for r in allow if r.startswith("Write(")]` in `obsidian-work/.claude/settings.local.json` |
 
 ## Log
 
 | Date | Action | By |
 |---|---|---|
 | 2026-09-04 | Harness audit run per brief. Read-only against `~/.claude`, the vault, 185 transcripts and the live scheduler. One artifact, no fixes, no queue rows, nothing retired, Verdict column left empty. Corrected four of the brief's own premises — the `fixture-replay-guard` firing claim, the `__pycache__` tracking claim, the `usadebusk-fieldpm` dormancy claim, and the baseline count. Abandoned one measurement (estimating load-bearing fraction) rather than report a bad number. | Claude |
+| 2026-09-04 | **Two open items closed, both on Jesse's word.** (1) He ran `ls C:\USADEBUSK` in his own terminal — nothing. The `git-guard` finding is confirmed off the sandbox. (2) He approved the `SessionStart` smoke test; it was executed and **passed** — a temporary hook was added, a fresh `claude -p` session returned the injected token verbatim, and `settings.json` was then reverted to a byte-identical state with `git status` clean. §C is updated from "unverified" to verified. Still no verdicts filled and no fix executed. | Claude |
+| 2026-09-04 | **Correction found by the smoke test, not by the audit.** Starting a fresh session printed permission warnings from `obsidian-work/.claude/settings.local.json` — a **fifth** settings file, holding **107 of the machine's 139 allow rules**, which the audit's §E had not counted. Six of its `Write(...)` rules are inert (paired `Edit(...)` rules cover them, so nothing is lost). §E and the known-limits section are updated. The audit's path-list method is what missed it. | Claude |
