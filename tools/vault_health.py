@@ -129,6 +129,23 @@ ROLLUP_REL = "04-knowledge/estimating-actuals-rollup.md"
 # something changes. It just raises nothing on its own.
 PIPELINE_HORIZON_DAYS = 90
 
+# The one commercial condition worth raising (Jesse, 2026-09-05): a job number for
+# an upcoming project with no PO. Deliberately silent until the last 21 days.
+#
+# Not a nag, by explicit instruction. Award and scheduling timing is the customer's
+# to own -- "you'll know when I know", their supervisors set the calendar and have
+# legitimate reasons -- so a job sitting without a PO for months is normal, not a
+# defect, and a standing reminder about it would be noise of exactly the kind that
+# got three loops retired on 2026-08-21. It becomes crucial about three weeks out,
+# which is when Jesse pushes for answers. That is the whole window.
+#
+# A row with NO parseable execution date raises nothing: unscheduled is the correct
+# resting state for a job in limbo, not a gap to chase.
+AWARDED_PO_WARN_DAYS = 21
+AWARDED_SECTION = "## Awarded / Pre-Execution"
+# `TBD`, `-`, `?` and blank all mean "no PO yet". Anything else is treated as one.
+NO_PO_VALUES = {"", "-", "tbd", "?", "n/a", "none", "pending"}
+
 # A run older than this with "fired" but no "completed" is presumed dead,
 # not still working. Generous: no loop run legitimately takes 6 hours.
 RUN_DEAD_HOURS = 6
@@ -442,6 +459,69 @@ def bid_folder_signal(fm: dict, text: str) -> str:
     return "ok"
 
 
+DATE_PREFIX_RE = re.compile(r"^\**\s*(\d{4}-\d{2}(?:-\d{2})?)\b")
+
+
+def awarded_no_po(root: Path):
+    """Jobs in Awarded / Pre-Execution that are within AWARDED_PO_WARN_DAYS of
+    execution and still carry no PO. Returns a list of (job, execution, po).
+
+    Reads the table as CELLS, not by matching prose -- the PO and Execution
+    columns exist precisely so this is not a regex over a Notes blob. A cell
+    whose Execution does not START with a date token is unscheduled and skipped.
+    """
+    try:
+        text = (root / "01-context" / "active-jobs.md").read_text(encoding="utf-8")
+    except OSError:
+        return []
+    if AWARDED_SECTION not in text:
+        return []
+    section = text.split(AWARDED_SECTION, 1)[1].split("\n## ", 1)[0]
+    today = date.today()
+    hdr, hits = None, []
+    for line in section.splitlines():
+        if not line.strip().startswith("|"):
+            continue
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if hdr is None:
+            hdr = [c.lower() for c in cells]
+            continue
+        if set("".join(cells)) <= set("-: "):  # separator row
+            continue
+        row = dict(zip(hdr, cells))
+        if "po" not in row or "execution" not in row:
+            continue  # table predates the columns; say nothing rather than guess
+        m = DATE_PREFIX_RE.match(row["execution"])
+        if not m:
+            continue  # unscheduled — correct resting state, not a finding
+        token = m.group(1)
+        ex = parse_day(token)
+        if ex is None:
+            continue
+        # A month-granularity date ("first week of January" -> 2027-01) names a
+        # WINDOW, not a day. parse_day reads it as the 1st, so a job tentatively
+        # set for the current month would otherwise read as already past and go
+        # silent exactly when it matters most. Such a row stays live until the
+        # month ends, and its distance is measured from the 1st — the earliest
+        # it could go — so the warning arrives before the window opens, never after.
+        month_only = len(token) == 7
+        if month_only:
+            nxt = date(ex.year + (ex.month == 12), ex.month % 12 + 1, 1)
+            if nxt <= today:
+                continue
+            days_out = max(0, (ex - today).days)
+        else:
+            if ex < today:
+                continue
+            days_out = (ex - today).days
+        if days_out > AWARDED_PO_WARN_DAYS:
+            continue
+        po = row["po"].strip().strip("`*").lower()
+        if po in NO_PO_VALUES:
+            hits.append((row.get("job #", "?"), m.group(1), row["po"] or "-"))
+    return hits
+
+
 def pipeline_rows(notes: dict):
     """Return rows. One per pending quote, plus any quote inside the execution
     horizon. Row: (quote, status, valid, execution, signal, bid-folder).
@@ -552,6 +632,7 @@ def build(root: Path) -> str:
     hb_rows, hb_overdue = loop_heartbeats(root)
     notes = vault_lint.collect_notes(root)
     pipe_rows = pipeline_rows(notes)
+    no_po = awarded_no_po(root)
     trig_rows, fired = trigger_rows(notes, root)
     base_rows, base_behind, base_judged = baseline_staleness.health_rows(root)
     base_unjudgeable = sum(1 for _, _, st in base_rows if st.startswith("FAIL"))
@@ -584,6 +665,10 @@ def build(root: Path) -> str:
         f"| Days since last commit | {since_s} | {dash} | {flag(True)} |",
         f"| Loop heartbeats overdue | {'yes' if hb_overdue else 'no'} | no | {flag(not hb_overdue)} |",
         f"| Open decisions not in the queue | {unqueued_s} | 0 | {flag(not unqueued)} |",
+        (f"| Awarded job within {AWARDED_PO_WARN_DAYS} d, no PO | "
+         f"{', '.join(f'{j} (exec {e})' for j, e, _ in no_po)} | 0 | FAIL |"
+         if no_po else
+         f"| Awarded job within {AWARDED_PO_WARN_DAYS} d, no PO | 0 | 0 | ok |"),
         # "Dormant triggers fired" retired 2026-08-21 (architecture audit): 0
         # firings across 9 rows in two months, and the 2026-08-15 sweep had
         # already ruled triggers a weaker carrier than the queue.
@@ -633,9 +718,11 @@ def build(root: Path) -> str:
         "expiry FAIL was invented by this script — no knowledge doc, template or SOP "
         "ever stated it — and could only ever fire falsely. The one thing worth "
         "flagging in this area is a **job number for an upcoming project with no PO**, "
-        "which is not built: see `01-context/active-jobs.md`, whose Awarded / "
-        "Pre-Execution table now carries a `PO` column so the condition becomes "
-        "observable before any alarm is written against it.",
+        "and it has its own metric row above — read from the `PO` and `Execution` "
+        "columns of `01-context/active-jobs.md`'s Awarded / Pre-Execution table, and "
+        f"silent until {AWARDED_PO_WARN_DAYS} days before execution because until then "
+        "the schedule is genuinely the customer's to set. A tentative month "
+        "(`2027-01`) counts as upcoming for the whole month.",
         "",
         "**Bid folder** is a soft signal, not a gate: it resolves the note's own recorded "
         "bid-folder path and compares the newest artifact's date against the note's "

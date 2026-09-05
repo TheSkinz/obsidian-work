@@ -23,7 +23,9 @@
 
 ## Awarded / Pre-Execution
 
-**`PO` column added 2026-09-05.** A job number for an *upcoming* project with no PO is the one thing in this area worth flagging (Jesse) — quote validity never is. The column exists so that condition is recorded in a cell rather than buried in prose; nothing checks it yet, deliberately.
+**`PO` column and the Execution date convention, added 2026-09-05.** A job number for an upcoming project with no PO is the one thing in this area worth flagging (Jesse); quote validity never is. It is **not** urgent while the customer is still scheduling — "you'll know when I know" is a legitimate answer, their supervisors set the calendar — so `tools/vault_health.py` stays silent until **21 days before execution**, which is when Jesse pushes for answers.
+
+For that to be computable, **the Execution cell must begin with a date token** — `YYYY-MM-DD` when the day is known, or `YYYY-MM` for a tentative month ("first week of January" → `2027-01`), followed by any prose. **Leave the date off entirely when the customer has not scheduled it**; that reads as unscheduled and raises nothing, which is the correct state for a job in limbo. `PO` holds the number, or `TBD`.
 
 | Job # | Facility | Heater(s) | Quote | PO | Execution | Notes |
 |---|---|---|---|---|---|---|

@@ -14,6 +14,7 @@
 | Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
 | Open decisions not in the queue | 0 | 0 | ok |
+| Awarded job within 21 d, no PO | 0 | 0 | ok |
 | Regression baselines unjudgeable | 0 | 0 | ok |
 
 ## Loop heartbeats
@@ -28,7 +29,7 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 
 ## Commercial pipeline
 
-One row per pending quote, plus any quote whose execution date is within 90 days. Read from `type: quote` frontmatter (`status`, `valid-through`, `date-execution`). **Nothing here is a FAIL condition.** `valid-through` is shown because it is real data that becomes relevant if something changes, but an expiring or expired quote raises nothing: award timing is chaotic by the nature of the industry, facilities are picky about when they schedule maintenance, and months can pass between a bid and a PO without anything being wrong (Jesse, 2026-09-05). The old expiry FAIL was invented by this script — no knowledge doc, template or SOP ever stated it — and could only ever fire falsely. The one thing worth flagging in this area is a **job number for an upcoming project with no PO**, which is not built: see `01-context/active-jobs.md`, whose Awarded / Pre-Execution table now carries a `PO` column so the condition becomes observable before any alarm is written against it.
+One row per pending quote, plus any quote whose execution date is within 90 days. Read from `type: quote` frontmatter (`status`, `valid-through`, `date-execution`). **Nothing here is a FAIL condition.** `valid-through` is shown because it is real data that becomes relevant if something changes, but an expiring or expired quote raises nothing: award timing is chaotic by the nature of the industry, facilities are picky about when they schedule maintenance, and months can pass between a bid and a PO without anything being wrong (Jesse, 2026-09-05). The old expiry FAIL was invented by this script — no knowledge doc, template or SOP ever stated it — and could only ever fire falsely. The one thing worth flagging in this area is a **job number for an upcoming project with no PO**, and it has its own metric row above — read from the `PO` and `Execution` columns of `01-context/active-jobs.md`'s Awarded / Pre-Execution table, and silent until 21 days before execution because until then the schedule is genuinely the customer's to set. A tentative month (`2027-01`) counts as upcoming for the whole month.
 
 **Bid folder** is a soft signal, not a gate: it resolves the note's own recorded bid-folder path and compares the newest artifact's date against the note's `verified:` date. `artifacts newer than verified` means the folder moved on and the note may not have — the DSP26095 case, where the note read "Not yet priced" while its folder already held a finished quotation. It is **not** a lint rule on purpose: an unsynced folder, an offline machine and a genuinely stale note are indistinguishable from here, and lint is a binary 0-errors gate. `-` means the path base is absent on this machine, so nothing was judged. Value reconciliation is out of scope here and belongs to the quotation-vs-workup pre-send gate.
 
