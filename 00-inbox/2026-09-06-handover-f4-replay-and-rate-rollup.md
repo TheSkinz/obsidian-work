@@ -109,10 +109,23 @@ Four heading forms across ten notes, three notes with none (DSP24005, DSP26092,
 DSP26030_H28_H29). `## Hourly Rates (T&M)` is the plurality at 6 of 13 and is the obvious
 target if these get normalized.
 
-So the real first task is a decision: **normalize the headings, or write a parser tolerant of
-all four.** Normalizing is the smaller job and makes the trigger honest; a tolerant parser
-means the convention never settles and the next tool pays the same tax. Either way this is
-Jesse's call, not a session's.
+**DONE 2026-09-06 — this precondition is now clear.** Jesse ruled normalize rather than write a
+tolerant parser, on his own recorded test of whether the work terminates (ten headings does;
+per-note hygiene forever does not). Settled name is **`## Hourly Charge-Out Rates`** across all
+ten notes carrying a rate table.
+
+The name was *not* the plurality. `## Hourly Rates (T&M)` had six of ten, but
+`usadebusk-estimating` SKILL.md:478 already names the proposal's **Section 9 — Hourly Charge Out
+Rates**, and `04-knowledge/workup-to-proposal-generator-build-spec.md:81` maps the generator
+against it — so the two-note minority form was the one aligned with canon and the six were the
+drift. The `(T&M)` parenthetical was dropped as well: it asserts a contract basis, and DSP26058
+is `Basis: Lump Sum` under a heading that claimed T&M. Basis lives in the `billing-basis` /
+`rate-basis` frontmatter, which is where the rollup should read it.
+
+The convention is now written into `rfq-intake-protocol.md` step 9 — there is no quote-note
+template, so without that it would simply drift again on the next bid.
+
+**The rollup itself is still unbuilt.** Everything below still applies to building it.
 
 ### Design constraints already ruled on — read before building
 
