@@ -57,15 +57,22 @@ F-201's own card states it outright at line 102: *"Smart pigging / inspection | 
 quoted on DSP26085 — all 4 passes.**"* So the card, the quote and the rule disagree, and the card
 and quote agree with each other.
 
-**This is a source defect, not a porting defect.** The flat-4 rule appears in two places and
-reproduces none of the three observed jobs. Something scales it — circuits, pass sets, or heaters —
-and **the specimen deliberately does not guess which.** Three points do not settle a rule, and a
-derived scaling law written into a skill would be exactly the "computed figure treated as measured"
-failure the vault warns about.
+**Ruled the same day. Smart Pig is 2 hrs per pass** (Jesse, 2026-09-06), replacing the flat 4.
 
-**Open for Jesse (Lane 4):** what actually sets smart-pig hours? Until that is answered the ported
-skill keeps the flat 4 with this contradiction named inline, so a Bot quoting it says "the rule says
-4, three observed jobs say 6, 8 and 4 — confirm" rather than quoting 4 with confidence.
+**The premise of the finding was wrong, and that is the more useful lesson.** There is no scaling
+law to recover, because there was never a rule generating those numbers: *"There isn't a specific
+logic I use to determine the smart pig hours, because I don't know how long it will actually take.
+Several jobs are going to have conflicting information about that number."*
+
+So the back-test found a real gap in the written rule and then over-read it — treating a line Jesse
+estimates by feel as though a derivable rule sat behind three data points. **Under the new figure
+DSP26085's 4 passes give 8 hrs against a quoted 6, and that disagreement is expected rather than a
+defect to chase.** The ported skill now says so explicitly, so a Bot takes 2 hrs per pass and moves
+on instead of opening an investigation.
+
+Propagated to all four places that stated the old figure: `01-context/estimating-approach.md`,
+`04-knowledge/concepts/estimating-pricing.md`, the `usadebusk-estimating` skill, and
+[[duration-model]] — leaving any of them behind would have recreated the rig-in drift in reverse.
 
 ## What the composition pass found
 

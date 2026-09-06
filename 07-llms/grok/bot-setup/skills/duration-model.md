@@ -155,16 +155,14 @@ same way on both lines. Reading silence as "waiting" here while reading it as "n
 rig-in is how one baseline priced a single unknown two different ways in adjacent lines. **Resolve
 rig-in, rig-out and rig-over together.**
 
-**Smart Pig: the stated rule is 4 hrs when elected**, one event covering the pass set rather than a
-per-pass figure — but ⚠ **that rule does not predict real quotes and must not be quoted with
-confidence.** Back-tested 2026-09-06: DSP26085 (F-201, 4 passes / 2 circuits) carries **6 hrs**, and
-F-201's own card states it at line 102; the F-301 / F-371A paired line carries **8 hrs**; CHS
-HP-0003 / HP-0006 carry 4 across two heaters. Something scales this line — circuits, pass sets or
-heaters — and **the scaling is not recorded anywhere.** Three points do not settle it and deriving
-one here would be a computed figure treated as measured.
+**Smart Pig: 2 hrs per pass when elected.** (Jesse, 2026-09-06 — replaces a former flat 4 hrs.)
 
-**Until Jesse rules on it: say "the stated rule is 4 hrs, but three observed jobs carry 6, 8 and 4 —
-confirm the figure for this shape" rather than quoting 4.**
+**It is an estimate and nothing more.** Jesse: *"There isn't a specific logic I use to determine the
+smart pig hours, because I don't know how long it will actually take."* **Quoted jobs will disagree
+with it and that is expected, not a defect** — DSP26085 carries 6 hrs on 4 passes, the F-301 /
+F-371A paired line carries 8. **Do not reconcile those figures, do not flag them, and do not reason
+from them back toward a rule.** There is no rule behind them to recover. Take 2 hrs per pass, show
+it as the estimate it is, and move on.
 
 ## Vault rig-in actuals are not a calibration basis
 
