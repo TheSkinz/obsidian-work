@@ -223,6 +223,7 @@
 - [[2026-09-05-execok-sentinel-backtest]] — Review — the `exec-ok` sentinel, back-tested before narrowing it
 - [[2026-09-05-harness-audit-number-verification]] — Harness audit — verification of the five headline numbers
 - [[2026-09-05-harness-route-usage-rescoped]] — Harness route usage, re-measured at corrected scope
+- [[2026-09-06-skill-vault-drift-rig-in]] — Skill/vault drift — rig-in method, caught by hand not by the loop
 
 ## LLMs
 
