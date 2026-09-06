@@ -57,13 +57,17 @@ USADebusk's proprietary trailer-mounted pigging pumper. Transports cleaning pigs
 - Displacement 543 in³ (8.9L), turbocharged and charge-air-cooled
 - Emissions: CARB Tier 4(f), EU Stage IV, U.S. EPA Tier 4(f)
 
-**Pump — Waterous CMU multi-stage centrifugal:**
+**Pump — Waterous CMU two-stage centrifugal:**
 - NFPA performance ratings: 1250/1500/1750/2000/2250 GPM @ 150 PSI
-- Max pressure: 600 PSI @ 2,250 GPM
+- Max pressure: 600 PSI @ 600 GPM (2,250 L/min)
 - Two-piece, horizontally-split casing; bronze wear rings and impellers; heat-treated stainless steel two-piece impeller shaft (separates from transmission without disassembly)
 - Ball-type bronze transfer valve, floating seal, switches PRESSURE/VOLUME without sticking
 - Braided flexible graphite (BFG) packing standard; self-adjusting mechanical seals optional
 - Transmission: C20 series, drive ratios 1.27–2.46, pneumatic in-cab shift with PUMP/ROAD lock
+
+> **Reading the Waterous sheet** (`spec-sheets/Pump Curve CMUPigging.pdf`, form F-2692 rev. 07/19/12), corrected 2026-09-06. Two traps in it, both previously fallen into:
+> - Its Max Pressure row is `GPM 600 | PSI 600 | L/min 2250 | bar 40` — **2,250 is litres per minute, not GPM.** This entry read 600 PSI @ 2,250 GPM until 2026-09-06, overstating the pump ~3.75x. The sheet's SERIES OPERATION curve corroborates the correction: its capacity axis does not reach 1,200 GPM. 2250 GPM is real but belongs to the NFPA *volume* row above, at 150 PSI — two separate ceilings, which is why the sheet's headline reads "to 2250 GPM **and** Pressures to 600 PSI."
+> - The sheet's prose says "multi-stage," which is Waterous's category word. The PARALLEL/SERIES operation curves, the paired impeller callout `71649/71650`, and the PRESSURE/VOLUME transfer valve all describe **two** stages. `two-stage` is the vault-wide term; do not "correct" it to multi-stage.
 
 ## Second Trimax (2× Trimax Configuration)
 
