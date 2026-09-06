@@ -112,6 +112,34 @@ marked hand-tallied and arithmetic shown because there is no generator script he
 
 **The `+` menu also carries "Teach a task"** — the demonstration recorder — alongside Attach files.
 
+### The Architect, and experiment 2 — skills DO survive verbatim
+
+Built 2026-09-06. First experiment run the same session: *does an uploaded skill survive verbatim,
+or does Grok Bot paraphrase it on ingest?* This mattered because every ported skill is written as
+"do X, and specifically do NOT do Y" — a summariser drops the Y half first, which would strip the
+guardrails while leaving the skill looking correct.
+
+**Answer, TESTED:** the stored skill and the vault source **match byte-for-byte in the body**. The
+platform adds a YAML frontmatter wrapper of its own, so the *file* is not identical while the
+*content* is. Nothing was paraphrased, compressed, or dropped. **The counter-cases in the ported
+skills are safe**, and skills can be written for this platform the same way they are written for
+Claude Code.
+
+Two things fell out of the run that were not the question:
+
+- **Inter-Bot DM works and is visible.** The Architect messaged Scribe directly and the thread showed
+  `Messaged Scribe` / `Message from Scribe` inline. That is the push channel — a Bot cannot silently
+  read another's thread, but it can ask, and the asking is legible to the human watching.
+- **A Bot's verbatim print-back truncates.** Scribe's dump of its own skill cut mid-sentence, so
+  print-back is not a reliable comparison method. **Diff the files on disk instead** — the skill is
+  stored as a real file on the shared computer, which is what made the byte comparison possible at
+  all.
+
+**Cost:** the meter read 1% before the three working Bots were built and **2%** after all of that
+plus this experiment. So the entire build to date — four Bots, three skill uploads, a ten-question
+citation audit and one platform experiment — is roughly 1–2% of a weekly allowance. Cost is not the
+binding constraint at this scale.
+
 ### The citation audit — PASSED, 10 of 10
 
 Every answer carried a real file path and a verbatim quote. Spot-checked independently against the
