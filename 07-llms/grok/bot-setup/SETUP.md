@@ -82,6 +82,51 @@ git clone https://github.com/TheSkinz/obsidian-work.git /workspace/vault
 4. Still to do: copy `README-FOR-BOTS.md` to `/workspace/README-FOR-BOTS.md`.
 5. Still to do: create **Librarian** and nothing else. Paste its Description from [[bot-profiles]].
 
+## Build log
+
+**2026-09-06 — Librarian, Ledger and Scribe are live.** Built by driving the app directly.
+
+Bots are created from the `+` menu → type the name → `Create "<name>" Bot`, then the Bot title bar
+opens a Settings panel with **Name**, **Label (optional)**, **Description** and a Notifications
+toggle. The Description accepts the full multi-paragraph block with no length trouble. Every new
+Bot then runs a short onboarding interview ("What should I be most useful for?") with four options
+and a free-text box — answer in the free text, pointing it at its own Description.
+
+Skills go in as **file uploads**, not retyped: message box `+` → **Attach files** → the Windows
+Open dialog accepts a full path, and several quoted paths at once. `Receipt Extraction` and
+`Invoice Readiness Check` went to Ledger in one upload; `Project Report` to Scribe. All three
+saved verbatim. Scribe repeated the hand-tally deviation back unprompted: *"every table figure
+marked hand-tallied and arithmetic shown because there is no generator script here."*
+
+**The `+` menu also carries "Teach a task"** — the demonstration recorder — alongside Attach files.
+
+### The citation audit — PASSED, 10 of 10
+
+Every answer carried a real file path and a verbatim quote. Spot-checked independently against the
+working copy; three quotes were confirmed character-for-character (`17-glossary.md:25`,
+`quote-lifecycle.md:81`, `B-102.md:73`). No invented citations, no citation that failed to support
+its claim.
+
+Two answers are worth recording because they show judgment rather than retrieval:
+
+- **Q7 (quoted-vs-actual)** — answered "job report", then flagged that `USA26041-job-sheet.md` also
+  carries a closed Ticket-breakdown reconciliation section which *"sits against that model"*, and
+  put it under Unresolved questions rather than resolving it. That is the "contradictions are
+  findings, not noise for you to resolve" instruction working.
+- **Q6 (labor rates)** — separated labor billing (hourly, not a 12-hr day rate, changed 2026-07-12)
+  from per diem (one allowance per person per shift, generic base $150, role-split where the
+  contract requires it), and disclosed in Assumptions that it read both because the question's
+  framing and the actual recorded change were about different things.
+
+**Cost:** the meter read `SuperGrok — 1%` before the audit and `1%` after. A ten-question deep vault
+search is under one percent of the weekly allowance. On-demand spend is set to **None**, so there is
+no overage exposure.
+
+**Elapsed:** roughly four minutes for the ten questions, with running progress messages the whole
+time. Not fast, but it was genuinely grepping rather than answering from context.
+
+---
+
 ## Day 2 — citation audit, and the go/no-go
 
 Ask Librarian ten domain questions you already know the answers to, then open each cited file and
