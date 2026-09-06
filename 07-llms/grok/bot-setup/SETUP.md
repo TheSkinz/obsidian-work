@@ -58,6 +58,7 @@ with Gmail and Google Drive added and Gmail still awaiting a sign-in.
 |---|---|
 | [[README-FOR-BOTS]] | Copy to `/workspace/README-FOR-BOTS.md` on the Grok Bot computer |
 | [[bot-profiles]] | Paste each Description into Bot actions > Edit Profile |
+| [[architect-profile]] | The Architect — platform research, plus its experiment queue |
 | [[receipt-extraction]] | Save as the Receipt Extraction skill |
 | [[invoice-readiness-check]] | Save as the Invoice Readiness Check skill |
 | [[job-report]] | Save as the Project Report skill |

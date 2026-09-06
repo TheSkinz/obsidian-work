@@ -19,6 +19,7 @@ Rules (code | severity):
     HEATER-TYPE-VOCAB error  heater-card heater-type outside the canonical vocabulary
     VERIFIED-FORMAT error    heater-card verified: is not a date or `never`
     DEAD-STRING     error    retired terminology reintroduced into a live note
+    RULE-FORK       error    one rule stated in several repos no longer agrees
     ROLLUP-SCALE    warning  heater-card Config Rollup: heater total is not a whole multiple of per circuit
     LINK-FACILITY   warning  wikilink into the wrong facility, or a bare ambiguous [[_facility]]
     POINTER-DEAD    warning  recorded absolute source path no longer resolves
@@ -347,7 +348,8 @@ DEAD_STRING_EXEMPT = (
 )
 
 ERROR_CODES = {"SECRET", "CONF-CONFLICT", "YAML-COMMENT", "DEAD-LINK",
-               "HEATER-TYPE-VOCAB", "VERIFIED-FORMAT", "DEAD-STRING"}
+               "HEATER-TYPE-VOCAB", "VERIFIED-FORMAT", "DEAD-STRING",
+               "RULE-FORK"}
 
 
 class Finding:
@@ -886,6 +888,125 @@ def check_dead_string(root: Path, notes: dict[Path, str]) -> list[Finding]:
                              if dead in ln.lower()), 0)
                 findings.append(Finding("DEAD-STRING", path,
                     f"line {line}: {dead!r} is a retired term — {guidance}"))
+    return findings
+
+
+# RULE-FORK: one rule, stated in several places, that no longer agrees with
+# itself. Armed at zero backlog like DEAD-STRING and HEATER-TYPE-VOCAB.
+#
+# WHY THIS EXISTS. On 2026-09-05 the config repo replaced the rig-in method
+# (`[Lane 4] estimating: rig-in is 6 hours -- replace the tier machinery`). The
+# vault never received it, so for 24 hours `01-context/estimating-approach.md`
+# described a four-tier model driven by three multiplying factors while the skill
+# described a flat 6-hour default. `01-context/` loads every session and the skill
+# loads only when a task is recognised as estimating-shaped, so the STALE copy had
+# the wider blast radius. It was found by hand, late — a Grok Bot citation audit
+# quoted the stale line verbatim and correctly, which is the useful part: a passing
+# citation audit does not detect a stale source.
+#
+# The skill-drift loop is monthly on the 1st, so the next scheduled run was
+# 2026-10-01, 26 days out. A monthly cadence cannot cover a same-week edit. This is
+# the defect-triggered half.
+#
+# WHY IT GETS WORSE. Porting skills to Grok Bot adds a FOURTH place for a rule to
+# live. The 2026-09-06 smart-pig ruling took four edits across three repos; missing
+# any one of them recreates the same drift.
+#
+# DESIGN — COMPARE ASSERTED VALUES, NOT RETIRED PHRASES. A dead-string match on the
+# old wording would fire on the very passages that now name the retired model on
+# purpose, so a document written during the gap can be recognised. Instead each rule
+# carries one regex with a single capture group, applied at every registered
+# location; the values must agree.
+#
+# A location that exists but no longer STATES the rule is also a fork, and that is
+# deliberate: on 2026-09-05 the vault did not carry a rig-in default at all — it
+# carried tiers — so "not stated" is exactly the signal that would have fired.
+# `@config:` resolves into the claude-config repo; a missing repo is skipped, the
+# same posture tools/config_frontmatter_lint.py already takes.
+RULE_FORK_REGISTRY = {
+    "rig-in default (hrs)": {
+        "pattern": re.compile(r"[Rr]ig-in is \**(\d+)\** h(?:ou)?rs?"),
+        "locations": [
+            "01-context/estimating-approach.md",
+            "04-knowledge/concepts/estimating-pricing.md",
+            "07-llms/grok/bot-setup/skills/duration-model.md",
+            "@config:skills/usadebusk-estimating/SKILL.md",
+        ],
+    },
+    "smart pig (hrs per pass)": {
+        "pattern": re.compile(r"Smart Pig: \**(\d+)\** hrs? per pass"),
+        "locations": [
+            "01-context/estimating-approach.md",
+            "04-knowledge/concepts/estimating-pricing.md",
+            "07-llms/grok/bot-setup/skills/duration-model.md",
+            "@config:skills/usadebusk-estimating/SKILL.md",
+        ],
+    },
+    "pigging benchmark (ft/hour)": {
+        "pattern": re.compile(r"~(\d+) ft/hour per single unlooped coil"),
+        "locations": [
+            "04-knowledge/concepts/estimating-pricing.md",
+            "07-llms/grok/bot-setup/skills/duration-model.md",
+            "@config:skills/usadebusk-estimating/SKILL.md",
+        ],
+    },
+    "max pig OD over ID (in)": {
+        "pattern": re.compile(r"[Mm]aximum pig (?:size|OD) = (?:Clean|tube) ID \+ (0\.\d+)"),
+        "locations": [
+            "04-knowledge/concepts/field-operations.md",
+            "04-knowledge/concepts/process-flow.md",
+        ],
+    },
+}
+
+CONFIG_PREFIX = "@config:"
+
+
+def _rule_fork_read(root: Path, loc: str) -> tuple[Path, str] | None:
+    """Resolve a registry location to (path, text), or None if unreadable.
+
+    A missing claude-config repo is not a finding — the vault must lint on a
+    machine that does not carry it.
+    """
+    if loc.startswith(CONFIG_PREFIX):
+        path = Path.home() / ".claude" / loc[len(CONFIG_PREFIX):]
+    else:
+        path = root / loc
+    if not path.is_file():
+        return None
+    try:
+        return path, path.read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return None
+
+
+def check_rule_fork(root: Path, notes: dict[Path, str]) -> list[Finding]:
+    """RULE-FORK: a rule stated in several places that no longer agrees.
+
+    `notes` is unused — the registry names its own files, including files outside
+    the vault, so this check reads them directly rather than from the scan.
+    """
+    findings = []
+    for rule, spec in RULE_FORK_REGISTRY.items():
+        seen: dict[str, list[str]] = {}
+        anchor = None
+        for loc in spec["locations"]:
+            got = _rule_fork_read(root, loc)
+            if got is None:
+                continue
+            path, text = got
+            if anchor is None:
+                anchor = path
+            m = spec["pattern"].search(text)
+            value = m.group(1) if m else "not stated"
+            seen.setdefault(value, []).append(loc)
+        if len(seen) <= 1 or anchor is None:
+            continue
+        spread = "; ".join(f"{v} in {', '.join(locs)}" for v, locs in sorted(seen.items()))
+        findings.append(Finding("RULE-FORK", anchor,
+            f"'{rule}' does not agree across the places that state it — {spread}. "
+            f"One source moved and the others did not; fix every location in one "
+            f"pass or the next reader gets whichever copy loads first."))
     return findings
 
 
@@ -1485,6 +1606,7 @@ def run_lint(root: Path, with_git: bool = True) -> list[Finding]:
     findings += check_tube_geom_header(root, notes)
     findings += check_heater_type_vocab(root, notes)
     findings += check_dead_string(root, notes)
+    findings += check_rule_fork(root, notes)
     findings += check_verified_format(root, notes)
     findings += check_rollup_scale(root, notes)
     findings += check_link_facility(root, notes)
@@ -1604,6 +1726,7 @@ def self_test() -> int:
                 "CONF-CONFLICT", "ORPHAN",
                 "REVIEW-OVERDUE", "SUPERSEDED", "DURATIONS-HEADER", "TUBE-GEOM-HEADER",
                 "HEATER-TYPE-VOCAB", "VERIFIED-FORMAT", "DEAD-STRING",
+                "RULE-FORK",
                 "ROLLUP-SCALE",
                 "LINK-FACILITY",
                 "POINTER-DEAD", "PATH-DEAD", "JOBSHEET-PDF-STALE",

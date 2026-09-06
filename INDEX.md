@@ -242,6 +242,7 @@
 - [[07-llms/copilot/overview|overview]] — Microsoft Copilot — Overview `(copilot)`
 - [[diagram-creation]] — Diagram Creation Inside LLMs
 - [[gem-drawing-extraction]] — Gemini Gem — Fired Heater Tube Drawing Extraction (retired) `(gemini)`
+- [[architect-profile]] — The Architect — profile and experiment queue `(grok/bot-setup)`
 - [[BACKTEST-SPECIMEN]] — Grok Bot estimating skills — back-test specimen `(grok/bot-setup)`
 - [[bot-profiles]] — Bot profiles — paste-ready `(grok/bot-setup)`
 - [[README-FOR-BOTS]] — Orientation — read this before doing anything `(grok/bot-setup)`

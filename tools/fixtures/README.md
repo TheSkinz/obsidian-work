@@ -9,10 +9,18 @@ caught with it — **no fixture, no rule** (contract stated in the `vault_lint.p
 module docstring). A lint-rule change is a structural change: ship it with its
 passing fixture.
 
-All 21 rules, each with the fixture that proves it fires. Severity comes from
+All 22 rules, each with the fixture that proves it fires. Severity comes from
 `ERROR_CODES` in `vault_lint.py` — SECRET, CONF-CONFLICT, YAML-COMMENT, DEAD-LINK,
-HEATER-TYPE-VOCAB, VERIFIED-FORMAT and DEAD-STRING are errors, every other rule is
-a warning.
+HEATER-TYPE-VOCAB, VERIFIED-FORMAT, DEAD-STRING and RULE-FORK are errors, every
+other rule is a warning.
+
+**RULE-FORK's fixture is a pair, not a file.** The rule compares one value across
+several files, so a single broken note cannot express the defect — the fixture is
+`04-knowledge/concepts/{field-operations,process-flow}.md`, which state the max pig
+OD rule as `Clean ID + 0.250"` and `tube ID + 0.500"` respectively. **Do not "fix"
+the 0.500 half; the disagreement is the fixture.** The pair deliberately uses only
+vault-relative registry paths so the self-test does not depend on the claude-config
+repo being present on the machine.
 
 | Fixture | Rule it trips | Severity |
 |---|---|---|
@@ -26,6 +34,7 @@ a warning.
 | `02-facilities/TestClient/Test-City-TX/T-800.md` | PATH-DEAD | warning |
 | `04-knowledge/bad-status.md` | STATUS-VOCAB | warning |
 | `04-knowledge/dead-string.md` | DEAD-STRING | error |
+| `04-knowledge/concepts/field-operations.md` + `process-flow.md` (pair) | RULE-FORK | error |
 | `00-inbox/marker-before-frontmatter.md` | STATUS-VOCAB (regression) | warning |
 | `06-reviews/dead-link-note.md` | DEAD-LINK | error |
 | `06-reviews/conf-conflict.md` | CONF-CONFLICT | error |

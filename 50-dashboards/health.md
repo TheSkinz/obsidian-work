@@ -48,7 +48,7 @@ Narrowed from the former **Dormant triggers** registry on 2026-08-21. That table
 
 | Source | Condition | Check |
 |---|---|---|
-| [[idea-llm-navigable-vault-map]] | Vault reaches 450 live notes (292 at the time of writing, 2026-08-15) -> re-run the retrieval eval in [[knowledge-system-evaluation-questions]]; if it shows failures, this idea unparks, and if it does not, re-park at the next threshold [machine: note-count>=450] | live notes: 368 of 450 |
+| [[idea-llm-navigable-vault-map]] | Vault reaches 450 live notes (292 at the time of writing, 2026-08-15) -> re-run the retrieval eval in [[knowledge-system-evaluation-questions]]; if it shows failures, this idea unparks, and if it does not, re-park at the next threshold [machine: note-count>=450] | live notes: 369 of 450 |
 | [[2026-07-31-prestaged-routine-service-derate-seed-data]] | 10 routine mode-normalized rows in the actuals rollup -> revisit the ft/hr service derate (n=5 at ruling, 2026-08-01) [machine: routine-rows>=10] | routine rows: 5 of 10 |
 
 ## Regression baselines
@@ -61,12 +61,12 @@ One row per frozen fixture in `~/.claude/regression/frozen/`. Each reads its own
 
 | Fixture | Commits behind | Status |
 |---|---|---|
-| f1-rfq-to-proposal | claude-config 3 · vault 0 | behind |
+| f1-rfq-to-proposal | claude-config 4 · vault 0 | behind |
 | f2-vault-ingest-dryrun | claude-config 1 | behind |
 | f3-fieldpm-extract | claude-config 3 | behind |
 | f4-sop-formatting-pass | claude-config 0 · vault 0 | current |
 | f5-pig-sizing | claude-config 0 | current |
-| f6-duration-mobdemob | claude-config 1 · vault 0 | behind |
+| f6-duration-mobdemob | claude-config 2 · vault 0 | behind |
 
 ## Notes
 
