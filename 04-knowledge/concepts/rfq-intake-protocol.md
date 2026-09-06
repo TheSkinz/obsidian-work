@@ -4,8 +4,7 @@ status: draft
 source_authority: secondary
 confidence: medium
 created: 2026-07-19
-last_reviewed: 2026-07-19
-revisit-trigger: "About 12 quote notes under a settled rate-table heading convention -> build the cross-quote rate-history rollup [machine: quote-count>=12]"
+last_reviewed: 2026-09-06
 tags: [workflow, quotes, estimating]
 ---
 
@@ -107,7 +106,11 @@ Emergency decokes compress steps 1 through 6 into a single call — the customer
 ## Open Questions
 
 - The **existing-contract estimate** — the common case, where there is no bid packet and the scope is priced against a known regime — has no documented fast path. No longer blocked: under the corrected rate model it reads `rate-basis` off the prior quote rather than depending on a facility rate schedule. Write it against a real estimate rather than speculatively.
-- **No cross-quote view of what has actually been charged.** Bill rates are scattered one-per-quote-note, so "what did we charge at Baytown last time" means opening files individually. The eventual fix is a generated rate-history rollup on the pattern of `tools/estimating_rollup.py`. **Not built.** **Trigger:** roughly a dozen quote notes under a settled heading convention — **both halves now met as of 2026-09-06.** Count reached 13, and the heading was settled the same day to `## Hourly Charge-Out Rates` across all ten notes that carry a rate table (see step 9). Worth knowing how the gate behaved: the machine clause is `[machine: quote-count>=12]`, which measures only the count, so `50-dashboards/health.md` reported **FIRED** while the heading half — the condition that actually blocked the work — was still unmet and unmeasured. A session reading only the dashboard would have started building against four heading forms.
+- ~~**No cross-quote view of what has actually been charged.**~~ **CLOSED 2026-09-06 — built.** `tools/rate_history_rollup.py` → [[rate-history-rollup]], on the pattern of `tools/estimating_rollup.py` as this note specified. Run it on demand; nothing schedules it, so regenerate before citing. The `revisit-trigger:` frontmatter is retired per the fire → act → remove convention, so the gauge no longer renders on `50-dashboards/health.md`.
+
+  Worth keeping about how the gate behaved. The machine clause was `[machine: quote-count>=12]`, which measures only the count, so the dashboard reported **FIRED** while the heading half — the condition that actually blocked the work — was still unmet and unmeasured. **A session reading only the dashboard would have started building against four heading forms.** Both halves were met on 2026-09-06: the count reached 13 and the heading was settled the same day (see step 9).
+
+  Two corrections the build itself produced. **Nine notes carry a rate table, not ten.** `DSP26100` carries the heading and a two-line prose pointer to `02-facilities/Valero/Three-Rivers-TX/_facility.md` § `## Contracted Rates`; a tool counting headings sees ten and a tool parsing tables sees nine. The rollup follows the pointer but **holds that column out of the plurality count**, because the Valero card says outright that no contract rates are confirmed for the site and the set is precedent carried from DSP26094 / DSP26035 — an unconfirmed precedent must not set the figure everything else is measured against. And **the comparison column is `Most common (derived)`, not `House standard`** (Jesse, 2026-09-06): there is no artifact that is the house standard. `usadebusk-estimating` § Baseline Rate Table is the only named company-wide schedule and is captioned *generic rates for new facilities without contract rates*; it diverges from what is actually quoted on most lines — Pumper: Pig $500 against the $650–800 quoted, PM $80 against $94.75, Crew Truck $15 against $25, DEF $125 against $180/shift. Anchoring there would flag nearly every cell and destroy the flag's meaning. **`04-knowledge/pricing/_cost-model.md` is internal cost, not bill rates, and is not the house standard either** — its Support Unit line reads $3.45/hr against the $30/hr bill rate.
 
   **Design constraint added 2026-07-26 — uniform by intent, divergent by exception.** Section 3 above establishes that rates are a contract property; this adds what actually moves them, per Jesse 2026-07-26, after an intermediate version of this paragraph got it wrong.
 
@@ -126,3 +129,4 @@ Emergency decokes compress steps 1 through 6 into a single call — the customer
 |---|---|---|
 | 2026-07-19 | Note created | Gap identified in session — no written intake protocol existed; document intake, contract-terms review, and vault write-back were uncovered by any skill |
 | 2026-07-26 | Design constraint added to the rate-history rollup trigger: group by bid, never collapse a facility to one rate; grouping field absent from quote frontmatter | DSP25123's bad $35/hr filtration standby row found during the F-901 ingest; Jesse's ruling that Baytown is not one buyer |
+| 2026-09-06 | Rate-history rollup **built** ([[rate-history-rollup]], `tools/rate_history_rollup.py`); `revisit-trigger:` retired; comparison column settled as `Most common (derived)` rather than `House standard` | Both halves of the trigger met — count 13, heading settled the same day. Jesse ruled the comparison column on 2026-09-06 after recon found no artifact that is the house standard |

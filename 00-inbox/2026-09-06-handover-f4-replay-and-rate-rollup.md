@@ -1,18 +1,41 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: handover
 source_authority: session
 confidence: high
 created: 2026-09-06
-review_after: 2026-10-06
+resolved: 2026-09-06
 related:
   - "[[rfq-intake-protocol]]"
   - "[[equipment-library]]"
+  - "[[rate-history-rollup]]"
 tags: [handover, regression, estimating, rates]
 ---
 
 # Handover — two items left open by the 2026-09-06 Waterous session
+
+> [!success] Both items closed 2026-09-06. Three claims in this note were wrong — read the close-out before the body.
+
+## Close-out — 2026-09-06
+
+**Item 1 done, and F5 was replayed too.** Rubric pre-registered and committed as config `8998b5f` *before* either run was dispatched; both replays went to fresh general-purpose subagents under the allowlist fence; the session that read F4's diff keys judged only. **F4 PASS, 8 of 8 keys** — em-dash key verified mechanically (four em dashes in the SOP body, all four headings, zero in body prose). **F5 PASS, all five figures exact.** The Waterous pump is absent from both outputs, which the rubric pre-registered as an expected pass rather than a miss, and neither reading-trap fail fired. Neither frozen text was re-cut: `baseline_commits:` advanced from `ccc5086` to `35e53c6` because a real replay found nothing scored had moved, and the reasoning is recorded in both frontmatters so it is not read as a skipped step. `baseline_staleness.py` now reads both fixtures current. Config commit `849e9f6`.
+
+**Item 2 done.** `tools/rate_history_rollup.py` → [[rate-history-rollup]]. Nine quote columns plus the DSP26100 facility-card column, ten line-item families, the plurality column printing its own support count. Zero unmapped labels on the first run, which independently corroborates the corpus survey it was built from.
+
+### Three claims in the body below are wrong
+
+1. **The F5 waiver's basis does not hold.** This note says F5's frozen output has "zero occurrences of `waterous`, `pump`, `stage` or `GPM` — checked directly." `waterous`, `stage` and `gpm` are genuinely zero; **`pump` occurs six times**, including `frozen/f5-pig-sizing-output.md:242` — "two of the Trimax's three pumping assemblies, third idle" — which is structurally the same as the F4 row this note *does* flag. F5 was replayed on that basis.
+2. **The stale figure was already fixed, and the surviving copy must stay.** This note says `rfq-intake-protocol.md` "still reads *Quote-note count is now 7 of the ~12*." It does not — that file already read 13. The only surviving instance is `change-log.md:180`, inside the dated 2026-07-26 entry, where it correctly records what was true then. Editing it would rewrite the decision log.
+3. **"Ten notes carrying a rate table" is nine plus a pointer.** `DSP26100` carries the heading and a two-line prose pointer to the Valero facility card. A tool counting headings sees ten; a tool parsing tables sees nine.
+
+### Left for Jesse — Lane 4, not actioned
+
+- **`02-facilities/ExxonMobil/Baytown-TX/_facility.md` cites the wrong source for the house standard.** It names `04-knowledge/pricing/_cost-model.md` behind the $30/hr Support Unit figure. That file is **internal cost, not bill rates** — its Support Unit line reads **$3.45/hr**. The $30 comes from `usadebusk-estimating` § Baseline Rate Table only.
+- **The 4×3 pump basis conflict is still unreconciled** — $85/hr on the later Baytown sheets, $1,016/shift on the earlier ones and on DSP26080. The rollup renders both rather than collapsing them.
+- **The plurality divergences the rollup surfaces** are questions, not errors. The one row to read carefully is `Pumper — Pigging (mode not stated)`: most notes do not label pumping mode, so that row mixes triple and double rates and its flags may not be divergences at all.
+
+---
 
 Neither is urgent and neither blocks anything. Both are executable from this note by a fresh
 session with no other context. They are unrelated to each other.
