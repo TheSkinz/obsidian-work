@@ -63,8 +63,19 @@ with Gmail and Google Drive added and Gmail still awaiting a sign-in.
 | [[job-report]] | Save as the Project Report skill |
 
 The four estimating skills — RFQ Intake, Duration Model, Work-Up Billing Math, Proposal Assembly —
-are week 2 and are not written yet on purpose. Do not port a pricing skill before the citation
-loop has been proven, because a Bot that miscites a rate is worse than no Bot.
+were written 2026-09-06, after the citation audit passed:
+
+| File | Goes where |
+|---|---|
+| [[rfq-intake]] | Save as the RFQ Intake skill — Intake |
+| [[duration-model]] | Save as the Duration Model skill — Estimator |
+| [[workup-billing-math]] | Save as the Work-Up Billing Math skill — Estimator |
+| [[proposal-assembly]] | Save as the Proposal Assembly skill — Scribe |
+
+**Read [[BACKTEST-SPECIMEN]] before uploading any of them.** It works all four against DSP26085 —
+six rules reproduce the real quote to the hour and to the line, and one rule was falsified. **None
+of these four carries a rate number**; rates belong to a contract and stay in the vault behind their
+own warnings.
 
 ## Day 1 — substrate
 

@@ -242,12 +242,17 @@
 - [[07-llms/copilot/overview|overview]] — Microsoft Copilot — Overview `(copilot)`
 - [[diagram-creation]] — Diagram Creation Inside LLMs
 - [[gem-drawing-extraction]] — Gemini Gem — Fired Heater Tube Drawing Extraction (retired) `(gemini)`
+- [[BACKTEST-SPECIMEN]] — Grok Bot estimating skills — back-test specimen `(grok/bot-setup)`
 - [[bot-profiles]] — Bot profiles — paste-ready `(grok/bot-setup)`
 - [[README-FOR-BOTS]] — Orientation — read this before doing anything `(grok/bot-setup)`
 - [[SETUP]] — Grok Bot — Setup Runbook `(grok/bot-setup)`
+- [[duration-model]] — Skill — Duration Model `(grok/bot-setup/skills)`
 - [[invoice-readiness-check]] — Skill — Invoice Readiness Check `(grok/bot-setup/skills)`
 - [[job-report]] — Skill — Project Report `(grok/bot-setup/skills)`
+- [[proposal-assembly]] — Skill — Proposal Assembly `(grok/bot-setup/skills)`
 - [[receipt-extraction]] — Skill — Receipt Extraction `(grok/bot-setup/skills)`
+- [[rfq-intake]] — Skill — RFQ Intake `(grok/bot-setup/skills)`
+- [[workup-billing-math]] — Skill — Work-Up Billing Math `(grok/bot-setup/skills)`
 - [[drawing-extraction-strategy]] — Grok — Heater Drawing Extraction Strategy `(grok)`
 - [[f501-coil-flythrough-build-prompt]] — Grok Build prompt — F-501 Pass B POV flythrough (wormhole style) `(grok)`
 - [[07-llms/grok/overview|overview]] — Grok — Overview `(grok)`
