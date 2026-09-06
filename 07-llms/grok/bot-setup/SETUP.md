@@ -9,8 +9,48 @@ tags: [grok, xai, grok-bot, automation, trial]
 One-month trial started 2026-09-06. Design rationale and the four-week plan live in
 `~/.claude/plans/i-am-experimenting-with-fuzzy-plum.md`. This file is the doing part.
 
-Product mechanics read from docs.x.ai/grok-bot on 2026-09-06. Anything marked *inference* was not
-stated in the docs and needs checking on day 1.
+Product mechanics read from docs.x.ai/grok-bot on 2026-09-06, then **verified in the running app
+the same day** by driving it directly. Where the app and the docs (or the third-party connector
+directories) disagree, what is written here is what the app showed.
+
+## What the app actually showed, 2026-09-06
+
+**The cloud computer is real and already provisioned.** Opening a Bot's screen gives a Linux
+desktop with a dock — Chrome, an editor, and a terminal. The terminal opens at `/workspace` with
+the prompt `box@cursor:/workspace$`; the hostname is literally `cursor`, which corroborates the
+reports that this runs on Cursor infrastructure.
+
+**git is installed: version 2.47.3.** That was an inference in the first draft of this file and it
+is now a read fact. The clone was run and succeeded — 6319 objects, 16.21 MiB, no credentials
+prompted, and `ls vault` returns the full vault including the same-day commit. **Step 0 is done.**
+
+**Typing into the Bot's screen from outside is unreliable.** Anything longer than about a dozen
+characters routes through the local clipboard, which does not cross into the VM — it arrives as
+`^M` and nothing else. Short strings type fine. Type long commands in chunks, or type them inside
+the VM rather than through a remote-control layer.
+
+**Three connector facts that change the design.** There is **no SharePoint connector at all** —
+searching the marketplace for it returns "No plugins match". **OneDrive exists but is read-only**:
+its description is "Browse, search, and read Microsoft On...". **Outlook and Outlook Calendar both
+exist**, and **GitHub exists with write** ("Manage repos, issues, pull requests"). The public
+connector directory that listed SharePoint and OneDrive under Business & Enterprise is not what
+this account sees.
+
+**Routine triggers are richer than the docs implied.** The full list: On a schedule, Slack message,
+**Git event**, Teams message, Linear issue, Sentry alert, PagerDuty incident, **Webhook**. The
+schedule submenu offers Every hour, Every day, Weekdays, Every week, Every month, Interval, and
+Advanced. Weekdays is native, so the business-hours advice needs no cron. The routine editor
+carries Name, Instruction, When to run, Run history, an Active toggle, Test run and Delete.
+
+**Usage is visible without hunting for it.** The account menu bottom-left reads `SuperGrok — 1%`,
+and opening it shows "Resets in 7 days" plus a **Change limit** control for capping spend. That
+answers the renewal question directly — watch that percentage, and set the limit before attaching
+routines.
+
+**Also present:** a "Teach a task" recorder in the Bot-screen toolbar (the demonstration capture),
+a Marketplace with separate **Plugins** and **Bots** tabs, and a `+` menu offering Create new Bot,
+Create group chat, or an existing Bot. One Bot already exists on the account — "Chief of Staff",
+with Gmail and Google Drive added and Gmail still awaiting a sign-in.
 
 ## Files here
 
@@ -28,19 +68,19 @@ loop has been proven, because a Bot that miscites a rate is worse than no Bot.
 
 ## Day 1 — substrate
 
-Sequence: `verify terminal > clone vault > write README > create Librarian > citation audit`
+Sequence: `~~verify terminal~~ > ~~clone vault~~ > write README > create Librarian > citation audit`
 
-1. In a Bot terminal, check git exists (*inference: the docs describe a terminal but do not say git
-   is installed*). If it is missing, `apt-get install git`, or fall back to the GitHub connector.
+1. ~~Check git exists.~~ **Done** — git 2.47.3.
+2. ~~Clone the vault.~~ **Done** — `/workspace/vault` is populated.
 
 ```bash
 git clone https://github.com/TheSkinz/obsidian-work.git /workspace/vault
 ```
 
-2. Create the project folders: `/workspace/bids`, `/workspace/jobs`, `/workspace/out`,
+3. Still to do: create the project folders `/workspace/bids`, `/workspace/jobs`, `/workspace/out`,
    `/workspace/scratch`.
-3. Copy `README-FOR-BOTS.md` to `/workspace/README-FOR-BOTS.md`.
-4. Create **Librarian** and nothing else. Paste its Description from `bot-profiles.md`.
+4. Still to do: copy `README-FOR-BOTS.md` to `/workspace/README-FOR-BOTS.md`.
+5. Still to do: create **Librarian** and nothing else. Paste its Description from [[bot-profiles]].
 
 ## Day 2 — citation audit, and the go/no-go
 
@@ -77,10 +117,24 @@ Add **Intake** and **Estimator**, write the four estimating skills, create the "
 with Intake, Estimator and Scribe. Attach the first two routines once their skills have run clean
 by hand.
 
-## Week 3 — the browser experiment
+## Week 3 — the browser experiment, now narrower
 
-Add **Scout** and the reconcile routine. This is the only capability Claude Code structurally
-cannot provide, so it decides whether the product is worth anything beyond the trial.
+Add **Scout**. Its bid-folder reconcile job was designed around a SharePoint connector that does
+not exist, and OneDrive's connector is read-only, so the original job cannot be built the way it
+was written. Two honest options remain: drive the SharePoint web UI through the Bot's Chrome,
+which is the fragile path the power-user consensus warns against and which is also where the
+datacenter-IP sign-in blocks bite; or drop the reconcile and give Scout only the portal watch.
+
+Take the browser path anyway for one week. Watching it fail is the point — this is the capability
+Claude Code structurally cannot provide, and whether the browser route is usable is the single
+question that decides if the product is worth anything beyond the trial. Just do not build the
+month around it.
+
+**Better use of the Git event trigger, found in the app:** point Librarian's vault refresh at a
+Git event on `obsidian-work` rather than a daily schedule. It then fires when the vault actually
+changes instead of every morning regardless — defect-triggered rather than clock-triggered, which
+is the same principle the vault's own loop audit landed on. Same for a Webhook trigger if anything
+else should wake a Bot.
 
 ## Week 4 — back-test and verdict
 
