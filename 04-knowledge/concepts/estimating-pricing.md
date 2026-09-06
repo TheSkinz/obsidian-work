@@ -62,6 +62,17 @@ shortcut is right for a generic build and wrong wherever the contract splits it.
 
 ## Baseline rate table
 
+> [!warning] Second copy — `usadebusk-estimating` § Baseline Rate Table is the original.
+> The table below duplicates the one in the skill. **Checked mechanically 2026-09-06: 30 rows each,
+> every rate and unit identical, and the two have already drifted on one cell** — the Third Party row's
+> Unit note reads *"Per contract — confirm the project/facility rate; no default"* in the skill and
+> *"Per contract — no default; confirm the applicable rate"* here. No figure moved, and that is the
+> point: this is what drift looks like at the start, in the prose nobody diffs. If they disagree on
+> anything that matters, **the skill wins** — it is what a bid actually loads, and
+> `tools/rate_history_rollup.py` reads its `Baseline (generic)` column live out of the skill rather
+> than from here, precisely so no third copy exists. Edit the skill first, then mirror here or delete
+> this section.
+
 Generic rates for new facilities without established contract rates. Use as starting estimate only — replace with actual contract rates before finalizing any proposal.
 
 Third-party markup: 5%, 10%, or 15% per the specific facility/project contract — no default. Always confirm.

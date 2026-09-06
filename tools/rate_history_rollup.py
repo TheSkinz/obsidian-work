@@ -66,6 +66,23 @@ RATE_HEADING = "Hourly Charge-Out Rates"
 # the column is sourced and HELD OUT OF THE MODAL COUNT (see build()). The Valero
 # card says outright that no contract rates are confirmed for the site and that the
 # set is precedent carried from DSP26094 / DSP26035.
+# Divergences already adjudicated by Jesse. The rollup must NOT re-flag these:
+# re-deriving a closed finding as though it were new is the specific failure the
+# source notes were written to prevent, and one of them says so in its own heading.
+#
+# Keyed (quote key, canonical line item, unit) -> the ruling.
+SETTLED = {
+    ("DSP26006", "Filtration", "hr"): (
+        "Settled by Jesse 2026-07-27 (commit `e4b7cb0`), and DSP26006 carries it under a "
+        "heading that reads **\"Filtration hours — settled, do not re-flag.\"** 44 hrs billed "
+        "at the $180 pumping rate, 61 at $150 non-pumping; the 44 is 39 pigging + 5 smart "
+        "pigging, and on the filter press only pigging counts as pumping — so 5 hrs sat $30/hr "
+        "high, a **$150 variance**, reviewed and accepted on a closed invoice. Not worth "
+        "recovering. **The rate basis differs by unit and is easy to invert: the Trimax bills "
+        "smart pig at the pigging rate because the pump is still pushing water; the filter "
+        "press does not.**"),
+}
+
 POINTERS = {
     "DSP26100": (
         "02-facilities/Valero/Three-Rivers-TX/_facility.md",
@@ -121,7 +138,7 @@ _alias("Pumper — Pigging (triple mode)",
 _alias("Pumper — Pigging (double mode)",
        "Trimax Pumper Double Mode: Pigging", "Double: Pigging")
 _alias("Pumper — Pigging (mode not stated)",
-       "Pumper: Pigging", "Trimax Pigging", "Trimax: Pigging",
+       "Pumper: Pigging", "Trimax Pigging", "Trimax: Pigging", "Pumper: Pig",
        "Decoking pumper — pigging (incl. hoses, launchers, receivers, whip checks)")
 _alias("Pumper — Smart Pig",
        "Pumper: Smart Pig", "Trimax Pumper: Smart Pigging", "Trimax: Smart Pig",
@@ -369,6 +386,59 @@ def section_prose(text: str, heading: str) -> str:
                     if l and not l.startswith("|") and not re.fullmatch(r"-{3,}", l))
 
 
+def load_baseline() -> tuple[dict, list[str], str | None]:
+    """The `usadebusk-estimating` Baseline Rate Table, read from the skill at run time.
+
+    WHY THIS COLUMN EXISTS, in Jesse's own words (2026-09-05): *"I tend to treat most
+    jobs like I'm building rates for a new facility / scope and **use the generic rates
+    as a base**, increasing / decreasing what I think I need to."* If that is the method,
+    then distance from the generic table is not noise — it is the record of how far each
+    bid was moved and in which direction. That is a different question from "what have we
+    usually charged", which is what the plurality column answers, and his other sentence
+    asks for that one too: *"we shouldn't assume we'll use the exact rates, but we should
+    definitely keep track of the historical rates used for previous project."* Two asks,
+    two columns.
+
+    READ, NEVER COPIED. The table lives in the config repo. Mirroring it into the vault
+    would create a second copy to drift — which has already happened once, in
+    `04-knowledge/concepts/estimating-pricing.md`. Base-gated the way
+    `tools/baseline_staleness.py` gates the same repo: if it is absent on this machine,
+    the column is omitted and the report says so rather than printing a stale constant.
+
+    Returns (cells, unmapped labels, error). Baseline labels that do not resolve are
+    kept OUT of the quote-side unmapped list — the per-size pig rows have no counterpart
+    in a charge-out table and are not a backlog.
+    """
+    skill = Path.home() / ".claude" / "skills" / "usadebusk-estimating" / "SKILL.md"
+    if not skill.exists():
+        return {}, [], f"claude-config repo not present at {skill.parent.parent} — nothing judged"
+    text = skill.read_text(encoding="utf-8", errors="replace")
+    rows = estimating_rollup.table_rows(
+        estimating_rollup.section_lines(text, "Baseline Rate Table"))
+    cells: dict[tuple[str, str], tuple[str, float | None]] = {}
+    unmapped: list[str] = []
+    for r in rows:
+        if len(r) < 4:
+            continue
+        # Columns are | Category | Description | Rate | Unit |. The line item is
+        # normally the Description ("Pumper: Pig", "Support Unit"), but the markup row
+        # carries its name in the Category instead ("Third Party" / "Cost + markup"),
+        # so fall back rather than losing that row to the unmapped list.
+        label, rate, unit = r[1].strip(), r[2].strip(), r[3].strip()
+        canon = ALIASES.get(norm_label(label)) or ALIASES.get(norm_label(r[0]))
+        if canon is None:
+            unmapped.append(label)
+            continue
+        u, _ = split_unit(unit)
+        if canon in UNITLESS:
+            u = "markup"
+        disp, val, _txt, _sup = parse_rate(rate)
+        cells[(canon, u)] = (disp, val)
+    if not cells:
+        return {}, unmapped, "Baseline Rate Table not found in the skill"
+    return cells, unmapped, None
+
+
 class Quote:
     def __init__(self, path: Path, fm: dict[str, str], qid: str):
         self.path = path
@@ -386,6 +456,22 @@ class Quote:
     @property
     def submitted(self) -> str:
         return (self.fm.get("date-submitted") or "").strip() or "(not recorded)"
+
+    @property
+    def client(self) -> str:
+        return (self.fm.get("client") or "?").strip()
+
+    @property
+    def contract_fields_missing(self) -> list[str]:
+        """Which of the three contract fields this quote does not answer.
+
+        quote-lifecycle.md wrote the spec for this report before it existed: these
+        fields "are what a future rate-history rollup would segment on; without them
+        it can only compare rates it cannot explain." A key absent and a key present
+        but empty are the same thing to a reader, so both count as missing.
+        """
+        return [k for k in ("contract-type", "rate-basis", "billing-basis")
+                if not (self.fm.get(k) or "").strip()]
 
     @property
     def sort_key(self) -> tuple:
@@ -441,14 +527,28 @@ def load_quotes(root: Path) -> tuple[list[Quote], list[Quote]]:
     return with_rates, rateless
 
 
-def modal(values: list) -> tuple[object | None, int, int, bool]:
-    """(value, support, population, tied). Tied modes are reported, never broken."""
-    if not values:
-        return None, 0, 0, False
-    counts = Counter(values)
+def modal(pairs: list[tuple]) -> tuple:
+    """(value, quote support, quote population, client support, client population, tied).
+
+    Takes (value, client) pairs and reports support BOTH ways, because quote count
+    alone misleads badly on this corpus. **Five of the nine voting quotes are
+    ExxonMobil Baytown**, so a plurality computed over quotes is weighted toward one
+    client's rate set, and a non-Baytown quote that matches the house baseline can be
+    flagged as the outlier. `8 of 9 quotes, 5 of 5 clients` and `8 of 9 quotes, 2 of 5
+    clients` are very different claims and a single count cannot tell them apart.
+
+    Tied modes are reported as tied, never broken.
+    """
+    if not pairs:
+        return None, 0, 0, 0, 0, False
+    counts = Counter(v for v, _ in pairs)
     top = max(counts.values())
     winners = [v for v, c in counts.items() if c == top]
-    return winners[0], top, len(values), len(winners) > 1
+    win = winners[0]
+    clients_for_win = {c for v, c in pairs if v == win}
+    all_clients = {c for _, c in pairs}
+    return (win, top, len(pairs),
+            len(clients_for_win), len(all_clients), len(winners) > 1)
 
 
 def fmt_money(v: float) -> str:
@@ -469,10 +569,17 @@ def build(root: Path) -> str:
         f"**Generated:** {date.today().isoformat()} — every `## {RATE_HEADING}` table in the "
         "vault, date-ordered, against the most common figure across quotes.",
         "",
+        "> **Every figure here is a QUOTED rate, and quoted is not billed.** Bill rates diverge from "
+        "the same job's quote: the 2026-07-06 QuickBooks pull found Valero Port Arthur billed Trimax "
+        "pigging at **$550/hr against $500/hr quoted**, and ExxonMobil billed the PM role at the Day "
+        "Supervisor rate; DSP25123 was quoted `T & M`, issued on a spot PO, then invoiced as a single "
+        "fixed-price line at the quoted total. **Billed rates are not in this table.** Reconcile "
+        "quoted against billed at invoice review, not here.",
+        "",
         "> **These rates are expired or contract-bound, not available.** Rates belong to a "
         "**contract**, not to a facility and not to this table. A short-form scope contract "
         "freezes its rates for one identified scope and **ends when that scope completes**, so "
-        "a figure here is a record of what was charged and when. **Nothing in this table can "
+        "a figure here is a record of what was quoted and when. **Nothing in this table can "
         "be quoted from.** The rates for the next bid come from that bid's own contract or bid "
         "instructions — see `04-knowledge/concepts/rfq-intake-protocol.md` § 3.",
         "",
@@ -490,8 +597,25 @@ def build(root: Path) -> str:
         "Baseline Rate Table is the only named company-wide schedule and it is captioned "
         "*generic rates for new facilities without contract rates*; it diverges from what is "
         "actually quoted on most lines. So this column is the plurality of what was really "
-        "charged, **and it prints its own support count**. Read `(5 of 9)` as a coin flip and "
-        "`(9 of 9)` as a settled practice. A tie is reported as a tie and never broken.",
+        "quoted, **and it prints its own support count both ways**. A tie is reported as a tie and "
+        "never broken.",
+        "",
+        "> ⚠ **Read the client count, not the quote count. The corpus is weighted toward one "
+        "customer.** Five of the nine voting quotes are ExxonMobil Baytown, so a plurality computed "
+        "over quotes alone is close to *the Baytown rate set* — and a non-Baytown quote that matches "
+        "the house baseline can be flagged as the outlier for doing so. The split is sharpest on "
+        "labor and DEF: Baytown carries $64.92/$67.79 supervision, $55.39 operator and $180/shift "
+        "DEF, while Flint Hills and Marathon both carry the estimating skill's baseline $74.00 "
+        "supervisor, $64.00 operator and $125/shift DEF. HF Sinclair and Valero are each a further "
+        "pattern again. **`8 of 9 quotes, 2 of 5 clients` is a much weaker claim than `8 of 9 "
+        "quotes, 5 of 5 clients`** — the counts are printed side by side so the difference is "
+        "visible rather than buried.",
+        "",
+        "> One column resists the count. **DSP26095 (Westlake) is not an independent observation.** "
+        "Its own `rate-basis` records that the rates were *constructed by Jesse for this bid*, and "
+        "they match Baytown line for line — so it is a sixth Baytown-shaped sheet wearing a "
+        "different client name. The tool counts distinct `client:` values mechanically and cannot "
+        "know that; discount it by hand when reading a client count that includes it.",
         "",
     ]
 
@@ -504,8 +628,8 @@ def build(root: Path) -> str:
         "their own (`DSP26071.md` → `DSP26071.2`, `DSP24005.md` → `DSP24005.2`, "
         "`DSP26006.md` → `DSP#26006`).",
         "",
-        "| Col | Quote | Client / facility | Heaters | Submitted | Status | Rate basis | Billing basis | Source |",
-        "|---|---|---|---|---|---|---|---|---|",
+        "| Col | Quote | Client / facility | Heaters | Submitted | Status | Contract type | Rate basis | Billing basis | Source |",
+        "|---|---|---|---|---|---|---|---|---|---|",
     ]
     for q in quotes:
         fm = q.fm
@@ -515,36 +639,68 @@ def build(root: Path) -> str:
         lines.append(
             f"| `{q.key}` | [[{q.path.stem}\\|{q.qid}]] | {client or '?'} | "
             f"{heaters} | {q.submitted} | **{fm.get('status', '?')}** | "
-            f"{fm.get('rate-basis') or '(not recorded)'} | "
-            f"{fm.get('billing-basis') or '(not recorded)'} | {src} |")
+            f"{(fm.get('contract-type') or '').strip() or '(not recorded)'} | "
+            f"{(fm.get('rate-basis') or '').strip() or '(not recorded)'} | "
+            f"{(fm.get('billing-basis') or '').strip() or '(not recorded)'} | {src} |")
     lines.append("")
 
+    # The three contract fields are the report's explanatory layer, and their absence
+    # is the report's most useful negative finding -- so it is stated, not implied.
+    gaps = [q for q in quotes if q.contract_fields_missing]
+    if gaps:
+        lines += [
+            "> **Where the explanation is missing.** `contract-type` is the discriminator for rate "
+            "divergence — approved 2026-07-19, and **department explicitly is not** (Jesse walked "
+            "that reading back; department correlates, it does not cause). "
+            "`04-knowledge/concepts/quote-lifecycle.md` wrote this report's spec before it existed: "
+            "these fields *\"are what a future rate-history rollup would segment on; without them it "
+            "can only compare rates it cannot explain.\"* Quotes below that do not answer all three:",
+            "",
+        ]
+        for q in gaps:
+            lines.append(
+                f"> - `{q.key}` ({q.client}) — missing "
+                + ", ".join(f"`{k}`" for k in q.contract_fields_missing))
+        lines += [
+            "",
+            "> A blank is honest where an inferred value is not, so these are a backlog rather than a "
+            "defect. But note the cost: the quote with the widest spread in the table is usually one "
+            "of these, and its divergence therefore has no recorded reason.",
+            "",
+        ]
+
     # --- The table ----------------------------------------------------------
+    base_cells, base_unmapped, base_err = load_baseline()
     hdr = " | ".join(f"`{q.key}`" for q in quotes)
+    extra = " Baseline (generic) | Moved |" if not base_err else ""
+    ncols = len(quotes) + 3 + (2 if not base_err else 0)
     lines += [
         "## Rates",
         "",
-        f"| Line Item | Unit | {hdr} | Most common (derived) |",
-        "|---" * (len(quotes) + 3) + "|",
+        f"| Line Item | Unit | {hdr} | Most common (historical) |{extra}",
+        "|---" * ncols + "|",
     ]
     flagged: list[str] = []
     superseded_cells: list[str] = []
+    settled_cells: list[str] = []
     for canon, unit in rows:
         cells = []
-        nums = [q.cells[(canon, unit)][1] for q in voting if (canon, unit) in q.cells
-                and q.cells[(canon, unit)][1] is not None]
-        texts = [q.cells[(canon, unit)][2] for q in voting if (canon, unit) in q.cells
-                 and q.cells[(canon, unit)][2] is not None]
-        if nums:
-            mval, sup, pop, tied = modal(nums)
-        else:
-            mval, sup, pop, tied = modal(texts)
+        nums = [(q.cells[(canon, unit)][1], q.client) for q in voting
+                if (canon, unit) in q.cells and q.cells[(canon, unit)][1] is not None]
+        texts = [(q.cells[(canon, unit)][2], q.client) for q in voting
+                 if (canon, unit) in q.cells and q.cells[(canon, unit)][2] is not None]
+        mval, sup, pop, csup, cpop, tied = modal(nums or texts)
         for q in quotes:
             got = q.cells.get((canon, unit))
             if got is None:
                 cells.append("—")
                 continue
             disp, val, txt, sup_flag, unit_note = got
+            ruling = SETTLED.get((q.key, canon, unit))
+            if ruling:
+                settled_cells.append(f"`{canon}` ({unit}) — {q.qid} at {disp}. {ruling}")
+                cells.append(f"{disp} ᵃ")
+                continue
             if sup_flag:
                 superseded_cells.append(
                     f"`{canon}` ({unit}) — {q.qid}: {disp}"
@@ -554,17 +710,49 @@ def build(root: Path) -> str:
             if mval is not None and eff is not None and eff != mval and not tied:
                 mark = "**≠** "
                 flagged.append(
-                    f"`{canon}` ({unit}) — {q.qid} at {disp}, against "
+                    f"`{canon}` ({unit}) — {q.qid} ({q.client}) at {disp}, against "
                     f"{fmt_money(mval) if isinstance(mval, float) else mval} "
-                    f"on {sup} of {pop}")
+                    f"on {sup} of {pop} quotes / {csup} of {cpop} clients")
             cells.append(f"{mark}{disp}")
         if mval is None:
             mcol = "—"
         else:
             shown = fmt_money(mval) if isinstance(mval, float) else str(mval)
-            mcol = f"{shown} ({sup} of {pop})" + (" — **tied**" if tied else "")
-        lines.append(f"| {canon} | {unit} | " + " | ".join(cells) + f" | {mcol} |")
+            mcol = (f"{shown} ({sup} of {pop} quotes, {csup} of {cpop} clients)"
+                    + (" — **tied**" if tied else ""))
+        tail = f" | {mcol} |"
+        if not base_err:
+            bdisp, bval = base_cells.get((canon, unit), ("—", None))
+            moved = "—"
+            if bval is not None and isinstance(mval, float):
+                d = mval - bval
+                # A sign is the whole point of this column: it says which way the bid
+                # was moved off the generic base, not merely that it was moved.
+                moved = "same" if abs(d) < 0.005 else f"{'+' if d > 0 else '−'}{fmt_money(abs(d))}"
+            tail = f" | {mcol} | {bdisp} | {moved} |"
+        lines.append(f"| {canon} | {unit} | " + " | ".join(cells) + tail)
 
+    if base_err:
+        lines += [
+            "",
+            f"> **`Baseline (generic)` and `Moved` are omitted — {base_err}.** They read the "
+            "Baseline Rate Table live out of `usadebusk-estimating`; the table is never copied "
+            "into the vault, because a second copy is a copy that drifts.",
+        ]
+    else:
+        lines += [
+            "",
+            "**The two right-hand columns answer different questions, and both were asked for.** "
+            "*Most common (historical)* is the record — Jesse, 2026-09-05: *\"we shouldn't assume "
+            "we'll use the exact rates, but we should definitely keep track of the historical "
+            "rates used for previous project.\"* *Baseline (generic)* and *Moved* are the drift — "
+            "same conversation: *\"I tend to treat most jobs like I'm building rates for a new "
+            "facility / scope and **use the generic rates as a base**, increasing / decreasing "
+            "what I think I need to.\"* On that method a cell differing from the generic is not "
+            "an error, it is **the record of the adjustment**, and the sign is the interesting "
+            "part. The Baseline column is read live from `usadebusk-estimating` § Baseline Rate "
+            "Table and is never copied here.",
+        ]
     lines += [
         "",
         "**Reading a cell.** `—` means that quote's schedule does not carry this line. It does "
@@ -581,17 +769,28 @@ def build(root: Path) -> str:
         "sheets, $1,016/shift on the earlier ones) and that basis change is unreconciled. Two "
         "rates on different bases are not a spread; they are different questions.",
         "",
-        "> ⚠ **`Pumper — Pigging (mode not stated)` is the one row whose ≠ marks may not be "
-        "divergences at all.** Pigging is priced by mode — triple runs above double — but only "
-        "DSP25084 and DSP25123 label the mode, and DSP26039 labels it as `Triple: Pigging`. Every "
-        "other note writes an unqualified `Pumper: Pigging` or `Trimax Pigging`, so that row mixes "
-        "triple-mode, double-mode and unknown-mode figures on one line. DSP26071.2's $800 reads as "
-        "a triple rate and DSP26085's $650 as a double, which would make both of them agree with "
-        "the mode-specific rows above rather than diverge from this one. **The rollup cannot tell** "
-        "— the source does not say. Read this row against the note, and if the mode label is worth "
-        "having, it has to be written at bid time.",
+        "> **`Pumper — Pigging (mode not stated)` mixes bases, so its ≠ marks may not be "
+        "divergences.** Pigging is priced by mode and only three notes say which mode they mean, so "
+        "that row carries triple, double and unlabelled figures together. DSP26071.2's $800 reads as "
+        "a triple rate and DSP26085's $650 as a double, which would put both in agreement with the "
+        "mode-specific rows above rather than at odds with this one. The rollup cannot tell — the "
+        "source does not say. Read the row against the note.",
         "",
     ]
+
+    # --- Settled ------------------------------------------------------------
+    if settled_cells:
+        lines += [
+            "## Settled — do not re-flag",
+            "",
+            "Marked **ᵃ** in the table. These divergences were adjudicated and closed. They are "
+            "shown because hiding them would make the table look cleaner than the record is, but "
+            "**re-deriving one as a new finding is the specific error the source notes were "
+            "written to prevent** — one of them says so in its own heading.",
+            "",
+        ]
+        lines += [f"- {s}" for s in settled_cells]
+        lines.append("")
 
     # --- Superseded ---------------------------------------------------------
     lines += ["## Superseded cells", ""]

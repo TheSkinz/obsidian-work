@@ -117,8 +117,11 @@ $150/hr governs. Filtration was declined before execution, so it never reached a
 invoice. Detail on [[DSP25123]].
 
 **Support Unit $35 on DSP25084 stands as what that expired contract carried.** $30/hr is
-the house standard (`04-knowledge/pricing/_cost-model.md`, `usadebusk-estimating`) and is
-what DSP26039 carries. Per Jesse 2026-07-26, $30 will be right for the majority of bids —
+the house standard (`usadebusk-estimating` § Baseline Rate Table) and is
+what DSP26039 carries. *(This line also cited `04-knowledge/pricing/_cost-model.md` until
+2026-09-06. That file is internal **cost**, not bill rates — its Support Unit line reads
+$3.45/hr — and its own header says bill rates live on the quote note. Citation struck here
+and in [[quote-lifecycle]], which carried the same error from the same 2026-07-26 session.)* Per Jesse 2026-07-26, $30 will be right for the majority of bids —
 but the divergence needs no reconciling, because each figure belonged to a contract that
 set its own rates and then ended. Start from the house standard and take the governing
 figure from this bid's contract or bid instructions.

@@ -2,69 +2,96 @@
 # Rate History Rollup
 **Generated:** 2026-09-06 — every `## Hourly Charge-Out Rates` table in the vault, date-ordered, against the most common figure across quotes.
 
-> **These rates are expired or contract-bound, not available.** Rates belong to a **contract**, not to a facility and not to this table. A short-form scope contract freezes its rates for one identified scope and **ends when that scope completes**, so a figure here is a record of what was charged and when. **Nothing in this table can be quoted from.** The rates for the next bid come from that bid's own contract or bid instructions — see `04-knowledge/concepts/rfq-intake-protocol.md` § 3.
+> **Every figure here is a QUOTED rate, and quoted is not billed.** Bill rates diverge from the same job's quote: the 2026-07-06 QuickBooks pull found Valero Port Arthur billed Trimax pigging at **$550/hr against $500/hr quoted**, and ExxonMobil billed the PM role at the Day Supervisor rate; DSP25123 was quoted `T & M`, issued on a spot PO, then invoiced as a single fixed-price line at the quoted total. **Billed rates are not in this table.** Reconcile quoted against billed at invoice review, not here.
+
+> **These rates are expired or contract-bound, not available.** Rates belong to a **contract**, not to a facility and not to this table. A short-form scope contract freezes its rates for one identified scope and **ends when that scope completes**, so a figure here is a record of what was quoted and when. **Nothing in this table can be quoted from.** The rates for the next bid come from that bid's own contract or bid instructions — see `04-knowledge/concepts/rfq-intake-protocol.md` § 3.
 
 > **Read a divergence as a flag, not as a regime.** USADebusk prefers to run the same rates at every facility, so most cells should agree. Where one does not, there are **two legitimate drivers** (Jesse, 2026-07-26): **contract term** — a short-form contract froze an older figure, so two quotes differing can be two moments in time rather than two policies; and **competitive pressure** — rates cut to win a contested RFQ, a deliberate commercial act rather than drift. **Department or division is NOT the discriminator** — that reading was walked back on 2026-07-26. Department correlates; it does not cause.
 
-> **`Most common (derived)` is computed here — it is not a house standard.** No artifact in the vault or the skills is the house standard. The `usadebusk-estimating` Baseline Rate Table is the only named company-wide schedule and it is captioned *generic rates for new facilities without contract rates*; it diverges from what is actually quoted on most lines. So this column is the plurality of what was really charged, **and it prints its own support count**. Read `(5 of 9)` as a coin flip and `(9 of 9)` as a settled practice. A tie is reported as a tie and never broken.
+> **`Most common (derived)` is computed here — it is not a house standard.** No artifact in the vault or the skills is the house standard. The `usadebusk-estimating` Baseline Rate Table is the only named company-wide schedule and it is captioned *generic rates for new facilities without contract rates*; it diverges from what is actually quoted on most lines. So this column is the plurality of what was really quoted, **and it prints its own support count both ways**. A tie is reported as a tie and never broken.
+
+> ⚠ **Read the client count, not the quote count. The corpus is weighted toward one customer.** Five of the nine voting quotes are ExxonMobil Baytown, so a plurality computed over quotes alone is close to *the Baytown rate set* — and a non-Baytown quote that matches the house baseline can be flagged as the outlier for doing so. The split is sharpest on labor and DEF: Baytown carries $64.92/$67.79 supervision, $55.39 operator and $180/shift DEF, while Flint Hills and Marathon both carry the estimating skill's baseline $74.00 supervisor, $64.00 operator and $125/shift DEF. HF Sinclair and Valero are each a further pattern again. **`8 of 9 quotes, 2 of 5 clients` is a much weaker claim than `8 of 9 quotes, 5 of 5 clients`** — the counts are printed side by side so the difference is visible rather than buried.
+
+> One column resists the count. **DSP26095 (Westlake) is not an independent observation.** Its own `rate-basis` records that the rates were *constructed by Jesse for this bid*, and they match Baytown line for line — so it is a sixth Baytown-shaped sheet wearing a different client name. The tool counts distinct `client:` values mechanically and cannot know that; discount it by hand when reading a client count that includes it.
 
 ## Column key
 
 Provenance for every column, read from each note's own frontmatter. **The quote number is never derived from the filename** — three notes disagree with their own (`DSP26071.md` → `DSP26071.2`, `DSP24005.md` → `DSP24005.2`, `DSP26006.md` → `DSP#26006`).
 
-| Col | Quote | Client / facility | Heaters | Submitted | Status | Rate basis | Billing basis | Source |
-|---|---|---|---|---|---|---|---|---|
-| `DSP25084` | [[DSP25084\|DSP25084]] | ExxonMobil / ExxonMobil-Baytown-TX | PS8-F802-CrudeHeater | 2025-07-15 | **awarded** | quote-specific | T&M; mob/demob waived | own quote note |
-| `DSP26006` | [[DSP26006\|DSP#26006]] | Flint Hills Resources / Flint-Hills-Corpus-Christi-TX | 01-BA-105, 02-BA-201 | 2026-01-16 | **awarded** | DSP#26006 emergency quote, January 2026 — quote-specific, not a facility contract | (not recorded) | own quote note |
-| `DSP25123` | [[DSP25123\|DSP25123]] | ExxonMobil / ExxonMobil-Baytown-TX | PS8-F901-KeroseneFurnace | 2026-04-06 | **awarded** | quote-specific | quoted T&M; invoiced as a single fixed-price line at the quoted total | own quote note |
-| `DSP26039` | [[DSP26039\|DSP26039]] | ExxonMobil / ExxonMobil-Baytown-TX | HU9-F301-SplitterReboiler, HU9-F371A-StabilizerReboiler | 2026-04-07 | **pending** | quote-specific | T&M + LS mob/demob | own quote note |
-| `DSP26058` | [[DSP26058\|DSP26058]] | Marathon / Marathon-Garyville-LA | Unit-210_1401A-Crude, Unit-210_1402B-Crude, Unit-210_1403A-Vac, Unit-210_1404B-Vac | 2026-05-12 | **lost** | (not recorded) | (not recorded) | own quote note |
-| `DSP260712` | [[DSP26071\|DSP26071.2]] | ExxonMobil / ExxonMobil-Baytown-TX | HU5A-F501-ProcessTreatGas | 2026-06-02 | **awarded** | quote-specific | T&M + LS mob/demob | own quote note |
-| `DSP26085` | [[DSP26085\|DSP26085]] | ExxonMobil / ExxonMobil-Baytown-TX | 27GF1A-F201-TreatGas | 2026-07-06 | **pending** | quote-specific | T&M + LS mob/demob | own quote note |
-| `DSP26095` | [[DSP26095\|DSP26095]] | Westlake South / Westlake-South-Westlake-LA | H-101-TE-II-EDC-Furnace | 2026-07-29 | **lost** | quote-specific — no active contract at this site; rates constructed by Jesse for this bid | T&M + LS mob/demob | own quote note |
-| `DSP26100` | [[DSP26100\|DSP26100]] | Valero / Valero-Three-Rivers-TX | 100-H-1, 100-H-2, H-1102 | 2026-08-22 | **pending** | (not recorded) | (not recorded) | facility card — Valero precedent set, unconfirmed for this site |
-| `DSP26080` | [[DSP26080\|DSP26080]] | HF Sinclair / HF-Sinclair-Artesia-NM | H-2421-HDU-Charge-Heater, H-30, H-2501-HotOil-Furnace | (not recorded) | **pending** | quote-specific | T&M + LS mob/demob | own quote note |
+| Col | Quote | Client / facility | Heaters | Submitted | Status | Contract type | Rate basis | Billing basis | Source |
+|---|---|---|---|---|---|---|---|---|---|
+| `DSP25084` | [[DSP25084\|DSP25084]] | ExxonMobil / ExxonMobil-Baytown-TX | PS8-F802-CrudeHeater | 2025-07-15 | **awarded** | short-form scope contract | quote-specific | T&M; mob/demob waived | own quote note |
+| `DSP26006` | [[DSP26006\|DSP#26006]] | Flint Hills Resources / Flint-Hills-Corpus-Christi-TX | 01-BA-105, 02-BA-201 | 2026-01-16 | **awarded** | (not recorded) | DSP#26006 emergency quote, January 2026 — quote-specific, not a facility contract | (not recorded) | own quote note |
+| `DSP25123` | [[DSP25123\|DSP25123]] | ExxonMobil / ExxonMobil-Baytown-TX | PS8-F901-KeroseneFurnace | 2026-04-06 | **awarded** | spot PO | quote-specific | quoted T&M; invoiced as a single fixed-price line at the quoted total | own quote note |
+| `DSP26039` | [[DSP26039\|DSP26039]] | ExxonMobil / ExxonMobil-Baytown-TX | HU9-F301-SplitterReboiler, HU9-F371A-StabilizerReboiler | 2026-04-07 | **pending** | (not recorded) | quote-specific | T&M + LS mob/demob | own quote note |
+| `DSP26058` | [[DSP26058\|DSP26058]] | Marathon / Marathon-Garyville-LA | Unit-210_1401A-Crude, Unit-210_1402B-Crude, Unit-210_1403A-Vac, Unit-210_1404B-Vac | 2026-05-12 | **lost** | (not recorded) | (not recorded) | (not recorded) | own quote note |
+| `DSP260712` | [[DSP26071\|DSP26071.2]] | ExxonMobil / ExxonMobil-Baytown-TX | HU5A-F501-ProcessTreatGas | 2026-06-02 | **awarded** | (not recorded) | quote-specific | T&M + LS mob/demob | own quote note |
+| `DSP26085` | [[DSP26085\|DSP26085]] | ExxonMobil / ExxonMobil-Baytown-TX | 27GF1A-F201-TreatGas | 2026-07-06 | **pending** | (not recorded) | quote-specific | T&M + LS mob/demob | own quote note |
+| `DSP26095` | [[DSP26095\|DSP26095]] | Westlake South / Westlake-South-Westlake-LA | H-101-TE-II-EDC-Furnace | 2026-07-29 | **lost** | (not recorded) | quote-specific — no active contract at this site; rates constructed by Jesse for this bid | T&M + LS mob/demob | own quote note |
+| `DSP26100` | [[DSP26100\|DSP26100]] | Valero / Valero-Three-Rivers-TX | 100-H-1, 100-H-2, H-1102 | 2026-08-22 | **pending** | (not recorded) | (not recorded) | (not recorded) | facility card — Valero precedent set, unconfirmed for this site |
+| `DSP26080` | [[DSP26080\|DSP26080]] | HF Sinclair / HF-Sinclair-Artesia-NM | H-2421-HDU-Charge-Heater, H-30, H-2501-HotOil-Furnace | (not recorded) | **pending** | (not recorded) | quote-specific | T&M + LS mob/demob | own quote note |
+
+> **Where the explanation is missing.** `contract-type` is the discriminator for rate divergence — approved 2026-07-19, and **department explicitly is not** (Jesse walked that reading back; department correlates, it does not cause). `04-knowledge/concepts/quote-lifecycle.md` wrote this report's spec before it existed: these fields *"are what a future rate-history rollup would segment on; without them it can only compare rates it cannot explain."* Quotes below that do not answer all three:
+
+> - `DSP26006` (Flint Hills Resources) — missing `contract-type`, `billing-basis`
+> - `DSP26039` (ExxonMobil) — missing `contract-type`
+> - `DSP26058` (Marathon) — missing `contract-type`, `rate-basis`, `billing-basis`
+> - `DSP260712` (ExxonMobil) — missing `contract-type`
+> - `DSP26085` (ExxonMobil) — missing `contract-type`
+> - `DSP26095` (Westlake South) — missing `contract-type`
+> - `DSP26100` (Valero) — missing `contract-type`, `rate-basis`, `billing-basis`
+> - `DSP26080` (HF Sinclair) — missing `contract-type`
+
+> A blank is honest where an inferred value is not, so these are a backlog rather than a defect. But note the cost: the quote with the widest spread in the table is usually one of these, and its divergence therefore has no recorded reason.
 
 ## Rates
 
-| Line Item | Unit | `DSP25084` | `DSP26006` | `DSP25123` | `DSP26039` | `DSP26058` | `DSP260712` | `DSP26085` | `DSP26095` | `DSP26100` | `DSP26080` | Most common (derived) |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Pumper — Rig-In / Rig-Out / Rig-Over | hr | $500.00 | **≠** $400.00 | $500.00 | $500.00 | $500.00 | $500.00 | $500.00 | $500.00 | **≠** $400.00 | **≠** $450.00 | $500.00 (7 of 9) |
-| Pumper — Pigging (triple mode) | hr | $800.00 | — | $800.00 | $800.00 | — | — | — | — | — | — | $800.00 (3 of 3) |
-| Pumper — Pigging (double mode) | hr | $650.00 | — | $650.00 | — | — | — | — | — | — | — | $650.00 (2 of 2) |
-| Pumper — Pigging (mode not stated) | hr | — | $500.00 | — | — | $500.00 | **≠** $800.00 | **≠** $650.00 | $500.00 | $500.00 | $500.00 | $500.00 (4 of 6) |
-| Pumper — Smart Pig | hr | $600.00 | **≠** $500.00 | $600.00 | $600.00 | — | $600.00 | $600.00 | **≠** $500.00 | **≠** $400.00 | **≠** $500.00 | $600.00 (5 of 8) |
-| Pumper — Stand-by | hr | $500.00 | **≠** $400.00 | $500.00 | $500.00 | **≠** $100.00 | $500.00 | $500.00 | $500.00 | — | **≠** $450.00 | $500.00 (6 of 9) |
-| Support Unit | hr | **≠** $35.00 | $30.00 | — | $30.00 | $30.00 | $30.00 | **≠** $35.00 | $30.00 | — | $30.00 | $30.00 (6 of 8) |
-| Support trailer | hr | — | — | — | — | — | — | — | — | $50.00 | — | — |
-| Support tractor | hr | — | — | — | — | — | — | — | — | $50.00 | — | — |
-| Filtration | hr | $200.00 | **≠** $180.00 | $200.00 | $200.00 | **≠** $150.00 | $200.00 | $200.00 | **≠** $150.00 | $200.00 | $200.00 | $200.00 (6 of 9) |
-| Filtration Stand-by | hr | $150.00 | $150.00 | ~~$35.00~~ → **$150.00** | $150.00 | **≠** $100.00 | ~~$35.00~~ → **$150.00** | $150.00 | $150.00 | $150.00 | $150.00 | $150.00 (8 of 9) |
-| 4x3 Trash Pump | hr | — | **≠** $80.00 | — | $85.00 | — | $85.00 | $85.00 | $85.00 | **≠** $80.00 | — | $85.00 (4 of 5) |
-| 4x3 Trash Pump | shift | $1,016.00 | — | $1,016.00 | — | — | — | — | — | — | $1,016.00 | $1,016.00 (3 of 3) |
-| Crew Truck | hr | $25.00 | **≠** $13.00 | $25.00 | $25.00 | $25.00 | $25.00 | $25.00 | $25.00 | **≠** $10.00 | **≠** $15.00 | $25.00 (7 of 9) |
-| Drain hose | hose/day | — | — | — | — | — | — | — | — | $20.00 | — | — |
-| Pressure hose | hose/day | — | — | — | — | — | — | — | — | $50.00 | — | — |
-| Project Manager | hr | $94.75 | — | — | $94.75 | — | $94.75 | $94.75 | $94.75 | **≠** $81.73 | — | $94.75 (5 of 5) |
-| Supervisor (day) | hr | $64.92 | — | $64.92 | $64.92 | — | $64.92 | $64.92 | $64.92 | **≠** $61.12 | — | $64.92 (6 of 6) |
-| Supervisor (night) | hr | $67.79 | — | $67.79 | $67.79 | — | $67.79 | $67.79 | $67.79 | **≠** $62.65 | — | $67.79 (6 of 6) |
-| Supervisor (shift not stated) | hr | — | $74.00 | — | — | $74.00 | — | — | — | — | **≠** $74.10 | $74.00 (2 of 3) |
-| Operator | hr | $55.39 | **≠** $64.00 | $55.39 | $55.39 | **≠** $64.00 | $55.39 | $55.39 | $55.39 | **≠** $57.28 | **≠** $58.25 | $55.39 (6 of 9) |
-| Per Diem | day | $150.00 | **≠** $125.00 | $150.00 | $150.00 | $150.00 | $150.00 | $150.00 | $150.00 | — | $150.00 | $150.00 (8 of 9) |
-| Per Diem — Supervision | day | — | — | — | — | — | — | — | — | $150.00 | — | — |
-| Per Diem — Operator | day | — | — | — | — | — | — | — | — | $130.00 | — | — |
-| Consumables per man | day | — | — | — | — | — | — | — | — | $30.00 | — | — |
-| DEF | shift | $180.00 | **≠** $125.00 | $180.00 | $180.00 | **≠** $125.00 | $180.00 | $180.00 | $180.00 | **≠** $100.00 | **≠** $125.00 | $180.00 (6 of 9) |
-| Equipment travel | mile | — | — | — | — | — | — | — | — | $3.00 | — | — |
-| Crew travel (non-driver) | hr | — | — | — | — | — | — | — | — | $57.28 | — | — |
-| Third-party markup | markup | — | **≠** 5% | — | 15% | 15% | 15% | 15% | 15% | Cost + 15% | — | 15% (5 of 6) |
-| Decoking pigs | markup | cost + 15% | — | cost + 15% | — | cost + 15% | — | — | — | — | **≠** Cost + 5% | 15% (3 of 4) |
+| Line Item | Unit | `DSP25084` | `DSP26006` | `DSP25123` | `DSP26039` | `DSP26058` | `DSP260712` | `DSP26085` | `DSP26095` | `DSP26100` | `DSP26080` | Most common (historical) | Baseline (generic) | Moved |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Pumper — Rig-In / Rig-Out / Rig-Over | hr | $500.00 | **≠** $400.00 | $500.00 | $500.00 | $500.00 | $500.00 | $500.00 | $500.00 | **≠** $400.00 | **≠** $450.00 | $500.00 (7 of 9 quotes, 3 of 5 clients) | $500.00 | same |
+| Pumper — Pigging (triple mode) | hr | $800.00 | — | $800.00 | $800.00 | — | — | — | — | — | — | $800.00 (3 of 3 quotes, 1 of 1 clients) | — | — |
+| Pumper — Pigging (double mode) | hr | $650.00 | — | $650.00 | — | — | — | — | — | — | — | $650.00 (2 of 2 quotes, 1 of 1 clients) | — | — |
+| Pumper — Pigging (mode not stated) | hr | — | $500.00 | — | — | $500.00 | **≠** $800.00 | **≠** $650.00 | $500.00 | $500.00 | $500.00 | $500.00 (4 of 6 quotes, 4 of 5 clients) | $500.00 | same |
+| Pumper — Smart Pig | hr | $600.00 | **≠** $500.00 | $600.00 | $600.00 | — | $600.00 | $600.00 | **≠** $500.00 | **≠** $400.00 | **≠** $500.00 | $600.00 (5 of 8 quotes, 1 of 4 clients) | $500.00 | +$100.00 |
+| Pumper — Stand-by | hr | $500.00 | **≠** $400.00 | $500.00 | $500.00 | **≠** $100.00 | $500.00 | $500.00 | $500.00 | — | **≠** $450.00 | $500.00 (6 of 9 quotes, 2 of 5 clients) | $500.00 | same |
+| Support Unit | hr | **≠** $35.00 | $30.00 | — | $30.00 | $30.00 | $30.00 | **≠** $35.00 | $30.00 | — | $30.00 | $30.00 (6 of 8 quotes, 5 of 5 clients) | $30.00 | same |
+| Support trailer | hr | — | — | — | — | — | — | — | — | $50.00 | — | — | — | — |
+| Support tractor | hr | — | — | — | — | — | — | — | — | $50.00 | — | — | — | — |
+| Filtration | hr | $200.00 | $180.00 ᵃ | $200.00 | $200.00 | **≠** $150.00 | $200.00 | $200.00 | **≠** $150.00 | $200.00 | $200.00 | $200.00 (6 of 9 quotes, 2 of 5 clients) | $200.00 | same |
+| Filtration Stand-by | hr | $150.00 | $150.00 | ~~$35.00~~ → **$150.00** | $150.00 | **≠** $100.00 | ~~$35.00~~ → **$150.00** | $150.00 | $150.00 | $150.00 | $150.00 | $150.00 (8 of 9 quotes, 4 of 5 clients) | $150.00 | same |
+| 4x3 Trash Pump | hr | — | **≠** $80.00 | — | $85.00 | — | $85.00 | $85.00 | $85.00 | **≠** $80.00 | — | $85.00 (4 of 5 quotes, 2 of 3 clients) | $50.00 | +$35.00 |
+| 4x3 Trash Pump | shift | $1,016.00 | — | $1,016.00 | — | — | — | — | — | — | $1,016.00 | $1,016.00 (3 of 3 quotes, 2 of 2 clients) | — | — |
+| Crew Truck | hr | $25.00 | **≠** $13.00 | $25.00 | $25.00 | $25.00 | $25.00 | $25.00 | $25.00 | **≠** $10.00 | **≠** $15.00 | $25.00 (7 of 9 quotes, 3 of 5 clients) | $15.00 | +$10.00 |
+| Drain hose | hose/day | — | — | — | — | — | — | — | — | $20.00 | — | — | — | — |
+| Pressure hose | hose/day | — | — | — | — | — | — | — | — | $50.00 | — | — | — | — |
+| Project Manager | hr | $94.75 | — | — | $94.75 | — | $94.75 | $94.75 | $94.75 | **≠** $81.73 | — | $94.75 (5 of 5 quotes, 2 of 2 clients) | $80.00 | +$14.75 |
+| Supervisor (day) | hr | $64.92 | — | $64.92 | $64.92 | — | $64.92 | $64.92 | $64.92 | **≠** $61.12 | — | $64.92 (6 of 6 quotes, 2 of 2 clients) | — | — |
+| Supervisor (night) | hr | $67.79 | — | $67.79 | $67.79 | — | $67.79 | $67.79 | $67.79 | **≠** $62.65 | — | $67.79 (6 of 6 quotes, 2 of 2 clients) | — | — |
+| Supervisor (shift not stated) | hr | — | $74.00 | — | — | $74.00 | — | — | — | — | **≠** $74.10 | $74.00 (2 of 3 quotes, 2 of 3 clients) | $74.00 | same |
+| Operator | hr | $55.39 | **≠** $64.00 | $55.39 | $55.39 | **≠** $64.00 | $55.39 | $55.39 | $55.39 | **≠** $57.28 | **≠** $58.25 | $55.39 (6 of 9 quotes, 2 of 5 clients) | $64.00 | −$8.61 |
+| Per Diem | day | $150.00 | **≠** $125.00 | $150.00 | $150.00 | $150.00 | $150.00 | $150.00 | $150.00 | — | $150.00 | $150.00 (8 of 9 quotes, 4 of 5 clients) | $150.00 | same |
+| Per Diem — Supervision | day | — | — | — | — | — | — | — | — | $150.00 | — | — | — | — |
+| Per Diem — Operator | day | — | — | — | — | — | — | — | — | $130.00 | — | — | — | — |
+| Consumables per man | day | — | — | — | — | — | — | — | — | $30.00 | — | — | — | — |
+| DEF | shift | $180.00 | **≠** $125.00 | $180.00 | $180.00 | **≠** $125.00 | $180.00 | $180.00 | $180.00 | **≠** $100.00 | **≠** $125.00 | $180.00 (6 of 9 quotes, 2 of 5 clients) | $125.00 | +$55.00 |
+| Equipment travel | mile | — | — | — | — | — | — | — | — | $3.00 | — | — | — | — |
+| Crew travel (non-driver) | hr | — | — | — | — | — | — | — | — | $57.28 | — | — | $58.00 | — |
+| Third-party markup | markup | — | **≠** 5% | — | 15% | 15% | 15% | 15% | 15% | Cost + 15% | — | 15% (5 of 6 quotes, 3 of 4 clients) | 5 / 10 / 15% | — |
+| Decoking pigs | markup | cost + 15% | — | cost + 15% | — | cost + 15% | — | — | — | — | **≠** Cost + 5% | 15% (3 of 4 quotes, 2 of 3 clients) | — | — |
+
+**The two right-hand columns answer different questions, and both were asked for.** *Most common (historical)* is the record — Jesse, 2026-09-05: *"we shouldn't assume we'll use the exact rates, but we should definitely keep track of the historical rates used for previous project."* *Baseline (generic)* and *Moved* are the drift — same conversation: *"I tend to treat most jobs like I'm building rates for a new facility / scope and **use the generic rates as a base**, increasing / decreasing what I think I need to."* On that method a cell differing from the generic is not an error, it is **the record of the adjustment**, and the sign is the interesting part. The Baseline column is read live from `usadebusk-estimating` § Baseline Rate Table and is never copied here.
 
 **Reading a cell.** `—` means that quote's schedule does not carry this line. It does **not** distinguish *not priced for this scope* from *the row is missing because of a sheet defect* — DSP25123 is missing its Support Unit and Project Manager rows for exactly the second reason, and nothing in the source table says so. Open the note. **≠** marks a cell whose effective figure differs from the plurality; it is a prompt to read the note, not a verdict. A struck cell (`~~$35~~ → $150`) records a rate that was superseded — the figure **after** the arrow is the one that governs and the one counted here.
 
 **Units are not collapsed across bases.** `4x3 Trash Pump` appears on separate rows for `hr` and `shift` because it is genuinely billed both ways ($85/hr on the later Baytown sheets, $1,016/shift on the earlier ones) and that basis change is unreconciled. Two rates on different bases are not a spread; they are different questions.
 
-> ⚠ **`Pumper — Pigging (mode not stated)` is the one row whose ≠ marks may not be divergences at all.** Pigging is priced by mode — triple runs above double — but only DSP25084 and DSP25123 label the mode, and DSP26039 labels it as `Triple: Pigging`. Every other note writes an unqualified `Pumper: Pigging` or `Trimax Pigging`, so that row mixes triple-mode, double-mode and unknown-mode figures on one line. DSP26071.2's $800 reads as a triple rate and DSP26085's $650 as a double, which would make both of them agree with the mode-specific rows above rather than diverge from this one. **The rollup cannot tell** — the source does not say. Read this row against the note, and if the mode label is worth having, it has to be written at bid time.
+> **`Pumper — Pigging (mode not stated)` mixes bases, so its ≠ marks may not be divergences.** Pigging is priced by mode and only three notes say which mode they mean, so that row carries triple, double and unlabelled figures together. DSP26071.2's $800 reads as a triple rate and DSP26085's $650 as a double, which would put both in agreement with the mode-specific rows above rather than at odds with this one. The rollup cannot tell — the source does not say. Read the row against the note.
+
+## Settled — do not re-flag
+
+Marked **ᵃ** in the table. These divergences were adjudicated and closed. They are shown because hiding them would make the table look cleaner than the record is, but **re-deriving one as a new finding is the specific error the source notes were written to prevent** — one of them says so in its own heading.
+
+- `Filtration` (hr) — DSP#26006 at $180.00. Settled by Jesse 2026-07-27 (commit `e4b7cb0`), and DSP26006 carries it under a heading that reads **"Filtration hours — settled, do not re-flag."** 44 hrs billed at the $180 pumping rate, 61 at $150 non-pumping; the 44 is 39 pigging + 5 smart pigging, and on the filter press only pigging counts as pumping — so 5 hrs sat $30/hr high, a **$150 variance**, reviewed and accepted on a closed invoice. Not worth recovering. **The rate basis differs by unit and is easy to invert: the Trimax bills smart pig at the pigging rate because the pump is still pushing water; the filter press does not.**
 
 ## Superseded cells
 
@@ -77,44 +104,43 @@ A rate struck and replaced in its own source table. **Both figures are real** �
 
 ## Cells that differ from the plurality
 
-- `Pumper — Rig-In / Rig-Out / Rig-Over` (hr) — DSP#26006 at $400.00, against $500.00 on 7 of 9
-- `Pumper — Rig-In / Rig-Out / Rig-Over` (hr) — DSP26100 at $400.00, against $500.00 on 7 of 9
-- `Pumper — Rig-In / Rig-Out / Rig-Over` (hr) — DSP26080 at $450.00, against $500.00 on 7 of 9
-- `Pumper — Pigging (mode not stated)` (hr) — DSP26071.2 at $800.00, against $500.00 on 4 of 6
-- `Pumper — Pigging (mode not stated)` (hr) — DSP26085 at $650.00, against $500.00 on 4 of 6
-- `Pumper — Smart Pig` (hr) — DSP#26006 at $500.00, against $600.00 on 5 of 8
-- `Pumper — Smart Pig` (hr) — DSP26095 at $500.00, against $600.00 on 5 of 8
-- `Pumper — Smart Pig` (hr) — DSP26100 at $400.00, against $600.00 on 5 of 8
-- `Pumper — Smart Pig` (hr) — DSP26080 at $500.00, against $600.00 on 5 of 8
-- `Pumper — Stand-by` (hr) — DSP#26006 at $400.00, against $500.00 on 6 of 9
-- `Pumper — Stand-by` (hr) — DSP26058 at $100.00, against $500.00 on 6 of 9
-- `Pumper — Stand-by` (hr) — DSP26080 at $450.00, against $500.00 on 6 of 9
-- `Support Unit` (hr) — DSP25084 at $35.00, against $30.00 on 6 of 8
-- `Support Unit` (hr) — DSP26085 at $35.00, against $30.00 on 6 of 8
-- `Filtration` (hr) — DSP#26006 at $180.00, against $200.00 on 6 of 9
-- `Filtration` (hr) — DSP26058 at $150.00, against $200.00 on 6 of 9
-- `Filtration` (hr) — DSP26095 at $150.00, against $200.00 on 6 of 9
-- `Filtration Stand-by` (hr) — DSP26058 at $100.00, against $150.00 on 8 of 9
-- `4x3 Trash Pump` (hr) — DSP#26006 at $80.00, against $85.00 on 4 of 5
-- `4x3 Trash Pump` (hr) — DSP26100 at $80.00, against $85.00 on 4 of 5
-- `Crew Truck` (hr) — DSP#26006 at $13.00, against $25.00 on 7 of 9
-- `Crew Truck` (hr) — DSP26100 at $10.00, against $25.00 on 7 of 9
-- `Crew Truck` (hr) — DSP26080 at $15.00, against $25.00 on 7 of 9
-- `Project Manager` (hr) — DSP26100 at $81.73, against $94.75 on 5 of 5
-- `Supervisor (day)` (hr) — DSP26100 at $61.12, against $64.92 on 6 of 6
-- `Supervisor (night)` (hr) — DSP26100 at $62.65, against $67.79 on 6 of 6
-- `Supervisor (shift not stated)` (hr) — DSP26080 at $74.10, against $74.00 on 2 of 3
-- `Operator` (hr) — DSP#26006 at $64.00, against $55.39 on 6 of 9
-- `Operator` (hr) — DSP26058 at $64.00, against $55.39 on 6 of 9
-- `Operator` (hr) — DSP26100 at $57.28, against $55.39 on 6 of 9
-- `Operator` (hr) — DSP26080 at $58.25, against $55.39 on 6 of 9
-- `Per Diem` (day) — DSP#26006 at $125.00, against $150.00 on 8 of 9
-- `DEF` (shift) — DSP#26006 at $125.00, against $180.00 on 6 of 9
-- `DEF` (shift) — DSP26058 at $125.00, against $180.00 on 6 of 9
-- `DEF` (shift) — DSP26100 at $100.00, against $180.00 on 6 of 9
-- `DEF` (shift) — DSP26080 at $125.00, against $180.00 on 6 of 9
-- `Third-party markup` (markup) — DSP#26006 at 5%, against 15% on 5 of 6
-- `Decoking pigs` (markup) — DSP26080 at Cost + 5%, against 15% on 3 of 4
+- `Pumper — Rig-In / Rig-Out / Rig-Over` (hr) — DSP#26006 (Flint Hills Resources) at $400.00, against $500.00 on 7 of 9 quotes / 3 of 5 clients
+- `Pumper — Rig-In / Rig-Out / Rig-Over` (hr) — DSP26100 (Valero) at $400.00, against $500.00 on 7 of 9 quotes / 3 of 5 clients
+- `Pumper — Rig-In / Rig-Out / Rig-Over` (hr) — DSP26080 (HF Sinclair) at $450.00, against $500.00 on 7 of 9 quotes / 3 of 5 clients
+- `Pumper — Pigging (mode not stated)` (hr) — DSP26071.2 (ExxonMobil) at $800.00, against $500.00 on 4 of 6 quotes / 4 of 5 clients
+- `Pumper — Pigging (mode not stated)` (hr) — DSP26085 (ExxonMobil) at $650.00, against $500.00 on 4 of 6 quotes / 4 of 5 clients
+- `Pumper — Smart Pig` (hr) — DSP#26006 (Flint Hills Resources) at $500.00, against $600.00 on 5 of 8 quotes / 1 of 4 clients
+- `Pumper — Smart Pig` (hr) — DSP26095 (Westlake South) at $500.00, against $600.00 on 5 of 8 quotes / 1 of 4 clients
+- `Pumper — Smart Pig` (hr) — DSP26100 (Valero) at $400.00, against $600.00 on 5 of 8 quotes / 1 of 4 clients
+- `Pumper — Smart Pig` (hr) — DSP26080 (HF Sinclair) at $500.00, against $600.00 on 5 of 8 quotes / 1 of 4 clients
+- `Pumper — Stand-by` (hr) — DSP#26006 (Flint Hills Resources) at $400.00, against $500.00 on 6 of 9 quotes / 2 of 5 clients
+- `Pumper — Stand-by` (hr) — DSP26058 (Marathon) at $100.00, against $500.00 on 6 of 9 quotes / 2 of 5 clients
+- `Pumper — Stand-by` (hr) — DSP26080 (HF Sinclair) at $450.00, against $500.00 on 6 of 9 quotes / 2 of 5 clients
+- `Support Unit` (hr) — DSP25084 (ExxonMobil) at $35.00, against $30.00 on 6 of 8 quotes / 5 of 5 clients
+- `Support Unit` (hr) — DSP26085 (ExxonMobil) at $35.00, against $30.00 on 6 of 8 quotes / 5 of 5 clients
+- `Filtration` (hr) — DSP26058 (Marathon) at $150.00, against $200.00 on 6 of 9 quotes / 2 of 5 clients
+- `Filtration` (hr) — DSP26095 (Westlake South) at $150.00, against $200.00 on 6 of 9 quotes / 2 of 5 clients
+- `Filtration Stand-by` (hr) — DSP26058 (Marathon) at $100.00, against $150.00 on 8 of 9 quotes / 4 of 5 clients
+- `4x3 Trash Pump` (hr) — DSP#26006 (Flint Hills Resources) at $80.00, against $85.00 on 4 of 5 quotes / 2 of 3 clients
+- `4x3 Trash Pump` (hr) — DSP26100 (Valero) at $80.00, against $85.00 on 4 of 5 quotes / 2 of 3 clients
+- `Crew Truck` (hr) — DSP#26006 (Flint Hills Resources) at $13.00, against $25.00 on 7 of 9 quotes / 3 of 5 clients
+- `Crew Truck` (hr) — DSP26100 (Valero) at $10.00, against $25.00 on 7 of 9 quotes / 3 of 5 clients
+- `Crew Truck` (hr) — DSP26080 (HF Sinclair) at $15.00, against $25.00 on 7 of 9 quotes / 3 of 5 clients
+- `Project Manager` (hr) — DSP26100 (Valero) at $81.73, against $94.75 on 5 of 5 quotes / 2 of 2 clients
+- `Supervisor (day)` (hr) — DSP26100 (Valero) at $61.12, against $64.92 on 6 of 6 quotes / 2 of 2 clients
+- `Supervisor (night)` (hr) — DSP26100 (Valero) at $62.65, against $67.79 on 6 of 6 quotes / 2 of 2 clients
+- `Supervisor (shift not stated)` (hr) — DSP26080 (HF Sinclair) at $74.10, against $74.00 on 2 of 3 quotes / 2 of 3 clients
+- `Operator` (hr) — DSP#26006 (Flint Hills Resources) at $64.00, against $55.39 on 6 of 9 quotes / 2 of 5 clients
+- `Operator` (hr) — DSP26058 (Marathon) at $64.00, against $55.39 on 6 of 9 quotes / 2 of 5 clients
+- `Operator` (hr) — DSP26100 (Valero) at $57.28, against $55.39 on 6 of 9 quotes / 2 of 5 clients
+- `Operator` (hr) — DSP26080 (HF Sinclair) at $58.25, against $55.39 on 6 of 9 quotes / 2 of 5 clients
+- `Per Diem` (day) — DSP#26006 (Flint Hills Resources) at $125.00, against $150.00 on 8 of 9 quotes / 4 of 5 clients
+- `DEF` (shift) — DSP#26006 (Flint Hills Resources) at $125.00, against $180.00 on 6 of 9 quotes / 2 of 5 clients
+- `DEF` (shift) — DSP26058 (Marathon) at $125.00, against $180.00 on 6 of 9 quotes / 2 of 5 clients
+- `DEF` (shift) — DSP26100 (Valero) at $100.00, against $180.00 on 6 of 9 quotes / 2 of 5 clients
+- `DEF` (shift) — DSP26080 (HF Sinclair) at $125.00, against $180.00 on 6 of 9 quotes / 2 of 5 clients
+- `Third-party markup` (markup) — DSP#26006 (Flint Hills Resources) at 5%, against 15% on 5 of 6 quotes / 3 of 4 clients
+- `Decoking pigs` (markup) — DSP26080 (HF Sinclair) at Cost + 5%, against 15% on 3 of 4 quotes / 2 of 3 clients
 
 > Each of these is a question, not an error. Check the quote's `rate-basis` and `billing-basis` first, then the prose caveats in the note itself — most rate tables in the corpus carry a paragraph immediately after them qualifying the figures.
 

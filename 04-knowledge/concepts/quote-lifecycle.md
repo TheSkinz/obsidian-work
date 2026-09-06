@@ -31,7 +31,7 @@ Leave a field blank rather than guessing. On older quotes the bid instructions m
 
 ### The default posture is uniform rates
 
-Before the distinctions below: **USADebusk prefers to run the same rates at every facility** (Jesse, 2026-07-26). The house standard in `usadebusk-estimating` and `_cost-model.md` is the intended rate, and most bids should land on it. A quote that diverges has a reason — most often that the RFQ was contested and rates were cut to win it — and that reason is worth a line on the quote note, because it cannot be reconstructed from the rate table afterwards. Read divergence as a flag, not as evidence that each site has its own regime.
+Before the distinctions below: **USADebusk prefers to run the same rates at every facility** (Jesse, 2026-07-26). The nearest thing to a house standard is the **Baseline Rate Table in `usadebusk-estimating`**, and most bids should land near it. (`04-knowledge/pricing/_cost-model.md` was cited here until 2026-09-06 and **is not a bill-rate source** — it is internal cost, and its own header says so; its Support Unit line reads $3.45/hr against the $30/hr bill rate. The same wrong citation stood on the Baytown facility card and was corrected in the same pass.) A quote that diverges has a reason — most often that the RFQ was contested and rates were cut to win it — and that reason is worth a line on the quote note, because it cannot be reconstructed from the rate table afterwards. Read divergence as a flag, not as evidence that each site has its own regime.
 
 ### Contract type is about term; billing basis is about structure
 
