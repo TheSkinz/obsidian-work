@@ -21,6 +21,19 @@ This is a repeatable method rather than a one-off experiment, but it is **not th
 
 See [[drawing-extraction-strategy]] for the canonical two-pass tile method distilled from the Grok repo's heater-drawing-analysis skill.
 
+## Grok Bot
+
+xAI's persistent-agent product, distinct from the Grok chat model above: named Bots on a shared
+cloud Linux computer with a browser, filesystem and terminal, running saved skills on schedules.
+A one-month trial started 2026-09-06. The buildout — six Bots, their standing instructions, the
+ported skills and the four-week back-test — is [[SETUP]] and the files beside it.
+
+Two facts govern the trial. All Bots on an account share one computer and one credential store,
+so signing one Bot into a system signs them all in; the docs say outright not to use separate Bots
+as a security boundary. And `obsidian-work` is a public repo, so a Bot clones this vault to
+`/workspace/vault` with no credentials at all and reads it as its knowledge base. That second fact
+is why the trial can run read-only without connecting anything to M365.
+
 ## Custom agent / skill development
 
 Grok Build CLI, skill-creator tooling, Zapier/Albato integrations, Gmail and Google Drive automation, email digest pipelines. Use cases are in active exploration — document specific deployed integrations as they stabilize.
