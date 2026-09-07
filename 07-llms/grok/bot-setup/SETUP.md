@@ -238,8 +238,10 @@ MCP server, and it exists, just not where that claim put it.
 **Design consequence — the webhook path is strictly better than the GitHub one:**
 
 - It needs **no GitHub connector and no personal access token at all**, so it removes a third-party
-  credential rather than adding one. **The PAT minted for the Git-event test can be revoked** with no
-  loss of capability.
+  credential rather than adding one. **The PAT minted for the Git-event test was deleted the same
+  evening**, 2026-09-06, with no loss of capability — it existed only to test a trigger that turned
+  out to have no push event and never fired. The connector entry may still show as installed in the
+  marketplace; the token is what carried the access, and it is gone.
 - It replaces the missing push event. A local git hook, or a line in a commit sequence, can `curl`
   the webhook on every push to `obsidian-work` — giving Librarian the defect-triggered refresh the
   design wanted, with the trigger owned locally rather than by a connector.
