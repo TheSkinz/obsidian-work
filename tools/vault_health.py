@@ -282,6 +282,21 @@ def inbox_stats(root: Path) -> tuple[int, int | None, int | None]:
     permanent noise. The ROUTED match is anchored to line start: one inbox note
     quotes the marker inside backticks while discussing it, and a substring
     match would silently exclude a live note.
+
+    `<!-- vault-loop:` and `<!-- vault-prestaged:` join that exclusion list on
+    2026-09-07. Both are written by the routing logic to mean *triaged and
+    deliberately parked* -- `no home yet, candidate for X`, or pre-staging
+    having nothing to add -- which is the same state as GATED_STATUS and was
+    left off the list by omission rather than by decision. Leaving them in made
+    the metric conflate **unfiled** with **undone**: a read of all 39 notes in
+    the >=14 d tail on 2026-09-07 found not one unfiled capture record, only
+    live idea seeds, open rulings and owed work sessions. That is a backlog no
+    filing pass can clear, and the dashboard already reports it directly in
+    `Open decision rows` and `Review notes awaiting decision`. Excluding the
+    marker moved median 17 -> 9 and oldest 39 -> 26 while leaving five genuinely
+    untriaged notes visible past 14 days, so the row keeps its teeth. The 600-
+    byte window is wider than ROUTED's 200 because these markers stack: a note
+    can carry a vault-loop line, a vault-prestaged line and then its frontmatter.
     """
     inbox = root / vault_lint.INBOX_DIR
     if not inbox.is_dir():
@@ -306,6 +321,8 @@ def inbox_stats(root: Path) -> tuple[int, int | None, int | None]:
         if status in vault_lint.TERMINAL_STATUS or status == vault_lint.GATED_STATUS:
             continue
         if re.search(r"^<!-- ROUTED", text[:200], re.MULTILINE):
+            continue
+        if re.search(r"^<!-- vault-(loop|prestaged)", text[:600], re.MULTILINE):
             continue
         d = git_last_commit_date(root, str(p.relative_to(root)))
         if d is not None:

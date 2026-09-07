@@ -9,8 +9,8 @@
 | Lint errors | 0 | 0 | ok |
 | Lint warnings | 8 | (backlog) | ok |
 | Inbox items | 83 | - | ok |
-| Inbox median age | 17 d | < 14 d | FAIL |
-| Inbox oldest item | 39 d | < 30 d | FAIL |
+| Inbox median age | 9 d | < 14 d | ok |
+| Inbox oldest item | 26 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
 | Open decisions not in the queue | 0 | 0 | ok |
