@@ -12,7 +12,12 @@ reads a finished estimating workup `.xlsx` and emits Sections 3, 7 and 9 as a br
 back-test harness proving three real quotes reproduce to the cent. **None of that exists here.**
 
 So: this skill covers **document structure, section content and the pre-send gate**. It does not
-reproduce the generator, and it must not try to. Any figure produced here is hand-tallied — mark it
+reproduce the generator, and it must not try to.
+
+**Where this skill says "branded", it means the Brand Standards skill — read it before building any
+document.** Fonts, colours, table header and alt-row fills, and the logo and its path all live
+there, and the values are deliberately not restated here. Set table styling explicitly; python-docx
+defaults to blue, which is not a USADebusk colour. Any figure produced here is hand-tallied — mark it
 as such and show the arithmetic. Where a workup `.xlsx` exists, the generator on Jesse's machine is
 the right tool and this Bot is not a substitute for it.
 

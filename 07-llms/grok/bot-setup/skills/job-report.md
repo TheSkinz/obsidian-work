@@ -27,12 +27,12 @@ Header on every page: **the USADebusk logo** left, then the right block reading
 facility code plus job number, e.g. JR-DCK-HFS26038. REV starts at 0. Footer:
 `USADebusk | Deer Park, TX | usadebusk.com` left, page number right. **No cover page.**
 
-**Insert the real logo, do not write `[logo]`.** The image is already on this machine at
-`/workspace/vault/assets/brand/usadebusk-logo.png` (674×101, RGBA) — place it with
-`run.add_picture(path, width=Inches(1.6))` and let the height follow the aspect ratio. Only fall back
-to a literal `[logo]` placeholder if that file is genuinely absent, and say so when you do. **Never
-reconstruct the wordmark from shapes or text** — a rebuilt logo that looks close is worse than a
-placeholder, because it ships.
+**Fonts, colours, table fills and the logo come from the Brand Standards skill. Read it before you
+build.** Every "amber" in this file means the gold defined there, and the logo path and sizing are
+there too. **The values are not restated here on purpose** — one copy, one place to change.
+
+**Set the table styling explicitly on every table.** python-docx applies a blue default if you do
+not, and that blue shipped in the 2026-09-07 build.
 
 **The header belongs in the header, and nowhere else.** Build it as a real `section.header` part.
 Do not also describe it in the body — a delivered report that opens with a paragraph narrating its
