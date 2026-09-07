@@ -34,16 +34,21 @@ there too. **The values are not restated here on purpose** — one copy, one pla
 **Set the table styling explicitly on every table.** python-docx applies a blue default if you do
 not, and that blue shipped in the 2026-09-07 build.
 
-**Never leave a Field/Value table at the 50/50 default width.** The label column carries short
-strings and the value column carries prose — Project Details has a 9-character longest label against
-values up to 191 characters — so an even split starves the side that needs the room and garbles it
-into extra lines. This affects Customer Details, Project Details, Crew Details and the per-heater
-data table.
+**The first column is a uniform 2.00in on every table.** The left edge must run straight down every
+page; a table whose first column differs is a defect. Never leave a table at python-docx's even
+split either — that starves the value column and garbles it into extra lines.
 
-**Size the label column to its own longest label**, roughly `0.10 × characters + 0.45` inches,
-clamped to a **1.4in minimum and 2.2in maximum**, and give the remainder to Value. On a 6.9in text
-width that lands between 1.4/5.5 and 2.2/4.7 depending on the table, which is what it should do —
-the four tables have genuinely different label lengths and a single fixed width suits none of them.
+**2.00in is derived, not chosen.** The longest first-column string in the document is
+`Total footage (looped pig path)`, which measures **1.80in in 9.5pt Arial**; with Word's 0.16in
+default cell padding that needs 1.96in. **2.00in is the smallest value at which nothing wraps.**
+
+Remaining width is `6.9 − 2.00 = 4.90in`, split evenly among the other columns — 2-column
+Field/Value tables get `2.00 / 4.90`, 4-column tables `2.00` plus three of `1.633`, 5-column Project
+Duration `2.00` plus four of `1.225`.
+
+⚠ **Do not size each table to its own longest label.** An earlier version of this skill did exactly
+that and produced nine tables starting at nine different offsets. Optimising each table in isolation
+is the mistake; the uniform column is the point.
 
 ⚠ **Write the widths into `w:tblGrid`, not just `cell.width`.** Setting `cell.width` alone renders
 as an unchanged 50/50 split — LibreOffice ignores it outright and Word honours it inconsistently.
@@ -125,10 +130,18 @@ convention rather than a measured fact. PIG and SMART are allocated per heater f
 pumper-to-heater assignment. Superscript footnotes below the table carry delays, delayed release,
 or as-built reconfiguration, all PM-supplied.
 
-**STAND-BY SUMMARY** — columns CAUSE, DATES, HOURS, plus a TOTAL row. Open with one sentence
-saying stand-by is on-site time the units were not actively pigging, cause taken from the daily
-service receipts. Close with a combined line: operating hours plus stand-by hours equals total
-pumping-unit hours.
+**STAND-BY SUMMARY** — columns **DATES, HOURS, CAUSE**, in that order, plus a TOTAL row. Widths
+**2.00 / 0.70 / 4.20**. Reordered from CAUSE / DATES / HOURS on 2026-09-07: dates and hours are
+short and fixed-width, so putting them first lands DATES on the same 2.00in left edge as every other
+table and gives CAUSE the room its prose actually needs — it carries strings up to 83 characters and
+was previously stuck in the narrowest column.
+
+⚠ **The TOTAL row labels itself from the left**, in the DATES column. The reorder otherwise strands
+the word TOTAL to the right of its own figure, so the row reads blank / 11 / TOTAL.
+
+Open with one sentence saying stand-by is on-site time the units were not actively pigging, cause
+taken from the daily service receipts. Close with a combined line: operating hours plus stand-by
+hours equals total pumping-unit hours.
 
 **PIGS USED** — one full-width table across every size, aggregated over all shifts and all
 heaters, with the legend note beneath it. Columns: SIZE, TC, HR, FOAM, SWAB or SWAB/HC, TOTAL.

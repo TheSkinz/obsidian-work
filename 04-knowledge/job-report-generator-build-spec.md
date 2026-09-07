@@ -118,7 +118,7 @@ usadebusk.com` … `Page <n>`. No cover page.
 | 1 | Title block | Amber eyebrow (condition-driven, e.g. EMERGENCY MECHANICAL DECOKE); title (facility — heater tags — scope); subtitle line. **Two-row job table** (4 cols): JOB NO / FACILITY / EXECUTION / PROJECT MANAGER — then PO NO / SCOPE / HEATERS / DURATION. **KPI band** (4 stats): Heaters Cleaned · Operating Hours · Pigs Run · Smart-Pig Inspection(s). |
 | 1 | Job Summary | Customer Details table (FACILITY / ADDRESS / JOB & PO # / CONTACT); Project Details table (SCOPE / EXECUTION / HEATERS / EQUIPMENT); Crew Details table (PROJECT MANAGER / SHIFT LEAD day·night / DAYSHIFT / NIGHTSHIFT). |
 | 2 | Project Duration | Table SCOPE / UNIT / PIG / SMART PIG / SUBTOTAL, one row per heater; **rig pooled** to a single "Rigging (project)" line; then a TOTAL row. Superscript footnotes for delays / as-built reconfig. |
-| 2 | Stand-By Summary | Intro sentence; table CAUSE / DATES / HOURS + TOTAL row; combined-total line (operating + stand-by). Stand-by is broken out from operating hours — it is **not** in the KPI operating-hours figure. |
+| 2 | Stand-By Summary | Intro sentence; table **DATES / HOURS / CAUSE** (reordered from CAUSE / DATES / HOURS — Jesse, 2026-09-07) + TOTAL row; combined-total line (operating + stand-by). Widths **2.00 / 0.70 / 4.20**: dates and hours are short and fixed, so CAUSE gets the room its prose needs — it holds strings up to 83 characters and was previously stuck in the narrowest column at 2.30in. **The TOTAL row labels itself from the left**, in DATES; reordering otherwise strands the word TOTAL to the right of its own figure. Stand-by is broken out from operating hours — it is **not** in the KPI operating-hours figure. |
 | 2 | Pigs Used | **One full-width** table SIZE / TC / HR / FOAM / SWAB *or* SWAB/HC / TOTAL, aggregated across all shifts and both heaters, with the size-range + legend line **beneath** it and the table kept together across page breaks. Last header follows the data — `SWAB/HC` only where honeycomb gauges ran. (Was a two-column split with the note above until 2026-08-17; the split was measured not to deliver the page fit it was justified by.) |
 | 3 | Heater Data and Results | Per heater: amber sub-header; data table (Number of Passes / Total Footage / Convection Tube ID / Radiant Tube ID / Metallurgy / Return Bends / Inlet-Outlet / Smart Pigging); bold-lead narrative paragraph — lead-in defaults to **`Decoking Analysis:`**, per-heater `lead_in` override (was hard-coded `Result:` until 2026-08-17); amber callout box for the critical note. |
 | 4 | Flow Tests | Per pass-pair: amber sub-header; table GPM \| BEFORE (RPM/PSI) \| AFTER (RPM/PSI) \| Δ PSI. GPM held constant in the left column; before/after side-by-side; Δ PSI last. |
@@ -128,13 +128,26 @@ usadebusk.com` … `Page <n>`. No cover page.
 Render path: python-docx or the `docx` skill. Fonts, colors, table-header/alt-row fills, and
 section-header borders come from `usadebusk-core` Brand Standards — do not restate values.
 
-**Field/Value column widths — never the 50/50 default** (Jesse, 2026-09-07). Customer Details,
-Project Details, Crew Details and the per-heater data table all pair a short label against long
-prose; Project Details has a 9-character longest label against values up to 191 characters. An even
-split starves the value column and garbles it into extra lines. **Size the label column to its own
-longest label** — roughly `0.10 × characters + 0.45` inches, clamped to **1.4in min / 2.2in max** —
-and give the remainder to Value. The four tables land at different widths on purpose; one fixed
-width suits none of them.
+**First column is a uniform 2.00in on every table** (Jesse, 2026-09-07). The left edge runs straight
+down every page; a table whose first column differs is a defect.
+
+**2.00in is derived, not chosen.** The longest first-column string in the document is
+`Total footage (looped pig path)`, measured at **1.80in in 9.5pt Arial**; plus Word's 0.16in default
+cell padding that needs 1.96in. **2.00in is the smallest value at which nothing in the document
+wraps.** Re-derive it if the type size or the longest label changes.
+
+Remaining width is `6.9 − 2.00 = 4.90in`, divided evenly among the other columns: 2-column
+Field/Value tables get `2.00 / 4.90`; 4-column tables `2.00` plus three of `1.633`; 5-column Project
+Duration `2.00` plus four of `1.225`.
+
+⚠ **An earlier rule this same day sized each table to its own longest label** — `0.10 × characters +
+0.45`, clamped 1.4–2.2in. It fixed the garbled Value column and **created a ragged left edge**, nine
+tables starting at 1.38 / 1.73 / 1.85 / 2.20 / 2.30in. **Optimising each table in isolation is the
+mistake.** Do not reintroduce per-table sizing.
+
+**The accepted cost:** the two `Project tables` and the KPI band hold short first-column values
+(`4411473422` is ~0.75in), so 2.00in there gives up about 0.25in that `SCOPE` — the longest cell in
+the document — would otherwise use. Jesse chose a straight edge over that space.
 
 ⚠ **Widths must go into `w:tblGrid`, not `cell.width`.** Setting `cell.width` alone renders as an
 unchanged 50/50 split — LibreOffice ignores it and Word honours it inconsistently. Set `tblLayout`
