@@ -5,7 +5,8 @@ Report, 1611-X002-005 Line (8 Wharf)*, prepared for Chevron Richmond, inspection
 2025-07-25, 56 pp. Held at `C:\Users\Jwuts\Downloads\25-0532-006C Chevron Richmond Line Long Wharf Line No 8 REVC.pdf`
 — not in the vault; it is Chevron's document, supplied informally by the Steady Flux CEO.
 
-The data block below was extracted and reconciled in a Claude Code session on 2026-09-06. The
+The data block below was extracted and reconciled in a Claude Code session on 2026-09-06.
+
 The customer is not named in the paste-in payload, but the GPS route is real and geolocates the
 line, so treat the result as identifiable rather than anonymous. That is a deliberate call (Jesse,
 2026-09-06): this is an internal demo and a model test, not a customer deliverable and not for any
@@ -60,7 +61,7 @@ table's measured columns are clean and are the authority.
 
 Its *label* columns are not. See item 7 below and the note above the data block.
 
-Seven things in the report do **not** reconcile. All but the last two sit in derived summaries
+Eight things in the report do **not** reconcile. All but the last two sit in derived summaries
 rather than in the measured data:
 
 1. **Two distance systems, 5.0% apart.** The girth-weld chain runs 0 → 5,612.69 ft. The surveyed GPS
@@ -108,6 +109,11 @@ rather than in the measured data:
    transpositions (GW-164 is labelled 165 and GW-165 labelled 164, likewise 167/168 and 211/212/213).
    Two anomalies inherit this: see the note above the data block. This does not affect any measured
    value, only the labels, and absolute distance is unaffected throughout.
+8. **52 of the 56 page headers carry the wrong document number.** The title page and Project Summary
+   say `25-0532-006 Rev. C`, and pages 1–4 match. Page 5 reads `Document 22-0532-005 Rev. B` — wrong
+   number *and* wrong revision. Pages 6–56 read `Document 22-0532-006 Rev. C` — right revision, wrong
+   prefix. Found 2026-09-07 while assembling the defect list Jesse sent the Steady Flux CEO; it
+   affects nothing in the data but it is a controlled-document defect.
 
 These are worth a note to the CEO independently of this build — the same friend-of-a-friend channel
 used for the F-501 findings on 2026-08-16.
