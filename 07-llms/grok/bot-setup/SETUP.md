@@ -6,51 +6,158 @@ tags: [grok, xai, grok-bot, automation, trial]
 
 # Grok Bot — Setup Runbook
 
-One-month trial started 2026-09-06. Design rationale and the four-week plan live in
-`~/.claude/plans/i-am-experimenting-with-fuzzy-plum.md`. This file is the doing part.
+One-month trial started 2026-09-06.
 
-Product mechanics read from docs.x.ai/grok-bot on 2026-09-06, then **verified in the running app
-the same day** by driving it directly. Where the app and the docs (or the third-party connector
-directories) disagree, what is written here is what the app showed.
+Product mechanics were read from docs.x.ai/grok-bot, then **verified in the running app** by driving
+it directly. Where the app and the docs — or the third-party connector directories — disagree, what
+is written here is what the app showed. Two published facts turned out to be wrong: a directory
+listing a SharePoint connector that does not exist, and a claim that an external agent can trigger
+Grok Bot through MCP.
 
-## What the app actually showed, 2026-09-06
+**Four parts.** *Navigation* is how to drive the app. *Current state* is what exists right now.
+*Findings* is the dated evidence. *What's left* is the surviving plan.
 
-**The cloud computer is real and already provisioned.** Opening a Bot's screen gives a Linux
-desktop with a dock — Chrome, an editor, and a terminal. The terminal opens at `/workspace` with
-the prompt `box@cursor:/workspace$`; the hostname is literally `cursor`, which corroborates the
-reports that this runs on Cursor infrastructure.
+---
 
-**git is installed: version 2.47.3.** That was an inference in the first draft of this file and it
-is now a read fact. The clone was run and succeeded — 6319 objects, 16.21 MiB, no credentials
-prompted, and `ls vault` returns the full vault including the same-day commit. **Step 0 is done.**
+# 1. Navigation
 
-**Typing into the Bot's screen from outside is unreliable.** Anything longer than about a dozen
-characters routes through the local clipboard, which does not cross into the VM — it arrives as
-`^M` and nothing else. Short strings type fine. Type long commands in chunks, or type them inside
-the VM rather than through a remote-control layer.
+## Creating a Bot
 
-**Three connector facts that change the design.** There is **no SharePoint connector at all** —
-searching the marketplace for it returns "No plugins match". **OneDrive exists but is read-only**:
-its description is "Browse, search, and read Microsoft On...". **Outlook and Outlook Calendar both
-exist**, and **GitHub exists with write** ("Manage repos, issues, pull requests"). The public
-connector directory that listed SharePoint and OneDrive under Business & Enterprise is not what
-this account sees.
+`+` → type the name → `Create "<name>" Bot`.
 
-**Routine triggers are richer than the docs implied.** The full list: On a schedule, Slack message,
-**Git event**, Teams message, Linear issue, Sentry alert, PagerDuty incident, **Webhook**. The
-schedule submenu offers Every hour, Every day, Weekdays, Every week, Every month, Interval, and
-Advanced. Weekdays is native, so the business-hours advice needs no cron. The routine editor
-carries Name, Instruction, When to run, Run history, an Active toggle, Test run and Delete.
+⚠ **Click `+` and wait for the dropdown before typing.** Typing too early puts the name in the
+**message box** of whatever chat is open instead of the To-field. This cost two attempts.
 
-**Usage is visible without hunting for it.** The account menu bottom-left reads `SuperGrok — 1%`,
-and opening it shows "Resets in 7 days" plus a **Change limit** control for capping spend. That
-answers the renewal question directly — watch that percentage, and set the limit before attaching
-routines.
+Every new Bot then runs a short onboarding interview — *"What should I be most useful for?"* with
+four options and a free-text box. **Answer in the free text and point it at its own Description**,
+which is where the real instructions live.
 
-**Also present:** a "Teach a task" recorder in the Bot-screen toolbar (the demonstration capture),
-a Marketplace with separate **Plugins** and **Bots** tabs, and a `+` menu offering Create new Bot,
-Create group chat, or an existing Bot. One Bot already exists on the account — "Chief of Staff",
-with Gmail and Google Drive added and Gmail still awaiting a sign-in.
+## Editing a profile
+
+Click the Bot's name in the title bar. The Settings panel has **Name**, **Label (optional)**,
+**Description** and a Notifications toggle. The Description accepts a full multi-paragraph block
+with no length trouble — paste the whole thing from [[bot-profiles]].
+
+⚠ **The panel commits on blur, not as you type.** Nothing in the UI says so. A routine or profile
+can sit visibly configured and not actually be saved, which silently invalidated an entire trigger
+test on 2026-09-06 — the routine saved two minutes *after* its stimulus fired. Click away from the
+last field and confirm the change registered before relying on it.
+
+## Adding a skill
+
+Skills go in as **file uploads, not pasted text**: message box `+` → **Attach files** → the Windows
+Open dialog. It accepts a full path typed directly, and **several quoted paths at once**, so a Bot's
+whole skill set can go in one upload.
+
+Skills are stored **byte-for-byte** — see the finding below. Write them for this platform exactly as
+they are written for Claude Code.
+
+The same `+` menu carries **Teach a task**, the demonstration recorder.
+
+## Setting a routine
+
+The Bot-screen icon in the title bar opens a right-hand panel with the Bot's live screen above and
+**Routines** below. `+` beside Routines, or **Create Routine**, opens the editor: **Name**,
+**Instruction**, **When to run**, **Run history**, an **Active** toggle, **Test run** and **Delete**.
+
+⚠ **Test run greys out only while a routine is unsaved.** It is *not* disabled for event triggers —
+an earlier note in this file said so and was wrong. Save first, then Test run is live.
+
+**Trigger types:** On a schedule, Slack message, **Git event**, Teams message, Linear issue, Sentry
+alert, PagerDuty incident, **Webhook**. The schedule submenu offers Every hour, Every day,
+**Weekdays**, Every week, Every month, Interval and Advanced — Weekdays is native, so business-hours
+scoping needs no cron.
+
+⚠ **"Git event" is pull-request shaped and has no push event.** Do not design around it. See the
+finding below.
+
+⚠ **There is no way to delete a single trigger**, only the whole routine. An unwanted trigger can be
+left inert alongside a working one.
+
+Follow the ladder: `run by hand → correct → save as skill → test the skill → attach a routine`.
+Skipping a rung is how the weekly allowance disappears.
+
+## Wiring the push hook
+
+This is the working defect-trigger, and the most operationally useful thing in the file.
+
+`tools/notify_grok_bot.py` fires a Grok Bot webhook from a `pre-push` hook, so Librarian pulls the
+clone every time the vault is pushed and `/workspace/vault` stops going stale between sessions.
+
+**`pre-push`, not `post-commit`,** because Librarian pulls from the *remote* — the notification must
+tie to the push. Git has no `post-push` hook. If a push fails after the hook fires, Librarian pulls,
+finds nothing new, and says so.
+
+**The shim** at `.git/hooks/pre-push` is untracked by nature, so the logic lives in `tools/` where it
+is versioned. Recreate it after any re-clone:
+
+```bash
+printf '#!/bin/sh\nexec python "$(git rev-parse --show-toplevel)/tools/notify_grok_bot.py"\n' > .git/hooks/pre-push && chmod +x .git/hooks/pre-push
+```
+
+**Two environment variables, and the key never touches a file.** Read them off the routine's webhook
+trigger — click **When a webhook fires** to expand, then copy **POST to** and **key**:
+
+```bash
+setx GROK_BOT_WEBHOOK_URL "the POST to value"
+setx GROK_BOT_WEBHOOK_KEY "the key value"
+```
+
+⚠ **Click *into* each field and Ctrl+A before copying.** The display truncates with an ellipsis, and
+copying what you can see yields a partial key and `Invalid API key`.
+
+⚠ **`setx` only reaches shells opened afterwards** — and Claude Code's own Bash inherits its
+environment from startup, so **Claude Code must be restarted** before its pushes fire the hook.
+
+⚠ **PowerShell aliases `curl` to `Invoke-WebRequest`, which rejects `-H`.** Use `curl.exe`, or assign
+the URL and key to variables and call `Invoke-RestMethod` so the header is built by PowerShell rather
+than parsed by a shell. This cost four attempts.
+
+**It can never block a push.** Missing key, no network, webhook 500, xAI outage — every path exits 0
+with one line to stderr. **Unsetting either variable is the off switch**, with nothing to uninstall.
+
+## Where things are
+
+**Usage meter:** account menu, bottom-left. Reads `SuperGrok — N%` with "Resets in 7 days" and a
+**Change limit** control for capping on-demand spend. On-demand is set to **None**, so there is no
+overage exposure.
+
+**Marketplace:** bottom-left, with separate **Plugins** and **Bots** tabs.
+
+**A Bot's screen:** the title-bar icon. It is a real Linux desktop — Chrome, an editor, and a
+terminal that opens at `/workspace` with the prompt `box@cursor:/workspace$`. The hostname is
+literally `cursor`, corroborating that this runs on Cursor infrastructure.
+
+⚠ **Typing into the Bot's screen from outside is unreliable.** Anything longer than about a dozen
+characters routes through the local clipboard, which does not cross into the VM — it arrives as `^M`
+and nothing else. Type long commands in chunks, or type them inside the VM.
+
+⚠ **A Bot's verbatim print-back truncates** mid-sentence. To compare a stored skill against its
+source, **diff the files on disk** rather than trusting a dump.
+
+---
+
+# 2. Current state
+
+| Bot | Role | Skills held | Routines |
+|---|---|---|---|
+| **Librarian** | Vault citations with file-and-line proof | — | `Vault refresh` (webhook + inert PR trigger) |
+| **Ledger** | Receipts → ticket breakdown → invoice readiness | Receipt Extraction, Invoice Readiness Check | — |
+| **Scribe** | .docx production | Project Report | — |
+| **Architect** | Grok Bot platform research | — | — |
+| **Chief of Staff** | Auto-created at signup, unused | — | — |
+| *Intake* | *not built* | RFQ Intake ready to upload | — |
+| *Estimator* | *not built* | Duration Model, Work-Up Billing Math ready | — |
+| *Scout* | *not built* | — | — |
+
+**`Webhook ping`** also survives on Librarian — the throwaway that proved the webhook mechanism. Its
+run history is the evidence, and it answers to a different key.
+
+**Connectors installed:** Gmail and Google Drive (auto-added to Chief of Staff, Gmail never signed
+in). **The GitHub connector's token was deleted** — see the findings.
+
+**Meter:** 4% after the full build — four Bots, seven skills, routines, ~15 pushes and several
+routine fires. **Cost is not the binding constraint at this scale.**
 
 ## Files here
 
@@ -59,278 +166,38 @@ with Gmail and Google Drive added and Gmail still awaiting a sign-in.
 | [[README-FOR-BOTS]] | Copy to `/workspace/README-FOR-BOTS.md` on the Grok Bot computer |
 | [[bot-profiles]] | Paste each Description into Bot actions > Edit Profile |
 | [[architect-profile]] | The Architect — platform research, plus its experiment queue |
-| [[receipt-extraction]] | Save as the Receipt Extraction skill |
-| [[invoice-readiness-check]] | Save as the Invoice Readiness Check skill |
-| [[job-report]] | Save as the Project Report skill |
+| [[receipt-extraction]] | Receipt Extraction skill — Ledger |
+| [[invoice-readiness-check]] | Invoice Readiness Check skill — Ledger |
+| [[job-report]] | Project Report skill — Scribe |
+| [[rfq-intake]] | RFQ Intake skill — Intake |
+| [[duration-model]] | Duration Model skill — Estimator |
+| [[workup-billing-math]] | Work-Up Billing Math skill — Estimator |
+| [[proposal-assembly]] | Proposal Assembly skill — Scribe |
 
-The four estimating skills — RFQ Intake, Duration Model, Work-Up Billing Math, Proposal Assembly —
-were written 2026-09-06, after the citation audit passed:
+**Read [[BACKTEST-SPECIMEN]] before uploading the four estimating skills.** It works all four against
+DSP26085 — six rules reproduce the real quote to the hour and to the line, and one rule was
+falsified. **None of the four carries a rate number**; rates belong to a contract and stay in the
+vault behind their own warnings.
 
-| File | Goes where |
-|---|---|
-| [[rfq-intake]] | Save as the RFQ Intake skill — Intake |
-| [[duration-model]] | Save as the Duration Model skill — Estimator |
-| [[workup-billing-math]] | Save as the Work-Up Billing Math skill — Estimator |
-| [[proposal-assembly]] | Save as the Proposal Assembly skill — Scribe |
-
-**Read [[BACKTEST-SPECIMEN]] before uploading any of them.** It works all four against DSP26085 —
-six rules reproduce the real quote to the hour and to the line, and one rule was falsified. **None
-of these four carries a rate number**; rates belong to a contract and stay in the vault behind their
-own warnings.
-
-## Day 1 — substrate
-
-Sequence: `~~verify terminal~~ > ~~clone vault~~ > write README > create Librarian > citation audit`
-
-1. ~~Check git exists.~~ **Done** — git 2.47.3.
-2. ~~Clone the vault.~~ **Done** — `/workspace/vault` is populated.
+**Substrate.** `/workspace/vault` is a clone of the public `obsidian-work` repo — 6319 objects,
+16.21 MiB, **no credentials prompted**. git on the VM is version 2.47.3.
 
 ```bash
 git clone https://github.com/TheSkinz/obsidian-work.git /workspace/vault
 ```
 
-3. Still to do: create the project folders `/workspace/bids`, `/workspace/jobs`, `/workspace/out`,
-   `/workspace/scratch`.
-4. Still to do: copy `README-FOR-BOTS.md` to `/workspace/README-FOR-BOTS.md`.
-5. Still to do: create **Librarian** and nothing else. Paste its Description from [[bot-profiles]].
-
-## Build log
-
-**2026-09-06 — Librarian, Ledger and Scribe are live.** Built by driving the app directly.
-
-Bots are created from the `+` menu → type the name → `Create "<name>" Bot`, then the Bot title bar
-opens a Settings panel with **Name**, **Label (optional)**, **Description** and a Notifications
-toggle. The Description accepts the full multi-paragraph block with no length trouble. Every new
-Bot then runs a short onboarding interview ("What should I be most useful for?") with four options
-and a free-text box — answer in the free text, pointing it at its own Description.
-
-Skills go in as **file uploads**, not retyped: message box `+` → **Attach files** → the Windows
-Open dialog accepts a full path, and several quoted paths at once. `Receipt Extraction` and
-`Invoice Readiness Check` went to Ledger in one upload; `Project Report` to Scribe. All three
-saved verbatim. Scribe repeated the hand-tally deviation back unprompted: *"every table figure
-marked hand-tallied and arithmetic shown because there is no generator script here."*
-
-**The `+` menu also carries "Teach a task"** — the demonstration recorder — alongside Attach files.
-
-### The Architect, and experiment 2 — skills DO survive verbatim
-
-Built 2026-09-06. First experiment run the same session: *does an uploaded skill survive verbatim,
-or does Grok Bot paraphrase it on ingest?* This mattered because every ported skill is written as
-"do X, and specifically do NOT do Y" — a summariser drops the Y half first, which would strip the
-guardrails while leaving the skill looking correct.
-
-**Answer, TESTED:** the stored skill and the vault source **match byte-for-byte in the body**. The
-platform adds a YAML frontmatter wrapper of its own, so the *file* is not identical while the
-*content* is. Nothing was paraphrased, compressed, or dropped. **The counter-cases in the ported
-skills are safe**, and skills can be written for this platform the same way they are written for
-Claude Code.
-
-Two things fell out of the run that were not the question:
-
-- **Inter-Bot DM works and is visible.** The Architect messaged Scribe directly and the thread showed
-  `Messaged Scribe` / `Message from Scribe` inline. That is the push channel — a Bot cannot silently
-  read another's thread, but it can ask, and the asking is legible to the human watching.
-- **A Bot's verbatim print-back truncates.** Scribe's dump of its own skill cut mid-sentence, so
-  print-back is not a reliable comparison method. **Diff the files on disk instead** — the skill is
-  stored as a real file on the shared computer, which is what made the byte comparison possible at
-  all.
-
-**Cost:** the meter read 1% before the three working Bots were built and **2%** after all of that
-plus this experiment. So the entire build to date — four Bots, three skill uploads, a ten-question
-citation audit and one platform experiment — is roughly 1–2% of a weekly allowance. Cost is not the
-binding constraint at this scale.
-
-### Experiment 1 — the Git-event trigger. There is no push event.
-
-**READ, from the trigger config UI, 2026-09-06.** The routine trigger labelled "Git event" is
-**pull-request shaped, not push shaped.** Its complete event list:
-
-| Group | Events |
-|---|---|
-| Pull request | Opened · Updated · Merged |
-| Review | Requested · Approved · Changes requested · Commented · Thread resolved · Thread reopened |
-| Comment | PR comment · Inline review comment |
-| Checks | CI passed · CI failed |
-| Issue | Assigned |
-
-**Nothing fires on a push.** The designed routine — Librarian pulls the clone when `obsidian-work`
-changes — **cannot be built as specified**, because vault work commits straight to `main` and never
-opens a PR. That is the single most load-bearing assumption in the routine design and it is false.
-
-**What it costs to find out.** The trigger needs the **GitHub connector**, and the connector wants a
-**personal access token**, not OAuth — *"Fine-grained or classic PAT from
-https://github.com/settings/tokens with the repo scopes you want the agent to use."* That is better
-than the account-wide grant the connector's own description implies, because the token sets the real
-ceiling: a fine-grained PAT scoped to one repository keeps everything else out of reach even on a
-shared VM. Jesse minted one for `obsidian-work` plus a Grok repo and installed the connector
-2026-09-06, deliberately departing from the no-credentials posture for this one answer.
-
-**Also READ: an event-triggered routine cannot be Test run.** The button greys out once a Git event
-is the trigger; it is available for scheduled routines only. So the ladder's "test before you arm"
-step is not available on exactly the routines where firing is least predictable.
-
-**The salvage test.** PR-opened still answers the question underneath the question — *do event
-triggers fire at all?* — which also bears on the Webhook trigger, the only other event path. A
-routine named `Vault refresh` is set on Librarian with Opened and Merged on
-`TheSkinz/obsidian-work`, and this file's own change is the stimulus: it lands as a pull request
-rather than a direct push, and the PR opening is the event.
-
-**Correction to the line above: Test run is NOT disabled for event-triggered routines.** It greys
-out only while a routine is *unsaved*. Once saved it is live, and a Test run on `Vault refresh`
-fired and completed — so the routine mechanism and the instruction both work. That is a different
-claim from the trigger firing on its own.
-
-**The first attempt proved nothing, and the fault was mine.** The PR opened at 19:01 and the routine
-saved at 19:03 — Librarian's own thread records `Created routine · Vault refresh` two minutes after
-the stimulus. The event fired before the routine existed. **The panel does not save as you type; it
-commits when a field blurs**, which is worth knowing because nothing in the UI says so and a routine
-can sit visibly configured and not yet be armed.
-
-**Attempt 2 — armed first, and it did not fire. TESTED.**
-
-Routine saved and Active at 19:03. PR #5 opened at **19:05:22**. Run history at **19:09** still
-showed only the manual Test run. **No trigger fire within roughly four minutes** of a correctly
-armed PR-opened trigger on the named repo.
-
-**The diagnosis is concrete rather than a shrug.** `gh api repos/TheSkinz/obsidian-work/hooks`
-returns **nothing — no webhook is registered on the repository at all.** Grok Bot never installed a
-hook, so it had no channel through which to learn the PR existed. That is a much more useful result
-than "it did not work": the trigger is not slow, it is not wired.
-
-**Three candidate causes, none yet distinguished (INFERRED):** the fine-grained PAT may not carry
-**Webhooks: Read and write**, which is the scope a hook registration needs and which was flagged as
-an inference when the token was minted; or the connector registers hooks lazily on some event this
-test did not produce; or Grok Bot polls GitHub on an interval rather than receiving webhooks, in
-which case four minutes was simply too short. **The token scope is the cheapest to check first.**
-
-### What this means for the design
-
-**Routines here are schedule-triggered until proven otherwise.** The defect-triggered premise —
-Librarian refreshing when the vault actually changes — has now failed twice over: there is no push
-event to bind to, and the PR event that does exist did not fire. Against the vault's own 2026-08-21
-measurement, that puts Grok Bot routines in the ~53%-effect schedule-triggered class rather than the
-90–100% defect-triggered class, and **that is a materially weaker case for using routines here at
-all.**
-
-Two things are still open and worth one attempt each, not an evening: confirm the PAT's Webhooks
-scope, and test the **Webhook trigger** directly, which needs no GitHub connector and would let
-Claude Code fire a routine with a `curl` — the bridge the video wrongly attributed to an MCP server.
-
-**What did work, and it is not nothing:** the routine itself runs. A saved routine executes its
-instruction correctly on demand via Test run. The mechanism is sound; only the GitHub trigger is
-unproven.
-
-### The Webhook trigger DOES fire. TESTED, 2026-09-06.
-
-A second routine, `Webhook ping`, armed on the **Webhook** trigger and fired from a terminal on
-Jesse's machine. Librarian replied **`WEBHOOK FIRED 2026-09-07 03:22:04 UTC`** — exactly the
-instructed output, nothing else, and immediately.
-
-**This reverses the pessimistic reading above.** Event-triggered routines are real on this platform.
-They just do not work through GitHub.
-
-**What the Webhook trigger gives you.** Selecting it exposes three fields: a **POST to** endpoint on
-`api2.cursor.sh/automations/webhooks/...` (more Cursor infrastructure), a **key**, and a ready-made
-**header** line. Any process that can make an HTTPS POST can fire the routine — so **Claude Code can
-trigger a Grok Bot routine programmatically.** That is the bridge the video wrongly attributed to an
-MCP server, and it exists, just not where that claim put it.
-
-**Design consequence — the webhook path is strictly better than the GitHub one:**
-
-- It needs **no GitHub connector and no personal access token at all**, so it removes a third-party
-  credential rather than adding one. **The PAT minted for the Git-event test was deleted the same
-  evening**, 2026-09-06, with no loss of capability — it existed only to test a trigger that turned
-  out to have no push event and never fired. The connector entry may still show as installed in the
-  marketplace; the token is what carried the access, and it is gone.
-- It replaces the missing push event. A local git hook, or a line in a commit sequence, can `curl`
-  the webhook on every push to `obsidian-work` — giving Librarian the defect-triggered refresh the
-  design wanted, with the trigger owned locally rather than by a connector.
-- It generalises. Any defect the vault's own tooling can detect — a lint error, a failed rollup, a
-  RULE-FORK fire — can fire a routine, which is a far better fit for this system than a clock.
-
-**The key is a credential.** It authorises firing that routine, so it belongs nowhere in a repo, a
-transcript or a shell history. Regenerate it if it is ever exposed, and if a git hook is built later,
-read it from an environment variable rather than writing it into the hook.
-
-**Operational note, learned the hard way.** PowerShell aliases `curl` to `Invoke-WebRequest`, which
-does not accept `-H`. Use `curl.exe`, or assign the URL and key to variables first and call
-`Invoke-RestMethod` — building the header in PowerShell rather than parsing it in a shell removes
-the quoting failures entirely.
-
-### Wiring it — the push hook
-
-`tools/notify_grok_bot.py` fires the webhook from a `pre-push` hook, so Librarian pulls the clone
-every time the vault is pushed and `/workspace/vault` stops going stale between sessions.
-
-**`pre-push`, not `post-commit`,** because Librarian pulls from the *remote* — the notification has
-to be tied to the push. Git has no `post-push` hook. If a push fails after the hook fires, Librarian
-pulls, finds nothing new, and says so.
-
-**The shim** at `.git/hooks/pre-push` is untracked by nature, so the logic lives in `tools/` where it
-is versioned. Recreate the shim after any re-clone:
-
-```bash
-printf '#!/bin/sh\nexec python "$(git rev-parse --show-toplevel)/tools/notify_grok_bot.py"\n' > .git/hooks/pre-push && chmod +x .git/hooks/pre-push
-```
-
-**Two environment variables, and the key never touches a file.** Read them off the `Vault refresh`
-routine's webhook trigger — click **When a webhook fires** to expand, then copy **POST to** and
-**key** (click *into* each field and Ctrl+A first; the display truncates with an ellipsis and
-copying what you can see gets you a partial key, which returns `Invalid API key`).
-
-```bash
-setx GROK_BOT_WEBHOOK_URL "the POST to value"
-setx GROK_BOT_WEBHOOK_KEY "the key value"
-```
-
-`setx` persists for future shells; open a new terminal afterwards. **Unsetting either is the off
-switch** — the hook goes idle with nothing to uninstall.
-
-**It can never block a push.** Missing key, no network, webhook 500, xAI outage — every path exits 0
-with one line to stderr. A knowledge-vault notification is not worth failing a push over.
-
-**The routine carries two triggers** — the dead PR one and the live webhook. The PR trigger is inert
-rather than removed, because the UI offers no way to delete a single trigger and it costs nothing to
-leave. `Webhook ping`, the throwaway that proved the mechanism, is also left in place: its run
-history is the evidence that a webhook fires, and it answers to a different key.
-
-**Its instruction is deliberately quiet.** It fires on *every* push, so it pulls always but speaks
-only when something under `01-context/` moved, replying `nothing new` otherwise even when many other
-files changed. A routine that reports 24 files on every push is the chatty failure the 2026-08-21
-vault audit retired; the clone still refreshes either way, which is the part that matters.
-
-### The citation audit — PASSED, 10 of 10
-
-Every answer carried a real file path and a verbatim quote. Spot-checked independently against the
-working copy; three quotes were confirmed character-for-character (`17-glossary.md:25`,
-`quote-lifecycle.md:81`, `B-102.md:73`). No invented citations, no citation that failed to support
-its claim.
-
-Two answers are worth recording because they show judgment rather than retrieval:
-
-- **Q7 (quoted-vs-actual)** — answered "job report", then flagged that `USA26041-job-sheet.md` also
-  carries a closed Ticket-breakdown reconciliation section which *"sits against that model"*, and
-  put it under Unresolved questions rather than resolving it. That is the "contradictions are
-  findings, not noise for you to resolve" instruction working.
-- **Q6 (labor rates)** — separated labor billing (hourly, not a 12-hr day rate, changed 2026-07-12)
-  from per diem (one allowance per person per shift, generic base $150, role-split where the
-  contract requires it), and disclosed in Assumptions that it read both because the question's
-  framing and the actual recorded change were about different things.
-
-**Cost:** the meter read `SuperGrok — 1%` before the audit and `1%` after. A ten-question deep vault
-search is under one percent of the weekly allowance. On-demand spend is set to **None**, so there is
-no overage exposure.
-
-**Elapsed:** roughly four minutes for the ten questions, with running progress messages the whole
-time. Not fast, but it was genuinely grepping rather than answering from context.
+Still to do on the VM: create `/workspace/bids`, `/workspace/jobs`, `/workspace/out`,
+`/workspace/scratch`, and copy `README-FOR-BOTS.md` to `/workspace/`.
 
 ---
 
-## Day 2 — citation audit, and the go/no-go
+# 3. Findings
 
-Ask Librarian ten domain questions you already know the answers to, then open each cited file and
-check the line actually says what it claimed. Suggested questions, chosen because each has a
-recorded correction or a known trap behind it:
+## The citation audit — PASSED, 10 of 10. TESTED 2026-09-06.
+
+The go/no-go gate: ask Librarian ten domain questions with known answers, then open each cited file
+and check the line says what it claimed. The ten, chosen because each has a recorded correction or a
+known trap behind it:
 
 1. What is the Clean ID field on a service receipt, and is it a sizing input or a cleaning result?
 2. What are the primary estimating drivers for rig-in, and how many are there?
@@ -343,72 +210,173 @@ recorded correction or a known trap behind it:
 9. Where does the SOP formatting standard live?
 10. What does the vault say about the rig-diagram layout engine?
 
-**Go/no-go:** if Librarian invents a citation, or cites a real file that does not say what it
-claimed, stop the build. Everything downstream inherits that failure, and finding it on day 2
-costs two days instead of three weeks.
+Every answer carried a real file path and a verbatim quote. Three were spot-checked
+character-for-character against the working copy (`17-glossary.md:25`, `quote-lifecycle.md:81`,
+`B-102.md:73`). **No invented citations, and no citation that failed to support its claim.**
 
-## Week 1 — the mechanical bots
+Two answers showed judgment rather than retrieval:
 
-Add **Ledger** and **Scribe**. Save the three skills in `skills/`. Run each one by hand against a
-real closed job. No routines yet.
+- **Q7** — answered "job report", then flagged that `USA26041-job-sheet.md` also carries a closed
+  Ticket-breakdown reconciliation section which *"sits against that model"*, and filed it under
+  Unresolved questions rather than resolving it. That is the "contradictions are findings, not noise
+  for you to resolve" instruction working.
+- **Q6** — separated labor billing (hourly, not a 12-hr day rate, changed 2026-07-12) from per diem
+  (one allowance per person per shift, generic base $150, role-split where the contract requires it),
+  and disclosed in Assumptions that it read both because the question's framing and the recorded
+  change were about different things.
 
-The ladder is `run by hand > correct > save as skill > test the skill > attach a routine`, and
-skipping a rung is how the weekly token allowance disappears.
+**Cost:** meter read 1% before and 1% after. **Elapsed:** roughly four minutes, with running progress
+messages — genuinely grepping rather than answering from context.
 
-## Week 2 — the bid desk
+**The audit's own limitation, learned later the same night:** Q2's answer quoted
+`estimating-approach.md` correctly, but that file was 24 hours stale against the config repo. **A
+passing citation audit does not detect a stale source.** That is what the push hook exists to fix.
 
-Add **Intake** and **Estimator**, write the four estimating skills, create the "Bid Desk" group
-with Intake, Estimator and Scribe. Attach the first two routines once their skills have run clean
-by hand.
+## Skills survive verbatim. TESTED 2026-09-06.
 
-## Week 3 — the browser experiment, now narrower
+*Does an uploaded skill survive verbatim, or does Grok Bot paraphrase it on ingest?* It mattered
+because every ported skill is written as "do X, and specifically do NOT do Y" — a summariser drops
+the Y half first, stripping the guardrails while leaving the skill looking correct.
 
-Add **Scout**. Its bid-folder reconcile job was designed around a SharePoint connector that does
-not exist, and OneDrive's connector is read-only, so the original job cannot be built the way it
-was written. Two honest options remain: drive the SharePoint web UI through the Bot's Chrome,
-which is the fragile path the power-user consensus warns against and which is also where the
-datacenter-IP sign-in blocks bite; or drop the reconcile and give Scout only the portal watch.
+**The stored skill and the vault source match byte-for-byte in the body.** The platform adds a YAML
+frontmatter wrapper of its own, so the *file* differs while the *content* does not. Nothing
+paraphrased, compressed or dropped. **The counter-cases in the ported skills are safe.**
 
-Take the browser path anyway for one week. Watching it fail is the point — this is the capability
-Claude Code structurally cannot provide, and whether the browser route is usable is the single
-question that decides if the product is worth anything beyond the trial. Just do not build the
-month around it.
+Two incidental findings: **inter-Bot DM works and is legible** — the Architect messaged Scribe and
+the thread showed `Messaged Scribe` / `Message from Scribe` inline, which is the push channel; a Bot
+cannot silently read another's thread, but it can ask, and the asking is visible. And **print-back
+truncates**, which is why the comparison had to be done by diffing files on disk.
 
-**Better use of the Git event trigger, found in the app:** point Librarian's vault refresh at a
-Git event on `obsidian-work` rather than a daily schedule. It then fires when the vault actually
-changes instead of every morning regardless — defect-triggered rather than clock-triggered, which
-is the same principle the vault's own loop audit landed on. Same for a Webhook trigger if anything
-else should wake a Bot.
+## The Git-event trigger has no push event, and did not fire. 2026-09-06.
 
-## Week 4 — back-test and verdict
+**READ, from the trigger config UI.** The complete event list:
 
-Judge it against artifacts that already have known-good answers, two structurally different ones
-per bot. Estimator against a closed bid, line by line. Scribe against a delivered project report.
-Ledger against a completed ticket breakdown. Librarian against the citation audit again.
+| Group | Events |
+|---|---|
+| Pull request | Opened · Updated · Merged |
+| Review | Requested · Approved · Changes requested · Commented · Thread resolved · Thread reopened |
+| Comment | PR comment · Inline review comment |
+| Checks | CI passed · CI failed |
+| Issue | Assigned |
 
-Record three things, because they decide renewal: how fast the weekly allowance drains and what
-drains it; how often a sign-in is blocked by the datacenter IP and needs manual takeover; whether
-routines actually fire on schedule.
+**Nothing fires on a push.** The designed routine — Librarian pulls when `obsidian-work` changes —
+**could not be built as specified**, because vault work commits straight to `main` and never opens a
+PR. That was the most load-bearing assumption in the routine design.
 
-## Standing constraints
+**TESTED — the PR-opened salvage test also failed.** Routine armed and Active at 19:03, PR #5 opened
+at 19:05:22, run history at 19:09 showed only a manual Test run. Nearly three hours later it still
+showed one run. **The diagnosis is concrete:** `gh api repos/TheSkinz/obsidian-work/hooks` returned
+**nothing — no webhook was ever registered on the repository**, so Grok Bot had no channel to learn
+the PR existed. The trigger is not slow, it is not wired.
 
-**One computer, one credential store.** All Bots share the cloud machine, its filesystem, its
-browser cookies and its terminal credentials. The docs state it outright: do not use separate Bots
-as a security boundary. Anything one Bot signs into, every Bot has.
+**Three candidate causes, undistinguished (INFERRED):** the fine-grained PAT may have lacked
+**Webhooks: Read and write**, flagged as an inference when the token was minted; the connector may
+register hooks lazily; or Grok Bot may poll on an interval longer than four minutes.
 
-**That collides with the account-separation rule** in global CLAUDE.md, which keeps xAI accounts
-on personal credentials and away from USADebusk systems. The trial default is therefore
-**read-only week one** — no Outlook, no SharePoint connector, files uploaded by hand. If the M365
-side turns out to be the point, use a dedicated service account, not the primary work account.
+**What it cost to find out.** The trigger needs the **GitHub connector**, and the connector wants a
+**personal access token, not OAuth** — *"Fine-grained or classic PAT from
+https://github.com/settings/tokens with the repo scopes you want the agent to use."* That is better
+than the account-wide grant the connector's description implies, because the **token** sets the real
+ceiling: a fine-grained PAT scoped to one repository keeps everything else out of reach even on a
+shared VM. **The PAT was deleted 2026-09-06** once the webhook path proved better — it existed only
+to test a trigger that turned out to have no push event and never fired. The connector entry may
+still show as installed; the token carried the access, and it is gone.
 
-**Only /workspace persists.** Temp directories and uncommitted state can vanish. Every finished
+## The Webhook trigger fires. TESTED 2026-09-06.
+
+A routine armed on the **Webhook** trigger and fired by an HTTPS POST returned **`WEBHOOK FIRED
+2026-09-07 03:22:04 UTC`** — exactly the instructed output, nothing else, immediately.
+
+**Event-triggered routines are real on this platform. They just do not work through GitHub.**
+
+Selecting the trigger exposes three fields: a **POST to** endpoint on
+`api2.cursor.sh/automations/webhooks/...` (more Cursor infrastructure), a **key**, and a ready-made
+**header** line. Any process that can make an HTTPS POST can fire the routine — so **Claude Code can
+trigger a Grok Bot routine programmatically.** That is the bridge a source video wrongly attributed
+to an MCP server; it exists, just not where that claim put it.
+
+**The webhook path is strictly better than the GitHub one.** It needs no connector and no token, so
+it *removes* a third-party credential rather than adding one. It replaces the missing push event via
+a local git hook, with the trigger owned locally. And it generalises — any defect the vault's own
+tooling detects (a lint error, a failed rollup, a `RULE-FORK` fire) can fire a routine, which fits
+this system far better than a clock.
+
+**The key is a credential.** It authorises firing the routine, so it belongs in no repo, transcript
+or shell history. Regenerate it if exposed, and read it from an environment variable rather than
+writing it into a hook.
+
+**Both hook paths verified 2026-09-06.** A push touching nothing under `01-context/` fired the
+routine and produced no report — the correct quiet path. A push touching
+`01-context/system-workflow-reference.md` fired it and it spoke: *"Vault pulled `d4c590b..03e6071`.
+Standing context moved: `01-context/system-workflow-reference.md` — that file changes how every Bot
+answers."* Two sentences, right file, correct commit range.
+
+**The routine's instruction is deliberately quiet.** It fires on *every* push, so it pulls always but
+speaks only when something under `01-context/` moved, replying `nothing new` otherwise even when many
+other files changed. A routine reporting 24 files per push is the chatty failure the 2026-08-21 vault
+audit retired; the clone refreshes either way, which is the part that matters.
+
+## Connector catalogue, as the app actually shows it. READ 2026-09-06.
+
+**No SharePoint connector at all** — searching returns "No plugins match". **OneDrive exists but is
+read-only** ("Browse, search, and read Microsoft On..."). **Outlook and Outlook Calendar both
+exist.** **GitHub exists with write** ("Manage repos, issues, pull requests"). The public connector
+directory listing SharePoint and OneDrive under Business & Enterprise is not what this account sees.
+
+**There is no email trigger of any kind**, so inbox work runs in scheduled batches, never on arrival.
+
+---
+
+# 4. What's left
+
+**Intake and Estimator**, with their four estimating skills already written and back-tested. Read
+[[BACKTEST-SPECIMEN]] first.
+
+**Scout**, narrowed. Its original bid-folder reconcile was designed around a SharePoint connector
+that does not exist, and OneDrive is read-only. What survives needs no credentials: **competitor
+watch** on public material (Quest Integrity is named across the vault as a competitor with its own
+decoking division, and `DSP26058` is recorded `lost-reason: competitor`), and an **AI-visibility
+check** — asking ChatGPT, Claude and Perplexity realistic buyer questions *without* naming USADebusk
+and recording whether it surfaces. Both are read-only, and both are the "monitoring and briefs"
+category this tool is documented to be reliably good at.
+
+**The back-test, and it is the verdict.** Judge against artifacts that already have known-good
+answers, two structurally different ones per Bot. Estimator against a closed bid, line by line.
+Scribe against a delivered project report — the gap to the hand-edited version is the editing time it
+actually saves, and watch specifically for hand-tallied figures, since the vault's generator does not
+exist over there. Ledger against a completed ticket breakdown; mechanical, so near-perfect or the
+tool is not ready. Librarian against the citation audit again.
+
+**Record three things, because they decide renewal:** how fast the weekly allowance drains and what
+drains it; how often a sign-in is blocked by the datacenter IP and needs manual takeover; and whether
+routines fire reliably now that the webhook path is proven.
+
+**Deferred deliberately.** No Auditor Bot until `/workspace/out` holds real artifacts to audit. No
+Chief of Staff coordinator until the Bot count justifies a router, roughly eight. No navigation
+**skill** — this file is the single copy, and a skill restating it would be the duplication
+`RULE-FORK` exists to catch. If the trial renews, the skill becomes a pointer at this file.
+
+---
+
+# Standing constraints
+
+**One computer, one credential store.** All Bots share the cloud machine, its filesystem, its browser
+cookies and its terminal credentials. The docs state it outright: **do not use separate Bots as a
+security boundary.** Anything one Bot signs into, every Bot has.
+
+**That collides with the account-separation rule** in global CLAUDE.md, which keeps xAI accounts on
+personal credentials and away from USADebusk systems. The trial therefore runs **credential-free** —
+no Outlook, no SharePoint, no Gmail, files uploaded by hand. The one departure, the GitHub PAT, was
+made deliberately for a single answer and reversed the same evening.
+
+**Only `/workspace` persists.** Temp directories and uncommitted state can vanish. Every finished
 artifact gets copied out.
 
-**Limits worth knowing:** 50 Bots and group chats per account; 50 routines per Bot; only the 20
-most recent runs retained per routine, so anything needing an audit trail writes its own log to
-/workspace; deleting a routine is permanent; no model selection or version pinning; Legacy Privacy
-Mode is unsupported and cloud storage is mandatory.
+**Limits worth knowing:** 50 Bots and group chats per account; 50 routines per Bot; only the **20
+most recent runs** retained per routine, so anything needing an audit trail writes its own log to
+`/workspace`; **deleting a routine is permanent**; no model selection or version pinning; Legacy
+Privacy Mode is unsupported and cloud storage is mandatory.
 
-**Business content is not restricted** — pricing, rates, methodology, heater and job data,
-customer and facility names all go anywhere. Credentials, secrets, API keys and tokens do not go
-on this machine at all.
+**Business content is not restricted** — pricing, rates, methodology, heater and job data, customer
+and facility names all go anywhere. **Credentials, secrets, API keys and tokens do not go on this
+machine at all.**
