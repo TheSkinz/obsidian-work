@@ -31,6 +31,8 @@ The distinction that replaced "how risky is the content" is **defect-triggered v
 
 **Monitoring rule:** every run — scheduled or manual — writes the run ledger (`50-dashboards/.loop-runs.json`, local) as its first and last action, and a manual pass of a scheduled loop must use the loop's exact heartbeat commit prefix (`vault-consolidate:`, not `[auto]`) — otherwise the run is invisible to `vault_health.py` and the dashboard reports a loop failure that didn't happen, or misses one that did.
 
+**A fourth trigger now runs outside the loops, and it is defect-triggered by construction (2026-09-06).** `tools/notify_grok_bot.py` fires from a `pre-push` hook and notifies a Grok Bot routine, which pulls the read-only vault clone its Bots cite domain truth from. It exists because that clone otherwise goes stale between sessions, and a Bot citing a stale clone is the same defect as a session reading a stale `01-context/` — the failure the rig-in drift produced on 2026-09-05, where a citation audit quoted the superseded line **verbatim and correctly**. It never blocks a push: every failure path exits 0, and unsetting `GROK_BOT_WEBHOOK_URL` or `GROK_BOT_WEBHOOK_KEY` is the off switch. It also pulls always but speaks only when something under `01-context/` moved, which is the same quiet-unless-defective posture the surviving loops were narrowed to. Full setup in `07-llms/grok/bot-setup/SETUP.md`.
+
 ---
 
 ## Skill Trigger Map
