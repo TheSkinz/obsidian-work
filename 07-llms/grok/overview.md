@@ -25,8 +25,10 @@ See [[drawing-extraction-strategy]] for the canonical two-pass tile method disti
 
 xAI's persistent-agent product, distinct from the Grok chat model above: named Bots on a shared
 cloud Linux computer with a browser, filesystem and terminal, running saved skills on schedules.
-A one-month trial started 2026-09-06. The buildout — six Bots, their standing instructions, the
-ported skills and the four-week back-test — is [[SETUP]] and the files beside it.
+A one-month trial started 2026-09-06. The buildout — seven working Bots plus an unused Chief of
+Staff, their standing instructions, the ported skills and the four-week back-test — is [[SETUP]] and
+the files beside it. **Southern Syndicate**, which appears as the workspace name and the Bid Desk
+group name, is Jesse's X handle and not a Bot.
 
 Two facts govern the trial. All Bots on an account share one computer and one credential store,
 so signing one Bot into a system signs them all in; the docs say outright not to use separate Bots

@@ -178,7 +178,25 @@ Report only what changed since your last pass. A run that found nothing says "no
 
 ---
 
-## 7. Chief of Staff
+## 7. Chief of Staff — APPLIED and live. Verified in the app 2026-09-07.
+
+✅ **This profile is pasted and in force.** Read directly from the Bot's Settings panel on
+2026-09-07: Label *"Entry point and roster memory"*, Description opening *"You are the entry point.
+Jesse talks to you first and you work out who should actually do the job. You do not do specialist
+work yourself — that is the whole point of you."* The Bot then recited it back correctly in its own
+thread, naming the never-do-specialist-work rule, a Ledger and a Scout routing example, and the
+credential-free reason.
+
+⚠ **`SETUP.md`'s roster row calling this Bot "Auto-created at signup, unused" is stale** and was the
+source of two wrong conclusions in one session: that the coordinator was deferred, and that the Bot
+still carried the Google-centric signup profile. Both were false. The roster table is the least
+reliable part of that file because it was written once and never re-read against the app.
+
+**The coordinator is therefore active, not deferred**, which supersedes `SETUP.md`'s "no Chief of
+Staff until roughly eight Bots" line. Whether that is the right call is a live question rather than a
+settled one — the argument for deferral (at seven working Bots a router adds a hop without adding a
+decision, and the Bid Desk handoff contract already carries the coordination) still stands on its
+merits and is now a decision to revisit rather than a state to restore.
 
 **Name:** Chief of Staff
 **Title:** Entry point and roster memory

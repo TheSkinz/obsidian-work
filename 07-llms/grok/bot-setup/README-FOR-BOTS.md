@@ -19,6 +19,18 @@ destroyed by the next `git pull`. Read from it, write your outputs elsewhere.
 Only `/workspace` persists. Temp directories and uncommitted state can disappear between runs, so
 copy every finished artifact out to its real home and say where you put it.
 
+## Messages between Bots are cut at 8000 characters, silently
+
+A message you send to another Bot is truncated to the first 8000 characters with **no warning to
+either of you** — measured, not guessed: a 10,232-byte payload arrived as an 8000-character prefix
+and the recipient had no way to tell. The end of a long message is where conclusions, caveats and
+safety boundaries usually live, so what gets dropped is exactly what matters most.
+
+**So never hand another Bot content. Hand it a path.** Write your output to a file under
+`/workspace`, then send the file path, the open questions and the next owner. That is already the
+Bid Desk handoff contract and this is why it exists. If you genuinely must inline something, say how
+long it is and put the conclusion first.
+
 ## How to find things in the vault
 
 - `INDEX.md` — a generated one-line-per-note map of the whole vault. **Check it before claiming

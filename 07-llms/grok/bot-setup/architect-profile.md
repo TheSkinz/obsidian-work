@@ -45,31 +45,49 @@ When you do not know, say you do not know. Do not fill a gap with a plausible-so
 
 ## Experiment queue
 
-Run these in order, on request. **No routine** until the meter has been watched through a full week.
+**Reconciled against `SETUP.md` on 2026-09-07. Four of the five original experiments are answered —
+do not re-run them.** This queue had drifted out of sync within two days of being written, and since
+this is the file the Architect reads, a stale queue means settled work gets repeated at the cost of
+weekly allowance.
 
-**1. Does the Git-event trigger actually fire?** Set a routine on Librarian triggered by a Git event
-on `TheSkinz/obsidian-work`, have Jesse push a trivial commit, and record whether it fired, how
-long it took, and what the run history shows. **This is the most valuable unknown in the setup** —
-it is the difference between defect-triggered and clock-triggered routines, and the whole routine
-design rests on it being real.
+**1. Does the Git-event trigger actually fire? — ANSWERED, no.** The trigger's event list is
+pull-request shaped and carries **no push event**, so the designed routine could not be built as
+specified; the PR-opened salvage test also failed. See *"The Git-event trigger has no push event"* in
+`SETUP.md`. The webhook path replaced it and works.
 
-**2. Does an uploaded skill survive verbatim?** Ask a Bot that holds a saved skill to print it back
-in full, and compare against the source file in the vault clone. If Grok Bot paraphrases or
-compresses on ingest, every ported rule that carries a counter-case is at risk — those rules are
-written as "do X, and specifically do NOT do Y", and a summariser drops the Y half first. That would
-change how skills must be written for this platform.
+**2. Does an uploaded skill survive verbatim? — ANSWERED, yes on disk, no in transit.** Stored skills
+match the vault source byte-for-byte apart from an added YAML header, so the counter-cases in every
+ported rule are safe. But **Bot-to-Bot delivery truncates at 8000 characters**: a 10,232-byte payload
+arrived as an 8000-char prefix with the Terminology and Safety sections cut. Delivery limit, not an
+ingest limit. Both entries are in `SETUP.md`.
 
-**3. What does one routine run cost?** Run the same bounded task twice and watch the account meter
-either side. The meter reads in whole percent, so a single run may not move it at all — **that is
-itself the finding**, and it means cost has to be measured over a batch rather than a run.
+**3. What does one routine run cost? — OPEN, now with a baseline.** The meter read **SuperGrok 16%**
+on 2026-09-07 16:35. It reads in whole percent, so a single run may not move it at all — that is
+itself the finding, and cost has to be measured over a batch rather than a run. **This is the only
+experiment still genuinely open**, and it is one of the three readings that decide renewal.
 
-**4. What is actually in the marketplace this week?** Enumerate the real connector list and compare
-against the public directory that was already wrong once about SharePoint. Record what exists, what
-is read-only, and what the public list claims that is not true.
+**4. What is actually in the marketplace this week? — ANSWERED, twice.** The connector catalogue was
+enumerated 2026-09-06 (no SharePoint; OneDrive read-only; Outlook and GitHub present) and the
+installed state re-read 2026-09-07 (five connectors including X; six private skills, not seven).
+Both are in `SETUP.md`. Worth re-running only as a periodic sweep, not as an open question.
 
-**5. Does the Webhook trigger work as a Claude Code bridge?** It is the only real connection between
-Claude Code and Grok Bot — the MCP route does not exist. Establish whether a webhook can fire a
-routine from outside, and what it needs.
+**5. Does the Webhook trigger work as a Claude Code bridge? — ANSWERED, yes.** It fires, it needs no
+connector and no token, and it is strictly better than the GitHub route. It is wired to a `pre-push`
+hook via `tools/notify_grok_bot.py`.
+
+**6. Can the VM build a `.docx` at all? — ANSWERED, yes.** There is no document plugin and Canvas is
+render-only, so this was a toolchain question on the Bot's own machine. `pandoc` is absent and a
+direct `pip install` fails under PEP 668, but **`python3 -m venv /workspace/.venv` then
+`/workspace/.venv/bin/pip install python-docx` works** (python-docx 1.2.0), and the resulting 44 kB
+`.docx` was downloaded and verified as valid OOXML off the platform. Put the venv under `/workspace`
+so it persists. Full entry in `SETUP.md`.
+
+**7. Does anything else in the record disagree with the app? — OPEN, and now the highest-value
+question here.** Two roster facts in `SETUP.md` were stale within a day: the skill count, and a Chief
+of Staff row that described an unused signup profile when the coordinator was actually applied and
+live. A session nearly overwrote a correctly configured Bot on the strength of that row. **Sweep the
+app against the record and report every disagreement**, tagged READ. The findings sections are dated
+and hold up; the state tables are not dated and do not.
 
 ## What this Bot is not
 

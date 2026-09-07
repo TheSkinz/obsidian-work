@@ -161,7 +161,10 @@ source, **diff the files on disk** rather than trusting a dump.
 
 # 2. Current state
 
-**The roster is complete as of 2026-09-06.** All seven Bots exist; all seven skills are uploaded.
+**The roster is complete as of 2026-09-06.** All seven Bots exist, plus Chief of Staff. **All seven
+skills are uploaded as of 2026-09-07** — six were in; `Proposal Assembly` was missing for the first
+day and was uploaded and verified on the 7th. This line claimed all seven from the start and was
+wrong until then. Counts here are checked against the app on the date given, not asserted.
 
 | Bot | Role | Skills held | Routines |
 |---|---|---|---|
@@ -172,7 +175,7 @@ source, **diff the files on disk** rather than trusting a dump.
 | **Estimator** | Duration model and priced work-up, propose-only | Duration Model, Work-Up Billing Math | — |
 | **Scout** | Competitor watch, public sources only | — | — |
 | **Architect** | Grok Bot platform research | — | — |
-| **Chief of Staff** | Auto-created at signup, unused | — | — |
+| **Chief of Staff** | **Entry point and roster memory — profile applied, live** (corrected 2026-09-07; this row previously read "auto-created at signup, unused" and was stale) | — | — |
 
 **Group: "Bid Desk"** — Estimator, Intake, Librarian, Scribe. Order is Intake → Estimator → Scribe,
 with Librarian on call and outside the chain. Every member carries the handoff contract: name the
@@ -192,7 +195,7 @@ run history is the evidence, and it answers to a different key.
 **Workspace folders** `/workspace/{bids,jobs,out,scratch}` created 2026-09-06. They are named in
 `README-FOR-BOTS.md`, which every Bot reads, and until then they did not exist.
 
-**Connectors installed — four, and one was never deliberately added.** Gmail, Google Drive,
+**Connectors installed — four as of 2026-09-06; five as of 2026-09-07, X being the fifth.** Gmail, Google Drive,
 **OneDrive** and GitHub. Gmail and Drive were auto-added to Chief of Staff at signup and Gmail was
 never signed in; GitHub was added deliberately for the Git-event test and **its token has been
 deleted**, though the connector entry remains. **OneDrive is the unexplained one** — see the finding
@@ -619,11 +622,123 @@ directory listing SharePoint and OneDrive under Business & Enterprise is not wha
 
 **There is no email trigger of any kind**, so inbox work runs in scheduled batches, never on arrival.
 
+## Document production has no platform support, and the one test excluded it. READ 2026-09-07.
+
+**The `.docx` claim was never tested, because the instruction fenced it out.** The Scribe run
+recorded above was prescribed with *"Markdown is fine, no .docx needed"*, and Scribe delivered
+`USA26041-ExxonMobil-Baytown-HUSA-F501-Project-Report.md`, 12 kB, attached as markdown. This file's
+silence on the file extension was not an oversight in the record — the test genuinely did not
+exercise document production. The Project Report skill's own marketplace description still says it
+assembles a *"customer-facing Project Report .docx"*, which remains an unproven claim.
+
+**Nothing in the marketplace produces documents.** Searching `docx` returns one unrelated fuzzy
+match (incident.io). There is no Word, Office or document-authoring plugin of any kind.
+
+**Canvas is not a document surface.** The Canvas category holds exactly two plugins — *Docs Canvas*
+("Render documentation as a navigable canvas") and *PR Review Canvas* ("Render PR diffs as review
+canvases grouped by importance"). Both render existing material; neither authors or exports. The
+`x.ai/bot/plugin/6306` page for Docs Canvas documents no tools, inputs or outputs.
+
+**So document creation is a VM toolchain question, not a marketplace question** — `python-docx` or
+`pandoc` installed on the Bot's own machine, which is self-contained by construction and needs no
+connector and no credential.
+
+## Bot-to-Bot delivery truncates at 8000 characters. TESTED 2026-09-07.
+
+Scribe's outbound payload was the full on-disk `SKILL.md`, 10,232 bytes and byte-identical. **What
+arrived in the receiving agent was a strict 8000-character prefix** — the last 2,186 characters were
+cut, including the Terminology and Safety boundaries sections.
+
+**This is a delivery limit, not an ingest limit.** Skills are stored byte-for-byte and execute
+intact locally; the cut happens when content is relayed between Bots. The Bid Desk standing rules
+already mitigate it by requiring a handoff to name the output file path rather than paste content,
+which is why it has not bitten a real job.
+
+**It is not a reason to reorder the four skills over 8000 bytes** — `duration-model.md` 15800,
+`proposal-assembly.md` 12157, `job-report.md` 10037, `workup-billing-math.md` 9916. Rewriting 15 kB
+of the Estimator's core skill to solve a mitigated delivery problem trades a real regression risk for
+no gain. State the limit instead.
+
+## Roster and connector state, corrected against the live app. READ 2026-09-07.
+
+**Six private skills were installed, not seven — `Proposal Assembly` was absent. FIXED the same day.**
+The "all seven skills are uploaded" line under *Current state* was wrong, and the practical effect
+was that **the Bid Desk chain had no proposal step** for the whole first day of the trial.
+
+**Uploaded to Scribe 2026-09-07 and verified three ways**, because a save confirmation is a claim:
+the marketplace header moved from `6 private` to **`7 private`**; the Bot reported the saved name
+`Proposal Assembly` (id `proposal-assembly`) with a disk check of 202 lines; and — the check that
+actually matters given the 8000-character delivery cut — it quoted a counter-case from the **end** of
+the file, the never-document-absent-scope rule that *"if filtration was not sold, the proposal is
+silent about filtration — no 'no filtration required' line, no reassuring N/A row."* The tail
+survived, so the whole file went in rather than a prefix.
+
+The 202-line disk count against 195 in the vault source is the platform's added YAML header, which is
+consistent with the byte-for-byte finding above.
+
+**Five connectors, not four.** Google Drive *Connected*, Gmail *Connected*, OneDrive *Connected*,
+GitHub *Error* (consistent with the deleted token), and **X — 1 connector, 1 skill, showing an
+Authenticate button**. X was added by Jesse deliberately against future use and is unauthenticated;
+the account is linked to his X handle **Southern Syndicate**, which is also the workspace and Bid
+Desk group name. Two things flagged rather than asserted: Gmail reads *Connected* where the
+2026-09-06 entry above says it was never signed in, and *Connected* is the app's word — it may mean
+authorized rather than an active session.
+
+**Unlike OneDrive, X can publish.** Its connector is not read-only, so authenticating it would give
+every Bot on the shared credential store posting ability at once. Nothing has that capability today.
+
+**Southern Syndicate is not a Bot.** It is the account/workspace name and the Bid Desk group
+(Estimator, Intake, Librarian, Scribe). A session read it as an unrecorded eighth Bot and was wrong.
+
+**Meter baseline: SuperGrok 16%**, read from the account menu 2026-09-07 16:35. This is the first of
+the three renewal readings and is not recoverable retrospectively.
+
+**The Chief of Staff replacement profile was applied, and this file said otherwise for a day.** The
+roster row above read "Auto-created at signup, unused"; the app shows the coordinator profile from
+`bot-profiles.md` pasted and in force, with the Bot reciting it back correctly. A session planned to
+"neutralize the wrong Google-centric profile" on the strength of that row and was about to overwrite
+a correctly configured live Bot. **The row was stale, not the app.** Caught only because the Bot's
+own thread contradicted the record and the Settings panel was opened before editing.
+
+**The transferable rule: this file's tables age faster than its prose.** The findings sections are
+dated and append-only, so they stay honest. The roster and state tables were written once, describe
+a system that changes daily, and carry no date. Check a table against the app before acting on it.
+
+## Document production works, via a venv on the Bot's own machine. TESTED 2026-09-07.
+
+**`.docx` output is a real Grok Bot capability.** Established end to end, and it needed no plugin and
+no connector.
+
+**The install path matters.** `pandoc` is absent and `pip install python-docx` fails with EXIT 1,
+**externally-managed-environment (PEP 668)** — the system Python is managed and refuses direct
+installs. That is not a dead end. `python3 -m venv /workspace/.venv` followed by
+`/workspace/.venv/bin/pip install python-docx` succeeded, giving **python-docx 1.2.0**.
+`--break-system-packages` was not needed. **Put the venv under `/workspace`** — it is the only path
+that persists, so the toolchain survives between runs.
+
+**The artifact was verified off the platform, not taken on report.** Scribe converted
+`/workspace/out/USA26041-ExxonMobil-Baytown-HU5A-F501-Project-Report.md` and attached a 44 kB
+`.docx`, which was downloaded and checked locally: **valid OOXML** (zip integrity OK, 19 parts,
+`word/document.xml` present, `wordprocessingml` content type), **9 tables**, 11,594 characters of
+text, exactly one `[logo]` placeholder, "Project" 17 times against "Job" 3.
+
+**It behaved as a conversion, not a rewrite** — no numbers re-derived, the fenced delivered report
+left unopened, the hand-tally notice and the unresolved `JR-DCK-<FAC>` doc-id carried through intact
+rather than quietly filled in.
+
+**One residual defect, left for Jesse:** the header table's field label still reads **"Job & PO #"**.
+The other two "Job" instances are internal (`Job digits`, and `Job USA26041` inside Verified facts)
+and do not appear as customer-facing headings, but that label does. Changing it is a deliverable
+format decision, not a fix to make unasked.
+
+**Note the real filename is `HU5A`, with a digit five, not `HUSA`.** Scribe flagged it unprompted
+when the instruction used the wrong one.
+
 ---
 
 # 4. What's left
 
-**The roster is built. Nothing has touched live work.** Seven Bots, seven skills, a group and a
+**The roster is built. Nothing has touched live work.** Seven Bots, six skills, a group and a
 working push trigger, and not one real bid has gone through any of it. That is the whole remaining
 question.
 
