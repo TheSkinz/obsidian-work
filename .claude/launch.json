@@ -6,6 +6,12 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["serve", "apps/pig-tracker", "-l", "4173"],
       "port": 4173
+    },
+    {
+      "name": "static-apps",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8765", "--directory", "apps"],
+      "port": 8765
     }
   ]
 }
