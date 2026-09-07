@@ -427,20 +427,45 @@ Stand-by". *"Those are not the same labels. Mapping the whole-sum pumping bucket
 would be a decision, not made here."* That gap is real and sits between the skill's vocabulary and
 the quote's.
 
-### ⚠ One disagreement with the vault, unresolved
+### The one disagreement — resolved against the workbook, 2026-09-07
 
-**Ledger reports productive Trimax hours at 37; `USA26041-job-sheet.md` records 43.** Both agree the
-quote was 48 and that PDT was 11.
+Ledger reported 37 productive Trimax hours where `USA26041-job-sheet.md` records 43. Jesse read the
+ticket breakdown. **The vault is right and Ledger is wrong, by exactly 6 hours:**
 
-Ledger's arithmetic is internally consistent — it reports a Trimax task split of 7/16/6/11/8 summing
-to 48, of which 11 is PDT, leaving **37 productive**. The job sheet's 43 productive plus 11 PDT
-would total 54, not 48. **The two cannot both be right**, and which is wrong is not decidable from
-the receipts alone.
+| Line | Workbook | Ledger | |
+|---|---|---|---|
+| Rig In | 7 | 7 | ✅ |
+| Rig Over | 0 | 0 | ✅ |
+| Pigging | 16 | 16 | ✅ |
+| Smart Pigging Support | 6 | 6 | ✅ |
+| Stand-by | 11 | 11 | ✅ |
+| **Rig Out** | **14** | **8** | ❌ |
 
-**Do not assume the Bot is the one in error.** The job sheet figure was recorded by hand during a
-reconciliation whose other flags Ledger has now independently reproduced. Settle it against the
-ticket-breakdown `.xlsx` before either number is trusted — and note that the 6-hour gap matches
-Ledger's observation that *"Support/Filter/Crew Truck overrun by 6 hrs each via 10785."*
+Five of six exact. **The miss is the field it told us it could not read.** Its cold pass listed,
+under *Illegible (not guessed)*: *"10785 — Pumper # text after `4 -`: scribbled; ends as out of
+facility. **Hours not in that receipt's bottom resource tally.**"*
+
+**So it under-reported rather than guessed, and named the receipt and field where its number would
+be short.** That is the failure mode to want. A wrong total that hands you the thread is worth more
+than a right total you cannot check, and the whole reason it is auditable is the "never guess an
+illegible field, flag it and ask" rule holding under pressure.
+
+**`F-501.md`'s Task Durations row confirms it to the receipt.** Its source note reads *"Rig-Out = 8
+(10784) + 6 (10785)"* — Ledger took the 8 from 10784 and missed the 6 from 10785, which is the exact
+receipt and the exact field it had already flagged as unreadable. **The card needs no correction;
+it was right all along**, carrying 7 / 16 / 6 / – / 14 / 11, total 43, `first`, mode 3.
+
+### Two findings neither of us had, from the same numbers
+
+**The job total is 54 hrs, not 48.** Both Ledger and this session anchored on 48 because that is the
+quote. Actual was 54 — the job **overran**, where Ledger's arithmetic reported an underrun. The
+quoted-versus-actual direction was inverted by the missing 6 hours.
+
+**Rig-out was 14 against rig-in 7 — double, not mirrored.** The duration model says rig-out mirrors
+rig-in, and carries F-802 (USA26022: 4 in, 20 out) as its single named counter-example, with the
+instruction to *"flag rig-out as the exposure on multi-rig and large multi-pass jobs."* **USA26041 is
+a second counter-example on a different facility.** One row does not move a rule and two do not
+either, but the exception is now recorded twice rather than once, and both times rig-out ran long.
 
 ## Scout hit a login wall, stopped, and said so. TESTED 2026-09-06.
 
