@@ -255,6 +255,48 @@ does not accept `-H`. Use `curl.exe`, or assign the URL and key to variables fir
 `Invoke-RestMethod` — building the header in PowerShell rather than parsing it in a shell removes
 the quoting failures entirely.
 
+### Wiring it — the push hook
+
+`tools/notify_grok_bot.py` fires the webhook from a `pre-push` hook, so Librarian pulls the clone
+every time the vault is pushed and `/workspace/vault` stops going stale between sessions.
+
+**`pre-push`, not `post-commit`,** because Librarian pulls from the *remote* — the notification has
+to be tied to the push. Git has no `post-push` hook. If a push fails after the hook fires, Librarian
+pulls, finds nothing new, and says so.
+
+**The shim** at `.git/hooks/pre-push` is untracked by nature, so the logic lives in `tools/` where it
+is versioned. Recreate the shim after any re-clone:
+
+```bash
+printf '#!/bin/sh\nexec python "$(git rev-parse --show-toplevel)/tools/notify_grok_bot.py"\n' > .git/hooks/pre-push && chmod +x .git/hooks/pre-push
+```
+
+**Two environment variables, and the key never touches a file.** Read them off the `Vault refresh`
+routine's webhook trigger — click **When a webhook fires** to expand, then copy **POST to** and
+**key** (click *into* each field and Ctrl+A first; the display truncates with an ellipsis and
+copying what you can see gets you a partial key, which returns `Invalid API key`).
+
+```bash
+setx GROK_BOT_WEBHOOK_URL "the POST to value"
+setx GROK_BOT_WEBHOOK_KEY "the key value"
+```
+
+`setx` persists for future shells; open a new terminal afterwards. **Unsetting either is the off
+switch** — the hook goes idle with nothing to uninstall.
+
+**It can never block a push.** Missing key, no network, webhook 500, xAI outage — every path exits 0
+with one line to stderr. A knowledge-vault notification is not worth failing a push over.
+
+**The routine carries two triggers** — the dead PR one and the live webhook. The PR trigger is inert
+rather than removed, because the UI offers no way to delete a single trigger and it costs nothing to
+leave. `Webhook ping`, the throwaway that proved the mechanism, is also left in place: its run
+history is the evidence that a webhook fires, and it answers to a different key.
+
+**Its instruction is deliberately quiet.** It fires on *every* push, so it pulls always but speaks
+only when something under `01-context/` moved, replying `nothing new` otherwise even when many other
+files changed. A routine that reports 24 files on every push is the chatty failure the 2026-08-21
+vault audit retired; the clone still refreshes either way, which is the part that matters.
+
 ### The citation audit — PASSED, 10 of 10
 
 Every answer carried a real file path and a verbatim quote. Spot-checked independently against the
