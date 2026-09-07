@@ -1,7 +1,7 @@
 ---
 title: Grok Bot — Setup Runbook
 created: 2026-09-06
-tags: [grok, xai, grok-bot, automation, trial]
+tags: [grok, xai, grok-bot, cursor, automation, trial]
 ---
 
 # Grok Bot — Setup Runbook
@@ -13,6 +13,14 @@ it directly. Where the app and the docs — or the third-party connector directo
 is written here is what the app showed. Two published facts turned out to be wrong: a directory
 listing a SharePoint connector that does not exist, and a claim that an external agent can trigger
 Grok Bot through MCP.
+
+⚠ **Grok Bot is xAI's product running on Cursor's infrastructure.** Both halves matter and the
+evidence for each is below: the docs live at `docs.x.ai/grok-bot`, while the Bot's own sandbox
+terminal opens at `box@cursor:/workspace$` and the webhook trigger hands out an
+`api2.cursor.sh/...` endpoint. **So a `cursor.sh` hostname anywhere in this system is expected, not
+a mismatch** — an `x.ai` host would be the surprise. Stated here because it was previously only
+derivable from two findings 200 lines apart, and meeting `api2.cursor.sh` cold in an environment
+variable reads exactly like a misconfiguration. It is not one.
 
 **Four parts.** *Navigation* is how to drive the app. *Current state* is what exists right now.
 *Findings* is the dated evidence. *What's left* is the surviving plan.
@@ -331,7 +339,8 @@ A routine armed on the **Webhook** trigger and fired by an HTTPS POST returned *
 **Event-triggered routines are real on this platform. They just do not work through GitHub.**
 
 Selecting the trigger exposes three fields: a **POST to** endpoint on
-`api2.cursor.sh/automations/webhooks/...` (more Cursor infrastructure), a **key**, and a ready-made
+`api2.cursor.sh/automations/webhook/<uuid>` (more Cursor infrastructure — **`webhook`, singular**;
+this line read `webhooks` until 2026-09-07, and a URL rebuilt by hand from it 404s), a **key**, and a ready-made
 **header** line. Any process that can make an HTTPS POST can fire the routine — so **Claude Code can
 trigger a Grok Bot routine programmatically.** That is the bridge a source video wrongly attributed
 to an MCP server; it exists, just not where that claim put it.

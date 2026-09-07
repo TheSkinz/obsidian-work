@@ -62,6 +62,14 @@ CONFIGURATION — two environment variables, and the key never touches a file:
 Both are read from the environment. **Unsetting either is the off switch** — the
 hook goes idle with nothing to uninstall.
 
+**The URL points at `api2.cursor.sh`, and that is correct.** Grok Bot is xAI's
+product **running on Cursor's infrastructure** — the Bot's own sandbox terminal
+opens at `box@cursor:/workspace$`, and the webhook trigger hands out an
+`api2.cursor.sh/automations/webhook/<uuid>` endpoint. So a Cursor host here is
+expected; an `x.ai` host would be the anomaly. Written down because reading that
+hostname as a vendor mismatch cost a diagnostic detour on 2026-09-07, with the
+answer sitting in `07-llms/grok/bot-setup/SETUP.md` the whole time.
+
 THREE RULES THIS SCRIPT OBEYS, and the reasons matter more than the code:
 
 1. **It never blocks a push.** Missing key, no network, webhook 500, xAI outage —
