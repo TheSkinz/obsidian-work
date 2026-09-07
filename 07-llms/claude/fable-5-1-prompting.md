@@ -99,15 +99,53 @@ The API-surface material on the same page — turn-scoped system messages, appen
 history and thinking-block prefix binding, client-side compaction — is integration engineering, not
 prompting, and is not summarized above. Go to the source page if that becomes relevant.
 
-## Applied
+## Applied, and what the run actually showed
 
 First use: [[steadyflux-pipeline-inspection-build-prompt]] (2026-09-06). That prompt carries the
-autonomy block near-verbatim, runs at `high` rather than `max` on the reasoning above, requires
-browser self-verification on the vision finding, and holds the whole-file-rewrite nudge in its
-wrapper rather than the payload.
+autonomy block near-verbatim, requires browser self-verification on the vision finding, and holds
+the whole-file-rewrite nudge in its wrapper rather than the payload. It leans hard on the
+goal-over-script finding: reconciled data, hard constraints and a quality bar, with the *form* of
+the visualization left entirely open — the concept that prompted the request named as a direction
+to beat, not a specification to reproduce.
 
-It also leans hard on the goal-over-script finding: it supplies reconciled data, hard constraints
-and a quality bar, and leaves the *form* of the visualization entirely open — explicitly telling
-the model that the concept which prompted the request is a direction to beat, not a specification to
-reproduce. Whether that latitude produces something better than a specified build is the open
-question the run is meant to answer.
+**The run happened 2026-09-06** (session `local_b8cd9eb1`, "Pipeline inspection visualization") and
+produced `apps/steadyflux-wharf-line/` — a 968 KB self-contained page with three.js r158 vendored
+inline, a companion note, a recorder script, and a 5.2 MB MP4. Verified against the running page and
+the source data 2026-09-07, not taken from the session's own report.
+
+**The latitude produced a hybrid, not a copy and not a departure.** It combined the named direction
+with one of the alternatives the prompt sketched: an x-ray flight along the surveyed centreline
+*married to* an unrolled-wall strip, plus a 2D cross-section ring. Neither the prompt nor the prior
+build specified that combination. This is the answer to the question the run was set up to ask —
+open-form latitude got something neither party would have specified, rather than defaulting to the
+example.
+
+**It overrode a wrong fact in the briefing by checking the source.** The prompt asserted Steady
+Flux's identity "runs teal/cyan against dark neutrals." It read the live site and used navy. The
+site's computed styles confirm it exactly — `#22518B`, `#4293DD`, `#ADC9EB`, `#E0E0E0`, `#BBBBBB`,
+`"Helvetica Neue", Arial` — with no teal anywhere. **The lesson is mine, not the model's: never put
+a palette derived from an image summary into a prompt as fact. Say "read the site" and stop there.**
+A stated fact competes with the source; an instruction to look does not.
+
+**It found a defect in the source document that the briefing session missed** — the surveyed route's
+endpoints do not close, contradicting the report's own claim that launch and receive were one site.
+Correct finding, but its write-up understated the gap by 28% (3,300 ft against an actual 4,238 ft),
+which is the reminder that a model checking someone else's work still needs its arithmetic checked.
+
+**Self-verification instructions were followed past the letter.** The prompt asked for at least two
+look-and-improve cycles. The page ships ten startup assertions that run on every load and print to
+console, a `?debug` flag to surface them, a sweep of every 0.1 s of the 178 s cycle for a finite
+camera, and checks at three viewport widths. All ten assertions pass and every expected value
+matches an independent extraction of the source report, including the eight full-bore records at
+25.07 in — a figure an adversarial reviewer had gotten wrong.
+
+**The hard domain calls came out right without being specified**: full-bore records drawn as 360°
+patches with no gap, the odometer-to-route mapping stated as ×0.9521 with every distance labelled by
+system, the clock convention mirrored on the return leg, the two overlapping records at girth weld
+176 merged as one feature, and the two anomalies with bad report labels shown with both the report's
+figure and the resolved one.
+
+**Effort: unresolved, and worth resolving before citing this run.** The session metadata reads
+`effort: "low"`, while the operator set out to run it at `high`. If it was in fact `low`, this
+result is a much stronger data point than it currently reads as. Do not cite the run as evidence
+about a particular effort level until that is settled.
