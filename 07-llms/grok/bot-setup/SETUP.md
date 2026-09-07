@@ -795,6 +795,46 @@ checks, Awaiting Jesse, and all four closing headings at zero), `PROJECT NO.` pr
 absent, `Project & PO #` present, logo still embedded. Body prose fell from 11,147 characters to
 4,101 while **all 9 tables and every figure survived** — the cut was scaffolding, not content.
 
+### Parity test — Grok Bot matches Claude Code once it has the palette. TESTED 2026-09-07.
+
+**The blue table headers were a missing input, not a capability ceiling.** The build spec defers
+fonts, colours and fills to `usadebusk-core` Brand Standards and deliberately does not restate the
+values. Grok Bot does not hold `usadebusk-core` and **cannot read `~/.claude/skills/` at all**, so
+Scribe followed a spec pointing at a document it cannot see and python-docx fell back to its stock
+style, which is blue. Measured: **zero hex values existed anywhere in the ported skills**, while
+`job-report.md` said "amber" five times. Scribe was told amber and never told what amber is.
+
+**Fixed by porting the values** into a new `skills/brand-standards.md`, labelled as a mirror with
+`usadebusk-core` named as authority, plus a pointer added inside `usadebusk-core` itself so a future
+brand change cannot leave Grok Bot silently stale.
+
+**The test was clean because both sides run python-docx 1.2.0** — the Bot's venv and Jesse's
+machine. Same library, same version, same content (Claude Code re-rendered Grok Bot's own v3 output
+rather than re-authoring), so the only variable was what each builder was told.
+
+**The styling layers came out identical, not merely close:**
+
+| | Grok Bot | Claude Code |
+|---|---|---|
+| Fills | `F7F7F7` ×31, `222222` ×28 | `F7F7F7` ×31, `222222` ×28 |
+| Colours | `555555` ×88, `FFFFFF` ×28, `FCC30A` ×9, `222222` ×4 | identical |
+| Fonts | Arial only | Arial only |
+| `tblHeader` / tables / logo | 9 / 9 / 1 | 9 / 9 / 1 |
+| `keepNext` | **17** | 11 |
+
+The only divergence is that **Grok Bot applied `keepNext` more liberally than the Claude Code build
+did**, and its output fits 2 pages against 3. On this document it is not behind; on pagination it is
+marginally ahead.
+
+**What this settles, and what it does not.** Grok Bot can produce a branded, customer-shaped `.docx`
+at Claude Code's standard, on its own machine, with no plugin, connector or credential. **The value
+is not document quality — Claude Code already had that. The value is that Grok Bot runs on Jesse's
+iPhone and Claude Code does not.** A report generated from a plant parking lot without opening a
+laptop is the capability; parity was only the precondition, and it now holds.
+
+**Untested, and the honest next step:** a *different facility*. USA26041 has now built the skill and
+tested it four times, so a fifth pass measures memory rather than capability.
+
 ---
 
 # 4. What's left
