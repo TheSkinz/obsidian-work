@@ -31,3 +31,11 @@ Ruled 2026-09-07 in [[2026-09-07-consolidated-decision-pass]]. The problem it fi
 **Owed, not done (2026-09-07):** the ruling was *SharePoint plus a vault pointer*, and this note is the pointer half. The forms have **not** been moved to SharePoint yet — that is a file operation on Jesse's own OneDrive/SharePoint and is his to run, since nothing in `tools/` uploads binaries and `sharepoint_export.py` projects markdown only. Until the move happens, the paths above are the truth. Update this table when it does, and retire the `OLD_` copy in the same pass.
 
 **Before the vault had this note**, there was no change order template recorded anywhere — only narrative mentions inside individual job notes. A grep for `REV001` returned exactly one hit, the inbox note that raised the problem.
+
+## The ruling predates the M365 access boundary — read this before doing the move
+
+*SharePoint plus a vault pointer* was ruled on the morning of 2026-09-07. Later the same day, company policy blocked third-party tools from company systems ([[m365-access-boundary]]). **The ruling still stands and its reasoning is unchanged** — it was always about coworkers being able to find the current form, which is what SharePoint is for and what a Desktop folder is not.
+
+But the move now carries a cost it did not have when ruled. The forms sit in the local OneDrive tree today, which a session **can** read; SharePoint it **cannot**. Moving the only copy therefore puts them out of reach for anything Claude-side — confirming which revision is current, reading the form to answer a question about it, or noticing that a fifth generation has appeared beside the four already here. None of that was part of the ruling's purpose, so this is not a reason to reverse it, only a consequence worth knowing before it surprises someone.
+
+**The cheap hedge, if that matters: keep a copy in the local OneDrive tree rather than moving the only one.** That is the same pattern the boundary note describes — SharePoint holds canon, the local mirror is what gets read. Jesse's call; nothing is blocked on it either way.
