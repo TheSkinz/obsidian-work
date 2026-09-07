@@ -15,13 +15,29 @@ by Jesse, not as an equivalent output.
 ## What this is
 
 A branded, customer-facing document delivered at project completion. It goes to the customer
-contact and to internal SharePoint. Output is .docx via the built-in Word Documents skill.
+contact and to internal SharePoint. **Output is .docx built with `python-docx`** — there is no
+built-in Word Documents skill on this platform and no document plugin in the marketplace; an earlier
+version of this line said otherwise and was wrong. The interpreter is the venv at
+`/workspace/.venv/bin/python`; if it is missing, rebuild it with `python3 -m venv /workspace/.venv`
+then `/workspace/.venv/bin/pip install python-docx`. A bare `pip install` fails under PEP 668.
 **Operational only — no financial or change-order data.**
 
-Header on every page: `[logo]` left; right block reads `JR-DCK-<FAC><JOB> | REV <n>` over
-`<service> | <N> Heaters | <client>`. Doc id is JR-DCK plus facility code plus job number, e.g.
-JR-DCK-HFS26038. REV starts at 0. Footer: `USADebusk | Deer Park, TX | usadebusk.com` left, page
-number right. **No cover page.**
+Header on every page: **the USADebusk logo** left, then the right block reading
+`JR-DCK-<FAC><JOB> | REV <n>` over `<service> | <N> Heaters | <client>`. Doc id is JR-DCK plus
+facility code plus job number, e.g. JR-DCK-HFS26038. REV starts at 0. Footer:
+`USADebusk | Deer Park, TX | usadebusk.com` left, page number right. **No cover page.**
+
+**Insert the real logo, do not write `[logo]`.** The image is already on this machine at
+`/workspace/vault/assets/brand/usadebusk-logo.png` (674×101, RGBA) — place it with
+`run.add_picture(path, width=Inches(1.6))` and let the height follow the aspect ratio. Only fall back
+to a literal `[logo]` placeholder if that file is genuinely absent, and say so when you do. **Never
+reconstruct the wordmark from shapes or text** — a rebuilt logo that looks close is worse than a
+placeholder, because it ships.
+
+**The header belongs in the header, and nowhere else.** Build it as a real `section.header` part.
+Do not also describe it in the body — a delivered report that opens with a paragraph narrating its
+own running header and doc-id is the structural duplication this skill's verbosity rule exists to
+prevent, and it reads as a draft note left in the file.
 
 ## Section sequence
 
@@ -38,8 +54,9 @@ KPI band, four stats, large number over caption: heaters cleaned, operating hour
 smart-pig inspections. **Operating hours = rig + pig + smart-pig. Stand-by is excluded** — it
 appears only in the Stand-By Summary.
 
-Then a Project Information header and three tables. Customer Details: facility, address, job and
-PO number, contact. Project Details: scope, execution date range with day count, heater tags,
+Then a Project Information header and three tables. Customer Details: facility, address, project and
+PO number, contact — **the row label is `Project & PO #`, not `Job & PO #`**. It is the one place
+"Job" survived as a customer-facing label after the rest of the document was moved to "Project". Project Details: scope, execution date range with day count, heater tags,
 equipment list. Crew Details: project manager, shift lead split day and night, dayshift names,
 nightshift names.
 
