@@ -39,6 +39,39 @@ Do not also describe it in the body — a delivered report that opens with a par
 own running header and doc-id is the structural duplication this skill's verbosity rule exists to
 prevent, and it reads as a draft note left in the file.
 
+**Pagination — set these four properties or the document breaks badly.** Two are usually right by
+default and two are usually missing; the 2026-09-07 build had `cantSplit` on 40 rows and `keepLines`
+on 84 paragraphs, but zero `tblHeader` and zero `keepNext`, which produced a "Project Details"
+heading alone at the foot of page 1 and an "Unresolved questions" heading alone at the foot of
+page 4.
+
+- **`tblHeader` on every table's first row** — `tr.tblHeaderProperty`, so a table that crosses a page
+  repeats its column headings. Without it the continuation is unlabelled columns of data.
+- **`keepNext` on every heading and on any paragraph immediately before a table** —
+  `paragraph.paragraph_format.keep_with_next = True`. This is what stops a heading stranding itself
+  at the bottom of a page with its content overleaf.
+- `cantSplit` on rows and `keepLines` on paragraphs, which the build already does.
+
+**No blank gaps, no orphan pages, no heading or section spilling one line onto a new page.** This is
+a standing correction, not a preference — check the rendered pagination before calling a build done.
+
+**The document carries report content and nothing else. Build apparatus goes in the chat reply.**
+Ruled 2026-09-07 after a build shipped roughly two of five pages of scaffolding. **Never put any of
+this in the `.docx`:** the hand-tally notice, "not built in this draft" placeholder sections,
+`Pigs Used — not built`, the "Conscious checks" block, `[Awaiting Jesse …]` bracketed callouts, and
+the four closing sections (Verified facts, Assumptions, Actions completed, Unresolved questions).
+
+Say all of it in the chat message instead, where it is just as visible to Jesse and costs him
+nothing to read. **This does not weaken the four-section reporting rule** — it moves it out of the
+deliverable and into the reply, which is where it was always meant to be read.
+
+**A section you could not build is simply absent from the document.** Do not write a heading that
+announces its own emptiness — that is the never-document-absent-scope rule applied to your own
+output. Tell Jesse in chat what you could not build and why, and leave the file clean.
+
+**This still means one file, not two.** The deliverable is the only artifact. Nothing gets a
+companion build-notes document — the wrong file gets uploaded and looks correct.
+
 ## Section sequence
 
 ### 1. Title block and Project Information (page 1)
@@ -47,8 +80,10 @@ Amber eyebrow driven by condition and scope, e.g. EMERGENCY MECHANICAL DECOKE. T
 `[Facility] — [Heater Tags] [Scope]`. Subtitle is `Project Report | USADebusk | [Facility] —
 [City, ST]`.
 
-Two four-column job tables: JOB NO. / FACILITY / EXECUTION / PROJECT MANAGER, then PO NO. / SCOPE /
-HEATERS / DURATION.
+Two four-column project tables: **PROJECT NO.** / FACILITY / EXECUTION / PROJECT MANAGER, then
+PO NO. / SCOPE / HEATERS / DURATION. **The column header is PROJECT NO., not JOB NO.** — it is
+customer-facing and it is the last place "Job" survived in a printed heading after the rest of the
+document moved to "Project". A case-sensitive check for "Job" will not find it.
 
 KPI band, four stats, large number over caption: heaters cleaned, operating hours, pigs run,
 smart-pig inspections. **Operating hours = rig + pig + smart-pig. Stand-by is excluded** — it
