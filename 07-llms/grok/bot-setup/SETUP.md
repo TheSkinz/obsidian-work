@@ -492,14 +492,32 @@ the PM owns words.
 with its arithmetic, because there is no generator on that machine; and **one file only**, delivered
 to `/workspace/out/`, with the four closing sections at the bottom.
 
-### One deviation to check
+### The "deviation" was resolved, and the Bot was right
 
-It reported **Stand-By 11 = 3+2+6**, where the supplied figure — and `F-501.md` — record **5 (10781)
-+ 6 (10782)**. The total is right and 3+2 = 5, so this is plausibly a finer split read off the
-receipt rather than an error. **But the instruction was to use the supplied actuals and not
-re-derive**, so it either went to the source anyway or decomposed a figure it was handed. Worth
-resolving before the draft is trusted line-by-line, and a reminder that "use these, do not
-re-derive" is an instruction a Bot can drift from quietly.
+It reported **Stand-By 11 = 3+2+6** against the supplied **5 (10781) + 6 (10782)**. Flagged here as
+a possible drift from a do-not-re-derive instruction. **Asked where the 3 and the 2 came from, it
+gave the honest mechanism and neither hypothesis was correct:**
+
+> *"I did not open receipt 10781. The 3 and the 2 are a decomposition I took from `F-501.md` Field
+> Notes, not from a receipt file. On the 10781 shift-record row the card already narrates Stand-By 5
+> as 'wait for filter press… (3 hrs)' and later '16–18 stand-by (2 hrs)' for permit/procedure
+> discussion. I used that prose to fill the Stand-By Summary CAUSE rows while keeping your 5+6
+> receipt totals as the check."*
+
+**`F-501.md:313` confirms it verbatim** — 3 hrs waiting on the filter press into the unit, 2 hrs
+waiting on ExxonMobil's permit, and 10782's 6. **3+2+6 is the cause-level breakdown, which is
+exactly what the Stand-By Summary's CAUSE column requires.** The figures were right, vault-sourced,
+and correct for the section they were in.
+
+**Its own diagnosis of the real fault was sharper than the flag that prompted it:** *"I should have
+left 10781 as one 5-hour line, or flagged causes as awaiting you, instead of publishing 3 and 2 as
+if I had read the receipt."* The error was **provenance, not arithmetic** — presenting a
+card-narrated split as though it came from the source document.
+
+**Recorded because the grader was wrong.** The flag assumed a number that differed from the supplied
+figure must be an error, and it was a more precise answer drawn from a source the instruction had
+not thought to name. **A challenge to a Bot's output is not evidence the Bot is wrong**, and asking
+for the mechanism rather than asserting the fault is what produced the correction.
 
 ## Scout hit a login wall, stopped, and said so. TESTED 2026-09-06.
 
