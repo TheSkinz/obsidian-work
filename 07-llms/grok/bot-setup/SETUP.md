@@ -763,6 +763,38 @@ stripped at hand-off is Jesse's call on deliverable scope, not something to deci
 machine, with no plugin, no connector and no credential. That is the first capability in this trial
 that is genuinely self-contained.
 
+### Third build — pagination and scope. TESTED 2026-09-07.
+
+**The rendered pages caught what the XML check could not**, which is the lesson worth keeping: a
+document can pass every structural assertion and still paginate badly, and only a render shows it.
+
+**Pagination had a precise, mechanical cause.** The build carried `cantSplit` on 40 rows and
+`keepLines` on 84 paragraphs but **zero `tblHeader` and zero `keepNext`** — rows held together while
+headings did not. "Project Details" sat alone at the foot of page 1, "Unresolved questions" alone at
+the foot of page 4, and a table crossing a page opened with unlabelled columns. Both properties are
+now specified in the skill and the rebuild reports **`tblHeader` 9, `keepNext` 17, `cantSplit` 40**.
+
+**`JOB NO.` was still a printed column header, and a case-sensitive grep missed it.** A session
+reported "Job" as down to one occurrence on the strength of `grep Job`; the page-1 table header is
+uppercase `JOB NO.`. It is now `PROJECT NO.` and the skill says explicitly that a case-sensitive
+check will not find it. **Check labels case-insensitively.**
+
+**Build apparatus no longer ships inside the deliverable. Ruled by Jesse 2026-09-07.** Roughly two of
+five pages were scaffolding: the hand-tally notice, "not built in this draft" sections, `Pigs Used —
+not built`, the "Conscious checks" block, `[Awaiting Jesse …]` callouts, and the four closing
+sections. All of it moves to **the chat reply**, which keeps the one-file rule intact and loses
+nothing — Jesse reads it either way. **The four-section reporting rule is not weakened, it is
+relocated** out of the customer's file.
+
+A corollary the skill now states: **a section that could not be built is simply absent** from the
+document rather than given a heading announcing its own emptiness. That is
+never-document-absent-scope applied to the Bot's own output.
+
+**Verified on the 48 kB result:** all apparatus strings absent (hand-tally, not built, Conscious
+checks, Awaiting Jesse, and all four closing headings at zero), `PROJECT NO.` present, `JOB NO.`
+absent, `Project & PO #` present, logo still embedded. Body prose fell from 11,147 characters to
+4,101 while **all 9 tables and every figure survived** — the cut was scaffolding, not content.
+
 ---
 
 # 4. What's left
