@@ -175,7 +175,50 @@ routine named `Vault refresh` is set on Librarian with Opened and Merged on
 `TheSkinz/obsidian-work`, and this file's own change is the stimulus: it lands as a pull request
 rather than a direct push, and the PR opening is the event.
 
-*(Result recorded below once the run history is read.)*
+**Correction to the line above: Test run is NOT disabled for event-triggered routines.** It greys
+out only while a routine is *unsaved*. Once saved it is live, and a Test run on `Vault refresh`
+fired and completed — so the routine mechanism and the instruction both work. That is a different
+claim from the trigger firing on its own.
+
+**The first attempt proved nothing, and the fault was mine.** The PR opened at 19:01 and the routine
+saved at 19:03 — Librarian's own thread records `Created routine · Vault refresh` two minutes after
+the stimulus. The event fired before the routine existed. **The panel does not save as you type; it
+commits when a field blurs**, which is worth knowing because nothing in the UI says so and a routine
+can sit visibly configured and not yet be armed.
+
+**Attempt 2 — armed first, and it did not fire. TESTED.**
+
+Routine saved and Active at 19:03. PR #5 opened at **19:05:22**. Run history at **19:09** still
+showed only the manual Test run. **No trigger fire within roughly four minutes** of a correctly
+armed PR-opened trigger on the named repo.
+
+**The diagnosis is concrete rather than a shrug.** `gh api repos/TheSkinz/obsidian-work/hooks`
+returns **nothing — no webhook is registered on the repository at all.** Grok Bot never installed a
+hook, so it had no channel through which to learn the PR existed. That is a much more useful result
+than "it did not work": the trigger is not slow, it is not wired.
+
+**Three candidate causes, none yet distinguished (INFERRED):** the fine-grained PAT may not carry
+**Webhooks: Read and write**, which is the scope a hook registration needs and which was flagged as
+an inference when the token was minted; or the connector registers hooks lazily on some event this
+test did not produce; or Grok Bot polls GitHub on an interval rather than receiving webhooks, in
+which case four minutes was simply too short. **The token scope is the cheapest to check first.**
+
+### What this means for the design
+
+**Routines here are schedule-triggered until proven otherwise.** The defect-triggered premise —
+Librarian refreshing when the vault actually changes — has now failed twice over: there is no push
+event to bind to, and the PR event that does exist did not fire. Against the vault's own 2026-08-21
+measurement, that puts Grok Bot routines in the ~53%-effect schedule-triggered class rather than the
+90–100% defect-triggered class, and **that is a materially weaker case for using routines here at
+all.**
+
+Two things are still open and worth one attempt each, not an evening: confirm the PAT's Webhooks
+scope, and test the **Webhook trigger** directly, which needs no GitHub connector and would let
+Claude Code fire a routine with a `curl` — the bridge the video wrongly attributed to an MCP server.
+
+**What did work, and it is not nothing:** the routine itself runs. A saved routine executes its
+instruction correctly on demand via Test run. The mechanism is sound; only the automatic trigger is
+unproven.
 
 ### The citation audit — PASSED, 10 of 10
 
