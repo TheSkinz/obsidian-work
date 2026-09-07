@@ -34,6 +34,22 @@ there too. **The values are not restated here on purpose** — one copy, one pla
 **Set the table styling explicitly on every table.** python-docx applies a blue default if you do
 not, and that blue shipped in the 2026-09-07 build.
 
+**Never leave a Field/Value table at the 50/50 default width.** The label column carries short
+strings and the value column carries prose — Project Details has a 9-character longest label against
+values up to 191 characters — so an even split starves the side that needs the room and garbles it
+into extra lines. This affects Customer Details, Project Details, Crew Details and the per-heater
+data table.
+
+**Size the label column to its own longest label**, roughly `0.10 × characters + 0.45` inches,
+clamped to a **1.4in minimum and 2.2in maximum**, and give the remainder to Value. On a 6.9in text
+width that lands between 1.4/5.5 and 2.2/4.7 depending on the table, which is what it should do —
+the four tables have genuinely different label lengths and a single fixed width suits none of them.
+
+⚠ **Write the widths into `w:tblGrid`, not just `cell.width`.** Setting `cell.width` alone renders
+as an unchanged 50/50 split — LibreOffice ignores it outright and Word honours it inconsistently.
+Set `tblLayout` to `fixed`, then set each `w:gridCol`'s `w:w` in twips. Verified 2026-09-07: the
+first attempt used `cell.width` only and the rendered output did not move at all.
+
 **The header belongs in the header, and nowhere else.** Build it as a real `section.header` part.
 Do not also describe it in the body — a delivered report that opens with a paragraph narrating its
 own running header and doc-id is the structural duplication this skill's verbosity rule exists to

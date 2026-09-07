@@ -128,6 +128,22 @@ usadebusk.com` … `Page <n>`. No cover page.
 Render path: python-docx or the `docx` skill. Fonts, colors, table-header/alt-row fills, and
 section-header borders come from `usadebusk-core` Brand Standards — do not restate values.
 
+**Field/Value column widths — never the 50/50 default** (Jesse, 2026-09-07). Customer Details,
+Project Details, Crew Details and the per-heater data table all pair a short label against long
+prose; Project Details has a 9-character longest label against values up to 191 characters. An even
+split starves the value column and garbles it into extra lines. **Size the label column to its own
+longest label** — roughly `0.10 × characters + 0.45` inches, clamped to **1.4in min / 2.2in max** —
+and give the remainder to Value. The four tables land at different widths on purpose; one fixed
+width suits none of them.
+
+⚠ **Widths must go into `w:tblGrid`, not `cell.width`.** Setting `cell.width` alone renders as an
+unchanged 50/50 split — LibreOffice ignores it and Word honours it inconsistently. Set `tblLayout`
+to `fixed`, then write each `w:gridCol`'s `w:w` in twips. Measured 2026-09-07: a `cell.width`-only
+build did not move the rendered output at all.
+
+**This applies to both render paths** — the Claude Code build and the Grok Bot Scribe skill. It is
+layout, not brand, so it lives here rather than in Brand Standards.
+
 ## Mapping — every report line to its source
 
 Sources: **JS** = job sheet · **TB** = ticket-breakdown xlsx · **HC** = heater card ·
