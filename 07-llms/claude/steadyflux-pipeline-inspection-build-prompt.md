@@ -132,17 +132,49 @@ Send one at a time, in this order, only for what actually broke. Each names a fa
 Build a single-file interactive web visualization of a real pipeline intelligent-pig inspection,
 branded for the company that performed the inspection.
 
-## What done looks like
+## What this is being judged on
 
-Someone who knows nothing about pipeline inspection opens this page, watches without touching
-anything, and comes away understanding three things: where this pipeline is losing wall, how much is
-left at the worst places, and how confident the measurement is. Someone who *does* know pipeline
-inspection opens the same page and finds the numbers they would want, correctly labelled, with the
-uncertainty stated rather than hidden.
+**Visual impact, first and mostly.** This page is going in front of the inspection company's CEO. The
+bar is that he stops, looks, and wants to show someone. A page that is accurate, careful and
+forgettable is a failure here. Accuracy is the floor, not the goal — it is what makes the impact
+mean something, and the data has already been reconciled for you so that staying accurate costs you
+almost nothing.
 
-It should be beautiful. This is going in front of the inspection company's CEO and, plausibly, in
-front of their customers. But everything visually striking on the page should be carrying data — if
-a viewer asks "what does that mean," there is an answer.
+Spend your effort on the picture. Where you have a choice between a safe presentation and an
+ambitious one, take the ambitious one.
+
+Someone who knows nothing about pipeline inspection should open this, watch without touching
+anything, and come away with three things: where this pipeline is losing wall, how much is left at
+the worst places, and roughly how much of it was actually measured. Someone who *does* know pipeline
+inspection should find the numbers they'd want and no claim the data doesn't support.
+
+### What is actually dramatic in this data
+
+Use this. It is why the dataset was chosen, and a picture that buries it is not doing its job.
+
+- **A pit at 0.060 in.** Nominal wall is 0.280 in. Seventy-nine percent of the steel is gone at one
+  spot, 2.4 inches long, halfway out the line. Every other reading in 5,600 ft of pipe is between
+  0.157 and 0.287 in — this one is off the scale by a factor of two and a half, and the first release
+  of the report missed it entirely. It was recovered only by re-analysis. It is the single most
+  arresting fact available to you.
+- **Full-bore internal thinning.** Eleven records in the first 450 ft, nine of them 12 to 23 ft long,
+  wrapping the entire inner circumference. Not spots — long tunnels of thinned pipe.
+- **A clear pattern and its exceptions.** 94 of 115 anomalies sit between 5:00 and 8:00 — the bottom
+  of the pipe, where water and debris sit. The 21 that don't are the interesting ones.
+- **Density that varies enormously.** One 38 ft joint carries 16 separate flaws; thousands of feet
+  elsewhere carry none. The line is not uniformly bad, it is bad in specific places.
+- **The line changes size twice** and doubles back on itself at a wharf, so the run is a loop, not a
+  straight shot.
+
+### Two ways this fails
+
+Fair warning about the two failure modes, so you can steer away from both:
+
+- **Timid.** A clean chart, a tidy table, a competent diagram. Correct and unmemorable. This is the
+  likelier failure and the one to actively resist.
+- **Decorative.** Effects, particles and motion that aren't carrying anything. If a viewer asks
+  "what does that mean" and there's no answer, it's noise. Every striking thing on the page should
+  be striking *because of what the data says*.
 
 ## How to work
 
@@ -577,37 +609,38 @@ this customer already reads their data, though you are not obliged to use it:
 0.350 in and above dark green · 0.300 in lighter green · 0.200 in yellow · 0.150 in orange ·
 0.100 in and below dark red.
 
-## Honesty
+## Keeping it true
 
-This is an engineering document that happens to look good, and it loses all of its value if the
-numbers are decorative.
+Short section, because the data has already been reconciled for you. Four things keep the picture
+honest, and none of them costs you any visual ambition:
 
-- Use only the values in the data block. Do not invent anomalies, readings, clock positions, or
-  defects that are not in the table.
-- The table gives one peak-depth reading per anomaly at one recorded position. If you render a
-  continuous condition profile, then
-  everything between those points is your smoothing, not a measurement. Say so on the page, in plain
-  language, where a viewer will actually see it.
-- The `loss_%` column is **derived** by this extraction as `1 − wall/nominal`, not printed in the
-  report's flaw table. The report itself gives two conflicting definitions of the percentage basis
-  (nominal in the Reporting Thresholds, median wall in the glossary). If you display a percentage,
-  say which basis it uses.
-- Every anomaly here has a recorded clock position, so circumferential placement is real throughout.
-  Note the convention: **0:00 is the top of the pipe and the angle increases clockwise looking
-  downstream, toward the wharf.** On the return leg "downstream" still means toward the wharf, so
-  work out what that implies for your orientation and be consistent.
-- Ovality was measured and **nothing exceeded the 5% reporting threshold**, so there are no ovality
-  records. That is a real finding — the pipe is round — not missing data.
-- Buckles and wrinkles: **none found.** Also a finding.
-- Signal quality was degraded by fouling in places, and dropped signal is not a clean wall reading.
-  Do not render unmeasured pipe as healthy pipe without qualification.
-- Make **no fitness-for-service judgement.** No minimum allowable wall is given, MAOP was not
-  calculated, and pipe grade and SMYS are TBD. Show condition and remaining wall, and say explicitly
-  that no allowable threshold was provided so the page makes no serviceability call. The report is
-  written to API 579 / ASME B31.4 vocabulary but stops short of an FFS verdict, and so must the page.
-- Provenance must be on the page: inspection company, tool, report number and revision, inspection date,
-  issue date. Everything a reader needs to go find the source document — minus the customer's
-  identity.
+- **Use only the values in the data block.** Don't invent anomalies, readings, clock positions or
+  defects. You have plenty of real drama; you don't need manufactured drama.
+- **Clock positions are real, so use them.** The convention: **0:00 is the top of the pipe, angle
+  increases clockwise looking downstream toward the wharf.** On the return leg "downstream" still
+  means toward the wharf. Work out what that implies and be consistent — the bottom-of-pipe pattern
+  is only legible if the orientation is right.
+- **Between the 115 measured points, anything continuous you draw is your smoothing.** Draw it; a
+  continuous surface is almost certainly a better picture than 115 dots. Just don't let the page
+  imply it was measured.
+- **Say nothing about fitness for service.** No allowable wall was supplied, MAOP was never
+  calculated, and grade and SMYS are unknown, so "is this pipe safe" is a question this data cannot
+  answer. Show condition; make no verdict.
+
+Four things must appear somewhere on the page. Where and how is entirely your call, and they should
+not turn into a wall of disclaimer text:
+
+1. Provenance — inspection company, tool, report number and revision, inspection date.
+2. That values between measured points are interpolated.
+3. That percentages are against nominal wall. (The `loss_%` column is derived here as
+   `1 − wall/nominal`; the report itself gives two conflicting definitions, so this needs stating.)
+4. That no serviceability judgement is made.
+
+Two findings worth knowing because they are *absences* that mean something rather than missing data:
+ovality was measured and nothing exceeded the 5% reporting threshold — the pipe is round — and no
+buckles or wrinkles were found anywhere. Separately, fouling degraded the ultrasonic signal in
+places, so unmeasured pipe is not the same as healthy pipe; if your form implies a reading
+everywhere, that's worth a word.
 
 ## Environment
 
@@ -642,43 +675,61 @@ Delivery constraints:
   throws in a sandboxed artifact there is no console you can reach, and a blank dark page tells you
   nothing.
 
-## Verify before you say it is done
+## Look at it, then make it better — at least twice
 
-Do not report this complete from the code. Open it and look at it.
+This is not a final check. It is how the page gets good, and it is the part most likely to be
+skipped. **Budget real effort here.** A first render is a draft; nobody's first render is
+impressive, including yours.
 
-Serve the file or open it in the Browser pane, take a screenshot, and read the console for errors.
-Then examine your own screenshot the way a critic would: is the text legible at the default size,
-does anything overlap, does the geometry look like the thing it is supposed to be, is P-1 — the
-0.060 in pit, 78.6% wall loss, the worst thing in this pipeline — actually findable by someone who
-doesn't know where it is? Crop in on the areas you are unsure about rather than judging the whole
-frame at once. Fix what you find and look again.
+Run this loop at least twice, and more if it is still improving:
 
-Check the resting state too — let it run a full cycle and confirm it doesn't drift, stall, or end
-somewhere broken.
+1. Open it in the Browser pane, screenshot it, read the console.
+2. **Look at your own screenshot as a critic, not as its author.** Not "does it work" — *is it
+   impressive?* Would someone stop on this? Crop in on regions you're unsure about rather than
+   judging the whole frame at once; you see far more detail that way.
+3. Ask the specific questions: Is the composition strong or is it just centred? Is there a focal
+   point, and is it the right one? Does the type have hierarchy or is it all one size? Is the color
+   doing work or is it decoration? Is anything overlapping, cramped, or floating unanchored? Is P-1
+   — the 0.060 in pit, the most arresting fact in the dataset — findable by someone who doesn't know
+   where to look?
+4. Fix the weakest thing. Then look again.
+
+Also let it run a full cycle to confirm it doesn't drift, stall, or end somewhere broken, and check
+it at a narrow window as well as a wide one.
+
+If after two passes it is working but unremarkable, that is the moment to make a bigger change
+rather than to polish. Polishing a timid design produces a well-polished timid design.
 
 ## Done means all of these
 
-- [ ] One HTML file, opens and runs, no external network requests, no console errors
+Visual bar — the part that decides whether this succeeded:
+
+- [ ] You would show this to someone. It is not merely correct.
+- [ ] There is a clear focal point and a deliberate composition, not a centred default
+- [ ] The 0.060 in pit lands as the event it is
+- [ ] You ran the look-and-improve loop at least twice and the page changed because of it
 - [ ] The form was chosen deliberately, and you said in a sentence why
+
+Works:
+
+- [ ] One HTML file, opens and runs, no external network requests, no console errors
 - [ ] It rewards passive watching, and it covers all 5,600 ft and all 115 anomalies
-- [ ] Whatever you built reconciles with the route and girth-weld tables, and the odometer-to-route
-      mapping is stated
-- [ ] Every rendered value traces to a row in the data block; nothing invented
-- [ ] Interpolation between the 115 measured points is disclosed on the page in plain language
-- [ ] Percentage basis stated wherever a percentage appears
+- [ ] Geometry reconciles with the route and girth-weld tables; odometer-to-route mapping stated
 - [ ] Internal versus external damage is distinguishable to a viewer
 - [ ] Clock convention correct and consistent across the outbound and return legs
-- [ ] No fitness-for-service verdict; the absence of an allowable wall is stated
-- [ ] Provenance panel present and correct
-- [ ] Steady Flux Technologies branding derived from their live site; `[logo]` placeholder, not a
-      rebuilt wordmark
-- [ ] Asset described physically rather than by name; no invented operator or site names, and no
-      claim on the page that the data is anonymized
-- [ ] You opened it, screenshotted it, and fixed what you saw
+- [ ] Steady Flux Technologies branding from their live site; `[logo]` placeholder, not a rebuilt
+      wordmark
+
+True:
+
+- [ ] Every rendered value traces to a row in the data block; nothing invented
+- [ ] The four required statements appear somewhere, without becoming a wall of disclaimer text
 
 ## Not this
 
-No gamification, no score, no missions, no achievement language. No stock-photo mood or marketing
-copy. No invented data, no invented anomalies, no invented company names. No fabricated wordmark. No
-serviceability verdict. This is an engineering visualization that happens to be
-beautiful, not a ride with data stuck on it.
+No gamification, no score, no missions, no achievement language. No marketing copy. No invented data,
+no invented anomalies, no invented company names. No fabricated wordmark. No serviceability verdict.
+
+And one last time, because it is the thing most likely to go wrong: **do not play it safe.** The
+constraints above exist so that ambition stays truthful, not to talk you out of ambition. Make
+something worth looking at.
