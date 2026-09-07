@@ -36,7 +36,7 @@ An x-ray flight along the surveyed centreline married to an unrolled-wall strip.
 
 ## Branding, as read from the live site (2026-09-06)
 
-steadyflux.com is navy on black and white, not the teal the brief assumed: buttons and the diagonal header band `#22518B`, the accent `|` in "WiLBR | Intelligent Pig" `#4293DD`, tint `#ADC9EB`, greys `#E0E0E0` / `#BBBBBB`, body and headings `"Helvetica Neue", Arial, sans-serif` at weight 400 (nav uses Adobe `aktiv-grotesk`, not vendorable). The page uses those values; the remaining-wall scale (steel-blue → amber → red) is the page's own so that the one red record is unique. `[logo]` is a marked placeholder at the site's 2:1 logo proportion.
+steadyflux.com is navy on black and white, not the teal the brief assumed: buttons and the diagonal header band `#22518B`, the accent `|` in "WiLBR | Intelligent Pig" `#4293DD`, tint `#ADC9EB`, greys `#E0E0E0` / `#BBBBBB`, body and headings `"Helvetica Neue", Arial, sans-serif` at weight 400 (nav uses Adobe `aktiv-grotesk`, not vendorable). The page uses those values; the remaining-wall scale (steel-blue → amber → red) is the page's own so that the one red record is unique. The round badge (`SteadyFlux_Badge_2lines_badgeA.webp`, the same asset the site serves) is embedded as a data URI in the title block; the assembler in the session scratchpad injected it from `Downloads`, so a rebuild needs that file or the site copy.
 
 ## Verification record
 
