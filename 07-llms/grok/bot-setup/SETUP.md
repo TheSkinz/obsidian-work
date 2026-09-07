@@ -148,7 +148,7 @@ source, **diff the files on disk** rather than trusting a dump.
 | **Scribe** | .docx production | Project Report, Proposal Assembly | — |
 | **Intake** | RFQ package → intake checklist, on demand | RFQ Intake | — |
 | **Estimator** | Duration model and priced work-up, propose-only | Duration Model, Work-Up Billing Math | — |
-| **Scout** | Competitor and AI-visibility watch, public sources only | — | — |
+| **Scout** | Competitor watch, public sources only | — | — |
 | **Architect** | Grok Bot platform research | — | — |
 | **Chief of Staff** | Auto-created at signup, unused | — | — |
 
@@ -358,11 +358,22 @@ with Google, Apple, email and SSO options. Scout stopped there, **did not sign i
 another tool**, then reported the gap as a gap and asked whether a later pass could try ChatGPT or
 Claude.
 
-**That is the boundary rule working**, and it was the risky part of that Bot. It also means the
-AI-visibility job may be **structurally unavailable** to a credential-free Bot: if ChatGPT and Claude
-also gate anonymous use, there is no way to run the category test without an account, and that half
-of Scout's job does not exist. **Establish that before investing further in Scout** — the competitor
-half, which reads public services pages, is unaffected either way.
+**That is the boundary rule working**, and it was the risky part of that Bot — it stopped rather than
+routing around, and reported the gap rather than hiding it.
+
+**The job it was doing has since been cut, and the login wall was not the reason.** Asked where the
+AI-visibility idea came from, the honest answer was that it was ported from a general power-user use
+case — "answer engine optimization", checking whether a product gets recommended when someone asks a
+category question — **without checking whether the mechanism applies here.** It does not. USADebusk
+work is bought through RFQs, ARIBA and GED portals, and relationships; `company-context.md` says so.
+Nobody finds a furnace decoking contractor by asking a chatbot, so a clean answer would have changed
+nothing. **Cut 2026-09-07 (Jesse).**
+
+**The lesson is the transferable part:** a use case can be well-executed, well-scoped, and still
+worthless because the industry it was written for buys differently. Check the buying mechanism
+before porting a marketing pattern. Scout is now a competitor watcher only — narrower, and grounded
+in the vault's own record that Quest Integrity competes with its own decoking division and that
+`DSP26058` was lost to a competitor.
 
 ## Connector catalogue, as the app actually shows it. READ 2026-09-06.
 
@@ -377,16 +388,19 @@ directory listing SharePoint and OneDrive under Business & Enterprise is not wha
 
 # 4. What's left
 
-**Intake and Estimator**, with their four estimating skills already written and back-tested. Read
-[[BACKTEST-SPECIMEN]] first.
+**The roster is built. Nothing has touched live work.** Seven Bots, seven skills, a group and a
+working push trigger, and not one real bid has gone through any of it. That is the whole remaining
+question.
 
-**Scout**, narrowed. Its original bid-folder reconcile was designed around a SharePoint connector
-that does not exist, and OneDrive is read-only. What survives needs no credentials: **competitor
-watch** on public material (Quest Integrity is named across the vault as a competitor with its own
-decoking division, and `DSP26058` is recorded `lost-reason: competitor`), and an **AI-visibility
-check** — asking ChatGPT, Claude and Perplexity realistic buyer questions *without* naming USADebusk
-and recording whether it surfaces. Both are read-only, and both are the "monitoring and briefs"
-category this tool is documented to be reliably good at.
+**Run one closed bid end to end through the Bid Desk.** A bid that is already quoted and settled, so
+the output can be checked against what was actually sent rather than judged on whether it reads
+well. Intake produces the checklist, Estimator the duration model and work-up, Scribe the document.
+[[BACKTEST-SPECIMEN]] is the standard: six rules reproduced DSP26085 to the hour and to the line
+when worked by hand, so the Bots have a number to hit.
+
+**Give Scout one real competitor pass** on public material — Quest Integrity first, since the vault
+names them as a competitor with their own decoking division *and* they sit on USADebusk jobs as the
+smart-pig vendor.
 
 **The back-test, and it is the verdict.** Judge against artifacts that already have known-good
 answers, two structurally different ones per Bot. Estimator against a closed bid, line by line.
