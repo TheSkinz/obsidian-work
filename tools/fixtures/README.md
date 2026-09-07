@@ -9,7 +9,7 @@ caught with it — **no fixture, no rule** (contract stated in the `vault_lint.p
 module docstring). A lint-rule change is a structural change: ship it with its
 passing fixture.
 
-All 22 rules, each with the fixture that proves it fires. Severity comes from
+All 23 rules, each with the fixture that proves it fires. Severity comes from
 `ERROR_CODES` in `vault_lint.py` — SECRET, CONF-CONFLICT, YAML-COMMENT, DEAD-LINK,
 HEATER-TYPE-VOCAB, VERIFIED-FORMAT, DEAD-STRING and RULE-FORK are errors, every
 other rule is a warning.
@@ -36,6 +36,7 @@ repo being present on the machine.
 | `04-knowledge/dead-string.md` | DEAD-STRING | error |
 | `04-knowledge/concepts/field-operations.md` + `process-flow.md` (pair) | RULE-FORK | error |
 | `00-inbox/marker-before-frontmatter.md` | STATUS-VOCAB (regression) | warning |
+| `00-inbox/statusless-note.md` | STATUS-MISSING | warning |
 | `06-reviews/dead-link-note.md` | DEAD-LINK | error |
 | `06-reviews/conf-conflict.md` | CONF-CONFLICT | error |
 | `06-reviews/review-overdue.md` | REVIEW-OVERDUE | warning |

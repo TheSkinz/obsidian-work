@@ -10,6 +10,7 @@ Rules (code | severity):
     DEAD-LINK       error    [[wikilink]] whose target exists nowhere in repo
     SECRET          error    credential-shaped string committed to the vault
     STATUS-VOCAB    warning  status: value outside the known vocabulary
+    STATUS-MISSING  warning  inbox note with no status: field — unsweepable
     CONF-CONFLICT   error    confidence: high on an AI-inferred source
     ORPHAN          warning  knowledge-layer note with no inbound wikilinks
     REVIEW-OVERDUE  warning  live note whose review_after date has passed
@@ -157,6 +158,13 @@ ALLOWED_STATUS = {
     # review/decision outcomes
     "resolved", "unresolved", "pending", "superseded",
     "decided-blocked", "approved-blocked", "awarded", "lost",
+    # `executed` and `spec-complete` sat on the Terminal-Note Sweep allowlist
+    # while being outside this vocabulary entirely — latent only because they
+    # appear solely in `archive/`, which SKIP_SCAN excludes. Added 2026-09-07
+    # (DQ-029) so the two lists agree about which words exist. They still
+    # disagree, deliberately, about which ones sweep — see the derivation rule
+    # in 04-knowledge/vault-capture-loop-spec.md.
+    "executed", "spec-complete",
     # research
     "unexplored", "researched", "gated",
 }
@@ -178,7 +186,16 @@ GATED_STATUS = "gated"
 TERMINAL_STATUS = {
     "deprecated", "complete", "closed-unactioned", "expired",
     "resolved", "superseded", "decided-blocked", "approved-blocked", "awarded", "lost",
+    "executed", "spec-complete",
 }
+
+# NOT the Terminal-Note Sweep allowlist, and never derive one from the other
+# (DQ-029, ruled 2026-09-07). Terminal means "will not change again"; sweepable
+# means "finished AND filed elsewhere". `awarded` and `lost` are live
+# commercial outcomes people search for; `decided-blocked` and
+# `approved-blocked` mean decided-but-still-waiting. All four are terminal and
+# none of them sweep. The allowlist and the rule behind it live in
+# 04-knowledge/vault-capture-loop-spec.md.
 
 SECRET_PATTERNS = [
     ("aws-access-key", re.compile(r"\bAKIA[0-9A-Z]{16}\b")),
@@ -561,6 +578,44 @@ def check_status_vocab(root: Path, notes: dict[Path, str]) -> list[Finding]:
         status = fm.get("status")
         if status and status not in ALLOWED_STATUS:
             findings.append(Finding("STATUS-VOCAB", path, f"unknown status '{status}'"))
+    return findings
+
+
+def check_status_missing(root: Path, notes: dict[Path, str]) -> list[Finding]:
+    """STATUS-MISSING: an inbox note with no `status:` field at all.
+
+    A note with no status can never be swept, however finished it is. The
+    Terminal-Note Sweep keys on `status` and a parser that sees none must skip
+    rather than guess -- that rule is right and is not what this fixes. The
+    consequence is that a finished note which simply never got the field is
+    invisible to the sweep permanently, and nothing else will ever move it. On
+    2026-07-29 four such notes were found by accident; two had been stuck five
+    weeks, and clearing them took a dedicated session nobody had scheduled.
+
+    The class fix was ruled in 2026-07-29 and written against the wrong
+    machinery: "have the capture loop normalize any note missing `status:` to
+    `status: inbox` under its Lane 1 frontmatter authority." The capture loop
+    has not run since 2026-08-21, so as specified it was inert -- the identical
+    trap DQ-018 caught ("A alone is inert"). Relocated here 2026-09-07, where
+    something still runs.
+
+    Scoped to `00-inbox/` because that is where the sweep operates and where an
+    unswept note actually costs something. STATUS-VOCAB covers a *wrong*
+    status; nothing covered an *absent* one.
+    """
+    findings = []
+    for path, text in notes.items():
+        try:
+            rel = path.relative_to(root).as_posix()
+        except ValueError:
+            rel = path.as_posix()
+        if not rel.startswith(INBOX_DIR + "/"):
+            continue
+        if "status" not in parse_frontmatter(text):
+            findings.append(Finding(
+                "STATUS-MISSING", path,
+                "no `status:` field — invisible to the Terminal-Note Sweep, "
+                "which keys on status and must skip what it cannot read"))
     return findings
 
 
@@ -1598,6 +1653,7 @@ def run_lint(root: Path, with_git: bool = True) -> list[Finding]:
     # is kept below and still callable on demand; it is simply no longer part of
     # the standing lint run.
     findings += check_status_vocab(root, notes)
+    findings += check_status_missing(root, notes)
     findings += check_confidence_conflict(root, notes)
     findings += check_orphans(root, notes)
     findings += check_review_overdue(root, notes)
@@ -1723,6 +1779,7 @@ def self_test() -> int:
 
     fired = {f.code for f in findings}
     expected = {"OP-FRONTMATTER", "DEAD-LINK", "SECRET", "STATUS-VOCAB",
+                "STATUS-MISSING",
                 "CONF-CONFLICT", "ORPHAN",
                 "REVIEW-OVERDUE", "SUPERSEDED", "DURATIONS-HEADER", "TUBE-GEOM-HEADER",
                 "HEATER-TYPE-VOCAB", "VERIFIED-FORMAT", "DEAD-STRING",

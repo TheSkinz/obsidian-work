@@ -112,7 +112,16 @@ If `00-inbox/` holds 3+ untagged notes on one theme with no existing home, propo
 
 Added 2026-07-28 as an idea-seed-only sweep; **extended to all note types 2026-07-29** (Jesse, in-session). A finished note left in `00-inbox/` is noise that inflates the inbox count and buries live items — and the type it happens to carry never made that more or less true. At the end of inbox ingestion, move any file whose `status` is in this **exact allowlist** to `archive/`:
 
-`executed` · `resolved` · `complete` · `superseded` · `spec-complete` · `closed-unactioned`
+`executed` · `resolved` · `complete` · `superseded` · `spec-complete` · `closed-unactioned` · `deprecated` · `expired`
+
+**The rule this list is derived from** (DQ-029, ruled 2026-09-07). A terminal status means the note will not change again. It does **not** follow that the note should leave `00-inbox/`, and that distinction is the whole question:
+
+- **Sweepable — finished and filed.** The commitment is closed and whatever mattered lives somewhere else now. `executed`, `resolved`, `complete`, `superseded`, `spec-complete`, `closed-unactioned`, `deprecated`, `expired`.
+- **Not sweepable — finished but still load-bearing.** `awarded` and `lost` are live commercial outcomes people search for by facility and job; a lost bid's reasoning is exactly what gets re-read when the customer comes back. `decided-blocked` and `approved-blocked` mean *decided, and waiting on something else* — the decision is closed but the work is not, and burying it loses the only visible trace that something is pending.
+
+**Deriving the allowlist from `TERMINAL_STATUS` directly is wrong** and this is why: it would sweep all four of those. The two lists are deliberately different, not drifted, and anything that syncs them mechanically re-introduces the defect.
+
+`deprecated` and `expired` added here 2026-09-07 under the rule above — both were terminal to `vault_lint.py` and absent here, the same gap that stranded seven `closed-unactioned` notes before DQ-018. `executed` and `spec-complete` were the mirror defect: on this list while outside `ALLOWED_STATUS` entirely, latent only because they appear solely in `archive/`, which `SKIP_SCAN` excludes. Both are now in `ALLOWED_STATUS`, so the two vocabularies agree about which words exist while still disagreeing — on purpose — about which ones sweep.
 
 The extension was measured, not assumed: on 2026-07-29 a 49-item inbox held 19 terminal-status notes, of which the seed-only rule covered 9 and left **10** — `type: note`, `task`, `capture`, `spec`, `insight` — sitting indefinitely. Six of those ten also carried a defer marker, so the Pre-Staging Loop was queued to spend runs analyzing questions already closed. `2026-07-23-three-dead-source-pointers.md` was the worked case: opened and resolved the same day, body headed RESOLVED, still in the queue five days later.
 

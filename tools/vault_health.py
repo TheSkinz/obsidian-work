@@ -220,8 +220,19 @@ def count_pending_reviews(root: Path) -> int:
         # boxes (rejected alternatives) are not pending work. Skip it.
         if vault_lint.parse_frontmatter(text).get("status") in vault_lint.TERMINAL_STATUS:
             continue
-        # Only count notes that have a Decision section with an unchecked box.
-        if re.search(r"^#+\s*Decision\b", text, re.MULTILINE) and re.search(r"^\s*-\s*\[ \]", text, re.MULTILINE):
+        # Any unchecked box in a non-terminal review note counts, as of
+        # 2026-09-07. This used to also require a `## Decision` heading, and
+        # that requirement silently hid the largest block of pending work in
+        # the vault: 2026-09-01-skill-drift-review.md is `status: open` with 16
+        # unchecked boxes and no such heading, because it puts each finding's
+        # Accept/Reject pair under the finding's own heading. Seven real
+        # rulings, one of them Lane 4, were uncounted from the day they were
+        # written. `unqueued_decisions()` carried the identical requirement, so
+        # the "Open decisions not in the queue" row -- the completeness check
+        # built to catch exactly this -- read a false green for the same
+        # reason. A convention nothing enforces is not a convention, and the
+        # cheap fix is to stop depending on it rather than to police it.
+        if re.search(r"^\s*-\s*\[ \]", text, re.MULTILINE):
             pending += 1
     return pending
 
@@ -255,7 +266,14 @@ def unqueued_decisions(root: Path) -> list[str]:
             continue
         if vault_lint.parse_frontmatter(text).get("status") in vault_lint.TERMINAL_STATUS:
             continue
-        if not re.search(r"^#+\s*Decision\b", text, re.MULTILINE):
+        # Matched on a `## Decision` heading until 2026-09-07. That gave this
+        # check the same blind spot as the thing it exists to check -- see
+        # count_pending_reviews() -- so a review note using per-finding
+        # headings was invisible to the completeness test AND to the count,
+        # and the row read 0 because it could not see the gap, not because
+        # there wasn't one. Now: an unchecked box is an open ask, wherever it
+        # sits in the note.
+        if not re.search(r"^\s*-\s*\[ \]", text, re.MULTILINE):
             continue
         if p.stem not in queue_text:
             missing.append(p.stem)
@@ -641,6 +659,20 @@ def build(root: Path) -> str:
     findings = vault_lint.run_lint(root)
     errors = sum(1 for f in findings if f.severity == "error")
     warnings = len(findings) - errors
+    # POINTER-DEAD gets its own row (DQ-019, ruled 2026-09-07). It stays at
+    # `warning` severity -- promoting it to `error` would block every commit
+    # touching a note with a stale pointer, including commits unrelated to the
+    # pointer, which is a far larger blast radius than the fault deserves. What
+    # it needed was visibility, not force: two of the three 2026-08-01 findings
+    # sat dead nine days and were caught only by someone reading raw lint output
+    # during unrelated work, because the aggregate "Lint warnings ... (backlog)
+    # ok" row cannot distinguish a stale `related:` link from a broken trail to
+    # a customer's quote folder. The trigger is event-shaped, not decay-shaped
+    # -- pointers go stale when the OneDrive tree is reorganised on award
+    # (Bids -> Jobs) and at cleanup -- so findings arrive in clusters and a row
+    # that reads 0 almost always is exactly the shape that gets noticed when it
+    # stops reading 0.
+    pointer_dead = sum(1 for f in findings if f.code == "POINTER-DEAD")
 
     open_dec = count_open_decisions(root)
     pending_rev = count_pending_reviews(root)
@@ -676,6 +708,7 @@ def build(root: Path) -> str:
         f"| Review notes awaiting decision | {pending_rev} | <= 5 | {flag(pending_rev <= 5)} |",
         f"| Lint errors | {errors} | 0 | {flag(errors == 0)} |",
         f"| Lint warnings | {warnings} | (backlog) | {flag(True)} |",
+        f"| Dead source pointers | {pointer_dead} | 0 | {flag(pointer_dead == 0)} |",
         f"| Inbox items | {inbox_n} | {dash} | {flag(True)} |",
         f"| Inbox median age | {inbox_med_s} | < 14 d | {flag(inbox_med is None or inbox_med < 14)} |",
         f"| Inbox oldest item | {inbox_max_s} | < 30 d | {flag(inbox_max is None or inbox_max < 30)} |",
