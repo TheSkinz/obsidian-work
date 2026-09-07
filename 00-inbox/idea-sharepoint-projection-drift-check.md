@@ -1,6 +1,8 @@
 ---
 type: idea-seed
-status: gated
+status: closed-unactioned
+closed: 2026-09-07
+closed-by: "Killed 2026-09-07 — company policy blocked third-party access to the M365 tenant, see [[m365-access-boundary]]. Both halves die together. The drift check's settled design was a REST read of live library content (the local --check was green during the 2026-08-11 incident while the library held the wrong file), and that read is now impossible; a check fed by hand cannot catch silent drift, which is the only thing it existed for. The M365/SharePoint operating skill proposed here is a skill for driving SharePoint through Chrome — the route that closed with the rest. Queued as DQ-016, now closed-unactioned. Note the frontmatter said `gated` while the body said the gate was satisfied 2026-08-11; that contradiction is moot now but was real for four weeks."
 created: 2026-08-10
 related:
   - "[[2026-08-11-idea-research-sharepoint-projection-drift-check]]"

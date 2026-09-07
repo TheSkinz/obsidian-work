@@ -1,8 +1,26 @@
 """Export selected vault notes to the SharePoint staging folder.
 
 The vault is canonical; the SharePoint `Knowledge` library is a one-way
-projection of it. This script is that projection. Re-run it after editing any
-sourced note so the SharePoint copy does not silently drift.
+projection of it. This script renders that projection into `_OUTPUTS/sharepoint/`
+for Jesse to upload when he chooses.
+
+*** NOTHING HERE VERIFIES WHAT IS LIVE IN THE LIBRARY. ***
+
+This script never touched the tenant -- it is stdlib-only and writes inside the
+vault -- and as of 2026-09-07 Claude Code cannot reach the tenant at all
+(company policy; see `08-systems/m365-access-boundary.md`). So the upload is
+Jesse's manual step, and whether the library matches what is staged here is
+**unknown and unknowable from this side**.
+
+This docstring used to say "re-run it after editing any sourced note so the
+SharePoint copy does not silently drift." **That promise was withdrawn
+2026-09-07 because the script cannot keep it.** `--check` compares staging
+against the vault, which is a real check but not that one: on 2026-08-11 it was
+green throughout while the library itself held the wrong file, because a manual
+upload had bypassed the projection. DQ-016 was opened to close that gap with a
+REST read of live content and is now closed `closed-unactioned` -- the read is
+no longer possible, so the gap is permanent and unguarded. A tool that claims a
+guarantee it does not provide is worse than one that admits the hole.
 
 No format conversion happens here. Markdown was verified on 2026-08-10 to
 index, retrieve, and cite correctly in this tenant at both the M365 Copilot app
@@ -24,7 +42,9 @@ Usage:
     python tools/sharepoint_export.py --check    # report drift, write nothing
 
 `--check` exits 1 if any staged file is missing or differs from what the vault
-would produce now, so it can gate a pre-upload step.
+would produce now, so it can gate a pre-upload step. Read it as "staging is
+current against the vault" and nothing more -- it says nothing about the
+library.
 """
 from __future__ import annotations
 

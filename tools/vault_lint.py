@@ -268,6 +268,57 @@ MD_TABLE_SEP_RE = re.compile(r"^\|[\s|:\-]*-[\s|:\-]*$")  # the |---|---| divide
 POINTER_DIRS = ("02-facilities",)
 POINTER_RE = re.compile(r"`((?:[A-Za-z]:\\|/)[^`\n]{3,})`")
 
+# How deep to look for the "is this store present at all?" root, replacing a
+# flat `parts[:3]` that was wrong for every path the vault actually records.
+POINTER_BASE_MAX_DEPTH = 6
+
+
+def pointer_base_present(p: Path) -> bool | None:
+    """Is the file estate this pointer lives in mounted on this machine?
+
+    Returns True (judge the path), False (abstain -- store absent), or None
+    (unjudgeable shape).
+
+    **Why this is not `Path(*p.parts[:3]).exists()`.** That was the old gate in
+    both this module and `vault_health.bid_folder_signal`, and its comment said
+    "base absent -- different machine, not a finding." For the paths the vault
+    actually records it does not do that. Every recorded pointer looks like
+    `C:\\Users\\Jwuts\\OneDrive\\USADeBusk\\Facilities\\...`, whose first three
+    parts are `C:\\`, `Users`, `Jwuts` -- the user profile directory, which
+    exists on this machine whether or not OneDrive does. So the gate could not
+    tell "wrong machine" from "OneDrive is gone on the right machine," and in
+    the second case POINTER-DEAD would fire on all 14 recorded pointers at once
+    while the health dashboard's twin returned the positively false string
+    "no bid folder path recorded".
+
+    Instead: walk outward from the drive root and treat the deepest prefix that
+    exists as the mounted store. If nothing beyond the drive/profile resolves,
+    the estate is not mounted and every path under it is unjudgeable rather
+    than dead. A pointer whose parent chain is fully present is genuinely
+    broken and does get reported.
+
+    Kept deliberately generic -- it keys on what resolves, not on the string
+    "OneDrive" -- so it still behaves if the estate moves.
+    """
+    parts = p.parts
+    if len(parts) < 3:
+        return None
+    try:
+        # Deepest existing ancestor, capped so a very deep path stays cheap.
+        depth = 0
+        for n in range(1, min(len(parts), POINTER_BASE_MAX_DEPTH + 1)):
+            if Path(*parts[:n]).exists():
+                depth = n
+            else:
+                break
+        if depth == 0:
+            return False        # not even the drive -- different machine
+        # The drive and the profile dir prove nothing: both survive an
+        # unlinked OneDrive. Require at least one real level below them.
+        return depth >= 4
+    except OSError:
+        return None
+
 # PATH-DEAD: the repo-relative sibling of POINTER-DEAD, and deliberately on the
 # same POINTER_DIRS scope — see check_path_dead() for why the whole vault is not
 # a candidate scope.
@@ -1529,8 +1580,12 @@ def check_pointer_dead(root: Path, notes: dict[Path, str]) -> list[Finding]:
                 if len(p.parts) < 3:
                     continue
                 try:
-                    if not Path(*p.parts[:3]).exists():
-                        continue  # base absent — different machine, not a finding
+                    # Store not mounted (different machine, or OneDrive
+                    # unlinked here) — abstain rather than report every
+                    # pointer under it as dead. `vault_health.bid_folder_signal`
+                    # shares this helper; fix both together.
+                    if pointer_base_present(p) is not True:
+                        continue
                     if not p.exists():
                         findings.append(Finding("POINTER-DEAD", path,
                                                 f"recorded path does not resolve: {raw}"))

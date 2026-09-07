@@ -2,7 +2,9 @@
 <!-- vault-prestaged: skipped — already covered by [[07-llms/copilot/overview]]; build proceeded past this note (blocking markdown-vs-docx test passed 2026-08-10, Project Stage already dropped-with-trigger per the build plan, recon items 3-6 resolved by the agent build and tranche A/B loads). Remaining recon items 1 (verify Search and offline availability = Yes) and 2 (identify the 43 Copilot Knowledge items) are simple lookups, not decisions. -->
 ---
 type: note
-status: inbox
+status: closed-unactioned
+closed: 2026-09-07
+closed-by: "Killed 2026-09-07 — company policy blocked third-party access to the M365 tenant, see [[m365-access-boundary]]. The build itself SUCCEEDED and is not being retired: the Furnace Decoking Knowledge library is complete at 29 markdown documents, the Decoking Knowledge agent exists, and the markdown-vs-docx test passed so the converter was dropped. What dies is everything still open here, because every remaining item is tenant-side — the two recon items (confirm Search and offline availability, identify the 43 Copilot Knowledge items), the Agent Builder declarative agent, heater cards as a SharePoint List, and Copilot Studio. Jesse can still do any of it himself; none of it is vault work any more."
 source_authority: primary
 confidence: high
 created: 2026-08-10

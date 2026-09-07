@@ -2,13 +2,14 @@
 <!-- vault-prestaged: skipped — already covered; this note already carries its own `type: review` frontmatter, a specific `revisit-trigger`, and a tracked row in 50-dashboards/health.md's Revisit Triggers table gated on "next session touching Outlook, Copilot grounding, or the OneDrive eviction." That event has not occurred since 2026-08-11. Adding a duplicate decision-queue row now would pre-empt the note's own designed gating rather than wait for the trigger it specifies. -->
 ---
 type: review
-status: open
+status: closed-unactioned
+closed: 2026-09-07
+closed-by: "Killed 2026-09-07 — company policy blocked third-party access to the M365 tenant, see [[m365-access-boundary]]. The decision needed a read of `Phase 1 Outlook Operating Procedure - Reference.docx` from inside the tenant, which no session can do. WARNING CARRIED FORWARD, not resolved: this note records that the unmaintained .docx may hold the ONLY copy of five email-security rule bodies. Closing this does not retrieve them, and Jesse is now the only one who can pull that file. The `revisit-trigger` was removed rather than left — it read "check at the next M365 session" and there will be no such session, which is the exact dormant-trigger failure the 2026-08-20 audit named "a note to a reader who never arrives"."
 review_type: cleanup
 source_authority: session
 confidence: high
 created: 2026-08-11
 review_after: 2026-08-25
-revisit-trigger: "Next session touching Outlook, Copilot grounding, or the OneDrive eviction -> read Phase 1 Outlook Operating Procedure - Reference.docx, decide which of the three folder-structure documents survives, and check whether it holds the five email-rule bodies that exist nowhere else — event: check at the next M365 session"
 related:
   - "[[outlook-email-architecture]]"
   - "[[overview]]"

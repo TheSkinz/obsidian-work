@@ -269,6 +269,7 @@
 
 - [[company-forms]] — Company forms — where the blank templates live
 - [[desktop-hardware]] — Desktop Hardware
+- [[m365-access-boundary]] — The M365 access boundary
 - [[mobile-field-access]] — Mobile / Field Access
 - [[obsidian-setup]] — Obsidian Setup
 - [[outlook-email-architecture]] — Outlook Email Architecture

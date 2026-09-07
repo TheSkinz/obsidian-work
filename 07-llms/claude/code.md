@@ -218,9 +218,13 @@ Caution carried alongside the above: star counts in these listicles are not trus
 
 Source: Claude Code session `c58875e7`, 2026-08-08 (exploratory session, no build action taken).
 
-## Chrome integration is the only path to authenticated web apps, and it's already installed
+## ~~Chrome integration is the only path to authenticated web apps~~ — SUPERSEDED 2026-09-07, that path is closed too
 
-Reaching an authenticated web app — the Furnace Decoking SharePoint site, Outlook web, anything behind M365 SSO — has exactly one working path: **Claude Code's Chrome integration**. Verified 2026-08-10, all three alternatives are dead ends.
+> ⚠ **Do not act on this section for company M365.** Company policy tightened 2026-09-07 to block third-party tools from company systems, and **Claude Code now has no access to the M365 tenant by any route** — Chrome integration included. See [[m365-access-boundary]]. There is nothing left to try; a session that works down this section is burning turns confirming a dead end.
+>
+> **The inventory below is still worth keeping**, for two reasons. It remains accurate about *why* each alternative fails, so nobody re-tests them. And the finding generalises past M365 — the Chrome-integration route is still the working answer for authenticated web apps that are **not** behind the company tenant.
+
+Reaching an authenticated web app — the Furnace Decoking SharePoint site, Outlook web, anything behind M365 SSO — had exactly one working path: **Claude Code's Chrome integration**. Verified 2026-08-10, all three alternatives are dead ends. **As of 2026-09-07 that path is closed for company M365 as well; the paragraph stands as the record of what was true between those dates.**
 
 **What doesn't work.** The `Claude_Browser` preview pane opens an isolated context with no session sharing — navigating to `usadebusk.sharepoint.com` lands on `login.microsoftonline.com`, and routing credentials through a Claude-controlled browser is never the answer. `WebFetch` fails on authenticated URLs by design. The **computer-use MCP** grants browsers at tier "read" only (visible in screenshots, clicks and typing blocked), so even when it works it can't drive a UI — and it refused entirely here with "can't be approved during a scheduled run," which does not lift from inside such a session. The **MCP registry has no SharePoint / Microsoft Graph / M365 connector at all** (searched `sharepoint`, `microsoft 365`, `onedrive`, `microsoft graph`, `outlook` — zero results), so there is no API path to the tenant either.
 

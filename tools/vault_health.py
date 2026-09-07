@@ -463,8 +463,18 @@ def bid_folder_signal(fm: dict, text: str) -> str:
             if len(p.parts) < 3:
                 continue
             try:
-                if not Path(*p.parts[:3]).exists():
-                    return "-"  # base absent — different machine, not a finding
+                # Store not mounted — abstain. This return is why the helper
+                # exists: the old `parts[:3]` gate resolved to the user profile
+                # for every OneDrive-rooted pointer, so it passed even with the
+                # tree gone, `p.is_dir()` was False for everything, `dirs` came
+                # back empty, and this function returned the flatly FALSE
+                # "no bid folder path recorded" — asserting the note recorded no
+                # path when it recorded one that could not be reached. The `-`
+                # the docstring and the dashboard legend both promise never
+                # fired in the case it was written for. Shared with
+                # `vault_lint.check_pointer_dead`; fix both together.
+                if vault_lint.pointer_base_present(p) is not True:
+                    return "-"
                 if p.is_dir():
                     dirs.append(p)
             except OSError:

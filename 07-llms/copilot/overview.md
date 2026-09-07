@@ -6,6 +6,10 @@ tags: [copilot, microsoft, email, outlook]
 
 # Microsoft Copilot
 
+> ⚠ **HISTORICAL AS OF 2026-09-07 — this is a record, not a procedure.** Company policy now blocks third-party tools from company systems, so **Claude Code cannot reach the M365 tenant by any route**. Everything in this file that reads as an *operating procedure* — driving SharePoint through the Chrome integration, the REST recipes (`RenderListDataAsStream`, `files/add` with `X-RequestDigest`), "prefer the Copilot panel to clicking", the tab-lifetime rules, the eval-run instructions — describes a path that no longer exists. **Do not follow it and do not plan from it.** See [[m365-access-boundary]].
+>
+> **What is still worth reading:** the tenant inventory and site/library as-found record, the markdown-vs-`.docx` ranking findings, and the "No API path exists" section — which is now more true than when it was written. Copilot remains Jesse's tool for Microsoft-ecosystem work; it is simply not a target a session can route to.
+
 Copilot is used primarily through Outlook (email triage and drafting) and as a reasoning layer over the Outlook folder/category architecture.
 
 ## Email architecture — three-tier model

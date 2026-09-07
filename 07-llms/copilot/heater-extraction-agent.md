@@ -6,6 +6,8 @@ tags: [copilot, agent, heater-extraction, sharepoint]
 
 # Copilot Heater Extraction Agent
 
+> ⚠ **HISTORICAL AS OF 2026-09-07.** This architecture grounds on SharePoint-hosted knowledge files and writes a learning log back to SharePoint. **Claude Code can no longer reach the tenant** ([[m365-access-boundary]]), so this is not a system a session can build, drive or verify — Jesse could still build it in Copilot Studio himself. Note it was already half-stale: it is scoped against a Gemini Gem that retired 2026-07-07 and was never replaced.
+
 A custom Copilot agent architecture for extracting fired heater coil data from degraded engineering drawings. This is a Copilot-side implementation — distinct from the Claude-side Gemini Gem (v8.1) and the `usadebusk-core` evidence-class system (Anchor/Estimate/Blank). They address the same problem with different tools; cross-reference but don't merge.
 
 ## Architecture overview

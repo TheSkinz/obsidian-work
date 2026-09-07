@@ -9,7 +9,7 @@ Jesse is a technical specialist based in League City, Texas. He works at USADebu
 
 - Counterpart Jason handles separate bids; Jesse's work is self-contained
 
-- Has Claude Pro, Gemini, Copilot 365, Claude in Chrome, and Cowork installed
+- Has Claude Pro, Gemini, Copilot 365, Claude in Chrome, and Cowork installed. **Copilot 365 is his to use, not a session's to reach** — company policy blocked third-party access to the M365 tenant 2026-09-07 ([[m365-access-boundary]])
 
 ## Technical Profile
 

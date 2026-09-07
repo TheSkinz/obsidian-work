@@ -19,7 +19,7 @@ Vault structure is stable post-cleanup: `03-jobs/` and `05-projects/` decommissi
 
 ## Claude Projects (Retired 2026-07-07)
 
-Jesse no longer uses claude.ai chat Projects — Claude Code is the primary interface for all of this work, with the skills at `~/.claude/skills/` carrying the knowledge the project system prompts used to. (Gemini also retired; Copilot M365 is the company-provided tool for Microsoft-ecosystem tasks.) Rows kept for history:
+Jesse no longer uses claude.ai chat Projects — Claude Code is the primary interface for all of this work, with the skills at `~/.claude/skills/` carrying the knowledge the project system prompts used to. (Gemini also retired; Copilot M365 is Jesse's own tool for Microsoft-ecosystem work and **not a target a session can route to** — company policy blocked third-party access to the M365 tenant on 2026-09-07, see [[m365-access-boundary]]. Copilot M365 is the company-provided tool for Microsoft-ecosystem tasks.) Rows kept for history:
 
 | Project | Status | Where the capability lives now |
 |---|---|---|
