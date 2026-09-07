@@ -61,7 +61,7 @@ table's measured columns are clean and are the authority.
 
 Its *label* columns are not. See item 7 below and the note above the data block.
 
-Eight things in the report do **not** reconcile. All but the last two sit in derived summaries
+Nine things in the report do **not** reconcile. All but the last three sit in derived summaries
 rather than in the measured data:
 
 1. **Two distance systems, 5.0% apart.** The girth-weld chain runs 0 → 5,612.69 ft. The surveyed GPS
@@ -114,6 +114,15 @@ rather than in the measured data:
    number *and* wrong revision. Pages 6–56 read `Document 22-0532-006 Rev. C` — right revision, wrong
    prefix. Found 2026-09-07 while assembling the defect list Jesse sent the Steady Flux CEO; it
    affects nothing in the data but it is a controlled-document defect.
+9. **The surveyed route does not close, but the report says it does.** The Project Summary gives
+   Launch Site and Receive Site the *same* coordinates (N 37.930667 / W 122.399794) and notes the
+   pig was "Launched, then reversed flow at the end of the line and retrieved at same site." But
+   Table 1's last waypoint AM is at 37.924453 / 122.412217 — **4,238 ft** from the launch point by
+   equirectangular projection at that latitude (3,579 ft west, 2,270 ft north). Either the survey
+   is missing its final leg back to the launcher, or the two sites are not in fact the same. Found
+   by the Fable 5.1 build session 2026-09-06, which plotted the coordinates as given and said on
+   the page that the endpoints do not coincide — the right call. (That session's own note put the
+   gap at "about 3,300 ft"; corrected to 4,238 ft on 2026-09-07.)
 
 These are worth a note to the CEO independently of this build — the same friend-of-a-friend channel
 used for the F-501 findings on 2026-08-16.
@@ -593,7 +602,15 @@ The page is branded for Steady Flux Technologies. Fetch **https://www.steadyflux
 the palette, typeface and visual tone from what is actually there rather than inventing a look. This
 is a constraint, not a suggestion — but it fixes the ingredients only. How you compose with them is
 entirely yours.
-Their identity runs teal/cyan against dark neutrals, minimalist and industrial-technical.
+Their identity runs **navy on black and white** — verified from the live site's computed styles
+2026-09-07: background and header band `#22518B`, accent `#4293DD`, tint `#ADC9EB`, greys `#E0E0E0`
+and `#BBBBBB`, off-white `#F4F4F3`, type `"Helvetica Neue", Arial, sans-serif` (the nav uses Adobe
+`aktiv-grotesk`, which cannot be vendored). There is no teal or cyan anywhere on the page.
+
+An earlier revision of this prompt asserted teal/cyan; that came from a summarizer describing the
+logo image, not from the site, and it was wrong. The 2026-09-06 build session checked the site
+rather than taking the briefing, and was right to. **Read the source; do not trust this paragraph
+over what the site actually serves.**
 
 Three fixed points:
 
