@@ -43,6 +43,15 @@ distance from its upstream weld, so everything between those points is interpola
 measured thickness map; only B_8_C has a recorded clock position; and no minimum allowable wall
 threshold was provided by the owner, so it makes no fitness-for-service call.
 
+## Sequel
+
+**2026-09-06.** Jesse showed the concept to the Steady Flux CEO, who said it would suit a pipeline
+his company had just inspected. The concept has been re-pointed at that pipeline as a Fable 5.1
+capability test: see [[steadyflux-pipeline-inspection-build-prompt]], which carries the reconciled
+115-anomaly / 286-girth-weld dataset from Steady Flux report 25-0532-006 Rev. C and deliberately
+withholds this build's source and artifact URL so the receiving model solves the presentation
+independently. Prompting guidance for that run is at [[fable-5-1-prompting]].
+
 ## Open
 
 **The Grok Build comparison never happened.** That was the original point of the session. The

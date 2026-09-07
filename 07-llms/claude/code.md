@@ -136,6 +136,8 @@ Applied when building the `idea-triage` skill (2026-07-02): SKILL.md states goal
 
 Source: Claude Code session 6601b270, 2026-07-02.
 
+**Fable 5.1 supersedes the version-specific details above.** See [[fable-5-1-prompting]], read from Anthropic's docs 2026-09-06 — the goal-over-script finding holds and is corroborated there, but 5.1 adds effort-sweep guidance (including that `xhigh`/`max` are *worse* than `high` for a single long deliverable), an autonomy block for long single-shot runs, and several behavioral shifts that need a prompt line each.
+
 ## Naive exact-match scoring can manufacture a false signal
 
 When building a programmatic evaluator for LLM output (not an LLM judge — a deterministic field-matching scorer), a strict-equality rule for anything that "looks numeric" will fail correct extractions that include a natural-language unit (e.g. model output `"22 dollars"` against a reference value `"22"`). A first read of the aggregate scores looked like a real capability gap between two models; auditing every individual failure showed 100% were this same formatting artifact, not a wrong value. Fix: for a bare-numeric reference value, pull the numeric core out of the candidate string and compare that instead of the whole string; treat hyphens and spaces as equivalent for text-field comparisons (e.g. "two-year" vs "two years").
