@@ -88,6 +88,20 @@ clone every time the vault is pushed and `/workspace/vault` stops going stale be
 tie to the push. Git has no `post-push` hook. If a push fails after the hook fires, Librarian pulls,
 finds nothing new, and says so.
 
+**The POST runs in a detached child, and the push does not wait for it** (fixed 2026-09-07). The
+webhook does not acknowledge and return — it **blocks until the run is queued, and slows as runs pile
+up**. Measured back to back: `1.0s` against an idle endpoint, then `21.7s`, then `53.3s`. The
+original 5-second timeout therefore only ever worked on the first push of a session; every push after
+it printed `webhook unreachable (TimeoutError)`, which was **wrong** — DNS, TLS and the route were
+fine throughout, and an unauthenticated POST answered with a clean 401 in 0.3s. Raising the timeout
+would have hung `git push` for the better part of a minute, so the hook now spawns and returns. The
+hook costs about **2 seconds** now, which is Python interpreter startup and nothing else.
+
+**Where failures show up:** `.grok-bot-last` at the vault root — one line, overwritten each run,
+gitignored. `ok - HTTP 200` is the good case. Nothing is printed to the push output any more, because
+by the time the outcome is known the push has already finished. **If the clone looks stale, read that
+file first** — it is the only place a failed trigger is recorded.
+
 **The shim** at `.git/hooks/pre-push` is untracked by nature, so the logic lives in `tools/` where it
 is versioned. Recreate it after any re-clone:
 

@@ -21,6 +21,31 @@ to the push, not the commit. Git has no `post-push` hook, so `pre-push` is the o
 option. It fires just before the push completes; if the push then fails, Librarian
 pulls, finds nothing new, and says so. Harmless.
 
+WHY IT IS FIRE-AND-FORGET (fixed 2026-09-07). The endpoint does not acknowledge and
+return -- it **blocks until the run is queued, and gets slower as runs pile up.**
+Measured back to back on 2026-09-07 against an idle endpoint and then a busy one:
+
+    call 1 (idle)   HTTP 200 after   1.0s
+    call 2          HTTP 200 after  21.7s
+    call 3          HTTP 200 after  53.3s
+
+The original `timeout=5` therefore only ever worked on a cold endpoint. Push twice
+in a session -- normal on any day with real work -- and every push after the first
+timed out and printed `webhook unreachable (TimeoutError)`. **That message was
+misleading: the webhook was never unreachable.** DNS, TLS and the route were all
+fine throughout; an unauthenticated POST returned a well-formed 401 in 0.3s. The
+trigger was also almost certainly being delivered each time, since the run is
+created server-side before the response comes back. Only the acknowledgement was
+lost.
+
+Raising the timeout was the wrong fix: at 53s and climbing it would hang `git push`
+for the better part of a minute, which breaks rule 1 far worse than a spurious
+warning does. So the hook now **spawns a detached child and returns immediately.**
+The push never waits on a queue whose depth it cannot predict. The cost is that
+success and failure are no longer visible in the push output -- so the child writes
+a one-line outcome to `.grok-bot-last` (gitignored) instead of stderr, because by
+the time it knows, the push has finished and nothing is reading.
+
 THE SHIM. `.git/hooks/` is not tracked by git, so the logic lives here where it is
 versioned and visible. Recreate `.git/hooks/pre-push` as:
 
@@ -40,12 +65,18 @@ hook goes idle with nothing to uninstall.
 THREE RULES THIS SCRIPT OBEYS, and the reasons matter more than the code:
 
 1. **It never blocks a push.** Missing key, no network, webhook 500, xAI outage —
-   every path exits 0. A knowledge-vault notification is not worth failing a push
-   over, and a hook that can wedge `git push` is worse than no hook at all.
+   every path exits 0, and since 2026-09-07 the request itself runs in a detached
+   child so the push does not even wait for it. A knowledge-vault notification is
+   not worth failing a push over, and a hook that can wedge `git push` is worse
+   than no hook at all. This is the rule the 5-second timeout was protecting; the
+   detach protects it better and without the false alarm.
 2. **The key is never written anywhere.** Not to a file, not to a log line, not
-   into an error message. Failures report the HTTP status, never the request.
+   into an error message, and **never on a command line** — the detached child
+   inherits it through the environment, because argv is visible to anything that
+   can list processes.
 3. **Silence on success.** A hook that prints on every push becomes noise you stop
-   reading. One line on skip or failure; nothing when it works.
+   reading. The only thing printed to stderr now is the idle notice; outcomes go
+   to `.grok-bot-last`, which you read when you care and ignore when you do not.
 
 POWERSHELL TRAP, recorded because it cost four attempts: PowerShell aliases `curl`
 to `Invoke-WebRequest`, which rejects `-H`. If firing this by hand rather than via
@@ -58,18 +89,92 @@ from __future__ import annotations
 
 import json
 import os
+import subprocess
 import sys
 import urllib.error
 import urllib.request
+from datetime import datetime, timezone
+from pathlib import Path
 
 URL_VAR = "GROK_BOT_WEBHOOK_URL"
 KEY_VAR = "GROK_BOT_WEBHOOK_KEY"
-TIMEOUT_S = 5
+
+# Generous on purpose. Nothing waits on this any more -- the push has already
+# gone by the time the child is still holding the socket -- so the only thing a
+# short timeout would buy is throwing away a trigger that was about to succeed.
+# Measured worst case on 2026-09-07 was 53s and the trend was still upward.
+TIMEOUT_S = 180
+
+# One line, overwritten each run. Gitignored: it is machine state, not content.
+LOG_PATH = Path(__file__).resolve().parent.parent / ".grok-bot-last"
+
+# Internal flag. The hook invocation re-execs itself with this to do the actual
+# POST in a detached process; it is not part of the interface.
+CHILD_FLAG = "--_send"
 
 
 def note(msg: str) -> None:
     """One line to stderr. Never stdout — git shows stderr from hooks plainly."""
     print(f"[grok-bot] {msg}", file=sys.stderr)
+
+
+def log(msg: str) -> None:
+    """Record the outcome where it can be read later. Never the key, never the URL."""
+    try:
+        stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        LOG_PATH.write_text(f"{stamp} {msg}\n", encoding="utf-8")
+    except OSError:
+        pass  # An unwritable log is not a reason to make noise.
+
+
+def send(url: str, key: str) -> None:
+    """The actual POST. Runs in the detached child; nothing is waiting on it."""
+    req = urllib.request.Request(
+        url,
+        data=json.dumps({"source": "obsidian-work pre-push"}).encode("utf-8"),
+        headers={
+            "Authorization": f"Bearer {key}",
+            "Content-Type": "application/json",
+        },
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=TIMEOUT_S) as resp:
+            log(f"ok - HTTP {resp.status}" if resp.status < 400
+                else f"webhook returned HTTP {resp.status}")
+    except urllib.error.HTTPError as exc:
+        # Status only. The request carried the key; the message must not.
+        log(f"webhook returned HTTP {exc.code}")
+    except Exception as exc:  # noqa: BLE001 — nothing here may raise
+        log(f"webhook did not answer ({type(exc).__name__}) after {TIMEOUT_S}s")
+
+
+def spawn_detached() -> bool:
+    """Re-exec ourselves to POST in the background. True if the child started.
+
+    The key travels by inherited environment, never in argv — argv is readable
+    by anything that can list processes on this machine.
+    """
+    kwargs: dict = {
+        "stdin": subprocess.DEVNULL,
+        "stdout": subprocess.DEVNULL,
+        "stderr": subprocess.DEVNULL,
+        "close_fds": True,
+    }
+    if os.name == "nt":
+        # Detach from the console so git does not wait on it, and put it in its
+        # own process group so Ctrl-C on the push does not kill it mid-request.
+        kwargs["creationflags"] = (
+            getattr(subprocess, "DETACHED_PROCESS", 0x00000008)
+            | getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0x00000200)
+        )
+    else:
+        kwargs["start_new_session"] = True
+    try:
+        subprocess.Popen([sys.executable, os.path.abspath(__file__), CHILD_FLAG], **kwargs)
+        return True
+    except Exception:  # noqa: BLE001 — a push must never fail on this
+        return False
 
 
 def main() -> int:
@@ -81,26 +186,14 @@ def main() -> int:
         note(f"idle - set {URL_VAR} and {KEY_VAR} to notify Grok Bot on push")
         return 0
 
-    req = urllib.request.Request(
-        url,
-        data=json.dumps({"source": "obsidian-work pre-push"}).encode("utf-8"),
-        headers={
-            "Authorization": f"Bearer {key}",
-            "Content-Type": "application/json",
-        },
-        method="POST",
-    )
+    if CHILD_FLAG in sys.argv:
+        send(url, key)
+        return 0
 
-    try:
-        with urllib.request.urlopen(req, timeout=TIMEOUT_S) as resp:
-            if resp.status >= 400:
-                note(f"webhook returned HTTP {resp.status} - push continuing")
-    except urllib.error.HTTPError as exc:
-        # Status only. The request carried the key; the message must not.
-        note(f"webhook returned HTTP {exc.code} - push continuing")
-    except Exception as exc:  # noqa: BLE001 — a push must never fail on this
-        note(f"webhook unreachable ({type(exc).__name__}) - push continuing")
-
+    if not spawn_detached():
+        # Could not fork. Do NOT fall back to a blocking send — that reintroduces
+        # exactly the hang this design exists to prevent. Record and move on.
+        log("could not spawn detached sender; trigger skipped")
     return 0
 
 

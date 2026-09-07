@@ -40,3 +40,6 @@ archive/
 # Python bytecode cache (from tools/)
 __pycache__/
 *.pyc
+
+# pre-push notifier outcome, one line, overwritten each run (tools/notify_grok_bot.py)
+.grok-bot-last
