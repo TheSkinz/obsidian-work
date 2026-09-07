@@ -176,7 +176,15 @@ never signed in; GitHub was added deliberately for the Git-event test and **its 
 deleted**, though the connector entry remains. **OneDrive is the unexplained one** — see the finding
 below.
 
-**Meter:** 4% before this session's additions.
+**Meter: 1% → 13% across the whole build day**, 2026-09-06 into 09-07. That bought seven Bots, seven
+skills, a group, a working push trigger, and **five graded tests** — Librarian's citation audit,
+Ledger's receipt extraction and its reconciliation, Scribe's project report, and Scout's competitor
+pass.
+
+**This is the renewal number.** Roughly an eighth of one week's allowance for a full build plus every
+test worth running, with on-demand spend set to **None** so there is no overage tail. Steady-state
+use will be far lighter than a build day. **Cost is not the constraint on this decision** — whether
+the work is worth having is.
 
 ## Files here
 
@@ -518,6 +526,41 @@ card-narrated split as though it came from the source document.
 figure must be an error, and it was a more precise answer drawn from a source the instruction had
 not thought to name. **A challenge to a Bot's output is not evidence the Bot is wrong**, and asking
 for the mechanism rather than asserting the fault is what produced the correction.
+
+## Scout's competitor pass — real intelligence, properly hedged. TESTED 2026-09-07.
+
+The last untested capability, and the only Bot task that produced something usable rather than a
+test result. One bounded pass on **Quest Integrity**, public sources only.
+
+**What it found, all attributed and all framed as claims:**
+
+- **ADCV** is publicly marketed as *"combined mechanical cleaning plus ultrasonic cleanliness
+  verification"* — services page, case-study PDF, refining page. **That is the overlap that
+  matters**: mechanical cleaning is USADebusk's core, and Quest markets it alongside the
+  verification layer.
+- **FTIS** is marketed as furnace-tube ultrasonic smart-pig inspection with fitness-for-service and
+  remaining-life assessment.
+- The services index and refining page **place ADCV before in-line inspection** in the sequence.
+- HDS materials claim **manifold access for cleaning and FTIS without header removal**.
+- Baker Hughes' 2022 acquisition announcement, as carried by *Hydrocarbon Processing*, **names
+  Invista and FTIS, not ADCV**.
+
+**The restraint is the part worth noting.** On the temptation to connect this to a lost bid:
+*"DSP26058's winner is still unnamed in the vault note, so this pass does not attribute that loss to
+Quest."* The vault records `lost-reason: competitor` and nothing more, and Scout left it there —
+which is the standing rule that competitor outcomes are unknowable, holding against an inference
+that would have been easy and wrong.
+
+**It named its coverage gaps rather than papering over them:** Inspectioneering white papers behind
+a register wall including a June 2026 HDS piece (overview visible, download gated); a
+`bakerhughes.com` acquisition URL that returned empty content; LinkedIn not opened; no Baker
+Hughes/Quest decoking job-description body read; and no conference papers located beyond the three
+PDFs it did read. It also declined to treat search-result titles as sources, and recorded that *"an
+empty fetch is a fetch failure, not proof the page is gone."*
+
+**Open, and correctly left open:** who won DSP26058; whether ADCV field crews are Quest employees,
+subcontractors or a mix, which public copy does not settle; and whether any 2024–2026 press or job
+posting on mechanical decoking capacity sits behind a gate this pass did not cross.
 
 ## Scout hit a login wall, stopped, and said so. TESTED 2026-09-06.
 
