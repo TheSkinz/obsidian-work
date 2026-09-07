@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: skill-drift
 source_authority: primary
 confidence: high
@@ -81,7 +81,7 @@ Recommended sequence if you take it: replay F6 first (smaller, one struck rule, 
 
 **Decision:**
 - [ ] Re-cut F6 and F1 from judged replays against current skills
-- [ ] Re-cut F6 only for now; leave F1
+- [x] Re-cut F6 only for now; leave F1 — Jesse, 2026-09-07. **Already satisfied and then some:** both f1 and f6 were re-cut at `6b6d4a8` in the 2026-09-03 battery, six days before this was ruled. Nothing owed.
 - [ ] Leave both; the README caveat below is enough of a warning
 - [ ] Something else: ______
 
@@ -101,7 +101,7 @@ Recommended sequence if you take it: replay F6 first (smaller, one struck rule, 
 **Proposed:** `F6 @ \`60e86c7\``.
 
 **Decision:**
-- [ ] Accept
+- [x] Accept — 2026-09-07
 - [ ] Reject — reason: ______
 
 ### F3 · README H1 carries the dead string `USADeBusk` — LOW · Lane 2 · **proposed on branch**
@@ -119,7 +119,7 @@ Recommended sequence if you take it: replay F6 first (smaller, one struck rule, 
 **Not touched, deliberately:** `fixtures/f4-sop-input.md:36` and `fixtures/f6-duration-mobdemob-input.md:13,25` also carry `USADeBusk`, and `fixtures/f1-rfq-input.md:25` / `f6:14` carry `TriMax`. Those are **replay inputs** — editing them changes what a run reads and would silently alter the spelling delta the README rules an expected pass at `:195-206`. The README H1 is prose with no replay consequence, so only it is proposed.
 
 **Decision:**
-- [ ] Accept
+- [x] Accept — 2026-09-07
 - [ ] Reject — reason: ______
 
 ### F1-side · README caveat naming the two stale baselines — LOW · Lane 2 · **proposed on branch, separable**
@@ -127,7 +127,7 @@ Recommended sequence if you take it: replay F6 first (smaller, one struck rule, 
 A factual note added under the README's existing "Known spelling diff" pattern, stating that F1 and F6 encode the struck allowance and landing rules, naming the affected diff keys, and pointing at "When to re-cut frozen/" for the decision. It touches no file under `frozen/` and takes no position on whether to re-cut. Drop this commit if you would rather the README stay silent until F1 is decided.
 
 **Decision:**
-- [ ] Accept
+- [x] Accept — 2026-09-07
 - [ ] Reject — reason: ______
 
 ---
@@ -159,7 +159,7 @@ This is class (d) — corrected in its canonical home while the restatement in t
 **Proposed:** rewrite `:206-207` to carry the callout-label reading and the four-value vocabulary, pointing at `04-knowledge/_canonical-heater-card.md` as canonical. Full text on the branch.
 
 **Decision:**
-- [ ] Accept
+- [x] Accept — 2026-09-07
 - [ ] Reject — reason: ______
 
 ### F5 · `/report` never captures the per-coilset hours three other surfaces read it for — MEDIUM · Lane 3 · **proposed on branch**
@@ -185,7 +185,7 @@ Against all three, `usadebusk-fieldpm/SKILL.md:204-210` — the `/report` input 
 **Proposed:** add per-coilset hours (as a table, with each set's `Coil condition` on the `light | moderate | heavy | unknown` vocabulary) as a third mandatory capture item in `/report`, alongside the existing abnormality narrative — the numbers and the "why" are complementary, and `:208`'s own sentence says so. Full text on the branch.
 
 **Decision:**
-- [ ] Accept
+- [x] Accept — 2026-09-07
 - [ ] Reject — reason: ______
 
 ### F6 · `usadebusk-vault-ingest` hardcodes `USA#####` where the vault uses any job number — LOW · Lane 3 · **proposed on branch**
@@ -218,7 +218,7 @@ The skill knows about CAD# elsewhere — `:85` ("`CAD#####` job numbers in the F
 **Proposed:** generalize the four `USA#####` occurrences at `:373`, `:388`, `:398`, `:411` to the job number. `:391` ("Field Notes entries require a real job number") is already correct and is untouched.
 
 **Decision:**
-- [ ] Accept
+- [x] Accept — 2026-09-07
 - [ ] Reject — reason: ______
 
 ---
@@ -269,4 +269,20 @@ What would settle it: your reading of the phrase. If it means the last mobilizat
 
 ## Apply Log
 
-*(empty — for Jesse)*
+**Ruled and closed 2026-09-07** in the consolidated decision pass ([[2026-09-07-consolidated-decision-pass]]). Jesse accepted F4 explicitly and took the remaining Lane 1-3 findings on recommendation.
+
+**Six of the seven findings were already applied to `main` before this note was ever ruled** — between 2026-09-03 and 2026-09-06, by sessions doing other work. Nobody ticked a box, so the review sat `status: open` carrying seven asks that had mostly been answered. It was also invisible to `count_pending_reviews()`, which required a `## Decision` heading this note does not have, so nothing surfaced the gap. **This is the `researched`-outlives-its-build pattern from DQ-029's neighbourhood, arriving in a review note instead of a seed.**
+
+**`drift/2026-09` has zero commits ahead of `main`** — verified with `git log main..drift/2026-09`. Every finding above marked "proposed on branch" was **not** on a branch; the edits either landed directly on `main` later or were never written. Reading the branch diff in the other direction shows ~14,000 lines of `main`'s own later history, so **merging it would have been a mass revert.** The loop spec's branch convention was not followed by this run, and any future reader should verify a named branch has commits before trusting that phrasing.
+
+| Finding | Ruling | State |
+|---|---|---|
+| **F1** — f1/f6 encode the struck allowance and shift landing | Re-cut F6 only for now | **Moot — both already re-cut** at `6b6d4a8` (2026-09-03 battery). `f6:184` now reads "No parallel-friction allowance is applied — zero, not a small one"; `f1:161` reads "The 25–40% parallel-friction allowance is a dead rule and is not applied." Nothing owed |
+| **F2** — README names F6's promotion commit | Accept | **Already done, then superseded.** Table now reads `F6 @ 6b6d4a8`; the README itself records carrying `ebb1217` "until 2026-09-01" |
+| **F3** — README H1 carries the dead string | Accept | **Already done.** H1 reads `# USADebusk Skill Regression Suite` |
+| **F1-side** — README caveat naming the stale baselines | Accept | **Obsolete by construction** — the baselines it would warn about were re-cut. Not written; a caveat about a fixed condition is worse than none |
+| **F4** — fieldpm teaches "crash means a dirtier coil" | **Accept (Jesse)** | **Already applied.** `fieldpm/SKILL.md:206` now carries the callout-label reading verbatim with the DQ-026 citation, and the four-value `routine \| crash \| first \| unknown` vocabulary with "Never infer `routine` to fill a blank — write `unknown`" |
+| **F5** — `/report` never captures per-coilset hours | Accept | **Already applied.** Per-coilset hours is now capture item 2, as a table, on the `light \| moderate \| heavy \| unknown` vocabulary |
+| **F6** — vault-ingest hardcodes `USA#####` | Accept | **Applied 2026-09-07** (config `f7440c0`). Three of four occurrences had already been generalized; the residual was the Pig Specifications actuals wall reading "sourced from a `USA#####` is an actual," which excluded CAD jobs. Now job-number-vs-quote-number |
+
+**M1 and M2** (agent memory: six live loops asserted where three are deprecated; nine skills asserted where there are ten) were flagged read-only and are unchanged — both are `/consolidate-memory` work, not a ruling.

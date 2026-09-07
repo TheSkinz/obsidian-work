@@ -3,7 +3,9 @@
 
 ---
 type: review
-status: open
+status: resolved
+closed: 2026-09-07
+closed-by: "DSP26085 backfilled in e1e3f0e from Jason, not from Copilot's figure, as this note required. The note's stated rationale — health.md flagging a quote past validity — was itself retired 2026-09-05. DSP26080's blank fields remain, but that is a sales follow-up (10 weeks quiet), not a vault data fix"
 review_type: data-gap
 source_authority: session
 confidence: medium

@@ -1,7 +1,9 @@
 <!-- vault-loop: operational — governance decision on vault-capture-loop-spec.md's Terminal-Note Sweep status rule (04-knowledge scope). Defers to the on-demand Agent-Review loop; capture loop cannot write this content. -->
 ---
 type: note
-status: inbox
+status: resolved
+closed: 2026-09-07
+closed-by: "Class fix ruled and applied 2026-09-07 (consolidated decision pass), RELOCATED: it was written for the capture loop, which has not run since 2026-08-21, so as specified it was inert — the same trap DQ-018 caught. Rebuilt as lint rule STATUS-MISSING with fixture tools/fixtures/00-inbox/statusless-note.md (de0748f). The instance half was already closed by the 2026-08-15 sweep; zero inbox notes now lack a status."
 created: 2026-07-29
 tags: [inbox, vault-system, capture-loop, sweep, open-question]
 ---

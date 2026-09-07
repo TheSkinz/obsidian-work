@@ -2,7 +2,9 @@
 
 ---
 type: finding
-status: open
+status: resolved
+closed: 2026-09-07
+closed-by: "Ruled 2026-09-07 (consolidated decision pass): Option C — leave the files, document the constraint. regression/README.md now states that frozen frontmatter is prose-shaped and must be read with a line parser, never YAML (config f7440c0). NEW EVIDENCE killed option B: the census is now 6 of 6, not 5 of 6 — f4 and f5 were clean when this note was written and went dirty on the 2026-09-03/06 re-promotions, so the condition regenerates and a one-time quoting sweep would not hold. The adjacent agnix-adoption question is untouched and still unruled."
 created: 2026-08-16
 related:
   - "[[2026-08-01-baseline-staleness-detector-owed]]"

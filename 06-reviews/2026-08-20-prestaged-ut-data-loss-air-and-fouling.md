@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: pre-staged
 source_authority: inferred
 confidence: medium
@@ -118,4 +118,4 @@ Jesse's field knowledge — air and fouling are the two standing causes of UT da
 
 | Date | Action | By | Notes |
 |---|---|---|---|
-|  |  |  |  |
+| 2026-09-07 | **DQ-025 closed with no action.** Jesse: "Remove the note. It isn't important." | Claude (decision pass) | Ruled in [[2026-09-07-consolidated-decision-pass]]. The full set was put to him — A1/A2/B/C for the fact's home, plus additive D (state the noisy-scan asymmetry on the cleaning-verification claim) and E (caveat F-501's B_8_C entry) — with D's commercial argument stated in full and marked as not blocked on the Steady Flux reply. He declined all of it. **F-501 is unchanged**, `00-inbox/2026-08-16-ut-data-loss-air-and-fouling.md` removed. Recorded rather than silently dropped: the analysis said the asymmetry protects USADebusk if an unflattering report is read against it; Jesse's field judgment on whether that risk is real outranks the analysis, and this is his call to make. |

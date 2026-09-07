@@ -2,7 +2,9 @@
 <!-- vault-prestaged: 2026-08-17-prestaged-usa26041-estimating-feedback.md -->
 ---
 type: note
-status: inbox
+status: resolved
+closed: 2026-09-07
+closed-by: "DQ-020, ruled 2026-08-21 — all three findings ruled, no skill change"
 created: 2026-08-15
 tags: [estimating, actuals, USA26041, ExxonMobil]
 ---

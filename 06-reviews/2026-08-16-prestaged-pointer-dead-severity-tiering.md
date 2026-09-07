@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: pre-staged
 source_authority: inferred
 confidence: medium
@@ -70,4 +70,5 @@ Option A's risk: escalating to error severity means any future POINTER-DEAD find
 
 | Date | Action | By |
 |---|---|---|
+| 2026-09-07 | **DQ-019 ruled: Option B — POINTER-DEAD keeps `warning` severity and gets its own `Dead source pointers` row on `health.md`, target 0.** Ruled in [[2026-09-07-consolidated-decision-pass]]. A was rejected as disproportionate: promoting to `error` blocks every commit touching a note with a stale pointer, including commits unrelated to it, against three findings in four weeks all fixed same-day once seen. C was rejected as the status quo with a note attached. The argument for B over D is the trigger shape — pointers go stale when the OneDrive tree is reorganised on award (Bids → Jobs) and at cleanup, so findings arrive in clusters, and a row that reads 0 almost always is exactly the shape that gets noticed when it stops. Applied in vault `de0748f`; the row reads 0 today. | Claude (decision pass) |
 | 2026-08-16 | Note filed by pre-staging loop from `00-inbox/2026-08-01-pointer-dead-is-mis-tiered.md`. Checked for existing coverage: DQ-010's bid-folder recency signal (resolved 2026-08-15) is adjacent but covers a different axis (content recency vs. path existence) and narrower scope (`type: quote` notes only, not heater cards); the dormant-trigger registry is note-scoped and doesn't provide an aggregate or event-driven check. Grepped `git log` for prior severity/tiering work on POINTER-DEAD — none found since the rule shipped 2026-07-23. `50-dashboards/decision-queue.md` checked — not already queued. No vault or config-repo content modified beyond the source marker. | Claude (pre-staging loop) |

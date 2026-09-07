@@ -2,7 +2,9 @@
 <!-- vault-prestaged: 2026-08-18-prestaged-duplicate-workup-authoritative-copy.md -->
 ---
 type: finding
-status: open
+status: resolved
+closed: 2026-09-07
+closed-by: "DQ-022 + DQ-023, both ruled 2026-08-18 — see 50-dashboards/decision-queue.md Closed table"
 created: 2026-08-16
 related:
   - "[[DSP26085]]"

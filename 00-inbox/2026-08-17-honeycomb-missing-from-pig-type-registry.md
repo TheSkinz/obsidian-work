@@ -1,7 +1,9 @@
 <!-- vault-loop: operational — Lane 4 domain truth (canonical pig-type registry, heater-card units). Capture loop cannot write this content. -->
 ---
 type: finding
-status: open
+status: resolved
+closed: 2026-09-07
+closed-by: "Both halves ruled and applied 2026-09-07 (consolidated decision pass). (a) Honeycomb added to the canonical pig-type registry (config f7440c0): polyurethane body with tapered conical ends, appendages threaded into the body, different manufacturer, limited supply — roughly 1 project in 5 (Jesse). (b) The three cells were NOT lengths — honeycomb sizes are recorded in MILLIMETRES (Jesse): 104 mm = 4.094 in on H-19's 4.026 in ID, 76 mm = 2.992 in and 84 mm = 3.307 in on H-20's 3.068 in ID. Cards corrected and pig_usage_rollup.py now converts on the unit (5b4ac3b), so 22 real pigs rejoin the size breakdown."
 created: 2026-08-17
 related:
   - "[[2026-08-17-triage-job-report-generator-layout-gaps]]"

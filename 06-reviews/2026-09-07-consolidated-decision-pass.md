@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: canonical-update
 source_authority: stated
 confidence: high
@@ -259,11 +259,41 @@ Also not asked, with reasons: `2026-08-01-pointer-dead-is-mis-tiered` explicitly
 
 ## Decision
 
-- [ ] Tier 1 ruled (items 1-6)
-- [ ] Tier 2 ruled or recommendations accepted (items 7-12)
-- [ ] Tier 3 acknowledged
-- [ ] Counting defects fixed and queue reconciled
+- [x] Tier 1 ruled (items 1-6) — 2026-09-07
+- [x] Tier 2 ruled or recommendations accepted (items 7-12) — 2026-09-07
+- [x] Tier 3 acknowledged — 2026-09-07
+- [x] Counting defects fixed and queue reconciled — 2026-09-07
 
 ## Apply Log
 
-(Pending — Jesse to rule.)
+**All twelve ruled and applied in one sitting, 2026-09-07.** Jesse took every Tier 2 recommendation as a block.
+
+| # | Ruling | Applied |
+|---|---|---|
+| 1 | DQ-025 — **drop, no action.** "Remove the note. It isn't important." A1/A2/B/C and additive D and E all declined | `F-501` unchanged; inbox note removed (recoverable at `425bc08`) |
+| 2 | DQ-024 — **drop, no action.** "Drop it — not important" | `F-501` unchanged; the Treat Gas basis stands unresolved by decision, not default |
+| 3 | Honeycomb — **full registry row**, and the three cells were **millimetres, not lengths** | config `f7440c0`, vault `5b4ac3b` |
+| 4 | B-151 — **upgrade on the existing arithmetic** | vault `5b4ac3b` |
+| 5 | Skill-drift F1 — **re-cut F6 only** | Already satisfied: both baselines re-cut at `6b6d4a8` on 2026-09-03 |
+| 6 | Skill-drift F4 — **accept** | Already applied to fieldpm before the ruling |
+| 7 | DQ-019 — **Option B**, own dashboard row at warning tier | vault `de0748f` |
+| 8 | Frozen frontmatter — **Option C**, document the constraint | config `f7440c0` |
+| 9 | DQ-029 — **state the rule, then derive** | vault `de0748f` |
+| 10 | Statusless notes — **rebuild as a lint rule** | `STATUS-MISSING` + fixture, vault `de0748f` |
+| 11 | Change-order form — **SharePoint plus a vault pointer** | [[company-forms]] written; the file move is owed to Jesse |
+| 12 | Skill-drift F2/F3/F1-side/F5/F6 — **accept all five** | Four already on `main`; F6's residual applied in `f7440c0` |
+
+### Three things the pass found that were not in the packet
+
+**Six of the seven skill-drift findings were already applied to `main`** between 2026-09-03 and 09-06, by sessions doing other work, with no box ticked and no status changed. The review sat `open` carrying seven asks that had mostly been answered — and was invisible to `count_pending_reviews()` the whole time. This is the `researched`-outlives-its-build pattern in a review note.
+
+**`drift/2026-09` has zero commits ahead of `main`.** Every finding marked "proposed on branch" was not on a branch. Reading its diff in the other direction shows ~14,000 lines of `main`'s later history, so **merging it would have been a mass revert** — caught by checking `git log main..drift/2026-09` before merging rather than trusting the phrase.
+
+**The honeycomb cells were never lengths.** Both cards carried "size appears to be a length, not an OD; confirm unit" for three weeks, and `pig_usage_rollup.py` had that reading hardcoded as a documented data-quality exclusion. The values were ODs in millimetres. The arithmetic confirms it against each card's own geometry, and 22 real pigs rejoin the size breakdown. **A flag that names its own uncertainty still froze a wrong reading into a tool** — nobody asked Jesse the one-line question for three weeks.
+
+### Left open, deliberately
+
+- **DSP26080** (HF Sinclair Artesia, 2027-02) silent 10 weeks — a sales follow-up, not a vault task.
+- **Appendage hardness** stays in the inbox; the customer question it came from was answered 2026-07-20 and the note names no consequence.
+- **agnix adoption**, adjacent to ruling 8, still unruled in either repo.
+- **The change-order file move** to SharePoint — Jesse's to run; recorded as owed in [[company-forms]].

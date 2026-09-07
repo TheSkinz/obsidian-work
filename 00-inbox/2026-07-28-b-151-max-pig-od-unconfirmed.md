@@ -2,7 +2,9 @@
 <!-- vault-prestaged: skipped — execution correction, needs doing not deciding. B-151.md's own Tube Geometry row already carries OD 4.5" and Wall 0.237" as recorded facts (not "not recorded") — the Sched column just wasn't labeled "Sch 40" by name. ID = OD − 2×wall = 4.5 − 0.474 = 4.026", identical to B-101's confirmed convection-section value (same OD/wall). No new BOM read is needed, contrary to this note's own "cost is presumably one BOM read" framing — it's arithmetic on data already on the card. Fix: update B-151.md's ID (~4.03" → 4.026") and Max pig OD (≈4.28" → ≈4.276", governed by ID 4.026") in both the Tube Geometry and Connection Info tables, matching B-101's phrasing. Out of this loop's scope to apply (02-facilities canonical content). -->
 ---
 type: finding
-status: open
+status: resolved
+closed: 2026-09-07
+closed-by: "Ruled 2026-09-07 (consolidated decision pass): upgrade on the existing arithmetic. B-151 now carries a computed ID 4.026 in and max pig OD 4.276 in, marked computed rather than BOM-confirmed (5b4ac3b). This note's own cost estimate was wrong — it claimed 'presumably one BOM read', but the card already carried OD 4.5 in and wall 0.237 in, so no source read was ever needed. Both values round to the same 4.250 in pig."
 created: 2026-07-28
 tags: [heater-card, pig-sizing, suncor, backlog]
 ---

@@ -1,7 +1,9 @@
 <!-- vault-loop: operational — document storage/canonical-location question for a live customer-facing form. Capture loop cannot rule on it. -->
 ---
 type: note
-status: open
+status: resolved
+closed: 2026-09-07
+closed-by: "Ruled in [[2026-09-07-consolidated-decision-pass]] — SharePoint plus a vault pointer. Pointer written as [[company-forms]] (08-systems/); the physical move to SharePoint and retiring the OLD_ copy are Jesse's to run and are recorded as owed there. Note that four generations of the form exist across two folders, not the two this note describes."
 created: 2026-08-17
 tags: [loose-end, document-management, sharepoint, forms]
 ---

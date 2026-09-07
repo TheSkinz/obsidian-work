@@ -4,17 +4,17 @@
 
 | Metric | Value | Target | Status |
 |---|---|---|---|
-| Open decision rows | 6 | <= 10 | ok |
-| Review notes awaiting decision | 5 | <= 5 | ok |
+| Open decision rows | 0 | <= 10 | ok |
+| Review notes awaiting decision | 0 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 10 | (backlog) | ok |
+| Lint warnings | 8 | (backlog) | ok |
 | Dead source pointers | 0 | 0 | ok |
-| Inbox items | 83 | - | ok |
-| Inbox median age | 9 d | < 14 d | ok |
+| Inbox items | 82 | - | ok |
+| Inbox median age | 5 d | < 14 d | ok |
 | Inbox oldest item | 26 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
-| Open decisions not in the queue | 2 — 2026-09-01-skill-drift-review, 2026-09-07-consolidated-decision-pass | 0 | FAIL |
+| Open decisions not in the queue | 0 | 0 | ok |
 | Awarded job within 21 d, no PO | 0 | 0 | ok |
 | Regression baselines unjudgeable | 0 | 0 | ok |
 
@@ -63,15 +63,15 @@ One row per frozen fixture in `~/.claude/regression/frozen/`. Each reads its own
 | Fixture | Commits behind | Status |
 |---|---|---|
 | f1-rfq-to-proposal | claude-config 4 · vault 1 | behind |
-| f2-vault-ingest-dryrun | claude-config 1 | behind |
+| f2-vault-ingest-dryrun | claude-config 2 | behind |
 | f3-fieldpm-extract | claude-config 3 | behind |
-| f4-sop-formatting-pass | claude-config 0 · vault 0 | current |
-| f5-pig-sizing | claude-config 0 | current |
+| f4-sop-formatting-pass | claude-config 1 · vault 0 | behind |
+| f5-pig-sizing | claude-config 1 | behind |
 | f6-duration-mobdemob | claude-config 2 · vault 0 | behind |
 
 ## Notes
 
-- **Decision queue:** [[decision-queue]] — 6 open. Cap is 10; over cap, proposal-generating loops pause.
-- **Review notes awaiting decision:** 5 in `06-reviews/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
+- **Decision queue:** [[decision-queue]] — 0 open. Cap is 10; over cap, proposal-generating loops pause.
+- **Review notes awaiting decision:** 0 in `06-reviews/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
 - **Lint warnings** are the standing to-do list, not failures — today mostly ORPHAN (notes with no inbound link), INBOX-AGE and DEAD-LINK. The provenance-frontmatter backfill this line used to name was **cleared to zero on 2026-08-16**; OP-FRONTMATTER no longer appears. Detail: run `python tools/vault_lint.py --report` → `50-dashboards/lint-report.md`.
 - **Heartbeats overdue** means a loop row shows FAIL — either the scheduler stopped firing (check the task's enabled state in the desktop app) or a run started and never finished (check the app's session history for that run). A loop that fires and no-ops cleanly shows ok with no new commit — that is healthy, not silent.

@@ -1,6 +1,8 @@
 ---
 type: note
-status: inbox
+status: resolved
+closed: 2026-09-07
+closed-by: "Both halves dead — pig-load-list status ruled 2026-09-03 (config 208da24, complete -> unexplored); the 17 untracked archive/ snapshots no longer exist, deletion confirmed intended by Jesse 2026-09-07"
 created: 2026-08-21
 related:
   - "[[2026-08-18-idea-research-researched-status-outlives-build]]"

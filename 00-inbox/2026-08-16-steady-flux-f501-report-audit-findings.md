@@ -80,4 +80,4 @@ read as commercial complaints rather than a favour, and mixing them changes the 
 carry one context sentence, so a reader of ExxonMobil's file copy in five years does not read
 "45.7% loss" as coil condition.
 
-Open item is on [[2026-08-16-ut-data-loss-air-and-fouling]].
+Open item was on `2026-08-16-ut-data-loss-air-and-fouling`, **closed 2026-09-07** — DQ-025 ruled no action and that note was removed (Jesse: "Remove the note. It isn't important."). See [[2026-09-07-consolidated-decision-pass]]; the note itself is recoverable from git history at `425bc08`.

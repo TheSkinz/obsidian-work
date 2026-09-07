@@ -224,6 +224,7 @@
 - [[2026-09-05-harness-audit-number-verification]] — Harness audit — verification of the five headline numbers
 - [[2026-09-05-harness-route-usage-rescoped]] — Harness route usage, re-measured at corrected scope
 - [[2026-09-06-skill-vault-drift-rig-in]] — Skill/vault drift — rig-in method, caught by hand not by the loop
+- [[2026-09-07-consolidated-decision-pass]] — Consolidated decision pass — 2026-09-07
 
 ## LLMs
 
@@ -266,6 +267,7 @@
 
 ## Systems
 
+- [[company-forms]] — Company forms — where the blank templates live
 - [[desktop-hardware]] — Desktop Hardware
 - [[mobile-field-access]] — Mobile / Field Access
 - [[obsidian-setup]] — Obsidian Setup

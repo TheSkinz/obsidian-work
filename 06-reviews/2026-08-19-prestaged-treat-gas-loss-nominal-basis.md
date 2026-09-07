@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: pre-staged
 source_authority: inferred
 confidence: medium
@@ -94,4 +94,5 @@ D's risk is scope creep from a single instance: one document with an ambiguous b
 
 | Date | Action | By |
 |---|---|---|
+| 2026-09-07 | **DQ-024 closed with no action.** Jesse: "Drop it — not important." Ruled in [[2026-09-07-consolidated-decision-pass]]. A, B, C and D were put to him with costs, including B's decay argument (the Steady Flux CEO channel warm since 2026-08-16, recall freshest now, F-501's next scope years out). **`F-501` is unchanged** and reads as written: "Treat Gas a uniform 9–14.5%, min 0.321" at A_7_TG. The Treat Gas pattern is general thinning." So the nominal-vs-minimum ambiguity in Steady Flux 26-0663-002 Rev. A stands unresolved on the card by decision, not by default — which is what the note said Option C actually is. The unverified "28 of 31 readings above 0.328" claim below was never checked and now never needs to be. | Claude (decision pass) |
 | 2026-08-19 | Note filed by pre-staging loop from `00-inbox/2026-08-16-steady-flux-f501-report-audit-findings.md`. Coverage checked in all four required places before drafting: prose (`04-knowledge/`, `06-insights/`, `01-context/` grepped for minimum-wall/MWT/mill-tolerance — zero hits), `tools/` (two unrelated "nominal" hits), `~/.claude/hooks/` (ten guards, none inspection-related), and `git log --oneline -25` (nothing on the topic). F-501 read directly at the Tube Geometry row, the Field Notes Treat Gas line and the existing Rev B section; the job report grepped to confirm the disputed characterisation is internal-only. The 0.328125 as-new floor and the 14.4%-vs-2.1% split were computed this run; the audit note's "28 of 31" claim was **not** verified — the Steady Flux PDF was not opened. `decision-queue.md` checked, not already queued. One sibling candidate skipped this run as already covered (DQ-018). No vault content modified beyond this note, the queue row, and the two inbox markers. | Claude (pre-staging loop) |

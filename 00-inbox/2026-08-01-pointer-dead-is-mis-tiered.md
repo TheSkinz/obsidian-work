@@ -2,7 +2,9 @@
 <!-- vault-prestaged: 2026-08-16-prestaged-pointer-dead-severity-tiering.md -->
 ---
 type: note
-status: inbox
+status: resolved
+closed: 2026-09-07
+closed-by: "DQ-019 ruled 2026-09-07 (consolidated decision pass): Option B — POINTER-DEAD keeps warning severity and gets its own `Dead source pointers` row on health.md, target 0. Applied in de0748f. This note explicitly proposed no fix; its decidable twin was the pre-staged review, and that is what was ruled."
 created: 2026-08-01
 tags: [inbox, vault-system, lint, observation]
 ---
