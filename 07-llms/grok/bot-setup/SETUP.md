@@ -175,7 +175,18 @@ routine named `Vault refresh` is set on Librarian with Opened and Merged on
 `TheSkinz/obsidian-work`, and this file's own change is the stimulus: it lands as a pull request
 rather than a direct push, and the PR opening is the event.
 
-*(Result recorded below once the run history is read.)*
+**Correction to the line above: Test run is NOT disabled for event-triggered routines.** It greys
+out only while a routine is *unsaved*. Once saved it is live, and a Test run on `Vault refresh`
+fired and completed — so the routine mechanism and the instruction both work. That is a different
+claim from the trigger firing on its own.
+
+**The first attempt proved nothing, and the fault was mine.** The PR opened at 19:01 and the routine
+saved at 19:03 — Librarian's own thread records `Created routine · Vault refresh` two minutes after
+the stimulus. The event fired before the routine existed. **The panel does not save as you type; it
+commits when a field blurs**, which is worth knowing because nothing in the UI says so and a routine
+can sit visibly configured and not yet be armed.
+
+*(Second attempt below, with the routine armed first.)*
 
 ### The citation audit — PASSED, 10 of 10
 
