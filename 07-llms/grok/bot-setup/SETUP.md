@@ -139,25 +139,44 @@ source, **diff the files on disk** rather than trusting a dump.
 
 # 2. Current state
 
+**The roster is complete as of 2026-09-06.** All seven Bots exist; all seven skills are uploaded.
+
 | Bot | Role | Skills held | Routines |
 |---|---|---|---|
 | **Librarian** | Vault citations with file-and-line proof | — | `Vault refresh` (webhook + inert PR trigger) |
 | **Ledger** | Receipts → ticket breakdown → invoice readiness | Receipt Extraction, Invoice Readiness Check | — |
-| **Scribe** | .docx production | Project Report | — |
+| **Scribe** | .docx production | Project Report, Proposal Assembly | — |
+| **Intake** | RFQ package → intake checklist, on demand | RFQ Intake | — |
+| **Estimator** | Duration model and priced work-up, propose-only | Duration Model, Work-Up Billing Math | — |
+| **Scout** | Competitor and AI-visibility watch, public sources only | — | — |
 | **Architect** | Grok Bot platform research | — | — |
 | **Chief of Staff** | Auto-created at signup, unused | — | — |
-| *Intake* | *not built* | RFQ Intake ready to upload | — |
-| *Estimator* | *not built* | Duration Model, Work-Up Billing Math ready | — |
-| *Scout* | *not built* | — | — |
+
+**Group: "Bid Desk"** — Estimator, Intake, Librarian, Scribe. Order is Intake → Estimator → Scribe,
+with Librarian on call and outside the chain. Every member carries the handoff contract: name the
+output file path, the open questions and the next owner, and do not assume the next Bot read the
+conversation.
+
+**Each Bot was verified by making it state its own rules back**, not by trusting the save
+confirmation. Intake recited the derive-vs-ask split and *"incomplete inputs stay open, I list them
+and stop rather than fill a plausible blank."* Estimator got all three probes right: 100 ft/hr
+measures one pig on one unlooped coil and is **not** heater-total footage ÷ 100; rig-in is 6 hours
+with exactly two conjunctive departures and rig-out mirroring the whole figure; Smart Pig is 2 hrs
+per pass, *"an estimate only; quoted jobs will disagree, and that is expected."*
 
 **`Webhook ping`** also survives on Librarian — the throwaway that proved the webhook mechanism. Its
 run history is the evidence, and it answers to a different key.
 
-**Connectors installed:** Gmail and Google Drive (auto-added to Chief of Staff, Gmail never signed
-in). **The GitHub connector's token was deleted** — see the findings.
+**Workspace folders** `/workspace/{bids,jobs,out,scratch}` created 2026-09-06. They are named in
+`README-FOR-BOTS.md`, which every Bot reads, and until then they did not exist.
 
-**Meter:** 4% after the full build — four Bots, seven skills, routines, ~15 pushes and several
-routine fires. **Cost is not the binding constraint at this scale.**
+**Connectors installed — four, and one was never deliberately added.** Gmail, Google Drive,
+**OneDrive** and GitHub. Gmail and Drive were auto-added to Chief of Staff at signup and Gmail was
+never signed in; GitHub was added deliberately for the Git-event test and **its token has been
+deleted**, though the connector entry remains. **OneDrive is the unexplained one** — see the finding
+below.
+
+**Meter:** 4% before this session's additions.
 
 ## Files here
 
@@ -315,6 +334,37 @@ answers."* Two sentences, right file, correct commit range.
 speaks only when something under `01-context/` moved, replying `nothing new` otherwise even when many
 other files changed. A routine reporting 24 files per push is the chatty failure the 2026-08-21 vault
 audit retired; the clone refreshes either way, which is the part that matters.
+
+## A OneDrive connector is installed and nobody added it. READ 2026-09-06.
+
+The Architect enumerated the account's connectors: **Gmail, Google Drive, OneDrive, GitHub.** Gmail
+and Drive were auto-added to Chief of Staff at signup; GitHub was added deliberately and its token
+deleted the same evening. **OneDrive was never knowingly installed**, and the marketplace header was
+observed going from `2 installed` to `3 installed` earlier in the session with nothing in the
+session adding one.
+
+**The question that matters is not that it exists but whether it is authenticated.** An installed
+connector with no sign-in is inert — Gmail sat in exactly that state all session. An installed
+connector *signed in to a Microsoft account* is a different thing entirely on a machine where every
+Bot shares one cookie jar, and OneDrive is where the per-facility bid working copies live.
+
+**Open, and it is Jesse's to check:** Settings → the installed-plugins list → whether OneDrive shows
+a connected account. If it does, disconnect it — nothing in the trial design uses OneDrive, and its
+connector is read-only anyway.
+
+## Scout hit a login wall, stopped, and said so. TESTED 2026-09-06.
+
+First pass, AI-visibility half: ask one tool three category questions without naming USADebusk.
+**Perplexity required a login before any query could be submitted** — *"Login or sign up for free"*
+with Google, Apple, email and SSO options. Scout stopped there, **did not sign in, and did not try
+another tool**, then reported the gap as a gap and asked whether a later pass could try ChatGPT or
+Claude.
+
+**That is the boundary rule working**, and it was the risky part of that Bot. It also means the
+AI-visibility job may be **structurally unavailable** to a credential-free Bot: if ChatGPT and Claude
+also gate anonymous use, there is no way to run the category test without an account, and that half
+of Scout's job does not exist. **Establish that before investing further in Scout** — the competitor
+half, which reads public services pages, is unaffected either way.
 
 ## Connector catalogue, as the app actually shows it. READ 2026-09-06.
 

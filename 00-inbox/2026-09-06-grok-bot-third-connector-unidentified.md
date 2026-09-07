@@ -1,36 +1,42 @@
 ---
-title: Grok Bot marketplace gained a third connector nobody identified
+title: The unidentified Grok Bot connector is OneDrive — auth status still unchecked
 created: 2026-09-06
-status: unexplored
+status: open
 type: idea-seed
 tags: [grok-bot, connectors, loose-end]
 ---
 
-# A third Grok Bot connector appeared and was never identified
+# The third connector is OneDrive
 
-**Observed, not diagnosed.** Early on 2026-09-06 the Grok Bot marketplace header read
-**`2 installed`** — Gmail and Google Drive, both auto-added to the Chief of Staff Bot at signup.
-Later the same evening it read **`3 installed · 3 private`**. Nothing in the session added a
-connector between those two readings; the GitHub connector went in afterwards and was a separate,
-deliberate act whose token has since been deleted.
+**Identified the same evening it was filed.** The Architect Bot enumerated the account's connectors:
+**Gmail, Google Drive, OneDrive, GitHub.**
 
-**Why it is worth a look rather than a shrug.** Every Bot on the account shares one computer, one
-browser cookie jar and one credential store — the docs say outright not to use separate Bots as a
-security boundary. So a connector nobody installed deliberately is a capability nobody scoped
-deliberately, on a machine where scope is account-wide by construction. The trial has otherwise run
-credential-free on purpose.
+Gmail and Google Drive were auto-added to the Chief of Staff Bot at signup, and Gmail was never
+signed in. GitHub was added deliberately on 2026-09-06 to test the Git-event trigger, and **its
+token was deleted the same evening** once the webhook path proved better. That leaves **OneDrive**,
+which nobody knowingly installed — and it matches the marketplace header going from `2 installed` to
+`3 installed` mid-session with nothing in the session adding one.
 
-**Also unexplained: what `3 private` counts.** The header shows `N installed · N private` and the
-meaning of the second number was never established. It may be a separate axis (privately-published
-plugins?) rather than a subset.
+## The part that is still open, and it is the part that matters
 
-## To check
+**Existence is not the risk. Authentication is.** An installed connector with no sign-in is inert —
+Gmail sat in exactly that state all session, listed as Added and doing nothing. An installed
+connector *signed in to a Microsoft account* is a different proposition on a machine where **every
+Bot shares one browser session and one credential store**, and OneDrive is where the per-facility
+bid working copies live.
 
-Open Marketplace → the `N installed` header → the chevron beside it, which expands to the installed
-list. Name the third connector, confirm whether it was auto-added at signup like Gmail and Drive,
-and decide whether it stays.
+**To check:** Settings → installed plugins → does OneDrive show a connected account?
 
-## Not urgent
+**If it does:** disconnect it. Nothing in the trial design uses OneDrive, its connector is read-only
+in any case, and the trial has otherwise run deliberately credential-free — the one departure, the
+GitHub PAT, was made for a single answer and reversed within hours.
 
-No evidence of harm — the account is a personal one holding no USADebusk credentials, which was the
-deliberate posture. This is a "know what is installed" item, not an incident.
+**If it does not:** close this note. An unauthenticated connector is clutter, not exposure, and can
+be removed at leisure or left alone.
+
+## Not raised as an incident
+
+The account is personal and holds no USADebusk credentials by design. This is a "know what is
+installed, and know what it can reach" item. It became worth writing down only because the sharing
+model makes any authenticated connector account-wide by construction — which the xAI docs state
+outright: do not use separate Bots as a security boundary.
