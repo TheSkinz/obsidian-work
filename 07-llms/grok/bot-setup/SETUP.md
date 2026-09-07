@@ -401,9 +401,46 @@ right behaviour, but it means the extraction was graded and the reconciliation w
 different quantities rather than a conflict — productive hours likely exclude something the receipt
 total includes — but it is unverified and should not be read as a match.
 
-**Next pass:** hand it the proposal and let it run the reconciliation half. It offered exactly that
-— *"hand me the proposal and I will score overruns and underruns without touching the receipt
-numbers."*
+### The reconciliation half. TESTED 2026-09-07.
+
+Handed the DSP26071.2 quotation and told to reconcile without re-extracting. **The workup `.xlsx`
+was withheld** — it carries cost and margin columns that are not a Bot's business.
+
+**It matched the vault's filtration flag exactly, and derived it.** *"Pumping (pigging only): 16 hrs
+(10782: 6 + 10783: 10). Non-pumping: 38 hrs. Total filter hours on receipts: 54."* The job sheet's
+flag 3 records *"Filtration active hrs 22 billed vs 16 actual pumping."* **16 is 16**, reached from
+the receipts alone.
+
+**It settled the open 48-hour question.** The quotation's Execution Plan is **8 + 24 + 8 + 8 = 48**,
+so 48 is the **quoted** figure. The cold pass's *"task splits sum to 48"* was the receipts' Trimax
+total, which happens to land on the same number — a coincidence worth knowing rather than a match.
+
+**It refused the trap.** Asked for rate variances: *"There is no rate-to-rate disagreement readable
+from the field forms, because the field forms do not state rates. Applying quote rates to actual
+hours would be pricing, not a variance found on the paperwork."* It read the quoted rate card
+correctly — including **Filtration Stand-by at $35**, the figure the vault records as having been
+changed to $150 before mobilization — and still declined to declare either document wrong.
+
+**It named a taxonomy mismatch without resolving it.** The Receipt Extraction skill splits filter
+press into pumping and non-pumping; the quotation's rate card says "Filtration Unit" and "Filter
+Stand-by". *"Those are not the same labels. Mapping the whole-sum pumping bucket to Filter Stand-by
+would be a decision, not made here."* That gap is real and sits between the skill's vocabulary and
+the quote's.
+
+### ⚠ One disagreement with the vault, unresolved
+
+**Ledger reports productive Trimax hours at 37; `USA26041-job-sheet.md` records 43.** Both agree the
+quote was 48 and that PDT was 11.
+
+Ledger's arithmetic is internally consistent — it reports a Trimax task split of 7/16/6/11/8 summing
+to 48, of which 11 is PDT, leaving **37 productive**. The job sheet's 43 productive plus 11 PDT
+would total 54, not 48. **The two cannot both be right**, and which is wrong is not decidable from
+the receipts alone.
+
+**Do not assume the Bot is the one in error.** The job sheet figure was recorded by hand during a
+reconciliation whose other flags Ledger has now independently reproduced. Settle it against the
+ticket-breakdown `.xlsx` before either number is trusted — and note that the 6-hour gap matches
+Ledger's observation that *"Support/Filter/Crew Truck overrun by 6 hrs each via 10785."*
 
 ## Scout hit a login wall, stopped, and said so. TESTED 2026-09-06.
 
