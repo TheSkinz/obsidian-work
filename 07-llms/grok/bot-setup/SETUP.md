@@ -835,6 +835,32 @@ laptop is the capability; parity was only the precondition, and it now holds.
 **Untested, and the honest next step:** a *different facility*. USA26041 has now built the skill and
 tested it four times, so a fifth pass measures memory rather than capability.
 
+### Field/Value column widths — fixed on both paths. TESTED 2026-09-07.
+
+Jesse flagged the Field column as far too wide on Customer Details, Project Details, Crew Details
+and the per-heater data table, garbling the Value column into extra lines. Neither builder set
+widths, so python-docx split every table 50/50 — fine for the four-column tables, wrong for every
+Field/Value pair. **Project Details has a 9-character longest label against values up to 191
+characters.**
+
+**The rule** — size the label column to its own longest label, `0.10 × characters + 0.45` inches,
+clamped 1.4in to 2.2in, remainder to Value on a 6.9in text width. It lives in
+`04-knowledge/job-report-generator-build-spec.md` because it is layout rather than brand and governs
+both render paths, and is mirrored into the Grok Bot skill because Scribe reads skills, not the spec.
+
+⚠ **The trap: widths must go into `w:tblGrid`.** A first Claude Code attempt set `cell.width` only
+and **the rendered output did not move at all** — LibreOffice ignores it and Word honours it
+inconsistently. Set `tblLayout` to `fixed` and write each `w:gridCol`'s `w:w` in twips.
+
+**Both builders landed on identical widths independently:** 1.85 / 1.40 / 2.20 / 2.20 in. Scribe
+reported its own clamping unprompted — Project Details clamped *up* from 1.35, Crew Details and
+Heater Data clamped *down* from their 24- and 31-character labels. Project Details values fell from
+three or four lines to one or two.
+
+**Still open, not raised by Jesse:** there are blank gaps after the first Project-tables table and
+after the KPI band on both builds. His standing rule is no blank gaps, so this is a real residual —
+recorded rather than fixed, because it was not what he asked for.
+
 ---
 
 # 4. What's left
