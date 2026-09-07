@@ -163,7 +163,7 @@ routine fires. **Cost is not the binding constraint at this scale.**
 
 | File | Goes where |
 |---|---|
-| [[README-FOR-BOTS]] | Copy to `/workspace/README-FOR-BOTS.md` on the Grok Bot computer |
+| [[README-FOR-BOTS]] | **No copy needed** — every Bot Description points at it inside the clone, so `git pull` keeps their orientation current |
 | [[bot-profiles]] | Paste each Description into Bot actions > Edit Profile |
 | [[architect-profile]] | The Architect — platform research, plus its experiment queue |
 | [[receipt-extraction]] | Receipt Extraction skill — Ledger |
