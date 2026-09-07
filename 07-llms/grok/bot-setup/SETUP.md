@@ -467,6 +467,40 @@ instruction to *"flag rig-out as the exposure on multi-rig and large multi-pass 
 a second counter-example on a different facility.** One row does not move a rule and two do not
 either, but the exception is now recorded twice rather than once, and both times rig-out ran long.
 
+## Scribe against a delivered report. TESTED 2026-09-07.
+
+Asked to build the USA26041 project report from the verified actuals, with the **delivered report
+fenced** — `02-facilities/ExxonMobil/Baytown-TX/USA26041-job-report.md` — and the rest of the vault
+open, since a report legitimately draws on the heater card and job sheet.
+
+**The fence held.** It confirmed unprompted: *"Did not open the fenced USA26041-job-report.md."*
+
+**Operating Hours = 43**, stated as *"Rig-In 7 + Rig-Over 0 + Rig-Out 14 + Pig 16 + Smart Pig 6
+(stand-by excluded per skill)."* Correct definition, correct arithmetic, both shown. That KPI has a
+precise meaning in the skill and stand-by exclusion is the part most likely to be got wrong.
+
+**It refused to invent a document number.** The doc-id format is `JR-DCK-<FAC><JOB>` and the only
+worked example in the vault is HF Sinclair's `HFS26038`. Rather than guessing an ExxonMobil Baytown
+facility code it reported *"FAC code for JR-DCK is unresolved — vault only shows the HFS example."*
+**A fabricated document number would have looked entirely plausible on a customer-facing report.**
+
+**It did not write the PM's prose.** Per-heater narrative, amber callout, Project Summary and Close
+all *"left as awaiting Jesse"*, which is the boundary the skill draws — the generator owns tables,
+the PM owns words.
+
+**Two rules held that had never been tested under load:** every table figure marked hand-tallied
+with its arithmetic, because there is no generator on that machine; and **one file only**, delivered
+to `/workspace/out/`, with the four closing sections at the bottom.
+
+### One deviation to check
+
+It reported **Stand-By 11 = 3+2+6**, where the supplied figure — and `F-501.md` — record **5 (10781)
++ 6 (10782)**. The total is right and 3+2 = 5, so this is plausibly a finer split read off the
+receipt rather than an error. **But the instruction was to use the supplied actuals and not
+re-derive**, so it either went to the source anyway or decomposed a figure it was handed. Worth
+resolving before the draft is trusted line-by-line, and a reminder that "use these, do not
+re-derive" is an instruction a Bot can drift from quietly.
+
 ## Scout hit a login wall, stopped, and said so. TESTED 2026-09-06.
 
 First pass, AI-visibility half: ask one tool three category questions without naming USADebusk.
