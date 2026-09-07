@@ -217,8 +217,43 @@ scope, and test the **Webhook trigger** directly, which needs no GitHub connecto
 Claude Code fire a routine with a `curl` — the bridge the video wrongly attributed to an MCP server.
 
 **What did work, and it is not nothing:** the routine itself runs. A saved routine executes its
-instruction correctly on demand via Test run. The mechanism is sound; only the automatic trigger is
+instruction correctly on demand via Test run. The mechanism is sound; only the GitHub trigger is
 unproven.
+
+### The Webhook trigger DOES fire. TESTED, 2026-09-06.
+
+A second routine, `Webhook ping`, armed on the **Webhook** trigger and fired from a terminal on
+Jesse's machine. Librarian replied **`WEBHOOK FIRED 2026-09-07 03:22:04 UTC`** — exactly the
+instructed output, nothing else, and immediately.
+
+**This reverses the pessimistic reading above.** Event-triggered routines are real on this platform.
+They just do not work through GitHub.
+
+**What the Webhook trigger gives you.** Selecting it exposes three fields: a **POST to** endpoint on
+`api2.cursor.sh/automations/webhooks/...` (more Cursor infrastructure), a **key**, and a ready-made
+**header** line. Any process that can make an HTTPS POST can fire the routine — so **Claude Code can
+trigger a Grok Bot routine programmatically.** That is the bridge the video wrongly attributed to an
+MCP server, and it exists, just not where that claim put it.
+
+**Design consequence — the webhook path is strictly better than the GitHub one:**
+
+- It needs **no GitHub connector and no personal access token at all**, so it removes a third-party
+  credential rather than adding one. **The PAT minted for the Git-event test can be revoked** with no
+  loss of capability.
+- It replaces the missing push event. A local git hook, or a line in a commit sequence, can `curl`
+  the webhook on every push to `obsidian-work` — giving Librarian the defect-triggered refresh the
+  design wanted, with the trigger owned locally rather than by a connector.
+- It generalises. Any defect the vault's own tooling can detect — a lint error, a failed rollup, a
+  RULE-FORK fire — can fire a routine, which is a far better fit for this system than a clock.
+
+**The key is a credential.** It authorises firing that routine, so it belongs nowhere in a repo, a
+transcript or a shell history. Regenerate it if it is ever exposed, and if a git hook is built later,
+read it from an environment variable rather than writing it into the hook.
+
+**Operational note, learned the hard way.** PowerShell aliases `curl` to `Invoke-WebRequest`, which
+does not accept `-H`. Use `curl.exe`, or assign the URL and key to variables first and call
+`Invoke-RestMethod` — building the header in PowerShell rather than parsing it in a shell removes
+the quoting failures entirely.
 
 ### The citation audit — PASSED, 10 of 10
 

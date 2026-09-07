@@ -235,9 +235,11 @@
 - [[cowork]] `(claude)`
 - [[design]] — Claude Design `(claude)`
 - [[dynamic-workflows]] — Claude Code — Dynamic Workflows `(claude)`
+- [[fable-5-1-prompting]] — Claude Fable 5.1 — Prompting Behavior `(claude)`
 - [[opus-5]] — Claude Opus 5 — Release Capture `(claude)`
 - [[output-styles]] — Claude Code — Output Styles `(claude)`
 - [[prefs-signal-log]] `(claude)`
+- [[steadyflux-pipeline-inspection-build-prompt]] — Fable 5.1 build prompt — Steady Flux pipeline inspection visualization `(claude)`
 - [[heater-extraction-agent]] — Copilot Heater Extraction Agent `(copilot)`
 - [[07-llms/copilot/overview|overview]] — Microsoft Copilot — Overview `(copilot)`
 - [[diagram-creation]] — Diagram Creation Inside LLMs
@@ -279,4 +281,5 @@
 
 - [[pig-tracker]] — Pig Travel Tracker `(pig-tracker)`
 - [[rig-diagram]] — Rig Diagram — back-test prototype `(rig-diagram)`
+- [[steadyflux-wharf-line]] — Steady Flux Wharf Line Wall Survey `(steadyflux-wharf-line)`
 
