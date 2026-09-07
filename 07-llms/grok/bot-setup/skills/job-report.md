@@ -34,17 +34,29 @@ there too. **The values are not restated here on purpose** — one copy, one pla
 **Set the table styling explicitly on every table.** python-docx applies a blue default if you do
 not, and that blue shipped in the 2026-09-07 build.
 
-**The first column is a uniform 2.00in on every table.** The left edge must run straight down every
+**Row labels carry no parenthetical qualifiers.** The value column explains itself; a label exists
+to be scanned. Write `Total footage`, `Number of passes`, `Shift Lead`, `Rigging` — never
+`Total footage (looped pig path)`, `Number of passes (as-built)`, `Shift Lead (Day / Night)` or
+`Rigging (project)`. Where a qualifier carries real information, put it in the value: Shift Lead
+reads `Day — <name>; Night — <name>`. **This is a general rule, not four exceptions** — apply it to
+any label you write.
+
+**The first column is a uniform 1.40in on every table.** The left edge must run straight down every
 page; a table whose first column differs is a defect. Never leave a table at python-docx's even
 split either — that starves the value column and garbles it into extra lines.
 
-**2.00in is derived, not chosen.** The longest first-column string in the document is
-`Total footage (looped pig path)`, which measures **1.80in in 9.5pt Arial**; with Word's 0.16in
-default cell padding that needs 1.96in. **2.00in is the smallest value at which nothing wraps.**
+**1.40in is derived, and the binding constraint is not a label.** With qualifiers stripped, the
+longest first-column string is the Stand-By date cell `2026-08-12 (10781)` at **1.17in in 9.5pt
+Arial**; with Word's 0.16in cell padding that needs 1.33in. **Keep the receipt number** — it is
+billing traceability, and the one parenthetical that earns its place.
 
-Remaining width is `6.9 − 2.00 = 4.90in`, split evenly among the other columns — 2-column
-Field/Value tables get `2.00 / 4.90`, 4-column tables `2.00` plus three of `1.633`, 5-column Project
-Duration `2.00` plus four of `1.225`.
+Remaining width is `6.9 − 1.40 = 5.50in`, split evenly among the other columns — 2-column
+Field/Value tables get `1.40 / 5.50`, 4-column tables `1.40` plus three of `1.833`, 5-column Project
+Duration `1.40` plus four of `1.375`.
+
+⚠ **Shorten the label before widening the column.** An earlier version of this skill set 2.00in
+because `Total footage (looped pig path)` needed 1.80in. Cutting the qualifier gave 0.60in back to
+every value column in the document.
 
 ⚠ **Do not size each table to its own longest label.** An earlier version of this skill did exactly
 that and produced nine tables starting at nine different offsets. Optimising each table in isolation
@@ -113,7 +125,7 @@ appears only in the Stand-By Summary.
 Then a Project Information header and three tables. Customer Details: facility, address, project and
 PO number, contact — **the row label is `Project & PO #`, not `Job & PO #`**. It is the one place
 "Job" survived as a customer-facing label after the rest of the document was moved to "Project". Project Details: scope, execution date range with day count, heater tags,
-equipment list. Crew Details: project manager, shift lead split day and night, dayshift names,
+equipment list. Crew Details: project manager, shift lead as one row valued `Day — <name>; Night — <name>`, dayshift names,
 nightshift names.
 
 The section is called Project Information, not Job Summary. "Project" reads more appropriate than
@@ -131,8 +143,8 @@ pumper-to-heater assignment. Superscript footnotes below the table carry delays,
 or as-built reconfiguration, all PM-supplied.
 
 **STAND-BY SUMMARY** — columns **DATES, HOURS, CAUSE**, in that order, plus a TOTAL row. Widths
-**2.00 / 0.70 / 4.20**. Reordered from CAUSE / DATES / HOURS on 2026-09-07: dates and hours are
-short and fixed-width, so putting them first lands DATES on the same 2.00in left edge as every other
+**1.40 / 0.70 / 4.80**. Reordered from CAUSE / DATES / HOURS on 2026-09-07: dates and hours are
+short and fixed-width, so putting them first lands DATES on the same 1.40in left edge as every other
 table and gives CAUSE the room its prose actually needs — it carries strings up to 83 characters and
 was previously stuck in the narrowest column.
 
@@ -156,7 +168,7 @@ split that used to be here was measured and found to break anyway.
 Per heater: amber sub-header `[H-tag] — [Heater Name]`, a data table, a bold-lead narrative
 paragraph, then an amber callout box for the critical note.
 
-Table fields: number of passes as-built; total footage with looped pig path if applicable;
+Table fields, labelled exactly as written here: Number of passes; Total footage;
 convection tube ID with OD, wall and schedule; radiant tube ID with OD and wall plus outlet
 section if any; metallurgy per section and never a single card-level value; return bends;
 inlet and outlet flange count, size, rating and location; smart pigging yes with vendor or no.
