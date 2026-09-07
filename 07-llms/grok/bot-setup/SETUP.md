@@ -861,6 +861,37 @@ three or four lines to one or two.
 after the KPI band on both builds. His standing rule is no blank gaps, so this is a real residual —
 recorded rather than fixed, because it was not what he asked for.
 
+### Uniform first column, and the Stand-By reorder. TESTED 2026-09-07.
+
+**The per-table sizing rule above was wrong and lasted about an hour.** It fixed the garbled Value
+column and created a worse problem: nine tables starting at nine different offsets — 1.38 / 1.73 /
+1.85 / 2.20 / 2.30in — so the left edge was ragged down every page. Jesse spotted it by looking.
+**Optimising each table in isolation is the mistake**, and both the build spec and the skill now say
+so explicitly so it is not reintroduced.
+
+**Replaced by a uniform 2.00in first column on all nine tables.** The value is derived, not chosen:
+the longest first-column string in the document is `Total footage (looped pig path)`, measured at
+**1.80in in 9.5pt Arial**; with Word's 0.16in default cell padding that needs 1.96in, so **2.00in is
+the smallest value at which nothing wraps.** Remaining 4.90in splits evenly among the other columns.
+
+**Stand-By Summary reordered to `DATES | HOURS | CAUSE`** at 2.00 / 0.70 / 4.20. Dates and hours are
+short and fixed-width, so leading with them lands DATES on the same left edge as everything else and
+takes CAUSE from 2.30in to 4.20in — an 83% gain for the only column holding prose, which carries
+strings up to 83 characters. Causes now fit on one line instead of three.
+
+⚠ **The reorder introduced an artifact worth knowing: the TOTAL row read `blank | 11 | TOTAL`**,
+label stranded to the right of its own figure, because TOTAL had lived in the CAUSE column. A total
+row must label itself from the left, so TOTAL moves to DATES. Caught in the Claude Code build and
+fixed in both before Scribe ever saw it.
+
+**Both builds verified identical again:** all nine first columns at exactly 2.00in, Stand-By at
+2.00 / 0.70 / 4.20, TOTAL row reading `TOTAL | 11 | —`. Scribe enumerated all nine widths back
+unprompted rather than asserting success.
+
+**The accepted cost, Jesse's call:** the two Project tables and the KPI band hold short
+first-column values, so 2.00in there gives up about 0.25in that `SCOPE` — the longest cell in the
+document — would otherwise use. A straight edge was worth more than the space.
+
 ---
 
 # 4. What's left
