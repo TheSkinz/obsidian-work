@@ -77,13 +77,27 @@ def size_value(cell: str) -> float | None:
     # A range: two numbers joined by a dash/en-dash, optionally quoted.
     if re.search(r"\d\s*[-–—]\s*\d", s):
         return None
+    # Honeycomb sizes are stated in MILLIMETRES, not inches (Jesse, 2026-09-07)
+    # -- the one pig type in the registry that does. Convert before anything
+    # else looks at the number. This is what the sanity ceiling below used to
+    # catch: H-19's 104 and H-20's 76 / 84 were read as inches, judged
+    # impossible, and reported for three weeks as "tool lengths wearing the
+    # Size column." They were ODs the whole time. 104 mm = 4.094" against that
+    # coil's 4.026" ID; 84 mm = 3.307" and 76 mm = 2.992" against 3.068".
+    # Match on the unit in the cell, never on the pig type, so a millimetre
+    # figure is read correctly wherever it appears.
+    mm = re.match(r"^\s*([\d.]+)\s*mm\b", s, re.IGNORECASE)
+    if mm:
+        try:
+            return round(float(mm.group(1)) / 25.4, 3)
+        except ValueError:
+            return None
     v = num(s)
-    # Sanity ceiling. Some rows carry a figure that is not a bore at all — the
-    # Honeycomb rows on H-19/H-20 read 76", 84", 104", which are tool lengths,
-    # not diameters. Nothing in the vault runs a pig above ~20" OD, so anything
-    # larger is a different measurement wearing the Size column. Excluded from
-    # size totals and reported under Data quality rather than silently listed
-    # alongside real pig sizes.
+    # Sanity ceiling. A Size cell above this is carrying some measurement that
+    # is not a bore. No known instance remains -- the Honeycomb rows that
+    # motivated it were a unit misread, fixed above -- but the guard stays,
+    # because silently totalling a non-diameter into a size breakdown is the
+    # failure it exists to prevent.
     if v is not None and v > MAX_PLAUSIBLE_PIG_OD:
         return None
     return v
@@ -355,11 +369,11 @@ def build(root: Path) -> str:
     if implausible_size:
         L += [
             f"**{len(set(implausible_size))} row(s) carry a Size above "
-            f"{MAX_PLAUSIBLE_PIG_OD:.0f}\", which is not a pig OD.** All are Honeycomb "
-            "tools, so the cell is almost certainly recording tool *length* rather than "
-            "diameter. Excluded from the size breakdown — but the quantities are real and "
-            "still count toward the per-job totals. Worth correcting on the cards, or "
-            "giving Honeycomb its own unit, next time one is open:",
+            f"{MAX_PLAUSIBLE_PIG_OD:.0f}\", which is not a pig OD.** Excluded from the "
+            "size breakdown — but the quantities are real and still count toward the "
+            "per-job totals. Check the unit before assuming the value is wrong: Honeycomb "
+            "sizes are recorded in millimetres and are converted automatically, which is "
+            "what this section used to mis-report as tool lengths:",
             "",
         ] + [f"- {u}" for u in sorted(set(implausible_size))] + [""]
     if quoted or unsourced:

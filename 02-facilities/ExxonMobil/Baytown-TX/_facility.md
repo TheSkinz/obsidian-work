@@ -126,8 +126,13 @@ but the divergence needs no reconciling, because each figure belonged to a contr
 set its own rates and then ended. Start from the house standard and take the governing
 figure from this bid's contract or bid instructions.
 
-**4×3 pump basis changed** between DSP25084/25123 ($1,016/shift) and DSP26039 ($85/hr).
-Not reconciled — check which basis the governing contract uses before pricing it.
+**4×3 pump basis differs** between DSP25084/25123 ($1,016/shift) and DSP26039 ($85/hr).
+**This is normal, not a defect** (Jesse, 2026-09-07): there is no governing ExxonMobil
+Baytown contract forcing one rate set across projects. **Each project has its own
+contract, and the rates may differ slightly.** The table above is context for pricing the
+next one — read the neighbouring projects' rates to see the range, never copy one forward
+as though it were a facility standard. Previously flagged here as "not reconciled," which
+was wrong: it treated per-project variation as drift to be resolved.
 
 **DSP26071.2 (HU5A F-501) — awarded 2026-07-27, executed as USA26041, complete 2026-08-14.** The
 first live rate set on this site. Not yet added as a column above; that widening is pending. Its
