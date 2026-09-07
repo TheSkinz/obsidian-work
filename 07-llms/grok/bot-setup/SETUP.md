@@ -335,22 +335,20 @@ speaks only when something under `01-context/` moved, replying `nothing new` oth
 other files changed. A routine reporting 24 files per push is the chatty failure the 2026-08-21 vault
 audit retired; the clone refreshes either way, which is the part that matters.
 
-## A OneDrive connector is installed and nobody added it. READ 2026-09-06.
+## The account's four connectors, and why each is there. READ 2026-09-06.
 
-The Architect enumerated the account's connectors: **Gmail, Google Drive, OneDrive, GitHub.** Gmail
-and Drive were auto-added to Chief of Staff at signup; GitHub was added deliberately and its token
-deleted the same evening. **OneDrive was never knowingly installed**, and the marketplace header was
-observed going from `2 installed` to `3 installed` earlier in the session with nothing in the
-session adding one.
+**Gmail, Google Drive, OneDrive, GitHub.** Gmail and Drive were auto-added to Chief of Staff at
+signup and Gmail was never signed in. **OneDrive was added by Jesse deliberately**, against possible
+future use rather than for anything in the trial. GitHub was added for the Git-event test and **its
+token was deleted the same evening**, though the connector entry remains.
 
-**The question that matters is not that it exists but whether it is authenticated.** An installed
-connector with no sign-in is inert — Gmail sat in exactly that state all session. An installed
-connector *signed in to a Microsoft account* is a different thing entirely on a machine where every
-Bot shares one cookie jar, and OneDrive is where the per-facility bid working copies live.
+A mid-session jump in the marketplace header from `2 installed` to `3 installed` was briefly flagged
+as unexplained; it was OneDrive, and it was intentional. **Recorded because the count is worth
+knowing, not because anything was wrong.**
 
-**Open, and it is Jesse's to check:** Settings → the installed-plugins list → whether OneDrive shows
-a connected account. If it does, disconnect it — nothing in the trial design uses OneDrive, and its
-connector is read-only anyway.
+Worth one line and no more: OneDrive is where the per-facility bid working copies live, and every
+Bot on the account shares one browser session — so if it is ever signed in, it is signed in for all
+of them. Its connector is read-only in any case.
 
 ## Scout hit a login wall, stopped, and said so. TESTED 2026-09-06.
 
