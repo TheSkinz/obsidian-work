@@ -734,6 +734,35 @@ format decision, not a fix to make unasked.
 **Note the real filename is `HU5A`, with a digit five, not `HUSA`.** Scribe flagged it unprompted
 when the instruction used the wrong one.
 
+### Second build, branded and corrected. TESTED 2026-09-07.
+
+Four defects found by inspecting the first `.docx` were written into the Project Report skill, the
+skill was **updated in place — still one skill, id `project-report`, no duplicate** — and the report
+was rebuilt. All four verified off-platform on the 51 kB result:
+
+**The real logo is embedded.** `word/media/image1.png` is **6,280 bytes, exactly the size of
+`assets/brand/usadebusk-logo.png`**, and `word/header1.xml` carries a genuine `<a:blip>` image
+reference. Nothing was reconstructed. **The asset was already in the clone and therefore already on
+the Bot's machine** — the logo was never an upload problem, only a missing instruction. No connector
+and no file transfer was involved.
+
+**`[logo]` placeholder: gone (0 occurrences).** **`Job & PO #`: gone (0).** **`Project & PO #`:
+present.** **The body no longer narrates its own running header** — the first build wrote a correct
+`header1.xml` *and* opened the document with a paragraph describing that same header, which is the
+structural duplication the skill's verbosity rule exists to catch.
+
+"Job" now appears **once**, down from three, and the remaining instance is inside the closing
+*Verified facts* block rather than in the report body.
+
+**One open question, not a defect:** the four closing sections (Verified facts, Assumptions, Actions
+completed, Unresolved questions) are a Bot-to-Jesse reporting convention, and they are currently
+**inside the customer-facing document**. Whether they should ship, move to a separate note, or be
+stripped at hand-off is Jesse's call on deliverable scope, not something to decide from here.
+
+**What this settles.** Grok Bot produces a branded, customer-shaped `.docx` end to end, on its own
+machine, with no plugin, no connector and no credential. That is the first capability in this trial
+that is genuinely self-contained.
+
 ---
 
 # 4. What's left
