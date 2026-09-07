@@ -140,6 +140,43 @@ plus this experiment. So the entire build to date — four Bots, three skill upl
 citation audit and one platform experiment — is roughly 1–2% of a weekly allowance. Cost is not the
 binding constraint at this scale.
 
+### Experiment 1 — the Git-event trigger. There is no push event.
+
+**READ, from the trigger config UI, 2026-09-06.** The routine trigger labelled "Git event" is
+**pull-request shaped, not push shaped.** Its complete event list:
+
+| Group | Events |
+|---|---|
+| Pull request | Opened · Updated · Merged |
+| Review | Requested · Approved · Changes requested · Commented · Thread resolved · Thread reopened |
+| Comment | PR comment · Inline review comment |
+| Checks | CI passed · CI failed |
+| Issue | Assigned |
+
+**Nothing fires on a push.** The designed routine — Librarian pulls the clone when `obsidian-work`
+changes — **cannot be built as specified**, because vault work commits straight to `main` and never
+opens a PR. That is the single most load-bearing assumption in the routine design and it is false.
+
+**What it costs to find out.** The trigger needs the **GitHub connector**, and the connector wants a
+**personal access token**, not OAuth — *"Fine-grained or classic PAT from
+https://github.com/settings/tokens with the repo scopes you want the agent to use."* That is better
+than the account-wide grant the connector's own description implies, because the token sets the real
+ceiling: a fine-grained PAT scoped to one repository keeps everything else out of reach even on a
+shared VM. Jesse minted one for `obsidian-work` plus a Grok repo and installed the connector
+2026-09-06, deliberately departing from the no-credentials posture for this one answer.
+
+**Also READ: an event-triggered routine cannot be Test run.** The button greys out once a Git event
+is the trigger; it is available for scheduled routines only. So the ladder's "test before you arm"
+step is not available on exactly the routines where firing is least predictable.
+
+**The salvage test.** PR-opened still answers the question underneath the question — *do event
+triggers fire at all?* — which also bears on the Webhook trigger, the only other event path. A
+routine named `Vault refresh` is set on Librarian with Opened and Merged on
+`TheSkinz/obsidian-work`, and this file's own change is the stimulus: it lands as a pull request
+rather than a direct push, and the PR opening is the event.
+
+*(Result recorded below once the run history is read.)*
+
 ### The citation audit — PASSED, 10 of 10
 
 Every answer carried a real file path and a verbatim quote. Spot-checked independently against the
