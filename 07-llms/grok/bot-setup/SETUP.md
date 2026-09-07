@@ -350,6 +350,61 @@ Worth one line and no more: OneDrive is where the per-facility bid working copie
 Bot on the account shares one browser session — so if it is ever signed in, it is signed in for all
 of them. Its connector is read-only in any case.
 
+## Ledger against real receipts — the first live-work test. TESTED 2026-09-07.
+
+**The strongest result of the trial so far.** Three service-receipt PDFs from USA26041 (ExxonMobil
+Baytown, HU5A F-501, August 2026) handed over cold, with the answer withheld — no proposal, no
+rates, no ticket breakdown, and an instruction not to open the vault.
+
+**It found all seven receipts.** Tickets **10780–10786** across the three PDFs, dates Aug 11–14. The
+vault's own reconciliation record names exactly that range.
+
+**Plant Down Time: 11 hrs**, split 10781 = 5 and 10782 = 6. `USA26041-job-sheet.md` records *"+ 11
+hrs PDT"*. Exact, and derived from the receipts rather than from anything it was told.
+
+**It adapted its own method.** *"PDF text extraction is too messy on the handwriting. Converting each
+page to images and reading them directly."* Then a second pass cropping header, labor, pig and
+signature regions on the sheets that conflicted — arriving unprompted at the full-page-for-context,
+cropped-region-for-detail technique the vault already records for heater drawings.
+
+**Four skill rules held under real conditions**, and each is one a plausible run would have broken:
+
+- **Smart Pig is not third-party.** It logged Third Party (billable) at **0 hrs** with the note
+  *"Smart Pig is not third-party"* — the receipt form records smart-pig time on the third-party line
+  to save space, and a vendor name there is not a charge.
+- **Stand-by bills through two rate lines only.** PDT carried *"via Trimax + Filter Press stand-by
+  rates only"* rather than a generic stand-by line.
+- **Omit an absent row rather than carry it at zero.** *"4x3 Pump does not appear on these receipts,
+  so it is not on the table."*
+- **Flag, never adjust.** On a Clean ID conflict — 10782 reads 4.8″ where other sheets read 4.6″ —
+  it wrote *"That is a finding. Numbers were not adjusted."*
+
+**It refused to guess, five times, each named by ticket and field.** Blake Baugh's hours on 10782
+overwritten and possibly 10 or 12, carried as 12 and **marked assumed**; the Clean ID on 10783
+reading like `4C"`, left blank; a foam quantity on 10784 reading as (4) or (2), left blank; two
+scribbled fields on 10785. Plus: *"crew surname spellings vary across sheets; hours were taken from
+the clearest repeats, spellings were not forced."*
+
+**Verdict: NOT READY**, with real blockers — customer signatures missing on all seven receipts, PDT
+needing customer confirmation, and the proposal cross-check impossible without the proposal.
+
+### What this test could not measure, and why
+
+**Three of the four flags the vault records for this job need the proposal**, which was deliberately
+withheld: PO value versus billings, filtration stand-by at $150 against a quoted $35, and DEF billed
+against a quoted qty of 0. Ledger **correctly declined all three** — *"Hours past proposal estimate:
+not checked. No proposal is in the three PDFs"* — rather than inventing a comparison. That is the
+right behaviour, but it means the extraction was graded and the reconciliation was not.
+
+**One figure to check before trusting the table:** Ledger reports *"task splits on Trimax sum to the
+48 hourly hours"*, while the job sheet records **43 productive hrs against 48 quoted**. Those may be
+different quantities rather than a conflict — productive hours likely exclude something the receipt
+total includes — but it is unverified and should not be read as a match.
+
+**Next pass:** hand it the proposal and let it run the reconciliation half. It offered exactly that
+— *"hand me the proposal and I will score overruns and underruns without touching the receipt
+numbers."*
+
 ## Scout hit a login wall, stopped, and said so. TESTED 2026-09-06.
 
 First pass, AI-visibility half: ask one tool three category questions without naming USADebusk.
