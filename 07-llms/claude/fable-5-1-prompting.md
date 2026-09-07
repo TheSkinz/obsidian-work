@@ -133,11 +133,25 @@ Correct finding, but its write-up understated the gap by 28% (3,300 ft against a
 which is the reminder that a model checking someone else's work still needs its arithmetic checked.
 
 **Self-verification instructions were followed past the letter.** The prompt asked for at least two
-look-and-improve cycles. The page ships ten startup assertions that run on every load and print to
-console, a `?debug` flag to surface them, a sweep of every 0.1 s of the 178 s cycle for a finite
-camera, and checks at three viewport widths. All ten assertions pass and every expected value
-matches an independent extraction of the source report, including the eight full-bore records at
-25.07 in — a figure an adversarial reviewer had gotten wrong.
+look-and-improve cycles; the transcript shows **eight** — 22 browser batches, 47 screenshots, 37
+JavaScript probes, 10 console reads, 12 viewport resizes. Each cycle is screenshots → a critique in
+its own reasoning → a patch. The first console read caught a fatal it had introduced by stripping
+three.js's deprecation warning, which broke the UMD's comma expression; later cycles caught a
+highlighted record rendering 120 ft off-screen, a camera parked on the wrong side of the pipe at the
+climax, and a footer that collided with the strip at narrow widths. The page also ships ten startup
+assertions that run on every load, a `?debug` flag to surface them, and a sweep of every 0.1 s of the
+178 s cycle for a finite camera. All ten assertions pass and every expected value matches an
+independent extraction of the source report.
+
+Worth noting it **undercounted itself**: its recap claims five look-and-improve rounds against an
+actual eight. Modesty in that direction is harmless, but it means the model's own account of its
+process is not a reliable substitute for reading the transcript.
+
+**It never asked permission.** Zero hits across the whole transcript for "Want me to", "Shall I",
+"Should I", "Would you like", "Let me know". The build was one unbroken 27-minute autonomous run
+covering authoring, assembly, eight verification cycles, artifact publish, commit and push. Every
+turn-end was legitimate: the plan-mode gate, then genuine hand-backs. None of the five repair-ladder
+prompts was ever needed. The autonomy block earns its place in the payload.
 
 **The hard domain calls came out right without being specified**: full-bore records drawn as 360°
 patches with no gap, the odometer-to-route mapping stated as ×0.9521 with every distance labelled by
@@ -145,7 +159,23 @@ system, the clock convention mirrored on the return leg, the two overlapping rec
 176 merged as one feature, and the two anomalies with bad report labels shown with both the report's
 figure and the resolved one.
 
-**Effort: unresolved, and worth resolving before citing this run.** The session metadata reads
-`effort: "low"`, while the operator set out to run it at `high`. If it was in fact `low`, this
-result is a much stronger data point than it currently reads as. Do not cite the run as evidence
-about a particular effort level until that is settled.
+**Effort: it ran at `high`, and the session metadata misleads about this.** The transcript
+(`2a5bd12e-4886-402b-92b0-7b660648231b.jsonl`) stamps every assistant record with an `effort` field:
+**178 records at `high`**, covering recon, plan, the entire build, all eight verification cycles,
+the artifact publish and the MP4; **6 at `low`**, all of them after the operator said goodnight, on
+a 70-second housekeeping turn. `list_sessions` / `get_session` report the *last* value, so that
+surface reads `low` for a run that was overwhelmingly `high`. **Do not read effort off session
+metadata — grep the transcript's per-record field.**
+
+This also confirms the note's own advice held: a single long deliverable at `high` produced a
+complete build in 27 unbroken minutes, with no sign of the draft-it-twice behaviour that `xhigh` and
+`max` invite.
+
+**One accuracy slip in the output, and it traces back to the prompt.** A scene caption reads "Nine
+full-bore tunnels | 12 to 23 ft each." There are **eight** full-bore records, and one of those
+(IML-11, 51.90 in) is 4.3 ft, so it is seven in that length range. The page's own passing assertion
+says `fullBore8: 8` — it contradicted a check it had itself written. The source is a prompt
+paragraph that put two adjacent facts in one breath: eleven internal records, *nine of them* 146–276
+inches long, and separately the full-bore widths. The model fused them. **When two counts about the
+same records sit in adjacent clauses, expect them to merge — give each its own sentence, or state
+only the one that must be rendered.**
