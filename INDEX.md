@@ -141,10 +141,8 @@
 - [[rig-diagram-corpus]] — Rig / Hose Layout Diagram Corpus
 - [[sop-formatting-standard]] — SOP Formatting Standard `(sops)`
 - [[vault-agent-loop-spec]] — Vault Agent Loop Spec
-- [[vault-capture-loop-spec]] — Vault Capture Loop Spec
 - [[vault-consolidation-loop-spec]] — Vault Consolidation Loop Spec
-- [[vault-idea-loop-spec]] — Vault Idea Research Loop Spec
-- [[vault-prestaging-loop-spec]] — Vault Pre-Staging Loop Spec
+- [[vault-idea-loop-spec]] — Idea Research — on-demand procedure
 - [[vault-skill-drift-loop-spec]] — Vault Skill-Drift Loop Spec
 - [[vault-source-of-truth]] — Vault Source Of Truth
 - [[workup-to-proposal-generator-build-spec]] — Workup-to-Proposal Generator — Build Spec

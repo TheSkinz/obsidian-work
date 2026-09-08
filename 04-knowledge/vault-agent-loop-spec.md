@@ -9,7 +9,7 @@ review_after: 2026-10-29
 related:
   - [[knowledge-system-governance]]
   - [[vault-source-of-truth]]
-  - [[knowledge-review-dashboard]]
+  - [[health]]
   - [[vault-idea-loop-spec]]
   - [[decision-queue]]
 tags: [knowledge-system, agent-loop, vault-review, governance]
