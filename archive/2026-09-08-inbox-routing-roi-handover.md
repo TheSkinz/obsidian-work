@@ -1,7 +1,7 @@
-<!-- vault-loop: operational — session handover, governance question on 00-inbox/ routing policy. Needs Jesse in session; do not self-route. -->
+<!-- HOLD DISCHARGED 2026-09-08 — the `vault-loop:` marker here read "needs Jesse in session; do not self-route", which was true while the routing policy was undecided. He decided it the same day, so the hold is released and this note sweeps normally. -->
 ---
 type: note
-status: open
+status: resolved
 source_authority: stated
 confidence: high
 created: 2026-09-08
@@ -16,6 +16,13 @@ tags: [handover, knowledge-system, inbox, routing, governance]
 ---
 
 # Handover — is `00-inbox/` routing worth it, and what happens to the 82
+
+> [!success] Closed 2026-09-08 — all three outstanding tasks executed the same day
+> **Producer documents corrected** (`mobile-field-access.md`'s field trap, `idea-triage`, governance), though `usadebusk-vault-ingest` turned out to need no change: its six "route to `00-inbox`" sites sit under *Failure Modes — Flag and Stop* and name no loop, so they are human handoffs and correct.
+> **The 22 swept**, less two held — one protected by `revisit-trigger:`, one Lane 4. Six more `ROUTED` notes were found finished but still `status: inbox`, and 10 seeds resting at `researched` turned out to be already ruled. **30 notes left the inbox in total; 83 → 44.**
+> **Question 1 answered and adopted:** a capture scratchpad with a manual sweep, not a router — with the document-intake path preserved, since `change-log.md` 2026-05-21 shows that was the folder's original and still-working job.
+>
+> **Two of this note's own figures did not survive checking.** Its "1 held by a trigger" was right, but its framing of `usadebusk-vault-ingest` as a defect was not, and the 7% routing rate was superseded by a proper demand measurement — independent attended readers — which put the ceiling at 3 reads on the best inbox note. Its advice to read the ≥14-day tail rather than re-derive was correct and saved the session real time.
 
 **For the next session.** Jesse wants to examine how and why notes get routed to `00-inbox/`, whether the strategy has produced anything, whether loose ends are better closed in the session that creates them, and only then whether to work the pile down or write parts of it off.
 

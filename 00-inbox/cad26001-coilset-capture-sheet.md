@@ -32,6 +32,18 @@ related:
 > in tables competes with the job. What survived here is what a billing document already had to record.
 > Design the next sheet around the handful of fields no downstream artifact can reconstruct — for this
 > heater, that is per-circuit start/stop and nothing else.
+>
+> **A second, independent failure — added 2026-09-08 (Jesse).** On the job after this one his **phone
+> died with no way to charge it for several hours.** So phone-based field capture has now failed twice
+> on consecutive jobs for unrelated reasons: once because the shift was too busy to fill tables, once
+> because the device was gone. Any third attempt has to survive both, which means it **cannot assume
+> live capture at the moment the event happens.** It has to be fillable after the fact from whatever
+> was actually recorded — a few remembered clock times, a photo of a ticket — and small enough that
+> reconstructing it at end of shift is realistic. A design that only works when the operator is free
+> *and* charged has two single points of failure, and both have already fired.
+>
+> Scope note: this is about what **Jesse** writes. Crew-written service tickets are billing artifacts
+> and `usadebusk-fieldpm`'s `/extract` already owns them; nothing here proposes changing those.
 
 Carry this on shift. It feeds `## Coilset Durations` on [[7-1-F-1]] at ingest (DQ-017 Phase 1, ruled 2026-08-21).
 
