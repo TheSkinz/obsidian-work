@@ -1,6 +1,7 @@
+<!-- KILLED 2026-09-08 (Jesse). Reason: the vault's measured problem is guards that never fire, not missing guards — the Consolidation Loop's seed-status reconciliation pass was specified 2026-08-21, covers both directions correctly, and had never run once, because it was added six days after that loop's last firing. Five more lint rules do not help when the existing one has never executed. Re-propose only with evidence that a *specific* cross-field defect reached a customer-facing document. -->
 ---
 type: idea-seed
-status: unexplored
+status: closed-unactioned
 created: 2026-08-21
 tags: [idea, vault-lint, data-quality, DQ-017]
 related:

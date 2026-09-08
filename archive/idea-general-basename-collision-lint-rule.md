@@ -1,6 +1,7 @@
+<!-- KILLED 2026-09-08 (Jesse). Reason: this generalises `LINK-FACILITY` into one rule instead of one per note type, but that rule already fires and has caught real cases — DSP26095 on 2026-08-19. Consolidating a working guard is elegance, not a found defect, and it would rewrite a rule that currently earns its place. Re-propose if a basename collision outside `_facility.md` actually causes a wrong read. -->
 ---
 type: idea-seed
-status: unexplored
+status: closed-unactioned
 created: 2026-08-19
 related:
   - "[[obsidian-setup]]"

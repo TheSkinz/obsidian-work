@@ -1,6 +1,7 @@
+<!-- KILLED 2026-09-08 (Jesse). Reason: the premise is right but points at the wrong artifact — the cards are not the defect, the schema line is. `_canonical-heater-card.md:27-28` says `tags:` carries the heater-type value, and DQ-017 Q5 Track 2 has since migrated and lint-locked heater-type as a *frontmatter* property, which is what `50-dashboards/heater-fleet.base` actually reads (verified 2026-09-08). Nothing reads the tag, so 40 of 41 cards are correct and the exemplar is stale. That is a one-line correction for Jesse to rule on, not a research seed — and it is the only outstanding item this kill leaves behind. -->
 ---
 type: idea-seed
-status: unexplored
+status: closed-unactioned
 created: 2026-08-22
 tags: [idea, schema, heater-card, vault-lint, data-quality]
 related:
