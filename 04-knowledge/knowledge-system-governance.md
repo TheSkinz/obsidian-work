@@ -132,6 +132,20 @@ Process one item at a time. Identify note type, source authority, related facili
 
 `00-inbox/` is a **capture scratchpad with a manual sweep, not a router** — see `01-context/system-workflow-reference.md` for the flow and vault `CLAUDE.md` for the close-out steps.
 
+### Three-Outcome Routing Model
+
+**Moved here 2026-09-08 from `vault-capture-loop-spec.md`, which is retired.** The logic is unchanged; only its trigger is gone. It runs when a session routes a finding at write time, not on a schedule.
+
+| Outcome | Action |
+|---|---|
+| Clear home in an existing note | Append the content; cite source. |
+| Folder exists but no matching note | Create the new note in that folder. |
+| Nothing fits | Leave in `00-inbox/`, add top-of-file comment `<!-- vault-loop: no home yet, candidate for [topic] -->`, and report it. |
+
+If `00-inbox/` holds 3+ untagged notes on one theme with no existing home, propose a hub note (suggested filename, target folder, one-line scope). Propose only — do not create the hub or move items without approval.
+
+Two things belong in `00-inbox/` by design and are **not** routing failures: idea seeds, which the idea flow owns, and operational/Lane 4 content, which needs Jesse's call. A document that has no home *yet* — an unknown client, a folder that does not exist — is the third, and is the folder's original job: `change-log.md`, 2026-05-21, *"Syncrude Fort McMurray job report held in inbox — client not scaffolded."*
+
 ### Terminal-Note Sweep
 
 **Moved here 2026-09-08 from `vault-capture-loop-spec.md`, which is retired.** This is the vault's only drain and it had been specified inside a `status: deprecated` document since the capture loop stopped on 2026-08-21 — which is the mechanical reason removal ceased: 54 notes left `00-inbox/` in the 29 days before the shutdown and 1 in the 18 days after. Its trigger is now **close-out step 4** in vault `CLAUDE.md`; the rules below are unchanged.

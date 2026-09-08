@@ -11,8 +11,6 @@ related:
   - [[vault-source-of-truth]]
   - [[knowledge-review-dashboard]]
   - [[vault-idea-loop-spec]]
-  - [[vault-capture-loop-spec]]
-  - [[vault-prestaging-loop-spec]]
   - [[decision-queue]]
 tags: [knowledge-system, agent-loop, vault-review, governance]
 ---
@@ -37,7 +35,9 @@ Run the Vault Review Loop on obsidian-work. Pick one safest item and create a re
 
 It is explicitly allowed to write nothing. A month with no item worth a decision should end in silence, not a manufactured note; this loop replaced three that spoke whether or not they had anything to say. It runs locally against the working tree — no cloud routine, no separate clone.
 
-**What has changed underneath this loop since it was written (reconciled 2026-07-29).** Two things now do work this spec originally assigned to the loop itself. The Pre-Staging Loop ([[vault-prestaging-loop-spec]], added 2026-07-28) runs daily and *prepares* operational deferrals into evidence-backed proposals, so on most runs the analysis step is already done and waiting in [[decision-queue]] — this loop's job is increasingly to apply an approved proposal rather than to go hunting for an item. And `tools/vault_lint.py` now mechanically detects most of what the Staleness Check section below was written to catch by hand. Read both sections in that light.
+**What has changed underneath this loop since it was written (reconciled 2026-07-29; corrected 2026-09-08, DQ-032).** `tools/vault_lint.py` mechanically detects most of what the Staleness Check section below was written to catch by hand — read that section in that light.
+
+**The Pre-Staging Loop no longer does anything.** The 2026-07-29 text here said it "runs daily and *prepares* operational deferrals into evidence-backed proposals, so on most runs the analysis step is already done and waiting in [[decision-queue]]." That loop was disabled 2026-08-21 and its spec retired 2026-09-08. **Nothing pre-analyses an operational deferral now.** This loop is back to going hunting for the item itself, and an item carrying a `<!-- vault-loop: -->` marker has no consumer waiting behind it.
 
 ## Scope
 
@@ -59,7 +59,9 @@ This loop governs the **operational core** of the vault:
 
 **`02-facilities/` is no longer governed here.** The 2026-07-06 facility-data ruling in [[knowledge-system-governance]] moved heater-card and facility content to **Lane 1 in full** — creating, correcting, and resolving discrepancies in that content needs no approval and no contradiction note. This loop does not gate it and should not manufacture review notes for it. The one carve-out the ruling kept: a card actively feeding a *pending bid or customer-facing document right now* is customer-facing content, and that is in scope here.
 
-It does **not** govern `00-inbox/` content routing or the `07-llms/`, `08-systems/`, `09-interests/` content layers. Those are owned by the Vault Capture Loop ([[vault-capture-loop-spec]]). When a harvested item is operational, it routes here under this loop's approval boundaries regardless of which session produced it — in practice it now arrives pre-analyzed, via the Pre-Staging Loop, as a `review_type: pre-staged` note plus a [[decision-queue]] row. A pre-staged note is an unreviewed inference, not settled vault truth; verify its Source Material before applying anything from it.
+It does **not** govern `00-inbox/` content routing or the `07-llms/`, `08-systems/`, `09-interests/` content layers. **No loop owns those any more (corrected 2026-09-08, DQ-032)** — the capture loop that did was disabled 2026-08-21 and its spec retired. Routing now happens at write time in the session that creates the note, under the Three-Outcome Routing Model in [[knowledge-system-governance]].
+
+When an item is operational it comes here under this loop's approval boundaries, regardless of which session produced it. Older `review_type: pre-staged` notes plus their [[decision-queue]] rows still exist and are still valid to work from — but nothing produces new ones. A pre-staged note is an unreviewed inference, not settled vault truth; verify its Source Material before applying anything from it.
 
 `change-log.md` is a **shared append-only history**. Both loops append their own dated entries; neither edits or removes the other's. This loop logs approved operational changes; the capture loop logs its scheduled run summaries. Single-writer-per-entry, never a shared edit.
 
@@ -125,7 +127,7 @@ Never scan the whole vault deeply unless the selected item requires it.
 | Close or check off a decision-queue row | Closing is human-gated by the queue's own rules; this loop applies what Jesse approved, it does not decide. |
 | Merge conflicting claims | Must preserve contradiction trail. |
 | Bulk edit metadata across many notes | Sync and regression risk. |
-| Convert this loop to an automated/unattended schedule | Operational core must stay manually triggered and reviewed while present. |
+| Widen this loop beyond propose-only, or let a scheduled run **write** operational content | **Corrected 2026-09-08 (DQ-032).** This row previously blocked "convert this loop to an automated/unattended schedule" — which the loop has run on since 2026-08-21, so the spec forbade its own cadence. The line that actually holds is narrower and is the reason scheduling was safe: an unattended run writes a review note and a queue row and **nothing else**. Operational content still changes only with Jesse present. |
 
 ## Selection Rule
 
@@ -172,7 +174,7 @@ That last row is the point of this section now. Lint finds broken *structure*; o
 
 Dropped as non-transferable: semantic tiling (requires ollama + wiki structure), DragonScale address validity, Dataview/canvas dashboard generation.
 
-The scan may surface several issues at once; the loop still creates one review note for the single highest-priority item per the Selection Rule. Un-actioned flags are simply re-detected on the next on-demand run — there is no backlog artifact, and that is acceptable because this loop is manual and infrequent.
+The scan may surface several issues at once; the loop still creates one review note for the single highest-priority item per the Selection Rule. Un-actioned flags are simply re-detected on the next run — there is no backlog artifact, and that is acceptable because this loop is infrequent: monthly on the 8th since 2026-08-21, plus on demand. (Corrected 2026-09-08, DQ-032: this sentence said "manual".)
 
 ## Stop Conditions
 

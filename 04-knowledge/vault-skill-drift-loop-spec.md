@@ -6,7 +6,6 @@ created: 2026-07-07
 last_reviewed: 2026-07-29
 review_after: 2026-10-29
 related:
-  - [[vault-capture-loop-spec]]
   - [[vault-idea-loop-spec]]
   - [[knowledge-system-governance]]
   - [[estimating-actuals-rollup]]
@@ -18,7 +17,7 @@ tags: [knowledge-system, agent-loop, skill-drift, governance]
 
 # Vault Skill-Drift Loop Spec
 
-The fourth loop. [[vault-capture-loop-spec]] files and harvests into the vault; this loop closes the return path — it checks whether the deployed skills at `~/.claude/skills/` still agree with vault truth and with each other, and packages any drift as a ready-to-merge proposal. Skills are the only layer every session loads: knowledge that reaches a skill compounds automatically, knowledge stranded in a vault note compounds only when someone remembers to look.
+Routing files findings into the vault; this loop closes the return path — it checks whether the deployed skills at `~/.claude/skills/` still agree with vault truth and with each other, and packages any drift as a ready-to-merge proposal. Skills are the only layer every session loads: knowledge that reaches a skill compounds automatically, knowledge stranded in a vault note compounds only when someone remembers to look.
 
 Origin: the 2026-07-06 harness judgment audit found the fieldpm skill had drifted since March — contradicting three newer skills on pig-type definitions, L/C/R handling, and receipt scope — and it took a full multi-agent audit to notice. This loop is the standing, cheap version of that audit.
 

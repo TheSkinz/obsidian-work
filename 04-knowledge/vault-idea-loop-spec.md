@@ -1,38 +1,46 @@
 ---
 type: governance
-status: deprecated
+status: active
 source_authority: primary
 confidence: high
 created: 2026-06-30
-last_reviewed: 2026-07-29
-review_after: 2026-10-29
+last_reviewed: 2026-09-08
+review_after: 2026-12-08
 related:
-  - [[vault-capture-loop-spec]]
   - [[vault-agent-loop-spec]]
-  - [[vault-prestaging-loop-spec]]
   - [[knowledge-system-governance]]
-tags: [knowledge-system, agent-loop, idea-research, governance]
+tags: [knowledge-system, idea-research, governance]
 ---
 
-# Vault Idea Research Loop Spec
+# Idea Research — on-demand procedure
 
-> **STOPPED 2026-08-21 — this loop does not run.** The scheduled task is disabled; it was the largest producer of asks (54% effect). Idea seeds still accrue in `00-inbox/`; research one on demand when it matters. The spec is kept because the loop is disabled, not deleted, and can be re-enabled. `status: deprecated` above means "no longer running", not "superseded" — nothing replaced it. Current status of all six loops: `01-context/system-workflow-reference.md`.
+> **This is a procedure, not a loop (2026-09-08).** The nightly schedule was disabled 2026-08-21 as the largest producer of asks (54% effect) and nothing replaced it. The *procedure* below is live and unchanged — say "research this seed" in a session and it runs. It was kept rather than archived alongside the capture and pre-staging specs precisely because it still describes work that happens; those two described work that stopped.
+>
+> **The filename still says `loop-spec`.** Renaming would break inbound wikilinks, which resolve by basename, for no gain. Read the title, not the path. Current status of all six loops: `01-context/system-workflow-reference.md`.
 
-The third loop, distinct from the other two in kind rather than just scope. [[vault-capture-loop-spec]] files and harvests; [[vault-agent-loop-spec]] reviews the operational core. This loop does neither — it investigates. It picks one speculative idea-seed, does bounded web research on it, and reports findings back for Jesse to decide on. It never files, never harvests, never touches operational content, and never decides or implements anything itself.
+Distinct from the other procedures in kind rather than scope. Routing files and harvests; [[vault-agent-loop-spec]] reviews the operational core. This one investigates: it takes one speculative idea-seed, does bounded web research on it, and reports findings back for Jesse to decide. It never files, never harvests, never touches operational content, and never decides or implements anything itself.
+
+**Its record is good and worth stating before anyone proposes retiring it too.** Of 21 idea seeds that reached a terminal status, 8 produced a working artifact that still runs — a 38% conversion, against roughly 7% for general inbox routing. What went wrong was never the procedure; it was the nightly cadence generating asks faster than Jesse could clear them.
 
 Origin: a recurring pattern where ideas discussed in chat got dismissed as low-ROI or infeasible from priors, only for later research to find a power-user had already solved the same problem with an off-the-shelf tool or technique. This loop is the direct fix — it spends bounded, otherwise-idle overnight capacity checking "has someone already solved this" before Jesse spends a session re-deriving the answer from scratch.
 
-## Loop Name
+## Name
 
-Vault Idea Research Loop
+Idea Research (formerly the Vault Idea Research Loop)
 
 ## Trigger
+
+**On demand only, since 2026-08-21.** Ask for it in a session — "research this seed", or name the seed — and the steps below run once against that seed. There is no schedule and nothing scans `00-inbox/` on its own.
+
+The scheduled task `vault-idea-research-loop` still exists at `enabled: false` with `lastRunAt` 2026-08-21. It is left registered rather than deleted so the runner prompt survives and re-enabling is one toggle, but **nothing about this procedure should assume it fires.** The heartbeat row was removed from `tools/vault_health.py` when the loop stopped; a procedure with no schedule has no heartbeat to miss.
+
+The paragraphs below are the scheduled era's record, kept because the reasoning still explains why the cadence was wrong rather than the work:
 
 **Scheduled nightly (~2 AM local) via `mcp__scheduled-tasks` as of 2026-07-07.** The original gate — "schedule only once the decision queue has a sustained track record of staying near-empty" — was judged passed on 2026-07-07: the queue has held at 0 open since the 2026-07-05 backlog clearance, and both prior research notes (07-01, 07-05) were reviewed and acted on. Runbook prompt: `~/.claude/scheduled-tasks/vault-idea-research-loop/SKILL.md`; it is heartbeat-tracked in `tools/vault_health.py` as `("Idea-research loop", "vault-idea-research-loop", "vault-idea-research:", 30, 3)` — ledger id, commit prefix, 30-day monitoring cadence, 3-day ledger staleness. (Corrected 2026-07-29: this line previously claimed a `scheduled` flag set to `True`. No such flag exists — `LOOP_HEARTBEATS` is a list of 5-tuples and always was in the version this spec described.) If the queue stops draining (health dashboard shows review notes piling past their cap), de-scheduling this loop again is the correct pressure-relief valve.
 
 **History:** it was briefly scheduled nightly (deployed 2026-06-30, ran 07-01 and 07-02), then de-registered as collateral of the 2026-07-02 kernel-consolidation plan — a plan reversed on 2026-07-05 in favor of keeping the loops + the decision queue. Re-scheduling it is now a deliberate future step gated on the queue proving it drains, not an automatic restore.
 
-This loop only needs git-tracked vault content and web search, so unlike the Capture Loop it has no dependency on local session transcripts. It could in principle run as a fully desktop-independent cloud routine, but that mechanism was checked during this loop's design and found unavailable in this environment (the relevant remote-environment service returned 404 on every call).
+This procedure only needs git-tracked vault content and web search, so unlike the retired capture loop it has no dependency on local session transcripts. It could in principle run as a fully desktop-independent cloud routine, but that mechanism was checked during this loop's design and found unavailable in this environment (the relevant remote-environment service returned 404 on every call).
 
 ## Scope
 
@@ -40,7 +48,7 @@ Reads:
 
 - `00-inbox/*.md` files with frontmatter `type: idea-seed` — the only input queue this loop watches.
 
-**Exclusive ownership of `type: idea-seed` (recorded here 2026-07-29).** [[vault-prestaging-loop-spec]] skips every `idea-seed` file **even when it carries a `<!-- vault-loop: -->` defer marker**, precisely so the two loops never process one item. That rule was written only in the pre-staging spec; it is restated here because it constrains both sides and a reader of this spec alone could not have known it. The practical consequence: a defer marker on an idea-seed does **not** mean the item is queued elsewhere — this loop is still its only consumer.
+**Exclusive ownership of `type: idea-seed` (recorded here 2026-07-29; the pre-staging spec it names was retired 2026-09-08).** The pre-staging pass skipped every `idea-seed` file **even when it carried a `<!-- vault-loop: -->` defer marker**, precisely so the two loops never process one item. That rule was written only in the pre-staging spec; it is restated here because it constrains both sides and a reader of this spec alone could not have known it. The practical consequence: a defer marker on an idea-seed does **not** mean the item is queued elsewhere — this loop is still its only consumer.
 
 Writes:
 
@@ -98,9 +106,13 @@ Low, but not silent. Every run either produces one evidence-gathering artifact (
 
 Added 2026-07-29. Three actors touch an idea-seed and none of them may skip a step, so the whole path is written in one place:
 
-`unexplored` → *(this loop researches, or closes a shut gate)* → `researched` **or** `gated` → *(Jesse decides)* → a terminal status → *(capture loop's Terminal-Note Sweep archives it)*
+`unexplored` → *(research runs, or a shut gate is recorded)* → **disposition in the same pass** → a terminal status, or `gated`, or `decided-blocked` → *(the Terminal-Note Sweep archives it)*
 
-The load-bearing part is the middle. `researched` means the research is done and **the decision is not** — the sweep's allowlist deliberately excludes it, so a researched seed sits in `00-inbox/` until Jesse acts. That is the intended pressure: an un-decided seed stays visible. `gated` is likewise excluded and additionally carries a `revisit-trigger:`, which puts it on the health dashboard's dormant-trigger registry. Neither status is a resting place the system will quietly clean up, and neither should be set to make a seed go away.
+**`researched` is not a resting place — corrected 2026-09-08 (Jesse).** The status still exists and research still sets it, but a seed must not *stop* there: research and disposition happen in the same pass. The original rule said a `researched` seed sitting in `00-inbox/` was "intended pressure" that kept an undecided seed visible. It did the opposite. On 2026-09-08 all ten seeds at `researched` were already ruled and eight were already applied — the status had outlived its decision and was hiding finished work in the pile. A 2026-09-03 ruling reached the same conclusion independently, calling it *"a status nothing revisits, so a seed sent there has no path out."*
+
+`gated` remains a legitimate parked state: it is excluded from the sweep and carries a `revisit-trigger:` naming the condition that unparks it. `decided-blocked` is the other legitimate stop — decided, with the work waiting on something else — and is deliberately not swept so the pending work stays visible.
+
+**Two backstops, neither of which had ever fired as of 2026-09-08.** The Consolidation Loop's Seed-status reconciliation pass (`vault-consolidation-loop-spec.md`, report-only, both directions) was added 2026-08-21, six days after that loop's last run, and is next due 2026-09-15. And close-out step 3 in vault `CLAUDE.md` now puts every seed captured in a session to Jesse as a keep/kill question, which is the cheapest point to stop a seed becoming permanent.
 
 ## Stop Conditions
 

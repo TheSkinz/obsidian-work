@@ -6,10 +6,8 @@ created: 2026-07-07
 last_reviewed: 2026-07-29
 review_after: 2026-10-29
 related:
-  - [[vault-capture-loop-spec]]
   - [[vault-skill-drift-loop-spec]]
   - [[vault-idea-loop-spec]]
-  - [[vault-prestaging-loop-spec]]
   - [[knowledge-system-governance]]
 tags: [knowledge-system, agent-loop, consolidation, governance]
 ---

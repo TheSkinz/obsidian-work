@@ -82,5 +82,5 @@ containing a `USADEBUSK\` directory. A block there is expected behaviour, not an
 
 - [[code]] — Claude Code surfaces and the post-cutoff capture rule
 - [[mobile-field-access]] — which surface to use from the phone, and what each one costs
-- [[vault-capture-loop-spec]] — the 05:00 loop
+- [[system-workflow-reference]] — current loop status; the 05:00 capture loop stopped 2026-08-21
 - [[chat]] — the claude.ai chat surface and its own skill-library exposure

@@ -51,7 +51,7 @@ Skills drive specialized behavior. When a task touches USADebusk work, the relev
 Identified in a 2026-06-23 capability review and still partly open:
 
 - **Permissions allowlist** in `settings.json` / `settings.local.json` — pre-declaring routine read-only and path-scoped write commands removes repeated interactive prompts. This is also what lets an unattended scheduled run proceed without stalling. Partially deployed.
-- **Session-transcript search** — past sessions are stored as plain JSONL under `~/.claude/projects/`. They can be searched directly (or via the `ccd_session_mgmt` MCP tool). This is the foundation of the vault capture loop's harvest step. See [[vault-capture-loop-spec]].
+- **Session-transcript search** — past sessions are stored as plain JSONL under `~/.claude/projects/`. They can be searched directly (or via the `ccd_session_mgmt` MCP tool). This was the foundation of the vault capture loop's harvest step; that loop stopped 2026-08-21 and nothing harvests transcripts now, so anything worth keeping must be written to a file during the session. Transcript search remains the way to audit what past sessions actually did — see [[system-workflow-reference]].
 - **Custom slash commands** — none defined yet; repeatable multi-step workflows are candidates.
 
 The git-guard hook recommended in the same review has since been implemented (see Key workflow patterns above).
