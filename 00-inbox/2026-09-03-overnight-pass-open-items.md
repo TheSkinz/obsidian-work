@@ -85,7 +85,14 @@ Both pre-date this pass and neither was in scope.
   `inbox_stats()` (`tools/vault_health.py:233`) skips `TERMINAL_STATUS` when computing ages, so those
   notes are already excluded and archiving them lowers only the count. The rows are driven by six
   genuinely pending notes dating to 2026-07-27 — the oldest are
-  `2026-07-20-claudeai-skill-library-is-a-second-copy`,
-  `2026-07-20-local-toolchain-and-soffice-windows-bug` and
-  `2026-07-24-fixtures-work-better-as-rule-audit`. **Clearing this is inbox triage, not a yes/no**,
+  [[2026-07-20-claudeai-skill-library-is-a-second-copy]],
+  [[2026-07-20-local-toolchain-and-soffice-windows-bug]] and
+  [[2026-07-24-fixtures-work-better-as-rule-audit]]. **Clearing this is inbox triage, not a yes/no**,
   and it is the largest remaining piece of decision-free-ish work in the vault.
+  **CORRECTED 2026-09-08 — "genuinely pending" was wrong about all three named here.** Each carried a
+  line-1 `ROUTED` marker recording where its content had already landed (`07-llms/claude/chat.md`;
+  `08-systems/windows-config.md` plus `07-llms/claude/command-reference.md`; and
+  `07-llms/prompt-engineering.md`). Only the `status:` was never flipped off `inbox`, so all three
+  read as live and aged like live notes. They were set `complete` and swept to `archive/` in the
+  2026-09-08 inbox pass together with three more of the same shape — six in total. The age rows this
+  bullet is about were partly measuring notes whose work was already finished.

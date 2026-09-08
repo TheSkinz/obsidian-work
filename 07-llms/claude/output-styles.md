@@ -173,7 +173,7 @@ carrying the built-in's six rules plus the named-task close and the no-bullets-i
 `outputStyle` at it, and **name it anything but `Concise`**.
 
 Source: Claude Code sessions `70d52879` and `e3c6349f`, 2026-08-20; capture record
-`00-inbox/2026-08-20-concise-output-style-watch.md`.
+[[2026-08-20-concise-output-style-watch]].
 
 ## Links
 

@@ -23,7 +23,7 @@ that matters is where they get their skills.
 **Cowork sources its skills, plugins, and connectors from the claude.ai account configuration**
 (Customize in the Desktop sidebar, or skills settings on claude.ai) — **not** from
 `~/.claude/skills/`. That library is a separate upload with no sync in either direction, which is
-the drift exposure recorded in `00-inbox/2026-07-20-claudeai-skill-library-is-a-second-copy.md`:
+the drift exposure recorded in [[2026-07-20-claudeai-skill-library-is-a-second-copy]]:
 the Skill-Drift Loop maintains the config-repo copies, and nothing updates the uploaded ones.
 
 A Claude Code session, including one Dispatch spawns into the Code tab, is a local session and

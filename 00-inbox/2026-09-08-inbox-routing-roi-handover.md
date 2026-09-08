@@ -118,7 +118,7 @@ They arrived bundled and they have different answers and different owners.
 
 **Beware the counterfactual trap on ROI.** "The inbox produced little" does not by itself argue for deleting it. The alternative — closing loose ends in the session that creates them — has its own failure mode, which is that a session under time pressure drops the finding entirely rather than filing it badly. The measurable question is not *did routing work* but *what happened to findings that were never captured at all*, and nothing in the vault records those. Say so rather than pretending the comparison is available.
 
-**One live specimen.** This file is a handover note being written into `00-inbox/` per an established convention (five prior examples, `2026-09-06-handover-f4-replay-and-rate-rollup.md` most recently). It is a fair test case for question 1: is this the right home for it, or should a handover live somewhere with an owner?
+**One live specimen.** This file is a handover note being written into `00-inbox/` per an established convention (five prior examples, [[2026-09-06-handover-f4-replay-and-rate-rollup]] most recently). It is a fair test case for question 1: is this the right home for it, or should a handover live somewhere with an owner?
 
 ## What would settle each question
 
