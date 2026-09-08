@@ -163,7 +163,7 @@ ALLOWED_STATUS = {
     # appear solely in `archive/`, which SKIP_SCAN excludes. Added 2026-09-07
     # (DQ-029) so the two lists agree about which words exist. They still
     # disagree, deliberately, about which ones sweep — see the derivation rule
-    # in 04-knowledge/vault-capture-loop-spec.md.
+    # in 04-knowledge/knowledge-system-governance.md ("Terminal-Note Sweep").
     "executed", "spec-complete",
     # research
     "unexplored", "researched", "gated",
@@ -195,7 +195,8 @@ TERMINAL_STATUS = {
 # commercial outcomes people search for; `decided-blocked` and
 # `approved-blocked` mean decided-but-still-waiting. All four are terminal and
 # none of them sweep. The allowlist and the rule behind it live in
-# 04-knowledge/vault-capture-loop-spec.md.
+# 04-knowledge/knowledge-system-governance.md ("Terminal-Note Sweep"), moved
+# there 2026-09-08 when the capture-loop spec was retired.
 
 SECRET_PATTERNS = [
     ("aws-access-key", re.compile(r"\bAKIA[0-9A-Z]{16}\b")),

@@ -130,6 +130,36 @@ Four lanes. Every agent action belongs to exactly one. Commit-subject prefixes m
 
 Process one item at a time. Identify note type, source authority, related facility/job/heater/proposal, candidate tags, and whether the item should become a source note, review note, or canonical update.
 
+`00-inbox/` is a **capture scratchpad with a manual sweep, not a router** — see `01-context/system-workflow-reference.md` for the flow and vault `CLAUDE.md` for the close-out steps.
+
+### Terminal-Note Sweep
+
+**Moved here 2026-09-08 from `vault-capture-loop-spec.md`, which is retired.** This is the vault's only drain and it had been specified inside a `status: deprecated` document since the capture loop stopped on 2026-08-21 — which is the mechanical reason removal ceased: 54 notes left `00-inbox/` in the 29 days before the shutdown and 1 in the 18 days after. Its trigger is now **close-out step 4** in vault `CLAUDE.md`; the rules below are unchanged.
+
+Move any `00-inbox/` file whose `status` is in this **exact allowlist** to `archive/`:
+
+`executed` · `resolved` · `complete` · `superseded` · `spec-complete` · `closed-unactioned` · `deprecated` · `expired`
+
+**The rule this list is derived from** (DQ-029, ruled 2026-09-07). A terminal status means the note will not change again. It does **not** follow that the note should leave `00-inbox/`, and that distinction is the whole question:
+
+- **Sweepable — finished and filed.** The commitment is closed and whatever mattered lives somewhere else now. The eight statuses above.
+- **Not sweepable — finished but still load-bearing.** `awarded` and `lost` are live commercial outcomes people search for by facility and job; a lost bid's reasoning is exactly what gets re-read when the customer comes back. `decided-blocked` and `approved-blocked` mean *decided, and waiting on something else* — the decision is closed but the work is not, and burying it loses the only visible trace that something is pending.
+
+**Deriving the allowlist from `TERMINAL_STATUS` in `tools/vault_lint.py` directly is wrong** and this is why: it would sweep all four of those. The two lists are deliberately different, not drifted, and anything that syncs them mechanically re-introduces the defect.
+
+Rules that make this safe, all of them applying to every note type:
+
+- **Never sweep `researched` or `unexplored`.** `researched` means research is done but *Jesse has not decided*; `unexplored` is a seed nobody has needed yet. The prohibition is written on status, not type, so a `researched` note of any type is protected.
+- **Status must be read with the loop markers in mind.** A `<!-- vault-loop: -->` or `<!-- vault-prestaged: -->` comment sits *above* the frontmatter fence. `tools/vault_lint.py`'s `frontmatter_start()` handles this — including multi-line comment blocks, fixed 2026-09-08 — so use that behavior rather than a fresh line-0 check. A parser that silently sees no status must **skip**, never sweep.
+- **Never rename.** Inbound **wikilinks** resolve by basename and `vault_lint.py` includes `archive/` in its resolution set, so a plain move keeps them green. Renaming breaks them.
+- **A move does not protect backticked *path* references, and nothing lints them.** DEAD-LINK only reads `[[wikilinks]]` and POINTER-DEAD only reads absolute source paths, so a swept file's path references dangle silently. After any sweep, grep the moved basenames across the vault and convert **live** references to wikilinks. Do not touch references inside `change-log.md` or dated `06-reviews/` notes — those state where a file was at the time, and history is not rewritten.
+- **Never sweep a note carrying `revisit-trigger:`** — that field is a live dormant trigger regardless of the note's status.
+- Status values outside the allowlist are left alone and reported, not guessed at.
+
+**Only sweep a file `git ls-files` already shows as tracked.** `archive/` is listed in `.gitignore`, and `.gitignore` governs only *untracked* files: a tracked note stays tracked when moved (git records a rename), so its history survives, but a file that was **never committed** becomes invisible to git the moment it lands there. An untracked file is left in place and reported.
+
+**`git add` after `git mv`, never before.** `git mv` moves the *index entry* rather than re-adding from the working tree, so an edit made before the move stays unstaged and the rename records as `R100` against pre-edit content. That produced a wrong commit on 2026-09-08.
+
 ### Contradiction Handling
 
 When two notes disagree, create a contradiction note with the exact claims and source links. Do not resolve by averaging, summarizing away the conflict, or picking the newer note unless the source hierarchy supports it.
