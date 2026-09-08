@@ -40,6 +40,19 @@ Never touches: `02-facilities/` (**no loop owns it** — the capture loop refuse
 
 Low. Merging and rewriting within 07/08/09 is Lane 1 (reversible — the loser is archived via `git mv`, never deleted; git history holds every prior wording). Anything ambiguous — two plausible merge directions, content whose home is unclear, a note that might be operational — is left in place and listed in the run report instead of acted on.
 
+## Demand data for the next run (measured 2026-09-08)
+
+The 2026-09-08 ledger measured read demand across 343 vault transcripts. `07-llms/` costs 115 commits — 86 of them in the preceding 30 days — for 37 notes of which **24 have never been independently read by an attended session** (opened by a session that did not also write them). That is a target for the merge and link passes, not a delete list, and **two blind spots have to be applied before acting on it**:
+
+- **13 of the 24 are `07-llms/grok/bot-setup/**`** — the Grok Bot deployment payload. Their consumer is the Grok Bot, which uploads them; a Claude session never opens them and never should. Zero reads there means the metric cannot see this consumer, not that the files are dead. **Leave the whole `bot-setup/` subtree alone.**
+- The measurement counts Claude Code file-opens only and cannot see Obsidian browsing.
+
+The 11 genuinely unattended notes: `claude/{design,dynamic-workflows,fable-5-1-prompting,output-styles,prefs-signal-log}.md`, `gemini/gem-drawing-extraction.md`, `grok/drawing-extraction-strategy.md`, `local-models/overview.md`, `pdf-extraction.md`, `prompt-engineering.md`, `self-improving-systems.md`.
+
+Two notes on that list before the merge pass touches them. **`claude/output-styles.md` is a live routing destination** — content landed there as recently as 2026-08-21 — so low reads mean it is written more than read, not that it is stale. **`gemini/gem-drawing-extraction.md` is the strongest archive candidate**: Gemini is retired, and the retirement famously did not propagate for seven weeks.
+
+**Why this is a behavioural trim rather than a deletion.** `07-llms/` stopped being the default destination for durable cross-session findings when harness memory took that role — 57 attended sessions opened a memory file against 35 for `07-llms/`, `08-systems/` and `09-interests/` combined. It keeps an independent role as a reference layer; it just should not accumulate by default.
+
 ## Loop Steps
 
 **Run ledger (every run, first and last action):** Before anything else, update `50-dashboards/.loop-runs.json` (local, gitignored — create if missing): set this loop's entry (`vault-consolidation-loop`) to `{"fired": "<now, UTC ISO-8601>", "completed": null, "result": "running"}`, merging without touching other loops' entries. As the run's very last action — after the final push, or immediately on deciding the run is a no-op or hitting a fatal problem — set `completed` to now and `result` to `committed`, `no-op`, or `error: <one line>`. Use Write/Edit tools, never shell editors. `tools/vault_health.py` reads this file to tell a dead scheduler from a quiet loop; a run that skips it surfaces as a monitoring FAIL.
