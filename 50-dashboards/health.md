@@ -7,9 +7,9 @@
 | Open decision rows | 1 | <= 10 | ok |
 | Review notes awaiting decision | 1 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 8 | (backlog) | ok |
+| Lint warnings | 7 | (backlog) | ok |
 | Dead source pointers | 0 | 0 | ok |
-| Inbox items | 83 | - | ok |
+| Inbox items | 56 | - | ok |
 | Inbox median age | 6 d | < 14 d | ok |
 | Inbox oldest item | 27 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
@@ -49,7 +49,7 @@ Narrowed from the former **Dormant triggers** registry on 2026-08-21. That table
 
 | Source | Condition | Check |
 |---|---|---|
-| [[idea-llm-navigable-vault-map]] | Vault reaches 450 live notes (292 at the time of writing, 2026-08-15) -> re-run the retrieval eval in [[knowledge-system-evaluation-questions]]; if it shows failures, this idea unparks, and if it does not, re-park at the next threshold [machine: note-count>=450] | live notes: 381 of 450 |
+| [[idea-llm-navigable-vault-map]] | Vault reaches 450 live notes (292 at the time of writing, 2026-08-15) -> re-run the retrieval eval in [[knowledge-system-evaluation-questions]]; if it shows failures, this idea unparks, and if it does not, re-park at the next threshold [machine: note-count>=450] | live notes: 354 of 450 |
 | [[2026-07-31-prestaged-routine-service-derate-seed-data]] | 10 routine mode-normalized rows in the actuals rollup -> revisit the ft/hr service derate (n=5 at ruling, 2026-08-01) [machine: routine-rows>=10] | routine rows: 5 of 10 |
 
 ## Regression baselines
@@ -73,5 +73,5 @@ One row per frozen fixture in `~/.claude/regression/frozen/`. Each reads its own
 
 - **Decision queue:** [[decision-queue]] — 1 open. Cap is 10; over cap, proposal-generating loops pause.
 - **Review notes awaiting decision:** 1 in `06-reviews/` with unchecked Decision boxes. Any session that sees this above 0 should offer to walk through them — unreviewed proposals are where compounding stalls.
-- **Lint warnings** are the standing to-do list, not failures — today mostly ORPHAN (notes with no inbound link), INBOX-AGE and DEAD-LINK. The provenance-frontmatter backfill this line used to name was **cleared to zero on 2026-08-16**; OP-FRONTMATTER no longer appears. Detail: run `python tools/vault_lint.py --report` → `50-dashboards/lint-report.md`.
+- **Lint warnings** are the standing to-do list, not failures — today almost entirely ORPHAN (notes with no inbound link), plus one LINK-FACILITY. Two names this line used to carry are gone: the provenance-frontmatter backfill **cleared to zero 2026-08-16**, so OP-FRONTMATTER no longer appears, and **INBOX-AGE was retired as a rule on 2026-08-21** (`vault_lint.py:52`) — it was named here as a current warning for eighteen days after it had stopped existing, which is the stale-text class this dashboard exists to catch. Detail: run `python tools/vault_lint.py --report` → `50-dashboards/lint-report.md`.
 - **Heartbeats overdue** means a loop row shows FAIL — either the scheduler stopped firing (check the task's enabled state in the desktop app) or a run started and never finished (check the app's session history for that run). A loop that fires and no-ops cleanly shows ok with no new commit — that is healthy, not silent.

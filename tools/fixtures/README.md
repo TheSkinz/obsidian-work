@@ -36,6 +36,7 @@ repo being present on the machine.
 | `04-knowledge/dead-string.md` | DEAD-STRING | error |
 | `04-knowledge/concepts/field-operations.md` + `process-flow.md` (pair) | RULE-FORK | error |
 | `00-inbox/marker-before-frontmatter.md` | STATUS-VOCAB (regression) | warning |
+| `00-inbox/multiline-marker-before-frontmatter.md` | STATUS-VOCAB (regression) | warning |
 | `00-inbox/statusless-note.md` | STATUS-MISSING | warning |
 | `06-reviews/dead-link-note.md` | DEAD-LINK | error |
 | `06-reviews/conf-conflict.md` | CONF-CONFLICT | error |

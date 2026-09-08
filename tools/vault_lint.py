@@ -436,18 +436,37 @@ class Finding:
 def frontmatter_start(lines: list[str]) -> int | None:
     """Index of the opening `---`, or None if the note has no frontmatter.
 
-    Tolerates leading blank lines and full-line HTML comments. That tolerance
-    is not cosmetic: the capture loop writes `<!-- vault-loop: -->` and the
-    pre-staging loop writes `<!-- vault-prestaged: -->` as the *first* line of
-    an inbox note, and Obsidian still renders the properties below them. A
-    strict line-0 check made 26 of the vault's 202 notes invisible to every
+    Tolerates leading blank lines and HTML comments, single- or multi-line.
+    That tolerance is not cosmetic: the capture loop writes `<!-- vault-loop: -->`
+    and the pre-staging loop writes `<!-- vault-prestaged: -->` as the *first*
+    line of an inbox note, and Obsidian still renders the properties below them.
+    A strict line-0 check made 26 of the vault's 202 notes invisible to every
     frontmatter rule — STATUS-VOCAB, REVIEW-OVERDUE, SUPERSEDED, OP-FRONTMATTER
     and CONF-CONFLICT (an *error* rule) all silently skipped exactly the notes
     the loops touch most. Found 2026-07-29 auditing the capture loop spec.
+
+    The 2026-07-29 fix tested one line at a time (`startswith("<!--") and
+    endswith("-->")`), which left the identical hole open for a *multi-line*
+    comment block — and the pre-staging loop wrote those routinely.
+    `00-inbox/2026-07-24-parallel-friction-factor-deferred.md` carries
+    `status: resolved` beneath a nine-line `<!-- vault-prestaged: -->` block and
+    was still reported STATUS-MISSING. The false warning is the smaller half: the
+    Terminal-Note Sweep reads status through this parser, and the sweep spec
+    requires it to skip what it cannot parse, so such a note could never be
+    swept out of `00-inbox/` no matter what status it carried. Fixed 2026-09-08.
     """
+    in_comment = False
     for i, line in enumerate(lines):
         s = line.strip()
-        if not s or (s.startswith("<!--") and s.endswith("-->")):
+        if in_comment:
+            if s.endswith("-->"):
+                in_comment = False
+            continue
+        if not s:
+            continue
+        if s.startswith("<!--"):
+            if not s.endswith("-->"):
+                in_comment = True
             continue
         return i if s == "---" else None
     return None
