@@ -892,6 +892,70 @@ unprompted rather than asserting success.
 first-column values, so 2.00in there gives up about 0.25in that `SCOPE` — the longest cell in the
 document — would otherwise use. A straight edge was worth more than the space.
 
+## The phone continuity drill — PASSED. TESTED 2026-09-07.
+
+**Grok Bot is the backup of *capability*, not of data.** `obsidian-work` is on GitHub, so the vault's
+bytes survive Linda2 regardless — but **Claude Code does not travel and does not survive the
+desktop.** Without it the vault is an archive Jesse can read on a phone and produce nothing from.
+Grok Bot is the only thing left that still builds a document, extracts a receipt, or answers with a
+citation. A session argued the backup case was already solved by GitHub and **Jesse corrected it:
+"If the desktop goes down and you with it, then what good is Github? If I need something created, it
+can't create it. Grok Bot can."** He is right, and it reframes the trial from convenience to
+**business continuity** — a materially stronger renewal argument, and one that reads as hindsight if
+written after the renewal decision instead of before it.
+
+**The capability chain genuinely survives Linda2:** the venv under `/workspace`, the skills stored in
+Grok Bot itself, the brand assets in the clone. The clone refresh is the one thing fired from Linda2,
+and it **fails safe** — no pushes means no changes, so it freezes current rather than breaking.
+
+⚠ **The one dependency that does not survive is skill authoring and repair.** Every fix on
+2026-09-07 ran Linda2 → vault → upload → Scribe. With Linda2 gone the Bots stay usable but a wrong
+skill cannot be corrected and a missing one cannot be added. **A standby system is provisioned
+before the failure, not repaired during it** — load and verify what you want on the road before you
+leave.
+
+**What was actually tested.** A service receipt run through **Ledger entirely from the iPhone app**,
+Linda2 not involved. The input was **an image snapshot of a PDF** — not the text-layer PDF attached
+as a file, and not a photograph of physical paper. **Jesse reports the extraction succeeded.**
+
+That second half is the substantive result: Ledger's earlier proven runs were three receipt *PDFs*
+where it read the text layer and reported converting pages when handwriting defeated it. **An image
+bypasses that path entirely**, so vision extraction on mobile is now established.
+
+**Not proven, and not to be claimed:**
+
+- **Capture from physical paper under field conditions** — angle, glare, curl, shadow. A snapshot of
+  a PDF on a screen is flat, evenly lit and square; a ticket on a truck bonnet is not, and that is
+  the condition that actually applies in a unit.
+- **Getting the finished file off the phone** — download, then attach to an email. Not reported and
+  not observed. **A breakdown he can see but cannot send is not a deliverable.**
+- **Chief of Staff routing from the phone.** The no-file test — *"desktop is down, who handles a
+  photographed receipt?"* — was not run.
+
+**The iPhone app takes photos, files and photo-library attachments** (Jesse, reading the feature).
+
+### The drill's second finding: tables are unreadable on the phone
+
+The desktop hid this. In the reply Jesse screenshotted, the header `Actual hrs (receipts)` wrapped to
+**four lines**, the cell `16 (10782: 6 + 10783: 10)` wrapped to four, and `Underrun 8` wrapped to
+two. **He reports it as chronic across every LLM he uses, and in Obsidian as well** — so it is a
+standing rule, not a correction to one Bot.
+
+**It is the same rule that took the report's first column from 2.00in to 1.40in the same day:** the
+parenthetical qualifier is what destroys the layout. Headers are one word; a cell holds a value,
+never a sentence and never a parenthetical; signed numbers rather than words. Provenance moves to one
+line beneath the table, where wrapping is harmless and nothing is lost.
+
+Recorded in `README-FOR-BOTS.md` — every Bot reads it, so one edit reaches all seven, where six
+profile pastes would drift the moment one was missed. The vault-wide half is in
+`01-context/output-preferences.md`, because Claude Code does the same thing to Obsidian tables.
+
+⚠ **The screenshot's figures are unreconciled and must not be cited.** It shows **Rig-Out 8** and a
+total of **37**; this session's verified USA26041 report has **Rig-Out 14** and operating hours
+**43**. The reply calls itself a "cold-pass extract," so it may be a deliberate subset rather than a
+conflict — **ask Jesse which before either number is used anywhere.** The table-shape finding stands
+on its own and does not depend on the figures being right.
+
 ---
 
 # 4. What's left

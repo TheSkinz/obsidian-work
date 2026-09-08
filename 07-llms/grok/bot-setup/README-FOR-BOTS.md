@@ -46,6 +46,25 @@ long it is and put the conclusion first.
 `[[double-bracket]]` links are Obsidian wikilinks; they resolve by filename, so `[[17-glossary]]`
 means `04-knowledge/manual/17-glossary.md`. Use `grep -rn` to find the file.
 
+## Table cells hold values, not sentences
+
+**Jesse reads your output on an iPhone.** A long string in one cell widens its column and wraps
+every other cell in the row, so a single verbose entry destroys the whole table. Measured on a real
+reply: the header `Actual hrs (receipts)` wrapped to **four lines**, the cell
+`16 (10782: 6 + 10783: 10)` wrapped to four, and `Underrun 8` wrapped to two.
+
+- **Headers are one word.** `Actual`, never `Actual hrs (receipts)`.
+- **A cell holds a value, never a sentence, and never a parenthetical.** `16`, not
+  `16 (10782: 6 + 10783: 10)`.
+- **Signed numbers, not words.** `−8`, never `Underrun 8`.
+
+**Nothing is lost — it moves.** Provenance, arithmetic and receipt numbers go in **one line beneath
+the table**, where wrapping is harmless. You still cite every source; you just stop doing it inside
+a cell.
+
+Why this needs stating: a markdown table gives you no width feedback. You cannot see that a cell
+wrapped, and the content reads correctly as prose, so detail keeps getting packed in.
+
 ## What Jesse is
 
 A high-autonomy operator who does technical sales, proposals, estimating, engineering-document

@@ -12,6 +12,16 @@ The universal formatting rules — concise by default, no bullets in prose, no e
 
 Do not treat the number as sufficient just because it is the file-estate key or the vault's frontmatter key. It is the key for *lookup*, not for *communication*, and the two are different jobs.
 
+**Table cells hold values, not sentences.** A long string in one cell widens its column and wraps every other cell in the row, so a single verbose entry destroys the whole table. This is worst on the iPhone, where a four-word header can wrap to four lines, but it degrades Obsidian on the desktop too. Jesse reports it as chronic across every LLM he uses — so it is a standing rule, not a per-case correction.
+
+Three parts, and they are the same rule that governs `.docx` row labels in `04-knowledge/job-report-generator-build-spec.md`:
+
+- **Headers are one word.** `Actual`, never `Actual hrs (receipts)`.
+- **A cell holds a value, never a sentence, and never a parenthetical.** `16`, not `16 (10782: 6 + 10783: 10)`. Provenance, arithmetic and receipt numbers go in **one line beneath the table**, where wrapping is harmless and the detail is not lost.
+- **Signed numbers, not words.** `−8`, never `Underrun 8` — it fits, it scans, and it sorts.
+
+The reason this recurs is worth knowing: a markdown table gives no width feedback. Nothing signals that a cell wrapped, and the content reads correctly as prose, so detail keeps getting packed in. Only a standing rule catches it.
+
 ---
 
 ## Session mode inference

@@ -10,6 +10,11 @@ Bots doing the work.
 Create them in the order given, and not all at once. Librarian goes first, alone,
 until its citations check out.
 
+⚠ **The table-formatting rule is deliberately not in these profiles.** It lives in
+`README-FOR-BOTS.md`, which every Bot reads first — one edit reaches all of them, where adding it
+here would mean re-pasting six Descriptions by hand and drifting the moment one is missed. Same
+reason Brand Standards is a skill rather than a paragraph in each profile.
+
 ---
 
 ## 1. Librarian
