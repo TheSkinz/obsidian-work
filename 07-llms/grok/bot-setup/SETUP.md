@@ -963,11 +963,18 @@ Recorded in `README-FOR-BOTS.md` — every Bot reads it, so one edit reaches all
 profile pastes would drift the moment one was missed. The vault-wide half is in
 `01-context/output-preferences.md`, because Claude Code does the same thing to Obsidian tables.
 
-⚠ **The screenshot's figures are unreconciled and must not be cited.** It shows **Rig-Out 8** and a
-total of **37**; this session's verified USA26041 report has **Rig-Out 14** and operating hours
-**43**. The reply calls itself a "cold-pass extract," so it may be a deliberate subset rather than a
-conflict — **ask Jesse which before either number is used anywhere.** The table-shape finding stands
-on its own and does not depend on the figures being right.
+**A false conflict was raised against this screenshot and withdrawn the same evening.** Its table
+shows **Rig-Out 8** and totals **37** against the verified report's **Rig-Out 14** and **43**, and a
+session flagged that as unreconciled. **There was nothing to reconcile.** `F-501.md:191` reads
+`Rig-Out = 8 (10784) + 6 (10785)`; Ledger's 8 is receipt 10784 alone, because 10785's pumper field
+was scribbled and it correctly listed it under *Illegible (not guessed)*. The adjudication was
+already recorded in this file — *"the vault is right and Ledger is wrong, by exactly 6 hours"* — and
+the screenshot's own cell says **"Even on 10784 alone"**, disclosing the limitation in place.
+
+**Recorded because the failure is the reusable part:** the flag was raised from two numbers side by
+side without opening the heater card, and the disclosure was sitting in the text being read. Ledger
+behaved correctly at every step. **Twice in one evening a Bot was suspected when the defect was in
+the reader** — here, and in the signature rule, where the check itself was fictional.
 
 ---
 
