@@ -1,6 +1,7 @@
+<!-- DECIDED 2026-07-29 (Jesse) — Park, revisit next time the card schema is opened. This seed IS DQ-017, whose Phase 1 and Phase 3 are ruled and applied; Phase 2 remains open and is gated on the Syncrude job returning. Ruling: [[2026-07-28-idea-research-rollup-per-rig-coilset-grain]]. Status corrected researched -> decided-blocked 2026-09-08: the decision is closed, the work is not, so it is deliberately NOT sweepable. -->
 ---
 type: idea-seed
-status: researched
+status: decided-blocked
 created: 2026-07-25
 tags: [idea, vault-system, future, estimating, actuals, schema]
 related:

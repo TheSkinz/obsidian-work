@@ -1,6 +1,7 @@
+<!-- RULED 2026-08-21 — Park; overtaken by the 2026-08-16 rig-diagram ruling (use the four shipped diagrams, build no generator). Asking internally for source models would reopen a closed question. Ruling: [[2026-08-20-idea-research-isometric-rig-diagram]]. Status corrected researched -> closed-unactioned 2026-09-08. -->
 ---
 type: idea-seed
-status: researched
+status: closed-unactioned
 created: 2026-08-16
 related:
   - "[[2026-08-20-idea-research-isometric-rig-diagram]]"

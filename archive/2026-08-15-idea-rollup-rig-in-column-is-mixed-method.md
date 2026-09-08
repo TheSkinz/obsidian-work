@@ -1,6 +1,7 @@
+<!-- RULED 2026-08-21 — Park, folded into DQ-017 rather than queued separately; discharged by DQ-017 Phase 3 the same day. The `Rig method` column is live at `tools/estimating_rollup.py:224` and in the rollup header, classifying every row instead of suppressing figures. Ruling: [[2026-08-16-idea-research-rollup-rig-in-column-is-mixed-method]]. Status corrected researched -> resolved 2026-09-08. -->
 ---
 type: idea-seed
-status: researched
+status: resolved
 created: 2026-08-15
 tags: [idea, estimating, actuals, rollup, data-quality]
 related:

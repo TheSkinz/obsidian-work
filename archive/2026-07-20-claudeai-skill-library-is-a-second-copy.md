@@ -1,7 +1,7 @@
 <!-- ROUTED 2026-07-27 — content landed in 07-llms/claude/chat.md. Retained as the original capture record. -->
 ---
 type: capture
-status: inbox
+status: complete
 created: 2026-07-20
 related:
   - [[knowledge-system-governance]]

@@ -1,6 +1,7 @@
+<!-- RULED 2026-08-12 — Approved, all three edits applied to `_canonical-job-sheet.md` 2026-08-15. Ruling and apply log: [[2026-08-12-idea-research-job-sheet-third-instance-no-migration]]. Status corrected researched -> resolved 2026-09-08. -->
 ---
 type: idea-seed
-status: researched
+status: resolved
 created: 2026-08-11
 related:
   - [[2026-08-12-idea-research-job-sheet-third-instance-no-migration]]

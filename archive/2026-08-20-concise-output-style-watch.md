@@ -1,7 +1,7 @@
 <!-- ROUTED 2026-08-21 — content landed in 07-llms/claude/output-styles.md, including the watch condition and its trigger. Retained as the original capture record. -->
 ---
 type: note
-status: inbox
+status: complete
 created: 2026-08-20
 tags: [inbox, knowledge-system, output-style, config-repo, watch]
 ---

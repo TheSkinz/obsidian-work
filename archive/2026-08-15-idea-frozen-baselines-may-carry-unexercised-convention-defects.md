@@ -1,6 +1,7 @@
+<!-- RULED 2026-08-21 — Rejected, as the weakest of the three DQ-028 items: it audits regression machinery rather than customer-facing output. Ruling: [[2026-08-17-idea-research-frozen-baselines-unexercised-defects]]. Status corrected researched -> closed-unactioned 2026-09-08. -->
 ---
 type: idea-seed
-status: researched
+status: closed-unactioned
 created: 2026-08-15
 tags: [idea, regression, knowledge-system, tooling]
 related:

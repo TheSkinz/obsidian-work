@@ -1,6 +1,7 @@
+<!-- RULED 2026-08-21 — Approved; one-time sweep run and the layout-rule convention amended. The widths claim measured true, which was not the expected result. Ruling: [[2026-08-21-idea-research-stated-justifications-unmeasured]]. Status corrected researched -> resolved 2026-09-08. -->
 ---
 type: idea-seed
-status: researched
+status: resolved
 created: 2026-08-17
 tags: [idea, generator, validation, cross-cutting, future]
 related:

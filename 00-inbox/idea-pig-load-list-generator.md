@@ -9,6 +9,13 @@ tags: [idea, vault-system, future, estimating, field-ops]
 
 # Pig load list generator from heater cards
 
+> [!note] Moved back to `00-inbox/` 2026-09-08 — the caveat below is now discharged
+> The 2026-09-03 ruling corrected this note's status to `unexplored` but left it in `archive/`,
+> stating openly that this *"does not make the seed discoverable"* — `archive/` sits outside
+> `INDEX.md` and is not auto-loaded. An `unexplored` seed the sweep is explicitly forbidden to
+> touch had no business being in the folder the sweep moves things to. It is back where
+> `unexplored` seeds live, which is the only place anything will ever pick it up.
+
 > [!warning] Status corrected 2026-09-03 — this was NOT built
 > This note sat at `status: complete` from 2026-07-22, and the filename plus that status read as
 > though the pig **load list generator** exists. It does not. What shipped on 2026-07-22 was the

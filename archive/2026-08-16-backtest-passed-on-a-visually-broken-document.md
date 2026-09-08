@@ -1,6 +1,7 @@
+<!-- RULED 2026-08-21 — Approved; tier one (structural assertions) built, config repo `0f64003`. Ruling and apply log: [[2026-08-19-idea-research-backtest-visually-broken-document]]. Status corrected researched -> complete 2026-09-08. -->
 ---
 type: idea-seed
-status: researched
+status: complete
 created: 2026-08-16
 related:
   - "[[2026-08-19-idea-research-backtest-visually-broken-document]]"

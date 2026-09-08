@@ -1,6 +1,7 @@
+<!-- RULED AND APPLIED 2026-09-03 (Jesse) — both halves answered. The three-move shape was falsified by back-test against four real reports; the surviving two-move shape is live in `usadebusk-fieldpm/references/report-structure.md:294-312` and cited from that skill's SKILL.md:232. Status corrected researched -> resolved 2026-09-08. -->
 ---
 type: idea-seed
-status: researched
+status: resolved
 created: 2026-09-03
 tags: [idea, job-report, fieldpm, writing, needs-ruling]
 ---

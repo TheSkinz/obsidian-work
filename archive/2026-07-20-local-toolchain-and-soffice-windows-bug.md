@@ -1,7 +1,7 @@
 <!-- ROUTED 2026-07-27 — content landed in 08-systems/windows-config.md (toolchain) and 07-llms/claude/command-reference.md (soffice.py root cause). Retained as the original capture record. -->
 ---
 type: capture
-status: inbox
+status: complete
 created: 2026-07-20
 tags: [capture, tooling, windows, docx-skill, infrastructure]
 ---

@@ -1,6 +1,7 @@
+<!-- PARTLY EXECUTED — triaged 2026-08-17 ([[2026-08-17-triage-job-report-generator-layout-gaps]], tally 2 execute / 1 test / 1 park / 1 merged / 10 kill). Two of the three layout gaps are closed in the generator: the narrative lead-in and the pig table, both verified. **The third gap is open** — inline image placement was never tested and is untouched; the renderer still emits a dedicated Images section on its own page, and USA26041's config still lists the `launchers.png` row the delivered report dropped. Status corrected researched -> open 2026-09-08 so the remaining third stays visible. -->
 ---
 type: idea-seed
-status: researched
+status: open
 created: 2026-08-16
 tags: [idea, fieldpm, job-report, generator, future]
 related: [[2026-08-17-triage-job-report-generator-layout-gaps]]

@@ -1,6 +1,7 @@
+<!-- RULED 2026-08-18 — Approve as scoped (reject 1, spec-edit 2, park 3, correct 4); applied 2026-08-21. Item 4 closed separately 2026-09-03 by the pig-load-list status correction. Ruling: [[2026-08-18-idea-research-researched-status-outlives-build]]. Status corrected researched -> resolved 2026-09-08 — this seed was itself the last instance of the defect it describes. -->
 ---
 type: idea-seed
-status: researched
+status: resolved
 created: 2026-08-15
 related:
   - "[[2026-08-18-idea-research-researched-status-outlives-build]]"
