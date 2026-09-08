@@ -927,13 +927,25 @@ skill cannot be corrected and a missing one cannot be added. **A standby system 
 before the failure, not repaired during it** — load and verify what you want on the road before you
 leave.
 
-**What was actually tested.** A service receipt run through **Ledger entirely from the iPhone app**,
-Linda2 not involved. The input was **an image snapshot of a PDF** — not the text-layer PDF attached
-as a file, and not a photograph of physical paper. **Jesse reports the extraction succeeded.**
+**What was actually tested, and it is more than extraction.** A **USA26041 service receipt** run
+through **Ledger entirely from the iPhone app**, Linda2 not involved. The input was **an image
+snapshot of a PDF** — not the text-layer PDF attached as a file, and not a photograph of physical
+paper.
 
-That second half is the substantive result: Ledger's earlier proven runs were three receipt *PDFs*
-where it read the text layer and reported converting pages when handwriting defeated it. **An image
-bypasses that path entirely**, so vision extraction on mobile is now established.
+**What came back was a quoted-versus-actual variance analysis**, not a transcription: Ledger tied
+the receipt to **DSP#26071.2**, pulled the quoted task split from the Execution Plan and Quotation
+line (8 rig-in / 24 pig / 8 smart pig / 8 rig-out = 48), set it against actuals, and named each
+variance. It also separated the two 48s explicitly — *"The cold-pass 48 is actual. The quote 48 is
+estimate. They are not the same 48"* — which is the distinction a careless reader collapses.
+
+**Its per-receipt attributions match `F-501.md`'s source line exactly.** Rig-In from 10781; Pig =
+6 (10782) + 10 (10783); Smart Pig = 2 (10783) + 4 (10784). Not one misattributed hour.
+
+**Stated precisely, because the distinction matters:** the actuals came from its own earlier
+cold-pass extract and the vault clone, not from the single uploaded image. So what this proves is
+**mobile image upload and phone-side analysis against vault data** — not four-receipt extraction
+from one photograph. Ledger's earlier proven runs were three receipt *PDFs* read through the text
+layer; an image bypasses that path, so vision input on mobile is established.
 
 **Not proven, and not to be claimed:**
 
