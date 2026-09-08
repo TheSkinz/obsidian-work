@@ -280,6 +280,74 @@ def unqueued_decisions(root: Path) -> list[str]:
     return missing
 
 
+SWEEP_ALLOWLIST = {
+    "executed", "resolved", "complete", "superseded",
+    "spec-complete", "closed-unactioned", "deprecated", "expired",
+}
+"""Statuses the Terminal-Note Sweep moves out of `00-inbox/`.
+
+**Deliberately NOT derived from `vault_lint.TERMINAL_STATUS`**, which is wider:
+it also holds `awarded`, `lost`, `decided-blocked` and `approved-blocked`, none
+of which sweep. `awarded`/`lost` are live commercial outcomes people search for
+by facility; the two `-blocked` values mean decided-but-still-waiting, and
+burying those loses the only visible trace that work is pending. The rule and
+its derivation live in `04-knowledge/knowledge-system-governance.md`
+("Terminal-Note Sweep"), DQ-029, ruled 2026-09-07. Syncing the two lists
+mechanically re-introduces the defect the derivation exists to prevent -- if
+this copy and governance ever disagree, governance wins and this is the bug.
+"""
+
+
+def sweepable_now(root: Path) -> int:
+    """Count `00-inbox/` notes the sweep could move right now.
+
+    Added 2026-09-08. The sweep is the vault's only drain and had no trigger
+    between the capture loop stopping on 2026-08-21 and close-out step 4 being
+    written: 54 notes left `00-inbox/` in the 29 days before the shutdown and 1
+    in the 18 days after. Nothing surfaced that, because `Inbox items` counts
+    everything and cannot distinguish finished work from live work. This row is
+    the one number that names an action.
+
+    Skips any note carrying `revisit-trigger:` -- the sweep's own safety rule
+    protects those regardless of status, so counting them would report work
+    that must not be done.
+
+    Also skips `<!-- vault-loop:` and `<!-- vault-prestaged:` markers, matching
+    `inbox_stats()`, which excludes them from the age metric on the grounds
+    that they mean *triaged and deliberately parked*. Lane 4 content held for
+    Jesse's ruling is the main case: vault `CLAUDE.md` instructs a session to
+    mark such an item and surface it rather than self-route it, so the marker
+    is where a deliberate hold is recorded. Without this the row reported a
+    held item as sweepable work -- caught on the row's first run, 2026-09-08,
+    by `cad26001-coilset-capture-sheet.md`, which was being held on judgment
+    that nothing in the vault recorded. The fix was to encode the hold, not to
+    weaken the metric.
+    """
+    inbox = root / vault_lint.INBOX_DIR
+    if not inbox.is_dir():
+        return 0
+    n = 0
+    for p in sorted(inbox.rglob("*.md")):
+        if not p.is_file() or p.name.startswith("."):
+            continue
+        rel = p.relative_to(inbox).as_posix()
+        if any(rel.startswith(s + "/") for s in INBOX_SKIP_SUBDIRS):
+            continue
+        try:
+            text = p.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            continue
+        fm = vault_lint.parse_frontmatter(text)
+        if fm.get("status", "").strip().lower() not in SWEEP_ALLOWLIST:
+            continue
+        if fm.get("revisit-trigger", "").strip():
+            continue
+        if re.search(r"^<!-- vault-(loop|prestaged)", text[:600], re.MULTILINE):
+            continue
+        n += 1
+    return n
+
+
 def inbox_stats(root: Path) -> tuple[int, int | None, int | None]:
     """Return (item_count, median_age_days, max_age_days) for inbox NOTES.
 
@@ -704,6 +772,7 @@ def build(root: Path) -> str:
     open_dec = count_open_decisions(root)
     pending_rev = count_pending_reviews(root)
     inbox_n, inbox_med, inbox_max = inbox_stats(root)
+    sweep_n = sweepable_now(root)
     since = days_since_last_commit(root)
     hb_rows, hb_overdue = loop_heartbeats(root)
     notes = vault_lint.collect_notes(root)
@@ -739,6 +808,7 @@ def build(root: Path) -> str:
         f"| Inbox items | {inbox_n} | {dash} | {flag(True)} |",
         f"| Inbox median age | {inbox_med_s} | < 14 d | {flag(inbox_med is None or inbox_med < 14)} |",
         f"| Inbox oldest item | {inbox_max_s} | < 30 d | {flag(inbox_max is None or inbox_max < 30)} |",
+        f"| Sweepable now | {sweep_n} | 0 | {flag(sweep_n == 0)} |",
         f"| Days since last commit | {since_s} | {dash} | {flag(True)} |",
         f"| Loop heartbeats overdue | {'yes' if hb_overdue else 'no'} | no | {flag(not hb_overdue)} |",
         f"| Open decisions not in the queue | {unqueued_s} | 0 | {flag(not unqueued)} |",

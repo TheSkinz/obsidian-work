@@ -1,3 +1,4 @@
+<!-- vault-loop: operational — Lane 4 heater-card data (CAD26001 coilset capture, 7-1-F-1). Terminal status, but a live data artifact rather than a closed question, and DQ-017 Phase 2 still wants the two prior Syncrude jobs hand-migrated. Held out of the Terminal-Note Sweep 2026-09-08 pending Jesse's call; do not self-route. -->
 ---
 type: note
 status: complete
