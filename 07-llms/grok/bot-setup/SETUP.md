@@ -927,25 +927,25 @@ skill cannot be corrected and a missing one cannot be added. **A standby system 
 before the failure, not repaired during it** — load and verify what you want on the road before you
 leave.
 
-**What was actually tested, and it is more than extraction.** A **USA26041 service receipt** run
-through **Ledger entirely from the iPhone app**, Linda2 not involved. The input was **an image
-snapshot of a PDF** — not the text-layer PDF attached as a file, and not a photograph of physical
-paper.
+**What was tested, stated narrowly.** Jesse uploaded **a snapshot of a 2024 Valero Port Arthur
+service receipt** to **Ledger from the iPhone app**, Linda2 not involved. **It extracted accurately**
+and produced `USA24003 Valero Port Arthur H102….xlsx`. That is the whole result.
 
-**What came back was a quoted-versus-actual variance analysis**, not a transcription: Ledger tied
-the receipt to **DSP#26071.2**, pulled the quoted task split from the Execution Plan and Quotation
-line (8 rig-in / 24 pig / 8 smart pig / 8 rig-out = 48), set it against actuals, and named each
-variance. It also separated the two 48s explicitly — *"The cold-pass 48 is actual. The quote 48 is
-estimate. They are not the same 48"* — which is the distinction a careless reader collapses.
+**What it proves:** mobile image upload works, and extraction works from **an image** rather than a
+text layer. Ledger's earlier proven runs were three receipt *PDFs* read through the text layer, a
+path an image bypasses entirely — so vision input on mobile is established. It also chose a 2024 job
+with no live stake, which is the right shape for a first drill.
 
-**Its per-receipt attributions match `F-501.md`'s source line exactly.** Rig-In from 10781; Pig =
-6 (10782) + 10 (10783); Smart Pig = 2 (10783) + 4 (10784). Not one misattributed hour.
+⚠ **A previous version of this entry claimed far more, and every added claim was false.** It said
+the drill was a **USA26041** receipt that produced a **quoted-versus-actual variance analysis** tied
+to DSP#26071.2, with per-receipt attributions matching `F-501.md`. **None of that was the drill.**
+That variance work is **desktop work from ~1:41 PM the same day**, sitting earlier in the same Ledger
+thread. Jesse screenshotted Ledger's output **to show what a table looks like on an iPhone** and
+captured that older section — same thread, different job, seven hours apart.
 
-**Stated precisely, because the distinction matters:** the actuals came from its own earlier
-cold-pass extract and the vault clone, not from the single uploaded image. So what this proves is
-**mobile image upload and phone-side analysis against vault data** — not four-receipt extraction
-from one photograph. Ledger's earlier proven runs were three receipt *PDFs* read through the text
-layer; an image bypasses that path, so vision input on mobile is established.
+**`F-501` was never his.** A session recognised receipt numbers 10781–10784 in the screenshot, pulled
+the ExxonMobil Baytown heater card, built a reconciliation nobody had asked for, then "corrected" the
+record twice on that basis. Jesse: *"I'm not sure where F-501 came from."*
 
 **Not proven, and not to be claimed:**
 
@@ -976,17 +976,21 @@ profile pastes would drift the moment one was missed. The vault-wide half is in
 `01-context/output-preferences.md`, because Claude Code does the same thing to Obsidian tables.
 
 **A false conflict was raised against this screenshot and withdrawn the same evening.** Its table
-shows **Rig-Out 8** and totals **37** against the verified report's **Rig-Out 14** and **43**, and a
-session flagged that as unreconciled. **There was nothing to reconcile.** `F-501.md:191` reads
-`Rig-Out = 8 (10784) + 6 (10785)`; Ledger's 8 is receipt 10784 alone, because 10785's pumper field
-was scribbled and it correctly listed it under *Illegible (not guessed)*. The adjudication was
-already recorded in this file — *"the vault is right and Ledger is wrong, by exactly 6 hours"* — and
-the screenshot's own cell says **"Even on 10784 alone"**, disclosing the limitation in place.
+shows **Rig-Out 8** and totals **37** against the USA26041 report's verified **14** and **43**, and a
+session flagged that as unreconciled. **There was nothing to reconcile, twice over.** The screenshot
+was not the drill's output at all — it was the 1:41 PM desktop work on a different job. And even
+within that work there was no conflict: `F-501.md:191` reads `Rig-Out = 8 (10784) + 6 (10785)`,
+Ledger's 8 is receipt 10784 alone because 10785's pumper field was scribbled and it correctly listed
+it under *Illegible (not guessed)*, this file already carried the adjudication — *"the vault is right
+and Ledger is wrong, by exactly 6 hours"* — and the cell itself read **"Even on 10784 alone."**
 
-**Recorded because the failure is the reusable part:** the flag was raised from two numbers side by
-side without opening the heater card, and the disclosure was sitting in the text being read. Ledger
-behaved correctly at every step. **Twice in one evening a Bot was suspected when the defect was in
-the reader** — here, and in the signature rule, where the check itself was fictional.
+**The reusable failure, and it happened three times in one evening:** a reconciliation was asserted
+from recognised numbers **without first establishing which artifact they belonged to.** The receipt
+numbers were real, the heater card was real, the arithmetic was real, and the entire construction was
+about a job that had nothing to do with what Jesse ran. **Ledger behaved correctly at every step** —
+here, in the signature rule where the check itself was fictional, and in the drill it was credited
+with work it never did. **Establish which artifact a number came from before reconciling it against
+anything.**
 
 ---
 
