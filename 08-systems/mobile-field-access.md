@@ -22,21 +22,30 @@ before upgrading. See the two-installs section in [[code]] for the full incident
 ## The constraint that decides everything
 
 Almost nothing this workflow depends on lives in the GitHub repo. The skills are in
-`~/.claude/skills/`, the global CLAUDE.md is in `~/.claude/`, `tools/vault_lint.py` runs
-against the local working tree, and the Vault Capture Loop harvests session transcripts from
-`~/.claude/projects/` at 05:00 daily. A session that does not run as a local Claude Code
-process is invisible to that harvest — whatever you reason out in it is lost unless it was
-written to a file during the session. That is why the default mobile path drives the desktop
-rather than replacing it. See [[vault-capture-loop-spec]].
+`~/.claude/skills/`, the global CLAUDE.md is in `~/.claude/`, and `tools/vault_lint.py` runs
+against the local working tree. A session that does not run as a local Claude Code process
+reaches none of it.
+
+**Nothing harvests a session any more.** The Vault Capture Loop read transcripts from
+`~/.claude/projects/` at 05:00 daily until it was stopped 2026-08-21, and nothing replaced it.
+The rule that used to apply only to cloud sessions now applies to **every** surface, this one
+included: whatever you reason out is lost unless it was written to a file during the session.
+That is why the default mobile path drives the desktop rather than replacing it — for the real
+working tree and the full skill set, not for a harvest that no longer runs. Current status of
+all six loops: [[system-workflow-reference]].
 
 ## Which surface, and what each one costs
 
-| Surface | Where it runs | Skills it loads | Vault access | Capture Loop sees it |
+The last column replaced "Capture Loop sees it" on 2026-09-08. That loop is stopped, so no
+surface is harvested and the question stopped discriminating between them; where a write lands
+is what actually differs now.
+
+| Surface | Where it runs | Skills it loads | Vault access | Writes land |
 |---|---|---|---|---|
-| Remote Control | Local CLI process | `~/.claude/skills/` — all nine | Real working tree | Yes |
-| Dispatch, task stays in Cowork | Desktop app, Cowork tab | claude.ai account library only | Local files, if file access is on | No |
-| Dispatch, task spawns a Code session | Desktop app, Code tab | `~/.claude/skills/` — all nine | Real working tree | Yes |
-| Cloud session | Anthropic infrastructure | Repo `.claude/skills/` — currently none | Cloned repo, branch only | No |
+| Remote Control | Local CLI process | `~/.claude/skills/` — all ten | Real working tree | In the real vault |
+| Dispatch, task stays in Cowork | Desktop app, Cowork tab | claude.ai account library only | Local files, if file access is on | Local files only |
+| Dispatch, task spawns a Code session | Desktop app, Code tab | `~/.claude/skills/` — all ten | Real working tree | In the real vault |
+| Cloud session | Anthropic infrastructure | Repo `.claude/skills/` — currently none | Cloned repo, branch only | On a branch you must merge |
 
 ## Default: Remote Control
 
@@ -73,14 +82,18 @@ One message, not a filing decision:
 > Field note, B-151 at Baytown — [photo] — pig came back with the nose collapsed on pass 3.
 > Drop this in the inbox and push.
 
-Claude writes a rough capture note to `00-inbox/`, commits and pushes under the lane
-convention, and the 05:00 loop routes it the next morning. Do not file from the phone.
+Claude writes a rough capture note to `00-inbox/`, commits and pushes under the lane convention.
 
-One expectation to hold: operational content does not self-file. The Capture Loop never writes
-`02-facilities/`, `04-knowledge/`, pricing, SOP, or heater-card facts — it leaves them in
-`00-inbox/` with a `<!-- vault-loop: -->` marker for the 06:00 pre-staging loop to analyse
-for a desk decision. Field job data queues; it does not land. That is correct behaviour, not a
-gap.
+**Still don't file from the phone** — one-handed in the field is no place to decide where a fact
+belongs. But nothing routes it for you afterwards either, which is the part that changed. The
+note sits in `00-inbox/` until a desk session works it, so mention it in the next desk session
+rather than assuming it has been picked up.
+
+One expectation to hold: operational content does not self-file, and now nothing else files it
+either. Field job data — `02-facilities/`, `04-knowledge/`, pricing, SOP, heater-card facts —
+stays in `00-inbox/` with a `<!-- vault-loop: -->` marker until you rule on it at the desk. It
+queues; it does not land. That is still correct behaviour, but the queue no longer has a reader,
+so coming back to it is on you.
 
 ## Nothing pre-started: Dispatch
 
@@ -97,8 +110,9 @@ Skill-Drift Loop cannot reach, so it can answer USADebusk questions from correct
 values. Asking for a Code session gets the maintained `~/.claude/skills/` copies.
 
 Keep Awake is worth turning on independent of the mobile question: a scheduled task that finds
-the machine asleep is deferred to next launch, and the 06:00 pre-staging loop reads the 05:00
-run's output, so a sleeping machine desynchronises both.
+the machine asleep is deferred to next launch. That matters less than it did — the three daily
+loops stopped 2026-08-21 and the three that survive run monthly — but a monthly task that keeps
+slipping to next launch still drifts off its cadence.
 
 Dispatch has one thread and no way to start a second. That rules it out as the home for a
 per-job field thread — [[system-workflow-reference]] and the `usadebusk-fieldpm` skill are
@@ -115,15 +129,16 @@ conventions load — but `~/.claude/skills/` and the global CLAUDE.md do not exi
 navigation is reliable; USADebusk domain answers are not. Treat every number as unverified
 until checked at the desk.
 
-The transcript lives on Anthropic infrastructure, where the 05:00 harvest will never see it.
-Anything worth keeping has to be written into a file during the session, not just discussed.
+The transcript lives on Anthropic infrastructure. Anything worth keeping has to be written into
+a file during the session, not just discussed — which, since the harvest stopped, is now true of
+every surface rather than a limitation peculiar to this one.
 
-On return: merge the branch it pushed, then `git pull` on the desktop before the next 05:00 run
-so the loop actually sees the new inbox file.
+On return: merge the branch it pushed, then `git pull` on the desktop before the next session
+touches the vault.
 
 ## Links
 
 - [[code]] — Claude Code surface reference and the post-cutoff capture rule
 - [[cowork]] — what Cowork is, and how Dispatch sources skills
 - [[obsidian-setup]] — vault path, git-as-sync
-- [[vault-capture-loop-spec]] — the 05:00 loop this workflow feeds
+- [[system-workflow-reference]] — current status of all six loops, and the on-demand ingest flow
