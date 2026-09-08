@@ -22,7 +22,9 @@ The single place every open decision lives. One row per open ask — not one not
 
 | id | opened | source | ask | risk | age (d) | status |
 |---|---|---|---|---|---|---|
-| *(none)* | | | | | | |
+| DQ-032 | 2026-09-08 | [[2026-09-08-review-loop-spec-references-stopped-loops]] | `vault-agent-loop-spec.md` still describes Pre-Staging and Capture as running and blocks the unattended schedule it runs on — reconcile the three passages, the Blocked row, and the Selection Rule ranking? | med | 0 | open |
+
+**One open row as of 2026-09-08.** Opened by the monthly Vault Review Loop run: the loop's own governing spec was never reconciled to the 2026-08-21 shutdown of the Capture and Pre-Staging loops. Lane 2; recommendation stated in the source note. *(Superseded below: the "zero rows" paragraph records the state on 2026-09-07 and is kept as history.)*
 
 **Zero open rows as of 2026-09-07** — the first time this queue has been empty. The consolidated
 decision pass ([[2026-09-07-consolidated-decision-pass]]) ruled DQ-019 and DQ-029, closed DQ-024
