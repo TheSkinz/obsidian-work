@@ -154,7 +154,16 @@ Do not expect clean input. Phone photos, half-sentences and shorthand are normal
 
 ---
 
-## 6. Scout
+## 6. Scout — RETIRED 2026-09-07. Do not recreate.
+
+⚠ **Jesse: *"I'll never use Grok Bot to research competitors. It's useless in my industry."*** Its
+AI-visibility half was cut earlier the same day as a wrong-industry idea and its competitor-watch
+half went the same evening, so nothing remained. **Both use cases were ported from the SaaS
+go-to-market playbook and both died on contact with how USADebusk work is actually bought** — RFQs,
+ARIBA and GED portals, and relationships. The profile below is kept as the record of what was tried
+and why it failed, not as something to stand back up.
+
+## 6. Scout (retired — profile retained for the record)
 
 **Name:** Scout
 **Title:** Competitor watch

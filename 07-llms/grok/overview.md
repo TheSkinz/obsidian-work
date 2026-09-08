@@ -25,8 +25,12 @@ See [[drawing-extraction-strategy]] for the canonical two-pass tile method disti
 
 xAI's persistent-agent product, distinct from the Grok chat model above: named Bots on a shared
 cloud Linux computer with a browser, filesystem and terminal, running saved skills on schedules.
-A one-month trial started 2026-09-06. The buildout — seven working Bots plus an unused Chief of
-Staff, their standing instructions, the ported skills and the four-week back-test — is [[SETUP]] and
+**It runs Grok models on Cursor's infrastructure** — the harness default is
+`SAND_DEFAULT_MODEL_ID = "grok-4.5"`, the hostname is `cursor`, and inference is remote. ⚠ **`grok-4.5`
+is flagged end-of-life with `auto_switch → grok-4.6` configured, and no model is pinned**, so the
+model will change with no announcement. Evidence and file paths in [[SETUP]].
+A one-month trial started 2026-09-06. The buildout — **six working Bots** (seven built, Scout
+retired 2026-09-07) plus a live Chief of Staff, their standing instructions, the ported skills and the four-week back-test — is [[SETUP]] and
 the files beside it. **Southern Syndicate**, which appears as the workspace name and the Bid Desk
 group name, is Jesse's X handle and not a Bot.
 

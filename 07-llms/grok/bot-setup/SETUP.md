@@ -161,7 +161,7 @@ source, **diff the files on disk** rather than trusting a dump.
 
 # 2. Current state
 
-**The roster is complete as of 2026-09-06.** All seven Bots exist, plus Chief of Staff. **All seven
+**The roster is complete as of 2026-09-06.** Seven Bots were built, plus Chief of Staff; **Scout was retired 2026-09-07, leaving six working Bots.** **All seven
 skills are uploaded as of 2026-09-07** — six were in; `Proposal Assembly` was missing for the first
 day and was uploaded and verified on the 7th. This line claimed all seven from the start and was
 wrong until then. Counts here are checked against the app on the date given, not asserted.
@@ -173,7 +173,7 @@ wrong until then. Counts here are checked against the app on the date given, not
 | **Scribe** | .docx production | Project Report, Proposal Assembly | — |
 | **Intake** | RFQ package → intake checklist, on demand | RFQ Intake | — |
 | **Estimator** | Duration model and priced work-up, propose-only | Duration Model, Work-Up Billing Math | — |
-| **Scout** | Competitor watch, public sources only | — | — |
+| ~~**Scout**~~ | **RETIRED 2026-09-07 (Jesse): *"I'll never use Grok Bot to research competitors. It's useless in my industry."*** Both its use cases are now dead — see the retirement note below | — | — |
 | **Architect** | Grok Bot platform research | — | — |
 | **Chief of Staff** | **Entry point and roster memory — profile applied, live** (corrected 2026-09-07; this row previously read "auto-created at signup, unused" and was stale) | — | — |
 
@@ -622,9 +622,10 @@ nothing. **Cut 2026-09-07 (Jesse).**
 
 **The lesson is the transferable part:** a use case can be well-executed, well-scoped, and still
 worthless because the industry it was written for buys differently. Check the buying mechanism
-before porting a marketing pattern. Scout is now a competitor watcher only — narrower, and grounded
-in the vault's own record that Quest Integrity competes with its own decoking division and that
-`DSP26058` was lost to a competitor.
+before porting a marketing pattern. Scout was narrowed to a competitor watcher only — and **that half
+was cut too, later the same day, and the Bot retired.** See the retirement note below. Both of its
+use cases came from the same SaaS playbook and both failed for the same reason, which is the finding
+this entry was already reaching for.
 
 ## Connector catalogue, as the app actually shows it. READ 2026-09-06.
 
@@ -697,8 +698,20 @@ Desk group name. Two things flagged rather than asserted: Gmail reads *Connected
 2026-09-06 entry above says it was never signed in, and *Connected* is the app's word — it may mean
 authorized rather than an active session.
 
-**Unlike OneDrive, X can publish.** Its connector is not read-only, so authenticating it would give
-every Bot on the shared credential store posting ability at once. Nothing has that capability today.
+**Unlike OneDrive, X can publish.** Its connector is not read-only. ⚠ **Superseded the same day:
+Jesse authenticated it on 2026-09-07**, so the sentence that stood here — *"nothing has that
+capability today"* — is no longer true. Every Bot on the shared credential store now inherits a
+signed-in X session and can post. Architect was also offered **$25 in free X API credits** and Jesse
+instructed it *"Never spend without my direct and clear approval, for any reason"*; note that is a
+**per-Bot instruction, not an account-level control.**
+
+The Bot this most concerned was Scout, whose competitor-watch output is exactly what invites "post
+this" — and Scout was retired the same evening, which closes it.
+
+**Connector changes on this account are Jesse's by default.** Three in one session — X added,
+OneDrive added, X authenticated — and all three were him. A prior note already recorded the same
+resolution on 2026-09-06 and concluded the right move was to ask rather than reason about what a
+change *probably* was. **Stop writing them up as findings; ask, or assume Jesse.**
 
 **Southern Syndicate is not a Bot.** It is the account/workspace name and the Bid Desk group
 (Estimator, Intake, Librarian, Scribe). A session read it as an unrecorded eighth Bot and was wrong.
@@ -905,6 +918,53 @@ unprompted rather than asserting success.
 first-column values, so 2.00in there gives up about 0.25in that `SCOPE` — the longest cell in the
 document — would otherwise use. A straight edge was worth more than the space.
 
+## What model Grok Bot runs, and that it is scheduled to change. TESTED 2026-09-07.
+
+**Grok models on Cursor's infrastructure.** Established by Architect reading its own VM — file paths
+and constants, not self-report, which was ruled out in the prompt on the grounds that a model's
+claim about itself is not evidence.
+
+- **No environment variable names the live model.** Env names Cursor/SAND and a `grok|…` auth id.
+- **Harness default constant `SAND_DEFAULT_MODEL_ID = "grok-4.5"`** in `host-main.cjs`.
+- **Host runtime version `7c8b9bb`**, from `/home/box/sand-host/version`, supervisor `hostVersion`.
+- Harness binaries list many model ids, including several `grok-4.5*` variants.
+- Hostname `cursor`; `sand-host` and `exec-daemon` run the agent loop. **Nothing in `ps` is a local
+  model**, so inference is remote.
+
+⚠ **The operationally important finding: the model is scheduled to change and nothing will announce
+it.** The Statsig bootstrap marks **`grok-4.5` as end-of-life** and includes
+**`auto_switch → grok-4.6`**. **The model for a given turn is not pinned in any config on the VM**,
+which corroborates the "no model selection or version pinning" limitation recorded from the UI.
+
+**So keep today's artifacts as a baseline.** Everything verified on 2026-09-07 — the branded `.docx`
+and the receipt extraction — was produced by **grok-4.5**. When the switch fires there will be no
+changelog and no version string to compare, so a behaviour change is only detectable by holding the
+outputs. This is the whole reason the verified files matter beyond the day they were made.
+
+## Scout retired — competitor watch is useless in this industry. Jesse, 2026-09-07.
+
+*"I'll never use Grok Bot to research competitors. It's useless in my industry."*
+
+**Both of Scout's use cases are now dead, and they died the same way.** Its AI-visibility task was
+cut earlier the same day as a wrong-industry idea, leaving competitor watch as its entire remaining
+job; that is now cut too. Nothing is left, so the Bot is retired rather than narrowed a second time.
+
+Clean to remove: **no skills, no routines, no connectors** — unlike Chief of Staff, where Gmail and
+Drive were auto-attached at signup and deletion is unverified.
+
+**The pattern is worth more than the Bot.** Both use cases came from the SaaS go-to-market playbook,
+and the vault already records the right lesson from the first one — *"a use case can be
+well-executed, well-scoped, and still worthless because the industry it was written for buys
+differently."* It has now happened **twice from the same source**. The `x.ai/bot/use-cases` gallery
+is a SaaS org chart (Sales Outbound, CRM Operations, LinkedIn Campaign Manager, Renewal Desk), and
+the community template ecosystem mirrors it. **Treat the whole marketplace as GTM-shaped by default
+and check the buying mechanism before porting anything from it.** USADebusk work is bought through
+RFQs, ARIBA and GED portals, and relationships.
+
+**Not a criticism of Scout's output.** Its one real pass on Quest Integrity was recorded above as
+the only Bot task that produced usable intelligence rather than a test result, and it was properly
+hedged throughout. The work was good; the job was not worth doing.
+
 ## The phone continuity drill — PASSED. TESTED 2026-09-07.
 
 **Grok Bot is the backup of *capability*, not of data.** `obsidian-work` is on GitHub, so the vault's
@@ -996,7 +1056,7 @@ anything.**
 
 # 4. What's left
 
-**The roster is built. Nothing has touched live work.** Seven Bots, six skills, a group and a
+**The roster is built. Nothing has touched live work.** Six working Bots after Scout's retirement, seven skills, a group and a
 working push trigger, and not one real bid has gone through any of it. That is the whole remaining
 question.
 
