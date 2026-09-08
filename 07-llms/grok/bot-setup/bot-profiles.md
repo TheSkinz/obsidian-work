@@ -1,8 +1,9 @@
 # Bot profiles — paste-ready
 
-Seven Bots. Each block below is self-contained: copy the whole Description into
-Bot actions > Edit Profile. For the six specialists the first five paragraphs are
-identical on purpose — they are the standing rules — and the rest is the role.
+Seven Bots were built; **Scout was deleted 2026-09-07, leaving six.** Each block below is
+self-contained: copy the whole Description into Bot actions > Edit Profile. For the specialists the
+first five paragraphs are identical on purpose — they are the standing rules — and the rest is the
+role.
 **Chief of Staff (#7) does not carry them**: it routes and remembers, and the
 rules about citing vault files and never documenting absent scope belong to the
 Bots doing the work.
@@ -154,7 +155,7 @@ Do not expect clean input. Phone photos, half-sentences and shorthand are normal
 
 ---
 
-## 6. Scout — RETIRED 2026-09-07. Do not recreate.
+## 6. Scout — DELETED from the app 2026-09-07. Do not recreate.
 
 ⚠ **Jesse: *"I'll never use Grok Bot to research competitors. It's useless in my industry."*** Its
 AI-visibility half was cut earlier the same day as a wrong-industry idea and its competitor-watch

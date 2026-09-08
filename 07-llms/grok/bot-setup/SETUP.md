@@ -173,7 +173,7 @@ wrong until then. Counts here are checked against the app on the date given, not
 | **Scribe** | .docx production | Project Report, Proposal Assembly | — |
 | **Intake** | RFQ package → intake checklist, on demand | RFQ Intake | — |
 | **Estimator** | Duration model and priced work-up, propose-only | Duration Model, Work-Up Billing Math | — |
-| ~~**Scout**~~ | **RETIRED 2026-09-07 (Jesse): *"I'll never use Grok Bot to research competitors. It's useless in my industry."*** Both its use cases are now dead — see the retirement note below | — | — |
+| ~~**Scout**~~ | **DELETED from the app 2026-09-07 (Jesse): *"I'll never use Grok Bot to research competitors. It's useless in my industry."*** The Bot no longer exists — do not go looking for it. Both use cases dead; see the retirement note below | — | — |
 | **Architect** | Grok Bot platform research | — | — |
 | **Chief of Staff** | **Entry point and roster memory — profile applied, live** (corrected 2026-09-07; this row previously read "auto-created at signup, unused" and was stale) | — | — |
 
@@ -941,7 +941,7 @@ and the receipt extraction — was produced by **grok-4.5**. When the switch fir
 changelog and no version string to compare, so a behaviour change is only detectable by holding the
 outputs. This is the whole reason the verified files matter beyond the day they were made.
 
-## Scout retired — competitor watch is useless in this industry. Jesse, 2026-09-07.
+## Scout deleted — competitor watch is useless in this industry. Jesse, 2026-09-07.
 
 *"I'll never use Grok Bot to research competitors. It's useless in my industry."*
 
@@ -949,8 +949,9 @@ outputs. This is the whole reason the verified files matter beyond the day they 
 cut earlier the same day as a wrong-industry idea, leaving competitor watch as its entire remaining
 job; that is now cut too. Nothing is left, so the Bot is retired rather than narrowed a second time.
 
-Clean to remove: **no skills, no routines, no connectors** — unlike Chief of Staff, where Gmail and
-Drive were auto-attached at signup and deletion is unverified.
+**Deleted from the app, not merely left dormant.** Clean to remove — **no skills, no routines, no connectors**, and not a Bid Desk member — unlike Chief of Staff, where Gmail and Drive were auto-attached at signup and deletion is unverified. A dormant Bot costs nothing to keep (usage is spent on runs), so the reason to delete was not cost: it was one fewer wrong option in a sidebar Jesse may be scanning from a phone under pressure. **Its profile is preserved in `bot-profiles.md`**, so the record of what was tried survives the Bot.
+
+⚠ **Deleting Scout did not remove the X posting surface.** A session claimed it would; that was wrong. The X session is account-level and shared, so every remaining Bot still inherits it.
 
 **The pattern is worth more than the Bot.** Both use cases came from the SaaS go-to-market playbook,
 and the vault already records the right lesson from the first one — *"a use case can be

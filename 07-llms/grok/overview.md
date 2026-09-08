@@ -30,7 +30,7 @@ cloud Linux computer with a browser, filesystem and terminal, running saved skil
 is flagged end-of-life with `auto_switch → grok-4.6` configured, and no model is pinned**, so the
 model will change with no announcement. Evidence and file paths in [[SETUP]].
 A one-month trial started 2026-09-06. The buildout — **six working Bots** (seven built, Scout
-retired 2026-09-07) plus a live Chief of Staff, their standing instructions, the ported skills and the four-week back-test — is [[SETUP]] and
+deleted 2026-09-07) plus a live Chief of Staff, their standing instructions, the ported skills and the four-week back-test — is [[SETUP]] and
 the files beside it. **Southern Syndicate**, which appears as the workspace name and the Bid Desk
 group name, is Jesse's X handle and not a Bot.
 
