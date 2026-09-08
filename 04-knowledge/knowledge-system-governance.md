@@ -144,6 +144,10 @@ Process one item at a time. Identify note type, source authority, related facili
 
 If `00-inbox/` holds 3+ untagged notes on one theme with no existing home, propose a hub note (suggested filename, target folder, one-line scope). Propose only — do not create the hub or move items without approval.
 
+**What the `<!-- vault-loop: -->` marker means now, and what it no longer means (2026-09-08).** It was the Pre-Staging Loop's only input queue: the loop read marked notes and turned each into an evidence-backed proposal. That loop was disabled 2026-08-21 and its spec retired, so **nothing reads the marker any more.** It still has two live jobs, both passive — it records that a note was *triaged and deliberately parked* rather than overlooked, and `tools/vault_health.py` excludes marked notes from the inbox age metric and from `Sweepable now` on that basis. Keep writing it, for those two reasons. Do not write it expecting anyone or anything to come back to the note: **a marked note waits for Jesse or for a session he asks, and for nothing else.**
+
+A marker is a hold, and **a hold is a promise to release it when its condition is discharged** — nothing checks that you did. This session's own handover note sat `resolved` yet invisible to `Sweepable now`, because its marker still read *"needs Jesse in session"* after he had decided. When the reason for a marker is gone, strike the marker in the same pass.
+
 Two things belong in `00-inbox/` by design and are **not** routing failures: idea seeds, which the idea flow owns, and operational/Lane 4 content, which needs Jesse's call. A document that has no home *yet* — an unknown client, a folder that does not exist — is the third, and is the folder's original job: `change-log.md`, 2026-05-21, *"Syncrude Fort McMurray job report held in inbox — client not scaffolded."*
 
 ### Terminal-Note Sweep
