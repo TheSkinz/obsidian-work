@@ -11,7 +11,7 @@
 | Dead source pointers | 0 | 0 | ok |
 | Inbox items | 49 | - | ok |
 | Inbox median age | 5 d | < 14 d | ok |
-| Inbox oldest item | 42 d | < 30 d | FAIL |
+| Inbox oldest item | 18 d | < 30 d | ok |
 | Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
 | Open decisions not in the queue | 0 | 0 | ok |

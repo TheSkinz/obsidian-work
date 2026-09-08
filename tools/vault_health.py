@@ -315,6 +315,20 @@ def inbox_stats(root: Path) -> tuple[int, int | None, int | None]:
     untriaged notes visible past 14 days, so the row keeps its teeth. The 600-
     byte window is wider than ROUTED's 200 because these markers stack: a note
     can carry a vault-loop line, a vault-prestaged line and then its frontmatter.
+
+    **`type: idea-seed` is excluded from the ages entirely, 2026-09-08 (Jesse).**
+    `GATED_STATUS` already covered the parked ones; this extends the same
+    reasoning to `unexplored` and `researched`. `CLAUDE.md` states that idea
+    seeds belong in `00-inbox/` by design and are not routing failures, so an
+    unexplored seed ageing past 30 days is the system working, not a backlog --
+    it is an idea nobody has needed yet, and no filing pass can clear it. A
+    `researched` seed is a decision rather than a filing item, and the dashboard
+    already reports decisions in `Open decision rows` and `Review notes awaiting
+    decision`; counting it here reports the same debt twice under a row whose
+    target implies filing would fix it. The trigger was restoring
+    `idea-pig-load-list-generator` from `archive/` on 2026-09-08, which pushed
+    oldest 27 -> 42 d FAIL on a seed that is correctly parked. The seed still
+    shows in `count`, which carries no target, so nothing is hidden.
     """
     inbox = root / vault_lint.INBOX_DIR
     if not inbox.is_dir():
@@ -335,8 +349,11 @@ def inbox_stats(root: Path) -> tuple[int, int | None, int | None]:
             text = p.read_text(encoding="utf-8", errors="replace")
         except OSError:
             continue
-        status = vault_lint.parse_frontmatter(text).get("status", "").strip().lower()
+        fm = vault_lint.parse_frontmatter(text)
+        status = fm.get("status", "").strip().lower()
         if status in vault_lint.TERMINAL_STATUS or status == vault_lint.GATED_STATUS:
+            continue
+        if fm.get("type", "").strip().lower() == "idea-seed":
             continue
         if re.search(r"^<!-- ROUTED", text[:200], re.MULTILINE):
             continue
