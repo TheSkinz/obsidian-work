@@ -104,7 +104,7 @@ The correction is a snapshot of a reversible state. If Capture or Pre-Staging is
 
 One thing this note does not settle: whether the review loop should be doing anything about 82 inbox items. The spec says inbox content routing is not this loop's scope, and that boundary is untouched by the correction — Proposal 1 only fixes *who* owns it, not *whether this loop does*. If the answer is that nobody owns it on a schedule and that is intended, the correction should say so plainly rather than leave the reader to infer it.
 
-Not verified: whether the `vault-capture-loop` and `vault-prestaging-loop` scheduled tasks are in fact disabled in the desktop app. The three loop specs, the workflow reference and the vault `CLAUDE.md` all state it, and the run ledger shows no firing for either since 2026-08-21, which is consistent — but that is agreement among vault notes plus an absence, not an independent read of the scheduler. The artifact that would settle it is the task list in the app.
+**Confirmed by Jesse, 2026-09-08:** the `vault-capture-loop` and `vault-prestaging-loop` scheduled tasks are disabled in the desktop app, and disabling them was his own decision. This closes the one open verification item this note carried. It had been raised because the five vault sources agreeing on it all descend from the same 2026-08-21 shutdown and the run ledger's silence is an absence rather than a read of the scheduler — agreement among derived notes is not corroboration. Jesse's statement is the independent source, and the premise under Defects 1 and 2 is now verified rather than inferred.
 
 ## Decision
 
