@@ -85,8 +85,19 @@ page 4.
   at the bottom of a page with its content overleaf.
 - `cantSplit` on rows and `keepLines` on paragraphs, which the build already does.
 
-**No blank gaps, no orphan pages, no heading or section spilling one line onto a new page.** This is
-a standing correction, not a preference — check the rendered pagination before calling a build done.
+**No orphan pages, no heading or section spilling one line onto a new page.** Check the rendered
+pagination before calling a build done.
+
+**Emit no empty paragraphs. Ever.** The 2026-09-07 build wrote a blank paragraph after every one of
+its nine tables; the Claude Code build of the same document wrote zero. Adding a spacer paragraph
+after a table is a habit, not a requirement — control spacing with `space_after` on the paragraph
+that follows, never with an empty one.
+
+**Whitespace is Jesse's editorial layer, not yours.** He minimises total page count by hand, adds a
+break when he wants a section to start on a new page, and removes one to stop a final page carrying
+two sentences. **So your job is to emit a document with no accidental whitespace in it** — every gap
+you leave is one he has to find and delete before he can make his own call. Do not add deliberate
+gaps or page breaks either; that decision is his.
 
 **The document carries report content and nothing else. Build apparatus goes in the chat reply.**
 Ruled 2026-09-07 after a build shipped roughly two of five pages of scaffolding. **Never put any of

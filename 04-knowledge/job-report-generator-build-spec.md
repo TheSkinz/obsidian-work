@@ -128,6 +128,17 @@ usadebusk.com` … `Page <n>`. No cover page.
 Render path: python-docx or the `docx` skill. Fonts, colors, table-header/alt-row fills, and
 section-header borders come from `usadebusk-core` Brand Standards — do not restate values.
 
+**Whitespace is the PM's editorial layer — the generator emits none of its own** (Jesse,
+2026-09-07). He minimises total page count by hand, adds a break when he wants a section to start on
+a new page, and removes one to stop a final page carrying two sentences. **The generator's job is a
+document with no accidental whitespace**; every stray gap is one he has to find and delete before he
+can make his own call. It must not add deliberate breaks either. This is the same
+generator-owns-layout / PM-owns-judgement split as the prose rule above.
+
+**Emit no empty paragraphs.** Control spacing with `space_after` on the following paragraph, never
+with a blank one. Measured 2026-09-07: the Grok Bot build wrote an empty paragraph after every one
+of its nine tables; the Claude Code build of the same document wrote zero.
+
 **Row labels carry no parenthetical qualifiers** (Jesse, 2026-09-07). The value column explains
 itself; a label exists to be scanned. `Total footage`, not `Total footage (looped pig path)`.
 `Number of passes`, not `Number of passes (as-built)`. `Shift Lead`, not `Shift Lead (Day / Night)`
