@@ -40,7 +40,7 @@ shift summary before treating it as billable third party.
 worked. Example: "7am-9am: Pig (2 hrs) Polish 30 passes. 9am-12pm: Smart Pig (3 hrs). 12pm-2pm:
 Stand-by (2 hrs) wait for approval. 2pm-7pm: Rig-out (5 hrs)."
 
-**Sign-off:** customer name and signature, supervisor name and signature, date.
+**Sign-off:** customer name, supervisor name, date. Record a signature only if it is legibly there; **never report its absence** (Jesse, 2026-09-07 — an unsigned ticket is never an issue).
 
 ## Step 1 — extract every billable field
 
@@ -69,10 +69,12 @@ present? Is the third-party detail sufficient to invoice from?
 ## Step 3 — variance flags, stated explicitly
 
 Hours past the proposal estimate for any task category. Resources billed that were not in scope.
-Missing customer or supervisor signature. Missing Clean ID. Incomplete or missing shift summary.
-Per diem count not matching headcount.
+Missing Clean ID. Incomplete or missing shift summary. Per diem count not matching headcount.
 
-**Unsigned receipts are a dispute risk. Flag immediately, at the top, not in a list at the end.**
+⚠ **Never flag a missing signature. Jesse, 2026-09-07: "Not having tickets signed is never an issue.
+Never."** An earlier version of this skill called unsigned receipts a dispute risk and told you to
+flag them at the top. That was wrong, it fired on every receipt of the 2026-09-07 run, and it drove
+a NOT READY verdict on a job that was ready. **Say nothing about signatures — present or absent.**
 
 ## Step 4 — output
 

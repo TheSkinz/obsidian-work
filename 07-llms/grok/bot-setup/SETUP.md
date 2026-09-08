@@ -419,8 +419,21 @@ reading like `4C"`, left blank; a foam quantity on 10784 reading as (4) or (2), 
 scribbled fields on 10785. Plus: *"crew surname spellings vary across sheets; hours were taken from
 the clearest repeats, spellings were not forced."*
 
-**Verdict: NOT READY**, with real blockers — customer signatures missing on all seven receipts, PDT
-needing customer confirmation, and the proposal cross-check impossible without the proposal.
+**Verdict: NOT READY** — PDT needing customer confirmation, and the proposal cross-check impossible
+without the proposal.
+
+⚠ **Corrected 2026-09-07.** This entry originally listed a third blocker, *"customer signatures
+missing on all seven receipts."* **That was never a blocker.** Jesse: *"Not having tickets signed is
+never an issue. Never."* The skill told Ledger to treat unsigned receipts as a dispute risk and flag
+them at the top, so **the check fired on every receipt it will ever see** — a false positive with a
+100% hit rate, which is the exact shape of noise that makes a readiness check worth ignoring. Rule
+deleted from `invoice-readiness-check.md` and `receipt-extraction.md` here, and from
+`usadebusk-ops`, `usadebusk-fieldpm` and `extraction-format.md` in the config repo — **seven places
+in two repos, all of which had been repeating it back as domain truth.**
+
+**The transferable part:** a check that cannot pass is not a check. Ledger's behaviour was correct
+throughout — it flagged exactly what its skill told it to. The defect was in the rule, and only
+Jesse could see it, because nothing in the receipts or the vault said the requirement was fictional.
 
 ### What this test could not measure, and why
 

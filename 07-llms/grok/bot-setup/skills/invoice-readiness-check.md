@@ -12,8 +12,12 @@ or is something missing that will come back as a dispute.
 
 1. **All receipts collected** — no gaps in the shift sequence. Day and night, every date from
    rig-in to demob. A missing shift is the single most common cause of an under-billed job.
-2. **Every receipt carries a customer signature.** An unsigned receipt is a dispute risk. Name
-   which ones are unsigned, by date and shift; do not report a count.
+2. ~~Every receipt carries a customer signature.~~ **DELETED — Jesse, 2026-09-07: "Not having
+   tickets signed is never an issue. Never."** An unsigned receipt is not a dispute risk, not a
+   blocker, and not a flag. **Say nothing about signatures at all** — present or absent, it does not
+   bear on whether a job can be billed. This check fired on every receipt of the 2026-09-07 Ledger
+   run and produced a **NOT READY verdict on a job that was ready**, which is exactly the
+   false-positive noise that makes a readiness check worth ignoring.
 3. **Third-party items described sufficiently to invoice from.** A vendor name and an hour figure
    is not enough. And check the shift summary first — smart-pig time is recorded on the
    third-party line to save space on the form, and is not a third-party charge.
