@@ -9,10 +9,10 @@
 | Lint errors | 0 | 0 | ok |
 | Lint warnings | 8 | (backlog) | ok |
 | Dead source pointers | 0 | 0 | ok |
-| Inbox items | 82 | - | ok |
+| Inbox items | 83 | - | ok |
 | Inbox median age | 6 d | < 14 d | ok |
 | Inbox oldest item | 27 d | < 30 d | ok |
-| Days since last commit | 1 d | - | ok |
+| Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
 | Open decisions not in the queue | 0 | 0 | ok |
 | Awarded job within 21 d, no PO | 0 | 0 | ok |
@@ -25,7 +25,7 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 | Loop | Last fired | Last heartbeat | Cadence | Status |
 |---|---|---|---|---|
 | Consolidation loop | 2026-08-15 (24 d ago) | 2026-08-15 (24 d ago) | 31 d | ok |
-| Review loop | 2026-09-08 (0 d ago) | 2026-08-21 (18 d ago) | 90 d | ok |
+| Review loop | 2026-09-08 (0 d ago) | 2026-09-08 (0 d ago) | 90 d | ok |
 | Skill-drift loop | 2026-09-01 (7 d ago) | 2026-09-01 (7 d ago) | 62 d | ok |
 
 ## Commercial pipeline
@@ -49,7 +49,7 @@ Narrowed from the former **Dormant triggers** registry on 2026-08-21. That table
 
 | Source | Condition | Check |
 |---|---|---|
-| [[idea-llm-navigable-vault-map]] | Vault reaches 450 live notes (292 at the time of writing, 2026-08-15) -> re-run the retrieval eval in [[knowledge-system-evaluation-questions]]; if it shows failures, this idea unparks, and if it does not, re-park at the next threshold [machine: note-count>=450] | live notes: 380 of 450 |
+| [[idea-llm-navigable-vault-map]] | Vault reaches 450 live notes (292 at the time of writing, 2026-08-15) -> re-run the retrieval eval in [[knowledge-system-evaluation-questions]]; if it shows failures, this idea unparks, and if it does not, re-park at the next threshold [machine: note-count>=450] | live notes: 381 of 450 |
 | [[2026-07-31-prestaged-routine-service-derate-seed-data]] | 10 routine mode-normalized rows in the actuals rollup -> revisit the ft/hr service derate (n=5 at ruling, 2026-08-01) [machine: routine-rows>=10] | routine rows: 5 of 10 |
 
 ## Regression baselines
