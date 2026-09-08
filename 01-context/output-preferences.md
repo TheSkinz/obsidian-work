@@ -69,3 +69,7 @@ Proposed test methods must genuinely measure what matters. Flag when an obvious 
 SOP formatting rules live in one canonical file: `04-knowledge/sops/sop-formatting-standard.md`. That file is the governing reference for SOP layout, title block, section structure, and tables — not any system-prompt or skill copy.
 
 For all other document types: match the format of existing USADebusk documents when examples are available in the vault. When no example exists, ask before generating.
+
+## Where Jesse reads output
+
+**Claude Code is the interface — he barely opens Obsidian** (stated 2026-09-08). Remote Control and Dispatch mean he converses with a session rather than browsing the vault. So a surface only Obsidian can render — a Bases view, the graph, the tag pane, a Dataview dashboard — has no reader by default. Do not propose one without first asking who opens it; two were retired on this ground the day it was stated. Prose in the session, a note he can be pointed at, or a published artifact all reach him. A view inside Obsidian does not.
