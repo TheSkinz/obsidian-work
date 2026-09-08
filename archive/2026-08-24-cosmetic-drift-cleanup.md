@@ -1,11 +1,19 @@
 ---
 type: note
-status: inbox
+status: resolved
 created: 2026-08-24
 tags: [inbox, vault-system, housekeeping]
 ---
 
 # Cosmetic drift found 2026-08-24, deliberately left
+
+> **CLOSED 2026-09-08.** Every item below is now dispositioned, and the state of each was re-checked rather than assumed — two had already resolved themselves.
+>
+> - **`Untitled/`** — already gone. No action.
+> - **`07-llms/local-models/`** — not empty; it holds `overview.md`. The "may be intentional scaffolding" guess was right. No action.
+> - **`00-inbox/raw-docs/`** — **deleted.** Jesse confirmed the drop-zone concept is dead: he originally wanted to dump documents there for analysis and filing, and stopped doing it. `usadebusk-vault-ingest` still named it in three places, so a session reading that skill would have been told to use a path he abandoned.
+> - **`07-llms/diagram-creation.md:28`** — placeholder **struck**. Gemini retired 2026-07-07, so it was queued work for a tool that had not existed for two months.
+> - **`.obsidian/graph.json`'s 6 dead colour groups** — **won't-fix, deliberately.** The file is gitignored (`.gitignore:22`), so it is local Obsidian state and not vault content, and Jesse confirmed 2026-09-08 that he barely opens Obsidian. Fixing it is work on a surface with no viewer. If his Obsidian use ever changes, the six groups are a five-minute delete.
 
 Found during the retired-claims audit and scoped out at the time — none of it states anything false, which is why it was not fixed alongside the claims that did. Recorded so it is not re-discovered from scratch.
 

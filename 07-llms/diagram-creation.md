@@ -23,9 +23,9 @@ Claude Code can render SVG inline via the `show_widget` call and generate Mermai
 
 The SOP visualization pipeline (SOP → Diagram) was parked as a separate project — see vault workflow-map.
 
-## Gemini
+## Gemini — retired, not evaluated
 
-(Placeholder — evaluate Gemini's diagram generation in a dedicated session and document findings here.)
+Gemini was retired 2026-07-07 and no evaluation will happen. This section carried a placeholder reading *"evaluate Gemini's diagram generation in a dedicated session and document findings here"* until 2026-09-08 — queued work for a tool that had not existed for two months, which is the retirement-propagation class: a retirement lands where it is decided and not where sessions read.
 
 ## Tips
 
