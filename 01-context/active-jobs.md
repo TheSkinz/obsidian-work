@@ -6,7 +6,9 @@
 
 ## Active
 
-*None currently.*
+| Job # | Facility | Heater(s) | Status | Notes |
+|---|---|---|---|---|
+| CAD26002 | Suncor Énergie Montreal, QC | [[B-1001]], [[B-103]], [[B-102]], [[B-151]], [[B-101]] | **Mob 2026-09-09 · badging 09-10 06:00 · pigging starts 09-11** | Five-heater TA decoke, the package bid together in July 2026. **Triple mode until the final heater** — Run 1: [[B-1001]] (2 circuits) + [[B-103]] (1) · Run 2: [[B-102]] (2 circuits) + [[B-151]] (1) · Run 3: [[B-101]] (2 radiant passes, double). Trimax 6 / Support 6 / Press 2, already on site. Dayshift Travis, Peter, Jesse, Mark; nightshift Sam, Brandon, Justin, Jordan. Jesse flies IAH→YUL 2026-09-09. **Drawings are in the facility folder** — see [[02-facilities/Suncor/Montreal-QC/_facility]] for which appendix covers which heater, or start at the RFQ PDF. Heaviest prep lands on day one: [[B-1001]] needs full instrumentation removal (doubled TCs TE-802-1..-10, work order 60093250) and its Run-1 partner [[B-103]] has the 35 ft grade-to-4th-balcony access problem. [[B-102]] needs two different pig sizes (convection 4.026" ID, radiant 6.065") and an N2 purge before spools 1-5/11-15 come out. Soda ash across all five is a customer instruction and customer scope, not a metallurgy call. **No job sheet note — the RFQ PDFs are the job sheet (Jesse, 2026-09-08); actuals go onto the heater cards after the job, as CAD26001 did.** *Plan and crew per Travis Trenholm's 2026-09-08 email as relayed by Jesse; not independently verified — Claude Code has had no M365 access since 2026-09-07. **PO not recorded.*** Watch item: the five cards came from the 2026-07-07 ingest and four of them were never re-audited against the source package — see [[2026-08-24-suncor-ingest-batch-audit-owed]] before trusting a per-circuit tube count or length off a card. |
 
 ---
 
