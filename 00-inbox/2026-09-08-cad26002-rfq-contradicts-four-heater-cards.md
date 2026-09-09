@@ -16,7 +16,11 @@ The RFQ text was never mined. Every card's `source:` field cites the *tube and p
 
 ---
 
-## 1. Soda ash scope — the one that changes the most work
+## 1. Soda ash scope — RULED AND APPLIED 2026-09-08
+
+**Closed. Jesse: "The facility document is correct about the soda ash. I think we over generalized."** The directive governs — soda ash on **B-102 radiant only**. Applied across `_facility.md`, `_walkdown-summary.md`, B-101, B-102, B-103 and B-1001; B-151's card never claimed it and its *"carbon steel (no passivation concern)"* line is now consistent rather than contradicted. The root cause is recorded on every card that carries UD1: **it is a spool material rating, not a process instruction.** Original analysis kept below.
+
+
 
 **The directive scopes it to B-102 radiant only.** Particular conditions on furnace B-102: *"DECOKING WITH SODA ASH AND TUBE DRYING WITH NITROGEN for radiant only"*. The §.6 technical data table prints `21000 GAL` against B-102 and `N/A — NO SS IN TUBES` against B-101, B-1001, B-103 and B-151. Suncor supplies it (§.7): a baker tank of fresh 2 wt% solution, a second for used, and a vacuum truck.
 

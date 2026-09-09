@@ -61,6 +61,6 @@ Full detail and source drawings live in each heater's own card in this folder.
 ---
 
 ## Cross-Heater Notes
-- Temp decoke spools share spec UD1 (water/soda ash, 700 psig/370°F design, 1050 psig hydrotest) across all 5 heaters.
+- Temp decoke spools share spec UD1 (water/soda ash, 700 psig/370°F design, 1050 psig hydrotest) across all 5 heaters. **That is a material rating on the spool, not soda-ash scope** — soda ash is used on B-102 radiant only (DI-GE-5-007). Corrected 2026-09-08; the all-five reading came from misreading this line.
 - Filtration TBD on B-102, B-1001, B-103, B-151. Only B-101 has an elected job option (smart pig/X-ray).
 - Double Mode: B-102 (both circuits), B-1001 (both circuits), B-101 radiant. B-103 and B-151 are single-pass/standard.

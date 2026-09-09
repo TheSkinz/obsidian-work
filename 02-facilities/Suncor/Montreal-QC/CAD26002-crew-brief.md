@@ -84,7 +84,7 @@ DI-GE-5-007, particular conditions on furnace B-102:
 
 > *"DECOKING WITH SODA ASH AND TUBE DRYING WITH NITROGEN for radiant only"*
 
-Their technical data table (§.6) prints the soda ash volume as **21000 GAL** for B-102 and *"N/A — NO SS IN TUBES"* for B-101, B-1001, B-103 and B-151. **Confirm this scope with the Suncor rep at kickoff before anyone mixes anything** — it is their call and it is worth hearing them say it.
+Their technical data table (§.6) prints the soda ash volume as **21000 GAL** for B-102 and *"N/A — NO SS IN TUBES"* for B-101, B-1001, B-103 and B-151. **B-102 radiant is the only place soda ash is used on this job.** Still worth a sentence with the rep at kickoff so they say it out loud, but this is our position, not an open question.
 
 Where it is used, GM-07 Annexe F sets the chemistry, and it is monitored:
 
