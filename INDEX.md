@@ -81,6 +81,7 @@
 - [[B-102]] — B-102 Crude Furnace — Suncor Montreal, QC `(Suncor/Montreal-QC)`
 - [[B-103]] — B-103 Preflash Reboiler Furnace — Suncor Montreal, QC `(Suncor/Montreal-QC)`
 - [[B-151]] — B-151 Convection Section — Suncor Montreal, QC `(Suncor/Montreal-QC)`
+- [[CAD26002-crew-brief]] `(Suncor/Montreal-QC)`
 - [[7-1-F-1]] — 7-1 F-1 Column Feed Heater — Syncrude Fort McMurray, AB `(Syncrude/Fort-McMurray-AB)`
 - [[02-facilities/Syncrude/Fort-McMurray-AB/_facility|_facility]] — Syncrude — Mildred Lake, AB `(Syncrude/Fort-McMurray-AB)`
 - [[CAD26001-flow-tests]] — CAD26001 — Flow Tests `(Syncrude/Fort-McMurray-AB)`
