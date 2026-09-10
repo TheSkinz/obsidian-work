@@ -8,7 +8,7 @@ tags: [inbox, owed, lane4, ExxonMobil, Baytown, F-802, quoting, template]
 
 # Open items from the F-801 build (2026-09-09/10)
 
-Three items. None blocks the F-801 job, which mobs 2026-10-12. Two need Jesse; one needs a fix
+Three items, one resolved. Nothing blocks the F-801 job, which mobs 2026-10-12. Item 1 needs Jesse; item 2 needs a fix
 outside the vault.
 
 ## 1. [[F-802]]'s card is wrong and has not been corrected — Lane 4, awaiting a ruling
@@ -71,7 +71,15 @@ vault, and nothing in the vault can enforce it. **This note exists so a third oc
 discovered the same way.** Whoever next edits the template: search it for `Citgo` and for hard-coded
 heater tags.
 
-## 3. F-801's PO is not in hand, and 4411488628 should not be assumed
+## 3. ~~F-801's PO is not in hand, and 4411488628 should not be assumed~~ **RESOLVED 2026-09-10**
+
+> [!success] **Jesse confirmed 2026-09-10: 4411488628 is scoped and funded for the F-801 decoke.**
+> Recorded on his confirmation — no PO document for 4411488628 has been read and no value is
+> recorded. Get the PDF into the job folder when it is to hand. **One sub-question stays open:**
+> whether ExxonMobil's records show the F-802 decoke billed against 4411442151's F-801-labelled
+> line, because a mislabelled line item would misfile F-801 the same way. The reasoning that
+> prompted the question is kept below.
+
 
 PO **4411442151** is superseded on its face by **4411488628**. But comparing its two reprints shows
 item 00010 moving **$211,730.37 → $274,508.26** — [[DSP25084]]'s quoted total and USA26022's invoiced
