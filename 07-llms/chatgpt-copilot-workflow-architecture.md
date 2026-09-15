@@ -14,6 +14,22 @@ tags: [chatgpt, copilot, microsoft-365, sharepoint, agent-architecture, ai-workf
 
 # ChatGPT + Microsoft 365 Copilot — Workflow Architecture Operating Manual
 
+> ⚠ **HISTORICAL AS OF 2026-09-07 — the Microsoft half is a record, not a plan.** Company policy now
+> blocks third-party tools from company systems, so **Claude Code cannot reach the M365 tenant by any
+> route** ([[m365-access-boundary]]). Everything here that reads as an *implementation plan* against
+> the tenant — the tenant verification checklist, the SharePoint cleanup checklist, Agent Builder and
+> Copilot Studio setup, the day-one / first-week / first-month plans, the weekly release-note scan —
+> describes work no session can do, drive or verify. Jesse can still do any of it himself; none of it
+> is vault work. This note reached `status: draft` / `confidence: medium` because it was never
+> tenant-verified, and **it now never can be by a session** — its own fourth follow-up below is
+> permanently unsatisfiable that way. Treat every Microsoft claim as unverified and ask Jesse to read
+> it from the system, per [[m365-access-boundary]].
+>
+> **What is still worth reading:** the ChatGPT-side project/GPT/Skill/Scheduled-Task guidance, which
+> is Jesse's personal account and untouched by the policy, and the evidence-class discipline itself
+> (documented capability / tenant-admin-dependent / preview-rolling-out / inference-recommendation),
+> which is the durable contribution and is tool-independent.
+
 ## Origin
 
 ChatGPT deep-research report, delivered as `deep-research-report.md` on `C:\Users\Jwuts\OneDrive\Desktop`, ingested 2026-06-30. Not yet reviewed against live tenant behavior — treat every claim below per its stated Evidence class (documented capability / tenant-admin-dependent / preview-rolling-out / inference-recommendation), per [[knowledge-system-governance]]'s source hierarchy (AI summary/unreviewed import — never canonical without review). This note extends and cross-links the existing [[chatgpt/overview]] and [[copilot/overview]] notes rather than duplicating them; where this report repeats guidance already recorded there, the shorter existing note remains the quick-reference version and this is the full-depth backing source.
@@ -208,7 +224,7 @@ Some Microsoft extensibility pages require authorization to view fully, and UI b
 
 ## Follow-Up
 
-- [ ] Reconcile project name: "AI Workflow Architecture Command Center" (this report) vs. "AI Workflow & Agent Architecture Lab" (already recorded in [[chatgpt/overview]]) — pick one.
-- [ ] Fold the two "(New —...)" callouts above (Researcher/Analyst governance scope, Restricted SharePoint Search caveat) into [[copilot/overview]] as short additions.
-- [ ] Fold the Skills beta/no-cross-product-sync caveat into [[chatgpt/overview]].
-- [ ] Verify tenant-dependent claims against the actual DeBusk tenant before treating any of them as settled.
+- [ ] Reconcile project name: "AI Workflow Architecture Command Center" (this report) vs. "AI Workflow & Agent Architecture Lab" (already recorded in [[chatgpt/overview]]) — pick one. **Still open.** Both names are still recorded, and `chatgpt/overview.md` still says "reconcile before next rename". Jesse's call; a session cannot see which project actually exists in his ChatGPT account.
+- [x] Fold the two "(New —...)" callouts above (Researcher/Analyst governance scope, Restricted SharePoint Search caveat) into [[copilot/overview]] as short additions. **Done** — both landed there (Restricted SharePoint Search and the Researcher/Analyst governance-scope section).
+- [x] Fold the Skills beta/no-cross-product-sync caveat into [[chatgpt/overview]]. **Done** — it is the "Skills — beta caveat" section there, citing this note.
+- [ ] ~~Verify tenant-dependent claims against the actual DeBusk tenant before treating any of them as settled.~~ **Closed 2026-09-15 as not-doable-by-a-session.** Company policy blocked third-party access to the M365 tenant 2026-09-07 ([[m365-access-boundary]]), so no session can run this verification. The claims stay unverified and must be read as such; only Jesse can check one, from the system.

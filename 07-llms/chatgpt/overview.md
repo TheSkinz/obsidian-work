@@ -8,6 +8,12 @@ tags: [chatgpt, openai, codex, agent-architecture]
 
 OpenAI's ChatGPT platform. Primary role: architecture and research hub for AI workflow design, agent evaluation, and M365/Copilot strategy. Distinct from Copilot's in-tenant execution — ChatGPT is where designs are evaluated, not where they run.
 
+> ⚠ **The M365/Copilot half of that role is dead for a session as of 2026-09-07.** Company policy
+> blocks third-party tools from company systems, so **Claude Code cannot reach the M365 tenant by any
+> route** ([[m365-access-boundary]]). A design evaluated here can no longer be executed, tested or
+> verified in the tenant by anything but Jesse himself. The ChatGPT-side content below — Projects,
+> Skills, Codex — is his personal account and is unaffected.
+
 ## Canonical project: AI Workflow & Agent Architecture Lab
 
 The primary ChatGPT project. Covers ChatGPT Projects, OpenAI agents, automation patterns, M365 Copilot, Copilot Studio, Agent Builder, connectors/actions, governance, and workflow design. This is the research layer; Copilot is the execution layer.

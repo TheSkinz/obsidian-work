@@ -44,6 +44,8 @@ is why the trial can run read-only without connecting anything to M365.
 
 Grok Build CLI, skill-creator tooling, Zapier/Albato integrations, Gmail and Google Drive automation, email digest pipelines. Use cases are in active exploration — document specific deployed integrations as they stabilize.
 
+**One Grok Build prompt is written and has never been run:** [[f501-coil-flythrough-build-prompt]], a single-file three.js flythrough of the F-501 Pass B coil with the segment table inline so Grok never extracts from the source PDF. It targets the *interior* POV concept, which the 2026-08-19 session abandoned after building it — a 4.6 in bore is a featureless cylinder, and Jesse's call put the camera outside. **Re-point it at the exterior-teardown choreography before running it**, or the test reproduces a concept already rejected.
+
 ## Account and credential separation
 
 Strict work/personal account separation: personal Gmail (not work email) is used exclusively for Grok/xAI accounts, API keys, and automations. This prevents credential linkage between USADebusk systems and personal AI activity. Do not use the work email for any xAI account or API key registration.

@@ -225,6 +225,7 @@ the work is worth having is.
 | [[duration-model]] | Duration Model skill — Estimator |
 | [[workup-billing-math]] | Work-Up Billing Math skill — Estimator |
 | [[proposal-assembly]] | Proposal Assembly skill — Scribe |
+| [[brand-standards]] | Brand Standards skill — Scribe (added 2026-09-07; Project Report and Proposal Assembly both depend on it) |
 
 **Read [[BACKTEST-SPECIMEN]] before uploading the four estimating skills.** It works all four against
 DSP26085 — six rules reproduce the real quote to the hour and to the line, and one rule was
