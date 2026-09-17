@@ -49,7 +49,12 @@ is what actually differs now.
 
 ## Default: Remote Control
 
-Start it at the desk before leaving:
+Start it at the desk before leaving. The full pre-departure sequence is three settings, all of
+which have to be set while you are physically at the machine — the 2026-09-16 incident below
+happened because only the third was ever documented here:
+
+`Settings > General > Enable computer use` → `Cowork > Dispatch > Keep Awake on` →
+`claude remote-control --name vault`
 
 ```
 cd /c/Users/Jwuts/obsidian-work && claude remote-control --name vault
@@ -118,6 +123,56 @@ Dispatch has one thread and no way to start a second. That rules it out as the h
 per-job field thread — [[system-workflow-reference]] and the `usadebusk-fieldpm` skill are
 built around one dedicated session per job, and Dispatch would interleave that with everything
 else asked of it that week.
+
+## When Dispatch says "Looking for your desktop" (2026-09-16)
+
+Diagnosed and fixed from Montreal, with nobody able to reach Linda2. The phone showed
+"Looking for your desktop… Make sure you have the Claude Desktop app installed, open, and
+signed in" while the desktop app was in fact running, computer use was enabled, and the device
+bridge was authenticated. **The message is misleading: the app being open is not the thing it
+is actually checking.**
+
+The real fault was an expired OAuth scope, visible only in `AppData\Local\Claude\Logs\main.log`:
+
+```
+[sessions-bridge] Cowork OAuth stale-session (session_stale_relogin); parking bridge until re-login
+oauth authorize rejected with session_stale_relogin; sessionKey is valid but too old for the requested scope expansion
+[DispatchTools] start_code_task failed for C:\Users\Jwuts\obsidian-work: Sign in again to continue
+```
+
+The session key was still valid — which is why Claude Code, the `remote-tools-device` bridge and
+computer use all kept working — but too old to grant the scope expansion Dispatch needs, so the
+sessions-bridge parked itself. It retries hourly (`[oauth] clearing latched session_stale_relogin
+failures`) and fails every time. **It does not self-heal.** Grep `main.log` for
+`session_stale_relogin` before assuming anything else; every other symptom was a red herring.
+
+The fix is an interactive re-login in the desktop app, which needs the GUI. Three things made
+that reachable and are worth keeping true:
+
+**Remote Control has independent auth and survives this.** `claude remote-control` is an npm CLI
+process; its credentials are not the desktop app's OAuth session. When Dispatch was dead the
+`vault` session worked from Montreal all evening. That makes it the correct standing fallback,
+not just a convenience — but note it carries **no computer use**, because the `computer_*` tools
+are supplied by the desktop app to sessions it hosts, and a terminal CLI session is not one.
+
+**Screen capture from a Claude Code session on the machine is only half a channel.** GDI
+`CopyFromScreen` returns black for GPU-composited windows, and `PrintWindow` with
+`PW_RENDERFULLCONTENT` gets Chromium's browser frame — enough to read the URL bar — but not the
+rendered page, and nothing at all from Flutter apps. Synthetic keyboard input into a browser
+sign-in flow is refused by the permission classifier, correctly. So a session on the box can
+diagnose and can read a URL, but cannot complete a login.
+
+**Linda2 had no remote-access software, and that is what turned a sixty-second fix into an
+evening.** RustDesk was installed remotely as the way out, non-elevated — which means it runs
+only while its process lives, does not survive a reboot, and cannot interact with UAC prompts.
+Decide deliberately whether to install it properly as a service or remove it; a half-configured
+remote door is the worst of both.
+
+One durable trap: the permission grant needed to do any of this cannot be written by the agent
+that needs it — the harness blocks an agent editing its own `permissions.allow`, and that guard
+is correct. `/permissions` does not exist in mobile Remote Control sessions either. The route
+that worked was editing `settings.json` in the `TheSkinz/claude-config` repo from the phone's
+browser and pulling it on Linda2, since `~/.claude` is the live clone.
 
 ## Desktop down: cloud session
 
