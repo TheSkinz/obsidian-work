@@ -94,3 +94,34 @@ simply the next release against the same F-801 APH work order (40004035).
 Jesse is making that call. `tools/vault_health.py`'s no-PO alarm arms **2026-09-21**, 21 days before
 the 2026-10-12 mob. Worth asking on the same call whether ExxonMobil's records show the F-802 decoke
 billed against that F-801-labelled line — if their label is wrong, it will misfile F-801 the same way.
+
+---
+
+## Item 1 RULED and APPLIED 2026-09-17 (Jesse) — correct the radiant now
+
+**Ruling: correct the radiant rows today; do not hold the card for the convection spec sheet.** The
+sheet has been outstanding since June 2026 with no date attached, F-801 mobs **2026-10-12**, and
+F-801's card derives from this one — so wrong radiant geometry is live commercial exposure rather
+than a tidy-up.
+
+**Applied to [[F-802]]:** Tubes/Circuit `30 → 31`, Wall `0.432 → 0.500`, ID `5.761 → 5.625`,
+Metallurgy `A335 Gr P9 → ASTM A213 T9`, in both Tube Geometry and Config Rollup. Heater-total radiant
+tube count follows at `310`.
+
+**Three things deliberately left alone, each with its reason on the card:**
+
+1. **Length/Circuit stays at the SOP's 1,200 ft.** The inspection report states no radiant tube
+   length, so `31 × ~39` would put a derived figure where a stated one is — and F-802's footage feeds
+   the 52 ft/hr row at `estimating-actuals-rollup.md:23`, one of only five routine rows in the
+   baseline. This note's own hard stop holds.
+2. **Convection untouched**, and its asterisked "verify against replacement spec" left standing. The
+   replacement steel is unverified, not wrong. Its known 468-vs-228 ft footage defect is not
+   corrected, for the same rollup reason.
+3. **Max pig OD stays 6.00".** The correction drops the standard rule cap from 6.011 to 5.875, which
+   reads as over-cap; it is not. The circuit is looped and sits inside the oversized-final allowance,
+   and Jesse ruled 6.00" on 2026-09-09. **A note explaining this is now on the card**, because the
+   next reader will recompute the cap and reach the wrong conclusion exactly as one already did.
+
+**Item 2 (the proposal template shipping Citgo's name) cannot be actioned from here** — the template
+lives in the quoting toolchain on OneDrive and the work laptop, outside the vault. It stays recorded
+so a third occurrence is not discovered the same way.
