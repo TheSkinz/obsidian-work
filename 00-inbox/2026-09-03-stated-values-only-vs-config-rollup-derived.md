@@ -1,8 +1,8 @@
 ---
 type: finding
-status: open
+status: resolved
 created: 2026-09-03
-tags: [inbox, heater-card, schema, vault-ingest, regression, needs-ruling]
+tags: [inbox, heater-card, schema, vault-ingest, regression, resolved]
 ---
 
 # Two schema texts contradict: "stated values only" vs Config Rollup "DERIVED FROM TUBE GEOMETRY"
@@ -44,3 +44,22 @@ Add a carve-out sentence to the behavior rule at `usadebusk-vault-ingest:576`, s
 Confirm the exemplar governs and the ingest wording is what is wrong, rather than the reverse. If the ingest rule is actually right and Heater total should stay blank on a per-circuit-only source, that is a schema change affecting every card built from a quote and is much bigger than a wording fix.
 
 Related: [[2026-09-03-regression-battery-findings]], [[2026-09-03-core-154-looped-max-od-pointer]]
+
+---
+
+## RULED and APPLIED 2026-09-17 (Jesse) — the exemplar governs, the ingest wording was wrong
+
+Confirmed as the note framed it: `04-knowledge/_canonical-heater-card.md` governs, and
+`usadebusk-vault-ingest`'s behavior rule was overreaching. The alternative — Heater total stays blank
+on a per-circuit-only source — would have been a schema change affecting every card built from a
+quote, and was declined.
+
+**Applied** as a second carve-out beside `Max pig OD`, using this note's own reasoning: multiplying
+stated per-circuit figures by a stated circuit count is arithmetic on the card's own data and asserts
+nothing new about the world, whereas `(OD − ID) ÷ 2` asserts a physical fact about metal nobody
+measured. The rule is right about wall and was wrong about the rollup. The skill now reads **"Two
+carve-outs, and only two"** rather than "One carve-out, and only one."
+
+**The line number in this note was stale.** It cites `usadebusk-vault-ingest:576`; the rule is at
+`:595`. Its sibling note had the same drift (`core:154` against a real `:177`) and had already
+recorded the lesson — grep for the rule text, never trust a line number carried in a note.

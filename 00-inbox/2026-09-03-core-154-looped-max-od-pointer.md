@@ -1,8 +1,8 @@
 ---
 type: finding
-status: open
+status: resolved
 created: 2026-09-03
-tags: [inbox, regression, skills, pig-sizing, needs-ruling]
+tags: [inbox, regression, skills, pig-sizing, resolved]
 ---
 
 # Proposal — make core's looped max-pig-OD pointer imperative
@@ -43,3 +43,32 @@ F2 is re-run against the amended core, judged, and re-cut. Until then F2 stays `
 Only one, and it is the wording above, not the direction. Does the caveat belong in `usadebusk-core` (where the field and the pointer already live, catching every skill that computes this field) or in `usadebusk-vault-ingest` (where the failing behaviour occurred, but catching only ingest)? Core is the wider net and the recommendation; ingest is the narrower, more surgical option.
 
 Related: [[2026-09-03-regression-battery-findings]]
+
+---
+
+## CLOSED 2026-09-17 — already ruled and applied the same day this was written
+
+**This note was answered on 2026-09-03 and nobody closed it.** Config commit `ccc5086`
+(2026-09-03 23:54) applied the caveat to `usadebusk-core`, and its message records the same ruling
+the note asked for: *"Jesse ruled it into core rather than vault-ingest — core is the wider net,
+catching every skill that computes this field rather than only the one where the miss surfaced."*
+The imperative is live in the skill under `### Connection info (facts)`, beneath the Max pig OD
+pointer.
+
+The question was put to Jesse again on 2026-09-17 and he gave the same answer — **core** — so
+nothing changed. That is a wasted ask, and the cause is bookkeeping: the note still read *"Nothing
+has been changed yet"* and `status: open` for two weeks after the change landed. Same class as the
+review note `2026-09-08-review-loop-spec-references-stopped-loops`, which kept the health
+dashboard's *"Review notes awaiting decision: 1"* alive after DQ-032 closed the same day. **A
+session that is about to ask for a ruling should grep the target file first** — the answer may
+already be in it.
+
+**Consequence that is still open:** F2 has not been re-run against the amended core, so it remains
+`behind` in `baseline_staleness.py`. That is correct and is part of the F1/F2/F3/F4/F6 replay debt
+Jesse scoped to its own session on 2026-09-02; it is not owed here.
+
+**Worth carrying forward: the line-number drift this note already caught once.** It was written
+citing `usadebusk-core:154`; the text was at `:173` by the time the edit was made and is at `:177`
+now. The note's own instruction — *grep for `Max pig OD` rather than trusting any line number* — was
+right, and the same drift hit its sibling note, which cited `usadebusk-vault-ingest:576` against a
+real position of `:595`.
