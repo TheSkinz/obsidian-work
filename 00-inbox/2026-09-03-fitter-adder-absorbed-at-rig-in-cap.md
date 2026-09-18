@@ -1,8 +1,8 @@
 ---
 type: finding
-status: open
+status: resolved
 created: 2026-09-03
-tags: [inbox, estimating, duration-model, regression, needs-ruling]
+tags: [inbox, estimating, duration-model, regression, resolved]
 ---
 
 # The pipefitter adder has no home once rig-in is already at the 12-hr cap
@@ -36,3 +36,27 @@ Three readings, and this is a Lane 4 duration-model question that only Jesse can
 `8d6a154` also rules that rig-in precision is explicitly **not** where estimating effort belongs, because pigging hours carry the money and the schedule risk. That argues for reading (1) — leave it alone — unless a real job has actually been hurt by the absorbed hours. Worth checking the F-802 and CAD26001 actuals for a rig-in overrun attributable to fitter wait before spending a cycle on this.
 
 Related: [[2026-09-03-regression-battery-findings]]
+
+---
+
+## RULED 2026-09-17 (Jesse) — reading 1: correct as-is, the cap absorbs the adder
+
+`12 + fitter wait = 12`, not 14. The 12-hr rig-in figure is a ceiling and the ~2 hr adder disappears
+into it; where the figure is already at the ceiling the adder is stated as a risk instead of added.
+Readings 2 (lift the cap for a stated adder) and 3 (move the exposure off the rig-in line) are both
+declined. **Rig-in's output space is unchanged: 2, 4, 6, 8, 10 or 12, never odd, never fractional.**
+
+**This note's own pre-step was run first, and it supports the ruling rather than merely not
+contradicting it.** The note asked for a check of the F-802 and CAD26001 actuals for a rig-in
+overrun attributable to fitter wait. From `04-knowledge/estimating-actuals-rollup.md`: **F-802
+(USA26022) recorded rig-in 4** — under the 6-hr default, so there is no overrun to attribute — and
+**CAD26001's 18 is classified `2-rig-sum`**, hours summed across rigs rather than elapsed, which
+cannot show an overrun in either direction. Neither job shows the adder costing anything.
+
+**What that evidence does and does not say.** It says no observed rig-in overrun is attributable to
+fitter wait in the two most recent jobs, which is the narrow question the note posed. It does **not**
+say the absorption is free in general: n = 2, one of the two figures is method-quarantined, and
+neither job's stand-by column was examined for fitter wait that landed there instead. Recorded so the
+next reader does not promote a two-row check into a verified result.
+
+Note closed. No change to any file — the ruling is that the current rule is right.

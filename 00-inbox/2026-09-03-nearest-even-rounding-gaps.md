@@ -1,8 +1,8 @@
 ---
 type: finding
-status: open
+status: resolved
 created: 2026-09-03
-tags: [inbox, estimating, duration-model, regression, needs-ruling]
+tags: [inbox, estimating, duration-model, regression, resolved]
 ---
 
 # Two gaps in the nearest-even rounding rule
@@ -39,3 +39,24 @@ Not a tie-break rule and not a bound on the discretion. Both are Lane 4 and inve
 2. Should a run that shaves off the nearest-even figure be required to *say that it did*, without having to justify why? That would keep your discretion completely intact while making the variance visible in a diff instead of invisible — which is the specific thing that let the parallel allowance hide.
 
 Related: [[2026-09-03-regression-battery-findings]], [[2026-07-24-parallel-friction-factor-deferred]]
+
+---
+
+## RULED 2026-09-17 (Jesse) — both questions answered
+
+**1. On an exact tie, round DOWN.** `900 ft ÷ 100 ft/hr = 9` prices at **8**. The reasoning that
+supports it is the standing asymmetry already in the skill: under T&M an overrun goes back to the
+customer and gets approved, so under-estimating is recoverable while over-estimating costs the bid.
+
+**2. A run that shaves off the nearest-even figure must say that it shaved — and must not justify
+it.** One line in the duration math, e.g. *"shaved to 24 from a nearest-even 26."* The estimator's
+licence to shave without explanation is untouched; what changes is that the shave becomes visible.
+This is why it matters: a reader who recomputes and lands two hours off has no way to tell a
+deliberate shave from an arithmetic slip, and one has already been reported as a discrepancy.
+
+**Both stay inside the guardrail this note set.** Neither is a bound on the estimator's discretion.
+The tie-break decides a case where the rule as written produced no answer at all, and the disclosure
+rule asks for a statement rather than a reason.
+
+**Applied** to `01-context/estimating-approach.md`, `~/.claude/skills/usadebusk-estimating/SKILL.md`
+and `07-llms/grok/bot-setup/skills/duration-model.md` — all three, in one pass.

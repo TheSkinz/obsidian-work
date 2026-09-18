@@ -41,6 +41,17 @@ reader can see which half is the benchmark and which is estimator's judgment.
 the only rounding step there is:** do not re-round downstream, and never round per pass, per size,
 or at the heater total. **This replaced a former always-round-up rule** — do not reinstate it.
 
+**On an exact tie, round DOWN.** (Jesse, 2026-09-17.) `900 ft / 100 ft/hr = 9` prices at **8**, not
+10. Ties are not a corner case — at the benchmark one lands on every coil that is an odd multiple of
+100 ft (900, 1,100, 1,300, 1,500). Down matches the standing asymmetry: under T&M an overrun goes
+back to the customer and gets approved, while over-estimating costs the bid.
+
+**The estimator may shave to a rounder figure without justifying it — but a run that shaves MUST say
+that it shaved.** (Jesse, 2026-09-17.) One line in the duration math: *"shaved to 24 from a
+nearest-even 26."* **Do not ask for a reason and do not invent one.** This is disclosure, not a bound
+on the discretion. Worked case: DSP#26100 ran `17.75 -> 18` (nearest-even) and `25.61 -> 24` (a
+shave); both are Jesse's, and a run that recomputes them must not report either as a discrepancy.
+
 **Do not land the total on a multiple of 12** (removed 2026-08-23). Sum the task lines and report the
 total as it falls.
 
