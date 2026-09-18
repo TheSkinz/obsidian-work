@@ -146,3 +146,38 @@ Two rows on [[7-1-F-1]]'s `## Coilset Durations`, one per rig, `Mode` 2, `Circui
 | CAD26001 | (C + D) | TM6 | 2 | 4,474 | | | | – | | | | |
 
 Then `ft/hr per pig = 4,474 ÷ Pig` for each rig — directly comparable to CAD25004's **124 ft/hr** single-circuit figure, which is the number the CAD26001 estimate was built on. Flag a rig `outlier` if its two circuits came out far apart; the parent `## Task Durations` row takes the summed hours, Stand-By, and `routine`.
+
+---
+
+## Third failure, and it failed differently — CAD26002, recorded 2026-09-17
+
+Suncor Montreal mobbed 2026-09-09 and pigged from 09-11 across five heaters. **Eight days later the
+vault held nothing from it**: no shift logs, no receipts, no Task Durations rows, no PO, no quote
+note. `git log --since=2026-09-08` shows nine commits and not one touches `02-facilities/Suncor/`.
+
+**The one trace is the most interesting part.** `B-103.md` showed as modified in `git status` with
+**no content change whatsoever** — byte-identical to HEAD (`git hash-object` matches the index blob,
+`cmp` against `git show HEAD:...` is clean, CR count 0 on both sides). It is a stale stat-cache entry
+from a save that wrote nothing. `stat` puts that save at **2026-09-11 14:50**, the day pigging
+started, on a Run-1 heater. `B-102.md` carries the same pattern one day earlier, 2026-09-10 06:59,
+and has since been stat-refreshed so it reads clean.
+
+**So the cards were opened on field days and nothing was written into them.** That is a different
+failure from the two this sheet already records. Those were *capture not attempted* — a sheet nobody
+filled. This one is *capture attempted and abandoned at the keyboard*: someone got as far as opening
+the right file on the right day and put nothing in it.
+
+**It sharpens the design conclusion rather than repeating it.** This sheet already concluded a third
+attempt *"cannot assume live capture at the moment the event happens."* CAD26002 shows the weaker
+assumption also fails: it cannot assume capture at the moment someone **opens the file**, either. A
+heater card is a large structured document, and opening one mid-shift to add a single observation
+asks the writer to decide where it goes before they can write it. The two saved-empty files are what
+that decision costs.
+
+**What is not claimed here.** Nobody has said who opened those files or why they closed them — Jesse
+was on site through 09-16 with a working vault session, and that is all the evidence supports. This
+is a record of an outcome, not an account of a cause.
+
+**Nothing is lost that a recovery could get back** — `git checkout` on B-103 would be a no-op. What
+is lost is eight days of field observation that now has to be reconstructed from receipts and memory,
+which is exactly the position CAD26001 ended in.
