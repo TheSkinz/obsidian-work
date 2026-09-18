@@ -20,6 +20,22 @@ simultaneously and **over-quotes every multi-pass job**. Elapsed pigging time fo
 **one coil's time**, however many circuits the set carries, because the Trimax's pumping assemblies
 run independently and in parallel.
 
+**The Pig line is the pigging TASK, not pig travel.** (Jesse, 2026-09-17.) The benchmark describes a
+pig moving through a coil. The `Pig` line in a quote covers the whole pigging task built around that
+travel — fill, flush, flow tests between passes, pig changes, working the size progression,
+dewatering. **`footage / rate` gives the travel component, which is the floor of that line and not
+the answer.** Worked case — HF Sinclair Navajo, DSP26080: **H-2501** is 6 passes x ~1,028 ft
+unlooped, which this model prices at ~22 hrs including rig-over, and the quote carries **48**.
+**H-2421** and **H-30** carry **12** each against ~10. All three have empty Task Durations, so the
+derate gate is shut on all three — the gap is not a derate.
+
+**Do NOT turn this into a multiplier.** No ratio was ruled and none is derivable here — H-2501 sits
+at roughly 2x and H-2421 at roughly 1.2x, which is not one factor. Fitting a coefficient across them
+would repeat the parallel-friction mistake: a number invented to suppress model variance rather than
+observed in the field, carried for four weeks and then struck. **Price the travel component, size
+the surrounding work to the job, and state the two parts separately in the duration math** so a
+reader can see which half is the benchmark and which is estimator's judgment.
+
 **Round the per-coil figure to the NEAREST EVEN HOUR — up or down — once, at the coil level.**
 (Jesse, 2026-08-23.) Even hours keep project totals landing cleanly on 12-hour increments. **This is
 the only rounding step there is:** do not re-round downstream, and never round per pass, per size,

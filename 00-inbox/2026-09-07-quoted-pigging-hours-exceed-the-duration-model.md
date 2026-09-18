@@ -1,9 +1,9 @@
 ---
 title: Quoted pigging hours run above what the duration model produces — unreconciled
 created: 2026-09-07
-status: open
+status: resolved
 type: idea-seed
-tags: [estimating, duration-model, grok-bot, parked]
+tags: [estimating, duration-model, grok-bot, resolved]
 ---
 
 # Real quotes carry more pigging hours than the documented model gives
@@ -55,3 +55,30 @@ the written method and the practised one, and it sits in `01-context/estimating-
 bid has ever been produced there, so the estimating workflow is not mature enough to hand to a Bot
 and the test was measuring something premature. The arithmetic question stands on its own and is
 worth answering the next time a bid is actually worked.
+
+---
+
+## RULED 2026-09-17 (Jesse) — the Pig line is the pigging task, not pig travel
+
+**The answer is the first candidate above: the pigging line covers more than pig travel.** 100 ft/hr
+describes a pig moving through a coil; the quoted `Pig` line covers the whole task built around that
+travel — fill, flush, flow tests between passes, pig changes, working the size progression,
+dewatering. `footage / rate` is the **floor** of that line, not the answer. The other candidates were
+offered and none was taken: the mixed 6"/4" radiant bore, a slow-service derate, and a mode-limited
+Trimax are all unadopted.
+
+**No multiplier was ruled and none may be derived from these three rows.** H-2501 sits at roughly 2x
+the model and H-2421 at roughly 1.2x — that is not one factor, and fitting a coefficient across them
+is precisely the parallel-friction failure: a number invented to suppress model variance, carried
+four weeks, struck 2026-08-23. What an estimate must now do is price the travel component, size the
+surrounding work to the job, and **state the two parts separately in the duration math**.
+
+**Applied to all three homes this note named**, since a ruling that lands in one layer and not the
+others is the documented failure mode: `01-context/estimating-approach.md`,
+`~/.claude/skills/usadebusk-estimating/SKILL.md` — placed with a pointer to the localized-hard-spot
+paragraph, which is a specific hypothesis sitting inside this general class and is still not a
+derate — and `07-llms/grok/bot-setup/skills/duration-model.md`.
+
+**Still open, and deliberately not answered here: how much the surrounding work is worth.** That
+needs actuals with the pigging line broken out, which no card currently carries — all three DSP26080
+heaters have empty Task Durations tables. Revisit when a job returns with the split recorded.
