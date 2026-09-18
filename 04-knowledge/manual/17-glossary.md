@@ -13,8 +13,8 @@ Terms defined here are those the manual actually uses. Where local facility usag
 | Term | Definition |
 |---|---|
 | Fired heater / Furnace | Process vessel containing the tube coil. Used interchangeably. |
-| Coil | The complete tube assembly for one heater — individual tubes joined in series by return bends. |
-| Pass / Circuit | One continuous tube path through the heater. A heater may have several. Each is cleaned as its own circuit. |
+| Coil = Pass | The same thing — one continuous tube path through the heater, individual tubes joined in series by return bends. A heater may have several. Jesse, 2026-09-17: *"Coils = passes."* Count them the same way; never report two different numbers for one heater. |
+| Circuit | What one pig actually travels. One circuit is one coil, or several coils looped together with temporary jumpover spools. **A coil is not automatically its own circuit** — CAD26001 ran 8 coils looped into 4 circuits, and BP Whiting H-1 runs 4 coils to 1 circuit per section. |
 | Tube | An individual straight pipe section within a coil. |
 | Return bend | A cast 180 degree fitting joining adjacent tubes. |
 | Plug header | A box header with removable plugs at the tube ends. An older design; tube-to-tube traversal is less direct than through a cast return bend. |

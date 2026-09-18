@@ -91,3 +91,40 @@ Not contradictions — simply absent. All from the two documents, and all now in
 Crew brief drafted from the two documents and handed to Jesse to send — see [[CAD26002-crew-brief]]. It quotes Suncor verbatim throughout and asserts none of the contested card content, so sending it does not commit us to either side of the four contradictions above.
 
 **Appendix A (the GM-07 extract) is not in the vault.** It was scoped out of the 2026-09-08 copy as not field-useful, which was wrong — the directive requires that everyone directly involved in the decoke has read it, and it is where the carbide prohibition, the cleanliness stop rule, the soda-ash chemistry and the entire nitrogen protocol live. 320 KB, offered to Jesse and not yet answered.
+
+---
+
+## RULED 2026-09-17 (Jesse, from the field after CAD26002 ran) — contradiction #2 closed, split three ways
+
+Jesse rigged all five heaters between 2026-09-09 and 2026-09-16, so this was answered from observation
+rather than from re-reading the two documents. **The three heaters did not resolve the same way**,
+which is why asking them as one question would have produced a wrong answer for one of them.
+
+| Heater | Verdict | Applied |
+|---|---|---|
+| B-102 | **Card right.** Convection and radiant are separate decoke circuits, as confirmed 2026-07-07 | Annotation in Connection Info: the directive's circuit-1/circuit-2 language is the **process** piping, not the decoke configuration after the crossover is removed |
+| B-1001 | **Card right.** The A+D / B+C pass pairing held | Annotation in Connection Info: §.1's central/upper vs outer/lower language describes section **elevation**, not circuit membership. Also added the missing rig-in fact |
+| B-101 | **Directive right. Card rebuilt.** | Configuration, Identity, Tube Geometry and Config Rollup all corrected |
+
+**The B-102 hazard this note raised did not materialize, and the reasoning that raised it was still
+correct.** On the directive's reading, circuit 2 would have carried 4" convection tube behind the
+8"–300# radiant launcher, so 4.026" would govern the whole circuit and the card's 6.315" radiant pig
+size would have been unsafe on it. The split holds, so the two-size arrangement stands.
+
+**B-101 was wrong in its vocabulary before it was wrong in its count, and that is the reusable
+finding.** The card read *"2 radiant passes; 10 convection coils, each its own circuit
+(non-looped)"*. Jesse: *"I don't know what you are calling '10 convection coils.' Coils = passes.
+There are two passes / coils. North and south. Both passes were pigged with convection and radiant
+combined."* The "10" came from reading the convection BOM's row/element count as a circuit count at
+the 2026-07-07 ingest. **Nothing in the vault or the skills recorded that a coil and a pass are the
+same thing** — `usadebusk-core`'s glossary and `04-knowledge/manual/17-glossary.md` both carried
+`Coil` and `Pass / Circuit` as separate rows, and the vault glossary went further and asserted that
+each pass *"is cleaned as its own circuit,"* which is false whenever looping is elected. Both are now
+corrected to `Coil = Pass` plus a separate `Circuit` row defined as what one pig travels, with
+CAD26001's 8-coils-to-4-circuits and BP Whiting H-1's 4-to-1 as the worked cases.
+
+**Also applied, the item this note flagged as needing no ruling:** B-101's radiant flange is **150#**,
+resolving a 150#-vs-300# flag the card had carried since 2026-07-23. The directive states it twice
+independently and the `10"-300RF` callout belongs to other piping on the same GA sheet.
+
+**Contradictions #3 (B-1001 metallurgy) and #4 (footage) remain open.**
