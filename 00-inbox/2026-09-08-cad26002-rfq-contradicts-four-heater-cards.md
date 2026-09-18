@@ -128,3 +128,72 @@ resolving a 150#-vs-300# flag the card had carried since 2026-07-23. The directi
 independently and the `10"-300RF` callout belongs to other piping on the same GA sheet.
 
 **Contradictions #3 (B-1001 metallurgy) and #4 (footage) remain open.**
+
+---
+
+## Contradiction #3 RULED, #4 re-read — 2026-09-17
+
+### #3 — B-1001 metallurgy: the BOM governs, the card stands (Jesse, 2026-09-17)
+
+The tube/pipe BOM is the fabrication document and lists every tube item as SA213; §.6 is a summary
+table inside a standing directive dated 2020-01-10 that was reused for this turnaround. Annotated on
+the card rather than dropped, with the residual risk stated: neither document is dated against the
+other, so a partial re-tube between them would make both right about different eras, and nobody has
+asked Suncor. Metallurgy is not observable in the field, so CAD26002 could not settle it.
+
+### #4 — footage: the gap is entirely radiant, and the source is a *replacement* drawing
+
+**Splitting the deltas by section, which this note did not do on 09-08, moves the question.** The
+convection figures broadly agree and the whole discrepancy sits in the radiant:
+
+| Heater | Section | Suncor | Card | Delta |
+|---|---|---|---|---|
+| B-102 | Convection | 1,000 | 960 | −40 |
+| B-102 | Radiant | 5,000 | 3,693 | **−1,307** |
+| B-1001 | Convection | 2,050 | 1,859 | −191 |
+| B-1001 | Radiant | 4,600 | 3,954 | **−646** |
+
+Jesse ruled 2026-09-17 to re-read the B-102 source before changing anything. **Read** from
+`APPENDIX D - B-102 PID and Drawings.pdf`, the only B-102 source in the package:
+
+**1. The card's figures are a faithful transcription — of the wrong list.** Every B-102 tube figure
+traces to the `LISTE DE MATERIEL` on drawing **010-219D0002 rev 7** (p7): 6" items 8 + 22 =
+2,880 + 54 = **2,934 ft**, 8" items 29 + 36 = 347 + 347 = **694 ft**, 4" item 9 = **960 ft**. The
+card reproduces all three exactly. **But that drawing's title block reads `PORTION DES TUBES
+REMPLACEES — ELEVATION DE COTE OUEST/EST`** — *portion of tubes replaced*. Its companion
+010-219D0001 rev 7 (p8) carries the same title. **These are replacement quantities, not the coil.**
+A card built from them understates the heater by however much was not replaced, which is a mechanism
+that fits a −22% radiant shortfall and would not show up as an arithmetic error anywhere.
+
+**2. The card's ~91.7 ft radiant tube length is not on the drawing, and the drawing contradicts it.**
+010-219D0002 states tube lengths directly: `LONGUEUR POUR TUBES 6" ET 4"` = **56'-0"**, and
+`56'-5 1/2" LONGUEUR POUR TUBES 8"`. The card's radiant count of 32 is `2,934 ÷ 91.7`; at the
+**stated** 56 ft it is `2,934 ÷ 56 ≈ 52` tubes. The other two sections corroborate 56 ft and not
+91.7 — `694 ÷ 56.46 ≈ 12`, matching the card's stated 12 8" tubes, and `960 ÷ 56 ≈ 17` against its
+16 convection tubes. **Only the 6" radiant row uses 91.7, and only that row disagrees with Suncor.**
+The card's own history records the count being revised down from an elevation read of **44** to 32;
+52 sits nearer the discarded figure than the adopted one.
+
+**3. The card's "helical/wicket wrap" description does not match the elevation.** The card explains
+~92 ft as *"long but not implausible for a full wall-height helical wrap."* Drawing p7 is a long
+horizontal serpentine with tube runs dimensioned in the 55–59 ft range, not a helical coil. The
+92 ft figure appears to have been arrived at by dividing, then justified by a coil geometry the
+drawing does not show.
+
+**4. No full-coil BOM exists in the package.** Appendix D is 12 pages: a decoke sketch
+(010-067B0001 rev 2, radiant section — which independently corroborates soda ash and the filter
+press on this heater), the temporary-spool isometric (010-600B1474 rev 2, MK1–MK6, whose own
+material list is 4" and 6" only), and the two replacement drawings. Appendix B is a **plot plan**,
+not a BOM. **The document that would settle the true coil footage is not in the vault and was not
+in the RFQ package** — it would be the original assembly drawing, `57133-1 ASSEMBLY AND CONTROL
+DWG. — CRUDE OIL HEATER`, referenced in both title blocks and not supplied.
+
+**Two defects, both pushing the same way**, and they are independent: the tube length is wrong on one
+row, and the source list is a subset. Either alone narrows the gap to Suncor; together they may close
+it. **Nothing has been changed on the card** — Jesse's ruling was to read first, and the read has
+raised a bigger question than the one it was sent to answer. **B-1001 and B-151 were built from the
+same July ingest and have not been checked for either defect**, which is the batch audit
+[[2026-08-24-suncor-ingest-batch-audit-owed]] has been owed since August.
+
+**What would settle it:** drawing 57133-1 from Suncor, or — cheaper and already earned — the pig
+hours CAD26002 actually ran on B-102's radiant against its convection.
