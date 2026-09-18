@@ -23,9 +23,15 @@ Source: BP Job Note **40379977** Rev 0, revised 2024-08-23, prepared by Carlos S
 | Address | (not recorded) |
 | Gate / check-in | (not recorded) |
 | Badge / access requirements | (not recorded) |
-| Site contact | (not recorded) |
-| Site contact phone | Job Note lists 219.923.1160 ext. 2002; radio 14828 |
+| Site contact | **Biljana Pirosko**, BP Job Rep, TAR — Biljana.makarovska@bp.com |
+| Site contact phone | (219) 370-8087. Job Note also lists 219.923.1160 ext. 2002; radio 14828 |
+| Procurement contact | Gergo Mango — GBSWhitingProSupport@bp.com |
+| Ship-to | BP Whiting IN (LRAZ), 2815 Indianapolis Blvd, Whiting IN 46394 |
 | Escort requirements | (not recorded) |
+
+**⚠ Drug screening is a badging prerequisite.** BP does **not** provide drug screens on site. A third-party consortium is required — **DISA** (sales@disa.com, 281-673-2530) or **BCRC** (INFO@BCRCNET.COM, 219-764-9500). An existing program must be reviewed by the **HSE&C Superintendent** to be acceptable at Whiting, and the selected program must be notified to WhitingProcurementContracts@bp.com. Confirm this is in place before any mobilization here.
+
+**Safety.** All work per the latest BP "Safety Manual" including Procedure C-2, Contractor HSSE Policy. Copy available from the safety program provider (Safety Training and Tracing, Inc.) via Karen.Sophiea@bp.com.
 
 ---
 
@@ -57,6 +63,10 @@ Source: BP Job Note **40379977** Rev 0, revised 2024-08-23, prepared by Carlos S
 
 ## Notes
 
-**Rates.** No contracted rate schedule is recorded here. A governing BP contract exists and Jesse is pulling its rates and third-party markup tier — do not price future work at this site from the generic baseline table, and do not treat any figure from this job as a facility rate schedule until the contract is read.
+**Governing contract: Master Agreement CW10653** between BP Products North America Inc. and USA DeBusk LLC, named on PO 3001242213. It supersedes the proposal's terms and conditions — **the proposal governs price and scope only.** CW10653 itself is **not held in the vault**; stand-by cause, markup, liability and change-order mechanics all live there. Read it before answering any commercial question at this site.
+
+**Rates.** The charge-out schedule from [[DSP24078]] is the only rate set on file. It is **that quote's schedule, not a facility rate card** — a four-tier pumper structure (pigging $600 / smart pig $500 / rig $400 / stand-by $200), pigs at cost + 5%, mob/demob $3.25 per mile. Use it as precedent for the next BP Whiting bid, not as a contract schedule, and confirm against CW10653.
+
+**Quotes and jobs.** [[DSP24078]] — DSP# 24078 REV2, awarded under PO 3001242213, executing 2026-09-20.
 
 **Client naming.** The signing entity is `BP Products North America, Inc.`, business unit `Whiting Business Unit`, and drawings carry `WBU-` document prefixes. Legacy drawings are titled **Amoco Oil Company** / Amoco Project 6677, Pritchard Project 2537, Radco Job SJ-583 and SJ-421 — the 1986–1989 Isomerization conversion. Do not create a second facility record under Amoco, WBU, or Whiting Refinery.
