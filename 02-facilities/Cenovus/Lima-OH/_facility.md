@@ -39,7 +39,7 @@ Per the quotes, Cenovus provides ULSD for all equipment, clean water with a 1½"
 
 - **2024 TA:** DeBusk Services Group pigged at Lima 2024-09-13 to about 09-21 with 1 Trimax, a support truck and a filter press. The Cenovus timesheet export (`2024 Final cenovus pigging track report (1).xlsx`) books it to WBS "T17 2024 TA - CKR - DL - Exchangers (1)": **coker-unit exchangers, not a furnace**, so no heater card carries it. The same export covers other DeBusk divisions' hydroblast, vacuum and FCC catalyst scopes on the TA. No USA# appears in it.
 - **2026 TA bid, lost except 4 heaters.** An earlier bid covered 14 heaters and 3 pipelines (Jesse, 2026-09-19). DSP#25113 (2025-09-17, $717,111.81) covered 14 heaters + the coker + 2 pipelines. DSP#25113.1 (same date, post-job-walk revision with filtration, $757,542.81) dropped the pipelines. Neither was awarded as bid.
-- **2026 TA award:** [[DSP26013]], the 4 heaters below, executing from 2026-09-22.
+- **2026 TA award:** [[DSP26013]], job USA26046, the 4 heaters below, executing from 2026-09-22.
 
 **Heaters bid but not won.** Geometry for these lives only in DSP#25113.1's technical table (ID, length and metallurgy per section; its IDs proved wrong on the Vac). Drawing zips are under `_History\Cenovus Lima 1\` and `\Cenovus Lima 3\`.
 
