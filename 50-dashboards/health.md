@@ -13,7 +13,7 @@
 | Inbox median age | 16 d | < 14 d | FAIL |
 | Inbox oldest item | 29 d | < 30 d | ok |
 | Sweepable now | 5 | 0 | FAIL |
-| Days since last commit | 2 d | - | ok |
+| Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
 | Open decisions not in the queue | 0 | 0 | ok |
 | Awarded job within 21 d, no PO | 0 | 0 | ok |
