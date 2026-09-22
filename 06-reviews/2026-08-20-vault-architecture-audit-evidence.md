@@ -603,6 +603,31 @@ and neither is now being added to by anything on a timer.
 not fallen sharply with the generators off, the problem is structural rather than rate-based, and the answer
 is a smaller vault rather than a slower one.
 
+## Re-measure — 2026-09-22 (scheduled `vault-audit-remeasure`)
+
+**53% system work, against the 61% baseline — 20 system, 18 USADebusk, of 38 classifiable attended
+sessions** started 2026-08-21 → 09-21. Roughly unchanged: the diagnosis was structural, not rate-based.
+
+Method as briefed, with two deviations. File mtime was unusable — 208 of 210 top-level transcripts carry an
+mtime of 2026-09-11, a bulk touch — so sessions were dated by their first internal timestamp. Loop vs attended
+was decided on the **first user turn** carrying `scheduled-task name=`, as Audit 1 did; "anywhere in the file"
+misfiles 7 attended sessions that merely discussed a scheduled task. Result: 49 sessions since 08-21, 7 loop,
+42 attended. One (`SMOKE-CHECK`, 09-05) is a harness probe with no human and was dropped; three are neither
+category (Windows auto-login, and two Steady-Flux visualization side projects) and sit outside the ratio.
+Where the first message was a bare stand-by line ("prep this session", "plan mode, wait") the session's second
+turn classified it. Decision-queue rulings on domain content (DQ-017, DQ-026/027) count as USADebusk,
+matching the baseline's treatment of DQ-022. Reclassifying the borderline cases moves the figure between
+50% and 58% — never near "sharp". Subagent transcripts were not in scope.
+
+**Reading.** The timers stopped but the system work did not: of 30 classifiable sessions between 08-21 and
+09-08, 18 were system (60%), and most were chains one session wrote for the next — audit →
+verify-the-audit-numbers → handoff → DQ-031, regression replay → cleanup, handover → rate rollup. The generator
+moved from the scheduler into handoff notes. The only real drop is 09-09 → 09-21, **2 system of 8 (25%)**, and
+it tracks live bid and job demand (Suncor, Baytown F-801, Cenovus Lima ×4, Marathon Carson) rather than
+anything the vault changed — the structural reading again: business work displaces system work when it
+exists, and system work fills the gaps when it does not. Per this section's own stated conclusion, the answer
+is a smaller vault, not a slower one.
+
 ---
 
 ## Apply Log
