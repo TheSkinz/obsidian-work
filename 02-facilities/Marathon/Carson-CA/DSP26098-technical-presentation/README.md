@@ -12,7 +12,7 @@ tags: [Marathon, presentation]
 
 The Marathon Los Angeles Refinery (Carson Coker #1 and #2, Wilmington DCU H-101) technical-proposal presentation for the MPC evaluation team: 40 minutes plus 20 minutes of Q&A. Presented by Marshall Douglas, September 2026. The underlying bid is Jason Harman's DSP#26098 Rev 1 (lump sum, mob/demob waived, 60 decokes over five years).
 
-- `LAR_Technical_Proposal_Presentation.pptx`: the deck, 25 slides, with speaker notes on every slide (about 38 minutes). Slides 24 and 25 are the appendix: MPC references and the pump curves.
+- `LAR_Technical_Proposal_Presentation.pptx`: the deck, 26 slides, with speaker notes on every slide (about 38 minutes). Slides 25 and 26 are the appendix: MPC references and the pump curves. Revision 7 (2026-09-23) added Marshall Douglas's recommendations: an engineered-pig slide, the Marathon Detroit 70H1 case study, the 200+ years experience figure, and standardized-fleet wording.
 - `LAR_Technical_Proposal_Presentation.pdf`: a PDF render of the deck.
 - [[LAR_QA_Prep_Notes]]: internal presenter prep. It lists where the submitted proposal disagrees with itself or with the heater-card drawings, the CARB notes, and the framing settled in the 2026-09-23 audit. It isn't customer-facing.
 - `build/`: the pptxgenjs generator (`build.js`) and image prep scripts, plus the processed images in `img/`. To rebuild: `npm install pptxgenjs sharp react react-dom react-icons us-atlas topojson-client d3-geo`, then `node build.js`. `prep.js` and `prep3.js` read the original photos from a Claude session upload folder that no longer exists, so re-running those needs the originals re-pointed. `build.js` alone uses only `img/`.

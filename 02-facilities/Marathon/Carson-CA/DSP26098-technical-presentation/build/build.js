@@ -204,17 +204,50 @@ Step 6: Marathon witnesses the final gauge foam and signs off per pass (detail i
     txt(s, [
       { text: 'Step up ⅛" after each clean pass', options: { bullet: true, breakLine: true } },
       { text: 'Pig wear drives size & appendages', options: { bullet: true, breakLine: true } },
-      { text: 'Body length set for bends & mule ears', options: { bullet: true } },
-    ], { x: 9.05, y: 3.8, w: 3.5, h: 0.95, fontSize: 12, color: C.soft, valign: 'top', paraSpaceAfter: 4 });
-    s.addShape(pres.shapes.RECTANGLE, { x: 9.02, y: 4.83, w: 3.44, h: 3.4 * 437 / 900 + 0.04, fill: { color: C.char2 }, line: { color: C.char2 } });
-    s.addImage({ path: IMG + 'pigs_lineup.jpg', x: 9.04, y: 4.85, w: 3.4, h: 3.4 * 437 / 900 });
-    txt(s, 'Real pigs from a USA DeBusk job', { x: 9.04, y: 6.55, w: 3.4, h: 0.22, fontSize: 9, italic: true, color: C.soft });
+      { text: 'Body length set for bends & mule ears', options: { bullet: true, breakLine: true } },
+      { text: 'Gauge foam sets the starting size', options: { bullet: true, breakLine: true } },
+      { text: 'Line-size foam witnessed at sign-off', options: { bullet: true } },
+    ], { x: 9.05, y: 4.0, w: 3.5, h: 2.5, fontSize: 13, color: C.soft, valign: 'top', paraSpaceAfter: 12 });
     footer(s, false);
     s.addNotes(`[~2.5 min] RFI item SP-2 asked for a pig progression plan per heater. This is it.
 The ceiling is fixed by our sizing rule: smallest tube ID plus a quarter inch. On the Carson cokers the governing ID is 3.826" (4" Sch 80), so the maximum is 4.076". On H-101 the ID is 4.026", so the maximum is 4.276".
-The photo in the card is a real set from one of our jobs: foam, carbide-studded, then pigs showing wear.
 We don't pick a starting size in advance. The first run is a gauge foam: how it comes out of the pass tells us how much the bore is restricted, and that sets the initial pig size. From there we step up 1/8" at a time, only after a clean pass at the current size, until we reach line size and then the maximum. Wear marks on a pig show where coke remains, and we change size and appendage type from that evidence.
 If asked about short-radius bends or mule ears: pig body length and flexibility are selected for the bend geometry, not just the diameter.`);
+  }
+
+  // =====================================================================
+  // 5b. ENGINEERED DECOKING PIGS
+  {
+    const s = pres.addSlide();
+    bg(s, C.white);
+    chip(s, '01', 'Methodology', false);
+    title(s, 'Engineered decoking pigs, matched to the coke', false);
+    sub(s, 'The most diverse selection of engineered decoking pigs in the world', false);
+    // photo panel
+    s.addShape(pres.shapes.RECTANGLE, { x: 0.6, y: 2.25, w: 4.0, h: 4.5, fill: { color: C.dark }, line: { color: C.dark } });
+    s.addImage({ path: IMG + 'pigs_lineup.jpg', x: 0.85, y: 2.5, w: 3.5, h: 3.5 * 437 / 900 });
+    s.addImage({ path: IMG + 'pigs_three.jpg', x: 1.15, y: 4.35, w: 2.9, h: 2.9 * 441 / 720 });
+    txt(s, 'Foam, carbide-studded and worn pigs from USA DeBusk jobs', { x: 0.85, y: 6.2, w: 3.5, h: 0.4, fontSize: 9.5, italic: true, color: C.soft, valign: 'top' });
+    const cards = [
+      ['FaLayerGroup', 'Urethane body, foam core', 'Flexes through return bends while flow bypasses the pig and carries debris away'],
+      ['FaSlidersH', 'Durometer chosen per job', 'Softer compounds compress through tight bends; harder compounds remove coke aggressively'],
+      ['FaDotCircle', 'Bald or studded', 'Carbide studs as standard, with alternate stud materials matched to the tube metallurgy'],
+      ['FaHammer', 'Heavy-coke designs', 'High-durometer, fully studded pigs brought in when pig wear shows hard, heavy coke'],
+    ];
+    for (let i = 0; i < cards.length; i++) {
+      const [ic, h, d] = cards[i];
+      const x = 4.95 + (i % 2) * 3.95, y = 2.25 + Math.floor(i / 2) * 2.3;
+      s.addShape(pres.shapes.RECTANGLE, { x, y, w: 3.78, h: 2.15, fill: { color: C.light }, line: { color: C.light } });
+      await iconCircle(s, ic, x + 0.28, y + 0.28, 0.66, C.dark, C.gold);
+      txt(s, h, { x: x + 1.1, y: y + 0.3, w: 2.55, h: 0.62, fontSize: 15, bold: true, color: C.text, valign: 'middle' });
+      txt(s, d, { x: x + 0.28, y: y + 1.12, w: 3.25, h: 0.9, fontSize: 12, color: C.muted, valign: 'top' });
+    }
+    footer(s, false);
+    s.addNotes(`[~1.5 min] The pig does the work, so pig selection matters as much as the pumper.
+We don't build our own pigs. We source engineered decoking pigs from specialist manufacturers, so we're never limited to one design and can match the pig to the coil and the coke.
+(Presenter: this is where to talk about our supplier base and why we buy rather than build.)
+Walk the four cards: urethane body over a foam core lets flow bypass the pig and carry coke away; durometer is chosen for each job, softer to get through tight bends, harder to cut hard coke; studs are carbide as standard, with other stud materials when the tube metallurgy calls for it; and when the pig wear shows hard, heavy coke, we move to high-durometer, fully studded designs.
+The photos are real pigs from our jobs, including the wear marks that tell us what's left in the pass.`);
   }
 
   // =====================================================================
@@ -351,7 +384,7 @@ Durations come from footage and our historical performance. Actual hardness and 
     });
     txt(s, 'Same crew leadership, same equipment and same procedures every visit: each decoke builds on the last one\'s records.', { x: 0.6, y: 6.1, w: 8.9, h: 0.6, fontSize: 14, italic: true, color: C.soft, valign: 'top' });
     footer(s, true);
-    s.addNotes(`[~1.5 min] The dots show one year of the program; exact dates follow Marathon's run-length and turnaround plan, not ours.
+    s.addNotes(`[~1 min] The dots show one year of the program; exact dates follow Marathon's run-length and turnaround plan, not ours.
 12 decokes a year, 60 over the term, 2,790 project hours, and mobilization/demobilization waived because LAR is serviced as a program.
 The real value of a recurring program: each decoke on the same heater builds on the last. We keep heater-specific records of pig sizes, hours and problem spots, so every visit starts smarter than the last.`);
   }
@@ -422,9 +455,16 @@ Every technician is USA DeBusk-certified, selected by heater-type experience, wi
     };
     crew(cx - 2.2 - 1.6, 'Day shift', '1 supervisor, 2 operators');
     crew(cx + 2.2 - 1.6, 'Night shift', '1 supervisor, 1 operator');
+    [['200+', 'years of combined pigging & decoking experience'], ['15+', 'years self-performing heater pigging']].forEach(([n, l], i) => {
+      const y = 1.9 + i * 1.5;
+      s.addShape(pres.shapes.RECTANGLE, { x: 0.6, y, w: 3.6, h: 1.3, fill: { color: C.char }, line: { color: C.gold, width: 1 } });
+      txt(s, n, { x: 0.8, y: y + 0.1, w: 3.2, h: 0.65, fontSize: 34, bold: true, color: C.gold, valign: 'middle' });
+      txt(s, l, { x: 0.8, y: y + 0.75, w: 3.2, h: 0.45, fontSize: 11.5, color: C.white, valign: 'top' });
+    });
     txt(s, 'Site org chart finalized at award', { x: 0.6, y: 6.45, w: 2.5, h: 0.3, fontSize: 10, italic: true, color: C.grey });
     footer(s, true);
-    s.addNotes(`[~1 min] Leadership line: Anthony Fazio, VP Operations; me as Director of Pigging Operations; Travis Trenholm as the project manager on every LAR occurrence. Jason Harman is the commercial point of contact.
+    s.addNotes(`[~1 min] Our team brings more than 200 years of combined pigging and decoking experience, and the company has self-performed heater pigging for over 15 years.
+Leadership line: Anthony Fazio, VP Operations; me as Director of Pigging Operations; Travis Trenholm as the project manager on every LAR occurrence. Jason Harman is the commercial point of contact.
 One point of contact manages work flow and daily updates to Marathon.
 Leadership resumes were included with the RFI response; the full site org chart is issued at award.`);
   }
@@ -439,6 +479,7 @@ Leadership resumes were included with the RFI response; the full site org chart 
     s.addImage({ path: IMG + 'fade_left.png', x: 0, y: 0, w: 10.5, h: H });
     chip(s, '04', 'Equipment & technology', true);
     title(s, 'The TriMax triple pumper', true, { w: 7 });
+    sub(s, '6 identical TriMax units, 18 engines: one standardized fleet', true, { w: 7 });
     const specs = [
       ['FaCogs', 'Three independent pump systems', 'Closed-loop, bi-directional; 50% more productive than a twin pumper'],
       ['FaDesktop', 'Automated HMI control', 'Three 17" touchscreens, automated digital pig logs'],
@@ -448,7 +489,7 @@ Leadership resumes were included with the RFI response; the full site org chart 
     ];
     for (let i = 0; i < specs.length; i++) {
       const [ic, h, d] = specs[i];
-      const y = 1.95 + i * 0.83;
+      const y = 2.2 + i * 0.8;
       await iconCircle(s, ic, 0.6, y, 0.62, C.gold, C.dark);
       txt(s, h, { x: 1.4, y: y - 0.02, w: 5.6, h: 0.35, fontSize: 16, bold: true, color: C.white });
       txt(s, d, { x: 1.4, y: y + 0.32, w: 5.6, h: 0.3, fontSize: 12, color: C.soft });
@@ -466,7 +507,7 @@ Leadership resumes were included with the RFI response; the full site org chart 
       txt(s, 'Effective max', { x: bx + 440 * sc, y: by - 0.24, w: 170 * sc, h: 0.2, fontSize: 9.5, bold: true, color: 'E0B000', align: 'center' });
     }
     footer(s, true);
-    s.addNotes(`[~2 min] This is the core of our service. Three independent pump assemblies in one trailer, each with its own operator station, so three passes can run at the same time. At LAR we pig both Carson passes together and H-101 in pairs, which leaves the third pump as an on-board spare. Against a dual unit the triple raises productivity by about 50%, and on a two-pass Carson heater the third pump is 100% spare capacity: if one pump goes down, the job doesn't stop.
+    s.addNotes(`[~2 min] This is the core of our service, and every one of our six TriMax units is the same build: 18 identical engines, the same pumps, the same controls. Any crew can run any unit, spares fit every unit, and the procedures are the same everywhere. Three independent pump assemblies in one trailer, each with its own operator station, so three passes can run at the same time. At LAR we pig both Carson passes together and H-101 in pairs, which leaves the third pump as an on-board spare. Against a dual unit the triple raises productivity by about 50%, and on a two-pass Carson heater the third pump is 100% spare capacity: if one pump goes down, the job doesn't stop.
 The spare pump can also propel a smart pig, so inspection runs don't need extra equipment.
 Each operator station has a 17" automated HMI touchscreen, and pig logs are recorded digitally (next slide).
 Other features built into the unit: temperature-controlled pig compartments so the pigs keep their cleaning characteristics, antifoam injection, a coke transfer chute, and guided-radar tank level indicators. On-board tankage is 3,000 gal clean and 2,000 gal return.
@@ -520,7 +561,7 @@ The takeaway for Marathon: every decision on a pass is made from live data, and 
     chip(s, '04', 'Equipment & technology', false);
     title(s, 'California-ready, CARB-registered fleet', false);
     sub(s, 'CARB Statewide Portable Equipment Registration (PERP); certificates shown', false);
-    const st = [['6', 'SCAQMD-ready triple-pass units'], ['18', 'registered pumping engines'], ['Tier 4', 'engines (blue placard)'], ['0.015', 'g/bhp-hr diesel PM emission factor']];
+    const st = [['6', 'identical TriMax units, SCAQMD-ready'], ['18', 'registered pumping engines'], ['Tier 4', 'engines (blue placard)'], ['0.015', 'g/bhp-hr diesel PM emission factor']];
     st.forEach(([n, l], i) => {
       const x = 0.6 + (i % 2) * 3.35, y = 2.3 + Math.floor(i / 2) * 1.55;
       txt(s, n, { x, y, w: 3.1, h: 0.8, fontSize: 40, bold: true, color: C.text });
@@ -544,7 +585,7 @@ The takeaway for Marathon: every decision on a pass is made from live data, and 
       txt(s, l, { x: x + 0.82, y: 5.68, w: 1.38, h: 0.82, fontSize: 11.5, color: C.text, valign: 'middle' });
     }
     footer(s, false);
-    s.addNotes(`[~1.5 min] California compliance is a gate for LAR, and we've cleared it. Every TriMax engine carries a CARB Statewide Portable Equipment Registration: certified Cummins QSL9 engines, Tier 4 blue placard, a diesel particulate emission factor of 0.015 g/bhp-hr. Six triple-pass units and 18 engines are registered for SCAQMD work, so no rental or swap-in equipment is needed to work in the Basin.
+    s.addNotes(`[~1 min] California compliance is a gate for LAR, and we've cleared it. Every TriMax engine carries a CARB Statewide Portable Equipment Registration: certified Cummins QSL9 engines, Tier 4 blue placard, a diesel particulate emission factor of 0.015 g/bhp-hr. Six triple-pass units and 18 engines are registered for SCAQMD work, so no rental or swap-in equipment is needed to work in the Basin.
 Everything needed arrives with the rig: support unit, 300# launchers and receivers, tested and certified hard and flex pipe connecting our equipment, all pigs and foam swabs. Closed-loop filtration is optional at the proposal rate: it runs continuously, captures coke fines from the effluent, and recycles clean water. That can save thousands of gallons of water a shift.`);
   }
 
@@ -614,7 +655,7 @@ This is also why smart pig inspections after our cleans usually get good data on
         { x: x + 0.3, y: 3.6, w: 3.35, h: 2.9, fontSize: 13, color: C.text, valign: 'top', paraSpaceAfter: 12 });
     }
     footer(s, false);
-    s.addNotes(`[~1.5 min] QA/QC runs through the whole job, not just the end.
+    s.addNotes(`[~1 min] QA/QC runs through the whole job, not just the end.
 Before: walkdown, coil data check, JSA/permits/isolation, pig progression staged by heater.
 During: work is documented in the job book with daily reports, pig logs and JSAs. One point of contact manages the work flow and daily updates to Marathon. Flow tests before and after at the same rate give an objective comparison.
 Close-out: per-pass sign-off, final pig size recorded for each pass, the job book, and a post-job review. On a recurring program, that record is what makes the next decoke on the same heater faster.
@@ -724,9 +765,9 @@ Full detail is in the safety manual and SSHASP submitted with the RFI.`);
     title(s, 'What sets USA DeBusk apart', true, { w: 8.4 });
     const cards = [
       ['FaIndustry', 'Self-performed scope', 'Pigging, decoking and hydroblasting with our own equipment and SCAQMD rigs: one contractor, no subs'],
-      ['FaCogs', 'Largest triple-pass fleet', 'The largest triple-pass pumper fleet in the world, with a spare pump on board even on a 2-pass heater'],
-      ['FaDatabase', 'Data-driven execution', 'Durations built from recorded actuals across our heater history; digital pig logs and job reports'],
-      ['FaSyncAlt', 'Best practices shared', 'Lessons-learned reviews feed toolbox talks, training updates and post-job reviews with Marathon'],
+      ['FaCogs', 'Largest standardized fleet', '6 identical TriMax units, 18 engines, with a spare pump on board even on a 2-pass heater'],
+      ['FaDotCircle', 'Widest pig selection', 'Engineered decoking pigs matched to each coil and each coke condition'],
+      ['FaDatabase', 'Data-driven, shared', 'Durations built from recorded actuals; lessons learned reviewed with Marathon after every job'],
     ];
     for (let i = 0; i < cards.length; i++) {
       const [ic, h, d] = cards[i];
@@ -737,11 +778,11 @@ Full detail is in the safety manual and SSHASP submitted with the RFI.`);
       txt(s, d, { x: x + 0.3, y: y + 1.18, w: 3.6, h: 0.9, fontSize: 12.5, color: C.soft, valign: 'top' });
     }
     footer(s, true);
-    s.addNotes(`[~2 min] Four differentiators.
+    s.addNotes(`[~2 min] Four differentiators, backed by more than 200 years of combined experience on our team.
 Self-performed: pigging, decoking and hydroblasting with in-house equipment and SCAQMD rigs, so one contractor covers the full scope without subs.
-Triple-pass: we run the largest triple-pass pigging pumper fleet in the world. The TriMax runs up to three passes at once; on LAR's 2-pass heaters that third pump is an on-board spare, so a pump failure doesn't stop the job, and it can also drive a smart pig. We also offer closed-loop filtration and smart-pig support, so Marathon deals with one contractor.
-Data-driven: our durations aren't guesses. They're built from recorded actuals on the heaters we've cleaned, and every job produces pig logs and a job report that feed the next estimate. On a 60-decoke program that compounds.
-Best practices: captured in lessons-learned reviews and shared through toolbox talks, training updates and post-job reviews with the client. On LAR, Marathon sits in that loop.`);
+Fleet: we run the largest triple-pass pigging fleet in the world, and it's standardized: six identical TriMax units, 18 engines. The TriMax runs up to three passes at once; on LAR's 2-pass heaters that third pump is an on-board spare, so a pump failure doesn't stop the job, and it can also drive a smart pig. We also offer closed-loop filtration and smart-pig support, so Marathon deals with one contractor.
+Pigs: the widest selection of engineered decoking pigs, matched to the coil and the coke (slide 6).
+Data-driven and shared: our durations are built from recorded actuals, every job produces pig logs and a job report, and lessons learned are reviewed with the client after each job. On a 60-decoke program that compounds, and Marathon sits in that loop.`);
   }
 
   // =====================================================================
@@ -773,16 +814,16 @@ The contact list is in the appendix and in the leave-behind. We'd encourage the 
     chip(s, '09', 'References & case studies', false);
     title(s, 'Coker heater case studies & lessons learned', false);
     const cs = [
+      ['Marathon Detroit, MI: 70H1 Coker', 'Decoked September 2024 and September 2026',
+        [['6', 'passes, 3 cells'], ["15,156'", 'coil footage'], ['2', 'TriMax units']],
+        'All six passes, convection and radiant, pigged simultaneously on two TriMax units.',
+        'Two decokes on the same coker, two years apart: MPC brought us back.', 'Scope', 'Result'],
       ['CHS McPherson, KS: Coker HF-0012', '6-pass coker heater, planned decoke, 2025',
         [["12,036'", 'coil footage'], ['6', 'passes'], ['85 h', 'pigging']],
         'Hard coke held pigs in the radiant section.',
-        'Stage heavy-duty scraper pigs for the radiant from day one, not as a mid-job change.'],
-      ['Phillips 66 Ponca City, OK: H-28 & H-29', 'Two coker heaters, emergency 2024 vs planned 2025',
-        [['172 h', 'emergency callout'], ['131 h', 'planned decoke'], ['−24%', 'hours']],
-        'Same two heaters, cleaned once as an unplanned callout and once on a planned schedule.',
-        'A planned cadence lets rig-in, pig sets and crew be pre-staged, the model we propose for LAR.'],
+        'Stage heavy-duty scraper pigs for the radiant from day one, not as a mid-job change.', 'Challenge', 'Lesson learned'],
     ];
-    cs.forEach(([h, d, stats, ch, lesson], i) => {
+    cs.forEach(([h, d, stats, ch, lesson, chL, lesL], i) => {
       const x = 0.6 + i * 6.17, y = 1.95, w = 5.96;
       s.addShape(pres.shapes.RECTANGLE, { x, y, w, h: 4.8, fill: { color: C.light }, line: { color: C.light } });
       txt(s, h, { x: x + 0.35, y: y + 0.3, w: w - 0.7, h: 0.4, fontSize: 17, bold: true, color: C.text });
@@ -792,16 +833,16 @@ The contact list is in the appendix and in the leave-behind. We'd encourage the 
         txt(s, n, { x: sx, y: y + 1.2, w: 1.75, h: 0.65, fontSize: 28, bold: true, color: C.text });
         txt(s, l, { x: sx, y: y + 1.85, w: 1.75, h: 0.3, fontSize: 11, color: C.muted });
       });
-      txt(s, [{ text: 'Challenge  ', options: { bold: true, color: C.text } }, { text: ch, options: { color: C.muted } }],
+      txt(s, [{ text: chL + '  ', options: { bold: true, color: C.text } }, { text: ch, options: { color: C.muted } }],
         { x: x + 0.35, y: y + 2.45, w: w - 0.7, h: 0.8, fontSize: 13, valign: 'top' });
       s.addShape(pres.shapes.RECTANGLE, { x: x + 0.35, y: y + 3.35, w: w - 0.7, h: 1.2, fill: { color: C.dark }, line: { color: C.dark } });
-      txt(s, [{ text: 'Lesson learned  ', options: { bold: true, color: C.gold } }, { text: lesson, options: { color: C.white } }],
+      txt(s, [{ text: lesL + '  ', options: { bold: true, color: C.gold } }, { text: lesson, options: { color: C.white } }],
         { x: x + 0.55, y: y + 3.45, w: w - 1.1, h: 1.0, fontSize: 13, valign: 'middle' });
     });
     footer(s, false);
-    s.addNotes(`[~1.5 min] Two coker examples from our job records.
-First: CHS McPherson, coker heater HF-0012, six passes, just over 12,000 feet of coil, 85 pigging hours on a planned decoke. The radiant held hard coke that stopped standard pigs. Lesson: on a coker, stage the heavy-duty pig set for the radiant from the start. We'll do that at LAR on every occurrence.
-Second: Phillips 66 Ponca City, coker heaters H-28 and H-29, cleaned once as an emergency callout (172 hours) and a year later on a planned schedule (131 hours). The planned job pre-staged rig-in, pigs and crew. That's the model of a recurring program like LAR's.`);
+    s.addNotes(`[~1.5 min] Two coker examples from our job records, starting with one of yours.
+First: Marathon Detroit, the 70H1 coker. Six passes across three cells, about 15,000 feet of convection and radiant coil. We ran two TriMax units and pigged all six passes at once, in September 2024 and again this month, September 2026. Same coker, two years apart: Detroit brought us back. Nate Lajiness at Detroit is on our reference list.
+Second: CHS McPherson, coker heater HF-0012, six passes, just over 12,000 feet of coil, 85 pigging hours on a planned decoke. The radiant held hard coke that stopped standard pigs. Lesson: on a coker, stage the heavy-duty pig set for the radiant from the start. We'll do that at LAR on every occurrence.`);
   }
 
   // =====================================================================
@@ -814,7 +855,7 @@ Second: Phillips 66 Ponca City, coker heaters H-28 and H-29, cleaned once as an 
     chip(s, '10', 'Why USA DeBusk', true);
     title(s, 'Why USA DeBusk for LAR', true, { w: 7.5, fontSize: 36 });
     const pts = [
-      ['Proven on MPC heaters', '9 MPC references; projects for every major North American refiner'],
+      ['Proven experience', '200+ years combined; 9 MPC references, including Detroit\'s coker'],
       ['California-ready', 'CARB-registered Tier 4 fleet, Southern California footprint'],
       ['Resilient execution', 'Triple-pass TriMax: a spare pump on every 2-pass heater'],
       ['Verified clean', '4-point verification and joint sign-off on every pass'],
@@ -847,12 +888,12 @@ Second: Phillips 66 Ponca City, coker heaters H-28 and H-29, cleaned once as an 
     ], { x: 0.6, y: 5.3, w: 12.13, h: 0.8, fontSize: 14, color: C.white, align: 'center', paraSpaceAfter: 6 });
     s.addNotes(`[20 min reserved for Q&A]
 Likely questions and where the answer lives:
-- "How do you handle a plugged pass?" Bi-directional flow and stepwise pig sizing (slides 4–5); pre-job walkdown (slide 15).
+- "How do you handle a plugged pass?" Bi-directional flow and stepwise pig sizing (slides 4–6); pre-job walkdown (slide 16).
 - "What if duration overruns?" Lump sum per occurrence. Pricing excludes additional fouling, unknown repairs and stoppages outside our control; those, plus stand-by not caused by USA DeBusk, are billed T&M at the proposal rates.
-- "Local presence?" Slide 16, per RFI GD-1.
-- "CARB registration?" Slide 13: every TriMax carries statewide PERP registration.
+- "Local presence?" Slide 17, per RFI GD-1.
+- "CARB registration?" Slide 14: every TriMax carries statewide PERP registration.
 - "Filtration?" Available at $150/hr per the rate sheet.
-- "Pump curves / pressure capability?" Appendix slide 25 (Waterous CMU curves). Normal 150–300 psi; rated 600, 500–550 effective after valve losses.`);
+- "Pump curves / pressure capability?" Appendix slide 26 (Waterous CMU curves). Normal 150–300 psi; rated 600, 500–550 effective after valve losses.`);
   }
 
   // =====================================================================
@@ -882,7 +923,7 @@ Likely questions and where the answer lives:
       .concat(refs.map((r, i) => r.map((c, k) => ({ text: c, options: { fill: { color: i % 2 ? 'F7F7F7' : C.white }, color: C.text, fontSize: 10, bold: k === 0 } }))));
     s.addTable(rows, { x: 0.6, y: 1.75, w: 12.13, colW: [2.0, 2.2, 3.1, 1.55, 3.28], rowH: 0.33, fontFace: FONT, border: { type: 'solid', pt: 0.5, color: C.rule }, valign: 'middle', margin: [0, 0.08, 0, 0.08] });
     footer(s, false);
-    s.addNotes(`Leave-behind reference list. Not presented; point to it from slide 20 (MPC map) if asked.`);
+    s.addNotes(`Leave-behind reference list. Not presented; point to it from slide 21 (MPC map) if asked.`);
   }
 
   // =====================================================================
