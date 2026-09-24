@@ -229,9 +229,9 @@ If asked about short-radius bends or mule ears: pig body length and flexibility 
     s.addImage({ path: IMG + 'pigs_three.jpg', x: 1.15, y: 4.35, w: 2.9, h: 2.9 * 441 / 720 });
     txt(s, 'Foam, carbide-studded and worn pigs from USA DeBusk jobs', { x: 0.85, y: 6.2, w: 3.5, h: 0.4, fontSize: 9.5, italic: true, color: C.soft, valign: 'top' });
     const cards = [
-      ['FaLayerGroup', 'Urethane body, foam core', 'Flexes through return bends while flow bypasses the pig and carries debris away'],
-      ['FaSlidersH', 'Durometer chosen per job', 'Softer compounds compress through tight bends; harder compounds remove coke aggressively'],
-      ['FaDotCircle', 'Bald or studded', 'Carbide studs as standard, with alternate stud materials matched to the tube metallurgy'],
+      ['FaLayerGroup', 'Soft-core and hard-core designs', 'Urethane or high-density foam bodies, plus foam pushers for flushing and proving the pass'],
+      ['FaSlidersH', 'A full range of durometers', 'Soft to hard compounds, chosen to compress through tight bends or cut hard coke'],
+      ['FaDotCircle', 'Bald or studded', 'Tungsten carbide, hardened-steel and stainless stud options, matched to the tube metallurgy'],
       ['FaHammer', 'Heavy-coke designs', 'High-durometer, fully studded pigs brought in when pig wear shows hard, heavy coke'],
     ];
     for (let i = 0; i < cards.length; i++) {
@@ -244,9 +244,8 @@ If asked about short-radius bends or mule ears: pig body length and flexibility 
     }
     footer(s, false);
     s.addNotes(`[~1.5 min] The pig does the work, so pig selection matters as much as the pumper.
-We don't build our own pigs. We source engineered decoking pigs from specialist manufacturers, so we're never limited to one design and can match the pig to the coil and the coke.
-(Presenter: this is where to talk about our supplier base and why we buy rather than build.)
-Walk the four cards: urethane body over a foam core lets flow bypass the pig and carry coke away; durometer is chosen for each job, softer to get through tight bends, harder to cut hard coke; studs are carbide as standard, with other stud materials when the tube metallurgy calls for it; and when the pig wear shows hard, heavy coke, we move to high-durometer, fully studded designs.
+(Presenter: this is where to talk about our supplier base and why we source rather than build.)
+Walk the four cards. Bodies come soft-core or hard-core, in urethane or high-density foam, plus medium and hard foam pushers. Durometers run across a full range (for example 40, 60 and 80) so we can compress through tight bends or cut hard coke. Pigs run bald or studded: tungsten carbide, hardened steel in several Brinell grades (200, 400, 600 BHN), or stainless where the tube metallurgy calls for it. And when pig wear shows hard, heavy coke, we move to high-durometer, fully studded designs.
 The photos are real pigs from our jobs, including the wear marks that tell us what's left in the pass.`);
   }
 
@@ -829,7 +828,7 @@ The contact list is in the appendix and in the leave-behind. We'd encourage the 
       ['Marathon Detroit, MI: 70H1 Coker', 'Decoked September 2024 and September 2026',
         [['6', 'passes, 3 cells'], ["15,156'", 'coil footage'], ['2', 'TriMax units']],
         'All six passes, convection and radiant, pigged simultaneously on two TriMax units.',
-        'Two decokes on the same coker, two years apart: MPC brought us back.', 'Scope', 'Result'],
+        'Efficient, on schedule and safe, both times. MPC brought us back.', 'Scope', 'Result'],
       ['CHS McPherson, KS: Coker HF-0012', '6-pass coker heater, planned decoke, 2025',
         [["12,036'", 'coil footage'], ['6', 'passes'], ['85 h', 'pigging']],
         'Hard coke held pigs in the radiant section.',
@@ -853,7 +852,7 @@ The contact list is in the appendix and in the leave-behind. We'd encourage the 
     });
     footer(s, false);
     s.addNotes(`[~1.5 min] Two coker examples from our job records, starting with one of yours.
-First: Marathon Detroit, the 70H1 coker. Six passes across three cells, about 15,000 feet of convection and radiant coil. We ran two TriMax units and pigged all six passes at once, in September 2024 and again this month, September 2026. Same coker, two years apart: Detroit brought us back. Nate Lajiness at Detroit is on our reference list.
+First: Marathon Detroit, the 70H1 coker. Six passes across three cells, about 15,000 feet of convection and radiant coil. We ran two TriMax units and pigged all six passes at once, in September 2024 and again this month, September 2026. Both decokes were efficient, on schedule and safe, and Detroit brought us back two years later for the same coker. Nate Lajiness at Detroit is on our reference list.
 Second: CHS McPherson, coker heater HF-0012, six passes, just over 12,000 feet of coil, 85 pigging hours on a planned decoke. The radiant held hard coke that stopped standard pigs. Lesson: on a coker, stage the heavy-duty pig set for the radiant from the start. We'll do that at LAR on every occurrence.`);
   }
 
