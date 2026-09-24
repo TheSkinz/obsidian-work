@@ -224,10 +224,9 @@ If asked about short-radius bends or mule ears: pig body length and flexibility 
     title(s, 'Engineered decoking pigs, matched to the coke', false);
     sub(s, 'The most diverse selection of engineered decoking pigs in the world', false);
     // photo panel
-    s.addShape(pres.shapes.RECTANGLE, { x: 0.6, y: 2.25, w: 4.0, h: 4.5, fill: { color: C.dark }, line: { color: C.dark } });
-    s.addImage({ path: IMG + 'pigs_lineup.jpg', x: 0.85, y: 2.5, w: 3.5, h: 3.5 * 437 / 900 });
-    s.addImage({ path: IMG + 'pigs_three.jpg', x: 1.15, y: 4.35, w: 2.9, h: 2.9 * 441 / 720 });
-    txt(s, 'Foam, carbide-studded and worn pigs from USA DeBusk jobs', { x: 0.85, y: 6.2, w: 3.5, h: 0.4, fontSize: 9.5, italic: true, color: C.soft, valign: 'top' });
+    s.addShape(pres.shapes.RECTANGLE, { x: 0.6, y: 2.25, w: 4.0, h: 4.5, fill: { color: C.white }, line: { color: C.rule, width: 1 } });
+    s.addImage({ path: IMG + 'pigs_new.jpg', x: 0.85, y: 3.05, w: 3.5, h: 3.5 * 215 / 330 });
+    txt(s, 'New engineered decoking pigs', { x: 0.85, y: 6.1, w: 3.5, h: 0.3, fontSize: 10.5, italic: true, color: C.muted, align: 'center' });
     const cards = [
       ['FaLayerGroup', 'Soft-core and hard-core designs', 'Urethane or high-density foam bodies, plus foam pushers for flushing and proving the pass'],
       ['FaSlidersH', 'A full range of durometers', 'Soft to hard compounds, chosen to compress through tight bends or cut hard coke'],
@@ -246,7 +245,7 @@ If asked about short-radius bends or mule ears: pig body length and flexibility 
     s.addNotes(`[~1.5 min] The pig does the work, so pig selection matters as much as the pumper.
 (Presenter: this is where to talk about our supplier base and why we source rather than build.)
 Walk the four cards. Bodies come soft-core or hard-core, in urethane or high-density foam, plus medium and hard foam pushers. Durometers run across a full range (for example 40, 60 and 80) so we can compress through tight bends or cut hard coke. Pigs run bald or studded: tungsten carbide, hardened steel in several Brinell grades (200, 400, 600 BHN), or stainless where the tube metallurgy calls for it. And when pig wear shows hard, heavy coke, we move to high-durometer, fully studded designs.
-The photos are real pigs from our jobs, including the wear marks that tell us what's left in the pass.`);
+The photo shows new pigs: soft and hard bodies, bald and studded.`);
   }
 
   // =====================================================================
@@ -559,7 +558,7 @@ Power is a Cummins QSL9 at 333 bhp, Tier 4, CARB-registered. California complian
       txt(s, d, { x: 8.55, y: y + 0.28, w: 4.2, h: 0.45, fontSize: 11.5, color: C.soft, valign: 'top' });
     });
     footer(s, true);
-    s.addNotes(`[~1.5 min] This is the operator screen from a TriMax station, the same software every LAR pass runs on.
+    s.addNotes(`[~1 min] This is the operator screen from a TriMax station, the same software every LAR pass runs on.
 Walk the numbers: (1) the trend at the bottom plots pressure ahead of the pig, pressure behind it, and flow rate. When the pig meets coke you see the spike, and that's the "sensor data" indicator in our cleanliness verification. (2) Live GPM and psi. (3) Clean and effluent tank levels from guided-radar indicators. (4) Setpoint alarms; this one shows a clean-tank-low alert. (5) Pass completion and the pig run sheet and data sheet, so the pig log builds itself. (6) Each pass has its own station: left, center, right.
 The takeaway for Marathon: every decision on a pass is made from live data, and the record is automatic.`);
   }
@@ -597,7 +596,51 @@ The takeaway for Marathon: every decision on a pass is made from live data, and 
     }
     footer(s, false);
     s.addNotes(`[~1 min] California compliance is a gate for LAR, and we've cleared it. Every TriMax engine carries a CARB Statewide Portable Equipment Registration: certified Cummins QSL9 engines, Tier 4 blue placard, a diesel particulate emission factor of 0.015 g/bhp-hr. Six triple-pass units and 18 engines are registered for SCAQMD work, so no rental or swap-in equipment is needed to work in the Basin.
-Everything needed arrives with the rig: support unit, 300# launchers and receivers, tested and certified hard and flex pipe connecting our equipment, all pigs and foam swabs. Closed-loop filtration is optional at the proposal rate: it runs continuously, captures coke fines from the effluent, and recycles clean water. That can save thousands of gallons of water a shift.`);
+Everything needed arrives with the rig: support unit, 300# launchers and receivers, tested and certified hard and flex pipe connecting our equipment, all pigs and foam swabs. Closed-loop filtration is optional at the proposal rate: it runs continuously, captures coke fines from the effluent, and recycles clean water. That can save thousands of gallons of water a shift; the next slide covers it.`);
+  }
+
+  // =====================================================================
+  // 12b. OPTIONAL CLOSED-LOOP FILTRATION
+  {
+    const s = pres.addSlide();
+    bg(s, C.white);
+    chip(s, '04', 'Equipment & technology', false);
+    title(s, 'Optional closed-loop filtration', false);
+    sub(s, 'Runs alongside pigging, independent of coil pressure', false);
+    // loop diagram
+    const nodes = [['TriMax\ndirty tank', 0.6], ['4×3 transfer\npump', 3.35], ['Filter\npress', 6.1], ['TriMax\nclean tank', 8.85]];
+    const ny = 2.45, nw = 2.2, nh = 1.0;
+    nodes.forEach(([t, x], i) => {
+      const gold = i === 2;
+      s.addShape(pres.shapes.RECTANGLE, { x, y: ny, w: nw, h: nh, fill: { color: gold ? C.gold : C.dark }, line: { color: gold ? C.gold : C.dark } });
+      txt(s, t, { x, y: ny, w: nw, h: nh, fontSize: 14, bold: true, color: gold ? C.dark : C.white, align: 'center', valign: 'middle' });
+      if (i < 3) s.addShape(pres.shapes.LINE, { x: x + nw + 0.05, y: ny + nh / 2, w: 0.45, h: 0, line: { color: C.grey, width: 2.5, endArrowType: 'triangle' } });
+    });
+    // return path
+    s.addShape(pres.shapes.LINE, { x: 0.6 + nw / 2, y: ny + nh + 0.05, w: 0, h: 0.35, line: { color: C.grey, width: 2.5, beginArrowType: 'triangle' } });
+    s.addShape(pres.shapes.LINE, { x: 0.6 + nw / 2, y: ny + nh + 0.4, w: 8.85 - 0.6, h: 0, line: { color: C.grey, width: 2.5 } });
+    s.addShape(pres.shapes.LINE, { x: 8.85 + nw / 2, y: ny + nh + 0.05, w: 0, h: 0.35, line: { color: C.grey, width: 2.5 } });
+    txt(s, 'Filtrate returns to the clean tank; pigging continues without interruption', { x: 2.2, y: ny + nh + 0.45, w: 6.8, h: 0.3, fontSize: 11, italic: true, color: C.muted, align: 'center' });
+    // stats
+    [['400 GPM', 'press capacity'], ['1,243 ft²', 'filtration area per press'], ['3', 'trailer-mounted presses in the fleet']].forEach(([n, l], i) => {
+      const x = 0.6 + i * 3.55;
+      txt(s, n, { x, y: 4.55, w: 3.3, h: 0.65, fontSize: 30, bold: true, color: C.text });
+      txt(s, l, { x, y: 5.2, w: 3.3, h: 0.35, fontSize: 12, color: C.muted });
+    });
+    // benefits card
+    const ben = ['Reduces fresh-water demand', 'Reduces wastewater volume', 'Coke fines captured as filter cake for disposal'];
+    s.addShape(pres.shapes.RECTANGLE, { x: 0.6, y: 5.8, w: 12.13, h: 0.85, fill: { color: C.light }, line: { color: C.light } });
+    ben.forEach((b, i) => {
+      const x = 0.85 + i * 4.0;
+      s.addShape(pres.shapes.OVAL, { x, y: 6.08, w: 0.28, h: 0.28, fill: { color: C.gold }, line: { color: C.gold } });
+      txt(s, b, { x: x + 0.42, y: 5.95, w: 3.45, h: 0.55, fontSize: 12.5, bold: true, color: C.text, valign: 'middle' });
+    });
+    txt(s, 'Optional: priced separately at the proposal rate', { x: 8.3, y: 4.62, w: 4.43, h: 0.5, fontSize: 11, italic: true, color: C.muted, align: 'right', valign: 'middle' });
+    footer(s, false);
+    s.addNotes(`[~1 min] Filtration is optional and priced separately, but it matters in California.
+Without filtration, supply water comes from a hydrant and the dirty tank discharges. With it, a frac tank feeds the loop: a 4×3 transfer pump moves dirty water from the TriMax through a trailer-mounted filter press, and the filtrate returns to the clean tank. It runs alongside pigging and doesn't affect coil pressure.
+Each press handles 400 GPM across 1,243 square feet of filtration area, and we run three identical presses.
+The benefits: far less fresh water drawn, far less wastewater to handle (thousands of gallons a shift), and the coke fines come out as filter cake for Marathon's disposal. It's worth considering where water is limited or where the stainless coils call for controlled water quality.`);
   }
 
   // =====================================================================
@@ -633,7 +676,7 @@ Everything needed arrives with the rig: support unit, 300# launchers and receive
     const ln = (x1, y1, x2, y2) => s.addShape(pres.shapes.LINE, { x: Math.min(x1, x2), y: Math.min(y1, y2), w: Math.abs(x2 - x1), h: Math.abs(y2 - y1), line: { color: C.gold, width: 1.5, dashType: 'dash' }, flipH: (x2 < x1) !== (y2 < y1) });
     ln(4.38, 3.1, cx - 0.95, cy - 0.8); ln(8.95, 3.1, cx + 0.95, cy - 0.8);
     ln(4.38, 5.8, cx - 0.95, cy + 0.8); ln(8.95, 5.8, cx + 0.95, cy + 0.8);
-    txt(s, 'Proven in the field: successful sign-offs from all of our clients, and highly effective for first-attempt smart pig data.', { x: 0.6, y: 6.6, w: 12.1, h: 0.35, fontSize: 12, italic: true, color: C.gold, align: 'center' });
+    txt(s, 'Field-proven process: successful sign-offs from all of our clients and reliable first-attempt smart pig data.', { x: 0.6, y: 6.6, w: 12.1, h: 0.35, fontSize: 12, italic: true, color: C.gold, align: 'center' });
     s.addNotes(`[~2.5 min] How do we know a pass is clean? Four independent indicators, and the pass isn't called clean until all four agree.
 1) Sensor data: live pressure data at the operator interface. Coke shows as a spike, and the technician can stop the pig and scrub that exact area.
 2) Effluent: the technician watches the returns. The "black" (coke fines) in the stream fades to an unnoticeable amount as the pass cleans.
@@ -682,7 +725,7 @@ The full QA/QC manual was attached to the RFI response.`);
     s.addShape(pres.shapes.RECTANGLE, { x: 0, y: 0, w: W, h: 2.1, fill: { color: '111111', transparency: 25 }, line: { color: '111111', transparency: 100 } });
     s.addImage({ path: IMG + 'fade_bottom_light.png', x: 0, y: 0, w: W, h: H });
     chip(s, '06', 'Emergency response & local resources', true);
-    title(s, 'Ready when LAR needs us', true);
+    title(s, 'Responsive support for LAR', true);
     sub(s, 'Shops, equipment and crews in Southern California / LA Basin, with regional support', true);
     const st = [['24/7', 'Dispatch and account manager, any hour'], ['Same day', 'Response for local needs'], ['< 24 hrs', 'Manpower & equipment anywhere else, from regional shops']];
     st.forEach(([n, l], i) => {
@@ -789,7 +832,7 @@ Full detail is in the safety manual and SSHASP submitted with the RFI.`);
       txt(s, d, { x: x + 0.3, y: y + 1.18, w: 3.6, h: 0.9, fontSize: 12.5, color: C.soft, valign: 'top' });
     }
     footer(s, true);
-    s.addNotes(`[~2 min] Four differentiators, backed by more than 200 years of combined experience on our team.
+    s.addNotes(`[~1.5 min] Four differentiators, backed by more than 200 years of combined experience on our team.
 Self-performed: pigging, decoking and hydroblasting with in-house equipment and SCAQMD rigs, so one contractor covers the full scope without subs.
 Fleet: we run the largest triple-pass pigging fleet in the world, and it's standardized: six identical TriMax units, 18 engines. The TriMax runs up to three passes at once; on LAR's 2-pass heaters that third pump is an on-board spare, so a pump failure doesn't stop the job, and it can also drive a smart pig. We also offer closed-loop filtration and smart-pig support, so Marathon deals with one contractor.
 Pigs: the widest selection of engineered decoking pigs, matched to the coil and the coke (slide 6).
@@ -828,7 +871,7 @@ The contact list is in the appendix and in the leave-behind. We'd encourage the 
       ['Marathon Detroit, MI: 70H1 Coker', 'Decoked September 2024 and September 2026',
         [['6', 'passes, 3 cells'], ["15,156'", 'coil footage'], ['2', 'TriMax units']],
         'All six passes, convection and radiant, pigged simultaneously on two TriMax units.',
-        'Efficient, on schedule and safe, both times. MPC brought us back.', 'Scope', 'Result'],
+        'Completed on schedule and safely on both occasions; Marathon Detroit re-engaged USA DeBusk for the same coker.', 'Scope', 'Result'],
       ['CHS McPherson, KS: Coker HF-0012', '6-pass coker heater, planned decoke, 2025',
         [["12,036'", 'coil footage'], ['6', 'passes'], ['85 h', 'pigging']],
         'Hard coke held pigs in the radiant section.',
@@ -852,7 +895,7 @@ The contact list is in the appendix and in the leave-behind. We'd encourage the 
     });
     footer(s, false);
     s.addNotes(`[~1.5 min] Two coker examples from our job records, starting with one of yours.
-First: Marathon Detroit, the 70H1 coker. Six passes across three cells, about 15,000 feet of convection and radiant coil. We ran two TriMax units and pigged all six passes at once, in September 2024 and again this month, September 2026. Both decokes were efficient, on schedule and safe, and Detroit brought us back two years later for the same coker. Nate Lajiness at Detroit is on our reference list.
+First: Marathon Detroit, the 70H1 coker. Six passes across three cells, about 15,000 feet of convection and radiant coil. We ran two TriMax units and pigged all six passes at once, in September 2024 and again this month, September 2026. Both decokes were completed on schedule and safely, and Marathon Detroit re-engaged us two years later for the same coker. Nate Lajiness at Detroit is on our reference list.
 Second: CHS McPherson, coker heater HF-0012, six passes, just over 12,000 feet of coil, 85 pigging hours on a planned decoke. The radiant held hard coke that stopped standard pigs. Lesson: on a coker, stage the heavy-duty pig set for the radiant from the start. We'll do that at LAR on every occurrence.`);
   }
 
@@ -899,12 +942,12 @@ Second: CHS McPherson, coker heater HF-0012, six passes, just over 12,000 feet o
     ], { x: 0.6, y: 5.3, w: 12.13, h: 0.8, fontSize: 14, color: C.white, align: 'center', paraSpaceAfter: 6 });
     s.addNotes(`[20 min reserved for Q&A]
 Likely questions and where the answer lives:
-- "How do you handle a plugged pass?" Bi-directional flow and stepwise pig sizing (slides 4–6); pre-job walkdown (slide 16).
+- "How do you handle a plugged pass?" Bi-directional flow and stepwise pig sizing (slides 4–6); pre-job walkdown (slide 17).
 - "What if duration overruns?" Lump sum per occurrence. Pricing excludes additional fouling, unknown repairs and stoppages outside our control; those, plus stand-by not caused by USA DeBusk, are billed T&M at the proposal rates.
-- "Local presence?" Slide 17, per RFI GD-1.
+- "Local presence?" Slide 18, per RFI GD-1.
 - "CARB registration?" Slide 14: every TriMax carries statewide PERP registration.
 - "Filtration?" Available at $150/hr per the rate sheet.
-- "Pump curves / pressure capability?" Appendix slide 26 (Waterous CMU curves). Normal 150–300 psi; rated 600, 500–550 effective after valve losses.`);
+- "Pump curves / pressure capability?" Appendix slide 27 (Waterous CMU curves). Normal 150–300 psi; rated 600, 500–550 effective after valve losses.`);
   }
 
   // =====================================================================
@@ -934,7 +977,7 @@ Likely questions and where the answer lives:
       .concat(refs.map((r, i) => r.map((c, k) => ({ text: c, options: { fill: { color: i % 2 ? 'F7F7F7' : C.white }, color: C.text, fontSize: 10, bold: k === 0 } }))));
     s.addTable(rows, { x: 0.6, y: 1.75, w: 12.13, colW: [2.0, 2.2, 3.1, 1.55, 3.28], rowH: 0.33, fontFace: FONT, border: { type: 'solid', pt: 0.5, color: C.rule }, valign: 'middle', margin: [0, 0.08, 0, 0.08] });
     footer(s, false);
-    s.addNotes(`Leave-behind reference list. Not presented; point to it from slide 21 (MPC map) if asked.`);
+    s.addNotes(`Leave-behind reference list. Not presented; point to it from slide 22 (MPC map) if asked.`);
   }
 
   // =====================================================================
