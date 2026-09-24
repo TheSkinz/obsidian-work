@@ -526,13 +526,45 @@ Under Travis: a bench of project managers, our equipment manager and a senior fi
       txt(s, 'Effective max', { x: bx + 440 * sc, y: by - 0.24, w: 170 * sc, h: 0.2, fontSize: 9.5, bold: true, color: 'E0B000', align: 'center' });
     }
     footer(s, true);
-    s.addNotes(`[~2 min] This is the core of our service, and every one of our six TriMax units is the same build: 18 identical engines, the same pumps, the same controls. Any crew can run any unit, spares fit every unit, and the procedures are the same everywhere. Three independent pump assemblies in one trailer, each with its own operator station, so three passes can run at the same time. At LAR we pig both Carson passes together and H-101 in pairs, which leaves the third pump as an on-board spare. Against a dual unit the triple raises productivity by about 50%, and on a two-pass Carson heater the third pump is 100% spare capacity: if one pump goes down, the job doesn't stop.
+    s.addNotes(`[~1.5 min] This is the core of our service, and every one of our six TriMax units is the same build: 18 identical engines, the same pumps, the same controls. Any crew can run any unit, spares fit every unit, and the procedures are the same everywhere. Three independent pump assemblies in one trailer, each with its own operator station, so three passes can run at the same time. At LAR we pig both Carson passes together and H-101 in pairs, which leaves the third pump as an on-board spare. Against a dual unit the triple raises productivity by about 50%, and on a two-pass Carson heater the third pump is 100% spare capacity: if one pump goes down, the job doesn't stop.
 The spare pump can also propel a smart pig, so inspection runs don't need extra equipment.
-Each operator station has a 17" automated HMI touchscreen, and pig logs are recorded digitally (next slide).
+Each operator station has a 17" automated HMI touchscreen, and pig logs are recorded digitally (operator screen, two slides on).
 Other features built into the unit: temperature-controlled pig compartments so the pigs keep their cleaning characteristics, antifoam injection, a coke transfer chute, and guided-radar tank level indicators. On-board tankage is 3,000 gal clean and 2,000 gal return.
-The bar at the bottom is our operating window: normal pigging runs 150 to 300 psi. The pump is rated to 600 psi, but after losses through our valves the realistic ceiling at the pig is 500 to 550, and above 500 the crew works an over-pressure checklist. The manufacturer's pump curves are in the appendix if anyone wants them.
+The bar at the bottom is our operating window, 150 to 300 psi for normal pigging; the next slide shows the pump curve behind it.
 Real-time sensor data feeds the operator interface, where coke shows up as a pressure spike. The technician can stop and scrub that exact spot. Flow direction reverses from the station without hose changes.
-Power is a Cummins QSL9 at 333 bhp, Tier 4, CARB-registered. California compliance is two slides on, after the operator screen.`);
+Power is a Cummins QSL9 at 333 bhp, Tier 4, CARB-registered. California compliance follows the operator screen.`);
+  }
+
+  // =====================================================================
+  // 11a. PUMP PERFORMANCE (was appendix)
+  {
+    const s = pres.addSlide();
+    bg(s, C.white);
+    chip(s, '04', 'Equipment & technology', false);
+    title(s, 'TriMax pump performance', false);
+    sub(s, 'Waterous CMU two-stage pump, one per pass: series-operation curve, as used for pigging', false);
+    const ih = 4.5, iw = ih * 1000 / 1144, ix = 0.6, iy = 2.15;
+    s.addShape(pres.shapes.RECTANGLE, { x: ix - 0.05, y: iy - 0.05, w: iw + 0.1, h: ih + 0.1, fill: { color: C.white }, line: { color: C.rule, width: 1 } });
+    s.addImage({ path: IMG + 'pump_series.png', x: ix, y: iy, w: iw, h: ih });
+    // effective-max band, 500–550 psi on the net-pressure axis
+    const bx = ix + iw * 0.185, bw2 = iw * (0.845 - 0.185), by = iy + ih * 636 / 1144, bh2 = ih * 40 / 1144;
+    s.addShape(pres.shapes.RECTANGLE, { x: bx, y: by, w: bw2, h: bh2, fill: { color: C.gold, transparency: 45 }, line: { color: 'B8860B', width: 1 } });
+    s.addShape(pres.shapes.LINE, { x: ix + iw + 0.05, y: by + bh2 / 2, w: 0.45, h: 0, line: { color: 'B8860B', width: 1.5, beginArrowType: 'triangle' } });
+    txt(s, [{ text: '500–550 psi', options: { bold: true, color: C.text, breakLine: true } }, { text: 'Effective maximum at the pig, after losses through our valves', options: { color: C.muted } }],
+      { x: ix + iw + 0.6, y: by - 0.25, w: 3.2, h: 0.85, fontSize: 12, valign: 'top' });
+    txt(s, [{ text: 'Reading the curve  ', options: { bold: true, color: C.text } }, { text: 'Each line is one engine speed; pressure falls as flow rises. Pigging runs well inside this envelope at 150 to 300 psi.', options: { color: C.muted } }],
+      { x: ix + iw + 0.6, y: 5.55, w: 3.2, h: 1.2, fontSize: 11.5, valign: 'top' });
+    txt(s, 'Manufacturer curve: Waterous Company, form F-2692', { x: ix, y: iy + ih + 0.1, w: 5, h: 0.25, fontSize: 9.5, italic: true, color: C.grey });
+    const k = [['150–300', 'psi normal pigging'], ['500–550', 'psi effective max, after valve losses'], ['600', 'psi rated pump maximum']];
+    k.forEach(([n, l], i) => {
+      const y = 2.15 + i * 1.5;
+      s.addShape(pres.shapes.RECTANGLE, { x: 8.55, y, w: 4.18, h: 1.3, fill: { color: i === 0 ? C.dark : C.light }, line: { color: i === 0 ? C.dark : C.light } });
+      txt(s, n, { x: 8.8, y: y + 0.12, w: 3.7, h: 0.6, fontSize: 28, bold: true, color: i === 0 ? C.gold : C.text, valign: 'middle' });
+      txt(s, l, { x: 8.8, y: y + 0.72, w: 3.7, h: 0.45, fontSize: 11.5, color: i === 0 ? C.white : C.muted, valign: 'top' });
+    });
+    footer(s, false);
+    s.addNotes(`[~1 min] This is the manufacturer's curve behind the pressure bar on the last slide: the Waterous pump in series operation, which is how it runs for pigging (higher pressure, lower flow). Each line is one engine speed.
+Normal pigging runs 150 to 300 psi, well inside the envelope. The pump is rated to 600 psi, but after losses through our valves the realistic ceiling at the pig is 500 to 550, the gold band. Above 500 the crew works an over-pressure checklist. That margin is what lets us push through a hard spot without running the pump at its limit.`);
   }
 
   // =====================================================================
@@ -861,14 +893,44 @@ Data-driven and shared: our durations are built from recorded actuals, every job
     txt(s, '9', { x: 9.7, y: 2.0, w: 3.0, h: 1.3, fontSize: 88, bold: true, color: C.gold });
     txt(s, 'Marathon refineries with USA DeBusk references', { x: 9.7, y: 3.3, w: 3.0, h: 0.75, fontSize: 16, bold: true, color: C.white, valign: 'top' });
     txt(s, [
-      { text: 'Named contacts at 8 sites (Galveston Bay on request), listed in the appendix', options: { bullet: true, breakLine: true } },
+      { text: 'Named contacts at 8 sites (Galveston Bay on request), listed on the next slide', options: { bullet: true, breakLine: true } },
       { text: 'Includes Martinez, CA, our West Coast MPC reference', options: { bullet: true, breakLine: true } },
       { text: 'Crude, coker and vacuum heater experience', options: { bullet: true } },
     ], { x: 9.7, y: 4.25, w: 3.05, h: 2.4, fontSize: 12.5, color: C.soft, valign: 'top', paraSpaceAfter: 10 });
     footer(s, true);
     s.addNotes(`[~1.5 min] You don't have to take our word for it: nine Marathon refineries, with named contacts at eight of them; Galveston Bay's contact is available on request. Catlettsburg, Salt Lake City, Martinez, Dickinson, St. Paul Park, Robinson, Galveston Bay, Garyville and Detroit.
 Martinez is the closest comparison for LAR: a California MPC facility under the same state air rules.
-The contact list is in the appendix and in the leave-behind. We'd encourage the team to call any of them.`);
+The named contacts are on the next slide.`);
+  }
+
+  // =====================================================================
+  // 19a. MPC REFERENCE CONTACTS (was appendix)
+  {
+    const s = pres.addSlide();
+    bg(s, C.white);
+    chip(s, '09', 'References & case studies', false);
+    title(s, 'MPC reference contacts', false);
+    const hdr = (t) => ({ text: t, options: { bold: true, color: C.white, fill: { color: C.dark }, fontSize: 10.5 } });
+    const refs = [
+      ['Catlettsburg, KY', 'Eddie Slone', 'T/A Planner', '606-331-2585', 'slone@marathonpetroleum.com'],
+      ['', 'Ryan Rayburn', 'TAR / Construction Supervisor', '606-331-0180', 'rdrayburn@marathonpetroleum.com'],
+      ['', 'Ben Holbrook', 'Turnaround Planning', '606-369-6467', 'benlholbrook@marathonpetroleum.com'],
+      ['Salt Lake City, UT', 'Aaron Wiggins', 'Maintenance Supervisor / Turnarounds', '801-703-6722', 'ATWiggins@marathonpetroleum.com'],
+      ['Martinez, CA', 'Kyle Yates', 'Project Engineer', '925-316-9726', 'SYates2@marathonpetroleum.com'],
+      ['', 'Ryan Gorman', '', '952-607-6853', 'RMGorman@marathonpetroleum.com'],
+      ['Dickinson, ND', 'Tyler Bauer', 'TA', '701-516-3456', 'tbauer@marathonpetroleum.com'],
+      ['St. Paul Park, MN', 'Keith James', 'TA Planner', '715-441-7986', 'TKJames@marathonpetroleum.com'],
+      ['Robinson, IL', 'Brian Maus', 'TA', '618-544-2121', 'bkmaus@marathonpetroleum.com'],
+      ['Galveston Bay, TX', 'Available upon request', '', '', ''],
+      ['Garyville, LA', 'Shawn Kramer', 'TA Planner', '225-571-2689', 'skramer@marathonpetroleum.com'],
+      ['', 'Chad Childs', 'TA Supervisor', '281-299-6088', 'cechilds@marathonpetroleum.com'],
+      ['Detroit, MI', 'Nate Lajiness', 'Turnaround Planner', '313-297-6166', 'nlajiness@marathonpetroleum.com'],
+    ];
+    const rows = [[hdr('Refinery'), hdr('Contact'), hdr('Role'), hdr('Phone'), hdr('Email')]]
+      .concat(refs.map((r, i) => r.map((c, k) => ({ text: c, options: { fill: { color: i % 2 ? 'F7F7F7' : C.white }, color: C.text, fontSize: 10, bold: k === 0 } }))));
+    s.addTable(rows, { x: 0.6, y: 1.75, w: 12.13, colW: [2.0, 2.2, 3.1, 1.55, 3.28], rowH: 0.33, fontFace: FONT, border: { type: 'solid', pt: 0.5, color: C.rule }, valign: 'middle', margin: [0, 0.08, 0, 0.08] });
+    footer(s, false);
+    s.addNotes(`[~0.5 min] Don't read the table. The point is that these are named people with direct lines, at eight of the nine refineries on the map. Galveston Bay's contact is available on request. The same list is in the leave-behind, and we'd encourage the team to call any of them.`);
   }
 
   // =====================================================================
@@ -953,74 +1015,12 @@ Second: CHS McPherson, coker heater HF-0012, six passes, just over 12,000 feet o
     ], { x: 0.6, y: 5.3, w: 12.13, h: 0.8, fontSize: 14, color: C.white, align: 'center', paraSpaceAfter: 6 });
     s.addNotes(`[20 min reserved for Q&A]
 Likely questions and where the answer lives:
-- "How do you handle a plugged pass?" Bi-directional flow and stepwise pig sizing (slides 4–6); pre-job walkdown (slide 17).
+- "How do you handle a plugged pass?" Bi-directional flow and stepwise pig sizing (slides 4–6); pre-job walkdown (slide 18).
 - "What if duration overruns?" Lump sum per occurrence. Pricing excludes additional fouling, unknown repairs and stoppages outside our control; those, plus stand-by not caused by USA DeBusk, are billed T&M at the proposal rates.
-- "Local presence?" Slide 18, per RFI GD-1.
-- "CARB registration?" Slide 14: every TriMax carries statewide PERP registration.
+- "Local presence?" Slide 19, per RFI GD-1.
+- "CARB registration?" Slide 15: every TriMax carries statewide PERP registration.
 - "Filtration?" Available at $150/hr per the rate sheet.
-- "Pump curves / pressure capability?" Appendix slide 27 (Waterous CMU curves). Normal 150–300 psi; rated 600, 500–550 effective after valve losses.`);
-  }
-
-  // =====================================================================
-  // 23. APPENDIX — MPC REFERENCES
-  {
-    const s = pres.addSlide();
-    bg(s, C.white);
-    chip(s, null, 'Appendix', false);
-    title(s, 'MPC references', false, { fontSize: 28 });
-    const hdr = (t) => ({ text: t, options: { bold: true, color: C.white, fill: { color: C.dark }, fontSize: 10.5 } });
-    const refs = [
-      ['Catlettsburg, KY', 'Eddie Slone', 'T/A Planner', '606-331-2585', 'slone@marathonpetroleum.com'],
-      ['', 'Ryan Rayburn', 'TAR / Construction Supervisor', '606-331-0180', 'rdrayburn@marathonpetroleum.com'],
-      ['', 'Ben Holbrook', 'Turnaround Planning', '606-369-6467', 'benlholbrook@marathonpetroleum.com'],
-      ['Salt Lake City, UT', 'Aaron Wiggins', 'Maintenance Supervisor / Turnarounds', '801-703-6722', 'ATWiggins@marathonpetroleum.com'],
-      ['Martinez, CA', 'Kyle Yates', 'Project Engineer', '925-316-9726', 'SYates2@marathonpetroleum.com'],
-      ['', 'Ryan Gorman', '', '952-607-6853', 'RMGorman@marathonpetroleum.com'],
-      ['Dickinson, ND', 'Tyler Bauer', 'TA', '701-516-3456', 'tbauer@marathonpetroleum.com'],
-      ['St. Paul Park, MN', 'Keith James', 'TA Planner', '715-441-7986', 'TKJames@marathonpetroleum.com'],
-      ['Robinson, IL', 'Brian Maus', 'TA', '618-544-2121', 'bkmaus@marathonpetroleum.com'],
-      ['Galveston Bay, TX', 'Available upon request', '', '', ''],
-      ['Garyville, LA', 'Shawn Kramer', 'TA Planner', '225-571-2689', 'skramer@marathonpetroleum.com'],
-      ['', 'Chad Childs', 'TA Supervisor', '281-299-6088', 'cechilds@marathonpetroleum.com'],
-      ['Detroit, MI', 'Nate Lajiness', 'Turnaround Planner', '313-297-6166', 'nlajiness@marathonpetroleum.com'],
-    ];
-    const rows = [[hdr('Refinery'), hdr('Contact'), hdr('Role'), hdr('Phone'), hdr('Email')]]
-      .concat(refs.map((r, i) => r.map((c, k) => ({ text: c, options: { fill: { color: i % 2 ? 'F7F7F7' : C.white }, color: C.text, fontSize: 10, bold: k === 0 } }))));
-    s.addTable(rows, { x: 0.6, y: 1.75, w: 12.13, colW: [2.0, 2.2, 3.1, 1.55, 3.28], rowH: 0.33, fontFace: FONT, border: { type: 'solid', pt: 0.5, color: C.rule }, valign: 'middle', margin: [0, 0.08, 0, 0.08] });
-    footer(s, false);
-    s.addNotes(`Leave-behind reference list. Not presented; point to it from slide 22 (MPC map) if asked.`);
-  }
-
-  // =====================================================================
-  // 24. APPENDIX — PUMP CURVES
-  {
-    const s = pres.addSlide();
-    bg(s, C.white);
-    chip(s, null, 'Appendix', false);
-    title(s, 'TriMax pump performance', false, { fontSize: 28 });
-    sub(s, 'Waterous CMU two-stage pump, one per pass: series-operation curve, as used for pigging', false);
-    const ih = 4.5, iw = ih * 1000 / 1144, ix = 0.6, iy = 2.15;
-    s.addShape(pres.shapes.RECTANGLE, { x: ix - 0.05, y: iy - 0.05, w: iw + 0.1, h: ih + 0.1, fill: { color: C.white }, line: { color: C.rule, width: 1 } });
-    s.addImage({ path: IMG + 'pump_series.png', x: ix, y: iy, w: iw, h: ih });
-    // effective-max band, 500–550 psi on the net-pressure axis
-    const bx = ix + iw * 0.185, bw2 = iw * (0.845 - 0.185), by = iy + ih * 636 / 1144, bh2 = ih * 40 / 1144;
-    s.addShape(pres.shapes.RECTANGLE, { x: bx, y: by, w: bw2, h: bh2, fill: { color: C.gold, transparency: 45 }, line: { color: 'B8860B', width: 1 } });
-    s.addShape(pres.shapes.LINE, { x: ix + iw + 0.05, y: by + bh2 / 2, w: 0.45, h: 0, line: { color: 'B8860B', width: 1.5, beginArrowType: 'triangle' } });
-    txt(s, [{ text: '500–550 psi', options: { bold: true, color: C.text, breakLine: true } }, { text: 'Effective maximum at the pig, after losses through our valves', options: { color: C.muted } }],
-      { x: ix + iw + 0.6, y: by - 0.25, w: 3.2, h: 0.85, fontSize: 12, valign: 'top' });
-    txt(s, [{ text: 'Reading the curve  ', options: { bold: true, color: C.text } }, { text: 'Each line is one engine speed; pressure falls as flow rises. Pigging runs well inside this envelope at 150 to 300 psi.', options: { color: C.muted } }],
-      { x: ix + iw + 0.6, y: 5.55, w: 3.2, h: 1.2, fontSize: 11.5, valign: 'top' });
-    txt(s, 'Manufacturer curve: Waterous Company, form F-2692', { x: ix, y: iy + ih + 0.1, w: 5, h: 0.25, fontSize: 9.5, italic: true, color: C.grey });
-    const k = [['150–300', 'psi normal pigging'], ['500–550', 'psi effective max, after valve losses'], ['600', 'psi rated pump maximum']];
-    k.forEach(([n, l], i) => {
-      const y = 2.15 + i * 1.5;
-      s.addShape(pres.shapes.RECTANGLE, { x: 8.55, y, w: 4.18, h: 1.3, fill: { color: i === 0 ? C.dark : C.light }, line: { color: i === 0 ? C.dark : C.light } });
-      txt(s, n, { x: 8.8, y: y + 0.12, w: 3.7, h: 0.6, fontSize: 28, bold: true, color: i === 0 ? C.gold : C.text, valign: 'middle' });
-      txt(s, l, { x: 8.8, y: y + 0.72, w: 3.7, h: 0.45, fontSize: 11.5, color: i === 0 ? C.white : C.muted, valign: 'top' });
-    });
-    footer(s, false);
-    s.addNotes(`Backup slide, not presented. Pull it up if an engineer asks about pump capability.
-This is the series-operation curve, which is how the pump runs for pigging (higher pressure, lower flow). Each line is an engine speed. Normal pigging runs 150 to 300 psi. The curve reaches 600 psi; the gold band marks the 500 to 550 psi we actually see at the pig, after losses through our valves.`);
+- "Pump curves / pressure capability?" Slide 13 (Waterous CMU curves). Normal 150–300 psi; rated 600, 500–550 effective after valve losses.`);
   }
 
   await pres.writeFile({ fileName: __dirname + '/LAR_Technical_Proposal_Presentation.pptx' });
