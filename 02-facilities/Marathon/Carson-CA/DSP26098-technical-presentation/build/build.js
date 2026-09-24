@@ -432,7 +432,7 @@ Every technician is USA DeBusk-certified, selected by heater-type experience, wi
     chip(s, '03', 'Readiness & resources', true);
     title(s, 'Your LAR project team', true);
     // experience tiles
-    [['202', 'years of combined pigging & decoking experience'], ['15+', 'years self-performing heater pigging']].forEach(([n, l], i) => {
+    [['210', 'years of combined pigging & decoking experience'], ['15+', 'years self-performing heater pigging']].forEach(([n, l], i) => {
       const y = 1.9 + i * 1.55;
       s.addShape(pres.shapes.RECTANGLE, { x: 0.6, y, w: 3.3, h: 1.35, fill: { color: C.char }, line: { color: C.gold, width: 1 } });
       txt(s, n, { x: 0.8, y: y + 0.1, w: 2.9, h: 0.68, fontSize: 36, bold: true, color: C.gold, valign: 'middle' });
@@ -450,7 +450,7 @@ Every technician is USA DeBusk-certified, selected by heater-type experience, wi
     };
     // top of chart
     const cx = 8.55, bw = 3.2, bh = 0.72;
-    box(cx - bw / 2, 1.85, bw, bh, 'Anthony Fazio', 'Vice President of Operations', 12);
+    box(cx - bw / 2, 1.85, bw, bh, 'Anthony Fazio', 'Vice President of Operations', 20);
     ln(cx, 1.85 + bh, 0, 0.2);
     box(cx - bw / 2, 2.77, bw, bh, 'Marshall Douglas', 'Director of Pigging Operations', 26, true);
     ln(cx, 2.77 + bh, 0, 0.14);
@@ -476,8 +476,8 @@ Every technician is USA DeBusk-certified, selected by heater-type experience, wi
       box(x, yy, gw, gh, n, r, y, false, true);
     });
     footer(s, true);
-    s.addNotes(`[~1 min] Our team brings 202 years of combined pigging and decoking experience, and the company has self-performed heater pigging for over 15 years.
-Leadership: Anthony Fazio, VP Operations, 12 years; me, Director of Pigging Operations, 26 years. Jason Harman, Commercial Manager, 22 years, is the commercial point of contact. Travis Trenholm, Pigging Operations Manager, 15 years, is the project manager on every LAR occurrence.
+    s.addNotes(`[~1 min] Our team brings 210 years of combined pigging and decoking experience, and the company has self-performed heater pigging for over 15 years.
+Leadership: Anthony Fazio, VP Operations, 20 years; me, Director of Pigging Operations, 26 years. Jason Harman, Commercial Manager, 22 years, is the commercial point of contact. Travis Trenholm, Pigging Operations Manager, 15 years, is the project manager on every LAR occurrence.
 Under Travis: a bench of project managers, our equipment manager and a senior field tech, led in experience by Danilo Ramirez at 33 years. One point of contact manages the work flow and daily updates to Marathon.`);
   }
 

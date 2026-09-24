@@ -49,6 +49,6 @@ Safe answer if asked: "Tube data came from the coil data Marathon provided. We v
 - **Still worth confirming:** 3,000/2,000 gal tank sizes (equipment library); RFI item numbers SP-2 and GD-1.
 
 ## Revision 7: Marshall's recommendations (2026-09-23)
-- **202 years combined experience** (slide 11) is the sum of the 11 people on the team slide: Fazio 12, Douglas 26, Harman 22, Trenholm 15, Ramirez 33, Utsey 23, Servin 18, D. Harman 25, Slater 8, Lee 10, McDaniel 5, Lynch 5. The summary slides round it to "200+".
+- **210 years combined experience** (slide 11) is the sum of the 12 people on the team slide: Fazio 20, Douglas 26, Harman 22, Trenholm 15, Ramirez 33, Utsey 23, Servin 18, D. Harman 25, Slater 8, Lee 10, McDaniel 5, Lynch 5. The summary slides round it to "200+".
 - **Pig suppliers are verbal only.** Slide 6 names no supplier and says nothing about sourcing; the speaker note cues Marshall to cover it.
 - **Standardization:** all six TriMax units are the same build (confirmed by Jesse): 18 identical engines, same pumps and controls. The deck calls them "TriMax" throughout.
