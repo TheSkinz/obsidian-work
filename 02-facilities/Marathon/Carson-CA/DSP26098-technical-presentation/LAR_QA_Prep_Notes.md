@@ -54,3 +54,6 @@ Safe answer if asked: "Tube data came from the coil data Marathon provided. We v
 - **Standardization:** all six TriMax units are the same build (confirmed by Jesse): 18 identical engines, same pumps and controls. The deck calls them "TriMax" throughout.
 - **Filtration (slide 15)** is optional and priced separately ($150/hr filtration, $150/hr filter stand-by per the proposal rate sheet); it isn't in the lump sum. Specs are from the vault equipment library: 400 GPM, 1,243 ft², 3 identical presses.
 - **Pig photo (slide 6)** is a supplier product image of new pigs, uncredited on the slide by Marshall's choice. The used-pig photo stays on the verification slide (16).
+
+## California flag badge (2026-09-24)
+- Slides 14 and 18 carry a badge made from the official California state flag (public domain), placed on the slide as a design element at Marshall's request. No equipment photo was edited. If asked why the flag isn't on the truck, that's the answer: we don't alter photos of our equipment in a formal bid.

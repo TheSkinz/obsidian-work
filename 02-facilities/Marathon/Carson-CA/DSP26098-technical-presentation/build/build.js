@@ -58,6 +58,15 @@ async function icon(name, color, size = 256) {
     slide.addImage({ data: await icon(name, iconColor), x: x + pad, y: y + pad, w: d - 2 * pad, h: d - 2 * pad });
   };
 
+  // California badge: flag + gold label on a charcoal pill
+  const caBadge = (slide, label, tw, right = 12.73, y = 0.34) => {
+    const h = 0.62, fh = 0.48, fw = fh * 1.5, pad = 0.08;
+    const w = pad + fw + 0.16 + tw + 0.2, x = right - w;
+    slide.addShape(pres.shapes.ROUNDED_RECTANGLE, { x, y, w, h, fill: { color: C.char }, line: { color: C.gold, width: 1 }, rectRadius: 0.1 });
+    slide.addImage({ path: IMG + 'ca_flag.png', x: x + pad, y: y + (h - fh) / 2, w: fw, h: fh });
+    txt(slide, label, { x: x + pad + fw + 0.16, y, w: tw + 0.1, h, fontSize: 11, bold: true, color: C.gold, valign: 'middle' });
+  };
+
   // =====================================================================
   // 1. TITLE
   {
@@ -570,6 +579,7 @@ The takeaway for Marathon: every decision on a pass is made from live data, and 
     bg(s, C.white);
     chip(s, '04', 'Equipment & technology', false);
     title(s, 'California-ready, CARB-registered fleet', false);
+    caBadge(s, 'CARB-registered  |  SCAQMD-ready', 2.6);
     sub(s, 'CARB Statewide Portable Equipment Registration (PERP); certificates shown', false);
     const st = [['6', 'identical TriMax units, SCAQMD-ready'], ['18', 'registered pumping engines'], ['Tier 4', 'engines (blue placard)'], ['0.015', 'g/bhp-hr diesel PM emission factor']];
     st.forEach(([n, l], i) => {
@@ -726,6 +736,7 @@ The full QA/QC manual was attached to the RFI response.`);
     s.addImage({ path: IMG + 'fade_bottom_light.png', x: 0, y: 0, w: W, h: H });
     chip(s, '06', 'Emergency response & local resources', true);
     title(s, 'Responsive support for LAR', true);
+    caBadge(s, 'Southern California  |  LA Basin', 2.31);
     sub(s, 'Shops, equipment and crews in Southern California / LA Basin, with regional support', true);
     const st = [['24/7', 'Dispatch and account manager, any hour'], ['Same day', 'Response for local needs'], ['< 24 hrs', 'Manpower & equipment anywhere else, from regional shops']];
     st.forEach(([n, l], i) => {
