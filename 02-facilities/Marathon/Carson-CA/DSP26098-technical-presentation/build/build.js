@@ -204,17 +204,48 @@ Step 6: Marathon witnesses the final gauge foam and signs off per pass (detail i
     txt(s, [
       { text: 'Step up ⅛" after each clean pass', options: { bullet: true, breakLine: true } },
       { text: 'Pig wear drives size & appendages', options: { bullet: true, breakLine: true } },
-      { text: 'Body length set for bends & mule ears', options: { bullet: true } },
-    ], { x: 9.05, y: 3.8, w: 3.5, h: 0.95, fontSize: 12, color: C.soft, valign: 'top', paraSpaceAfter: 4 });
-    s.addShape(pres.shapes.RECTANGLE, { x: 9.02, y: 4.83, w: 3.44, h: 3.4 * 437 / 900 + 0.04, fill: { color: C.char2 }, line: { color: C.char2 } });
-    s.addImage({ path: IMG + 'pigs_lineup.jpg', x: 9.04, y: 4.85, w: 3.4, h: 3.4 * 437 / 900 });
-    txt(s, 'Real pigs from a USA DeBusk job', { x: 9.04, y: 6.55, w: 3.4, h: 0.22, fontSize: 9, italic: true, color: C.soft });
+      { text: 'Body length set for bends & mule ears', options: { bullet: true, breakLine: true } },
+      { text: 'Gauge foam sets the starting size', options: { bullet: true, breakLine: true } },
+      { text: 'Line-size foam witnessed at sign-off', options: { bullet: true } },
+    ], { x: 9.05, y: 4.0, w: 3.5, h: 2.5, fontSize: 13, color: C.soft, valign: 'top', paraSpaceAfter: 12 });
     footer(s, false);
     s.addNotes(`[~2.5 min] RFI item SP-2 asked for a pig progression plan per heater. This is it.
 The ceiling is fixed by our sizing rule: smallest tube ID plus a quarter inch. On the Carson cokers the governing ID is 3.826" (4" Sch 80), so the maximum is 4.076". On H-101 the ID is 4.026", so the maximum is 4.276".
-The photo in the card is a real set from one of our jobs: foam, carbide-studded, then pigs showing wear.
 We don't pick a starting size in advance. The first run is a gauge foam: how it comes out of the pass tells us how much the bore is restricted, and that sets the initial pig size. From there we step up 1/8" at a time, only after a clean pass at the current size, until we reach line size and then the maximum. Wear marks on a pig show where coke remains, and we change size and appendage type from that evidence.
 If asked about short-radius bends or mule ears: pig body length and flexibility are selected for the bend geometry, not just the diameter.`);
+  }
+
+  // =====================================================================
+  // 5b. ENGINEERED DECOKING PIGS
+  {
+    const s = pres.addSlide();
+    bg(s, C.white);
+    chip(s, '01', 'Methodology', false);
+    title(s, 'Engineered decoking pigs, matched to the coke', false);
+    sub(s, 'The most diverse selection of engineered decoking pigs in the world', false);
+    // photo panel
+    s.addShape(pres.shapes.RECTANGLE, { x: 0.6, y: 2.25, w: 4.0, h: 4.5, fill: { color: C.white }, line: { color: C.rule, width: 1 } });
+    s.addImage({ path: IMG + 'pigs_new.jpg', x: 0.85, y: 3.05, w: 3.5, h: 3.5 * 215 / 330 });
+    txt(s, 'New engineered decoking pigs', { x: 0.85, y: 6.1, w: 3.5, h: 0.3, fontSize: 10.5, italic: true, color: C.muted, align: 'center' });
+    const cards = [
+      ['FaLayerGroup', 'Soft-core and hard-core designs', 'Urethane or high-density foam bodies, plus foam pushers for flushing and proving the pass'],
+      ['FaSlidersH', 'A full range of durometers', 'Soft to hard compounds, chosen to compress through tight bends or cut hard coke'],
+      ['FaDotCircle', 'Bald or studded', 'Tungsten carbide, hardened-steel and stainless stud options, matched to the tube metallurgy'],
+      ['FaHammer', 'Heavy-coke designs', 'High-durometer, fully studded pigs brought in when pig wear shows hard, heavy coke'],
+    ];
+    for (let i = 0; i < cards.length; i++) {
+      const [ic, h, d] = cards[i];
+      const x = 4.95 + (i % 2) * 3.95, y = 2.25 + Math.floor(i / 2) * 2.3;
+      s.addShape(pres.shapes.RECTANGLE, { x, y, w: 3.78, h: 2.15, fill: { color: C.light }, line: { color: C.light } });
+      await iconCircle(s, ic, x + 0.28, y + 0.28, 0.66, C.dark, C.gold);
+      txt(s, h, { x: x + 1.1, y: y + 0.3, w: 2.55, h: 0.62, fontSize: 15, bold: true, color: C.text, valign: 'middle' });
+      txt(s, d, { x: x + 0.28, y: y + 1.12, w: 3.25, h: 0.9, fontSize: 12, color: C.muted, valign: 'top' });
+    }
+    footer(s, false);
+    s.addNotes(`[~1.5 min] The pig does the work, so pig selection matters as much as the pumper.
+(Presenter: this is where to talk about our supplier base and why we source rather than build.)
+Walk the four cards. Bodies come soft-core or hard-core, in urethane or high-density foam, plus medium and hard foam pushers. Durometers run across a full range (for example 40, 60 and 80) so we can compress through tight bends or cut hard coke. Pigs run bald or studded: tungsten carbide, hardened steel in several Brinell grades (200, 400, 600 BHN), or stainless where the tube metallurgy calls for it. And when pig wear shows hard, heavy coke, we move to high-durometer, fully studded designs.
+The photo shows new pigs: soft and hard bodies, bald and studded.`);
   }
 
   // =====================================================================
@@ -351,7 +382,7 @@ Durations come from footage and our historical performance. Actual hardness and 
     });
     txt(s, 'Same crew leadership, same equipment and same procedures every visit: each decoke builds on the last one\'s records.', { x: 0.6, y: 6.1, w: 8.9, h: 0.6, fontSize: 14, italic: true, color: C.soft, valign: 'top' });
     footer(s, true);
-    s.addNotes(`[~1.5 min] The dots show one year of the program; exact dates follow Marathon's run-length and turnaround plan, not ours.
+    s.addNotes(`[~1 min] The dots show one year of the program; exact dates follow Marathon's run-length and turnaround plan, not ours.
 12 decokes a year, 60 over the term, 2,790 project hours, and mobilization/demobilization waived because LAR is serviced as a program.
 The real value of a recurring program: each decoke on the same heater builds on the last. We keep heater-specific records of pig sizes, hours and problem spots, so every visit starts smarter than the last.`);
   }
@@ -398,35 +429,54 @@ Every technician is USA DeBusk-certified, selected by heater-type experience, wi
     bg(s, C.dark);
     chip(s, '03', 'Readiness & resources', true);
     title(s, 'Your LAR project team', true);
-    const box = (x, y, w, name, role, gold) => {
-      s.addShape(pres.shapes.RECTANGLE, { x, y, w, h: 0.95, fill: { color: gold ? C.gold : C.char }, line: { color: gold ? C.gold : C.char2 } });
-      txt(s, name, { x: x + 0.2, y: y + 0.12, w: w - 0.4, h: 0.38, fontSize: 16, bold: true, color: gold ? C.dark : C.white });
-      txt(s, role, { x: x + 0.2, y: y + 0.5, w: w - 0.4, h: 0.35, fontSize: 12, color: gold ? C.dark : C.soft });
+    // experience tiles
+    [['210', 'years of combined pigging & decoking experience'], ['15+', 'years self-performing heater pigging']].forEach(([n, l], i) => {
+      const y = 1.9 + i * 1.55;
+      s.addShape(pres.shapes.RECTANGLE, { x: 0.6, y, w: 3.3, h: 1.35, fill: { color: C.char }, line: { color: C.gold, width: 1 } });
+      txt(s, n, { x: 0.8, y: y + 0.1, w: 2.9, h: 0.68, fontSize: 36, bold: true, color: C.gold, valign: 'middle' });
+      txt(s, l, { x: 0.8, y: y + 0.78, w: 2.9, h: 0.5, fontSize: 11.5, color: C.white, valign: 'top' });
+    });
+    const ln = (x, y, w, h) => s.addShape(pres.shapes.LINE, { x, y, w, h, line: { color: C.grey, width: 1.25 } });
+    const box = (x, y, w, h, name, role, yrs, gold, small) => {
+      s.addShape(pres.shapes.RECTANGLE, { x, y, w, h, fill: { color: gold ? C.gold : C.char }, line: { color: gold ? C.gold : C.char2 } });
+      const fs = small ? 11.5 : 13.5, rs = small ? 9.5 : 10.5;
+      const nameW = small ? w - 0.25 : w - 0.9;
+      txt(s, name, { x: x + 0.14, y: y + 0.06, w: nameW, h: h * 0.45, fontSize: fs, bold: true, color: gold ? C.dark : C.white, valign: 'middle' });
+      txt(s, role, { x: x + 0.14, y: y + h * 0.5, w: small ? w - 0.72 : w - 0.9, h: h * 0.42, fontSize: small ? 9 : rs, color: gold ? C.dark : C.soft, valign: 'middle' });
+      const yY = small ? y + h * 0.5 : y + 0.06, yH = small ? h * 0.42 : h * 0.45;
+      txt(s, yrs + ' yrs', { x: x + w - (small ? 0.62 : 0.8), y: yY, w: small ? 0.52 : 0.7, h: yH, fontSize: small ? 10.5 : 12, bold: true, color: gold ? C.dark : C.gold, align: 'right', valign: 'middle' });
     };
-    const ln = (x, y, w, h, dash) => s.addShape(pres.shapes.LINE, { x, y, w, h, line: { color: C.grey, width: 1.5, dashType: dash ? 'dash' : 'solid' } });
-    const cx = 6.67, bw = 3.6;
-    box(cx - bw / 2, 1.9, bw, 'Anthony Fazio', 'VP Operations');
-    ln(cx, 2.85, 0, 0.45);
-    box(cx - bw / 2, 3.3, bw, 'Marshall Douglas', 'Director of Pigging Operations', true);
-    ln(cx + bw / 2, 3.78, 1.0, 0, true);
-    box(cx + bw / 2 + 1.0, 3.3, 3.2, 'Jason Harman', 'Commercial Manager');
-    ln(cx, 4.25, 0, 0.45);
-    box(cx - bw / 2, 4.7, bw, 'Travis Trenholm', 'Pigging Operations Manager (PM)');
-    ln(cx, 5.65, 0, 0.3);
-    ln(cx - 2.2, 5.95, 4.4, 0);
-    ln(cx - 2.2, 5.95, 0, 0.2); ln(cx + 2.2, 5.95, 0, 0.2);
-    const crew = (x, t, d) => {
-      s.addShape(pres.shapes.RECTANGLE, { x, y: 6.15, w: 3.2, h: 0.72, fill: { color: C.char }, line: { color: C.char2 } });
-      txt(s, t, { x: x + 0.15, y: 6.18, w: 2.9, h: 0.33, fontSize: 13, bold: true, color: C.gold });
-      txt(s, d, { x: x + 0.15, y: 6.5, w: 2.9, h: 0.3, fontSize: 11, color: C.soft });
-    };
-    crew(cx - 2.2 - 1.6, 'Day shift', '1 supervisor, 2 operators');
-    crew(cx + 2.2 - 1.6, 'Night shift', '1 supervisor, 1 operator');
-    txt(s, 'Site org chart finalized at award', { x: 0.6, y: 6.45, w: 2.5, h: 0.3, fontSize: 10, italic: true, color: C.grey });
+    // top of chart
+    const cx = 8.55, bw = 3.2, bh = 0.72;
+    box(cx - bw / 2, 1.85, bw, bh, 'Anthony Fazio', 'Vice President of Operations', 20);
+    ln(cx, 1.85 + bh, 0, 0.2);
+    box(cx - bw / 2, 2.77, bw, bh, 'Marshall Douglas', 'Director of Pigging Operations', 26, true);
+    ln(cx, 2.77 + bh, 0, 0.14);
+    const l3x = [cx - 1.8, cx + 1.8];
+    ln(l3x[0], 3.63, l3x[1] - l3x[0], 0);
+    ln(l3x[0], 3.63, 0, 0.1); ln(l3x[1], 3.63, 0, 0.1);
+    box(l3x[0] - bw / 2 + 0.05, 3.73, bw - 0.1, bh, 'Jason Harman', 'Commercial Manager', 22);
+    box(l3x[1] - bw / 2 + 0.05, 3.73, bw - 0.1, bh, 'Travis Trenholm', 'Pigging Operations Manager', 15);
+    // team under Travis
+    const team = [
+      ['Danilo Ramirez', 'Project Manager', 33], ['Jesse Utsey', 'Project Manager', 23], ['Sid Servin', 'Equipment Manager', 18], ['Danny Harman', 'Field Tech', 25],
+      ['Dacorey Slater', 'Project Manager', 8], ['James Lee', 'Project Manager', 10], ['James McDaniel', 'Project Manager', 5], ['Rodney Lynch', 'Project Manager', 5],
+    ];
+    const gx0 = 4.25, gw = 2.05, gg = 0.1, gh = 0.66, gy0 = 4.93;
+    ln(l3x[1], 3.73 + bh, 0, 0.14);
+    const spanL = gx0 + gw / 2, spanR = gx0 + 3 * (gw + gg) + gw / 2;
+    ln(spanL, 4.59, spanR - spanL, 0);
+    ln(l3x[1], 4.59, 0, 0);
+    team.forEach(([n, r, y], i) => {
+      const col = i % 4, row = Math.floor(i / 4);
+      const x = gx0 + col * (gw + gg), yy = gy0 + row * (gh + 0.12);
+      if (row === 0) ln(x + gw / 2, 4.59, 0, gy0 - 4.59);
+      box(x, yy, gw, gh, n, r, y, false, true);
+    });
     footer(s, true);
-    s.addNotes(`[~1 min] Leadership line: Anthony Fazio, VP Operations; me as Director of Pigging Operations; Travis Trenholm as the project manager on every LAR occurrence. Jason Harman is the commercial point of contact.
-One point of contact manages work flow and daily updates to Marathon.
-Leadership resumes were included with the RFI response; the full site org chart is issued at award.`);
+    s.addNotes(`[~1 min] Our team brings 210 years of combined pigging and decoking experience, and the company has self-performed heater pigging for over 15 years.
+Leadership: Anthony Fazio, VP Operations, 20 years; me, Director of Pigging Operations, 26 years. Jason Harman, Commercial Manager, 22 years, is the commercial point of contact. Travis Trenholm, Pigging Operations Manager, 15 years, is the project manager on every LAR occurrence.
+Under Travis: a bench of project managers, our equipment manager and a senior field tech, led in experience by Danilo Ramirez at 33 years. One point of contact manages the work flow and daily updates to Marathon.`);
   }
 
   // =====================================================================
@@ -439,6 +489,7 @@ Leadership resumes were included with the RFI response; the full site org chart 
     s.addImage({ path: IMG + 'fade_left.png', x: 0, y: 0, w: 10.5, h: H });
     chip(s, '04', 'Equipment & technology', true);
     title(s, 'The TriMax triple pumper', true, { w: 7 });
+    sub(s, '6 identical TriMax units, 18 engines: one standardized fleet', true, { w: 7 });
     const specs = [
       ['FaCogs', 'Three independent pump systems', 'Closed-loop, bi-directional; 50% more productive than a twin pumper'],
       ['FaDesktop', 'Automated HMI control', 'Three 17" touchscreens, automated digital pig logs'],
@@ -448,7 +499,7 @@ Leadership resumes were included with the RFI response; the full site org chart 
     ];
     for (let i = 0; i < specs.length; i++) {
       const [ic, h, d] = specs[i];
-      const y = 1.95 + i * 0.83;
+      const y = 2.2 + i * 0.8;
       await iconCircle(s, ic, 0.6, y, 0.62, C.gold, C.dark);
       txt(s, h, { x: 1.4, y: y - 0.02, w: 5.6, h: 0.35, fontSize: 16, bold: true, color: C.white });
       txt(s, d, { x: 1.4, y: y + 0.32, w: 5.6, h: 0.3, fontSize: 12, color: C.soft });
@@ -466,7 +517,7 @@ Leadership resumes were included with the RFI response; the full site org chart 
       txt(s, 'Effective max', { x: bx + 440 * sc, y: by - 0.24, w: 170 * sc, h: 0.2, fontSize: 9.5, bold: true, color: 'E0B000', align: 'center' });
     }
     footer(s, true);
-    s.addNotes(`[~2 min] This is the core of our service. Three independent pump assemblies in one trailer, each with its own operator station, so three passes can run at the same time. At LAR we pig both Carson passes together and H-101 in pairs, which leaves the third pump as an on-board spare. Against a dual unit the triple raises productivity by about 50%, and on a two-pass Carson heater the third pump is 100% spare capacity: if one pump goes down, the job doesn't stop.
+    s.addNotes(`[~2 min] This is the core of our service, and every one of our six TriMax units is the same build: 18 identical engines, the same pumps, the same controls. Any crew can run any unit, spares fit every unit, and the procedures are the same everywhere. Three independent pump assemblies in one trailer, each with its own operator station, so three passes can run at the same time. At LAR we pig both Carson passes together and H-101 in pairs, which leaves the third pump as an on-board spare. Against a dual unit the triple raises productivity by about 50%, and on a two-pass Carson heater the third pump is 100% spare capacity: if one pump goes down, the job doesn't stop.
 The spare pump can also propel a smart pig, so inspection runs don't need extra equipment.
 Each operator station has a 17" automated HMI touchscreen, and pig logs are recorded digitally (next slide).
 Other features built into the unit: temperature-controlled pig compartments so the pigs keep their cleaning characteristics, antifoam injection, a coke transfer chute, and guided-radar tank level indicators. On-board tankage is 3,000 gal clean and 2,000 gal return.
@@ -507,7 +558,7 @@ Power is a Cummins QSL9 at 333 bhp, Tier 4, CARB-registered. California complian
       txt(s, d, { x: 8.55, y: y + 0.28, w: 4.2, h: 0.45, fontSize: 11.5, color: C.soft, valign: 'top' });
     });
     footer(s, true);
-    s.addNotes(`[~1.5 min] This is the operator screen from a TriMax station, the same software every LAR pass runs on.
+    s.addNotes(`[~1 min] This is the operator screen from a TriMax station, the same software every LAR pass runs on.
 Walk the numbers: (1) the trend at the bottom plots pressure ahead of the pig, pressure behind it, and flow rate. When the pig meets coke you see the spike, and that's the "sensor data" indicator in our cleanliness verification. (2) Live GPM and psi. (3) Clean and effluent tank levels from guided-radar indicators. (4) Setpoint alarms; this one shows a clean-tank-low alert. (5) Pass completion and the pig run sheet and data sheet, so the pig log builds itself. (6) Each pass has its own station: left, center, right.
 The takeaway for Marathon: every decision on a pass is made from live data, and the record is automatic.`);
   }
@@ -520,7 +571,7 @@ The takeaway for Marathon: every decision on a pass is made from live data, and 
     chip(s, '04', 'Equipment & technology', false);
     title(s, 'California-ready, CARB-registered fleet', false);
     sub(s, 'CARB Statewide Portable Equipment Registration (PERP); certificates shown', false);
-    const st = [['6', 'SCAQMD-ready triple-pass units'], ['18', 'registered pumping engines'], ['Tier 4', 'engines (blue placard)'], ['0.015', 'g/bhp-hr diesel PM emission factor']];
+    const st = [['6', 'identical TriMax units, SCAQMD-ready'], ['18', 'registered pumping engines'], ['Tier 4', 'engines (blue placard)'], ['0.015', 'g/bhp-hr diesel PM emission factor']];
     st.forEach(([n, l], i) => {
       const x = 0.6 + (i % 2) * 3.35, y = 2.3 + Math.floor(i / 2) * 1.55;
       txt(s, n, { x, y, w: 3.1, h: 0.8, fontSize: 40, bold: true, color: C.text });
@@ -544,8 +595,52 @@ The takeaway for Marathon: every decision on a pass is made from live data, and 
       txt(s, l, { x: x + 0.82, y: 5.68, w: 1.38, h: 0.82, fontSize: 11.5, color: C.text, valign: 'middle' });
     }
     footer(s, false);
-    s.addNotes(`[~1.5 min] California compliance is a gate for LAR, and we've cleared it. Every TriMax engine carries a CARB Statewide Portable Equipment Registration: certified Cummins QSL9 engines, Tier 4 blue placard, a diesel particulate emission factor of 0.015 g/bhp-hr. Six triple-pass units and 18 engines are registered for SCAQMD work, so no rental or swap-in equipment is needed to work in the Basin.
-Everything needed arrives with the rig: support unit, 300# launchers and receivers, tested and certified hard and flex pipe connecting our equipment, all pigs and foam swabs. Closed-loop filtration is optional at the proposal rate: it runs continuously, captures coke fines from the effluent, and recycles clean water. That can save thousands of gallons of water a shift.`);
+    s.addNotes(`[~1 min] California compliance is a gate for LAR, and we've cleared it. Every TriMax engine carries a CARB Statewide Portable Equipment Registration: certified Cummins QSL9 engines, Tier 4 blue placard, a diesel particulate emission factor of 0.015 g/bhp-hr. Six triple-pass units and 18 engines are registered for SCAQMD work, so no rental or swap-in equipment is needed to work in the Basin.
+Everything needed arrives with the rig: support unit, 300# launchers and receivers, tested and certified hard and flex pipe connecting our equipment, all pigs and foam swabs. Closed-loop filtration is optional at the proposal rate: it runs continuously, captures coke fines from the effluent, and recycles clean water. That can save thousands of gallons of water a shift; the next slide covers it.`);
+  }
+
+  // =====================================================================
+  // 12b. OPTIONAL CLOSED-LOOP FILTRATION
+  {
+    const s = pres.addSlide();
+    bg(s, C.white);
+    chip(s, '04', 'Equipment & technology', false);
+    title(s, 'Optional closed-loop filtration', false);
+    sub(s, 'Runs alongside pigging, independent of coil pressure', false);
+    // loop diagram
+    const nodes = [['TriMax\ndirty tank', 0.6], ['4×3 transfer\npump', 3.35], ['Filter\npress', 6.1], ['TriMax\nclean tank', 8.85]];
+    const ny = 2.45, nw = 2.2, nh = 1.0;
+    nodes.forEach(([t, x], i) => {
+      const gold = i === 2;
+      s.addShape(pres.shapes.RECTANGLE, { x, y: ny, w: nw, h: nh, fill: { color: gold ? C.gold : C.dark }, line: { color: gold ? C.gold : C.dark } });
+      txt(s, t, { x, y: ny, w: nw, h: nh, fontSize: 14, bold: true, color: gold ? C.dark : C.white, align: 'center', valign: 'middle' });
+      if (i < 3) s.addShape(pres.shapes.LINE, { x: x + nw + 0.05, y: ny + nh / 2, w: 0.45, h: 0, line: { color: C.grey, width: 2.5, endArrowType: 'triangle' } });
+    });
+    // return path
+    s.addShape(pres.shapes.LINE, { x: 0.6 + nw / 2, y: ny + nh + 0.05, w: 0, h: 0.35, line: { color: C.grey, width: 2.5, beginArrowType: 'triangle' } });
+    s.addShape(pres.shapes.LINE, { x: 0.6 + nw / 2, y: ny + nh + 0.4, w: 8.85 - 0.6, h: 0, line: { color: C.grey, width: 2.5 } });
+    s.addShape(pres.shapes.LINE, { x: 8.85 + nw / 2, y: ny + nh + 0.05, w: 0, h: 0.35, line: { color: C.grey, width: 2.5 } });
+    txt(s, 'Filtrate returns to the clean tank; pigging continues without interruption', { x: 2.2, y: ny + nh + 0.45, w: 6.8, h: 0.3, fontSize: 11, italic: true, color: C.muted, align: 'center' });
+    // stats
+    [['400 GPM', 'press capacity'], ['1,243 ft²', 'filtration area per press'], ['3', 'trailer-mounted presses in the fleet']].forEach(([n, l], i) => {
+      const x = 0.6 + i * 3.55;
+      txt(s, n, { x, y: 4.55, w: 3.3, h: 0.65, fontSize: 30, bold: true, color: C.text });
+      txt(s, l, { x, y: 5.2, w: 3.3, h: 0.35, fontSize: 12, color: C.muted });
+    });
+    // benefits card
+    const ben = ['Reduces fresh-water demand', 'Reduces wastewater volume', 'Coke fines captured as filter cake for disposal'];
+    s.addShape(pres.shapes.RECTANGLE, { x: 0.6, y: 5.8, w: 12.13, h: 0.85, fill: { color: C.light }, line: { color: C.light } });
+    ben.forEach((b, i) => {
+      const x = 0.85 + i * 4.0;
+      s.addShape(pres.shapes.OVAL, { x, y: 6.08, w: 0.28, h: 0.28, fill: { color: C.gold }, line: { color: C.gold } });
+      txt(s, b, { x: x + 0.42, y: 5.95, w: 3.45, h: 0.55, fontSize: 12.5, bold: true, color: C.text, valign: 'middle' });
+    });
+    txt(s, 'Optional: priced separately at the proposal rate', { x: 8.3, y: 4.62, w: 4.43, h: 0.5, fontSize: 11, italic: true, color: C.muted, align: 'right', valign: 'middle' });
+    footer(s, false);
+    s.addNotes(`[~1 min] Filtration is optional and priced separately, but it matters in California.
+Without filtration, supply water comes from a hydrant and the dirty tank discharges. With it, a frac tank feeds the loop: a 4×3 transfer pump moves dirty water from the TriMax through a trailer-mounted filter press, and the filtrate returns to the clean tank. It runs alongside pigging and doesn't affect coil pressure.
+Each press handles 400 GPM across 1,243 square feet of filtration area, and we run three identical presses.
+The benefits: far less fresh water drawn, far less wastewater to handle (thousands of gallons a shift), and the coke fines come out as filter cake for Marathon's disposal. It's worth considering where water is limited or where the stainless coils call for controlled water quality.`);
   }
 
   // =====================================================================
@@ -581,7 +676,7 @@ Everything needed arrives with the rig: support unit, 300# launchers and receive
     const ln = (x1, y1, x2, y2) => s.addShape(pres.shapes.LINE, { x: Math.min(x1, x2), y: Math.min(y1, y2), w: Math.abs(x2 - x1), h: Math.abs(y2 - y1), line: { color: C.gold, width: 1.5, dashType: 'dash' }, flipH: (x2 < x1) !== (y2 < y1) });
     ln(4.38, 3.1, cx - 0.95, cy - 0.8); ln(8.95, 3.1, cx + 0.95, cy - 0.8);
     ln(4.38, 5.8, cx - 0.95, cy + 0.8); ln(8.95, 5.8, cx + 0.95, cy + 0.8);
-    txt(s, 'Proven in the field: successful sign-offs from all of our clients, and highly effective for first-attempt smart pig data.', { x: 0.6, y: 6.6, w: 12.1, h: 0.35, fontSize: 12, italic: true, color: C.gold, align: 'center' });
+    txt(s, 'Field-proven process: successful sign-offs from all of our clients and reliable first-attempt smart pig data.', { x: 0.6, y: 6.6, w: 12.1, h: 0.35, fontSize: 12, italic: true, color: C.gold, align: 'center' });
     s.addNotes(`[~2.5 min] How do we know a pass is clean? Four independent indicators, and the pass isn't called clean until all four agree.
 1) Sensor data: live pressure data at the operator interface. Coke shows as a spike, and the technician can stop the pig and scrub that exact area.
 2) Effluent: the technician watches the returns. The "black" (coke fines) in the stream fades to an unnoticeable amount as the pass cleans.
@@ -614,7 +709,7 @@ This is also why smart pig inspections after our cleans usually get good data on
         { x: x + 0.3, y: 3.6, w: 3.35, h: 2.9, fontSize: 13, color: C.text, valign: 'top', paraSpaceAfter: 12 });
     }
     footer(s, false);
-    s.addNotes(`[~1.5 min] QA/QC runs through the whole job, not just the end.
+    s.addNotes(`[~1 min] QA/QC runs through the whole job, not just the end.
 Before: walkdown, coil data check, JSA/permits/isolation, pig progression staged by heater.
 During: work is documented in the job book with daily reports, pig logs and JSAs. One point of contact manages the work flow and daily updates to Marathon. Flow tests before and after at the same rate give an objective comparison.
 Close-out: per-pass sign-off, final pig size recorded for each pass, the job book, and a post-job review. On a recurring program, that record is what makes the next decoke on the same heater faster.
@@ -630,7 +725,7 @@ The full QA/QC manual was attached to the RFI response.`);
     s.addShape(pres.shapes.RECTANGLE, { x: 0, y: 0, w: W, h: 2.1, fill: { color: '111111', transparency: 25 }, line: { color: '111111', transparency: 100 } });
     s.addImage({ path: IMG + 'fade_bottom_light.png', x: 0, y: 0, w: W, h: H });
     chip(s, '06', 'Emergency response & local resources', true);
-    title(s, 'Ready when LAR needs us', true);
+    title(s, 'Responsive support for LAR', true);
     sub(s, 'Shops, equipment and crews in Southern California / LA Basin, with regional support', true);
     const st = [['24/7', 'Dispatch and account manager, any hour'], ['Same day', 'Response for local needs'], ['< 24 hrs', 'Manpower & equipment anywhere else, from regional shops']];
     st.forEach(([n, l], i) => {
@@ -724,9 +819,9 @@ Full detail is in the safety manual and SSHASP submitted with the RFI.`);
     title(s, 'What sets USA DeBusk apart', true, { w: 8.4 });
     const cards = [
       ['FaIndustry', 'Self-performed scope', 'Pigging, decoking and hydroblasting with our own equipment and SCAQMD rigs: one contractor, no subs'],
-      ['FaCogs', 'Largest triple-pass fleet', 'The largest triple-pass pumper fleet in the world, with a spare pump on board even on a 2-pass heater'],
-      ['FaDatabase', 'Data-driven execution', 'Durations built from recorded actuals across our heater history; digital pig logs and job reports'],
-      ['FaSyncAlt', 'Best practices shared', 'Lessons-learned reviews feed toolbox talks, training updates and post-job reviews with Marathon'],
+      ['FaCogs', 'Largest standardized fleet', '6 identical TriMax units, 18 engines, with a spare pump on board even on a 2-pass heater'],
+      ['FaDotCircle', 'Widest pig selection', 'Engineered decoking pigs matched to each coil and each coke condition'],
+      ['FaDatabase', 'Data-driven, shared', 'Durations built from recorded actuals; lessons learned reviewed with Marathon after every job'],
     ];
     for (let i = 0; i < cards.length; i++) {
       const [ic, h, d] = cards[i];
@@ -737,11 +832,11 @@ Full detail is in the safety manual and SSHASP submitted with the RFI.`);
       txt(s, d, { x: x + 0.3, y: y + 1.18, w: 3.6, h: 0.9, fontSize: 12.5, color: C.soft, valign: 'top' });
     }
     footer(s, true);
-    s.addNotes(`[~2 min] Four differentiators.
+    s.addNotes(`[~1.5 min] Four differentiators, backed by more than 200 years of combined experience on our team.
 Self-performed: pigging, decoking and hydroblasting with in-house equipment and SCAQMD rigs, so one contractor covers the full scope without subs.
-Triple-pass: we run the largest triple-pass pigging pumper fleet in the world. The TriMax runs up to three passes at once; on LAR's 2-pass heaters that third pump is an on-board spare, so a pump failure doesn't stop the job, and it can also drive a smart pig. We also offer closed-loop filtration and smart-pig support, so Marathon deals with one contractor.
-Data-driven: our durations aren't guesses. They're built from recorded actuals on the heaters we've cleaned, and every job produces pig logs and a job report that feed the next estimate. On a 60-decoke program that compounds.
-Best practices: captured in lessons-learned reviews and shared through toolbox talks, training updates and post-job reviews with the client. On LAR, Marathon sits in that loop.`);
+Fleet: we run the largest triple-pass pigging fleet in the world, and it's standardized: six identical TriMax units, 18 engines. The TriMax runs up to three passes at once; on LAR's 2-pass heaters that third pump is an on-board spare, so a pump failure doesn't stop the job, and it can also drive a smart pig. We also offer closed-loop filtration and smart-pig support, so Marathon deals with one contractor.
+Pigs: the widest selection of engineered decoking pigs, matched to the coil and the coke (slide 6).
+Data-driven and shared: our durations are built from recorded actuals, every job produces pig logs and a job report, and lessons learned are reviewed with the client after each job. On a 60-decoke program that compounds, and Marathon sits in that loop.`);
   }
 
   // =====================================================================
@@ -773,16 +868,16 @@ The contact list is in the appendix and in the leave-behind. We'd encourage the 
     chip(s, '09', 'References & case studies', false);
     title(s, 'Coker heater case studies & lessons learned', false);
     const cs = [
+      ['Marathon Detroit, MI: 70H1 Coker', 'Decoked September 2024 and September 2026',
+        [['6', 'passes, 3 cells'], ["15,156'", 'coil footage'], ['2', 'TriMax units']],
+        'All six passes, convection and radiant, pigged simultaneously on two TriMax units.',
+        'Completed on schedule and safely on both occasions; Marathon Detroit re-engaged USA DeBusk for the same coker.', 'Scope', 'Result'],
       ['CHS McPherson, KS: Coker HF-0012', '6-pass coker heater, planned decoke, 2025',
         [["12,036'", 'coil footage'], ['6', 'passes'], ['85 h', 'pigging']],
         'Hard coke held pigs in the radiant section.',
-        'Stage heavy-duty scraper pigs for the radiant from day one, not as a mid-job change.'],
-      ['Phillips 66 Ponca City, OK: H-28 & H-29', 'Two coker heaters, emergency 2024 vs planned 2025',
-        [['172 h', 'emergency callout'], ['131 h', 'planned decoke'], ['−24%', 'hours']],
-        'Same two heaters, cleaned once as an unplanned callout and once on a planned schedule.',
-        'A planned cadence lets rig-in, pig sets and crew be pre-staged, the model we propose for LAR.'],
+        'Stage heavy-duty scraper pigs for the radiant from day one, not as a mid-job change.', 'Challenge', 'Lesson learned'],
     ];
-    cs.forEach(([h, d, stats, ch, lesson], i) => {
+    cs.forEach(([h, d, stats, ch, lesson, chL, lesL], i) => {
       const x = 0.6 + i * 6.17, y = 1.95, w = 5.96;
       s.addShape(pres.shapes.RECTANGLE, { x, y, w, h: 4.8, fill: { color: C.light }, line: { color: C.light } });
       txt(s, h, { x: x + 0.35, y: y + 0.3, w: w - 0.7, h: 0.4, fontSize: 17, bold: true, color: C.text });
@@ -792,16 +887,16 @@ The contact list is in the appendix and in the leave-behind. We'd encourage the 
         txt(s, n, { x: sx, y: y + 1.2, w: 1.75, h: 0.65, fontSize: 28, bold: true, color: C.text });
         txt(s, l, { x: sx, y: y + 1.85, w: 1.75, h: 0.3, fontSize: 11, color: C.muted });
       });
-      txt(s, [{ text: 'Challenge  ', options: { bold: true, color: C.text } }, { text: ch, options: { color: C.muted } }],
+      txt(s, [{ text: chL + '  ', options: { bold: true, color: C.text } }, { text: ch, options: { color: C.muted } }],
         { x: x + 0.35, y: y + 2.45, w: w - 0.7, h: 0.8, fontSize: 13, valign: 'top' });
       s.addShape(pres.shapes.RECTANGLE, { x: x + 0.35, y: y + 3.35, w: w - 0.7, h: 1.2, fill: { color: C.dark }, line: { color: C.dark } });
-      txt(s, [{ text: 'Lesson learned  ', options: { bold: true, color: C.gold } }, { text: lesson, options: { color: C.white } }],
+      txt(s, [{ text: lesL + '  ', options: { bold: true, color: C.gold } }, { text: lesson, options: { color: C.white } }],
         { x: x + 0.55, y: y + 3.45, w: w - 1.1, h: 1.0, fontSize: 13, valign: 'middle' });
     });
     footer(s, false);
-    s.addNotes(`[~1.5 min] Two coker examples from our job records.
-First: CHS McPherson, coker heater HF-0012, six passes, just over 12,000 feet of coil, 85 pigging hours on a planned decoke. The radiant held hard coke that stopped standard pigs. Lesson: on a coker, stage the heavy-duty pig set for the radiant from the start. We'll do that at LAR on every occurrence.
-Second: Phillips 66 Ponca City, coker heaters H-28 and H-29, cleaned once as an emergency callout (172 hours) and a year later on a planned schedule (131 hours). The planned job pre-staged rig-in, pigs and crew. That's the model of a recurring program like LAR's.`);
+    s.addNotes(`[~1.5 min] Two coker examples from our job records, starting with one of yours.
+First: Marathon Detroit, the 70H1 coker. Six passes across three cells, about 15,000 feet of convection and radiant coil. We ran two TriMax units and pigged all six passes at once, in September 2024 and again this month, September 2026. Both decokes were completed on schedule and safely, and Marathon Detroit re-engaged us two years later for the same coker. Nate Lajiness at Detroit is on our reference list.
+Second: CHS McPherson, coker heater HF-0012, six passes, just over 12,000 feet of coil, 85 pigging hours on a planned decoke. The radiant held hard coke that stopped standard pigs. Lesson: on a coker, stage the heavy-duty pig set for the radiant from the start. We'll do that at LAR on every occurrence.`);
   }
 
   // =====================================================================
@@ -814,7 +909,7 @@ Second: Phillips 66 Ponca City, coker heaters H-28 and H-29, cleaned once as an 
     chip(s, '10', 'Why USA DeBusk', true);
     title(s, 'Why USA DeBusk for LAR', true, { w: 7.5, fontSize: 36 });
     const pts = [
-      ['Proven on MPC heaters', '9 MPC references; projects for every major North American refiner'],
+      ['Proven experience', '200+ years combined; 9 MPC references, including Detroit\'s coker'],
       ['California-ready', 'CARB-registered Tier 4 fleet, Southern California footprint'],
       ['Resilient execution', 'Triple-pass TriMax: a spare pump on every 2-pass heater'],
       ['Verified clean', '4-point verification and joint sign-off on every pass'],
@@ -847,12 +942,12 @@ Second: Phillips 66 Ponca City, coker heaters H-28 and H-29, cleaned once as an 
     ], { x: 0.6, y: 5.3, w: 12.13, h: 0.8, fontSize: 14, color: C.white, align: 'center', paraSpaceAfter: 6 });
     s.addNotes(`[20 min reserved for Q&A]
 Likely questions and where the answer lives:
-- "How do you handle a plugged pass?" Bi-directional flow and stepwise pig sizing (slides 4–5); pre-job walkdown (slide 15).
+- "How do you handle a plugged pass?" Bi-directional flow and stepwise pig sizing (slides 4–6); pre-job walkdown (slide 17).
 - "What if duration overruns?" Lump sum per occurrence. Pricing excludes additional fouling, unknown repairs and stoppages outside our control; those, plus stand-by not caused by USA DeBusk, are billed T&M at the proposal rates.
-- "Local presence?" Slide 16, per RFI GD-1.
-- "CARB registration?" Slide 13: every TriMax carries statewide PERP registration.
+- "Local presence?" Slide 18, per RFI GD-1.
+- "CARB registration?" Slide 14: every TriMax carries statewide PERP registration.
 - "Filtration?" Available at $150/hr per the rate sheet.
-- "Pump curves / pressure capability?" Appendix slide 25 (Waterous CMU curves). Normal 150–300 psi; rated 600, 500–550 effective after valve losses.`);
+- "Pump curves / pressure capability?" Appendix slide 27 (Waterous CMU curves). Normal 150–300 psi; rated 600, 500–550 effective after valve losses.`);
   }
 
   // =====================================================================
@@ -882,7 +977,7 @@ Likely questions and where the answer lives:
       .concat(refs.map((r, i) => r.map((c, k) => ({ text: c, options: { fill: { color: i % 2 ? 'F7F7F7' : C.white }, color: C.text, fontSize: 10, bold: k === 0 } }))));
     s.addTable(rows, { x: 0.6, y: 1.75, w: 12.13, colW: [2.0, 2.2, 3.1, 1.55, 3.28], rowH: 0.33, fontFace: FONT, border: { type: 'solid', pt: 0.5, color: C.rule }, valign: 'middle', margin: [0, 0.08, 0, 0.08] });
     footer(s, false);
-    s.addNotes(`Leave-behind reference list. Not presented; point to it from slide 20 (MPC map) if asked.`);
+    s.addNotes(`Leave-behind reference list. Not presented; point to it from slide 22 (MPC map) if asked.`);
   }
 
   // =====================================================================
@@ -892,11 +987,19 @@ Likely questions and where the answer lives:
     bg(s, C.white);
     chip(s, null, 'Appendix', false);
     title(s, 'TriMax pump performance', false, { fontSize: 28 });
-    sub(s, 'Waterous CMU two-stage pump, one per pass. Series operation is used for pigging.', false);
-    const ih = 4.45, iw = ih * PCW / PCH;
-    s.addShape(pres.shapes.RECTANGLE, { x: 0.55, y: 2.1, w: iw + 0.1, h: ih + 0.1, fill: { color: C.white }, line: { color: C.rule, width: 1 } });
-    s.addImage({ path: IMG + 'pump_curve.png', x: 0.6, y: 2.15, w: iw, h: ih });
-    txt(s, 'Manufacturer curves: Waterous Company, form F-2692', { x: 0.6, y: 2.25 + ih, w: iw, h: 0.25, fontSize: 9.5, italic: true, color: C.grey });
+    sub(s, 'Waterous CMU two-stage pump, one per pass: series-operation curve, as used for pigging', false);
+    const ih = 4.5, iw = ih * 1000 / 1144, ix = 0.6, iy = 2.15;
+    s.addShape(pres.shapes.RECTANGLE, { x: ix - 0.05, y: iy - 0.05, w: iw + 0.1, h: ih + 0.1, fill: { color: C.white }, line: { color: C.rule, width: 1 } });
+    s.addImage({ path: IMG + 'pump_series.png', x: ix, y: iy, w: iw, h: ih });
+    // effective-max band, 500–550 psi on the net-pressure axis
+    const bx = ix + iw * 0.185, bw2 = iw * (0.845 - 0.185), by = iy + ih * 636 / 1144, bh2 = ih * 40 / 1144;
+    s.addShape(pres.shapes.RECTANGLE, { x: bx, y: by, w: bw2, h: bh2, fill: { color: C.gold, transparency: 45 }, line: { color: 'B8860B', width: 1 } });
+    s.addShape(pres.shapes.LINE, { x: ix + iw + 0.05, y: by + bh2 / 2, w: 0.45, h: 0, line: { color: 'B8860B', width: 1.5, beginArrowType: 'triangle' } });
+    txt(s, [{ text: '500–550 psi', options: { bold: true, color: C.text, breakLine: true } }, { text: 'Effective maximum at the pig, after losses through our valves', options: { color: C.muted } }],
+      { x: ix + iw + 0.6, y: by - 0.25, w: 3.2, h: 0.85, fontSize: 12, valign: 'top' });
+    txt(s, [{ text: 'Reading the curve  ', options: { bold: true, color: C.text } }, { text: 'Each line is one engine speed; pressure falls as flow rises. Pigging runs well inside this envelope at 150 to 300 psi.', options: { color: C.muted } }],
+      { x: ix + iw + 0.6, y: 5.55, w: 3.2, h: 1.2, fontSize: 11.5, valign: 'top' });
+    txt(s, 'Manufacturer curve: Waterous Company, form F-2692', { x: ix, y: iy + ih + 0.1, w: 5, h: 0.25, fontSize: 9.5, italic: true, color: C.grey });
     const k = [['150–300', 'psi normal pigging'], ['500–550', 'psi effective max, after valve losses'], ['600', 'psi rated pump maximum']];
     k.forEach(([n, l], i) => {
       const y = 2.15 + i * 1.5;
@@ -906,7 +1009,7 @@ Likely questions and where the answer lives:
     });
     footer(s, false);
     s.addNotes(`Backup slide, not presented. Pull it up if an engineer asks about pump capability.
-Series operation is how the pump runs for pigging (higher pressure, lower flow). Normal pigging runs 150 to 300 psi. The curve tops out at 600 psi; in practice we see 500 to 550 at the pig because of losses through our valves.`);
+This is the series-operation curve, which is how the pump runs for pigging (higher pressure, lower flow). Each line is an engine speed. Normal pigging runs 150 to 300 psi. The curve reaches 600 psi; the gold band marks the 500 to 550 psi we actually see at the pig, after losses through our valves.`);
   }
 
   await pres.writeFile({ fileName: __dirname + '/LAR_Technical_Proposal_Presentation.pptx' });
