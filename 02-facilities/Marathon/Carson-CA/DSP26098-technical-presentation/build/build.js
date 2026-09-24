@@ -987,11 +987,19 @@ Likely questions and where the answer lives:
     bg(s, C.white);
     chip(s, null, 'Appendix', false);
     title(s, 'TriMax pump performance', false, { fontSize: 28 });
-    sub(s, 'Waterous CMU two-stage pump, one per pass. Series operation is used for pigging.', false);
-    const ih = 4.45, iw = ih * PCW / PCH;
-    s.addShape(pres.shapes.RECTANGLE, { x: 0.55, y: 2.1, w: iw + 0.1, h: ih + 0.1, fill: { color: C.white }, line: { color: C.rule, width: 1 } });
-    s.addImage({ path: IMG + 'pump_curve.png', x: 0.6, y: 2.15, w: iw, h: ih });
-    txt(s, 'Manufacturer curves: Waterous Company, form F-2692', { x: 0.6, y: 2.25 + ih, w: iw, h: 0.25, fontSize: 9.5, italic: true, color: C.grey });
+    sub(s, 'Waterous CMU two-stage pump, one per pass: series-operation curve, as used for pigging', false);
+    const ih = 4.5, iw = ih * 1000 / 1144, ix = 0.6, iy = 2.15;
+    s.addShape(pres.shapes.RECTANGLE, { x: ix - 0.05, y: iy - 0.05, w: iw + 0.1, h: ih + 0.1, fill: { color: C.white }, line: { color: C.rule, width: 1 } });
+    s.addImage({ path: IMG + 'pump_series.png', x: ix, y: iy, w: iw, h: ih });
+    // effective-max band, 500–550 psi on the net-pressure axis
+    const bx = ix + iw * 0.185, bw2 = iw * (0.845 - 0.185), by = iy + ih * 636 / 1144, bh2 = ih * 40 / 1144;
+    s.addShape(pres.shapes.RECTANGLE, { x: bx, y: by, w: bw2, h: bh2, fill: { color: C.gold, transparency: 45 }, line: { color: 'B8860B', width: 1 } });
+    s.addShape(pres.shapes.LINE, { x: ix + iw + 0.05, y: by + bh2 / 2, w: 0.45, h: 0, line: { color: 'B8860B', width: 1.5, beginArrowType: 'triangle' } });
+    txt(s, [{ text: '500–550 psi', options: { bold: true, color: C.text, breakLine: true } }, { text: 'Effective maximum at the pig, after losses through our valves', options: { color: C.muted } }],
+      { x: ix + iw + 0.6, y: by - 0.25, w: 3.2, h: 0.85, fontSize: 12, valign: 'top' });
+    txt(s, [{ text: 'Reading the curve  ', options: { bold: true, color: C.text } }, { text: 'Each line is one engine speed; pressure falls as flow rises. Pigging runs well inside this envelope at 150 to 300 psi.', options: { color: C.muted } }],
+      { x: ix + iw + 0.6, y: 5.55, w: 3.2, h: 1.2, fontSize: 11.5, valign: 'top' });
+    txt(s, 'Manufacturer curve: Waterous Company, form F-2692', { x: ix, y: iy + ih + 0.1, w: 5, h: 0.25, fontSize: 9.5, italic: true, color: C.grey });
     const k = [['150–300', 'psi normal pigging'], ['500–550', 'psi effective max, after valve losses'], ['600', 'psi rated pump maximum']];
     k.forEach(([n, l], i) => {
       const y = 2.15 + i * 1.5;
@@ -1001,7 +1009,7 @@ Likely questions and where the answer lives:
     });
     footer(s, false);
     s.addNotes(`Backup slide, not presented. Pull it up if an engineer asks about pump capability.
-Series operation is how the pump runs for pigging (higher pressure, lower flow). Normal pigging runs 150 to 300 psi. The curve tops out at 600 psi; in practice we see 500 to 550 at the pig because of losses through our valves.`);
+This is the series-operation curve, which is how the pump runs for pigging (higher pressure, lower flow). Each line is an engine speed. Normal pigging runs 150 to 300 psi. The curve reaches 600 psi; the gold band marks the 500 to 550 psi we actually see at the pig, after losses through our valves.`);
   }
 
   await pres.writeFile({ fileName: __dirname + '/LAR_Technical_Proposal_Presentation.pptx' });
