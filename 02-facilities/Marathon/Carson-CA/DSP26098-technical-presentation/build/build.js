@@ -431,42 +431,54 @@ Every technician is USA DeBusk-certified, selected by heater-type experience, wi
     bg(s, C.dark);
     chip(s, '03', 'Readiness & resources', true);
     title(s, 'Your LAR project team', true);
-    const box = (x, y, w, name, role, gold) => {
-      s.addShape(pres.shapes.RECTANGLE, { x, y, w, h: 0.95, fill: { color: gold ? C.gold : C.char }, line: { color: gold ? C.gold : C.char2 } });
-      txt(s, name, { x: x + 0.2, y: y + 0.12, w: w - 0.4, h: 0.38, fontSize: 16, bold: true, color: gold ? C.dark : C.white });
-      txt(s, role, { x: x + 0.2, y: y + 0.5, w: w - 0.4, h: 0.35, fontSize: 12, color: gold ? C.dark : C.soft });
-    };
-    const ln = (x, y, w, h, dash) => s.addShape(pres.shapes.LINE, { x, y, w, h, line: { color: C.grey, width: 1.5, dashType: dash ? 'dash' : 'solid' } });
-    const cx = 6.67, bw = 3.6;
-    box(cx - bw / 2, 1.9, bw, 'Anthony Fazio', 'VP Operations');
-    ln(cx, 2.85, 0, 0.45);
-    box(cx - bw / 2, 3.3, bw, 'Marshall Douglas', 'Director of Pigging Operations', true);
-    ln(cx + bw / 2, 3.78, 1.0, 0, true);
-    box(cx + bw / 2 + 1.0, 3.3, 3.2, 'Jason Harman', 'Commercial Manager');
-    ln(cx, 4.25, 0, 0.45);
-    box(cx - bw / 2, 4.7, bw, 'Travis Trenholm', 'Pigging Operations Manager (PM)');
-    ln(cx, 5.65, 0, 0.3);
-    ln(cx - 2.2, 5.95, 4.4, 0);
-    ln(cx - 2.2, 5.95, 0, 0.2); ln(cx + 2.2, 5.95, 0, 0.2);
-    const crew = (x, t, d) => {
-      s.addShape(pres.shapes.RECTANGLE, { x, y: 6.15, w: 3.2, h: 0.72, fill: { color: C.char }, line: { color: C.char2 } });
-      txt(s, t, { x: x + 0.15, y: 6.18, w: 2.9, h: 0.33, fontSize: 13, bold: true, color: C.gold });
-      txt(s, d, { x: x + 0.15, y: 6.5, w: 2.9, h: 0.3, fontSize: 11, color: C.soft });
-    };
-    crew(cx - 2.2 - 1.6, 'Day shift', '1 supervisor, 2 operators');
-    crew(cx + 2.2 - 1.6, 'Night shift', '1 supervisor, 1 operator');
-    [['200+', 'years of combined pigging & decoking experience'], ['15+', 'years self-performing heater pigging']].forEach(([n, l], i) => {
-      const y = 1.9 + i * 1.5;
-      s.addShape(pres.shapes.RECTANGLE, { x: 0.6, y, w: 3.6, h: 1.3, fill: { color: C.char }, line: { color: C.gold, width: 1 } });
-      txt(s, n, { x: 0.8, y: y + 0.1, w: 3.2, h: 0.65, fontSize: 34, bold: true, color: C.gold, valign: 'middle' });
-      txt(s, l, { x: 0.8, y: y + 0.75, w: 3.2, h: 0.45, fontSize: 11.5, color: C.white, valign: 'top' });
+    // experience tiles
+    [['202', 'years of combined pigging & decoking experience'], ['15+', 'years self-performing heater pigging']].forEach(([n, l], i) => {
+      const y = 1.9 + i * 1.55;
+      s.addShape(pres.shapes.RECTANGLE, { x: 0.6, y, w: 3.3, h: 1.35, fill: { color: C.char }, line: { color: C.gold, width: 1 } });
+      txt(s, n, { x: 0.8, y: y + 0.1, w: 2.9, h: 0.68, fontSize: 36, bold: true, color: C.gold, valign: 'middle' });
+      txt(s, l, { x: 0.8, y: y + 0.78, w: 2.9, h: 0.5, fontSize: 11.5, color: C.white, valign: 'top' });
     });
-    txt(s, 'Site org chart finalized at award', { x: 0.6, y: 6.45, w: 2.5, h: 0.3, fontSize: 10, italic: true, color: C.grey });
+    const ln = (x, y, w, h) => s.addShape(pres.shapes.LINE, { x, y, w, h, line: { color: C.grey, width: 1.25 } });
+    const box = (x, y, w, h, name, role, yrs, gold, small) => {
+      s.addShape(pres.shapes.RECTANGLE, { x, y, w, h, fill: { color: gold ? C.gold : C.char }, line: { color: gold ? C.gold : C.char2 } });
+      const fs = small ? 11.5 : 13.5, rs = small ? 9.5 : 10.5;
+      const nameW = small ? w - 0.25 : w - 0.9;
+      txt(s, name, { x: x + 0.14, y: y + 0.06, w: nameW, h: h * 0.45, fontSize: fs, bold: true, color: gold ? C.dark : C.white, valign: 'middle' });
+      txt(s, role, { x: x + 0.14, y: y + h * 0.5, w: small ? w - 0.72 : w - 0.9, h: h * 0.42, fontSize: small ? 9 : rs, color: gold ? C.dark : C.soft, valign: 'middle' });
+      const yY = small ? y + h * 0.5 : y + 0.06, yH = small ? h * 0.42 : h * 0.45;
+      txt(s, yrs + ' yrs', { x: x + w - (small ? 0.62 : 0.8), y: yY, w: small ? 0.52 : 0.7, h: yH, fontSize: small ? 10.5 : 12, bold: true, color: gold ? C.dark : C.gold, align: 'right', valign: 'middle' });
+    };
+    // top of chart
+    const cx = 8.55, bw = 3.2, bh = 0.72;
+    box(cx - bw / 2, 1.85, bw, bh, 'Anthony Fazio', 'Vice President of Operations', 12);
+    ln(cx, 1.85 + bh, 0, 0.2);
+    box(cx - bw / 2, 2.77, bw, bh, 'Marshall Douglas', 'Director of Pigging Operations', 26, true);
+    ln(cx, 2.77 + bh, 0, 0.14);
+    const l3x = [cx - 1.8, cx + 1.8];
+    ln(l3x[0], 3.63, l3x[1] - l3x[0], 0);
+    ln(l3x[0], 3.63, 0, 0.1); ln(l3x[1], 3.63, 0, 0.1);
+    box(l3x[0] - bw / 2 + 0.05, 3.73, bw - 0.1, bh, 'Jason Harman', 'Commercial Manager', 22);
+    box(l3x[1] - bw / 2 + 0.05, 3.73, bw - 0.1, bh, 'Travis Trenholm', 'Pigging Operations Manager', 15);
+    // team under Travis
+    const team = [
+      ['Danilo Ramirez', 'Project Manager', 33], ['Jesse Utsey', 'Project Manager', 23], ['Sid Servin', 'Equipment Manager', 18], ['Danny Harman', 'Field Tech', 25],
+      ['Dacorey Slater', 'Project Manager', 8], ['James Lee', 'Project Manager', 10], ['James McDaniel', 'Project Manager', 5], ['Rodney Lynch', 'Project Manager', 5],
+    ];
+    const gx0 = 4.25, gw = 2.05, gg = 0.1, gh = 0.66, gy0 = 4.93;
+    ln(l3x[1], 3.73 + bh, 0, 0.14);
+    const spanL = gx0 + gw / 2, spanR = gx0 + 3 * (gw + gg) + gw / 2;
+    ln(spanL, 4.59, spanR - spanL, 0);
+    ln(l3x[1], 4.59, 0, 0);
+    team.forEach(([n, r, y], i) => {
+      const col = i % 4, row = Math.floor(i / 4);
+      const x = gx0 + col * (gw + gg), yy = gy0 + row * (gh + 0.12);
+      if (row === 0) ln(x + gw / 2, 4.59, 0, gy0 - 4.59);
+      box(x, yy, gw, gh, n, r, y, false, true);
+    });
     footer(s, true);
-    s.addNotes(`[~1 min] Our team brings more than 200 years of combined pigging and decoking experience, and the company has self-performed heater pigging for over 15 years.
-Leadership line: Anthony Fazio, VP Operations; me as Director of Pigging Operations; Travis Trenholm as the project manager on every LAR occurrence. Jason Harman is the commercial point of contact.
-One point of contact manages work flow and daily updates to Marathon.
-Leadership resumes were included with the RFI response; the full site org chart is issued at award.`);
+    s.addNotes(`[~1 min] Our team brings 202 years of combined pigging and decoking experience, and the company has self-performed heater pigging for over 15 years.
+Leadership: Anthony Fazio, VP Operations, 12 years; me, Director of Pigging Operations, 26 years. Jason Harman, Commercial Manager, 22 years, is the commercial point of contact. Travis Trenholm, Pigging Operations Manager, 15 years, is the project manager on every LAR occurrence.
+Under Travis: a bench of project managers, our equipment manager and a senior field tech, led in experience by Danilo Ramirez at 33 years. One point of contact manages the work flow and daily updates to Marathon.`);
   }
 
   // =====================================================================
