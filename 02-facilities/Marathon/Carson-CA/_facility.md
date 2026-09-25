@@ -63,6 +63,8 @@ to transpose — see the warning on each card.
 
 ## Notes
 
+**DSP26098 technical proposal presentation (September 2026):** see `DSP26098-technical-presentation/README.md`, which holds the deck, the presenter prep notes and the build scripts.
+
 Source documents (both at `C:\Users\Jwuts\projects\New Drawings\Unreadable Drawings`, with
 legible extracts under `readable\`):
 

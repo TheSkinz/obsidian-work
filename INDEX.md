@@ -71,6 +71,7 @@
 - [[USA26038-job-sheet]] — USA26038 — HF Sinclair Navajo Refinery, Artesia, NM `(HF-Sinclair/Artesia-NM)`
 - [[USA26040-job-sheet]] — USA26040 — HF Sinclair Navajo Refinery, Artesia, NM `(HF-Sinclair/Artesia-NM)`
 - [[02-facilities/Marathon/Carson-CA/_facility|_facility]] — Marathon — Carson Refinery, CA `(Marathon/Carson-CA)`
+- [[LAR_QA_Prep_Notes]] — LAR Technical Presentation: Q&A prep (internal, do not present) `(Marathon/Carson-CA/DSP26098-technical-presentation)`
 - [[RW-0014-214.9]] — RW-0014-214.9 Coker Heater No. 2 — Marathon (Andeavor) Carson, CA `(Marathon/Carson-CA)`
 - [[RW-0015-214.09]] — RW-0015-214.09 Coker Heater No. 3 — Marathon (ARCO) Carson, CA `(Marathon/Carson-CA)`
 - [[210-1401A]] — 210-1401A Crude Heater — Marathon Garyville, LA `(Marathon/Garyville-LA)`
