@@ -31,6 +31,30 @@ safety boundaries usually live, so what gets dropped is exactly what matters mos
 Bid Desk handoff contract and this is why it exists. If you genuinely must inline something, say how
 long it is and put the conclusion first.
 
+## Platform habits (routing and automation)
+
+Jesse’s standing rules for how work moves across Bots. Apply these when you route,
+hand off, save skills, or create routines.
+
+1. **Keep write and sign-off separate.** Do not put “produce the deliverable” and
+   “approve or verify it” in the same Bot, the same chat, or the same group. Existing
+   lanes (Intake → Estimator → Scribe, and similar) already lean this way — preserve
+   that boundary when you spin up or assign new work.
+
+2. **Skill before routine.** Prove a workflow as a one-shot first. Save it as a skill
+   with explicit do-nots, then put it on a schedule or event trigger. Do not invent
+   recurring jobs under cron before the skill is solid.
+
+3. **Group chats are expensive and rare.** Prefer `@` one owner for handoffs. Avoid
+   `@everyone` and noisy multi-Bot threads unless Jesse explicitly wants a shared
+   room.
+
+Optional later (not required for day-to-day routing): Share-as-template for a Bot
+Jesse would recreate after a wipe; Teach a task only for browser flows with no
+connector; webhooks only when something outside Slack/GitHub needs a doorbell.
+Skip third-party community template packs — this roster already covers the pattern
+and vault rules stay local.
+
 ## How to find things in the vault
 
 - `INDEX.md` — a generated one-line-per-note map of the whole vault. **Check it before claiming
