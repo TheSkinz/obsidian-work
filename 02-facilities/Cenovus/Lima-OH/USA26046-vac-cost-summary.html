@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vac Charge Furnace Cost Summary</title>
+<style>
+  :root{
+    --gold:#FCC30A; --ink:#222222; --body:#555555; --muted:#898781;
+    --rule:#e1e0d9; --surface:#ffffff; --plane:#f9f9f7;
+    --rig:#2a78d6; --pig:#eb6834; --smart:#1baf7a; --wait:#b9b7ae;
+    --over:#e34948;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--plane);color:var(--body);
+       font:10pt/1.45 Helvetica,Arial,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sheet{width:8.5in;margin:0 auto;background:var(--surface);padding:0.45in 0.5in}
+  h1{font-size:13pt;color:var(--ink);margin:0 0 2px;border-bottom:2px solid var(--gold);padding-bottom:5px}
+  h2{font-size:11pt;color:var(--gold);margin:17px 0 6px}
+  .sub{font-size:8.5pt;color:var(--muted);margin:5px 0 0}
+  .tiles{display:flex;gap:8px;margin:13px 0 4px}
+  .tile{flex:1;border:1px solid var(--rule);padding:8px 10px}
+  .tile .k{font-size:7pt;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+  .tile .v{font-size:16pt;color:var(--ink);font-weight:bold;line-height:1.2}
+  .tile .n{font-size:7.5pt;color:var(--body)}
+  .tile.flag{border-left:3px solid var(--gold)}
+  table{width:100%;border-collapse:collapse;font-size:8.5pt}
+  th{background:var(--ink);color:#fff;text-align:left;padding:4px 6px;font-size:7pt;
+     text-transform:uppercase;letter-spacing:.4px;font-weight:normal}
+  th.n,td.n{text-align:right}
+  td{padding:4px 6px;border-bottom:1px solid var(--rule);vertical-align:top}
+  tbody tr:nth-child(even){background:#F7F7F7}
+  td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+  .over{color:var(--over);font-weight:bold}
+  .under{color:var(--rig);font-weight:bold}
+  tr.sum td{border-top:1.5px solid var(--ink);border-bottom:none;font-weight:bold;color:var(--ink)}
+  tr.grand td{border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+              font-weight:bold;color:var(--ink);background:#F7F7F7}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:8pt;margin:0 0 6px}
+  .legend span{display:flex;align-items:center;gap:5px}
+  .sw{width:11px;height:11px;border-radius:2px;display:inline-block}
+  .note{background:#FFFBE6;border-left:3px solid var(--gold);padding:7px 10px;font-size:8.5pt;margin:11px 0}
+  ul.scope{margin:4px 0 0;padding-left:16px;font-size:9pt}
+  ul.scope li{margin-bottom:3px}
+  .foot{margin-top:14px;border-top:1px solid var(--rule);padding-top:6px;font-size:7.5pt;color:var(--muted)}
+  .keep{break-inside:avoid;page-break-inside:avoid}
+  @media print{body{background:#fff}.sheet{width:auto;padding:0}}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <h1>Vacuum Charge Furnace PR-170029 &mdash; Final Cost Summary</h1>
+  <p class="sub">Cenovus Lima, OH &nbsp;&middot;&nbsp; Job USA26046 &nbsp;&middot;&nbsp; WO 82036776 &nbsp;&middot;&nbsp;
+     Quotation DSP#26013 &nbsp;&middot;&nbsp; 19 September 18:00 &ndash; 30 September 01:30, 2026 &nbsp;&middot;&nbsp;
+     21 shifts &nbsp;&middot;&nbsp; Service receipts 7077&ndash;7100</p>
+
+  <div class="tiles">
+    <div class="tile"><div class="k">Quoted</div><div class="v">$107,200</div><div class="n">134 hours</div></div>
+    <div class="tile"><div class="k">Final</div><div class="v">$189,575</div><div class="n">247.5 hours</div></div>
+    <div class="tile flag"><div class="k">Variance</div><div class="v">+$82,375</div><div class="n">+77%</div></div>
+    <div class="tile"><div class="k">Passes completed</div><div class="v">8 of 8</div><div class="n">decoked and inspected</div></div>
+  </div>
+
+  <h2>Scope completed</h2>
+  <ul class="scope">
+    <li>All eight passes decoked through the convection and all five radiant segments, 3,595 ft of convection and 3,459 ft of radiant tube.</li>
+    <li>Clean IDs confirmed by field measurement at 4.0&quot;, 3.8&quot;, 5.7&quot;, 7.8&quot;, 9.75&quot; and 11.75&quot;, matching the coil drawings.</li>
+    <li>All eight passes smart pigged. Pass 1&ndash;3 data approved 25 September; passes 4 and 6 on 26 September; passes 5, 7 and 8 completed 28 September.</li>
+    <li>Filtration run throughout on filter press 1.</li>
+    <li>Heater dewatered, launchers and hoses removed, filter presses cleaned at the wash pad, and equipment demobilised from the unit.</li>
+  </ul>
+
+  <div class="note">
+    <strong>Basis.</strong> DSP#26013 prices this heater at 134 hours &times; <strong>$800 per hour</strong> &mdash;
+    pumping unit $500, support trailer $30, filter press $245 and crew truck $25, all four on every quoted hour,
+    at the rates on the Cenovus-approved rate sheet. Labour, per diem, DEF and materials are quoted at project level
+    across all four heaters and are invoiced separately.
+  </div>
+
+  <h2>Pumping unit, by task</h2>
+  <table>
+    <thead><tr><th>Task</th><th class="n">Quoted hrs</th><th class="n">Actual hrs</th><th class="n">&Delta; hrs</th>
+      <th class="n">Quoted</th><th class="n">Actual</th><th class="n">&Delta;</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td>Rig-in</td><td class="n">6</td><td class="n">14</td><td class="n over">+8</td>
+        <td class="n">$3,000</td><td class="n">$7,000</td><td class="n over">+$4,000</td>
+        <td>Rig-in could not be completed in a single pass. It was worked in four separate periods of 5, 2, 4 and 3 hours as access to the launcher connections allowed, each restart carrying its own set-up.</td></tr>
+      <tr><td>Pigging</td><td class="n">66</td><td class="n">63</td><td class="n under">&minus;3</td>
+        <td class="n">$33,000</td><td class="n">$31,500</td><td class="n under">&minus;$1,500</td>
+        <td>All eight passes decoked within the quoted allowance. The coil cleaned to size on the planned progression, with minimal deposit found in the larger radiant bores.</td></tr>
+      <tr><td>Smart pig support</td><td class="n">38</td><td class="n">74</td><td class="n over">+36</td>
+        <td class="n">$19,000</td><td class="n">$37,000</td><td class="n over">+$18,000</td>
+        <td>Pumping unit time supporting the inspection contractor. Inspection was accepted section by section rather than by complete pass, so passes were re-entered to collect the outstanding diameters. The 4&quot;, 6&quot; and 8&quot; sections each required repeat runs; the field record of 24 September notes data loss on pass 3 and on the 4&quot; of passes 1 and 2.</td></tr>
+      <tr><td>Rig-over</td><td class="n">18</td><td class="n">8</td><td class="n under">&minus;10</td>
+        <td class="n">$9,000</td><td class="n">$4,000</td><td class="n under">&minus;$5,000</td>
+        <td>Two rig-overs were required rather than the phased moves the quotation assumed, saving ten hours against plan.</td></tr>
+      <tr><td>Rig-out</td><td class="n">6</td><td class="n">36.5</td><td class="n over">+30.5</td>
+        <td class="n">$3,000</td><td class="n">$18,250</td><td class="n over">+$15,250</td>
+        <td>Dewatering of all eight passes, removal of the 6&quot; and 12&quot; launchers and hoses, the filter press dropped and cleaned at the wash pad, pigs and crates loaded, and equipment demobilised from the unit and the facility. The final shift ran 18:00 to 01:30 on 29&ndash;30 September; all units are billed to that finish, not a full shift.</td></tr>
+      <tr class="sum"><td>Productive total</td><td class="n">134</td><td class="n">195.5</td><td class="n over">+61.5</td>
+        <td class="n">$67,000</td><td class="n">$97,750</td><td class="n over">+$30,750</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Equipment</h2>
+  <table>
+    <thead><tr><th>Line</th><th class="n">Rate</th><th class="n">Quoted hrs</th><th class="n">Actual hrs</th>
+      <th class="n">Quoted</th><th class="n">Actual</th><th class="n">&Delta;</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td>Support trailer 6</td><td class="n">$30</td><td class="n">134</td><td class="n">240.5</td>
+        <td class="n">$4,020</td><td class="n">$7,215</td><td class="n over">+$3,195</td>
+        <td>On site from 01:00 on 20 September through demobilisation.</td></tr>
+      <tr><td>Filter press 1</td><td class="n">$245</td><td class="n">134</td><td class="n">235.5</td>
+        <td class="n">$32,830</td><td class="n">$57,698</td><td class="n over">+$24,868</td>
+        <td>Filtration ran for the full duration of the job. The largest single equipment line, and the one most affected by the extended schedule.</td></tr>
+      <tr><td>Crew trucks</td><td class="n">$25</td><td class="n">134</td><td class="n">244.5</td>
+        <td class="n">$3,350</td><td class="n">$6,113</td><td class="n over">+$2,763</td>
+        <td>One crew truck per shift across a 21-shift job.</td></tr>
+      <tr class="sum"><td>Equipment total</td><td class="n"></td><td class="n">134</td><td class="n">&mdash;</td>
+        <td class="n">$40,200</td><td class="n">$71,025</td><td class="n over">+$30,825</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div class="keep">
+  <h2>Stand-by</h2>
+  <p style="font-size:9pt;margin:2px 0 8px">
+    Fifty-two hours were booked to stand-by at the rate sheet's $400, a category the quotation carries no allowance for.
+    Every one of those hours is recorded on a dated field ticket as waiting on the <strong>12&quot; radiant-outlet
+    launchers to be installed by facility pipefitters</strong>. Forty-nine were spent before the launchers were first
+    hung on the night of 21 September, and a further three on 26 September waiting for them to be moved to passes 5, 7
+    and 8. The requirement is named on every ticket across that run.
+  </p>
+  <table>
+    <thead><tr><th>Period</th><th class="n">Hours</th><th class="n">Cost</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td>19&ndash;21 September</td><td class="n">49</td><td class="n">$19,600</td>
+        <td>Pumping unit and crew on site and available. Convection launchers and hoses were connected during this period as access allowed; the coil could not be entered until the radiant-outlet launchers were in place.</td></tr>
+      <tr><td>26 September</td><td class="n">3</td><td class="n">$1,200</td>
+        <td>Waiting for the 12&quot; launchers to be relocated to passes 5, 7 and 8 before the final three passes could be filled.</td></tr>
+      <tr class="sum"><td>Stand-by total</td><td class="n">52</td><td class="n">$20,800</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div class="legend" style="margin-top:12px">
+    <span><i class="sw" style="background:var(--rig)"></i> Rig-in / over / out</span>
+    <span><i class="sw" style="background:var(--pig)"></i> Pigging</span>
+    <span><i class="sw" style="background:var(--smart)"></i> Smart pig support</span>
+    <span><i class="sw" style="background:var(--wait)"></i> Stand-by</span>
+  </div>
+  <svg viewBox="0 0 640 252" width="100%" role="img" aria-label="Task hours for each of the 21 shifts">
+    <g id="tl"></g>
+  </svg>
+  </div>
+
+  <div class="keep">
+  <h2>Summary</h2>
+  <svg viewBox="0 0 640 186" width="100%" role="img" aria-label="Bridge from quoted 107200 to final 189575">
+    <g id="wf"></g>
+  </svg>
+  <table style="margin-top:6px">
+    <tbody>
+      <tr><td>Quoted &mdash; 134 hours at $800</td><td class="n" style="width:110px">$107,200</td></tr>
+      <tr><td>Pumping unit, productive work above quote</td><td class="n over">+$30,750</td></tr>
+      <tr><td>Equipment across the extended schedule</td><td class="n over">+$30,825</td></tr>
+      <tr><td>Stand-by, 52 hours</td><td class="n over">+$20,800</td></tr>
+      <tr class="grand"><td>Final &mdash; 247.5 hours</td><td class="n">$189,575</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p class="foot">Prepared from daily service receipts 7077&ndash;7100. Every hour shown is as recorded on a dated field ticket; no figure is estimated or allocated across tasks. Costs are hours at the rates on the Cenovus-approved rate sheet reproduced in DSP#26013. Labour, per diem, DEF and materials are quoted at project level and invoiced separately. USA DeBusk, LLC.</p>
+</div>
+
+<script>
+const WF=[
+ {l:'Quoted',v:107200,t:'total'},
+ {l:'Rig-in',v:4000,t:'up'},
+ {l:'Smart pig',v:18000,t:'up'},
+ {l:'Rig-out',v:15250,t:'up'},
+ {l:'Pig + rig-over',v:-6500,t:'down'},
+ {l:'Equipment',v:30825,t:'up'},
+ {l:'Stand-by',v:20800,t:'up'},
+ {l:'Final',v:189575,t:'total'}];
+const WX0=14, WW=612, WTOP=16, WH=112, WMAX=200000, cw=WW/WF.length;
+const wy=v=>WTOP+WH-(v/WMAX)*WH;
+let w='', run=0;
+WF.forEach((d,i)=>{
+  const x=WX0+i*cw+cw*0.17, bw=cw*0.66;
+  let y0,y1,fill;
+  if(d.t==='total'){ y0=wy(d.v); y1=WTOP+WH; fill='#898781'; run=d.v; }
+  else { const s=run,e=run+d.v; y0=wy(Math.max(s,e)); y1=wy(Math.min(s,e));
+         fill=d.v>0?'#e34948':'#2a78d6'; run=e; }
+  w+=`<rect x="${x}" y="${y0}" width="${bw}" height="${Math.max(2,y1-y0)}" rx="2" fill="${fill}"/>`;
+  const amt=(d.t==='total'?'$'+Math.round(d.v).toLocaleString()
+            :(d.v>0?'+$':'−$')+Math.abs(Math.round(d.v)).toLocaleString());
+  w+=`<text x="${x+bw/2}" y="${y0-4}" text-anchor="middle" font-size="7.5" font-weight="bold" fill="${d.t==='total'?'#222222':fill}">${amt}</text>`;
+  d.l.split(' ').forEach((wd,k)=>{
+    w+=`<text x="${x+bw/2}" y="${WTOP+WH+12+k*8.5}" text-anchor="middle" font-size="7" fill="#555555">${wd}</text>`;});
+  if(i<WF.length-1){ const nx=WX0+(i+1)*cw+cw*0.17;
+    w+=`<line x1="${x+bw}" y1="${wy(run)}" x2="${nx}" y2="${wy(run)}" stroke="#c3c2b7" stroke-width="1" stroke-dasharray="2 2"/>`;}
+});
+w+=`<line x1="${WX0}" y1="${WTOP+WH}" x2="${WX0+WW}" y2="${WTOP+WH}" stroke="#c3c2b7" stroke-width="1"/>`;
+document.getElementById('wf').innerHTML=w;
+
+const C={rig:'#2a78d6',pig:'#eb6834',smart:'#1baf7a',wait:'#b9b7ae'};
+const SH=[
+ ['7077','9/19 N',{wait:7,rig:5}],['7078','9/20 D',{wait:12}],['7079','9/20 N',{rig:2,wait:10}],
+ ['7080','9/21 D',{wait:12}],['7081','9/21 N',{wait:8,rig:4}],['7082','9/22 D',{rig:3,pig:9}],
+ ['7083','9/22 N',{pig:12}],['7084','9/23 D',{pig:2,smart:10}],['7085','9/23 N',{smart:12}],
+ ['7086','9/24 D',{smart:12}],['7087','9/24 N',{smart:11,rig:1}],['7088','9/25 D',{rig:5,pig:7}],
+ ['7089','9/25 N',{pig:12}],['7090','9/26 D',{pig:3,smart:9}],['7091','9/26 N',{smart:5,rig:2,wait:3,pig:2}],
+ ['7092','9/27 D',{pig:12}],['7093','9/27 N',{pig:4,smart:8}],['7094','9/28 D',{smart:7,rig:5}],
+ ['7095','9/28 N',{rig:12}],['7098','9/29 D',{rig:12}],['7100','9/29 N',{rig:7.5}]];
+const TX0=84, TW=442, TR=11, tsx=v=>(v/12)*TW;
+let t2='';
+for(let h=0;h<=12;h+=3){const x=TX0+tsx(h);
+  t2+=`<line x1="${x}" y1="10" x2="${x}" y2="${SH.length*TR+12}" stroke="#e1e0d9" stroke-width="1"/>`;
+  t2+=`<text x="${x}" y="7" text-anchor="middle" font-size="7" fill="#898781">${h}h</text>`;}
+SH.forEach((r,i)=>{
+  const y=i*TR+12; let cx=TX0;
+  t2+=`<text x="${TX0-6}" y="${y+8}" text-anchor="end" font-size="7.5" fill="#555555">${r[0]} &#183; ${r[1]}</text>`;
+  Object.keys(r[2]).forEach(k=>{ const v=r[2][k]; if(!v) return;
+    t2+=`<rect x="${cx}" y="${y}" width="${Math.max(1,tsx(v)-1.5)}" height="${TR-3}" rx="1.5" fill="${C[k]}"/>`;
+    cx+=tsx(v);});
+});
+t2+=`<rect x="${TX0-2}" y="10" width="${tsx(12)+4}" height="${5*TR+2}" fill="none" stroke="#898781" stroke-width="1.2" stroke-dasharray="3 2"/>`;
+const LX=TX0+tsx(12)+10;
+t2+=`<text x="${LX}" y="${2*TR+16}" font-size="8" fill="#555555" font-weight="bold">49 hours</text>`;
+t2+=`<text x="${LX}" y="${2*TR+27}" font-size="7" fill="#898781">awaiting</text>`;
+t2+=`<text x="${LX}" y="${2*TR+36}" font-size="7" fill="#898781">launcher</text>`;
+t2+=`<text x="${LX}" y="${2*TR+45}" font-size="7" fill="#898781">installation</text>`;
+document.getElementById('tl').innerHTML=t2;
+</script>
+</body>
+</html>
