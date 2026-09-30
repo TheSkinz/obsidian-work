@@ -249,6 +249,7 @@
 - [[design]] — Claude Design `(claude)`
 - [[dynamic-workflows]] — Claude Code — Dynamic Workflows `(claude)`
 - [[fable-5-1-prompting]] — Claude Fable 5.1 — Prompting Behavior `(claude)`
+- [[opus-5-5]] — Claude Opus 5.5 — Release Capture `(claude)`
 - [[opus-5]] — Claude Opus 5 — Release Capture `(claude)`
 - [[output-styles]] — Claude Code — Output Styles `(claude)`
 - [[prefs-signal-log]] `(claude)`

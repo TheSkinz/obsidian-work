@@ -13,6 +13,8 @@ tags: [reference, claude, models, opus-5, routing]
 
 # Claude Opus 5 — Release Capture
 
+> **Succeeded by [[opus-5-5]]** as the Claude Code default, 2026-09-30.
+
 Post-cutoff model facts, captured the day of release. Follows the durable-capture
 convention established in [[command-reference]].
 
