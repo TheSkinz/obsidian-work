@@ -45,9 +45,9 @@ The first two are observed continuously through the work, across every pass, by 
 
 The practical consequence: **the determination is made in the field, on effluent behaviour, and the flow test confirms it afterward.** Reversing that order — treating a Δ PSI figure as the thing that declares a coil clean — puts the decision on the least reliable of the three.
 
-## 10.3 Why all three
+## 10.3 Why more than one
 
-Each criterion alone can be satisfied by a coil that is not clean. Effluent can run clear because a pig is passing through a bore it is no longer contacting. Discharge time can shorten for the same reason. And a pressure improvement can be real while a section of the circuit remains fouled behind a partial obstruction. Together, and taken with a final pass at full permitted pig OD returning a pig in good condition, they establish that the pig has been in contact with the tube wall along the length of the circuit and that the circuit's resistance has measurably fallen.
+Each criterion alone can be satisfied by a coil that is not clean. Effluent can run clear because a pig is passing through a bore it is no longer contacting. Discharge time can shorten for the same reason. And a pressure improvement can be real while a section of the circuit remains fouled behind a partial obstruction. That is why the two effluent criteria decide together (§10.2) and the flow test, where valid, corroborates rather than decides. Together, and taken with a final pig run at the section's default max pig size returning a pig in good condition, they establish that the pig has been in contact with the tube wall along the length of the circuit and that the circuit's resistance has measurably fallen.
 
 **Name the final pig size when the result is stated.** The largest pig OD that passed the full circuit without obstruction is the hardest number the job produces, and it is the one most often left out of the record. A circuit that took a pig at tube ID plus 0.250 inches is saying something a Δ PSI figure cannot: that a body wider than the bore travelled the whole length in contact with the wall. Where the final pig size falls short of the permitted maximum, that is itself the finding, and it belongs in the record with the size that would not pass.
 

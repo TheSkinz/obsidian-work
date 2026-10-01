@@ -83,7 +83,7 @@ For ExxonMobil / major operator jobs with oily water or hydrocarbon deinventory:
 
 ### 7. Flow Test Procedure
 - BEFORE flow test (baseline, prior to first pig launch): establish target GPM, record operating PSI per circuit
-- AFTER flow test (post-cleaning, after final pig pass): match BEFORE GPM, record PSI — reduction confirms cleaning effectiveness
+- AFTER flow test (post-cleaning, after final pig pass): match BEFORE GPM, record PSI — reduction corroborates cleaning; completion is decided on effluent (manual 10 §10.2, demoted 2026-09-02)
 - GPM is the controlled constant
 
 ### 8. Completion and Demobilization

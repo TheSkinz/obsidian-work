@@ -83,7 +83,12 @@ tags: [heater-card, <Client>, <heater-type>]
 | Launcher flange | |
 | Receiver flange | |
 | Water supply source | |
-| Max pig OD (in) | <governing tube ID + 0.250" — smallest ID across all sections> |
+| Max pig OD (in) | <per tube size: each section's ID + 0.250", rounded down to a 1/8" size — default, not a cap. Multi-bore: "Per tube size — see table below"> |
+
+<!-- Multi-bore heater only — delete on a single-bore heater. One row per tube size. -->
+| Section | ID (in) | Max pig OD (in) |
+|---|---|---|
+| | | |
 
 ---
 

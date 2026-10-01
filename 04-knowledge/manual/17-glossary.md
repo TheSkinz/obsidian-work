@@ -23,7 +23,7 @@ Terms defined here are those the manual actually uses. Where local facility usag
 | Cross-over | External piping connecting the convection outlet to the radiant inlet. Contains the size reducer where section bores differ. |
 | Tube ID | Tube inner diameter. The dimension pig sizing keys off. |
 | Clean ID | **The field-measured inner diameter of the tube being pigged** — the real bore, as against the design ID from the drawing. A sizing input, not a cleaning result. Where the two disagree the field measurement governs: CHS HF-0012 records "Clean ID 3.7"" on six independent shift tickets against a design ID of 3.232", and the card's ruling is "size to 3.7"". **Corrected 2026-09-03** (Jesse) — every prior definition in this system read "largest pig size that passed", which is the **final pig size** and a different quantity entirely. |
-| Governing tube ID | The smallest inner diameter present anywhere in a circuit. Sets the maximum pig OD for that entire circuit. |
+| Governing tube ID | The smallest inner diameter present anywhere in a circuit. **No longer sets one maximum pig OD for the whole circuit** (Jesse, 2026-09-28): each tube size carries its own, and the larger pig is run only to the reducer at the size step and reversed back. See Maximum pig OD. |
 | Serpentine | Horizontal parallel tube rows with return bends alternating ends, so a pig reverses direction at each tube. |
 | Helical | A coil wrapping the shell circumference, found in radiant sections of vertical cylindrical heaters. |
 
@@ -93,9 +93,9 @@ What comes back in the spool is described on three independent axes. All of it i
 | Foam pig | A soft foam pig with no abrasive elements. Used for opening passes, flow establishment, verification, and foam assist. |
 | TC pig | Tungsten carbide pig — a urethane body with tungsten carbide pins embedded during molding. The primary cleaning pig. |
 | Swab | An oversized soft urethane pig used for final cleanup and verification. |
-| Maximum pig OD | The largest pig permitted in a circuit: governing tube ID plus 0.250 inches. |
-| Launcher | The vessel mounted on the coil inlet flange from which pigs are launched. |
-| Receiver | The vessel mounted on the coil outlet flange in which pigs are recovered. Same form factor as a launcher, distinguished by function. |
+| Maximum pig OD | The default planning pig size for one tube size: that section's ID plus 0.250 inches, rounded down to a 1/8" size. **One per tube size, not one per circuit** (2026-09-28), and **a default, not a cap** — the field runs sizes above and below it for job reasons, and those actuals are never reconciled to it (2026-09-29). Canonical in `usadebusk-equipment`. |
+| Launcher | The spool from which pigs are launched on a run, mounted on whichever coil flanges the job's configuration calls for — not fixed to the inlet (2026-09-02). Same unit and form factor as a receiver; the word names the role on a run. |
+| Receiver | The spool in which pigs are recovered on a run, on whichever flanges the configuration calls for. The same unit as a launcher — a launcher/receiver both launches and receives, and the two words name the role a spool plays, not two kinds of hardware (2026-09-02). |
 | Jumper spool | A temporary 180 degree spool joining two passes into one continuous circuit, connecting the corresponding flanges at the same end of both passes. The end is a per-job election — radiant outlets or convection inlets — and the looped end carries no launcher or receiver. |
 | Trimax | USADebusk's trailer-mounted pigging pumper. The standard unit is a Triple, carrying three independent pumping assemblies sharing one clean and one dirty tank. |
 | Second Trimax | A second pumping unit deployed on the same job, each unit carrying its own tanks and assemblies. |

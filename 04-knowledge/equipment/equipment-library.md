@@ -134,6 +134,9 @@ USADebusk Filter Press #1 specs (all three are this model):
 | TC (Tungsten Carbide Pin) | Urethane body (84A Duro typical, 78A special), TC pins embedded during molding | Primary coke removal — main workhorse pig |
 | HR (Hell Raiser) | Harder durometer body, aggressive cleaning | Heavy fouling, pitch-laden tubes |
 | Swab | Oversized soft urethane | Final cleanup, verification, larger tube sections |
+| Honeycomb (HC) | Polyurethane body with tapered conical ends; appendages thread into the body rather than being cast in | A different-manufacturer style, run occasionally — limited supply, roughly 1 project in 5 |
+
+⚠ **Honeycomb sizes are stated in millimetres, not inches** (Jesse, 2026-09-07) — convert before comparing to a tube ID. Registry and worked instances canonical in `usadebusk-equipment`.
 
 **TC Pig mechanics:**
 - Pins embedded in urethane body — cast in mold with chemical hardener

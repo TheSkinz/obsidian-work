@@ -142,7 +142,7 @@ never invent a value Tube Geometry can't back. This section expresses the heater
 physical loop arrangement at two scales, not a "current job configuration" — corrected
 2026-06-22 after F-802 migration surfaced the wrong model.
 
-CORRECTED MODEL: A heater's coil/loop arrangement (e.g. "10 coils looped to 5 passes") is a
+CORRECTED MODEL: A heater's coil/loop arrangement (e.g. "10 coils looped to 5 circuits") is a
 PERMANENT physical fact about the heater, not something that changes per job. It is set once,
 physically, with temp loops or permanent piping — not reconfigured between decokes. The earlier
 "current config only, overwrite on change" framing was wrong for heaters where the loop count
@@ -154,7 +154,7 @@ Two rows, always both present, not alternatives:
   - "Per circuit" — the single-coil/circuit base unit (matches Tube Geometry's
     Tubes/Circuit and Length/Circuit exactly — this row is the estimating multiplication base).
   - "Heater total" — the full installed total, accounting for the actual loop arrangement
-    (e.g. 10 physical coils looped to 5 passes still totals 10 coils' worth of tube footage,
+    (e.g. 10 physical coils looped to 5 circuits still totals 10 coils' worth of tube footage,
     even though they're plumbed as 5). State the loop arrangement in the Notes column.
 
 If a heater is ever physically reconfigured (the rare flaw-driven case), update the "Heater
@@ -167,7 +167,7 @@ current physical reality, just update it in place.
 |---|---|---|---|---|---|
 | Per circuit | Convection | | | | |
 | Per circuit | Radiant | | | | |
-| Heater total | Convection | | | | <e.g. "10 coils looped to 5 passes"> |
+| Heater total | Convection | | | | <e.g. "10 coils looped to 5 circuits"> |
 | Heater total | Radiant | | | | |
 
 ---
@@ -184,7 +184,20 @@ Geometry (per-section) — do not duplicate it here.
 | Launcher flange | |
 | Receiver flange | |
 | Water supply source | |
-| Max pig OD (in) | <governing tube ID + 0.250" — compute from the SMALLEST ID across all sections/segments, typically radiant> |
+| Max pig OD (in) | <per tube size: each section's ID + 0.250", rounded down to a 1/8" size — a default planning size, not a cap. Single-bore heater: the one figure. Multi-bore heater: "Per tube size — see table below", then the table> |
+
+<!--
+MAX PIG OD — ONE PER TUBE SIZE (Jesse, 2026-09-28; reverses the former "smallest ID across all
+sections" rule) and a DEFAULT PLANNING SIZE, NOT A CAP (2026-09-29). Canonical in
+usadebusk-equipment. On a heater with more than one bore, the cell above reads "Per tube size —
+see table below" and this table follows it (format ruled 2026-10-01; worked examples PR-170002,
+PR-170029). Sizes actually run go in Pig Specifications as run and are never reconciled to it.
+Omit the table on a single-bore heater.
+
+| Section | ID (in) | Max pig OD (in) |
+|---|---|---|
+| | | |
+-->
 
 ---
 

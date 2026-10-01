@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: skill-drift
 source_authority: primary
 confidence: high
@@ -43,7 +43,7 @@ Evidence, same file `:125`:
 
 Proposed: `| Smart Pig (if elected — 2 hrs per pass, per the Duration Model) |` — commit `b5d6835`.
 
-- [ ] Accept
+- [x] Accept
 - [ ] Reject — reason: ______
 
 ### F2 · Three skills point at a "looped-circuit exception" that no longer exists — HIGH · Lane 4 (propagation)
@@ -64,7 +64,7 @@ and the `79992c1` message: *"the 6.500" line is now a recorded larger-than-defau
 
 Proposed: drop the pointer and state default-not-cap — estimating `b5d6835`, ops `fedaeb4`, core `cb386a3` (core's behavioural paragraph is F16).
 
-- [ ] Accept
+- [x] Accept
 - [ ] Reject — reason: ______
 
 ### F3 · SOP skill still requires all three completion criteria; the flow test was demoted 2026-09-02 — HIGH · Lane 4 (propagation of a ruled value)
@@ -85,7 +85,7 @@ Vault commit `a89ec7a` (2026-09-02): *"[Lane 4] Flow tests: demote delta PSI to 
 
 Proposed: mark criterion 3 corroborating and replace "All three, together" with the two-decide/one-corroborates statement taken from manual 10 §10.2; report-structure aligned to match, and its stale `usadebusk-sop:102` line pointer replaced with the section name — sop `0e30820`, fieldpm `1b7d655`.
 
-- [ ] Accept
+- [x] Accept
 - [ ] Reject — reason: ______
 
 ### F4 · ID + 0.250" still stated as a cap and as one heater figure — MEDIUM · Lane 4 (propagation)
@@ -105,7 +105,7 @@ Evidence, `usadebusk-equipment/SKILL.md:107-108` and `:134-135`:
 
 Proposed: "Default planning size per tube size: that section's ID + 0.250", rounded down to a 1/8" size — not a cap" in each — sop `0e30820`, ops `fedaeb4`, vault-ingest `1ced2de`.
 
-- [ ] Accept
+- [x] Accept
 - [ ] Reject — reason: ______
 
 ### F5 · Extraction output block still prints `MISSING` for signatures — MEDIUM · Lane 3
@@ -121,7 +121,7 @@ Evidence, same file `:62` and `:38`:
 
 Proposed: `[signed — omit this line if not legibly present]` — `1b7d655`.
 
-- [ ] Accept
+- [x] Accept
 - [ ] Reject — reason: ______
 
 ### F6 · Report reference lags the job-report build spec — MEDIUM · Lane 3 (client deliverable)
@@ -138,7 +138,7 @@ Evidence, `04-knowledge/job-report-generator-build-spec.md:118`, `:121`, `:240`:
 
 `report-structure.md` itself says to keep the reference and the spec in sync. Proposed: PROJECT NO., DATES | HOURS | CAUSE, omit-never-annotate — `1b7d655`. The renderer is F22, reported only.
 
-- [ ] Accept
+- [x] Accept
 - [ ] Reject — reason: ______
 
 ### F7 · "Coils looped to N passes" contradicts Coil = Pass — MEDIUM · Lane 3 (vocabulary already ruled)
@@ -156,7 +156,7 @@ Evidence, `usadebusk-core/SKILL.md:47-48`:
 
 Proposed: "looped to N circuits" — core `cb386a3`, fieldpm `1b7d655` (that commit message labels this "F12(part)"; it is F7).
 
-- [ ] Accept
+- [x] Accept
 - [ ] Reject — reason: ______
 
 ### F8 · "Only records open the derate gate" never reached the skill — MEDIUM · Lane 4 (propagation)
@@ -171,7 +171,7 @@ Evidence, `change-log.md` 2026-09-03 row:
 
 Proposed append: *"Only records open the gate — 'known' means recorded. A customer's stated expected condition is a claim, not a fouling history, and does not open it (Jesse, 2026-09-03)."* — `b5d6835`.
 
-- [ ] Accept
+- [x] Accept
 - [ ] Reject — reason: ______
 
 ### F9 · Rig-over defined as including moves between heaters — MEDIUM · Lane 4 (estimating method; internal contradiction)
@@ -185,7 +185,7 @@ Evidence, `usadebusk-estimating/SKILL.md:149`:
 
 Proposed: rig-over = between pass sets within one heater; nearby-heater move = reduced rig-in — core `cb386a3`, estimating `b5d6835`. Distant-heater moves are open question Q3.
 
-- [ ] Accept
+- [x] Accept
 - [ ] Reject — reason: ______
 
 ### F10 · Core's fouling MIRROR lists Clean ID as a finding; the glossary authority does not — LOW · Lane 3
@@ -197,7 +197,7 @@ Evidence: core's own `:78` names `17-glossary.md` § Fouling as the authority fo
 
 Proposed: `final pig size` in place of `Clean ID` — `cb386a3`.
 
-- [ ] Accept
+- [x] Accept
 - [ ] Reject — reason: ______
 
 ### F11 · Per-diem role split missing from the skill — LOW-MED · Lane 4 (rates)
@@ -210,7 +210,7 @@ Evidence, `04-knowledge/concepts/estimating-pricing.md:57-60`:
 
 Proposed: append the generic base and the contract-split caveat — `b5d6835`.
 
-- [ ] Accept
+- [x] Accept
 - [ ] Reject — reason: ______
 
 ### F12 · "Pass/circuit count" conflates two terms — LOW · Lane 3
@@ -223,7 +223,7 @@ Proposed: append the generic base and the contract-split caveat — `b5d6835`.
 
 Evidence: core `:48`, *"Coils ≠ circuits whenever looping is elected."* Proposed: "Coil (pass) count and circuit count" — core, estimating and sop commits.
 
-- [ ] Accept
+- [x] Accept
 - [ ] Reject — reason: ______
 
 ### F13 · Ports still named after heater sections — MEDIUM · Lane 3
@@ -238,7 +238,7 @@ Evidence, `usadebusk-equipment/SKILL.md:28`:
 
 The diagram's own scope note at `:18` says colour is bonded *"not to a coil section"*. Proposed: `BLUE port` / `RED port`; "Blue (feed) and Red (return) port per pump assembly" — equipment `5316e4b`, sop `0e30820`.
 
-- [ ] Accept
+- [x] Accept
 - [ ] Reject — reason: ______
 
 ### F14 · "Pass" used for a pig run — LOW · Lane 3
@@ -249,7 +249,7 @@ The diagram's own scope note at `:18` says colour is bonded *"not to a coil sect
 
 Evidence, `04-knowledge/manual/17-glossary.md:70`: *"Counted in **pig runs** — never "passes", which is a tube path through the heater."* Proposed: "per successful pig run".
 
-- [ ] Accept
+- [x] Accept
 - [ ] Reject — reason: ______
 
 ### F15 · Superseded DSP26085 total restated without its caveat — LOW · Lane 3
@@ -260,7 +260,7 @@ Evidence, `04-knowledge/manual/17-glossary.md:70`: *"Counted in **pig runs** —
 
 Evidence, `01-context/active-jobs.md:49`: *"[[DSP26085]] | ExxonMobil Baytown, TX | … | $46,657.08"*. Proposed: append "(regression record of the 2026-07-24 `Bids\` workbook; the ruled quote total is $46,657.08)" — `b5d6835`. The back-test figure itself is left alone.
 
-- [ ] Accept
+- [x] Accept
 - [ ] Reject — reason: ______
 
 ### F16 · Core's looped-card caveat instructs a check against a dissolved exception — HIGH · Lane 4 · **frozen F2 key 10 depends on the old text**
@@ -270,7 +270,7 @@ Evidence, `01-context/active-jobs.md:49`: *"[[DSP26085]] | ExxonMobil Baytown, T
 
 Evidence: same as F2 — the exception no longer exists. Proposed replacement (`cb386a3`): *"The Max pig OD field carries the default planning figure; an actual run size is recorded as run and never reconciled to it. There is no looped-circuit exception any more … Do not derive a larger figure for a looped card."* The "do not derive a larger figure" guard is kept. **This invalidates frozen F2 diff key 10 (R5)** — accept F16 and R5 together, or neither.
 
-- [ ] Accept (with F2 replay and re-cut)
+- [x] Accept (with F2 replay and re-cut)
 - [ ] Reject — reason: ______
 
 ### F17 · fieldpm `/log` and inputs carry superseded assumptions — LOW · Lane 3
@@ -281,7 +281,7 @@ Evidence: same as F2 — the exception no longer exists. Proposed replacement (`
 
 Evidence, same file `:139`: *"**Never write "customer-caused," "customer-side" or any variant** next to plant down time or stand-by."* and the never-merge-shifts / count-pages rules (`d43189d`). Proposed: "cause as stated on the receipt or by the crew"; "One or more scanned receipt PDFs — count pages first" — `1b7d655`. The `payroll email` wording in the fieldpm and ops `description:` fields is left alone, because a description change moves triggering.
 
-- [ ] Accept
+- [x] Accept
 - [ ] Reject — reason: ______
 
 ### F18 · Dead path in the SOP skill — LOW · Lane 2
@@ -291,7 +291,7 @@ Evidence, same file `:139`: *"**Never write "customer-caused," "customer-side" o
 
 Evidence: `test -e` fails; the file is at `archive/2026-09-03-sop-voice-pipefitter-role.md`. Proposed: repoint — `0e30820`.
 
-- [ ] Accept
+- [x] Accept
 - [ ] Reject — reason: ______
 
 ### F19 · Ingest client list names a folder that doesn't exist — MEDIUM · Lane 2
@@ -301,7 +301,7 @@ Evidence: `test -e` fails; the file is at `archive/2026-09-03-sop-voice-pipefitt
 
 Evidence: `ls 02-facilities` shows `Westlake-Chemical`, and `02-facilities/_directory.md:21` names that company tier. The skill's auto-create-site-folder rule would make a parallel `Westlake/`. Proposed: "Westlake-Chemical (folder name; "Westlake" / "Westlake South" in a source routes here, `client:` stays as signed)" — `1ced2de`.
 
-- [ ] Accept
+- [x] Accept
 - [ ] Reject — reason: ______
 
 ### F20 · Ingest Configuration example implies outlets are the default loop end — LOW · Lane 3
@@ -311,7 +311,7 @@ Evidence: `ls 02-facilities` shows `Westlake-Chemical`, and `02-facilities/_dire
 
 Evidence, the same skill at `:203`: the looped end is a per-job election with no default, never assume radiant outlets. Proposed: "(Looped-at-Radiant-outlet-flanges / Looped-at-Convection-inlet-flanges / Individual-Passes — the end the source states; no default)" — `1ced2de`.
 
-- [ ] Accept
+- [x] Accept
 - [ ] Reject — reason: ______
 
 ### F21 · adversarial-review role table contradicts its own cross-model default — LOW · Lane 2
@@ -322,7 +322,7 @@ Evidence, the same skill at `:203`: the looped end is a per-job election with no
 
 Proposed: "different family from the Finder (e.g. `"fable"` vs an `"opus"` Finder)" — `3ec0613`.
 
-- [ ] Accept
+- [x] Accept
 - [ ] Reject — reason: ______
 
 ### F22 · Job-report renderer and input template lag the build spec — MEDIUM · Lane 3 · **reported only, no code changed**
@@ -334,7 +334,7 @@ Proposed: "different family from the Finder (e.g. `"fable"` vs an `"opus"` Finde
 Evidence: build spec `:118` and `:121` (quoted in F6). The spec's 2026-09-07 changes also set column widths (`1.40 / 0.70 / 4.80`), and spec commits `7ffb4a6` and `8247ad9` may carry more renderer changes; those were not verified line by line. That is why the code was not edited from a drift loop. Recommended: one build session to implement the spec delta, then re-run `back-test/assert_structure.py`.
 
 - [ ] Schedule the renderer build
-- [ ] Leave until the next report is due
+- [x] Leave until the next report is due
 
 ### F23–F25 · Regression README and fixture prose — MEDIUM/LOW · Lane 2 · commit `1d8345f`
 
@@ -352,7 +352,7 @@ Evidence: build spec `:118` and `:121` (quoted in F6). The spec's 2026-09-07 cha
 
 F25 also covers `fixtures/f6-duration-mobdemob-input.md:33-35`, *"so the rig tier is derivable from the rule that now governs it (connection elevation, run distance from the pumper, pipefitter wait)"*, which describes the tier machinery struck by `b449e63`. A dated note was appended; the original text is kept.
 
-- [ ] Accept F23–F25
+- [x] Accept F23–F25
 - [ ] Reject — reason: ______
 
 ---
@@ -373,7 +373,7 @@ Re-cutting is your call after a judged clean replay. **R1 and R2 are inverted: a
 
 Side note: `f4:5` says *"claude-config @ ccc5086"* while `f4:6` says `35e53c6`. The file disagrees with itself; fix it at the next re-cut.
 
-- [ ] Replay and re-cut F3 and F6 (the inverted keys) first, then F2 with F16, then F1
+- [x] Replay and re-cut F3 and F6 (the inverted keys) first, then F2 with F16, then F1
 - [ ] Re-cut only F3 and F6 for now
 - [ ] Leave all; the README status block is warning enough
 
@@ -395,7 +395,7 @@ Side note: `f4:5` says *"claude-config @ ccc5086"* while `f4:6` says `35e53c6`. 
 
 **V7 · This loop's own spec cites the retired git-guard hook — LOW · Lane 2.** `vault-skill-drift-loop-spec.md:32`: *"The `usadebusk-git-guard.mjs` PreToolUse hook only matches paths containing `USADEBUSK[\\/]`"*. Against global CLAUDE.md, *"The former `usadebusk-git-guard` was retired 2026-09-04"*. `ls ~/.claude/hooks` shows no git-guard.
 
-- [ ] Fix V1–V7 in a session (V1, V2, V3, V4, V6 need your Lane 4 ask)
+- [x] Fix V1–V7 in a session (V1, V2, V3, V4, V6 need your Lane 4 ask)
 - [ ] Fix only V1 and V3 now
 - [ ] Leave
 
@@ -415,7 +415,7 @@ Side note: `f4:5` says *"claude-config @ ccc5086"* while `f4:6` says `35e53c6`. 
 
 The index maps 1:1 to topic files (89/89).
 
-- [ ] Run `/consolidate-memory` against M1–M9
+- [x] Run `/consolidate-memory` against M1–M9 — done by hand 2026-10-01 (M1–M8 corrected; M9's two inbox pointers repointed and the `audit_commit.py` line marked deleted; the four absent `~/.claude/plans/*.md` citations left, since they are historical provenance on project memories)
 
 ---
 
@@ -440,4 +440,11 @@ Considered and **not** findings: fieldpm `:222`, *"never as a claim about what t
 
 ## Apply Log
 
-*(empty — for Jesse)*
+**2026-10-01 (Jesse, same day).**
+
+- **Part 1 — F1–F21 and F23–F25 accepted and merged.** `drift/2026-10` merged into config `main` as `40377e5` (no-ff, branch kept). Diff read line by line before merge and matched this note; test-merge against `dc43f11` (DQ-033 README edit) was clean.
+- **F22 — renderer left until the next job report is due.** USA26046 may be the next one; do the build first if so.
+- **Part 2 — re-cut F3, F6, F2, then F1**, in a dedicated session. Queued as an owed build in [[decision-queue]] (DQ-036). Until done, F3/F6 replays fail on inverted keys and F2 key 10 is stale (F16 merged).
+- **Part 3 — V1–V7 fixed in the vault the same day.** V1's multi-bore format ruled **cell + table** ("Per tube size — see table below", then Section / ID / Max pig OD), matching PR-170002 and PR-170029; applied to `_canonical-heater-card.md` and `_heater-template.md`, which also take "looped to N circuits". V2 glossary (Governing tube ID, Maximum pig OD, Launcher, Receiver), V3 manual 10 §10.3 and `sop-formatting-standard.md`, V4 Honeycomb row in `equipment-library.md`, V5 seed template and governance, V6 `estimating-approach.md` only-records line, V7 drift-loop spec git-guard sentence.
+- **Part 4 — memory corrected by hand** (see the checkbox above).
+- **Open questions 1–12 — not yet answered.** Queued as DQ-037; they are domain calls only Jesse can make.
