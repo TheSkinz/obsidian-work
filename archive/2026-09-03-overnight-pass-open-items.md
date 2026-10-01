@@ -1,9 +1,11 @@
 ---
 type: note
-status: inbox
+status: complete
 created: 2026-09-03
 tags: [inbox, owed, lint, sharepoint, regression, overnight]
 ---
+
+> **Closed 2026-10-01 (inbox triage).** Items 1 and 2 were already resolved; item 3 was a record, not a task, and its debt cleared with the 09-03 to 09-06 replays. Item 4 — the two inbox-age FAIL rows — was cleared by the 2026-10-01 triage pass that closed this note: thirteen aged notes checked item by item, finished ones swept, owed work moved to [[decision-queue]].
 
 # Open items left by the 2026-09-03 overnight pass
 

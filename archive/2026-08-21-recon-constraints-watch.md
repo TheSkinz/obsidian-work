@@ -1,11 +1,13 @@
 ---
 type: note
-status: inbox
+status: closed-unactioned
 created: 2026-08-21
 tags: [inbox, knowledge-system, claude-code, instructions, watch]
 related:
   - "[[2026-08-20-concise-output-style-watch]]"
 ---
+
+> **Killed 2026-10-01 (inbox triage).** A watch with no trigger and no owner: six weeks on, nobody has run the cold-session plan-mode experiment and nothing would prompt it. The two clauses stay in global `CLAUDE.md` — this closes the *watch*, not the constraints. If provenance drift is suspected later, the test design below is still the right one.
 
 # Watch — do the two new recon constraints actually change anything?
 

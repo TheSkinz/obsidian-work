@@ -1,10 +1,12 @@
 ---
 type: note
-status: inbox
+status: closed-unactioned
 created: 2026-09-05
 review_after: 2026-09-19
 tags: [inbox, tooling, dashboards, integrity]
 ---
+
+> **Killed 2026-10-01 (inbox triage) — on the note's own recommendation.** Both instances self-clear the next time `vault_health.py` runs, and neither has recurred visibly since 09-15 — the 2026-09-30 dashboard read the consolidation loop `ok`. The record is the value here; the lesson worth keeping is that freshness is not correctness, and a `Generated:` date is worth a glance before trusting a red or a green row. If the post-consolidation false FAIL starts costing sessions again, the fix is ordering inside the loop, not a monitor.
 
 # The health dashboard reverted to an older generation and read `ok`
 

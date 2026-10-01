@@ -1,9 +1,11 @@
 ---
 type: note
-status: inbox
+status: complete
 created: 2026-08-21
 tags: [estimating, duration, syncrude, CAD26001, 7-1-F-1]
 ---
+
+> **Closed 2026-10-01 (inbox triage).** A reference expectation for a job that has since run and been reported — CAD26001's actuals and per-coilset rows are on [[7-1-F-1]]. Nothing here was ever an open item (see the scope callout below); the status was simply never flipped off `inbox`.
 
 # CAD26001 duration build-up — looped 8→4, settled at 84 hrs / 7 shifts
 

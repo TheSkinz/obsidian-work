@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: finding
 source_authority: primary
 confidence: high
@@ -54,6 +54,6 @@ reading a dated "verified empty" as a standing property. The memory now says so 
 
 ## Decision
 
-- [ ] Drop the stash (irreversible — confirms nothing in it is wanted)
+- [x] Drop the stash (irreversible — confirms nothing in it is wanted) — **Jesse, 2026-10-01. Dropped the same day; `git stash list` is empty.** The dropped commit was `1729f27`; until git garbage-collects it, `git stash apply 1729f27` would still recover it.
 - [ ] Keep it and leave this note open as the explanation
 - [ ] Inspect it first (`git stash show -p stash@{0}`) before deciding

@@ -1,3 +1,4 @@
+<!-- ROUTED 2026-10-01 — content landed in 50-dashboards/decision-queue.md as DQ-034 (Owed builds). Retained as the original capture record. -->
 ---
 type: note
 status: inbox

@@ -1,9 +1,11 @@
 ---
 type: note
-status: inbox
+status: complete
 created: 2026-09-02
 tags: [inbox, owed, regression, data-quality, file-estate]
 ---
+
+> **Closed 2026-10-01 (inbox triage), every item checked against its target.** (1) Replays done — F2 promoted 2026-09-03, F1 and F6 2026-09-05, F4 2026-09-06. (2) Vault `CLAUDE.md` now states `archive/` is ignored *but partly tracked* and records the 2026-09-07 count. (3) The remaining `CND` filenames are Jesse's disk renames, no vault action. (4) Resolved 2026-09-03 below. (5) The six-port figure sits on `equipment-library.md` already marked not-eyeballed — the caveat landed where it is read. (6) [[7-1-F-1]] and [[CAD26001-job-sheet]] carry `## Source Files`, and [[CAD26001-flow-tests]] was re-pointed out of `Downloads/` 2026-09-02.
 
 # Open items left by the 2026-09-02 flow-test / CAD-rename session
 

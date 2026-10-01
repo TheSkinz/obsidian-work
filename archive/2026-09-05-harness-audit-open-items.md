@@ -1,6 +1,6 @@
 ---
 type: note
-status: open
+status: complete
 created: 2026-09-05
 review_after: 2026-09-19
 tags: [harness, audit, open-items]
@@ -11,6 +11,8 @@ related:
 ---
 
 # Harness audit — what is still open
+
+> **Closed 2026-10-01 (inbox triage).** Item 3 — the last one — has its observation. The first context-reading loop run, `vault-review-loop` on 2026-09-08, produced one finding, and it was the one that mattered: [[2026-09-08-review-loop-spec-references-stopped-loops]] caught the loop's own governing spec still describing two stopped loops, citing `01-context/system-workflow-reference.md` lines 30 and 62 as the evidence. It became DQ-032 and was applied the same day. One run against five context-blind ones is not a measurement, but it is the observation the 09-05 ruling asked for, and it points the right way. No change to the other loops' prompts is proposed from it.
 
 Four items left over from the 2026-09-05 verification and re-measurement. Filed as one note rather than
 four because inbox median age is already a FAIL row. The path-checker item is **not** here — it was picked

@@ -1,3 +1,4 @@
+<!-- ROUTED 2026-10-01 — content landed in 50-dashboards/decision-queue.md as DQ-033 (Open). Retained as the original capture record. -->
 ---
 type: finding
 status: open

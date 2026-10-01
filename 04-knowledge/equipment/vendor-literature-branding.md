@@ -1,11 +1,10 @@
 ---
-type: review
-status: open
-review_type: knowledge-gap
+type: reference
+status: active
 source_authority: session
 confidence: high
 created: 2026-09-06
-review_after: 2026-12-06
+last-updated: 2026-10-01
 related:
   - "[[equipment-library]]"
 tags: [branding, vendor-documents, proposals, equipment]

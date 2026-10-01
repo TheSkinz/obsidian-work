@@ -1,9 +1,11 @@
 ---
 type: note
-status: inbox
+status: complete
 created: 2026-09-03
 tags: [inbox, owed, CAD26001, job-report, regression, schema]
 ---
+
+> **Closed 2026-10-01 (inbox triage).** (1) F3 was replayed and re-promoted 2026-09-04. (2) Settled by the third option — lint rule `JOBSHEET-PDF-STALE` shipped 2026-09-03 and stays at warning tier. (3) DQ-017's row carries the 2026-09-03 status update and now sits under Owed builds in [[decision-queue]].
 
 # Open items left by the CAD26001 job-report session
 

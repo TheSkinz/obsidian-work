@@ -1,10 +1,11 @@
 ---
 type: note
-status: inbox
+status: resolved
 created: 2026-08-23
-revisit-trigger: "Before the next regression battery, or before trusting an f1/f6 diff — both fixtures encode rules struck 2026-08-23"
 tags: [inbox, regression, estimating, duration-model]
 ---
+
+> **Resolved 2026-10-01 (inbox triage) — trigger fired and was acted on, so the `revisit-trigger:` is retired.** Both fixtures were replayed and re-promoted after these rulings: `f1-proposal-output.md` and `f6-duration-mobdemob-output.md` both read `promoted: 2026-09-05` on judged runs with rubrics pre-registered before dispatch. The DSP#26100-as-fixture suggestion was not taken up; the SteadyFlux onsite-support question stays on [[DSP26100]], where it was already tracked.
 
 # f1 and f6 baselines are invalidated by the 2026-08-23 duration rulings — re-cut required
 
