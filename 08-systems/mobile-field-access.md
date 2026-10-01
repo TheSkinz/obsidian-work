@@ -208,6 +208,18 @@ The standing setup is **two doors, each of which survives an unattended restart:
     window waits on that forever. The script passes `--spawn same-dir` so the question never
     comes up.
 
+**Restart test passed 2026-10-01 18:00, unattended.** This is the test the first attempt the
+same day failed, and it is what promotes the setup from built to proven. Linda2 rebooted at
+18:00:07 with nobody logged in; the `Claude Remote Control vault` task ran at **18:00:51**
+(44 s — the 30 s delay plus autologon) and returned `LastTaskResult 0` with 0 missed runs, and
+a `claude remote-control` process was alive and serving at 18:02. RustDesk was reachable
+through the restart, with `RustDesk.exe` present in the **Services** session as well as the
+console one — which is the service door working past the lock screen rather than a user-session
+copy. Verified from the check script plus `Get-ScheduledTaskInfo` and `tasklist`, not from a
+success message. Evidence of what makes the difference: the minimized window
+(`cmd /c start /min`) was never touched this time, so nothing produced the `0xC000013A` that
+killed the first attempt.
+
 The Desktop Commander agent is retired. It needed a browser sign-in after every restart and
 never survived one.
 
@@ -216,9 +228,16 @@ Before each trip:
 `Settings > Windows Update > Pause updates (past return)` → `python tools/remote_access_check.py --return-date YYYY-MM-DD` (all PASS) →
 restart Linda2 → from the phone **on cellular**, reach RustDesk and the `vault` session.
 
-The check script verifies the conditions, but only the restart test proves both doors work.
-One gap no software covers: unless BIOS "Restore on AC power loss" is set to Power On, a
-power cut leaves Linda2 off until someone presses the button.
+The check script verifies the conditions, but only the restart test proves both doors work —
+done once unattended on 2026-10-01, so re-run it only after something changes the logon path.
+Expect **4/5** on a normal desk day: the update-pause row is the one FAIL, and it is correct to
+leave updates live when you are not travelling. The row that is actually the test is
+`claude remote-control process running`; the service and task-exists rows passed on the attempt
+that failed too, so they discriminate nothing on their own.
+
+One gap no software covers, and the only item still owed: unless BIOS "Restore on AC power loss"
+is set to Power On, a power cut leaves Linda2 off until someone presses the button. **Not
+reachable over RustDesk** — it is pre-boot, so it waits until Jesse is physically at the box.
 
 ## Desktop down: cloud session
 
