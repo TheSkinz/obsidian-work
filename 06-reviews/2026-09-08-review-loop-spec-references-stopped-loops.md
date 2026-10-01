@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: resolved
 review_type: contradiction
 source_authority: stated
 confidence: high
@@ -114,9 +114,9 @@ One thing this note does not settle: whether the review loop should be doing any
 
 ## Decision
 
-- [ ] **Proposal 1** — reconcile lines 40, 62, 64 (dead-loop dependencies) — approve
-- [ ] **Proposal 2** — reconcile line 128 (Blocked row vs. Trigger section) — approve
-- [ ] **Proposal 3** — Selection Rule: (a) re-rank / (b) add clarifying sentence *(recommended)* / (c) no change
+- [x] **Proposal 1** — reconcile lines 40, 62, 64 (dead-loop dependencies) — approve
+- [x] **Proposal 2** — reconcile line 128 (Blocked row vs. Trigger section) — approve
+- [x] **Proposal 3** — Selection Rule: (a) re-rank / (b) add clarifying sentence *(recommended)* / (c) no change — **ranking unchanged; the "manual and infrequent" sentence corrected**
 - [ ] Reject — the spec is close enough as written
 - [ ] Needs more source material
 
@@ -125,3 +125,5 @@ One thing this note does not settle: whether the review loop should be doing any
 | Date | Action | By |
 |---|---|---|
 | 2026-09-08 | Review note created. No canonical content edited. | Vault Review Loop |
+| 2026-09-08 | All three proposals applied and DQ-032 closed in `77b9b17` — see the DQ-032 row in [[decision-queue]] for what changed. | session |
+| 2026-10-01 | Boxes ticked and status set `resolved` — the note had been left `open` after its work landed, so the dashboard kept counting it as awaiting a decision. | session |
