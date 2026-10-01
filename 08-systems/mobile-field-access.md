@@ -192,8 +192,18 @@ The standing setup is **two doors, each of which survives an unattended restart:
   for an optional RustDesk account (address-book sync) and does not affect connecting by
   ID + password.
 - **Remote Control, started at logon by the scheduled task `Claude Remote Control vault`.**
-  This is the vault door, and its auth is independent of the desktop app's. Set it to restart
-  on failure, with no 3-day time limit.
+  This is the vault door, and its auth is independent of the desktop app's. **Done
+  2026-10-01.** The task runs `tools/start_remote_control.cmd` at logon (30 s delay, no time
+  limit). The script loops, so a crash or a long network drop restarts it 30 s later. It
+  leaves a console window open, and closing that window stops it. Two traps it handles, both
+  found the first time it ran unattended:
+  - `ANTHROPIC_API_KEY` is set at user scope on Linda2. With it present, Remote Control exits
+    with code 1 ("requires claude.ai subscription auth"). The script clears it for its own
+    window only. A hand-run test from a Claude Code shell passes because that shell doesn't
+    carry the variable, so it proves nothing about the logon path.
+  - On first launch, Remote Control stops and asks which spawn mode to use, and an unattended
+    window waits on that forever. The script passes `--spawn same-dir` so the question never
+    comes up.
 
 The Desktop Commander agent is retired. It needed a browser sign-in after every restart and
 never survived one.
