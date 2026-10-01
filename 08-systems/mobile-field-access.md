@@ -194,8 +194,11 @@ The standing setup is **two doors, each of which survives an unattended restart:
 - **Remote Control, started at logon by the scheduled task `Claude Remote Control vault`.**
   This is the vault door, and its auth is independent of the desktop app's. **Done
   2026-10-01.** The task runs `tools/start_remote_control.cmd` at logon (30 s delay, no time
-  limit). The script loops, so a crash or a long network drop restarts it 30 s later. It
-  leaves a console window open, and closing that window stops it. Two traps it handles, both
+  limit). The script loops, so a crash or a long network drop restarts it 30 s later. The
+  task opens it in a **minimized** console window titled "Claude Remote Control - vault", via
+  `cmd /c start /min`. Closing that window stops Remote Control. The exit code is then
+  `0xC000013A`, which Windows doesn't count as a failure, so nothing restarts it. That happened
+  in the first restart test on 2026-10-01, when the window was opened on screen. Two traps it handles, both
   found the first time it ran unattended:
   - `ANTHROPIC_API_KEY` is set at user scope on Linda2. With it present, Remote Control exits
     with code 1 ("requires claude.ai subscription auth"). The script clears it for its own
