@@ -165,14 +165,43 @@ diagnose and can read a URL, but cannot complete a login.
 **Linda2 had no remote-access software, and that is what turned a sixty-second fix into an
 evening.** RustDesk was installed remotely as the way out, non-elevated — which means it runs
 only while its process lives, does not survive a reboot, and cannot interact with UAC prompts.
-Decide deliberately whether to install it properly as a service or remove it; a half-configured
-remote door is the worst of both.
+**Resolved 2026-10-01: install it as a service.** See "Before leaving town" below.
 
 One durable trap: the permission grant needed to do any of this cannot be written by the agent
 that needs it — the harness blocks an agent editing its own `permissions.allow`, and that guard
 is correct. `/permissions` does not exist in mobile Remote Control sessions either. The route
 that worked was editing `settings.json` in the `TheSkinz/claude-config` repo from the phone's
 browser and pulling it on Linda2, since `~/.claude` is the live clone.
+
+## Before leaving town (2026-10-01)
+
+Both lockouts, 09-16 and 09-23, were caused by a Windows Update restart in the early morning
+(System event 1074, TrustedInstaller, 03:31 and 04:34), just after the 11:00–04:00 active-hours
+window closed. A third one hit mid-session on 10-01. Linda2 comes back and logs itself in
+(`AutoAdminLogon=1`), but anything that was started by hand does not. Windows 11 Home cannot
+host RDP, so that is not an option.
+
+The standing setup is **two doors, each of which survives an unattended restart:**
+
+- **RustDesk, installed as a service.** This is the GUI door. It works past the lock screen and
+  UAC, which is what you need for desktop-app re-logins like the 09-16 OAuth fault. Setup:
+  `winget install RustDesk.RustDesk` > Settings > Security > Install service > permanent
+  password + 2FA > note the ID > add it in the phone app.
+- **Remote Control, started at logon by the scheduled task `Claude Remote Control vault`.**
+  This is the vault door, and its auth is independent of the desktop app's. Set it to restart
+  on failure, with no 3-day time limit.
+
+The Desktop Commander agent is retired. It needed a browser sign-in after every restart and
+never survived one.
+
+Before each trip:
+
+`Settings > Windows Update > Pause updates (past return)` → `python tools/remote_access_check.py --return-date YYYY-MM-DD` (all PASS) →
+restart Linda2 → from the phone **on cellular**, reach RustDesk and the `vault` session.
+
+The check script verifies the conditions, but only the restart test proves both doors work.
+One gap no software covers: unless BIOS "Restore on AC power loss" is set to Power On, a
+power cut leaves Linda2 off until someone presses the button.
 
 ## Desktop down: cloud session
 
