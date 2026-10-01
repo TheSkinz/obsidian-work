@@ -119,9 +119,9 @@ usadebusk.com` … `Page <n>`. No cover page.
 | 1 | Job Summary | Customer Details table (FACILITY / ADDRESS / **PROJECT & PO #** / CONTACT); Project Details table (SCOPE / EXECUTION / HEATERS / EQUIPMENT); Crew Details table (PROJECT MANAGER / **SHIFT LEAD**, valued `Day — <name>; Night — <name>` / DAYSHIFT / NIGHTSHIFT). |
 | 2 | Project Duration | Table SCOPE / UNIT / PIG / SMART PIG / SUBTOTAL, one row per heater; **rig pooled** to a single "Rigging" line; then a TOTAL row. Superscript footnotes for delays / as-built reconfig. |
 | 2 | Stand-By Summary | Intro sentence; table **DATES / HOURS / CAUSE** (reordered from CAUSE / DATES / HOURS — Jesse, 2026-09-07) + TOTAL row; combined-total line (operating + stand-by). Widths **1.40 / 0.70 / 4.80**: dates and hours are short and fixed, so CAUSE gets the room its prose needs — it holds strings up to 83 characters and was previously stuck in the narrowest column at 2.30in. **The TOTAL row labels itself from the left**, in DATES; reordering otherwise strands the word TOTAL to the right of its own figure. Stand-by is broken out from operating hours — it is **not** in the KPI operating-hours figure. |
-| 2 | Pigs Used | **One full-width** table SIZE / TC / HR / FOAM / SWAB *or* SWAB/HC / TOTAL, aggregated across all shifts and both heaters, with the size-range + legend line **beneath** it and the table kept together across page breaks. Last header follows the data — `SWAB/HC` only where honeycomb gauges ran. (Was a two-column split with the note above until 2026-08-17; the split was measured not to deliver the page fit it was justified by.) |
+| 2 | Pigs Used | **One full-width** table **SIZE / QTY** plus a TOTAL row — **sizes only, never pig types in a customer document** (Jesse, 2026-10-01; replaced SIZE / TC / HR / FOAM / SWAB / TOTAL) — aggregated across all shifts and both heaters, with a count + size-range line **beneath** it (no type legend) and the table kept together across page breaks. Honeycomb sizes, which the extractor files in millimetres under one key, print as `Metric sizes (mm)`. (Was a two-column split with the note above until 2026-08-17; the split was measured not to deliver the page fit it was justified by.) |
 | 3 | Heater Data and Results | Per heater: amber sub-header; data table (Number of Passes / Total Footage / Convection Tube ID / Radiant Tube ID / Metallurgy / Return Bends / Inlet-Outlet / Smart Pigging); bold-lead narrative paragraph — lead-in defaults to **`Decoking Analysis:`**, per-heater `lead_in` override (was hard-coded `Result:` until 2026-08-17); amber callout box for the critical note. |
-| 4 | Flow Tests | Per pass-pair: amber sub-header; table GPM \| BEFORE (RPM/PSI) \| AFTER (RPM/PSI) \| Δ PSI. GPM held constant in the left column; before/after side-by-side; Δ PSI last. |
+| 4 | Flow Tests | Per pass-pair: amber sub-header; table GPM \| BEFORE PSI \| AFTER PSI \| Δ PSI — **no RPM** (Jesse, 2026-10-01). GPM held constant in the left column; before/after side-by-side; Δ PSI last. |
 | 5 | Images | Pig-progression photos; pass-visualization diagram. PM attaches. |
 | 6 | Project Summary / Close | Summary prose (what was done, stand-by, field adaptations); Project Close prose; closing block (PM name / USADebusk / Project Manager / Cell / email). |
 
@@ -212,11 +212,11 @@ Sources: **JS** = job sheet · **TB** = ticket-breakdown xlsx · **HC** = heater
 | Stand-By Summary: HOURS + DATES | TB stand-by lines |
 | Stand-By Summary: CAUSE | PM / shift-summary attribution (TB gives hours, not cause) |
 | Stand-By Summary: TOTAL + combined-total line | ⚙ |
-| Pigs Used: matrix by size × type | TB pig aggregation (all shifts, both heaters) |
-| Pigs Used: intro range + legend | ⚙ (min/max size) + fixed legend |
+| Pigs Used: quantity by size (types summed, never printed) | TB pig aggregation (all shifts, both heaters) |
+| Pigs Used: count + size range beneath | ⚙ (total, size count, min/max size) — no legend |
 | Heater Data tables | HC + JS coil data; **as-built passes confirmed by PM** where they differ from quoted |
 | Heater Result paragraph + amber callout | PM |
-| Flow Tests tables (RPM/PSI before/after) | FT — **a pass flagged suspect in the source record is omitted, not printed** (see Suspect flow tests) |
+| Flow Tests tables (PSI before/after at matched GPM) | FT — **a pass flagged suspect in the source record is omitted, not printed** (see Suspect flow tests) |
 | Flow Tests Δ PSI | ⚙ (BEFORE PSI − AFTER PSI at matched GPM) — **only where AFTER data exists; never fabricated** |
 | Images | PM attaches |
 | Project Summary / Close prose | PM |
