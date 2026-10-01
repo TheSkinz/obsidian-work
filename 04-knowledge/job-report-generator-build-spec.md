@@ -139,6 +139,15 @@ generator-owns-layout / PM-owns-judgement split as the prose rule above.
 with a blank one. Measured 2026-09-07: the Grok Bot build wrote an empty paragraph after every one
 of its nine tables; the Claude Code build of the same document wrote zero.
 
+**Minimise total pages, but never at the cost of appearance** (Jesse, 2026-10-01 — a standing rule for future reports; past reports are not redesigned). *"I like to minimize the total number of pages if possible… I don't mind extra pages if the space is taken up by important data or impressive graphics / images."* A page that costs a row of photos or a full flow-test set is fine; a page carrying two lines is not. What implements it:
+
+- **Sections flow by default** (`compact` defaults to true). Forced section breaks are the generator adding whitespace of its own; the PM adds a break by hand where he wants one.
+- **Pigs Used lays out up to three SIZE | QTY pairs across**, read down then across, once the list passes six sizes (two-across to fourteen). Two narrow columns cannot use a page width alone.
+- **Blocks move whole, never split:** every data table with its heading, each heater's heading and data table, and the closing paragraph with the signature block.
+- **`--pdf` on the renderer** converts through LibreOffice and reports page count and last-page fill, warning below 25%. The levers when it fires: an image row's `height`, `section_order`, then prose.
+
+Measured on the four back-test jobs (old layout → current): USA25025 10 → 7 pages, USA26038 7 → 4, USA26041 7 → 6, CAD26001 3 → 3 (it needed its image row cut from 2.8 to 2.4in once the signature stopped splitting).
+
 **Row labels carry no parenthetical qualifiers** (Jesse, 2026-09-07). The value column explains
 itself; a label exists to be scanned. `Total footage`, not `Total footage (looped pig path)`.
 `Number of passes`, not `Number of passes (as-built)`. `Shift Lead`, not `Shift Lead (Day / Night)`
