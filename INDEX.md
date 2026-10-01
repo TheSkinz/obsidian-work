@@ -24,6 +24,7 @@
 - [[PR-170028]] — PR-170028 Crude Furnace — Cenovus Lima, OH `(Cenovus/Lima-OH)`
 - [[PR-170029]] — PR-170029 Vacuum Charge Furnace — Cenovus Lima, OH `(Cenovus/Lima-OH)`
 - [[PR-175169]] — PR-175169 HDS Furnace — Cenovus Lima, OH `(Cenovus/Lima-OH)`
+- [[USA26046-vac-flow-tests]] — USA26046 — Vac Charge Furnace Flow Tests `(Cenovus/Lima-OH)`
 - [[02-facilities/CHS/McPherson-KS/_facility|_facility]] — CHS — McPherson Refinery, McPherson, KS `(CHS/McPherson-KS)`
 - [[DSP24005]] — DSP# 24005.2 — CHS McPherson 2025 Plant-Wide Turnaround `(CHS/McPherson-KS)`
 - [[HF-0011]] — HF-0011 — Vacuum · CHS McPherson `(CHS/McPherson-KS)`
