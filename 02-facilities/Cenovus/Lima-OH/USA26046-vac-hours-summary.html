@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vac Charge Furnace Hours Summary</title>
+<style>
+  :root{
+    --gold:#FCC30A; --ink:#222222; --body:#555555; --muted:#898781;
+    --rule:#e1e0d9; --surface:#ffffff; --plane:#f9f9f7;
+    --rig:#2a78d6; --pig:#eb6834; --smart:#1baf7a; --wait:#b9b7ae;
+    --over:#e34948;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--plane);color:var(--body);
+       font:10pt/1.45 Helvetica,Arial,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sheet{width:8.5in;margin:0 auto;background:var(--surface);padding:0.45in 0.5in}
+  h1{font-size:13pt;color:var(--ink);margin:0 0 2px;border-bottom:2px solid var(--gold);padding-bottom:5px}
+  h2{font-size:11pt;color:var(--gold);margin:17px 0 6px}
+  .sub{font-size:8.5pt;color:var(--muted);margin:5px 0 0}
+  .tiles{display:flex;gap:8px;margin:13px 0 4px}
+  .tile{flex:1;border:1px solid var(--rule);padding:8px 10px}
+  .tile .k{font-size:7pt;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+  .tile .v{font-size:16pt;color:var(--ink);font-weight:bold;line-height:1.2}
+  .tile .n{font-size:7.5pt;color:var(--body)}
+  .tile.flag{border-left:3px solid var(--gold)}
+  table{width:100%;border-collapse:collapse;font-size:8.5pt}
+  th{background:var(--ink);color:#fff;text-align:left;padding:4px 6px;font-size:7pt;
+     text-transform:uppercase;letter-spacing:.4px;font-weight:normal}
+  th.n,td.n{text-align:right}
+  td{padding:4px 6px;border-bottom:1px solid var(--rule);vertical-align:top}
+  tbody tr:nth-child(even){background:#F7F7F7}
+  td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+  .over{color:var(--over);font-weight:bold}
+  .under{color:var(--rig);font-weight:bold}
+  tr.sum td{border-top:1.5px solid var(--ink);border-bottom:none;font-weight:bold;color:var(--ink)}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:8pt;margin:0 0 6px}
+  .legend span{display:flex;align-items:center;gap:5px}
+  .sw{width:11px;height:11px;border-radius:2px;display:inline-block}
+  ul.scope{margin:4px 0 0;padding-left:16px;font-size:9pt}
+  ul.scope li{margin-bottom:3px}
+  .foot{margin-top:14px;border-top:1px solid var(--rule);padding-top:6px;font-size:7.5pt;color:var(--muted)}
+  .keep{break-inside:avoid;page-break-inside:avoid}
+  .newpage{break-before:page;page-break-before:always}
+  @media print{body{background:#fff}.sheet{width:auto;padding:0}}
+  @page{size:letter;margin:0.4in 0.5in 0.45in;
+        @bottom-right{content:"Page " counter(page) " of " counter(pages);font:8pt Helvetica,Arial,sans-serif;color:#898781}}
+  /* Running header and footer, after the job report renderer's layout: logo left, job right,
+     company line in the footer. thead/tfoot repeat on every printed page. */
+  table.pg{font-size:10pt}
+  .pg>thead>tr>td,.pg>tfoot>tr>td,.pg>tbody>tr>td{padding:0;border:none;background:none}
+  .runhead{display:flex;justify-content:space-between;align-items:flex-end;
+           padding-bottom:6px;margin-bottom:14px;border-bottom:1px solid var(--rule)}
+  .runhead img{height:0.28in;display:block}
+  .runhead .r{text-align:right;line-height:1.3}
+  .runhead .r b{font-size:9pt;color:var(--ink)}
+  .runhead .r span{display:block;font-size:8pt;color:var(--muted)}
+  .runfoot{margin-top:12px;border-top:1px solid var(--rule);padding-top:4px;font-size:8pt;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="sheet">
+<table class="pg">
+<thead><tr><td>
+  <div class="runhead">
+    <img src="data:image/png;base64,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" alt="USA DeBusk">
+    <div class="r"><b>USA26046 &nbsp;|&nbsp; Vacuum Charge Furnace PR-170029</b>
+      <span>Pigging / Decoking &nbsp;|&nbsp; 1 Heater &nbsp;|&nbsp; Cenovus Lima, OH</span></div>
+  </div>
+</td></tr></thead>
+<tfoot><tr><td>
+  <div class="runfoot">USADebusk &nbsp;|&nbsp; Deer Park, TX &nbsp;|&nbsp; usadebusk.com</div>
+</td></tr></tfoot>
+<tbody><tr><td>
+
+  <h1>Vacuum Charge Furnace PR-170029 &mdash; Final Hours Summary</h1>
+  <p class="sub">Cenovus Lima, OH &nbsp;&middot;&nbsp; Job USA26046 &nbsp;&middot;&nbsp; WO 82036776 &nbsp;&middot;&nbsp;
+     Quotation DSP#26013 &nbsp;&middot;&nbsp; 19 September 18:00 &ndash; 30 September 01:30, 2026 &nbsp;&middot;&nbsp;
+     21 shifts &nbsp;&middot;&nbsp; Service receipts 7077&ndash;7100</p>
+
+  <div class="tiles">
+    <div class="tile"><div class="k">Quoted</div><div class="v">134</div><div class="n">hours</div></div>
+    <div class="tile"><div class="k">Final</div><div class="v">247.5</div><div class="n">hours, incl. 52 stand-by</div></div>
+    <div class="tile flag"><div class="k">Variance</div><div class="v">+113.5</div><div class="n">hours, +85%</div></div>
+    <div class="tile"><div class="k">Passes completed</div><div class="v">8 of 8</div><div class="n">decoked and inspected</div></div>
+  </div>
+
+  <h2>Scope completed</h2>
+  <ul class="scope">
+    <li>All eight passes decoked through the convection and all five radiant segments, 3,595 ft of convection and 3,459 ft of radiant tube.</li>
+    <li>Clean IDs confirmed by field measurement at 4.0&quot;, 3.8&quot;, 5.7&quot;, 7.8&quot;, 9.75&quot; and 11.75&quot;, matching the coil drawings.</li>
+    <li>All eight passes smart pigged. Pass 1&ndash;3 data approved 25 September; passes 4 and 6 on 26 September; passes 5, 7 and 8 completed 28 September.</li>
+    <li>Filtration run throughout on filter press 1.</li>
+    <li>Heater dewatered, launchers and hoses removed, filter presses cleaned at the wash pad, and equipment demobilised from the unit.</li>
+  </ul>
+
+  <h2>Pumping unit, by task</h2>
+  <table>
+    <thead><tr><th>Task</th><th class="n">Quoted hrs</th><th class="n">Actual hrs</th><th class="n">&Delta; hrs</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td>Rig-in</td><td class="n">6</td><td class="n">14</td><td class="n over">+8</td>
+        <td>Rig-in could not be completed in a single pass. It was worked in four separate periods of 5, 2, 4 and 3 hours as access to the launcher connections allowed, each restart carrying its own set-up.</td></tr>
+      <tr><td>Pigging</td><td class="n">66</td><td class="n">63</td><td class="n under">&minus;3</td>
+        <td>All eight passes decoked within the quoted allowance. The coil cleaned to size on the planned progression, with minimal deposit found in the larger radiant bores.</td></tr>
+      <tr><td>Smart pig support</td><td class="n">38</td><td class="n">74</td><td class="n over">+36</td>
+        <td>Pumping unit time supporting the inspection contractor. Inspection was accepted section by section rather than by complete pass, so passes were re-entered to collect the outstanding diameters. The 4&quot;, 6&quot; and 8&quot; sections each required repeat runs; the field record of 24 September notes data loss on pass 3 and on the 4&quot; of passes 1 and 2.</td></tr>
+      <tr><td>Rig-over</td><td class="n">18</td><td class="n">8</td><td class="n under">&minus;10</td>
+        <td>Two rig-overs were required rather than the phased moves the quotation assumed, saving ten hours against plan.</td></tr>
+      <tr><td>Rig-out</td><td class="n">6</td><td class="n">36.5</td><td class="n over">+30.5</td>
+        <td>Dewatering of all eight passes, removal of the 6&quot; and 12&quot; launchers and hoses, the filter press dropped and cleaned at the wash pad, pigs and crates loaded, and equipment demobilised from the unit and the facility. The final shift ran 18:00 to 01:30 on 29&ndash;30 September; all units are recorded to that finish, not a full shift.</td></tr>
+      <tr class="sum"><td>Productive total</td><td class="n">134</td><td class="n">195.5</td><td class="n over">+61.5</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Equipment</h2>
+  <table>
+    <thead><tr><th>Line</th><th class="n">Quoted hrs</th><th class="n">Actual hrs</th><th class="n">&Delta; hrs</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td>Support trailer 6</td><td class="n">134</td><td class="n">240.5</td><td class="n over">+106.5</td>
+        <td>On site from 01:00 on 20 September through demobilisation.</td></tr>
+      <tr><td>Filter press 1</td><td class="n">134</td><td class="n">235.5</td><td class="n over">+101.5</td>
+        <td>Filtration ran for the full duration of the job.</td></tr>
+      <tr><td>Crew trucks</td><td class="n">134</td><td class="n">244.5</td><td class="n over">+110.5</td>
+        <td>One crew truck per shift across a 21-shift job.</td></tr>
+    </tbody>
+  </table>
+
+
+  <div class="newpage keep">
+  <h2>Vacuum Heater Timeline</h2>
+  <p style="font-size:9pt;margin:2px 0 8px">Task hours for each of the 21 shifts, by service receipt, as recorded on the dated field tickets.</p>
+  <div class="legend" style="margin-top:6px">
+    <span><i class="sw" style="background:var(--rig)"></i> Rig-in / over / out</span>
+    <span><i class="sw" style="background:var(--pig)"></i> Pigging</span>
+    <span><i class="sw" style="background:var(--smart)"></i> Smart pig support</span>
+    <span><i class="sw" style="background:var(--wait)"></i> Stand-by</span>
+  </div>
+  <svg viewBox="0 0 640 252" width="100%" role="img" aria-label="Task hours for each of the 21 shifts">
+    <g id="tl"></g>
+  </svg>
+  <div class="keep" id="standby" style="margin-top:4px">
+  <h2>Stand-by</h2>
+  <p style="font-size:9pt;margin:2px 0 8px">
+    Fifty-two hours were booked to stand-by, a category the quotation carries no allowance for.
+    Every one of those hours is recorded on a dated field ticket as waiting on the <strong>12&quot; radiant-outlet
+    launchers to be installed by facility pipefitters</strong>. Forty-nine were spent before the launchers were first
+    hung on the night of 21 September, and a further three on 26 September waiting for them to be moved to passes 5, 7
+    and 8. The requirement is named on every ticket across that run.
+  </p>
+  <table>
+    <thead><tr><th>Period</th><th class="n">Hours</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td>19&ndash;21 September</td><td class="n">49</td>
+        <td>Pumping unit and crew on site and available. Convection launchers and hoses were connected during this period as access allowed; the coil could not be entered until the radiant-outlet launchers were in place.</td></tr>
+      <tr><td>26 September</td><td class="n">3</td>
+        <td>Waiting for the 12&quot; launchers to be relocated to passes 5, 7 and 8 before the final three passes could be filled.</td></tr>
+      <tr class="sum"><td>Stand-by total</td><td class="n">52</td><td></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="foot">Prepared from daily service receipts 7077&ndash;7100. Every hour shown is as recorded on a dated field ticket; no figure is estimated or allocated across tasks. USA DeBusk, LLC.</p>
+  </div>
+</td></tr></tbody>
+</table>
+</div>
+
+<script>
+const C={rig:'#2a78d6',pig:'#eb6834',smart:'#1baf7a',wait:'#b9b7ae'};
+const SH=[
+ ['7077','9/19 N',{wait:7,rig:5}],['7078','9/20 D',{wait:12}],['7079','9/20 N',{rig:2,wait:10}],
+ ['7080','9/21 D',{wait:12}],['7081','9/21 N',{wait:8,rig:4}],['7082','9/22 D',{rig:3,pig:9}],
+ ['7083','9/22 N',{pig:12}],['7084','9/23 D',{pig:2,smart:10}],['7085','9/23 N',{smart:12}],
+ ['7086','9/24 D',{smart:12}],['7087','9/24 N',{smart:11,rig:1}],['7088','9/25 D',{rig:5,pig:7}],
+ ['7089','9/25 N',{pig:12}],['7090','9/26 D',{pig:3,smart:9}],['7091','9/26 N',{smart:5,rig:2,wait:3,pig:2}],
+ ['7092','9/27 D',{pig:12}],['7093','9/27 N',{pig:4,smart:8}],['7094','9/28 D',{smart:7,rig:5}],
+ ['7095','9/28 N',{rig:12}],['7098','9/29 D',{rig:12}],['7100','9/29 N',{rig:7.5}]];
+const TX0=84, TW=442, TR=11, tsx=v=>(v/12)*TW;
+let t2='';
+for(let h=0;h<=12;h+=3){const x=TX0+tsx(h);
+  t2+=`<line x1="${x}" y1="10" x2="${x}" y2="${SH.length*TR+12}" stroke="#e1e0d9" stroke-width="1"/>`;
+  t2+=`<text x="${x}" y="7" text-anchor="middle" font-size="7" fill="#898781">${h}h</text>`;}
+SH.forEach((r,i)=>{
+  const y=i*TR+12; let cx=TX0;
+  t2+=`<text x="${TX0-6}" y="${y+8}" text-anchor="end" font-size="7.5" fill="#555555">${r[0]} &#183; ${r[1]}</text>`;
+  Object.keys(r[2]).forEach(k=>{ const v=r[2][k]; if(!v) return;
+    t2+=`<rect x="${cx}" y="${y}" width="${Math.max(1,tsx(v)-1.5)}" height="${TR-3}" rx="1.5" fill="${C[k]}"/>`;
+    cx+=tsx(v);});
+});
+t2+=`<rect x="${TX0-2}" y="10" width="${tsx(12)+4}" height="${5*TR+2}" fill="none" stroke="#898781" stroke-width="1.2" stroke-dasharray="3 2"/>`;
+const LX=TX0+tsx(12)+10;
+t2+=`<text x="${LX}" y="${2*TR+16}" font-size="8" fill="#555555" font-weight="bold">49 hours</text>`;
+t2+=`<text x="${LX}" y="${2*TR+27}" font-size="7" fill="#898781">awaiting</text>`;
+t2+=`<text x="${LX}" y="${2*TR+36}" font-size="7" fill="#898781">launcher</text>`;
+t2+=`<text x="${LX}" y="${2*TR+45}" font-size="7" fill="#898781">installation</text>`;
+document.getElementById('tl').innerHTML=t2;
+</script>
+</body>
+</html>
