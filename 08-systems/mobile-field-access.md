@@ -184,9 +184,13 @@ host RDP, so that is not an option.
 The standing setup is **two doors, each of which survives an unattended restart:**
 
 - **RustDesk, installed as a service.** This is the GUI door. It works past the lock screen and
-  UAC, which is what you need for desktop-app re-logins like the 09-16 OAuth fault. Setup:
-  `winget install RustDesk.RustDesk` > Settings > Security > Install service > permanent
-  password + 2FA > note the ID > add it in the phone app.
+  UAC, which is what you need for desktop-app re-logins like the 09-16 OAuth fault.
+  **Done 2026-10-01:** 1.4.9 installed from the GitHub release MSI. RustDesk is not in the
+  winget catalog, so `winget install` finds nothing. The MSI installs the `RustDesk` service
+  (Automatic, `--service`) on its own. Its signer is PURSLANE, RustDesk's company. ID
+  **534 040 005**. Jesse connected from the phone the same day. The "not logged in" banner is
+  for an optional RustDesk account (address-book sync) and does not affect connecting by
+  ID + password.
 - **Remote Control, started at logon by the scheduled task `Claude Remote Control vault`.**
   This is the vault door, and its auth is independent of the desktop app's. Set it to restart
   on failure, with no 3-day time limit.
