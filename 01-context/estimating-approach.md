@@ -6,12 +6,7 @@
 
 ## Duration model
 
-Baseline pigging rate: **100 ft/hr per single unlooped coil.** **Read the gate below before derating** — on a first-time unknown heater the answer is 100 flat, and the list here does not fire. Where you do have reason to believe the coil is dirty, adjust the rate downward (more hours required) for:
-- Coker, crude, or vacuum service — vacuum runs long as a rule (multiple tube sizes, hard coke, and pigging the larger tube sizes from the larger outlet launcher)
-- Multiple tube sizes on one coil — each size is pigged to completion in sequence, adding hours
-- Pitch presence
-- Hard fouling history
-- Tight tube ID (under ~3")
+Baseline pigging rate: **100 ft/hr per single unlooped coil.** **Read the gate below before derating** — on a first-time unknown heater the answer is 100 flat, and the list here does not fire. Where you do have reason to believe the coil is dirty, adjust the rate downward (more hours required) for the factors listed in **`usadebusk-estimating`'s Duration Model, which is the canonical list** (Jesse, 2026-10-01): hard service (coker / crude / vacuum — vacuum runs long as a rule), pitch, tube restrictions, plug-header / mule-ear return bends, multiple tube sizes on one coil, and tight tube ID (under ~3"). *"Hard fouling history" was dropped from this page's former copy of the list — it is what opens the gate below, not a separate factor.* Change the list in the skill, not here.
 
 **100 ft/hr is a per-pig rate, not a heater-total rate** (ruled 2026-07-24). It describes one pig on one coil. Heater-total footage ÷ 100 is wrong — it double-counts circuits pigged simultaneously and over-quotes every multi-pass job. Elapsed pigging time for a pass set is **one coil's time**, however many circuits that set carries. **Round the per-coil figure to the nearest even hour — up or down — once, at the coil level** (Jesse, 2026-08-23; replaces the former always-round-up rule). Even hours keep project totals landing cleanly on 12-hour increments. **On an exact tie, round DOWN** (Jesse, 2026-09-17): 900 ft at 100 ft/hr is 9 hrs and prices at **8**, not 10. Ties land on any coil that is an odd multiple of 100 ft — 900, 1,100, 1,300, 1,500 — so this is not a rare case. Down is consistent with the standing asymmetry: under T&M an overrun goes back to the customer and gets approved, while over-estimating costs the bid.
 

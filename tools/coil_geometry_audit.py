@@ -290,7 +290,8 @@ def config_rollup_per_circuit(text: str) -> list[dict]:
     for row in estimating_rollup.table_rows(
             estimating_rollup.section_lines(text, "Config Rollup")):
         r = (row + [""] * 6)[:6]
-        if r[CR_SCALE].strip().lower() != "per circuit":
+        # `Per coil` since 2026-10-01; `Per circuit` still read for unmigrated cards.
+        if r[CR_SCALE].strip().lower() not in ("per coil", "per circuit"):
             continue
         zones = zones_named(r[CR_SECTION])
         if not zones:

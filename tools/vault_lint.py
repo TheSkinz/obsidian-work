@@ -1233,7 +1233,10 @@ def check_rollup_scale(root: Path, notes: dict[Path, str]) -> list[Finding]:
                 continue
             scale = cells[0].replace("*", "").strip().casefold()
             sec = cells[1].replace("*", "").strip().casefold()
-            if not sec or scale not in ("per circuit", "heater total"):
+            # `Per coil` is the label since 2026-10-01 (renamed from `Per circuit`,
+            # Jesse); the old label is still read so an unmigrated card is not
+            # silently skipped.
+            if not sec or scale not in ("per coil", "per circuit", "heater total"):
                 continue
             tubes, is_hedged = _rollup_number(cells[3])
             if is_hedged:
@@ -1241,7 +1244,7 @@ def check_rollup_scale(root: Path, notes: dict[Path, str]) -> list[Finding]:
                 continue
             if tubes is None:
                 continue
-            if scale == "per circuit":
+            if scale in ("per coil", "per circuit"):
                 per_circuit[sec] = tubes
             else:
                 heater_total[sec] = tubes

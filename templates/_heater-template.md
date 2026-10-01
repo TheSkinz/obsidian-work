@@ -64,13 +64,14 @@ tags: [heater-card, <Client>, <heater-type>]
 
 ## Config Rollup — Estimating Reference
 
-<!-- Two scales, both always present: Per circuit (estimating multiplication base) and
-     Heater total (actual loop arrangement — state it in Notes). -->
+<!-- Two scales, both always present: Per coil (one coil — the estimating multiplication base)
+     and Heater total (every coil's footage). Coil count is permanent; looping into circuits is
+     per job — note it with its job number in Heater total Notes. -->
 
 | Scale | Section | Pipe ID(s) (in) | Total Tubes | Total Length (ft) | Notes |
 |---|---|---|---|---|---|
-| Per circuit | Convection | | | | |
-| Per circuit | Radiant | | | | |
+| Per coil | Convection | | | | |
+| Per coil | Radiant | | | | |
 | Heater total | Convection | | | | |
 | Heater total | Radiant | | | | |
 

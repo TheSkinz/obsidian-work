@@ -132,7 +132,7 @@ USADebusk Filter Press #1 specs (all three are this model):
 |---|---|---|
 | Foam | Soft foam cylinder — no abrasive elements | Opening passes, initial flow establishment, verification |
 | TC (Tungsten Carbide Pin) | Urethane body (84A Duro typical, 78A special), TC pins embedded during molding | Primary coke removal — main workhorse pig |
-| HR (Hell Raiser) | Harder durometer body, aggressive cleaning | Heavy fouling, pitch-laden tubes |
+| HR (Hell Raiser / Hell Razor — both acceptable) | Harder durometer body, aggressive cleaning | Heavy fouling, pitch-laden tubes |
 | Swab | Oversized soft urethane | Final cleanup, verification, larger tube sections |
 | Honeycomb (HC) | Polyurethane body with tapered conical ends; appendages thread into the body rather than being cast in | A different-manufacturer style, run occasionally — limited supply, roughly 1 project in 5 |
 

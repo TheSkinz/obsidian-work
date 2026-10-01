@@ -138,36 +138,33 @@ about the tubing itself and do not belong there. Omit the block entirely when no
 
 <!--
 DERIVED FROM TUBE GEOMETRY — hand-entered (no formula layer), so re-derive on any edit and
-never invent a value Tube Geometry can't back. This section expresses the heater's FIXED
-physical loop arrangement at two scales, not a "current job configuration" — corrected
-2026-06-22 after F-802 migration surfaced the wrong model.
+never invent a value Tube Geometry can't back. This section expresses the heater's coils at
+two scales, not a "current job configuration".
 
-CORRECTED MODEL: A heater's coil/loop arrangement (e.g. "10 coils looped to 5 circuits") is a
-PERMANENT physical fact about the heater, not something that changes per job. It is set once,
-physically, with temp loops or permanent piping — not reconfigured between decokes. The earlier
-"current config only, overwrite on change" framing was wrong for heaters where the loop count
-is fixed; it only applies in the rare case Jesse described — a flaw found on a prior decoke
-forces an actual physical reconfiguration. That case is the exception, not the norm, and when
-it happens it's a dated, logged event (see Field Notes), not a routine overwrite.
+MODEL (Jesse, 2026-10-01 — reverses the 2026-06-22 "loop arrangement is permanent" model):
+the COIL COUNT is a permanent physical fact; how the coils are LOOPED INTO CIRCUITS is a
+per-job election. The Cenovus Coker (PR-170002) is drawn as individual passes and ran 4 coils
+looped to 3 circuits on USA26046; F-501 and CAD26001 used temporary 180° spools. Record each
+job's looping against that job — Job History / Field Notes, and a dated clause in the Heater
+total Notes ("10 coils; looped to 5 circuits on USA26xxx"). A different arrangement on a later
+job is not a reconfiguration and changes no figure.
 
 Two rows, always both present, not alternatives:
-  - "Per circuit" — the single-coil/circuit base unit (matches Tube Geometry's
-    Tubes/Circuit and Length/Circuit exactly — this row is the estimating multiplication base).
-  - "Heater total" — the full installed total, accounting for the actual loop arrangement
-    (e.g. 10 physical coils looped to 5 circuits still totals 10 coils' worth of tube footage,
-    even though they're plumbed as 5). State the loop arrangement in the Notes column.
-
-If a heater is ever physically reconfigured (the rare flaw-driven case), update the "Heater
-total" row's Notes to state the new arrangement and the job/date it changed, and log the prior
-arrangement as a dated note in Field Notes. Do not add a third row — the table still reflects
-current physical reality, just update it in place.
+  - "Per coil" — one coil (pass), the base unit (matches Tube Geometry's Tubes/Circuit and
+    Length/Circuit exactly — this row is the estimating multiplication base). Renamed from
+    "Per circuit" 2026-10-01: "circuit" means what one pig travels, which on a looped heater is
+    several coils. The Tube Geometry column names still say Circuit; they are lint-locked and
+    were deliberately left as a known misnomer.
+  - "Heater total" — every coil's footage, however the coils are looped (10 coils looped to 5
+    circuits still totals 10 coils' worth of tube). Notes carry the coil count and any job's
+    looping.
 -->
 
 | Scale | Section | Pipe ID(s) (in) | Total Tubes | Total Length (ft) | Notes |
 |---|---|---|---|---|---|
-| Per circuit | Convection | | | | |
-| Per circuit | Radiant | | | | |
-| Heater total | Convection | | | | <e.g. "10 coils looped to 5 circuits"> |
+| Per coil | Convection | | | | |
+| Per coil | Radiant | | | | |
+| Heater total | Convection | | | | <e.g. "10 coils; looped to 5 circuits on USA26xxx"> |
 | Heater total | Radiant | | | | |
 
 ---
@@ -368,8 +365,9 @@ labels as such. This section fixes both by recording what one pig actually did.
           `light`    = reached max pig OD with little or no progression, return cleared fast,
                        nothing notable recovered.
           `moderate` = normal progression, sustained dirty return, some fragments.
-          `heavy`    = stalled sizes, extended progression, localized restrictions, or a
-                       final pig size short of max pig OD.
+          `heavy`    = stalled sizes, extended progression, or localized restrictions.
+                       (Final pig size against max pig OD is NOT a sign — max pig OD is a
+                       default, not a target; struck 2026-10-01, Jesse.)
           `unknown`  = the source does not support a call. NEVER infer `moderate` to fill a
                        blank — the same rule that governs job class governs this.
         `heavy` says the coil was HARD TO CLEAN. It is an effort grade, and it does not carry

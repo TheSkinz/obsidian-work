@@ -28,7 +28,7 @@ Where a plug header hang-up occurs, the event is documented with pig size, direc
 
 **Flow test record.** Before and after figures per circuit, at matched flow rate, with the pressure differential that demonstrates the improvement. This is the primary quantitative deliverable.
 
-**Completion record.** Per circuit, confirming the three completion criteria were met, together with the pig progression actually run and the final pig size achieved.
+**Completion record.** Per circuit, confirming the two deciding completion criteria were met (and the flow test where valid, as corroboration — manual 10 §10.2), together with the pig progression actually run and the final pig size achieved.
 
 **Field records.** The running record described above, covering the work performed on each circuit.
 
