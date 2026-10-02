@@ -139,6 +139,8 @@ generator-owns-layout / PM-owns-judgement split as the prose rule above.
 with a blank one. Measured 2026-09-07: the Grok Bot build wrote an empty paragraph after every one
 of its nine tables; the Claude Code build of the same document wrote zero.
 
+**A multi-heater job gets one combined report** (Jesse, 2026-10-02, decided on USA26046's four heaters). It has one section per heater, and single Project Duration, Stand-By, Pigs Used, Summary and Close sections. Reasons: one job number and one quote, a single duration table that compares the heaters side by side, no fourfold repetition of shared sections, and an equipment move between heaters that reads as one story. Precedent: USA26038 (H-19 + H-20). Split per heater only if the customer asks for per-work-order closeout documents. Where one pumper roamed several heaters, give `duration_rows` explicitly, because the extractor cannot attribute a roaming pumper.
+
 **Minimise total pages, but never at the cost of appearance** (Jesse, 2026-10-01 — a standing rule for future reports; past reports are not redesigned). *"I like to minimize the total number of pages if possible… I don't mind extra pages if the space is taken up by important data or impressive graphics / images."* A page that costs a row of photos or a full flow-test set is fine; a page carrying two lines is not. What implements it:
 
 - **Sections flow by default** (`compact` defaults to true). Forced section breaks are the generator adding whitespace of its own; the PM adds a break by hand where he wants one.
