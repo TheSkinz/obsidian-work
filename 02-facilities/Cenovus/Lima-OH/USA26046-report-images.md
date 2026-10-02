@@ -17,3 +17,7 @@ Images for the combined USA26046 project report, gathered as Jesse uploads them.
 | `USA26046-vac-pass5-12in-coke-1.jpg` | [[PR-170029]] Vac | Coke removed from the 12" tube, pass 5, the dirtiest of the eight passes. Held up in front of the launcher barrel and a red valve |
 | `USA26046-vac-pass5-12in-coke-2.jpg` | [[PR-170029]] Vac | The same pass 5 12" coke, resting on the launcher, with a nut beside it for scale |
 | `USA26046-vac-conv-inlet-piping-deposits.jpg` | [[PR-170029]] Vac | Thick deposits removed from the external 6" convection inlet piping, a collection from all passes. Each pass's external inlet piping was extremely fouled |
+
+## Report content decisions
+
+- **Vac Decoking Analysis carries the pass-by-tube detail** (Jesse, 2026-10-02): it names passes 4 and 5 by tube size, notes the other six were light throughout, and covers the inlet-piping-first strategy. Source: the coil-condition table and inlet-piping paragraph on [[PR-170029]].
