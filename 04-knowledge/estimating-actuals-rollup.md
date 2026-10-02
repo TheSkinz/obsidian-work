@@ -10,7 +10,7 @@ Benchmarks as stated in `usadebusk-estimating`: **100 ft/hr** pigging (nominal f
 
 | Heater | Client | Date | Job # | Condition | Rigs | Mode | Rig-In | Pig | Smart Pig | Rig-Out | Rig method | Stand-By | Total | Heater footage (ft) | ft / elapsed pig-hr | ft/hr per pig (norm) |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| PR-170002 | Cenovus Energy | 2026-09-27 | USA26046 | routine | 1 | ? | 11 | 51 | – | 11 | unmarked | 0 | 73 | 15,904 | 312 | - |
+| PR-170002 | Cenovus Energy | 2026-09-27 | USA26046 | routine | 1 | 3 | 11 | 51 | – | 11 | unmarked | 0 | 73 | 15,904 | 312 | 104 |
 | PR-170028 | Cenovus Energy | 2026-09-17 | USA26046 | routine | 1 | ? | 12 | 118 | 38.25 | 12 | unmarked | 0 | 192 | 23,856 | 202 | - |
 | PR-170029 | Cenovus Energy | 2026-09-19 | USA26046 | routine | 1 | ? | 14 | 63 | 74 | 36.5 | unmarked | 52 | 195.5 | 7,054 | 112 | - |
 | PR-175169 | Cenovus Energy | 2026-09-25 | USA26046 | routine | 1 | 2 | 9 | 20.5 | 4.5 | 7 | unmarked | 2 | 41 | 3,600 | 176 | 88 |
@@ -55,9 +55,9 @@ Mode-normalized per-pig rates (elapsed ÷ Mode), so jobs run in different modes 
 |---|---|---|---|
 | crash | 6 | 13–67 | 33 |
 | first | 1 | 75 | 75 |
-| routine | 6 | 47–259 | 97 |
+| routine | 7 | 47–259 | 98 |
 
-> 7 row(s) carry an elapsed rate but no `Mode`, so they are excluded from these per-pig means — add `Mode` to those Task Durations rows to include them.
+> 6 row(s) carry an elapsed rate but no `Mode`, so they are excluded from these per-pig means — add `Mode` to those Task Durations rows to include them.
 
 ## Coverage gaps
 
