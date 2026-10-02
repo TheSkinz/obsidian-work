@@ -4,7 +4,7 @@ job-number: USA26046
 client: Cenovus Energy
 facility: Cenovus-Lima-OH
 heaters: [PR-170028]
-source: field sheets in `USA26046-flow-tests-crude-hds-coker.pdf` (beside this note; Jesse-supplied 2026-10-02)
+source: field sheets in `USA26046-flow-tests-crude-hds-coker.pdf` (beside this note; Jesse-supplied 2026-10-02); pass 3 from the corrected sheet `USA26046-crude-flow-test-pass3.jpg`
 verified: 2026-10-02
 tags: [flow-test, Cenovus, Lima, USA26046]
 ---
@@ -30,6 +30,15 @@ Pre- and post-decoke flow tests for [[PR-170028]], held for the project report. 
 | 700 | 295 | 270 | 25 |
 | 650 | 270 | 255 | 15 |
 | 600 | 230 | 210 | 20 |
+
+## Pass 3
+
+| GPM | Before PSI | After PSI | Δ PSI |
+|---|---|---|---|
+| 750 | 350 | 305 | 45 |
+| 650 | 275 | 220 | 55 |
+| 550 | 220 | 165 | 55 |
+| 450 | 160 | 120 | 40 |
 
 ## Pass 4
 
@@ -80,10 +89,10 @@ Pre- and post-decoke flow tests for [[PR-170028]], held for the project report. 
 
 - **Pass 1:** 40 at 750 · 30 at 700 · 25 at 650 · 30 at 600
 - **Pass 2:** 35 at 750 · 25 at 700 · 15 at 650 · 20 at 600
+- **Pass 3:** 45 at 750 · 55 at 650 · 55 at 550 · 40 at 450
 - **Pass 4:** 29 at 750 · 18 at 650 · 12 at 550 · 8 at 450
 - **Pass 5:** 25 at 750 · 25 at 650 · 30 at 550 · 15 at 450
 - **Pass 6:** 15 at 800 · 25 at 700 · 35 at 600 · 30 at 500
 - **Pass 7:** 25 at 800 · 25 at 700 · 25 at 600 · 25 at 500
 - **Pass 8:** 29 at 800 · 30 at 700 · 35 at 600 · 60 at 500
 
-Pass 3: the sheet carries no readings.
