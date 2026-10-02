@@ -16,8 +16,11 @@ Images for the combined USA26046 project report, gathered as Jesse uploads them.
 |---|---|---|
 | `USA26046-vac-pass5-12in-coke-1.jpg` | [[PR-170029]] Vac | Coke removed from the 12" tube, pass 5, the dirtiest of the eight passes. Held up in front of the launcher barrel and a red valve |
 | `USA26046-vac-pass5-12in-coke-2.jpg` | [[PR-170029]] Vac | The same pass 5 12" coke, resting on the launcher, with a nut beside it for scale |
+| `USA26046-vac-radiant-outlet-layout-sketch.png` | [[PR-170029]] Vac | Jesse's rough sketch of the radiant outlet flange layout, seen facing the outlets: upper 8 5 · 4 1, lower 7 6 · 3 2. **Source for a clean graphic, not for use as-is** |
 | `USA26046-vac-conv-inlet-piping-deposits.jpg` | [[PR-170029]] Vac | Thick deposits removed from the external 6" convection inlet piping, a collection from all passes. Each pass's external inlet piping was extremely fouled |
 
 ## Report content decisions
 
 - **Vac Decoking Analysis carries the pass-by-tube detail** (Jesse, 2026-10-02): it names passes 4 and 5 by tube size, notes the other six were light throughout, and covers the inlet-piping-first strategy. Source: the coil-condition table and inlet-piping paragraph on [[PR-170029]].
+- **A shift-by-shift timeline chart for every heater** (Jesse, 2026-10-02), in the style of the Vac cost summary's chart: one bar per shift, coloured by task (rig-in/over/out, pigging, smart pig support, stand-by), labelled by receipt and date. The Vac's data is in that summary; the Crude, HDS and Coker take theirs from receipts 8401–8428. The renderer has no timeline section yet, so it gets built at build time. Use the re-split hours for the Crude and HDS, so each chart matches its Task Durations row.
+- **Vac radiant outlet layout graphic** (Jesse, 2026-10-02): a small, clean drawing redrawn from the sketch, captioned as the view facing the outlet flanges, with each number being the pass and its matching convection inlet. Place it in the Vac's Heater Data section. Say plainly that the field chalk marks and flange tags were wrong and that the numbering here governs.
