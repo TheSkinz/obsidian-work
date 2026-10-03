@@ -215,3 +215,5 @@ Manufacturer/company spec sheets backing the figures above, kept at `04-knowledg
 | `Pump Curve CMUPigging.pdf`                       | Waterous CMU pump specifications and performance curves                    |
 | `USA PIG LAUNCHER Dim with flanges explained.pdf` | Pig launcher dimensions by size, flange notes                              |
 | `Fig 200 Spec sheets.pdf`                         | Kemper oilfield hammer union catalog (Fig. 200 and other pressure classes) |
+
+**Related:** [[vendor-literature-branding]] — whether the USADebusk logo can go on a manufacturer's spec sheet, and what's fine and what isn't.

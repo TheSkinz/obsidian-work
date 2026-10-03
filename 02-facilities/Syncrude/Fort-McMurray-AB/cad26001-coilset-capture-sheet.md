@@ -1,7 +1,9 @@
-<!-- vault-loop: operational — Lane 4 heater-card data (CAD26001 coilset capture, 7-1-F-1). Terminal status, but a live data artifact rather than a closed question, and DQ-017 Phase 2 still wants the two prior Syncrude jobs hand-migrated. Held out of the Terminal-Note Sweep 2026-09-08 pending Jesse's call; do not self-route. -->
+<!-- ROUTED 2026-10-02 — filed beside [[CAD26001-job-sheet]] in 02-facilities/Syncrude/Fort-McMurray-AB/ (Jesse approved the inbox clear-out plan). Retained as the original capture record; its field-capture lessons live only here. -->
 ---
 type: note
 status: complete
+source: "CAD26001 service receipts and field capture, 2026-08-25 to 2026-08-30"
+verified: 2026-09-02
 created: 2026-08-21
 tags: [CAD26001, syncrude, 7-1-F-1, actuals, capture, DQ-017]
 related:

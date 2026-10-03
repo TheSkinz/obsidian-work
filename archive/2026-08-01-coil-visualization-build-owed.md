@@ -3,7 +3,7 @@
 
 ---
 type: note
-status: inbox
+status: closed-unactioned
 created: 2026-08-01
 tags: [inbox, field-ops, job-sheet, visualization, tools, approved-unexecuted]
 ---
@@ -94,3 +94,7 @@ forcing unresolved geometry into the open — `04-knowledge/ground-truth/h-28.md
 row 4 already records "2 tubes cannot split evenly across 4 coils," which today is
 a footnote a reader can skip and which a renderer simply could not draw. That
 makes it cross-cutting across bids rather than per-job convenience.
+
+---
+
+**Killed 2026-10-02 (Jesse, inbox clear-out):** The renderer was unscheduled 2026-08-24 and never scheduled again; `tools/coil_geometry_audit.py` is the deliverable that shipped.

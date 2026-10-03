@@ -2,7 +2,7 @@
 <!-- vault-prestaged: skipped — already covered, both generator defects fixed same day in config commit 677d447 (Jesse 2026-07-25, ~48 min after this note): extract_workup.py now emits a CONFIRM (J field) flag on mob/demob instead of treating the workup amount as quotable, and the reconciliation flag treats an exact-multiple-of-mob/demob gap as expected/non-blocking rather than "do not send." The DSP26026/DSP26058 items in this note were also separately closed inline. -->
 ---
 type: note
-status: open
+status: resolved
 created: 2026-07-25
 tags: [inbox, estimating, data-quality, audit, formosa, marathon, hf-sinclair]
 related:
@@ -156,3 +156,7 @@ defects until checked:
 Also: LibreOffice must fully exit between conversions. Firing `soffice --convert-to` back-to-back
 in a shell loop silently converts only the first file or two. Drive it from Python with an explicit
 wait per file.
+
+---
+
+**Closed 2026-10-02 (Jesse, inbox clear-out):** Both generator defects fixed in claude-config `677d447`; every other item was closed inside this note or is unreconcilable for want of a workup file.

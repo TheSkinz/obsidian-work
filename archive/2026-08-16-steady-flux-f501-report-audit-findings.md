@@ -2,7 +2,7 @@
 <!-- vault-prestaged: 2026-08-19-prestaged-treat-gas-loss-nominal-basis.md -->
 ---
 type: note
-status: inbox
+status: resolved
 created: 2026-08-16
 tags: [smart-pig, inspection, USA26041, ExxonMobil, steady-flux, vendor-qa]
 ---
@@ -81,3 +81,7 @@ carry one context sentence, so a reader of ExxonMobil's file copy in five years 
 "45.7% loss" as coil condition.
 
 Open item was on `2026-08-16-ut-data-loss-air-and-fouling`, **closed 2026-09-07** — DQ-025 ruled no action and that note was removed (Jesse: "Remove the note. It isn't important."). See [[2026-09-07-consolidated-decision-pass]]; the note itself is recoverable from git history at `425bc08`.
+
+---
+
+**Closed 2026-10-02 (Jesse, inbox clear-out):** Routed: the confirmed errors and the sound-speed caveat are summarized on [[F-501]] under the Rev B errors section; the Treat Gas nominal basis was dropped under DQ-024.

@@ -330,7 +330,7 @@ Building an animated three.js page as a published artifact and trying to produce
 
 **A backgrounded tab throttles `requestAnimationFrame` to roughly 1 fps.** With `document.hidden` true, an animation that accumulates its own clock from a per-frame delta falls silently behind real time — a capped 50 ms delta advanced a timeline 1.22 s across 14 s of wall time. This is a bug in ordinary use, not only during capture: switch tabs and come back, and the animation is far behind where it should be. Drive the timeline from wall-clock time rather than accumulated frame deltas, and keep the tab in front while recording, because a hidden tab composites no frames and captures nothing.
 
-Source: Claude Code session `a21b4502`, 2026-08-19 (F-501 Pass B coil teardown visualization). The page itself and its open items are recorded at `00-inbox/2026-08-19-f501-coil-teardown-visualization.md`.
+Source: Claude Code session `a21b4502`, 2026-08-19 (F-501 Pass B coil teardown visualization). The page itself and its open items are recorded at `07-llms/claude/2026-08-19-f501-coil-teardown-visualization.md`.
 
 ## The desktop app is an MSIX package, and a live process with package identity turns an update into an unlaunchable app
 

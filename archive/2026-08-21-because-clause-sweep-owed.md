@@ -1,7 +1,7 @@
 <!-- ROUTED 2026-10-01 — content landed in 50-dashboards/decision-queue.md as DQ-034 (Owed builds). Retained as the original capture record. -->
 ---
 type: note
-status: inbox
+status: resolved
 created: 2026-08-21
 related:
   - "[[2026-08-21-idea-research-stated-justifications-unmeasured]]"
@@ -37,3 +37,7 @@ against a rendered artifact — verifiable is not verified. That applies to thes
 touched, so the sweep is cleanup of a known backlog rather than an open-ended hazard.
 
 **Not urgent.** Nothing is generating more of these, and the convention catches new ones.
+
+---
+
+**Closed 2026-10-02 (Jesse, inbox clear-out):** Content lives in DQ-034 under Owed builds.

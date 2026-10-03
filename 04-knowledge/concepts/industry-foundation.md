@@ -69,3 +69,5 @@ Why refineries need it: coke reduces heat transfer efficiency, increases tube sk
 | Plant Down Time (PDT) | Facility-caused downtime — generally billable as stand-by |
 | Ticket Breakdown | Per-job Excel file tracking all billable resources, durations, and rates |
 | Service Receipt | Handwritten daily field document completed by PM for each 12-hour shift |
+
+**Related concepts:** [[decoking-method-comparison]] · [[field-operations]] · [[estimating-pricing]]

@@ -2,7 +2,7 @@
 <!-- vault-prestaged: skipped — execution correction, needs doing not deciding. Confirmed DSP24005.md, DSP26058.md and DSP26030_H28_H29.md still carry no contract-type field (checked 2026-08-02). Both items are read-the-source-doc-and-fill-the-field / check-the-contract tasks with no open question for Jesse to weigh, not decisions. -->
 ---
 type: note
-status: open
+status: resolved
 created: 2026-07-26
 tags: [loose-end, estimating, ExxonMobil, quotes]
 ---
@@ -30,3 +30,7 @@ it at **$1,016/shift**; [[DSP26039]], submitted one day after DSP25123, bills it
 thing as a competitive rate cut. Check which basis the governing contract uses before pricing
 a 4×3 on the next Baytown bid. Recorded in the Rate History table on
 `02-facilities/ExxonMobil/Baytown-TX/_facility.md`.
+
+---
+
+**Closed 2026-10-02 (Jesse, inbox clear-out):** The rate-basis question was ruled normal 2026-09-07 (each project has its own contract); the blank `contract-type` fields are tracked by `04-knowledge/rate-history-rollup.md`, where a blank is the honest value.

@@ -1,7 +1,6 @@
-<!-- vault-loop: operational — F-501/USA26041 artifact record plus two open build items (re-point the Grok Build prompt, record the MP4). The transferable platform findings were harvested to 07-llms/claude/code.md; the F-501 content itself belongs to the heater card and the capture loop cannot write it. -->
 ---
 type: note
-status: inbox
+status: complete
 created: 2026-08-19
 tags: [F-501, USA26041, ExxonMobil, smart-pig, visualization, grok, llm-tooling]
 related: [[F-501]], [[USA26041-job-report]]
@@ -23,7 +22,7 @@ The four stops are **B_8_C** (0.224 in of a 0.400 in wall, 43.9%, at the 7:00 cl
 **B_4_R** and **B_11_R**.
 
 - **Live:** https://claude.ai/code/artifact/d9227a70-78e3-4a0b-8df7-8e7deab9ed8b
-- **Source:** `00-inbox/f501-coil-teardown-source.html` — the maintainable file. It expects
+- **Source:** `07-llms/claude/f501-coil-teardown-source.html` — the maintainable file. It expects
   `three.min.js` (r160) spliced in at the `<!--THREEJS_INLINE_HERE-->` marker; the published
   artifact is that splice, ~709 KB, no external requests.
 
@@ -67,3 +66,7 @@ sandbox, so the button only appears when the file is served locally. Recording i
 re-serving `f501-coil-teardown-source.html` (with three.js spliced) over `http://localhost` and
 clicking **record tour** with the tab kept in front — a hidden tab does not composite frames and
 captures nothing.
+
+---
+
+**Closed 2026-10-02 (Jesse, inbox clear-out):** both open build items killed — the Grok Build comparison targets the abandoned interior-view concept and was overtaken by the 2026-09-06 Fable 5.1 test ([[steadyflux-pipeline-inspection-build-prompt]]), and the MP4 was an optional extra. Moved with its source HTML from `00-inbox/` to `07-llms/claude/` as the record of the build.

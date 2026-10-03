@@ -2,7 +2,7 @@
 <!-- vault-prestaged: 2026-07-31-prestaged-routine-service-derate-seed-data.md -->
 ---
 type: note
-status: inbox
+status: resolved
 created: 2026-07-22
 tags: [inbox, estimating, actuals, audit]
 ---
@@ -41,3 +41,7 @@ Open threads left by the audit:
   coil); annotated on the card, unresolved.
 - **HP-0007/HP-0003+0006 rig quirks** — rig-in not separately billed on HP-0007; rig-out not on the
   0003/0006 pair (annotated on the cards; harmless unless someone reads task columns as complete).
+
+---
+
+**Closed 2026-10-02 (Jesse, inbox clear-out):** Every thread is settled elsewhere: the derate rides DQ-005's trigger on `06-reviews/2026-07-31-prestaged-routine-service-derate-seed-data.md`, passivation was ruled 2026-07-23, CAD25004 footage was rebuilt on [[7-1-F-1]] 2026-08-20, DSP26030 is awarded, and the H-19 gap and rig quirks are on their cards.

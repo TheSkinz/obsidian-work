@@ -46,3 +46,7 @@ those Task Durations rows might reach the threshold without waiting for a new jo
 first step when this fires.
 
 Related: [[2026-07-22-routine-ftphr-baseline-established]], [[2026-07-22-spec-mode-normalized-rollup]].
+
+---
+
+**Closed 2026-10-02 (Jesse, inbox clear-out):** Overtaken by Jesse's 2026-08-23 ruling that parallel running is free; `usadebusk-estimating` now names the 25-40% band a dead rule, and CAD26001's measured rates agree.

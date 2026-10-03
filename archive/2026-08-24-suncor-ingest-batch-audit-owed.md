@@ -1,7 +1,7 @@
 <!-- ROUTED 2026-10-01 — content landed in 50-dashboards/decision-queue.md as DQ-035 (Owed builds). Retained as the original capture record. -->
 ---
 type: note
-status: inbox
+status: resolved
 created: 2026-08-24
 tags: [inbox, heater-cards, data-quality, suncor, owed]
 ---
@@ -17,3 +17,7 @@ A batch that produced one card that wrong deserves one deliberate pass over the 
 **Known already, so not a finding:** B-1001 and B-151 were flagged by the audit and cleared as correct — B-1001 records `18/circuit (36 heater-total ÷ 2 circuits)`, which is right, and B-151 is a single-pass heater where both scales coincide. B-103 carries `46 (2 + 44)` as a compound tube count, which is a legibility gap rather than a known error.
 
 **Start with:** the source RFQ package path recorded on the cards, and `04-knowledge/coil-geometry-audit.md` for what the fleet check already knows.
+
+---
+
+**Closed 2026-10-02 (Jesse, inbox clear-out):** Content lives in DQ-035 under Owed builds, rescoped 2026-10-02 to the footage defect.
