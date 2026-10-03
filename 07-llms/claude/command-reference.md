@@ -14,7 +14,7 @@ tags: [reference, claude-code, commands, skills, usage]
 # Claude Code — Command Usage Reference
 
 The *"which command do I reach for, and how do I fire it"* lookup. Companion to
-[[2026-07-20-harness-map]] (which inventories what shapes a response) and [[code]]
+[[2026-09-04-harness-audit-evidence]] (which inventories what shapes a response; the July [[2026-07-20-harness-map]] is superseded) and [[code]]
 (how I use Claude Code). Organized by **when you'd reach for it**, not
 alphabetically. Curated to vault / USADebusk / field work — not the full command
 dump.

@@ -1,6 +1,6 @@
 ---
 type: review
-status: decided-blocked
+status: resolved
 review_type: skill-drift
 source_authority: primary
 confidence: high
@@ -241,3 +241,7 @@ Method per `~/.claude/regression/README.md`: one fresh-context subagent per fixt
 **F1 failure detail.** Intake item 15 enumerates six equipment items (TriMax, support unit, filter press, 4×3 pump, two crew trucks) while stating "(5 pieces traveling)", and the crew note sets drivers equal to pieces at five. Six enumerated against five stated cannot all be true. The frozen baseline catches this, reconciles it (the 4×3 pump rides on the support unit as a skid), prices mob/demob at five pieces, and states the swing if that assumption is wrong ($450 per direction, $900 across both). This replay wrote "No internal inconsistency in the supplied data. All 17 intake items are present" and priced five pieces without noticing the contradiction — absorbing it silently, which is the specific behavior diff key 4 exists to catch. Everything else on F1 matched, including the headline arithmetic exactly (31 pigging hrs, 45 project hrs, 4 shifts) and the serial-basis rejection.
 
 **Not attributable to this adjudication.** The only changes to `usadebusk-estimating` or `usadebusk-core` since F1's baseline commit `bb78eb8` are this run's two edits — the role line and the billing-math pointer — neither of which touches RFQ intake validation. This reads as model variance against an implicit rule. Per the README's own guidance the fix is to make the implicit rule explicit in the skill text, but that is a new commercial-skill edit rather than drift remediation, so it is **left for Jesse's call, not applied here**. `frozen/` was not re-cut.
+
+---
+
+**Closed 2026-10-02 (06-reviews clean-up):** both holds cleared — F4 resolved through `f2b87e4` (cited in `2026-08-01-skill-drift-review.md`) and V3 applied in `9ea6d43`; all four items in `archive/2026-07-25-skill-drift-lane4-holds.md` are resolved. Relabelled from `decided-blocked` to `resolved`.

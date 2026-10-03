@@ -1,10 +1,10 @@
 ---
 type: reference
-status: active
+status: superseded
+superseded_by: "[[2026-09-04-harness-audit-evidence]]"
 source_authority: verified
 confidence: high
 created: 2026-07-20
-review_after: 2026-10-20
 related:
   # Agent-memory files, not vault notes — they live in the Claude Code memory
   # store outside this repo, so they are named rather than wikilinked.
@@ -15,6 +15,8 @@ tags: [reference, harness, knowledge-system, skills, config]
 ---
 
 # Harness Map — 2026-07-20
+
+> [!warning] **Superseded 2026-10-02 (Jesse) — July 2026 snapshot, not the current harness.** The git-guard hook listed below as a lock was retired 2026-09-04; three guard hooks (staged-count, word-delta, exec) and several skills have been added since. The current inventory is [[2026-09-04-harness-audit-evidence]]. Kept, with `2026-07-20-harness-panel.html`, as the record of the July baseline.
 
 Complete inventory of every surface that shapes a response before a prompt is
 typed, built from live recon (not inference) of `~/.claude` and the vault.
