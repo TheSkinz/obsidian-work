@@ -45,8 +45,8 @@
 | PR-170002 | Cenovus Energy | USA26046 | routine | 3" | Foam | 3 | 3.398 | 15,904 | 5,301 |
 | PR-170002 | Cenovus Energy | USA26046 | routine | 3.125" | TC / pin | 3 | 3.398 | 15,904 | 5,301 |
 | PR-170002 | Cenovus Energy | USA26046 | routine | 3.25" | TC / pin | 6 | 3.398 | 15,904 | 2,651 |
-| PR-170002 | Cenovus Energy | USA26046 | routine | 3.325" (unresolved) | (type not written) | 3 | 3.398 | 15,904 | 5,301 |
 | PR-170002 | Cenovus Energy | USA26046 | routine | 3.375" | TC / pin | 2 | 3.398 | 15,904 | 7,952 |
+| PR-170002 | Cenovus Energy | USA26046 | routine | 3.375" | (type not written) | 3 | 3.398 | 15,904 | 5,301 |
 | PR-170002 | Cenovus Energy | USA26046 | routine | 3.50" | TC | 6 | 3.398 | 15,904 | 2,651 |
 | PR-170002 | Cenovus Energy | USA26046 | routine | 3.625" | TC / pin | 18 | 3.398 | 15,904 | 884 |
 | PR-170002 | Cenovus Energy | USA26046 | routine | 3.625" | Foam | 3 | 3.398 | 15,904 | 5,301 |
@@ -171,8 +171,7 @@ Single-size rows only. Rows carrying a size *range* (`3.0"–4.1"`) or `Mixed` c
 | 3.125 | 3 | 1 | 1 | 1 |
 | 3.25 | 15 | 3 | 2 | 3 |
 | 3.307 | 8 | 1 | 1 | 1 |
-| 3.325 | 3 | 1 | 1 | 1 |
-| 3.375 | 12 | 2 | 2 | 2 |
+| 3.375 | 15 | 3 | 2 | 2 |
 | 3.5 | 6 | 1 | 1 | 1 |
 | 3.625 | 27 | 3 | 2 | 2 |
 | 3.75 | 52 | 5 | 2 | 4 |
