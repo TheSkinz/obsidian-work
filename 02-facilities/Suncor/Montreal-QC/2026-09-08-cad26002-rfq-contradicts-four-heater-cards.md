@@ -1,7 +1,7 @@
-<!-- vault-loop: Lane 4 — domain truth. Four contradictions between Suncor's governing documents and the heater cards. Needs Jesse's ruling; do not self-route or apply. -->
+<!-- ROUTED 2026-10-02 — filed in 02-facilities/Suncor/Montreal-QC/ as the record of the CAD26002 RFQ-vs-card reconciliation. #1-#3 ruled and applied; #4 (footage) is a warning on [[B-102]] and the remaining work is DQ-035. -->
 ---
 type: note
-status: inbox
+status: resolved
 created: 2026-09-08
 tags: [inbox, suncor, CAD26002, heater-cards, data-quality, lane-4, owed]
 source: "DI-GE-5-007 Rev.5 (Directive de chantier, 2020-01-10) and GM-07-000-00-001 Rev.7 (Raclage des tubes de fournaise), both read in full 2026-09-08 — the first is now in the vault at 02-facilities/Suncor/Montreal-QC/, the second is not"
@@ -197,3 +197,7 @@ same July ingest and have not been checked for either defect**, which is the bat
 
 **What would settle it:** drawing 57133-1 from Suncor, or — cheaper and already earned — the pig
 hours CAD26002 actually ran on B-102's radiant against its convection.
+
+---
+
+**Closed 2026-10-02 (inbox clear-out):** #1-#3 are ruled and applied. #4 is not resolved but is now tracked: a warning on [[B-102]] (Jesse: warn now, settle later) and DQ-035, rescoped to the footage defects on B-103, B-151 and B-1001. The pre-mob questions (sketches, Appendix A, missing quote note) are moot now that the job is complete.
