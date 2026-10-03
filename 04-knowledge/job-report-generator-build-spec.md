@@ -143,6 +143,15 @@ of its nine tables; the Claude Code build of the same document wrote zero.
 
 **USA26046 then went out as four separate reports, one per heater** (Jesse, 2026-10-03). Each heater's report is the combined layout cut to that heater. The title block, KPIs, Project Information, Crew, Project Duration and Stand-By are rewritten to that heater, its chapter follows, and the Summary and Close are its own. The document number carries a heater suffix: `JR-DCK-CEN26046-CRU`, `-VAC`, `-HDS` and `-CKR`. These reports were cut from the reviewed combined .docx (`python-docx`), not rendered by the generator, because the renderer is not in a cloud session. **Whether one report per heater is now the default for every multi-heater job, or only for this one, is not yet ruled.** Until it is, the combined-report rule above still stands.
 
+**Signature block: the PM who ran the heater signs, with full contact details** (Jesse, 2026-10-03). The block is two lines, name and title, then cell and email:
+
+| Name | Title | Cell | Email |
+|---|---|---|---|
+| Jesse Utsey | Pigging Operations | 713-252-8516 | jutsey@usadebusk.com |
+| Peter Campbell | Pigging and Decoking SME | 832-920-4253 | pcampbell@usadebusk.com |
+
+This replaces the generic "Project Manager, USADebusk" title. The renderer's default signature lives in the local skill, so it still needs this change.
+
 **Minimise total pages, but never at the cost of appearance** (Jesse, 2026-10-01 — a standing rule for future reports; past reports are not redesigned). *"I like to minimize the total number of pages if possible… I don't mind extra pages if the space is taken up by important data or impressive graphics / images."* A page that costs a row of photos or a full flow-test set is fine; a page carrying two lines is not. What implements it:
 
 - **Sections flow by default** (`compact` defaults to true). Forced section breaks are the generator adding whitespace of its own; the PM adds a break by hand where he wants one.
