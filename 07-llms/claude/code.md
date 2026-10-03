@@ -369,7 +369,7 @@ the field instead, say which it used and that the omission is undocumented.
 
 I read the official changelog (`raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md`) on 2026-10-03. The review covered every release from 2.1.235 through **2.1.288 (2026-10-02)**. A subagent reported that 2.1.235–2.1.281 were "not in the public repository". That was false: every one of those headers is there. Read the changelog yourself and don't trust a summary of it.
 
-**The npm CLI drifted again, and Remote Control runs on it.** On 2026-10-03 the desktop app bundled 2.1.286 and the registry was at 2.1.288. `npm ls -g` was still on **2.1.220**, and `tools/start_remote_control.cmd` calls that npm `claude.cmd`. So every phone session started through the logon task has missed the Remote Control fixes released since. The ones that matter for field use:
+**The npm CLI is what Remote Control runs, so keep it current.** On 2026-10-03 the desktop app bundled 2.1.286 and the registry was at 2.1.288. `tools/start_remote_control.cmd` calls the npm `claude.cmd`, so a stale npm install means phone sessions miss these fixes. **Correction, same day:** my tool shell read the npm install as 2.1.220, both from files and from the running process. Jesse's terminal showed **2.1.288** after `npm i -g`. The 2.1.220 was the sandbox's stale copy (see the virtualized-filesystem memory). Check the version only from his terminal. The Remote Control fixes that matter for field use:
 
 - A phone photo lost when its queued message was pulled back to edit (2.1.284).
 - Claude not being told that an attachment failed to arrive (2.1.286).
@@ -378,9 +378,9 @@ I read the official changelog (`raw.githubusercontent.com/anthropics/claude-code
 - A dead reconnect giving up after 30 seconds instead of going silent for minutes (2.1.287).
 - `remote-control` re-registering when its roughly 30-day server credential expires, instead of exiting (2.1.267). The logon loop already masked this one.
 
-The fix is the July procedure in "Two CLI installs can drift apart silently" above. Stop every `claude` process first, including the Remote Control window, then update, then confirm the mtimes moved.
+To update, follow the July procedure in "Two CLI installs can drift apart silently" above. Stop every `claude` process first, including the Remote Control window. Then update, and confirm with `claude --version` in Jesse's terminal.
 
-**Account-synced skills now land on disk.** Since 2026-10-01, `~/.claude/skills/synced/<account-id>/` has held the claude.ai library (`docs`, `docx`, `pdf`, `pptx`, `xlsx`, `skill-creator`, `google-workspace`, `import-memory`). They appear in sessions as `anthropic-skills:<name>`. The directory is untracked in the config repo and not in its `.gitignore`. As of 2.1.282, a local skill folder in the `anthropic-skills` or `claude-ai` namespace no longer loads, and `Skill(anthropic-skills:*)` allow rules cover only synced skills. The synced `docs` skill's description claims "the default for any document… proposal… SOP… report". That competes directly with the USADebusk skills' own document routing, so watch for proposals or SOPs being started as Claude Docs.
+**Account-synced skills now land on disk.** Since 2026-10-01, `~/.claude/skills/synced/<account-id>/` has held the claude.ai library (`docs`, `docx`, `pdf`, `pptx`, `xlsx`, `skill-creator`, `google-workspace`, `import-memory`). They appear in sessions as `anthropic-skills:<name>`. The config repo now gitignores it, along with `skills/.trash/` and `state/` (config `32c0690`). As of 2.1.282, a local skill folder in the `anthropic-skills` or `claude-ai` namespace no longer loads, and `Skill(anthropic-skills:*)` allow rules cover only synced skills. The synced `docs` skill's description claims "the default for any document… proposal… SOP… report". That competes directly with the USADebusk skills' own document routing, so watch for proposals or SOPs being started as Claude Docs.
 
 **New diagnostics worth one run each.**
 
