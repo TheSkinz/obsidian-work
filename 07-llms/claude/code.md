@@ -85,16 +85,18 @@ My built-in knowledge is frozen at Jan 2026, and the CLI drifts (version churn l
 
 ## Four surfaces reach the vault, and two of them can't see the skills
 
-As of CLI 2.1.220 and the Claude iOS app, 2026-07-29. Verified against `code.claude.com/docs`; re-check the version-sensitive rows before relying on them.
+As of CLI 2.1.288, 2026-10-03 (first written at 2.1.220, 2026-07-29). Re-verified against `code.claude.com/docs` pages `skills`, `remote-control`, `permission-modes`, `claude-code-on-the-web` and `desktop`; re-check the version-sensitive rows before relying on them.
 
-| Surface | Where it runs | Skills it loads | Vault access | Capture Loop harvests it |
+| Surface | Where it runs | Skills it loads | Vault access | Transcript lands in `~/.claude/projects/` |
 |---|---|---|---|---|
-| Remote Control (`claude remote-control` / `/rc`) | Local CLI process | `~/.claude/skills/` — all nine | Real working tree | Yes |
+| Remote Control (`claude remote-control` / `/rc`) | Local CLI process | `~/.claude/skills/` — all ten, plus synced account skills | Real working tree | Yes |
 | Dispatch, task stays in Cowork | Desktop app, Cowork tab | claude.ai account library only | Local files, if file access is on | No |
-| Dispatch, task spawns a Code session | Desktop app, Code tab | `~/.claude/skills/` — all nine | Real working tree | Yes |
-| Cloud session (`--cloud`, Code tab on web/mobile) | Anthropic infrastructure | Repo `.claude/skills/` — vault has none | Cloned repo, branch only | No |
+| Dispatch, task spawns a Code session | Desktop app, Code tab | `~/.claude/skills/` — all ten, plus synced account skills | Real working tree | Yes |
+| Cloud session (`--cloud`, Code tab on web/mobile, routines) | Anthropic infrastructure | Repo `.claude/skills/` (vault has none) **plus synced claude.ai account skills** | Cloned repo, branch only | No |
 
-Two asymmetries drive every routing decision. **Skills:** cloud and Cowork sessions do not read `~/.claude/skills/`; cloud sessions read the cloned repo's `.claude/skills/` (the vault commits `settings.json` and `launch.json` only), and Cowork reads the claude.ai account library — the frozen second copy the Skill-Drift Loop can't reach. **Transcripts:** the Capture Loop harvests `~/.claude/projects/`, so anything reasoned out in a cloud or Cowork session is unharvestable and has to be written to a file during the session or it's gone.
+Two asymmetries drive every routing decision. **Skills:** cloud and Cowork sessions do not read `~/.claude/skills/`; cloud sessions read the cloned repo's `.claude/skills/` (the vault commits `settings.json` and `launch.json` only) and, per the skills doc as of 2026-10-03, the claude.ai account library too; Cowork reads only the account library — the frozen second copy the Skill-Drift Loop can't reach. The docs name two ways to get a personal skill into cloud sessions: enable it on the claude.ai account, or commit it to the repo's `.claude/skills/`. Neither is done for the USADebusk skills, so a cloud session still gets Anthropic's document skills and none of ours. **Transcripts:** only local sessions write to `~/.claude/projects/`. Nothing has harvested it since the Capture Loop stopped on 2026-08-21, so anything reasoned out in any session, and especially in a cloud or Cowork one, has to be written to a file during the session or it's gone.
+
+Mobile permission modes and the version floors below were re-read on 2026-10-03 and still match the docs: Remote Control offers Manual / Accept edits / Plan (no Auto, no Bypass), and cloud offers Accept edits / Plan / Auto (no Bypass).
 
 Practical consequences: Remote Control is the default for anything vault- or USADebusk-shaped from the phone; a Dispatch message should say "open a Claude Code session" explicitly; a cloud session's domain answers are unverified by construction. Remote Control also downloads phone attachments to the machine and passes them as `@` file references, which is what makes photo capture work. Mobile permission modes are Manual / Accept edits / Plan for Remote Control and Accept edits / Plan / Auto for cloud — **no Bypass from mobile on either**, so the `.claude/settings.json` allowlist is what keeps a one-handed session from stalling. Full runbook: [[mobile-field-access]].
 
@@ -255,6 +257,8 @@ The mechanism ([issue #26173](https://github.com/anthropics/claude-code/issues/2
 Related and still open: [#28625](https://github.com/anthropics/claude-code/issues/28625) and [#56399](https://github.com/anthropics/claude-code/issues/56399) — `claude update` misdetects install types and replaces them. Be wary of anything offering to change *how* Claude Code is installed rather than updating it in place.
 
 Source: Claude Code session, 2026-08-10. CLI 2.1.220, Windows 11. Re-check whether these issues have been fixed before assuming the ban still applies.
+
+**Re-checked 2026-10-03 (CLI 2.1.288):** all four issues are still closed without a fix: #22372, #26173 and #56399 as not planned, and #28625 as a duplicate. The ban stands.
 
 ## `claude install` silently destroys an npm-global install — stay on npm on this machine
 
