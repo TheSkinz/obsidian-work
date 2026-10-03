@@ -13,6 +13,20 @@ are now wrong: Cowork is a distinct surface, that task no longer exists, and the
 been live since June and daily since 2026-07-28. Version-sensitive details below should be
 re-verified against `code.claude.com/docs` per the standing rule in [[code]].
 
+> **2026-09-16: Cowork and chat merged into one Claude, and Dispatch closed to new users.** Read on
+> 2026-10-03 from support.claude.com article 16761823 ("Claude Cowork and chat are one Claude"). The
+> rollout is gradual and there is **no switching back** once an account has it. Cowork tasks now
+> sit in Recents next to chats. Cowork **Global instructions were folded into Instructions for
+> Claude** (Settings > General), and the article says to check them. Long tasks keep running in
+> the cloud, but "tasks that use files or apps on your computer need Claude Desktop open". On
+> Dispatch it says "Dispatch isn't available to new users. If you already use Dispatch, you can
+> keep using it for now", so don't build new workflow on it. Two more items come from a subagent's
+> read of claude.com blog posts and I have not re-read them. Cloud scheduled tasks run with the PC
+> off. And as of 2026-08-26 Cowork has a built-in side-panel browser (beta, Windows included) that
+> the phone can drive while the desktop app is online. On Windows, logins import only from
+> Firefox. The sections below predate the merge. They still hold for the Code tab and the skills
+> asymmetry, but treat their tab names and Dispatch setup paths as stale.
+
 ## What it is
 
 Cowork is one of the three tabs in the Claude Desktop app — **Chat**, **Cowork**, **Code**. It

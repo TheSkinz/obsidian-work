@@ -365,6 +365,52 @@ pattern cannot be predicted and may change without notice.
 The authoritative count is a full transcript audit of `tool_use` records. When a measurement has to cite
 the field instead, say which it used and that the omission is undocumented.
 
+## Releases 2.1.235–2.1.288: what touches this harness
+
+I read the official changelog (`raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md`) on 2026-10-03. The review covered every release from 2.1.235 through **2.1.288 (2026-10-02)**. A subagent reported that 2.1.235–2.1.281 were "not in the public repository". That was false: every one of those headers is there. Read the changelog yourself and don't trust a summary of it.
+
+**The npm CLI drifted again, and Remote Control runs on it.** On 2026-10-03 the desktop app bundled 2.1.286 and the registry was at 2.1.288. `npm ls -g` was still on **2.1.220**, and `tools/start_remote_control.cmd` calls that npm `claude.cmd`. So every phone session started through the logon task has missed the Remote Control fixes released since. The ones that matter for field use:
+
+- A phone photo lost when its queued message was pulled back to edit (2.1.284).
+- Claude not being told that an attachment failed to arrive (2.1.286).
+- Attachment downloads retrying up to twice after a single failure (2.1.285).
+- Messages that arrive during exit staying queued instead of being lost (2.1.286).
+- A dead reconnect giving up after 30 seconds instead of going silent for minutes (2.1.287).
+- `remote-control` re-registering when its roughly 30-day server credential expires, instead of exiting (2.1.267). The logon loop already masked this one.
+
+The fix is the July procedure in "Two CLI installs can drift apart silently" above. Stop every `claude` process first, including the Remote Control window, then update, then confirm the mtimes moved.
+
+**Account-synced skills now land on disk.** Since 2026-10-01, `~/.claude/skills/synced/<account-id>/` has held the claude.ai library (`docs`, `docx`, `pdf`, `pptx`, `xlsx`, `skill-creator`, `google-workspace`, `import-memory`). They appear in sessions as `anthropic-skills:<name>`. The directory is untracked in the config repo and not in its `.gitignore`. As of 2.1.282, a local skill folder in the `anthropic-skills` or `claude-ai` namespace no longer loads, and `Skill(anthropic-skills:*)` allow rules cover only synced skills. The synced `docs` skill's description claims "the default for any document… proposal… SOP… report". That competes directly with the USADebusk skills' own document routing, so watch for proposals or SOPs being started as Claude Docs.
+
+**New diagnostics worth one run each.**
+
+- `/doctor prompt-audit` (2.1.283) audits CLAUDE.md files, skills, agents and commands "for prompting patterns written for older models". As of 2.1.284 it puts stale paths, stale commands and contradicting instruction files first.
+- `/skill-doctor` (2.1.261) shows which loaded skills go unused and what they cost in context.
+
+Both are terminal-dialog commands, so they have to run from an interactive `claude` terminal, not the desktop Code tab.
+
+**Behaviour changes that touch existing rules.**
+
+- PreToolUse and PermissionRequest hooks whose matching fails, or whose tool input can't be serialized, now **block** the call instead of being skipped (2.1.288). The harness now fails closed in front of our hooks, even though the hooks themselves still fail open.
+- Path-scoped `.claude/rules` and nested CLAUDE.md files now load on Write/Edit, not only on Read (2.1.288).
+- Effort saved before `/effort` became per-model doesn't carry over to Opus 5.5, which starts at its default (2.1.280).
+- Effort can now change mid-session without a cache reset on Opus 5.5 and Fable 5.1, per Anthropic's 2026-09-24 blog. That last item comes from the blog, not the changelog.
+- Sessions start in auto mode when no mode is configured (2.1.284). `permissions.defaultMode: auto` already pins this.
+- `claude project purge` became `claude purge` (2.1.288). The old name still works.
+- The TaskOutput tool was removed (2.1.277).
+- The commit-attribution reminder now yields to a CLAUDE.md or memory rule against attribution (2.1.269).
+
+**New and optional.**
+
+- Claude Mods (2.1.287) are TypeScript plugin functions that can rewrite events, draw UI or replace features. They aren't sandboxed. There's no case for moving the four PreToolUse guards to mods: they work, and mods add an unsandboxed surface.
+- The built-in "You should know" mod (`/plugin enable cc-plugin-you-should-know@builtin`) runs a side agent that flags things missed. It needs telemetry on and costs tokens on every turn. Untested here.
+- `/output-style [name]` now works over Remote Control (2.1.269).
+- `omitClaudeMd` agent frontmatter (2.1.271) lets a subagent run without CLAUDE.md.
+- `maxEffortLevel` setting (2.1.267).
+- AGENTS.md is read when there is no CLAUDE.md (2.1.281).
+
+Source: official CHANGELOG.md, read 2026-10-03. Each version was mapped to its release header by script; re-verify against the changelog before relying on one.
+
 ## Links
 
 - [[output-styles]] — the system-prompt layer, and why the vault's output rules stay in CLAUDE.md
