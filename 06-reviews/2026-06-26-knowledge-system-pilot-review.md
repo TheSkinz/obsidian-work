@@ -47,7 +47,7 @@ Recommended first follow-up:
 
 ## Decision
 
-- [ ] Approve `CAD25004.md` as first pilot item
+- [x] Approve `CAD25004.md` as first pilot item
 - [ ] Pick a different inbox item first
 - [ ] Create duplicate-vault/source-of-truth review before processing job reports
 - [ ] Pause vault edits and review dashboard behavior in Obsidian first
