@@ -1,7 +1,7 @@
 <!-- vault-loop: Lane 4 content — needs Jesse's ruling, do not self-route -->
 ---
 type: note
-status: inbox
+status: resolved
 created: 2026-09-10
 tags: [inbox, owed, lane4, ExxonMobil, Baytown, F-802, quoting, template]
 ---
@@ -125,3 +125,12 @@ tube count follows at `310`.
 **Item 2 (the proposal template shipping Citgo's name) cannot be actioned from here** — the template
 lives in the quoting toolchain on OneDrive and the work laptop, outside the vault. It stays recorded
 so a third occurrence is not discovered the same way.
+
+---
+
+## Closed 2026-10-02 (Jesse)
+
+- **Item 1 convection remainder — parked.** The replacement spec sheet is not being chased; it does not block F-801. Recorded on [[F-802]].
+- **Item 2 Citgo in the proposal template — Jesse fixes the template himself** (search it for `Citgo` and hard-coded heater tags). Nothing in the vault can act on it, so the item closes on his ownership.
+- **Item 3 sub-question (F-802 billed against the F-801-labelled line) — dropped.** 4411488628 is confirmed for F-801, and under ERS any mislabel is ExxonMobil's. Recorded in `01-context/active-jobs.md`.
+- Also settled this session: the 2010 jumpover spools are on site (recorded on [[F-801]]).
