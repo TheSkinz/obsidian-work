@@ -91,6 +91,7 @@
 - [[H-29]] — H-29 Coker — Phillips 66 Ponca City, OK `(P66/Ponca-City-OK)`
 - [[02-facilities/PBF/Toledo-OH/_facility|_facility]] — PBF Energy — Toledo Refinery, Toledo, OH `(PBF/Toledo-OH)`
 - [[H-311]] — H-311 — PBF Energy Toledo, OH `(PBF/Toledo-OH)`
+- [[2026-09-08-cad26002-rfq-contradicts-four-heater-cards]] — Suncor's governing documents contradict four of the five Montreal heater cards `(Suncor/Montreal-QC)`
 - [[02-facilities/Suncor/Montreal-QC/_facility|_facility]] — Suncor Énergie — Montreal, QC (Raffinerie de Montréal) `(Suncor/Montreal-QC)`
 - [[_walkdown-summary]] — Suncor Montreal — Field Walk-Down Summary (5 Heaters) `(Suncor/Montreal-QC)`
 - [[B-1001]] — B-1001 Crude Oil Heater — Suncor Montreal, QC `(Suncor/Montreal-QC)`
@@ -101,6 +102,7 @@
 - [[CAD26002-crew-brief]] `(Suncor/Montreal-QC)`
 - [[7-1-F-1]] — 7-1 F-1 Column Feed Heater — Syncrude Fort McMurray, AB `(Syncrude/Fort-McMurray-AB)`
 - [[02-facilities/Syncrude/Fort-McMurray-AB/_facility|_facility]] — Syncrude — Mildred Lake, AB `(Syncrude/Fort-McMurray-AB)`
+- [[cad26001-coilset-capture-sheet]] — CAD26001 — Coilset Capture Sheet `(Syncrude/Fort-McMurray-AB)`
 - [[CAD26001-flow-tests]] — CAD26001 — Flow Tests `(Syncrude/Fort-McMurray-AB)`
 - [[CAD26001-job-sheet]] — CAD26001 — Syncrude Mildred Lake, Fort McMurray, AB `(Syncrude/Fort-McMurray-AB)`
 - [[02-facilities/Valero/Port-Arthur-TX/_facility|_facility]] — Valero — Port Arthur, TX `(Valero/Port-Arthur-TX)`
@@ -249,6 +251,7 @@
 
 - [[07-llms/chatgpt/overview|overview]] — ChatGPT — Overview `(chatgpt)`
 - [[chatgpt-copilot-workflow-architecture]] — ChatGPT + Microsoft 365 Copilot — Workflow Architecture Operating Manual
+- [[2026-08-19-f501-coil-teardown-visualization]] — F-501 Pass B coil teardown — 3D visualization built, Grok Build test never ran `(claude)`
 - [[chat]] — Claude Chat (claude.ai) `(claude)`
 - [[code]] — Claude Code `(claude)`
 - [[command-reference]] — Claude Code — Command Usage Reference `(claude)`

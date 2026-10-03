@@ -7,13 +7,13 @@
 | Open decision rows | 0 | <= 10 | ok |
 | Review notes awaiting decision | 0 | <= 5 | ok |
 | Lint errors | 0 | 0 | ok |
-| Lint warnings | 9 | (backlog) | ok |
+| Lint warnings | 2 | (backlog) | ok |
 | Dead source pointers | 0 | 0 | ok |
-| Inbox items | 30 | - | ok |
+| Inbox items | 1 | - | ok |
 | Inbox median age | - | < 14 d | ok |
 | Inbox oldest item | - | < 30 d | ok |
 | Sweepable now | 0 | 0 | ok |
-| Days since last commit | 1 d | - | ok |
+| Days since last commit | 0 d | - | ok |
 | Loop heartbeats overdue | no | no | ok |
 | Open decisions not in the queue | 0 | 0 | ok |
 | Awarded job within 21 d, no PO | 0 | 0 | ok |
@@ -38,7 +38,7 @@ One row per pending quote, plus any quote whose execution date is within 90 days
 | Quote | Status | Valid through | Execution | Signal | Bid folder |
 |---|---|---|---|---|---|
 | [[DSP26039]] | pending | 2027-04-07 | 2027-01 | - | newest artifact 2026-05-12 — note carries no verified date |
-| [[DSP26064]] | awarded | 2027-02-25 | 2026-10-12 | execution in 10 d | no bid folder path recorded |
+| [[DSP26064]] | awarded | 2027-02-25 | 2026-10-19 | execution in 17 d | no bid folder path recorded |
 | [[DSP26080]] | pending | - | 2027-02 | - | no bid folder path recorded |
 | [[DSP26085]] | pending | 2026-09-29 | 2027-01 | - | ok |
 | [[DSP26100]] | pending | 2027-03-10 | 2026-08 | - | no bid folder path recorded |
@@ -51,8 +51,7 @@ Narrowed from the former **Dormant triggers** registry on 2026-08-21. That table
 
 | Source | Condition | Check |
 |---|---|---|
-| [[idea-llm-navigable-vault-map]] | Vault reaches 450 live notes (292 at the time of writing, 2026-08-15) -> re-run the retrieval eval in [[knowledge-system-evaluation-questions]]; if it shows failures, this idea unparks, and if it does not, re-park at the next threshold [machine: note-count>=450] | live notes: 343 of 450 |
-| [[2026-07-31-prestaged-routine-service-derate-seed-data]] | 10 routine mode-normalized rows in the actuals rollup -> revisit the ft/hr service derate (n=5 at ruling, 2026-08-01) [machine: routine-rows>=10] | routine rows: 6 of 10 |
+| [[2026-07-31-prestaged-routine-service-derate-seed-data]] | 10 routine mode-normalized rows in the actuals rollup -> revisit the ft/hr service derate (n=5 at ruling, 2026-08-01) [machine: routine-rows>=10] | routine rows: 7 of 10 |
 
 ## Regression baselines
 
@@ -64,12 +63,12 @@ One row per frozen fixture in `~/.claude/regression/frozen/`. Each reads its own
 
 | Fixture | Commits behind | Status |
 |---|---|---|
-| f1-rfq-to-proposal | claude-config 13 · vault 4 | behind |
+| f1-rfq-to-proposal | claude-config 14 · vault 6 | behind |
 | f2-vault-ingest-dryrun | claude-config 10 | behind |
-| f3-fieldpm-extract | claude-config 15 | behind |
+| f3-fieldpm-extract | claude-config 21 | behind |
 | f4-sop-formatting-pass | claude-config 10 · vault 1 | behind |
 | f5-pig-sizing | claude-config 3 | behind |
-| f6-duration-mobdemob | claude-config 11 · vault 3 | behind |
+| f6-duration-mobdemob | claude-config 12 · vault 5 | behind |
 
 ## Notes
 

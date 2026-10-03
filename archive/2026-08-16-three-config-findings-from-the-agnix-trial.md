@@ -1,7 +1,7 @@
 <!-- vault-loop: operational — config-repo/hooks/skills linting findings, awaiting adoption ruling on agnix. Capture loop cannot write this content. -->
 ---
 type: finding
-status: open
+status: resolved
 created: 2026-08-16
 related:
   - "[[2026-08-16-frozen-fixture-frontmatter-does-not-parse]]"
@@ -119,3 +119,7 @@ rules to suppress first are the XML-tag rule (100% false here) and hardcoded-pat
 the critical path of every Bash call, is how a session becomes unworkable. Manual or
 loop-scheduled only. And `--fix-unsafe` stays away from `~/.claude`: all 16 fixable items
 sit below the safe-confidence bar, and `--fix-safe` correctly applied nothing.
+
+---
+
+**Closed 2026-10-02 (Jesse, inbox clear-out):** Jesse: uninstall agnix and fix the two open findings. agnix uninstalled (npm -g). Finding 0 and Finding 1 were already fixed (`tools/config_frontmatter_lint.py`, config `30f829f`). Finding 2: the 4 PreToolUse Bash guard hooks now carry an explicit 15 s timeout. Finding 3: CANON is defined once in `extract_workup.py`, overridable with USADEBUSK_CANON, and imported by `backtest_workup.py` and `presend_gate.py` (backtest still 3/3). Both in claude-config `227de9f`.
