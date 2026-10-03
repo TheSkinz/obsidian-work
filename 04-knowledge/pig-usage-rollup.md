@@ -6,7 +6,7 @@
 
 > **No ft-per-pig rate is computed.** Per-job `ft / pig` below is plain division shown per row so you can see it, not a model. A pooled rate by bore and condition was deliberately not built (Jesse, 2026-07-26): most bore×condition cells hold one to three points, where a raw per-cell mean misleads. Deciding whether a shrinkage estimate is worth it is a separate call — see [[idea-pig-actuals-maturation]].
 
-**Coverage:** 144 actual pig row(s) across 21 heater card(s) and 8 job(s) — CAD25004, CAD26001, USA25025, USA25051, USA26005, USA26025, USA26041, USA26046. Excluded: 10 quoted (DSP-sourced) row(s), 16 unsourced row(s).
+**Coverage:** 143 actual pig row(s) across 21 heater card(s) and 8 job(s) — CAD25004, CAD26001, USA25025, USA25051, USA26005, USA26025, USA26041, USA26046. Excluded: 10 quoted (DSP-sourced) row(s), 16 unsourced row(s).
 
 ## Actual pig rows
 
@@ -104,22 +104,21 @@
 | 02-BA-201 | Flint Hills Resources | USA26005 | crash | 6" | Foam | 2 | 6.065 | (not recorded) | - |
 | 02-BA-201 | Flint Hills Resources | USA26005 | crash | 6" | Pin | 2 | 6.065 | (not recorded) | - |
 | 02-BA-201 | Flint Hills Resources | USA26005 | crash | 6.25" | Pin | 6 | 6.065 | (not recorded) | - |
-| H-19 | HF Sinclair | USA25051 | crash, rig-quarantined | 2.62" | TC | 1 | 3.068 | 4,934 | 4,934 |
+| H-19 | HF Sinclair | USA25051 | crash, rig-quarantined | 2.625" | TC | 1 | 3.068 | 4,934 | 4,934 |
 | H-19 | HF Sinclair | USA25051 | crash, rig-quarantined | 3.0" | TC | 7 | 3.068 | 4,934 | 705 |
 | H-19 | HF Sinclair | USA25051 | crash, rig-quarantined | 3.0" | Foam | 1 | 3.068 | 4,934 | 4,934 |
 | H-19 | HF Sinclair | USA25051 | crash, rig-quarantined | 3.25" | TC | 5 | 3.068 | 4,934 | 987 |
 | H-19 | HF Sinclair | USA25051 | crash, rig-quarantined | 3.625" | TC | 6 | 3.068 | 4,934 | 822 |
 | H-19 | HF Sinclair | USA25051 | crash, rig-quarantined | 3.75" | TC | 12 | 3.068 | 4,934 | 411 |
-| H-19 | HF Sinclair | USA25051 | crash, rig-quarantined | 3.825" | HR | 2 | 3.068 | 4,934 | 2,467 |
 | H-19 | HF Sinclair | USA25051 | crash, rig-quarantined | 3.875" | TC | 17 | 3.068 | 4,934 | 290 |
-| H-19 | HF Sinclair | USA25051 | crash, rig-quarantined | 3.875" | HR | 4 | 3.068 | 4,934 | 1,234 |
+| H-19 | HF Sinclair | USA25051 | crash, rig-quarantined | 3.875" | HR | 6 | 3.068 | 4,934 | 822 |
 | H-19 | HF Sinclair | USA25051 | crash, rig-quarantined | 4.0" | TC | 30 | 3.068 | 4,934 | 164 |
 | H-19 | HF Sinclair | USA25051 | crash, rig-quarantined | 4.0" | HR | 3 | 3.068 | 4,934 | 1,645 |
 | H-19 | HF Sinclair | USA25051 | crash, rig-quarantined | 4.0" | Foam | 15 | 3.068 | 4,934 | 329 |
 | H-19 | HF Sinclair | USA25051 | crash, rig-quarantined | 104 mm (4.094") | Honeycomb | 4 | 3.068 | 4,934 | 1,234 |
 | H-19 | HF Sinclair | USA25051 | crash, rig-quarantined | 4.125" | TC | 8 | 3.068 | 4,934 | 617 |
 | H-20 | HF Sinclair | USA25051 | crash, rig-quarantined | 2.5" | HR | 2 | 3.068 | 2,868 | 1,434 |
-| H-20 | HF Sinclair | USA25051 | crash, rig-quarantined | 2.62" | TC | 2 | 3.068 | 2,868 | 1,434 |
+| H-20 | HF Sinclair | USA25051 | crash, rig-quarantined | 2.625" | TC | 2 | 3.068 | 2,868 | 1,434 |
 | H-20 | HF Sinclair | USA25051 | crash, rig-quarantined | 2.75" | TC | 10 | 3.068 | 2,868 | 287 |
 | H-20 | HF Sinclair | USA25051 | crash, rig-quarantined | 2.75" | HR | 4 | 3.068 | 2,868 | 717 |
 | H-20 | HF Sinclair | USA25051 | crash, rig-quarantined | 2.875" | TC | 8 | 3.068 | 2,868 | 358 |
@@ -128,7 +127,7 @@
 | H-20 | HF Sinclair | USA25051 | crash, rig-quarantined | 3.0" | TC | 22 | 3.068 | 2,868 | 130 |
 | H-20 | HF Sinclair | USA25051 | crash, rig-quarantined | 3.0" | HR | 14 | 3.068 | 2,868 | 205 |
 | H-20 | HF Sinclair | USA25051 | crash, rig-quarantined | 3.0" | Foam | 3 | 3.068 | 2,868 | 956 |
-| H-20 | HF Sinclair | USA25051 | crash, rig-quarantined | 3.05" | TC | 4 | 3.068 | 2,868 | 717 |
+| H-20 | HF Sinclair | USA25051 | crash, rig-quarantined | 3.25" | TC | 4 | 3.068 | 2,868 | 717 |
 | H-20 | HF Sinclair | USA25051 | crash, rig-quarantined | 84 mm (3.307") | Honeycomb | 8 | 3.068 | 2,868 | 358 |
 | H-20 | HF Sinclair | USA25051 | crash, rig-quarantined | 3.375" | TC | 10 | 3.068 | 2,868 | 287 |
 | H-20 | HF Sinclair | USA25051 | crash, rig-quarantined | 3.75" | TC | 16 | 3.068 | 2,868 | 179 |
@@ -164,22 +163,20 @@ Single-size rows only. Rows carrying a size *range* (`3.0"–4.1"`) or `Mixed` c
 | Pig size (in) | Total qty | Rows | Jobs | Heaters |
 |---|---|---|---|---|
 | 2.5 | 2 | 1 | 1 | 1 |
-| 2.62 | 3 | 2 | 1 | 2 |
+| 2.625 | 3 | 2 | 1 | 2 |
 | 2.75 | 14 | 2 | 1 | 1 |
 | 2.875 | 12 | 2 | 1 | 1 |
 | 2.992 | 10 | 1 | 1 | 1 |
 | 3 | 230 (approx) | 7 | 3 | 4 |
-| 3.05 | 4 | 1 | 1 | 1 |
 | 3.125 | 3 | 1 | 1 | 1 |
-| 3.25 | 11 | 2 | 2 | 2 |
+| 3.25 | 15 | 3 | 2 | 3 |
 | 3.307 | 8 | 1 | 1 | 1 |
 | 3.325 | 3 | 1 | 1 | 1 |
 | 3.375 | 12 | 2 | 2 | 2 |
 | 3.5 | 6 | 1 | 1 | 1 |
 | 3.625 | 27 | 3 | 2 | 2 |
 | 3.75 | 52 | 5 | 2 | 4 |
-| 3.825 | 2 | 1 | 1 | 1 |
-| 3.875 | 42 | 7 | 3 | 5 |
+| 3.875 | 44 | 7 | 3 | 5 |
 | 4 | 136 | 12 | 3 | 5 |
 | 4.05 | 4 | 1 | 1 | 1 |
 | 4.094 | 4 | 1 | 1 | 1 |
@@ -301,7 +298,7 @@ Same treatment, segmented the other way. Condition qualifiers (`, hours-blended`
 
 ## Reading this
 
-- **144 row(s) across 8 job(s)** is enough to look at and not enough to fit. Treat any single heater's ft/pig as an anecdote.
+- **143 row(s) across 8 job(s)** is enough to look at and not enough to fit. Treat any single heater's ft/pig as an anecdote.
 - Condition comes from each card's Task Durations row for the same Job #, not from the pig table — a job with pig rows but no durations row shows `unknown`. It holds **job class**, not coil condition: `crash` is a callout label meaning an unscheduled mobilization, not a fouling grade (Jesse, 2026-08-20 / DQ-026). Same pooling rule as durations — crash and routine figures must not be pooled, because they are different job classes whose consumption is not interchangeable. Do **not** restate that gap as a crashed furnace eating more pigs: nothing here measures coke.
 - **Bore and condition are confounded in this dataset — do not read the bore table as a bore effect.** The only two crash points are H-19 and H-20, and both sit at the same 3.068" bore. So the low ft/pig at small bore and the low ft/pig on crash jobs are the same two rows counted twice, and nothing here separates them. Untangling it needs either a crash job at a large bore or a routine job at a small one; until one lands, job class is the better-supported reading, because it splits cleanly (crash 15–43 against routine 41–212) while bore does not order at all — 6.065" spans 43–212 on its own. "Better-supported" here means it orders the data, not that the mechanism is known — the class is a callout label, so what drives the split is unidentified.
 - If a real effect looks worth using, the next step is a decision about shrinkage estimation, not a formula written straight off these rows.
