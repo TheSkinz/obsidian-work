@@ -67,7 +67,7 @@ pigging ran double mode. Confirm whether that was the operating reality or a wor
 | **Total** | **396** |
 
 26 distinct sizes, 3.0" through 12". Largest concentrations: 6.25" ×60, 6" ×47, 3.75" ×31, 5" ×31,
-3.8" ×27, 4.875" ×24, 3.3" ×23.
+3.875" ×27, 4.875" ×24, 3.375" ×23 (written 3.8" and 3.3" in the source; one-decimal sizes are crew shorthand, Jesse 2026-10-03).
 
 Hell Razors cluster where the coils fought back: 3.2"–3.875" on the [[HF-0012]] Coker radiant (27 of 46)
 and 6.125" on [[HP-0002]]. A TC-only plan did not clear either.
