@@ -5,7 +5,7 @@ source_authority: primary
 confidence: high
 created: 2026-06-26
 last_reviewed: 2026-07-23
-review_after: 2026-09-26
+review_after: 2026-12-31
 tags: [knowledge-system, evaluation, retrieval]
 ---
 
@@ -44,3 +44,7 @@ When a question fails, create a `type: question` note and capture:
 | failure_type | missing-link, missing-property, stale-source, contradiction, poor-query, missing-canonical-note. |
 | proposed_fix | Metadata, link, template, or canonical-note improvement. |
 | approval_needed | Whether the proposed fix touches customer-facing, safety, pricing, SOP, field, or heater-card facts. |
+
+---
+
+**Review 2026-10-02:** both notes that consumed this question set were killed in the inbox clear-out (`idea-llm-navigable-vault-map` and `2026-08-20-eval-questions-derived-from-real-failures`), so nothing currently runs or gates on it. Kept as the reference set should retrieval start failing; retire it at the next review if still unused.

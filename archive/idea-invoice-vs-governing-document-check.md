@@ -1,6 +1,6 @@
 ---
 type: idea-seed
-status: unexplored
+status: resolved
 created: 2026-08-18
 tags: [idea, estimating, invoicing, skill-guardrail]
 ---
@@ -14,3 +14,7 @@ Idea seed captured 2026-08-18 for a future exploration session. The read below i
 **To explore:** Is two instances enough to call this a pattern rather than coincidence (see the business-normal-facts convention, which promotes to a skill guardrail "once the first instance shows it isn't job-specific")? What would the guardrail actually check for, given change orders and rate changes aren't reliably filed anywhere structured — DSP26071's rate change was undocumented until Jesse mentioned it, and the PS3 change order was found on Google Drive by chance. A guardrail that can't reliably find the governing document may just be a reminder to ask Jesse rather than an automatable check.
 
 **Gate:** A third instance, or Jesse's read on whether this is worth a guardrail versus staying a case-by-case "ask before flagging" habit.
+
+---
+
+**Closed 2026-10-02 (Jesse, inbox clear-out):** Third instance arrived on DSP26013 (USA26046, 2026-10-02); the fact is now a row in [[business-normal-facts]]. A matching softener on the usadebusk-ops over-estimate flag is left for a skill-drift pass.

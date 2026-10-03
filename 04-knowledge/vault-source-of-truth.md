@@ -4,8 +4,8 @@ status: active
 source_authority: primary
 confidence: high
 created: 2026-06-26
-last_reviewed: 2026-06-27
-review_after: 2026-09-26
+last_reviewed: 2026-10-02
+review_after: 2027-01-02
 tags: [knowledge-system, vault, source-of-truth, guardrail]
 ---
 
@@ -43,9 +43,10 @@ These paths are not the canonical vault for editing:
 
 | Path | Current Status | Notes |
 |---|---|---|
-| `C:\Users\Jwuts\OneDrive\obsidian-usadebusk` | Retired on 2026-06-27 | Former OneDrive vault path. Do not edit as vault source. |
-| `C:\Users\Jwuts\.claude\projects\C--Users-Jwuts-OneDrive-obsidian-usadebusk` | Exists | Claude project metadata/cache path, not an Obsidian vault. Do not edit as vault source. |
-| `C:\Users\Jwuts\claudeworkspace\obsidian-usadebusk` | Not found on 2026-06-26 | Previously reported duplicate. Treat as stale evidence unless found again. |
+| `C:\Users\Jwuts\OneDrive\obsidian-usadebusk` | Retired on 2026-06-27; absent from disk 2026-10-02 | Former OneDrive vault path. Do not edit as vault source. |
+| `C:\Users\Jwuts\.claude\projects\C--Users-Jwuts-OneDrive-obsidian-usadebusk` | Absent from disk 2026-10-02 (existed 2026-06-26) | Claude project metadata/cache path, not an Obsidian vault. Do not edit as vault source. |
+| `C:\Users\Jwuts\claudeworkspace\obsidian-usadebusk` | Not found on 2026-06-26 or 2026-10-02 | Previously reported duplicate. Treat as stale evidence unless found again. |
+| `C:\Users\Jwuts\claudeworkspace\claude-obsidian` | Exists (checked 2026-10-02) | A clone of the third-party `claude-obsidian` plugin repo (AgriciDaniel), last commit 2026-05-11. It has a `.obsidian/` folder but is not a copy of this vault. Do not edit as vault source. |
 | `C:\Users\Jwuts\obsidian-usadebusk` | Not found on 2026-06-26 | Previously reported duplicate. Treat as stale evidence unless found again. |
 | `C:\Users\Jwuts\OneDrive\Documents\obsidian-usadebusk` | Not found on 2026-06-26 | Previously reported duplicate. Treat as stale evidence unless found again. |
 | `C:\Users\Jwuts\OneDrive\Documents\obsidian-usadebusk1` | Not found on 2026-06-26 | Previously reported duplicate. Treat as stale evidence unless found again. |

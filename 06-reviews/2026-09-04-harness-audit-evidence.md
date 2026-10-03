@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: complete
 review_type: architecture-audit
 source_authority: observed
 confidence: high
@@ -388,3 +388,7 @@ exec guard, not a bypass.
 | 2026-09-05 | **`health.md` had silently reverted to an August generation and was reading `ok`.** Found by `git status` during close-out, not by looking: the working copy was stamped 2026-08-24 against a committed 2026-09-03, understating the inbox and showing **no FAIL row where the committed version had one**. Regenerated (`5313e98`); two inbox-age FAIL rows now stand and were left standing. Filed to `00-inbox/` — it is the same failure class as this audit's findings, a mechanism reporting health while measuring nothing. | Claude |
 | 2026-09-05 | **Re-audit ruled: no second broad audit. One blinded re-derivation of five numbers instead.** Nine errors were made across this audit and its execution, but classified they are largely **one defect — a proxy measured and generalised without validating the proxy** (a classifier matching a later commit's sentinel; a grep counting "looped" while ignoring "not looped"; a fixed path list missing the settings file holding 107 of 139 rules; commit subjects read instead of diffs). **Every error was caught**, by blinded subagents, by the runs themselves, or by Jesse. So the residual risk is the findings nobody challenged — and the audit's five headline transcript-derived numbers were never independently re-derived. A brief for that fresh session is the deliverable. | Claude |
 | 2026-09-04 | **Correction found by the smoke test, not by the audit.** Starting a fresh session printed permission warnings from `obsidian-work/.claude/settings.local.json` — a **fifth** settings file, holding **107 of the machine's 139 allow rules**, which the audit's §E had not counted. Six of its `Write(...)` rules are inert (paired `Edit(...)` rules cover them, so nothing is lost). §E and the known-limits section are updated. The audit's path-list method is what missed it. | Claude |
+
+---
+
+**Closed 2026-10-02 (Jesse):** five verdicts were executed (git-guard retired `ef30341`, fixture-replay fixed, staged-count raised to 25 `7be001a`, vault-ingest `d1b1dd1`, fieldpm `30f829f`), and the 2026-09-05 route-usage re-measure refuted the headline finding. Every Verdict cell still blank is declined, including the SessionStart hook and the inert `Write(...)` rules in `settings.local.json`.

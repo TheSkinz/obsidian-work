@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: complete
 review_type: architecture-audit
 source_authority: observed
 confidence: high
@@ -636,3 +636,7 @@ is a smaller vault, not a slower one.
 |---|---|---|
 | 2026-08-20 | Evidence pass run at Jesse's request. Read-only against git and the vault; nothing retired, no rulings made, no queue rows added. Corrected my own earlier overstatement that the system rarely clears its output — measured effect rate is 76% of closed notes. | Claude |
 | 2026-08-20 | All three briefed audits run and appended above. Read-only against git, the vault, the config repo and 165 session transcripts; no new notes, no queue rows, nothing retired, no verdicts filled in. Corrected this note's own unmeasured claim that `01-context/` is "loaded every session" — it is 43% of attended sessions and 1 of 85 loop runs. | Claude |
+
+---
+
+**Closed 2026-10-02 (inbox clear-out):** approved and executed 2026-08-21 per the Execution log above; re-measured 2026-09-22 (`7def612`).

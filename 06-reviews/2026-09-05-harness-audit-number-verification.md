@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: complete
 review_type: verification
 source_authority: observed
 confidence: high
@@ -432,3 +432,7 @@ a sealed section into its own file, so the seal survives being read.
 | Date | Action | By |
 |---|---|---|
 | 2026-09-05 | Five headline numbers from the 2026-09-04 harness audit re-derived by four blinded subagents, question 1 replicated across two. Read-only; no skill, hook, settings, `CLAUDE.md` or audit-note file touched, no Verdict cell filled, one artifact. **Blind broken at source** — the brief's sealed answers shared a file with its instructions, so the orchestrating session was contaminated before measuring and never touched the corpus; disclosed above. **Three of five agree** (corpus split, `exec-guard` blocks, `word-delta-guard` firings). **Two diverge:** the `exec-guard` pre-emptive claim inverts (~372 pre-emptive → 0 by any ordinary session; the 57 that look pre-emptive are the audit's own sibling session and the hook's author testing it), and the last `usadebusk-*` Skill-tool load is 2026-09-04 in-glob and 2026-09-05 including subagents, not 2026-08-22. Number 1 reproduces on its channel but the 43%→7% comparison underneath it pairs an at-least-one both-channel figure against an all-five tool-only one; like for like it is 43%→36%. **Largest defect found: subagent transcripts are fully persisted at `<sessionId>/subagents/agent-*.jsonl`, outside the `*.jsonl` glob both audits used** — 114 files, 133 `Skill` calls, all `usadebusk-*`. This session's own recon map asserted the opposite and three of four agents confirmed it; the fourth disproved it. | Claude |
+
+---
+
+**Closed 2026-10-02:** its one follow-up, the re-measure at corrected scope, was done in `fda60dc`; open items were tracked and closed 2026-10-01 in `archive/2026-09-05-harness-audit-open-items.md`. Parent audit: [[2026-09-04-harness-audit-evidence]]. Companion: [[2026-09-05-harness-route-usage-rescoped]].

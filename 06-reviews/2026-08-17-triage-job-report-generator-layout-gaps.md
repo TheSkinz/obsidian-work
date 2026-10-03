@@ -1,7 +1,7 @@
 ---
 type: triage-note
 created: 2026-08-17
-revisit-trigger: "Next job report compiled with /report -> before rendering, check where Jesse places the images. If he puts them inline again rather than in the dedicated Images section, that is the second data point and the generator should learn inline placement — event: check at the /report step"
+status: complete
 tags: [triage, fieldpm, job-report, generator]
 related: [[idea-job-report-generator-layout-gaps]]
 ---
@@ -288,3 +288,7 @@ generator's `#FCC30A` or the shipped documents' `#F2A900` was the house gold. **
 2026-08-17 — `#FCC30A`, nothing changes.** Older documents carrying a slightly different amber are
 expected drift, not a defect to chase. `GOLD` in `render_job_report.py` stays as it is, and the
 generator's `scripts/README.md` now records the ruling instead of an unresolved discrepancy.
+
+---
+
+**Closed 2026-10-02 (inbox clear-out):** revisit-trigger retired. The USA26046 report (2026-10-01/02) placed images inside each heater chapter (claude-config `785e79f`), and the build spec now says graphics belong in Images (`2a81a3f`), which settles the third gap. The seed is archived as resolved.

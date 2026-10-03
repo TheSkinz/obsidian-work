@@ -1,6 +1,6 @@
 ---
 type: review
-status: open
+status: complete
 review_type: architecture-audit
 source_authority: observed
 confidence: high
@@ -259,3 +259,7 @@ version-dependent and therefore not self-validating.
 | Date | Action | By |
 |---|---|---|
 | 2026-09-05 | Harness route usage re-measured at corrected scope (S1 main + S2 subagent + S3 other projects) after the verification note found both prior audits scoped to `*.jsonl` alone. Three blinded agents; load-bearing figures verified directly by this session and reproduced exactly. **The 2026-09-04 audit's structural finding is refuted on its lead evidence** — the `Skill` tool carries **199 calls across 53 sessions**, not 40, with 133 in the subagent scope and a last `usadebusk-*` load of 2026-09-05. **Script runs were mentions:** 318 mentions against **123 executions**, so §A's "`render_job_report.py` 123 runs" is a mention count and the real figure is 55. **A route nobody counted:** the `skill_listing` attachment injects skill descriptions into **329 of 329 transcripts**, and it is what makes `disable-model-invocation` work — `adhd` appears in 0 of 329 across its whole life. **Hooks do fire in subagents** (7 `exec-guard` blocks, block rate flat across scopes at 1.12/0.92/0.80%); the commit gates' zeros are opportunity zeros, there being no `git commit` in 758 subagent Bash calls. **`staged-count-guard` measures 12 blocks, not the 13 the audit self-corrected to** — four independent counts, and the audit's own row lists only 12. Startup compliance moves 11→12 of 100 attended when subagent reads are counted; loop sessions stay 0 of 88 on every channel and scope. Read-only, no Verdict cell filled, no fix executed. | Claude |
+
+---
+
+**Closed 2026-10-02:** evidence note; its finding is recorded in `change-log.md` and it refuted the headline of [[2026-09-04-harness-audit-evidence]].
