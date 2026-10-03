@@ -1,7 +1,7 @@
 ---
 title: Quest Integrity publicly markets ADCV as mechanical cleaning plus verification
 created: 2026-09-07
-status: open
+status: closed-unactioned
 type: idea-seed
 tags: [competitor, quest-integrity, commercial]
 ---
@@ -49,3 +49,7 @@ Whether ADCV field crews are Quest employees, subcontractors, or a mix — the p
 settle it, and it bears directly on whether they can actually execute cleaning at scale or resell
 it. And whether any 2024–2026 press or job posting on mechanical decoking capacity sits behind a
 gate this pass did not cross.
+
+---
+
+**Killed 2026-10-02 (Jesse, inbox clear-out):** Corroboration, not news: the commercial answer is already in manual §10.3 (`04-knowledge/manual/10-verification-and-completion.md`), and competitor outcomes are not knowable from public sources.

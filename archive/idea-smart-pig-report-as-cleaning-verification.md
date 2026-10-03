@@ -1,6 +1,6 @@
 ---
 type: idea-seed
-status: gated
+status: closed-unactioned
 created: 2026-08-15
 revisit-trigger: "A second smart-pig vendor inspection report reaches USADebusk as a held file -> unpark and research whether the vendor's report becomes proposal language, close-out language, or both. The back catalog cannot supply it: every prior instance is Quest, and Quest does not release project reports (Jesse, 2026-08-19) — Steady Flux is the only vendor that has. So this waits on a future smart-pig job with a sharing vendor, or on Valero forwarding the customer's copy of the H-102B report if that ask is ever cheap — event: check when any vendor inspection report is filed to a job folder"
 related:
@@ -79,3 +79,7 @@ fouling there, 'typical of previous decokes.'" A stated result may be enough to 
 case even where a report is unobtainable, which would make the gate cheaper to clear than it reads.
 **Not unparked and the gate stands** — this is evidence added to the open question, not a decision.
 Related terminology work and the full source read: [[2026-09-03-fouling-terminology-vocabulary]].
+
+---
+
+**Killed 2026-10-02 (Jesse, inbox clear-out):** The gate needs a vendor smart-pig report in hand, and Jesse ruled 2026-09-02 that vendors do not share them — it can never fire.

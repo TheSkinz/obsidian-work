@@ -1,6 +1,6 @@
 ---
 type: idea-seed
-status: unexplored
+status: closed-unactioned
 created: 2026-08-20
 tags: [idea, vault-system, future]
 ---
@@ -14,3 +14,7 @@ Idea seed captured 2026-08-20 for a future exploration session. The read below i
 **To explore:** Whether the eval should be regenerated from the vault's own correction history — every time a real error is found and fixed, a question is derived from it and added to the set, so the eval grows to cover the failure modes this vault demonstrably has rather than the ones someone imagined at the start. Open questions: does that make the set monotonically grow until it is too expensive to run, and what retires a question; whether a question derived from a fixed error is trivially passable afterwards (the fix is now in the vault, so retrieval succeeds — meaning the question tests nothing going forward unless it is phrased against the *class* rather than the instance); whether the set should be split into recite-the-rule questions and check-the-data questions, since only the second kind would have caught Syncrude; and whether "pass" should require citing the source note and verifying it still says what the answer claims, which is the adversarial grading rule already written into the 2026-08-20 audit brief.
 
 Related: [[2026-08-20-vault-architecture-audit-evidence]], [[2026-08-20-syncrude-geometry-per-pass-misread]], [[2026-07-23-retrieval-eval-run]].
+
+---
+
+**Killed 2026-10-02 (Jesse, inbox clear-out):** Adds machinery to a retrieval eval nobody has run since July; the regression fixtures (DQ-036) already replay real failures where it matters.

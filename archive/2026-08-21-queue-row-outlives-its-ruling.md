@@ -1,6 +1,6 @@
 ---
 type: idea-seed
-status: unexplored
+status: closed-unactioned
 created: 2026-08-21
 tags: [idea, vault-system, decision-queue, future]
 ---
@@ -43,3 +43,7 @@ honest outcome of this seed may be "read the queue by hand when walking it."
 
 **Note on capture:** the Idea Research Loop was disabled 2026-08-21, so this seed
 will not be picked up automatically. It needs a session, or the loop back.
+
+---
+
+**Killed 2026-10-02 (Jesse, inbox clear-out):** The seed's own back-test scored the rule 1 right in 3 flagged, and the queue now holds zero open rows with owed builds in their own table — nothing to check.

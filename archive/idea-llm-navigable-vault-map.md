@@ -1,6 +1,6 @@
 ---
 type: idea-seed
-status: gated
+status: closed-unactioned
 created: 2026-07-23
 revisit-trigger: "Vault reaches 450 live notes (292 at the time of writing, 2026-08-15) -> re-run the retrieval eval in [[knowledge-system-evaluation-questions]]; if it shows failures, this idea unparks, and if it does not, re-park at the next threshold [machine: note-count>=450]"
 related:
@@ -25,3 +25,7 @@ Idea seed captured 2026-07-23 from the vault-architecture first-principles triag
 **To explore:** What shape do Obsidian/PKM power users actually converge on for LLM-navigable vault maps — per-note descriptions, MOC (map-of-content) notes, generated summaries, or embeddings — and what does that prior art say about maintenance cost? What is the backfill cost across ~100 notes, and can the consolidation loop carry it incrementally instead of a one-shot pass? Gating condition: the retrieval-eval run (triage idea 3) — if the eval shows zero retrieval failures, this solves a problem that doesn't exist yet and should stay parked.
 
 <!-- Do not add a Research Findings section by hand — the Vault Idea Research Loop appends that itself as a linked review note in 06-reviews/ and updates this file's status to `researched` with a `related:` link. Leave status as `unexplored` when creating a new seed. -->
+
+---
+
+**Killed 2026-10-02 (Jesse, inbox clear-out):** Solves a problem the last retrieval eval said does not exist, via an eval nobody maintains; its note-count gauge retires with it.

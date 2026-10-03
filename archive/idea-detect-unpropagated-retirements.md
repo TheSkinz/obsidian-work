@@ -1,6 +1,6 @@
 ---
 type: idea-seed
-status: unexplored
+status: closed-unactioned
 created: 2026-08-24
 tags: [idea, vault-system, drift, future]
 ---
@@ -16,3 +16,7 @@ Lint could not have caught any of them: `gem-drawing-extraction.md` carried **no
 **To explore:** Whether "retired somewhere, asserted live elsewhere" is mechanically detectable at all, or whether this is really a *discipline* fix — a close-out step that greps for a thing's name across the content layers whenever something is retired — rather than a tool. If mechanical: what the signal is. Candidate tells seen in all three cases are present-tense superlatives ("current", "validated", "the standard", "primary tool") and two files claiming the same role with nothing adjudicating, but both look noisy. Cheaper adjacent option: require a `status:` field on `07-llms/` notes so the existing vocabulary check can at least see them.
 
 **Gate:** Delete if researchable now — nothing blocks it.
+
+---
+
+**Killed 2026-10-02 (Jesse, inbox clear-out):** Vault-hygiene machinery; the three cases it cites are fixed and no new ones have surfaced.

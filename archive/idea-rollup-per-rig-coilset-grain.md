@@ -1,7 +1,7 @@
 <!-- DECIDED 2026-07-29 (Jesse) — Park, revisit next time the card schema is opened. This seed IS DQ-017, whose Phase 1 and Phase 3 are ruled and applied; Phase 2 remains open and is gated on the Syncrude job returning. Ruling: [[2026-07-28-idea-research-rollup-per-rig-coilset-grain]]. Status corrected researched -> decided-blocked 2026-09-08: the decision is closed, the work is not, so it is deliberately NOT sweepable. -->
 ---
 type: idea-seed
-status: decided-blocked
+status: resolved
 created: 2026-07-25
 tags: [idea, vault-system, future, estimating, actuals, schema]
 related:
@@ -28,3 +28,7 @@ Rough scale: Syncrude alone would go from 2 dead rows to ~6 live ones across its
 5. Honest ROI check, in the shape the pig-actuals seed used: the payoff is removing a judgment call from every multi-pass estimate and — via the 2026-07-25 whole-shift rule, which is gated on *that heater* having no historical pigging times — removing the shift pad on repeat heaters. Repeat heaters are where it pays: H-19, H-20, H-28, H-29 and 7-1 F-1 already carry two rows each. A new heater's ticket breakdown improves the benchmark slightly and does nothing for its own next estimate.
 
 **Gate:** None — researchable now, and item 1 needs only a decision from Jesse rather than new data.
+
+---
+
+**Closed 2026-10-02 (Jesse, inbox clear-out):** The remaining work is held entirely by DQ-017 under Owed builds in `50-dashboards/decision-queue.md`; this seed's Syncrude gate is stale.

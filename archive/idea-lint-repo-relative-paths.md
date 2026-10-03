@@ -1,6 +1,6 @@
 ---
 type: idea-seed
-status: unexplored
+status: resolved
 created: 2026-08-24
 tags: [idea, vault-system, lint, future]
 ---
@@ -14,3 +14,7 @@ Idea seed captured 2026-08-24 for a future exploration session. The read below i
 **To explore:** Whether the false-positive rate is tolerable — prose mentions paths that never existed (proposals, examples, illustrative snippets), and a rule firing on those becomes wallpaper, which the linter's own docstrings warn against repeatedly. Whether to scope it narrowly (only paths ending in a real extension, only under named folders) or accept warnings-as-backlog. Whether `:NNN` line suffixes should be checked for existence too, or only the file — the pig-tracker case is a *line* reference, and a function moving is the failure mode that reference has. Note the standing contract: **no fixture, no rule** (`tools/fixtures/README.md`), so this owes a fixture at build time.
 
 **Gate:** Delete if researchable now — no external condition blocks it. Deferred on 2026-08-24 by decision, not oversight: it was scoped out of the `apps/` job as its own decision rather than a rider.
+
+---
+
+**Closed 2026-10-02 (Jesse, inbox clear-out):** Built as the PATH-DEAD lint rule (`8134253`, 2026-09-05).

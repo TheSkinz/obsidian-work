@@ -1,6 +1,6 @@
 ---
 type: idea-seed
-status: unexplored
+status: closed-unactioned
 created: 2026-09-05
 revisit-trigger: three or more heater cards carrying rig-in access facts (pumper set-out distance, connection elevation) in `## Notes`, with at least one estimate having read one
 tags: [idea, estimating, heater-card, schema, future]
@@ -53,3 +53,7 @@ select one at all.
 in `## Notes` and at least one estimate has actually read one. Until then there is no evidence the lookup
 would be populated or consulted, and the field would be schema for its own sake. Mirrored into
 `revisit-trigger:` so the health dashboard keeps it visible while it waits.
+
+---
+
+**Killed 2026-10-02 (Jesse, inbox clear-out):** `usadebusk-estimating` now says use the 6-hr rig-in default and build no method for it; DQ-036 records the tier reasoning as struck.

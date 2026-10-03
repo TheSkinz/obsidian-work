@@ -1,6 +1,6 @@
 ---
 type: idea-seed
-status: unexplored
+status: closed-unactioned
 created: 2026-09-05
 tags: [idea, vault-system, future, lint]
 related:
@@ -34,3 +34,7 @@ backlog is enough to promote the rule to `ERROR_CODES` on the DQ-006 precedent �
 Worth noting against the standing "cross-cutting work over project detail" preference: this is cross-cutting,
 not a per-heater correction — it protects every future rename the way the 2026-08-24 `06-insights` →
 `06-reviews` rename was not protected.
+
+---
+
+**Killed 2026-10-02 (Jesse, inbox clear-out):** Lint-scope seed; the limit is already documented in the linter as KNOWN LIMIT (`vault_lint.py`), and no real dead path outside 02-facilities has turned up.

@@ -1,6 +1,6 @@
 ---
 type: idea-seed
-status: unexplored
+status: closed-unactioned
 created: 2026-07-19
 related:
   - [[2026-07-22-idea-research-pig-load-list-generator]]
@@ -50,3 +50,7 @@ The pig *load list* generator itself — per-project 1/8" load lists for the fie
 built and is not closed by this; it now has a real usage dataset to draw on if it is
 revisited. The two-consumer split — the estimate's 1/4" cost granularity against the field
 load list's 1/8" increments — is in `usadebusk-estimating` under Pig Quantity Estimating.
+
+---
+
+**Killed 2026-10-02 (Jesse, inbox clear-out):** Killed by Jesse — no generator will be built; field load lists stay hand-built against each card's Max pig OD, so the cards' load-list references remain correct and were left alone.

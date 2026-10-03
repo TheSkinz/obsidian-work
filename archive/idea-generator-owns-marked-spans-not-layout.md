@@ -1,6 +1,6 @@
 ---
 type: idea-seed
-status: gated
+status: closed-unactioned
 created: 2026-08-17
 revisit-trigger: "A second job report loses hand edits to a re-render, OR Jesse decides re-rendering over a delivered document should be routine rather than avoided -> unpark this and design the marker/splice mechanism — event: checked at the /report render step, when the output path already holds a file"
 tags: [idea, fieldpm, job-report, generator, future]
@@ -36,3 +36,7 @@ round-trip, or does Word rewrite them?
 **Gate:** the cheap write-guard landed first (see the triage note). This only earns a design cycle if
 that guard proves insufficient — a second edit-loss, or a decision that re-rendering delivered
 documents should be routine. Until then the problem it solves is already solved more cheaply.
+
+---
+
+**Killed 2026-10-02 (Jesse, inbox clear-out):** The cheap write guard in `render_job_report.py` has held six weeks with no second lost-edit incident; a recurrence would raise this on its own.
