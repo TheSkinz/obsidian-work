@@ -1154,9 +1154,11 @@ artifact gets copied out.
 **Limits worth knowing:** 50 Bots and group chats per account; 50 routines per Bot; only the **20
 most recent runs** retained per routine, so anything needing an audit trail writes its own log to
 `/workspace`; **deleting a routine is permanent**; **one continuous thread per Bot**, auto-summarized
-as it grows, with no new-chat control — the only clean slate is deleting and recreating the Bot,
-which permanently loses its transcript (Bot-reported 2026-10-04, consistent with the live read the
-same day), so `/workspace` files are the only reliable task memory; no model selection or version pinning; Legacy
+as it grows, with no new-chat control (Bot-reported 2026-10-04, consistent with the live read the
+same day). **The whole transcript is resent every turn, so a long thread is a cost problem.** Reset
+without deleting, per [[research-2026-10-power-user]]: ask for a handoff summary, right-click >
+Duplicate, paste the summary into the copy and hide the original. Learned memory does not carry over.
+Or start a new group with the same Bot. `/workspace` files are the only reliable task memory; no model selection or version pinning; Legacy
 Privacy Mode is unsupported and cloud storage is mandatory.
 
 **Business content is not restricted** — pricing, rates, methodology, heater and job data, customer
