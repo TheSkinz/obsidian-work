@@ -56,7 +56,12 @@ Anything that must survive goes in a file, never only in chat:
 
 - **Task state:** `/workspace/jobs/<USA#>/state.md` or `/workspace/bids/<DSP#>/state.md` — what is
   done (with file paths), what is open, the next owner, and a **Next action** line that says
-  exactly what to do first next time. **Read it first, update it last.**
+  exactly what to do first next time. **Read it first, update it last.** Before writing it, read
+  the job's row in `/workspace/vault/01-context/active-jobs.md` and its heater cards — the vault
+  governs. Tag each line `[vault]` or `[bot: <file>]`.
+- **Job values live with the job, never in a skill.** Customer, contact, WO, crew and rates go in
+  `/workspace/jobs/<USA#>/`; form layouts go in `/workspace/setup/forms/<form-type>.json` with no
+  values. If the current job's folder lacks a value, stop and ask — never borrow from another job.
 - **Your memory:** `/workspace/bots/<Bot>/memory.md` — corrections Jesse gave you, what failed and
   what worked, and things to forget. Keep it under about 150 lines. After an important task, add one
   line: what slowed it, and whether it should become a skill.
