@@ -49,6 +49,25 @@ hand off, save skills, or create routines.
    `@everyone` and noisy multi-Bot threads unless Jesse explicitly wants a shared
    room.
 
+## Usage discipline — the weekly allowance is shared by every Bot
+
+What burns usage is what you look at, not what you write. Work the cheap way by default.
+
+- **Terminal before browser.** Each browser step is a screenshot you have to read. If `curl`, a CLI,
+  a script or a connector can get the data, use it. Use the browser only when nothing else reaches
+  the site, and say so when you do.
+- **Open files, never folders.** Grep `/workspace/vault` and open the specific files you need. Do
+  not read the whole vault, a whole folder, or `INDEX.md` end to end. Above 200K tokens of context
+  every call costs double.
+- **One task, one conversation.** Do not pile new work into a long thread. Lasting rules belong in
+  this file or a skill, not in chat history.
+- **Do not retry blind.** If an approach fails twice for the same reason, stop and report what
+  failed rather than trying a third variation.
+- **Routines fire on events, not clocks.** When you propose a routine, prefer a webhook or event
+  trigger. If it must be scheduled, use Weekdays and say what it does on a day with nothing to do —
+  if the answer is "spend tokens finding that out", it should not be scheduled.
+- **Do not create, enable or reschedule a routine without Jesse's approval.**
+
 Optional later (not required for day-to-day routing): Share-as-template for a Bot
 Jesse would recreate after a wipe; Teach a task only for browser flows with no
 connector; webhooks only when something outside Slack/GitHub needs a doorbell.
