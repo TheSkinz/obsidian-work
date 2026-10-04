@@ -1145,6 +1145,24 @@ reset. They are the next candidates for skill-before-routine.
 
 **Inference (Architect's, unproven):** many surviving trees show a birth time of about 2026-10-03 21:24 CDT. That points to a box or workspace refresh then that kept some folders and dropped others, or to a deletion by some Bot, with no log naming who. **Either way, `/workspace` is a working area, not storage.** The copy-out rule in README-FOR-BOTS ("Nothing is done until it leaves here") is the real protection. **Any finished artifact goes to Jesse as a chat attachment or to OneDrive the same day**, and `/workspace` holds only what can be rebuilt.
 
+### Receipt density locked; scheduled backup live. 2026-10-04.
+
+**10787 density settled (Jesse, by side-by-side against the reference).** Forms locked the DeBusk
+service-receipt layout at **main 11 pt, hours 10, summary 10.5, receipt number 13**, down from 17/16/15.5/18,
+with values starting after the printed labels. This is now the standard for every job on this form,
+and Ledger was told the item is closed. **Check:** the 14:16 backup still holds the old sizes because
+it predates the lock. Monday's backup should show 11 pt in `setup/forms/debusk-service-receipt.json`.
+If it doesn't, the lock lives only in the skill text.
+
+**Scheduled backup: routine "Workspace backup" (Architect), Weekdays 18:00 CDT, first run
+2026-10-05.** It mirrors setup, jobs, bots and skills to OneDrive `GrokBot-Backup/`, stays silent when
+nothing changed, and posts a Friday one-line count. Each run is logged in `setup/backup-log.md`. The
+test run copied 46 files, and its log line was **read by Claude Code on the local OneDrive mirror**.
+Jesse created it, after the same routine was blocked when Claude Code tried to create it.
+
+**USA26046 open items: zero.** The 7100 12-hr receipt is closed, not reissued, because admin already
+has it (Jesse). The 10787 density is closed as above.
+
 ### Skills generalized; job state rebuilt from the vault. TESTED 2026-10-04.
 
 **Ruling (Jesse):** skills hold method only. Form layouts go in `/workspace/setup/forms/<form-type>.json`,
