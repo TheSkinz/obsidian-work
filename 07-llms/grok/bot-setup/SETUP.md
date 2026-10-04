@@ -1094,6 +1094,22 @@ computer: on**, 39 routed this session — the Bot's browsing exits via Linda2's
 is the likely answer to section 4's datacenter-IP sign-in question while Linda2 is up. **Weekly usage
 9%, resets in 1 day** — the first drain data point. On-demand monthly limit: None.
 
+### Applying profile changes, and two UI traps. TESTED 2026-10-04.
+
+**This build has no Edit Profile in the UI.** A Bot's right-click menu holds only Pin, Move to section,
+Mark as Unread, Rename, Copy conversation ID, Hide and Delete; the side panel holds Details, Library
+and Computer. xAI's docs name an Edit Profile option, and Chief of Staff directed me to a gear icon.
+**Neither exists on screen.** **What works: ask the Bot in chat to replace its own description from the vault**,
+naming the section of `bot-profiles.md` and saying "verbatim". All six live profiles were updated this
+way on 2026-10-04, and each stated its check-in rule back. Pointing at the vault file instead of
+pasting text keeps the message short and the source single.
+
+**The sidebar re-sorts by most recent activity.** A click aimed at a Bot by position lands on whichever
+Bot moved into that slot, and one message went to the wrong Bot this way. **Read the chat header before
+typing.**
+
+**Local execution set to Ask every time** (2026-10-04, Jesse; was Always allow, xAI recommends Never).
+
 ---
 
 # 4. What's left
