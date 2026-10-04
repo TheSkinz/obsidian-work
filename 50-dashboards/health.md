@@ -17,7 +17,7 @@
 | Loop heartbeats overdue | no | no | ok |
 | Open decisions not in the queue | 0 | 0 | ok |
 | Awarded job within 21 d, no PO | 0 | 0 | ok |
-| Regression baselines unjudgeable | 0 | 0 | ok |
+| Regression baselines unjudgeable | - | 0 | - |
 
 ## Loop heartbeats
 
@@ -25,9 +25,9 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 
 | Loop | Last fired | Last heartbeat | Cadence | Status |
 |---|---|---|---|---|
-| Consolidation loop | 2026-09-15 (18 d ago) | 2026-09-15 (18 d ago) | 31 d | ok |
-| Review loop | 2026-09-08 (25 d ago) | 2026-09-08 (25 d ago) | 90 d | ok |
-| Skill-drift loop | 2026-10-01 (2 d ago) | 2026-10-01 (2 d ago) | 62 d | ok |
+| Consolidation loop | - | never | 31 d | pending |
+| Review loop | - | never | 90 d | pending |
+| Skill-drift loop | - | never | 62 d | pending |
 
 ## Commercial pipeline
 
@@ -37,10 +37,10 @@ One row per pending quote, plus any quote whose execution date is within 90 days
 
 | Quote | Status | Valid through | Execution | Signal | Bid folder |
 |---|---|---|---|---|---|
-| [[DSP26039]] | pending | 2027-04-07 | 2027-01 | execution in 90 d | newest artifact 2026-05-12 — note carries no verified date |
+| [[DSP26039]] | pending | 2027-04-07 | 2027-01 | execution in 90 d | no bid folder path recorded |
 | [[DSP26064]] | awarded | 2027-02-25 | 2026-10-19 | execution in 16 d | no bid folder path recorded |
 | [[DSP26080]] | pending | - | 2027-02 | - | no bid folder path recorded |
-| [[DSP26085]] | pending | 2026-09-29 | 2027-01 | execution in 90 d | ok |
+| [[DSP26085]] | pending | 2026-09-29 | 2027-01 | execution in 90 d | no bid folder path recorded |
 | [[DSP26100]] | pending | 2027-03-10 | 2026-08 | - | no bid folder path recorded |
 
 ## Threshold gauges
@@ -63,12 +63,7 @@ One row per frozen fixture in `~/.claude/regression/frozen/`. Each reads its own
 
 | Fixture | Commits behind | Status |
 |---|---|---|
-| f1-rfq-to-proposal | claude-config 16 · vault 9 | behind |
-| f2-vault-ingest-dryrun | claude-config 12 | behind |
-| f3-fieldpm-extract | claude-config 24 | behind |
-| f4-sop-formatting-pass | claude-config 12 · vault 1 | behind |
-| f5-pig-sizing | claude-config 5 | behind |
-| f6-duration-mobdemob | claude-config 14 · vault 5 | behind |
+| _claude-config repo not present — nothing judged_ | | |
 
 ## Notes
 
