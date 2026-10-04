@@ -1085,8 +1085,8 @@ Travel and Ledger. None of it is the Bid Desk back-test that section 4 asks for 
 Gmail and ISNetworld are all signed in on the shared Bot computer. Entry went through the app's secure
 forms, so no Bot saw a value — but the docs' rule is unchanged: every Bot shares the session cookies, so
 every Bot now holds those three sessions. ISNetworld is a USADebusk system, which is what the
-account-separation rule was written about. Recorded as the observed state; whether the rule changes is
-Jesse's call, not this file's.
+account-separation rule was written about. **Jesse ruled the same day that credentials stay in use** —
+see Standing constraints.
 
 **Settings, as read:** Current computer `Linda2`; **Execution on this computer: Always allow** (Bots can
 open files and run tasks on Linda2, auto-review still checks first); **Route traffic through this
@@ -1136,10 +1136,13 @@ Chief of Staff coordinator until the Bot count justifies a router, roughly eight
 cookies and its terminal credentials. The docs state it outright: **do not use separate Bots as a
 security boundary.** Anything one Bot signs into, every Bot has.
 
-**That collides with the account-separation rule** in global CLAUDE.md, which keeps xAI accounts on
-personal credentials and away from USADebusk systems. The trial therefore runs **credential-free** —
-no Outlook, no SharePoint, no Gmail, files uploaded by hand. The one departure, the GitHub PAT, was
-made deliberately for a single answer and reversed the same evening.
+**Credentials are in use as of 2026-10-04 — Jesse's ruling.** *"I'll be using credentials and will
+perform a few small debusk tasks."* This replaces the credential-free posture the trial ran under from
+2026-09-06 (no Outlook, no SharePoint, no Gmail, files uploaded by hand; the one GitHub PAT was
+reversed the same evening). Jesse does the sign-ins, through the app's secure forms so no Bot sees a
+value. The shared-store fact above still holds, so **every signed-in session is available to every
+Bot**. Scope is a few small USADebusk tasks, not the bid workflow. Bots still do not sign in on their
+own initiative.
 
 **Only `/workspace` persists.** Temp directories and uncommitted state can vanish. Every finished
 artifact gets copied out.
@@ -1150,5 +1153,5 @@ most recent runs** retained per routine, so anything needing an audit trail writ
 Privacy Mode is unsupported and cloud storage is mandatory.
 
 **Business content is not restricted** — pricing, rates, methodology, heater and job data, customer
-and facility names all go anywhere. **Credentials, secrets, API keys and tokens do not go on this
-machine at all.**
+and facility names all go anywhere. **Sign-ins go through the secure forms only.** Passwords, API keys
+and tokens are never pasted into chat, a skill, or a file under `/workspace`.
