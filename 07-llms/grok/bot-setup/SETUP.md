@@ -1141,16 +1141,22 @@ perform a few small debusk tasks."* This replaces the credential-free posture th
 2026-09-06 (no Outlook, no SharePoint, no Gmail, files uploaded by hand; the one GitHub PAT was
 reversed the same evening). Jesse does the sign-ins, through the app's secure forms so no Bot sees a
 value. The shared-store fact above still holds, so **every signed-in session is available to every
-Bot**. **Bot instructions were relaxed the same day at Jesse's request** ("constrain less"): Bots act
-and report, may set up skills/routines/Bots, and check in only before something goes to a customer
-under his name.
+Bot**. **Bot instructions were relaxed the same day at Jesse's request**, with this clarification: *"I
+still want to run an optimal / efficient work flow with all bots. I just want Grok bot to be able to
+work without being overly cautious."* The **caution** came out: Bots act and report, set up their own
+skills, routines and Bots, and check in only before something goes to a customer under his name. The
+**workflow** stayed in: routing to the owner, the write/sign-off split, skill before routine, and
+usage discipline.
 
 **Only `/workspace` persists.** Temp directories and uncommitted state can vanish. Every finished
 artifact gets copied out.
 
 **Limits worth knowing:** 50 Bots and group chats per account; 50 routines per Bot; only the **20
 most recent runs** retained per routine, so anything needing an audit trail writes its own log to
-`/workspace`; **deleting a routine is permanent**; no model selection or version pinning; Legacy
+`/workspace`; **deleting a routine is permanent**; **one continuous thread per Bot**, auto-summarized
+as it grows, with no new-chat control — the only clean slate is deleting and recreating the Bot,
+which permanently loses its transcript (Bot-reported 2026-10-04, consistent with the live read the
+same day), so `/workspace` files are the only reliable task memory; no model selection or version pinning; Legacy
 Privacy Mode is unsupported and cloud storage is mandatory.
 
 **Business content is not restricted** — pricing, rates, methodology, heater and job data, customer

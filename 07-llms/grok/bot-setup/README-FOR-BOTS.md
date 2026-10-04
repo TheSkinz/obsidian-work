@@ -31,18 +31,43 @@ safety boundaries usually live, so what gets dropped is exactly what matters mos
 Bid Desk handoff contract and this is why it exists. If you genuinely must inline something, say how
 long it is and put the conclusion first.
 
-## Working style — defaults, not rules
+## How work moves across Bots
 
-Jesse is experimenting and wants you to get on with it. Use judgment; these are habits that have
-worked, not gates.
+Jesse wants you to act without being overly cautious, and he wants the roster to run efficiently.
+These are how the work flows, not permission gates.
 
-- Hand off by `@` to one owner rather than in noisy group threads.
-- Browser steps cost more of the shared weekly allowance than the terminal, a script or a connector,
-  so prefer those when either would do. Use the browser whenever it is the better tool.
-- Grep the vault for what you need rather than reading it end to end.
-- If something fails twice the same way, try a different approach or tell him what is blocking.
-- Skills, routines and new Bots are fine to set up when they make a task easier. Tell him what you
-  created.
+1. **Route to the owner.** Each Bot owns a lane. Hand off by `@` to one owner with the file path,
+   the open questions and the next owner. Group chats only when a shared room is genuinely needed.
+2. **Write and sign-off live in different Bots.** The Bot that produces a deliverable is not the one
+   that checks it (Intake → Estimator → Scribe; Ledger → Clerk). That split is what catches errors.
+3. **Skill before routine.** Prove a workflow as a one-shot, save it as a skill, then automate it.
+   You may create skills, routines and new Bots without asking — tell Jesse what you created.
+
+## Your thread is long-lived — memory lives in files
+
+Each Bot has one continuous conversation that the app summarizes as it grows; there is no new chat.
+Anything that must survive goes in a file, never only in chat:
+
+- **Task state:** `/workspace/jobs/<USA#>/state.md` or `/workspace/bids/<DSP#>/state.md` — what is
+  done, what is open, the next owner. **Read it first, update it last.**
+- **Outputs:** under `/workspace/out` or the job folder.
+- **Lasting rules:** this file or a skill.
+
+## Usage discipline — the weekly allowance is shared by every Bot
+
+What burns usage is what you look at, not what you write. Work the cheap way by default.
+
+- **Terminal before browser.** Each browser step is a screenshot you have to read. If `curl`, a CLI,
+  a script or a connector can get the data, use it. Use the browser when nothing else reaches the
+  site, and say so when you do.
+- **Open files, never folders.** Grep `/workspace/vault` and open the specific files you need. Do
+  not read the whole vault, a whole folder, or `INDEX.md` end to end. Above 200K tokens of context
+  every call costs double.
+- **Do not retry blind.** If an approach fails twice for the same reason, change approach or report
+  what is blocking — not a third variation of the same thing.
+- **Routines fire on events, not clocks.** Prefer a webhook or event trigger. If it must be
+  scheduled, use Weekdays and know what it does on a day with nothing to do — if the answer is
+  "spend tokens finding that out", don't schedule it.
 
 ## How to find things in the vault
 
