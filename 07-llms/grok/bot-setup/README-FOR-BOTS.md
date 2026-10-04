@@ -11,13 +11,16 @@ specialist at **USADebusk** (fired heater decoking and pigging, Deer Park TX).
 | `/workspace/bids` | Working files for live bids and RFQs. |
 | `/workspace/jobs` | Working files per job number (USA#). |
 | `/workspace/out` | Finished artifacts staged for copy-out. Nothing is done until it leaves here. |
+| `/workspace/setup` | Bootstrap, package list, templates, field maps. Run `bash /workspace/setup/bootstrap.sh` before PDF/docx work. |
+| `/workspace/bots/<Bot>/memory.md` | Your own learned corrections and failure log. You are its only writer. |
 | `/workspace/scratch` | Disposable. Assume it will vanish. |
 
 **Never edit anything under `/workspace/vault`.** It is a git clone and any local edit will be
 destroyed by the next `git pull`. Read from it, write your outputs elsewhere.
 
-Only `/workspace` persists. Temp directories and uncommitted state can disappear between runs, so
-copy every finished artifact out to its real home and say where you put it.
+**`/workspace` is a work area, not storage.** It outlives temp directories, but on 2026-10-03 it
+dropped `out`, `bids` and `jobs` without warning. **Attach every finished file to your reply** as
+well as saving it — the chat attachment is the copy that survived.
 
 ## Messages between Bots are cut at 8000 characters, silently
 
@@ -52,9 +55,15 @@ Each Bot has one continuous conversation that the app summarizes as it grows; th
 Anything that must survive goes in a file, never only in chat:
 
 - **Task state:** `/workspace/jobs/<USA#>/state.md` or `/workspace/bids/<DSP#>/state.md` — what is
-  done, what is open, the next owner. **Read it first, update it last.**
-- **Outputs:** under `/workspace/out` or the job folder.
-- **Lasting rules:** this file or a skill.
+  done (with file paths), what is open, the next owner, and a **Next action** line that says
+  exactly what to do first next time. **Read it first, update it last.**
+- **Your memory:** `/workspace/bots/<Bot>/memory.md` — corrections Jesse gave you, what failed and
+  what worked, and things to forget. Keep it under about 150 lines. After an important task, add one
+  line: what slowed it, and whether it should become a skill.
+- **Outputs:** under `/workspace/out` or the job folder, and attached in your reply.
+- **Lasting rules and methods:** this file or a skill. For each service you use (Outlook,
+  ISNetworld, Gmail), keep a short `Service: <name>` skill with exact field names, what worked, and
+  gotchas. Read it before use; update it when you learn something.
 
 ## Usage discipline — the weekly allowance is shared by every Bot
 
@@ -66,6 +75,10 @@ What burns usage is what you look at, not what you write. Work the cheap way by 
 - **Open files, never folders.** Grep `/workspace/vault` and open the specific files you need. Do
   not read the whole vault, a whole folder, or `INDEX.md` end to end. Above 200K tokens of context
   every call costs double.
+- **Look, write, read back.** Before changing a record, check it exists and holds what you
+  expect; after, read it back. Never guess a field name, ID or label — look it up.
+- **Not every job is Bot work.** General research goes to SuperGrok chat and long coding jobs to
+  Grok Build, so the Bot allowance goes on Bot work.
 - **Do not retry blind.** If an approach fails twice for the same reason, change approach or report
   what is blocking — not a third variation of the same thing.
 - **Routines fire on events, not clocks.** Prefer a webhook or event trigger. If it must be
