@@ -249,6 +249,27 @@ Still to do on the VM: create `/workspace/bids`, `/workspace/jobs`, `/workspace/
 
 # 3. Findings
 
+## Driving Grok Bot from Claude Code — read this first. 2026-10-04.
+
+Consolidated from the dated findings below; each line was learned the hard way on 2026-10-04.
+
+- **Read before you click.** `python tools/grok_sync_check.py` reads the Bots' OneDrive backup
+  (`C:\Users\Jwuts\OneDrive\GrokBot-Backup\`): backup age, vault↔live skill drift in both
+  directions, job values left in skills, and open items. Open the app only to message a Bot.
+- **The sidebar re-sorts by most recent activity.** Read the chat header before typing; a
+  position-based click sent one message to the wrong Bot.
+- **No Edit Profile in this build.** A Bot replaces its own description: name the section of
+  `bot-profiles.md` and say "verbatim".
+- **Settings > Updates** holds the computer update control and **Reset**. Never use Reset, because it
+  rebuilds from a snapshot and can lose recent work.
+- **Attaching a file:** copy it to `Downloads`, then click + > Attach files and type the full path.
+- **A group chat is not a reset.** The history follows the Bot into every room, and the app has no
+  Duplicate option.
+- **Routine creation from Claude Code is blocked** as unauthorized persistence. Jesse creates routines.
+- **Hand Bots paths, not content.** Bot-to-Bot messages are cut at 8000 characters.
+- **The backup is additive.** Files a Bot deletes stay in OneDrive (for example the old
+  `vac-receipt-field-map.json`), so a sync-check hit there may be a ghost, not a live file.
+
 ## The citation audit — PASSED, 10 of 10. TESTED 2026-09-06.
 
 The go/no-go gate: ask Librarian ten domain questions with known answers, then open each cited file
