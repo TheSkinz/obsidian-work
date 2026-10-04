@@ -1132,6 +1132,45 @@ reset. They are the next candidates for skill-before-routine.
 
 **Usage: 17% at 11:46 on 2026-10-04**, against 9% at 00:48 the same day.
 
+### ⚠ `/workspace` lost folders — "only /workspace persists" is not a guarantee. READ 2026-10-04.
+
+**Facts, from Architect's read-only diagnostic at about 12:05 CDT:**
+- `/workspace/out` does not exist, and neither does `/workspace/bids`.
+- `/workspace/jobs` exists only because Ledger created it at 12:01 today.
+- What survives at the top level: `.venv`, `bin`, `forms`, `scratch`, `setup`, `uploads`, `vault`, plus loose PDFs.
+- **Lost with `out`:** the USA26041 F-501 Project Report `.docx` (built 2026-09-07), Clerk's USA26046 7095 NIGHT CLEAN PNG/PDF (Sep 29), and Fuel's blank fuel-form template.
+- A filesystem-wide `find` for the report and the CLEAN files returns nothing.
+- **Copies survive as chat attachments.** Ledger's and Clerk's agent attachment directories still hold USA26046 workbooks and CLEAN copies, and the threads show the downloads.
+- Nothing Architect ran today touched `out`; its only deletion was `/workspace/.venv-test`. `/workspace` sits on the root overlay, not a separate mount.
+
+**Inference (Architect's, unproven):** many surviving trees show a birth time of about 2026-10-03 21:24 CDT. That points to a box or workspace refresh then that kept some folders and dropped others, or to a deletion by some Bot, with no log naming who. **Either way, `/workspace` is a working area, not storage.** The copy-out rule in README-FOR-BOTS ("Nothing is done until it leaves here") is the real protection. **Any finished artifact goes to Jesse as a chat attachment or to OneDrive the same day**, and `/workspace` holds only what can be rebuilt.
+
+### Thread-only methods captured as skills. 2026-10-04.
+
+Each of these Bots wrote its own method from its thread history. Each skill opens with the bootstrap line.
+- **Receipt Typesetting** (Forms). The field-crop method, with the Vac receipt field map saved as a
+  file at `/workspace/setup/vac-receipt-field-map.json` and 7095 NIGHT CLEAN as the reference. **The
+  10787 density is recorded as open** pending Jesse's answer.
+- **Receipt Clean Copy** (Clerk). Change only what Jesse names, white out scribbles, and leave
+  everything else untouched. Ask when a correction is ambiguous.
+- **Fuel Form** (Fuel). Fill with PyMuPDF, read only what the receipt prints, and place the
+  signature from `/workspace/setup/jesse-utsey-signature.png`. **Blocked:** the blank template
+  `/workspace/out/fuel-form/fuel-form-template.pdf` is not on disk, and the next fill stops until
+  Jesse re-uploads it.
+
+**Skills live outside `/workspace`**, at `/home/box/agent-data/workflows/<name>/SKILL.md`. They are
+app-managed library data, so their persistence across a computer update is the platform's job, not
+the bootstrap's (inferred, untested). Each one's data files are in `/workspace/setup/`, which does
+persist.
+
+**Memory research, 2026-10-04: [[research-2026-10-memory]].** Of the GitHub memory systems, none adds
+anything over the vault: it already *is* the LLM-wiki pattern, with stricter write control. mem0,
+Zep, Letta and basic-memory need keys, databases, or token overhead on every turn of every Bot. The
+one gap is each Bot's own learned corrections, which live in uninspectable memory and are lost on a
+reset. The proposed fix is a plain `/workspace/bots/<Bot>/memory.md` per Bot, plus a reset routine
+that uses a new single-Bot group chat, which Cursor staff call the closest way to a thin working set.
+Not adopted yet; that is Jesse's call along with the reset.
+
 ---
 
 # 4. What's left
