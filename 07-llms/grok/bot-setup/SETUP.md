@@ -1145,6 +1145,41 @@ reset. They are the next candidates for skill-before-routine.
 
 **Inference (Architect's, unproven):** many surviving trees show a birth time of about 2026-10-03 21:24 CDT. That points to a box or workspace refresh then that kept some folders and dropped others, or to a deletion by some Bot, with no log naming who. **Either way, `/workspace` is a working area, not storage.** The copy-out rule in README-FOR-BOTS ("Nothing is done until it leaves here") is the real protection. **Any finished artifact goes to Jesse as a chat attachment or to OneDrive the same day**, and `/workspace` holds only what can be rebuilt.
 
+### Backup, reset test and Jesse's tip digest. TESTED 2026-10-04.
+
+**Backup to OneDrive works, and Claude Code can see it.** Architect mirrored `/workspace/{setup,jobs,bots}`
+to `GrokBot-Backup/` on the OneDrive connector (personal account `jwutsey@outlook.com`): 23 files.
+**Checked independently** on Linda2 at `C:\Users\Jwuts\OneDrive\GrokBot-Backup\` — the same 23 files.
+That makes OneDrive the read channel from Claude Code into Bot state. **It is one-time only.** A
+scheduled backup routine was blocked as unauthorized persistence when Claude Code tried to set it up
+by driving the app. **Jesse creates it himself if he wants it**, or asks a Bot to "back up setup, jobs and bots to
+GrokBot-Backup" after a working session.
+
+**A group chat is not a reset.** Probe: the codeword `TUBESHEET-83` was given only in Architect's
+DM, then a new chat containing only Architect was asked for it. **It answered at once.** So the
+history (or learned memory) follows the Bot into every room. That matches what Architect told Jesse
+and contradicts the memory research's recommended routine. **Duplicate is also absent from this build's
+right-click menu**, which holds only Pin, Move, Mark as Unread, Rename, Copy ID, Hide and Delete. **No
+in-app thread reset is available.** The remaining options are (a) live with the summarized thread
+now that knowledge is in files, or (b) create a fresh Bot from the vault profile and the Bot's
+`memory.md` and hide the old one. The test chat "Test probe…" remains in the sidebar.
+
+**Fuel form:** Jesse's blank `2026_FUEL_FORM.pdf` is at `/workspace/setup/fuel-form-template.pdf`,
+the Fuel Form skill points there, and a test fill on the 2026-09-26 Wawa 7219 receipt came back
+**attached** in chat. Reported by Fuel; fields not checked line by line.
+
+**Tip digest (Jesse, 2026-10-04): what was new.** These ideas went into README-FOR-BOTS:
+- per-service cheat-sheet skills
+- look → write → read back
+- a failure log, in `memory.md`
+- a post-task retro line
+- a Next action line in `state.md`
+- sending general research to SuperGrok chat and long coding to Grok Build
+
+Recorded and deferred: capture one run's network requests and replay the API instead of clicking
+(candidates are ISNetworld certificates and Outlook), and a weekly scorecard/cost-hygiene Bot.
+Everything else in the digest was already practice.
+
 ### Thread-only methods captured as skills. 2026-10-04.
 
 Each of these Bots wrote its own method from its thread history. Each skill opens with the bootstrap line.
