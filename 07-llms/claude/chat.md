@@ -43,3 +43,27 @@ Skills uploaded to the claude.ai skill library (Settings > Capabilities, or Cust
 Nobody has verified how stale the current upload is — that's the first thing to check before designing a fix, since if the upload postdates the most recent drift run this is theoretical. Three unevaluated shapes if it turns out to matter: (1) add a re-upload step to the Skill-Drift Loop's follow-through, (2) treat claude.ai as deliberately thin — upload only `usadebusk-core` as a vocabulary layer, never a source of numbers (the profile instructions already carry a guard along these lines), (3) don't upload skills to claude.ai at all and run chat/Cowork on profile instructions alone. Option 2 is closest to what's live now and needs no new machinery.
 
 Source: Claude Code session, 2026-07-20.
+
+## App settings were rewritten and memory reset (2026-10-04)
+
+Claude Code cannot read claude.ai's account settings, and `/doctor prompt-audit` doesn't cover them either. So on 2026-10-03/04 Jesse pasted the settings into a Code session for a manual audit.
+
+**Instructions for Claude** (Settings > General, which absorbed Cowork's Global instructions on 2026-09-16) had two stale items:
+
+- the retired `USADeBusk` spelling
+- a show-sequences example citing the Vault Capture Loop, disabled 2026-08-21
+
+It also lacked three rules that global CLAUDE.md carries: the nothing-is-confidential data posture, read-vs-inferred provenance marking, and the output rules. A corrected text was handed over and pasted. Domain rules were deliberately left out of it; they belong in the skills.
+
+**Memory topics** had 18 entries, and 9 of them were stale. The worst carried the pre-cleanup vault schema (`03-jobs`, `05-projects`, `06-insights`), the retired Gemini drawing Gem, and the claim that no cross-device sync exists. Jesse ran **Settings > Memory > Reset memory**. Per support.claude.com article 11817273, the reset is permanent and memories do not regenerate from past chats. He then re-entered 6 consolidated memories through a "Remember the following:" chat:
+
+1. role and autonomy framing
+2. Linda2, the vault and sync
+3. the OneDrive `USADeBusk\Facilities` structure
+4. the OneDrive folder-redirection trap
+5. the scaffolding pre-check
+6. resolve-don't-offer on tooling, with an edge-case stress-test
+
+**For the next audit:** the vault holds no copy of either text, so ask Jesse to paste them again. Don't assume this note still matches the live settings.
+
+On the skill-library section above: as of 2026-10-01 the claude.ai library syncs *down* into Claude Code at `~/.claude/skills/synced/`. That manifest lists only Anthropic's skills (docs, docx, pdf, pptx, xlsx, skill-creator, google-workspace, import-memory), and no `usadebusk-*`. That suggests option 3 above is effectively what's live, but it is inferred from the manifest; the claude.ai library itself was not checked.
