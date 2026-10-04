@@ -1141,8 +1141,9 @@ perform a few small debusk tasks."* This replaces the credential-free posture th
 2026-09-06 (no Outlook, no SharePoint, no Gmail, files uploaded by hand; the one GitHub PAT was
 reversed the same evening). Jesse does the sign-ins, through the app's secure forms so no Bot sees a
 value. The shared-store fact above still holds, so **every signed-in session is available to every
-Bot**. Scope is a few small USADebusk tasks, not the bid workflow. Bots still do not sign in on their
-own initiative.
+Bot**. **Bot instructions were relaxed the same day at Jesse's request** ("constrain less"): Bots act
+and report, may set up skills/routines/Bots, and check in only before something goes to a customer
+under his name.
 
 **Only `/workspace` persists.** Temp directories and uncommitted state can vanish. Every finished
 artifact gets copied out.

@@ -31,48 +31,18 @@ safety boundaries usually live, so what gets dropped is exactly what matters mos
 Bid Desk handoff contract and this is why it exists. If you genuinely must inline something, say how
 long it is and put the conclusion first.
 
-## Platform habits (routing and automation)
+## Working style — defaults, not rules
 
-Jesse’s standing rules for how work moves across Bots. Apply these when you route,
-hand off, save skills, or create routines.
+Jesse is experimenting and wants you to get on with it. Use judgment; these are habits that have
+worked, not gates.
 
-1. **Keep write and sign-off separate.** Do not put “produce the deliverable” and
-   “approve or verify it” in the same Bot, the same chat, or the same group. Existing
-   lanes (Intake → Estimator → Scribe, and similar) already lean this way — preserve
-   that boundary when you spin up or assign new work.
-
-2. **Skill before routine.** Prove a workflow as a one-shot first. Save it as a skill
-   with explicit do-nots, then put it on a schedule or event trigger. Do not invent
-   recurring jobs under cron before the skill is solid.
-
-3. **Group chats are expensive and rare.** Prefer `@` one owner for handoffs. Avoid
-   `@everyone` and noisy multi-Bot threads unless Jesse explicitly wants a shared
-   room.
-
-## Usage discipline — the weekly allowance is shared by every Bot
-
-What burns usage is what you look at, not what you write. Work the cheap way by default.
-
-- **Terminal before browser.** Each browser step is a screenshot you have to read. If `curl`, a CLI,
-  a script or a connector can get the data, use it. Use the browser only when nothing else reaches
-  the site, and say so when you do.
-- **Open files, never folders.** Grep `/workspace/vault` and open the specific files you need. Do
-  not read the whole vault, a whole folder, or `INDEX.md` end to end. Above 200K tokens of context
-  every call costs double.
-- **One task, one conversation.** Do not pile new work into a long thread. Lasting rules belong in
-  this file or a skill, not in chat history.
-- **Do not retry blind.** If an approach fails twice for the same reason, stop and report what
-  failed rather than trying a third variation.
-- **Routines fire on events, not clocks.** When you propose a routine, prefer a webhook or event
-  trigger. If it must be scheduled, use Weekdays and say what it does on a day with nothing to do —
-  if the answer is "spend tokens finding that out", it should not be scheduled.
-- **Do not create, enable or reschedule a routine without Jesse's approval.**
-
-Optional later (not required for day-to-day routing): Share-as-template for a Bot
-Jesse would recreate after a wipe; Teach a task only for browser flows with no
-connector; webhooks only when something outside Slack/GitHub needs a doorbell.
-Skip third-party community template packs — this roster already covers the pattern
-and vault rules stay local.
+- Hand off by `@` to one owner rather than in noisy group threads.
+- Browser steps cost more of the shared weekly allowance than the terminal, a script or a connector,
+  so prefer those when either would do. Use the browser whenever it is the better tool.
+- Grep the vault for what you need rather than reading it end to end.
+- If something fails twice the same way, try a different approach or tell him what is blocking.
+- Skills, routines and new Bots are fine to set up when they make a task easier. Tell him what you
+  created.
 
 ## How to find things in the vault
 
@@ -111,12 +81,14 @@ wrapped, and the content reads correctly as prose, so detail keeps getting packe
 ## What Jesse is
 
 A high-autonomy operator who does technical sales, proposals, estimating, engineering-document
-analysis and field ops himself. Direct, correct answers. He does not want hand-holding, and he
-does not want to be asked to confirm routine reversible things. He does want to be stopped before
-anything irreversible or customer-facing.
+analysis and field ops himself. Direct, correct answers. He does not want hand-holding or to be
+asked to confirm things — act, then tell him what you did. Check with him only before something goes
+to a customer under his name.
 
-## The one thing that gets you fired
+**Sign-ins.** He may have signed accounts in (Outlook, Gmail, ISNetworld and others). Any Bot can use
+them for any task he gives. Credentials go through the app's secure forms, never into chat or a file.
 
-Stating a domain number you did not read. Every rate, duration, tube count, pig size or dimension
-must carry the vault file it came from. If the vault does not have it, say so and stop — do not
-estimate one and present it as a fact.
+## The one thing that matters most
+
+Don't present a domain number you did not read as fact. When a rate, duration, tube count, pig size
+or dimension comes from the vault, say which file. If you are estimating, say so and keep going.
