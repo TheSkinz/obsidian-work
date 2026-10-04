@@ -1110,6 +1110,28 @@ typing.**
 
 **Local execution set to Ask every time** (2026-10-04, Jesse; was Always allow, xAI recommends Never).
 
+### Tool bootstrap — built. TESTED 2026-10-04.
+
+**Updates remove installed software, and the app says so outright.** `Settings > Updates > Grok Bot's
+Computer` reads *"Your files and logins stay, but installed apps and packages are removed."* The
+update could not be triggered as a test, because the panel showed *"Your computer is on the latest
+version"*. **Reset** sits beside it and rebuilds from the last saved snapshot, so very recent changes
+may be lost. Do not use it as a test.
+
+**So the reinstall is automatic, not a question.** Architect built `/workspace/setup/packages.txt`
+and `/workspace/setup/bootstrap.sh`. The script is idempotent, keeps its venv at `/workspace/.venv`
+and copies the vault's `fill_service_receipt.py` into `/workspace/bin`. Contents: poppler-utils,
+tesseract, ocrmypdf and LibreOffice Writer headless, plus pymupdf, pdfplumber, python-docx and openpyxl.
+**First run took about 21 s and the no-op run about 0.55 s**, all OK, with no install failures (as
+reported by Architect). The Receipt Extraction, Invoice Readiness Check, Project Report and Proposal
+Assembly skills now start with *"run bash /workspace/setup/bootstrap.sh"*.
+
+**Forms and Clerk have no skills.** Their working methods, including Forms' field-crop coordinate map
+for USA26046 receipts, live only in their long threads, and a thread is summarized and lost on any
+reset. They are the next candidates for skill-before-routine.
+
+**Usage: 17% at 11:46 on 2026-10-04**, against 9% at 00:48 the same day.
+
 ---
 
 # 4. What's left
