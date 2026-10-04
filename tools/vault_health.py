@@ -490,6 +490,19 @@ def loop_heartbeats(root: Path):
 
         any_overdue = any_overdue or status.startswith("FAIL")
         rows.append((label, fired_s, hb, f"{cadence} d", status))
+
+    # Grok Bot "Workspace backup" routine (Architect, Weekdays 18:00 CDT). It is
+    # silent on success by design, so nothing else would surface a stopped
+    # routine. Read from the OneDrive mirror's own run log; `-` when the mirror is
+    # absent on this machine. The threshold lives in grok_sync_check.py.
+    try:
+        from grok_sync_check import DEFAULT_BACKUP, backup_status
+        g_status, g_last, _ = backup_status(DEFAULT_BACKUP, today)
+        g_fired = "-" if g_last is None else f"{g_last.isoformat()} ({(today - g_last).days} d ago)"
+        rows.append(("Grok Workspace backup", g_fired, "OneDrive backup-log.md", "1 bd", g_status))
+        any_overdue = any_overdue or g_status.startswith("FAIL")
+    except ImportError:
+        pass
     return rows, any_overdue
 
 
@@ -844,7 +857,11 @@ def build(root: Path) -> str:
         "nothing worth deciding, so its git heartbeat carries wide slack once the ledger "
         "proves the scheduler fired. "
         "The skill-drift loop is scheduled monthly and tracked here as of 2026-07-25; "
-        "it commits only when it finds drift, so its heartbeat window is deliberately loose.",
+        "it commits only when it finds drift, so its heartbeat window is deliberately loose. "
+        "**Grok Workspace backup** is the Grok Bot routine (Weekdays 18:00 CDT), read from its "
+        "own run log on the OneDrive mirror; it is silent on success, so this row is the only "
+        "place a stopped routine shows. FAIL past 2 business days; `-` when OneDrive is absent "
+        "on this machine. Detail: `python tools/grok_sync_check.py`.",
         "",
         "| Loop | Last fired | Last heartbeat | Cadence | Status |",
         "|---|---|---|---|---|",
