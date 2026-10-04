@@ -6,7 +6,7 @@ tags: [grok, xai, grok-bot, cursor, automation, trial]
 
 # Grok Bot — Setup Runbook
 
-One-month trial started 2026-09-06.
+Open-ended personal test started 2026-09-06 — not an official trial and no end date (corrected 2026-10-03; earlier called a one-month trial).
 
 Product mechanics were read from docs.x.ai/grok-bot, then **verified in the running app** by driving
 it directly. Where the app and the docs — or the third-party connector directories — disagree, what
