@@ -161,6 +161,9 @@ source, **diff the files on disk** rather than trusting a dump.
 
 # 2. Current state
 
+**⚠ Stale as of 2026-10-04** — the live app holds 15 Bots, not 7. See "Live-app read, 2026-10-04" at the
+end of section 3 before trusting this table.
+
 **The roster is complete as of 2026-09-06.** Seven Bots were built, plus Chief of Staff; **Scout was retired 2026-09-07, leaving six working Bots.** **All seven
 skills are uploaded as of 2026-09-07** — six were in; `Proposal Assembly` was missing for the first
 day and was uploaded and verified on the 7th. This line claimed all seven from the start and was
@@ -1053,6 +1056,43 @@ about a job that had nothing to do with what Jesse ran. **Ledger behaved correct
 here, in the signature rule where the check itself was fictional, and in the drill it was credited
 with work it never did. **Establish which artifact a number came from before reconciling it against
 anything.**
+
+## Live-app read, 2026-10-04. READ by Claude Code via computer-use.
+
+**The roster is 15 Bots plus the Southern Syndicate group.** The eight in section 2, less Scout, plus
+eight this file never recorded. Their purpose below is read from each Bot's conversation, not from a
+profile:
+
+| Bot | What it is doing, as read |
+|---|---|
+| **Docs** | Signed into Jesse's **personal Outlook** (`jwutsey@outlook.com`) with phone approval; blocked five spam domains and read 185 messages back to 2026-09-03 |
+| **Fuel** | Fills fuel-receipt forms (2026-09-26 Wawa) and places Jesse's signature from an uploaded image; does not send |
+| **Clerk** | Clean admin copies of field service receipts — USA26046 Cenovus Lima Vac 7095 NIGHT, 2026-09-28, handed from Ledger |
+| **Forms** | Typesetting USA26046 receipts onto the form; self-graded B−, moving to a field-crop coordinate map |
+| **Travel** | United check-in, boarding passes, drive timing for the Lima trip (2026-09-30 to 10-01) |
+| **Empower** | Signed into **ISNetworld** 2026-09-19 and saved four Cenovus Lima training certificates to Google Drive |
+| **Studio** | Branded decks and leave-behinds; created 2026-09-23, never used |
+| **Gate**, **Forge** | A non-USADebusk "money lane" (digital products, property-management niche) run under Architect; **shut down 2026-10-02**, both idle |
+
+Chief of Staff was, at the time of the read, signing Jesse's **personal Gmail** into the Bot
+computer's Chrome at his request.
+
+**"Nothing has touched live work" in section 4 is no longer true.** USA26046 field paperwork (receipts,
+clean copies, fuel forms, site training certs, travel) has run through Clerk, Forms, Fuel, Empower,
+Travel and Ledger. None of it is the Bid Desk back-test that section 4 asks for — that is still undone.
+
+**The credential-free constraint below no longer describes the account.** Personal Outlook, personal
+Gmail and ISNetworld are all signed in on the shared Bot computer. Entry went through the app's secure
+forms, so no Bot saw a value — but the docs' rule is unchanged: every Bot shares the session cookies, so
+every Bot now holds those three sessions. ISNetworld is a USADebusk system, which is what the
+account-separation rule was written about. Recorded as the observed state; whether the rule changes is
+Jesse's call, not this file's.
+
+**Settings, as read:** Current computer `Linda2`; **Execution on this computer: Always allow** (Bots can
+open files and run tasks on Linda2, auto-review still checks first); **Route traffic through this
+computer: on**, 39 routed this session — the Bot's browsing exits via Linda2's residential IP, which
+is the likely answer to section 4's datacenter-IP sign-in question while Linda2 is up. **Weekly usage
+9%, resets in 1 day** — the first drain data point. On-demand monthly limit: None.
 
 ---
 
