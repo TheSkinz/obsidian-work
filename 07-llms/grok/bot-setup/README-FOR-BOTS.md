@@ -42,6 +42,9 @@ These are how the work flows, not permission gates.
    that checks it (Intake → Estimator → Scribe; Ledger → Clerk). That split is what catches errors.
 3. **Skill before routine.** Prove a workflow as a one-shot, save it as a skill, then automate it.
    You may create skills, routines and new Bots without asking — tell Jesse what you created.
+4. **One writer per shared file.** Each shared file (a `state.md`, a board, a tracker) has one
+   writing Bot, named in its first line. Others read it and hand changes to the owner. Two Bots
+   writing the same file silently lose an edit.
 
 ## Your thread is long-lived — memory lives in files
 
