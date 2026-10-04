@@ -173,6 +173,32 @@ is correct. `/permissions` does not exist in mobile Remote Control sessions eith
 that worked was editing `settings.json` in the `TheSkinz/claude-config` repo from the phone's
 browser and pulling it on Linda2, since `~/.claude` is the live clone.
 
+## A proven door can still be down, and only the check says so (2026-10-03)
+
+Two days after the restart test proved both doors, `remote_access_check.py` read **3/5** and the
+only discriminating row, `claude remote-control process running`, read **0 processes**. The
+RustDesk service was up, the scheduled task existed and sat `Ready`, `AutoAdminLogon` was on, and
+`LastTaskResult` was `0` from the 10-01 run. Everything that was easy to look at looked fine.
+
+**The task being `Ready` means registered and not currently running — it is not a health signal.**
+The vault door was simply shut, with nothing anywhere announcing it. What closed it between 10-01
+and 10-03 is not recorded; the wrapper loops forever, so the likeliest cause is the console window
+being closed rather than the process dying.
+
+`Start-ScheduledTask -TaskName 'Claude Remote Control vault'` restored it and the check went to
+4/5. **Two verification notes worth keeping.** `LastTaskResult 0` only says the launcher
+succeeded, not that Remote Control came up: confirm the `cmd` window titled
+`Claude Remote Control - vault` plus its `claude` children, or just re-run the check. And starting
+Remote Control creates `~/.claude/bridge-spawn/cse_*` — runtime state, gitignored 2026-10-03 so it
+stops showing as untracked in the config repo.
+
+**`claude rc` is not a thing.** There is no `rc` subcommand; `claude --help` carries only the
+`--remote-control [name]` flag, and the working form is `claude remote-control --name vault`.
+The `rc` that exists is the in-session slash command `/rc vault`, documented above for carrying a
+desk conversation over. Easy to conflate from the phone.
+
+---
+
 ## Before leaving town (2026-10-01)
 
 Both lockouts, 09-16 and 09-23, were caused by a Windows Update restart in the early morning
