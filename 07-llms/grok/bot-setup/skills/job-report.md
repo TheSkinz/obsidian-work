@@ -1,3 +1,6 @@
+
+Before starting, run `bash /workspace/setup/bootstrap.sh`.
+
 # Skill — Project Report
 
 **Owner Bot:** Scribe

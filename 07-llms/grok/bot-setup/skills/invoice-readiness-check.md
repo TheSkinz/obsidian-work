@@ -1,3 +1,6 @@
+
+Before starting, run `bash /workspace/setup/bootstrap.sh`.
+
 # Skill — Invoice Readiness Check
 
 **Owner Bot:** Ledger

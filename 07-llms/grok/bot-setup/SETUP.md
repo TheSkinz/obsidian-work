@@ -1145,6 +1145,45 @@ reset. They are the next candidates for skill-before-routine.
 
 **Inference (Architect's, unproven):** many surviving trees show a birth time of about 2026-10-03 21:24 CDT. That points to a box or workspace refresh then that kept some folders and dropped others, or to a deletion by some Bot, with no log naming who. **Either way, `/workspace` is a working area, not storage.** The copy-out rule in README-FOR-BOTS ("Nothing is done until it leaves here") is the real protection. **Any finished artifact goes to Jesse as a chat attachment or to OneDrive the same day**, and `/workspace` holds only what can be rebuilt.
 
+### Skills generalized; job state rebuilt from the vault. TESTED 2026-10-04.
+
+**Ruling (Jesse):** skills hold method only. Form layouts go in `/workspace/setup/forms/<form-type>.json`,
+and values go in `/workspace/jobs/<USA#>/`. At most one example per skill, labeled "do not reuse values".
+This was prompted by the Bots' thread-written skills baking in USA26046 Cenovus values, including a
+field map with `"text": "Cenovus"`.
+
+**Audit (Architect's grep for job identifiers), before → after:**
+- skills: 43 hits → 22
+- Receipt Typesetting 14 → 1 (the labeled example)
+- Service: ISNetworld 9 → 2
+- Fuel Form 7 → 4
+- the combined field map was split into `forms/debusk-service-receipt.json` (layout, no values) and `jobs/USA26046/receipt-values.json`
+
+What remains: Duration Model, Proposal Assembly and Work-Up Billing Math cite vault-sourced
+closed-job examples (USA26038, DSP26092, F-802), which are evidence, not defaults. The audit is at
+`/workspace/setup/audit-job-specifics.md`.
+
+**Dry run passed, verified by Claude Code from the OneDrive copy.** Receipt Typesetting on a fake
+job `USA99999` produced a receipt with only TESTCO / Test Person / Testville TX / WO 00000000 / Op
+One 12 hrs, and no Cenovus anywhere. On `USA99998` (no folder) it stopped and asked rather than
+borrowing.
+
+**Vault-first job state.** The README now requires `state.md` to start from `active-jobs.md` and
+the heater cards, with each line tagged `[vault]` or `[bot]`. Ledger's rebuild took USA26046 from
+**12 open items to 2**: the 10787 density (Jesse) and the 7100 PDF still writing 12 hrs against
+the 7.5-hr ruling (no owner). The rest was already settled in the vault.
+
+**Mirror drift found while syncing `skills/`:**
+- **The live Duration Model was missing three Jesse rulings of 2026-09-17** that the vault copy holds:
+  the Pig line is the task, not travel; round down on ties; disclose a shave. Estimator had been
+  running without them, so the vault copy is pushed to live.
+- The live Receipt Extraction carries a Mob/Demob lump-sum section (Jesse 2026-09-24),
+  consistent with `company-context.md`, and is mirrored back.
+- Seven Bot-written skills are newly mirrored: receipt-typesetting, receipt-clean-copy, fuel-form, the three
+  `service-*` skills, and safety-lms-training.
+
+**Lesson: mirrors drift in both directions**, so check by diff, not by assumption.
+
 ### Backup, reset test and Jesse's tip digest. TESTED 2026-10-04.
 
 **Backup to OneDrive works, and Claude Code can see it.** Architect mirrored `/workspace/{setup,jobs,bots}`

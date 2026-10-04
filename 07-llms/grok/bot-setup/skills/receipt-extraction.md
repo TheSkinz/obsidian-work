@@ -1,3 +1,6 @@
+
+Before starting, run `bash /workspace/setup/bootstrap.sh`.
+
 # Skill — Receipt Extraction
 
 **Owner Bot:** Ledger
@@ -59,6 +62,7 @@ Stand-by (2 hrs) wait for approval. 2pm-7pm: Rig-out (5 hrs)."
 | Pigs | Materials | qty by type | Unit rate |
 | Third Party | Third Party | hrs | Cost plus markup |
 | Plant Down Time | Stand-by | hrs | Billed through the Trimax Pumper and Filter Press stand-by rates only. There is no generic stand-by line |
+| Mob / Demob | Mob / Demob (lump sum) | 1 event | Proposal lump sum. Jesse 2026-09-24: Mob and Demob are lump sum. The receipt documents the event, equipment IDs, and named crew. Do not invent hours or a dollar amount from the ticket — bill the proposal lump sum. Blank hours on a mob/demob ticket are expected, not a missing-hours flag. |
 
 ## Step 2 — cross-check against the proposal
 
@@ -81,6 +85,10 @@ a NOT READY verdict on a job that was ready. **Say nothing about signatures — 
 A clean structured table formatted for entry into the Ticket Breakdown spreadsheet. Use the
 built-in Spreadsheets skill. File naming for the breakdown itself:
 `USA[YYNNN] [Facility Name] [Scope] Trimax Ticket Breakdown`.
+
+## Mob and Demob
+
+Jesse, 2026-09-24: **Mob and Demob are lump sum.** A mobilization or demobilization service receipt is documentation of the event (who/what mobilized), not an hourly bill. Record equipment IDs and named crew as written. Leave hourly qty out of the hourly rollup. Pull the dollar amount only from the proposal (or other priced source Jesse provides) — never invent it from the ticket. Do not flag blank hours on a mob/demob ticket as incomplete labor.
 
 ## Plant Down Time
 
