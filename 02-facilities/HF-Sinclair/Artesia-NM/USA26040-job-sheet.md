@@ -11,10 +11,9 @@ tags: [job-sheet, HF-Sinclair, USA26040]
 
 # USA26040 — HF Sinclair Navajo Refinery, Artesia, NM
 
-> ⚠ **HISTORICAL — the original August plan, not what ran.** The job was postponed before its
-> Aug 4–6 window (Jesse, 2026-08-21) and later completed by another USADebusk crew (Jesse, 2026-10-05).
-> The dates, crew and staging below are the lapsed August plan; the scope, connections and equipment
-> sections describe the quoted job.
+> ⚠ **HISTORICAL — the pre-job plan, not what ran.** The job was run 2026-08-05 → 08 by another
+> USADebusk crew (DS supervisor Danilo Ramirez; receipts 11555–11561). The crew and dates below are the
+> original plan. Actuals are on [[H-2421]].
 
 > Vault-native copy of the printable crew job sheet. The canonical printable version is
 > `USA26040-job-sheet.pdf` (rendered from `USA26040-job-sheet.html`). A job sheet is static —
