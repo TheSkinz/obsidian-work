@@ -178,7 +178,7 @@ standby (98 hrs combined) was not planned in the quote at all.
 
 ## Heaters at This Facility
 
-- [[F-801]] — PS8, Crude. Identical to [[F-802]] and adjacent to it; never pigged. Decoke quoted as [[DSP26064]], mob 2026-10-12
+- [[F-801]] — PS8, Crude. Identical to [[F-802]] and adjacent to it; never pigged. Decoke quoted as [[DSP26064]], mob and start work 2026-10-19 with decoking from 10-20 (per the ExxonMobil email chain, 2026-10-05)
 - [[F-802]]
 - [[F-901]]
 - [[F-301]]
