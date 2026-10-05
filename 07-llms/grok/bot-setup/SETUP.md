@@ -1181,6 +1181,9 @@ nothing changed, and posts a Friday one-line count. Each run is logged in `setup
 test run copied 46 files, and its log line was **read by Claude Code on the local OneDrive mirror**.
 Jesse created it, after the same routine was blocked when Claude Code tried to create it.
 
+**Roster: 13 Bots.** Jesse deleted Gate, Forge and the "Test probe" chat on 2026-10-04 and kept
+Studio. Their `/workspace/bots/{Gate,Forge}/memory.md` stubs and backup copies are harmless leftovers.
+
 **USA26046 open items: zero.** The 7100 12-hr receipt is closed, not reissued, because admin already
 has it (Jesse). The 10787 density is closed as above.
 
