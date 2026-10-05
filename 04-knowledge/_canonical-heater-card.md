@@ -243,6 +243,10 @@ DERIVED but hand-entered (no formula layer) — re-sum on any edit, do not trust
         or double-counted across heaters on a multi-heater job).
   Pig includes flow-test hours — before/after flow tests are NOT a separate column; fold
         into Pig. Add a Flow Test column only when a real receipt breaks the hours out.
+  Pig also includes soda-ash PASSIVATION hours — the pump is running (Jesse, 2026-10-05).
+  NO GAPS: every hour from rig-in start to job completion is allocated to a column, including
+        time between receipts (e.g. waiting on a third party after a short shift goes to
+        Stand-By). The columns plus Stand-By must sum to the wall-clock span (Jesse, 2026-10-05).
   "–" = task confirmed did NOT occur (e.g. no smart pig on this job).
   "?" = task occurred-status unrecorded / unknown — distinct from "–".
   CONDITION (second-to-last column) — the JOB CLASS this decoke belongs to, because a decoke's

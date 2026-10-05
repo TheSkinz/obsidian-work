@@ -27,7 +27,7 @@ Benchmarks as stated in `usadebusk-estimating`: **100 ft/hr** pigging (nominal f
 | F-802 | ExxonMobil | 2026-04-28 | USA26022 | routine | 2 | 5 | 4 | 55 | 6 | 20 | unmarked | 49 | 85 | 14,280 | 260 | 52 |
 | 01-BA-105 | Flint Hills Resources | 2026-01-20 | USA26005 | crash, hours-blended | 1 | 2 | 10.5 | 29 | –* | –* | see card | 40.5 | 39.5 | (not recorded) | - | - |
 | 02-BA-201 | Flint Hills Resources | 2026-01-23 | USA26005 | crash | 1 | 2 | –* | 10 | 5 | 7 | see card | – | 25 | (not recorded) | - | - |
-| H-2421 | HF Sinclair | 2026-08-06 | USA26040 | first | 1 | 1 | 9 | 12 | 3 | 8 | unmarked | 16 | 32 | 904 | 75 | 75 |
+| H-2421 | HF Sinclair | 2026-08-06 | USA26040 | first | 1 | 1 | 9 | 13 | 3 | 8 | unmarked | 24 | 33 | 904 | 70 | 70 |
 | H-19 | HF Sinclair | 2025-08-17 | USA25051 | crash, rig-quarantined | 1 | 1 | 10 | 103 | – | 30 | quarantined | 41 | 143 | 4,934 | 48 | 48 |
 | H-19 | HF Sinclair | 2026-07-13 | USA26038 | crash, rig-quarantined | 1 | 1 | 7 | 74 | 6 | 2 | quarantined | 55 | 89 | 4,934 | 67 | 67 |
 | H-20 | HF Sinclair | 2025-08-17 | USA25051 | crash, rig-quarantined | 1 | 1 | 22 | 69 | – | 38 | quarantined | 63 | 129 | 2,868 | 42 | 42 |
@@ -55,7 +55,7 @@ Mode-normalized per-pig rates (elapsed ÷ Mode), so jobs run in different modes 
 | Job class | Rows w/ norm rate | Range (ft/hr per pig) | Mean |
 |---|---|---|---|
 | crash | 6 | 13–67 | 33 |
-| first | 2 | 75–75 | 75 |
+| first | 2 | 70–75 | 72 |
 | routine | 7 | 47–259 | 98 |
 
 > 6 row(s) carry an elapsed rate but no `Mode`, so they are excluded from these per-pig means — add `Mode` to those Task Durations rows to include them.

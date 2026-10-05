@@ -133,7 +133,7 @@ USADebusk Filter Press #1 specs (all three are this model):
 | Foam | Soft foam cylinder — no abrasive elements | Opening passes, initial flow establishment, verification |
 | TC (Tungsten Carbide Pin) | Urethane body (84A Duro typical, 78A special), TC pins embedded during molding | Primary coke removal — main workhorse pig |
 | HR (Hell Raiser / Hell Razor — both acceptable) | Harder durometer body, aggressive cleaning | Heavy fouling, pitch-laden tubes |
-| Swab | Oversized soft urethane | Final cleanup, verification, larger tube sections |
+| Swab | Oversized soft urethane | Final cleanup, verification, larger tube sections. A low-density swab passes a bore far below its nominal size — 10" swabs ran through a 5.761" ID on USA26040 (H-2421). Pigs and regular gauge foam cannot; swabs are built for it, with some risk (Jesse, 2026-10-05) |
 | Honeycomb (HC) | Polyurethane body with tapered conical ends; appendages thread into the body rather than being cast in | A different-manufacturer style, run occasionally — limited supply, roughly 1 project in 5 |
 
 ⚠ **Honeycomb sizes are stated in millimetres, not inches** (Jesse, 2026-09-07) — convert before comparing to a tube ID. Registry and worked instances canonical in `usadebusk-equipment`.
