@@ -14,10 +14,10 @@ Images for the combined USA26046 project report, gathered as Jesse uploads them.
 
 | File | Heater | What it shows (Jesse) |
 |---|---|---|
-| `USA26046-vac-pass5-12in-coke-1.jpg` | [[PR-170029]] Vac | Coke removed from the 12" tube, pass 5, the dirtiest of the eight passes. Held up in front of the launcher barrel and a red valve |
-| `USA26046-vac-pass5-12in-coke-2.jpg` | [[PR-170029]] Vac | The same pass 5 12" coke, resting on the launcher, with a nut beside it for scale |
-| `USA26046-vac-radiant-outlet-layout-sketch.png` | [[PR-170029]] Vac | Jesse's rough sketch of the radiant outlet flange layout, seen facing the outlets: upper 8 5 · 4 1, lower 7 6 · 3 2. **Source for a clean graphic, not for use as-is** |
-| `USA26046-vac-conv-inlet-piping-deposits.jpg` | [[PR-170029]] Vac | Thick deposits removed from the external 6" convection inlet piping, a collection from all passes. Each pass's external inlet piping was extremely fouled |
+| `files/USA26046-vac-pass5-12in-coke-1.jpg` | [[PR-170029]] Vac | Coke removed from the 12" tube, pass 5, the dirtiest of the eight passes. Held up in front of the launcher barrel and a red valve |
+| `files/USA26046-vac-pass5-12in-coke-2.jpg` | [[PR-170029]] Vac | The same pass 5 12" coke, resting on the launcher, with a nut beside it for scale |
+| `files/USA26046-vac-radiant-outlet-layout-sketch.png` | [[PR-170029]] Vac | Jesse's rough sketch of the radiant outlet flange layout, seen facing the outlets: upper 8 5 · 4 1, lower 7 6 · 3 2. **Source for a clean graphic, not for use as-is** |
+| `files/USA26046-vac-conv-inlet-piping-deposits.jpg` | [[PR-170029]] Vac | Thick deposits removed from the external 6" convection inlet piping, a collection from all passes. Each pass's external inlet piping was extremely fouled |
 
 ## Report content decisions
 

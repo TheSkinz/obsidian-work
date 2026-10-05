@@ -16,7 +16,7 @@ tags: [job-sheet, HF-Sinclair, USA26040]
 > original plan. Actuals are on [[H-2421]].
 
 > Vault-native copy of the printable crew job sheet. The canonical printable version is
-> `USA26040-job-sheet.pdf` (rendered from `USA26040-job-sheet.html`). A job sheet is static —
+> `files/USA26040-job-sheet.pdf` (rendered from `files/USA26040-job-sheet.html`). A job sheet is static —
 > created at bid-win from the quoted work-up. Actuals and timeline live on the job report, never here.
 >
 > **Internal crew document.** No rates, markup, or quoted totals — those live on the quote and the
@@ -100,7 +100,7 @@ Full tube geometry, config rollup, and pig spec history: [[H-2421]].
 
 ## Notes
 
-Printable deliverable: `USA26040-job-sheet.pdf` (source `USA26040-job-sheet.html`), alongside this file. One page, Letter.
+Printable deliverable: `files/USA26040-job-sheet.pdf` (source `files/USA26040-job-sheet.html`), alongside this file. One page, Letter.
 
 First execution of H-2421. The card was verified line-by-line against GA drawings J04917 CC1/RC1, the Navajo nozzle sheet, and the USAD Excel on 2026-07-19, so coil data going into this job is source-derived rather than field-estimated. Two residual documentation gaps carry into execution: the RC1B radiant-circuit drawing was never located (mirror geometry approved as working truth), and the C↔D jumper length is field-determined.
 

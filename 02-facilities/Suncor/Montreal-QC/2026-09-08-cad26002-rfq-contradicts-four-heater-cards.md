@@ -154,7 +154,7 @@ convection figures broadly agree and the whole discrepancy sits in the radiant:
 | B-1001 | Radiant | 4,600 | 3,954 | **−646** |
 
 Jesse ruled 2026-09-17 to re-read the B-102 source before changing anything. **Read** from
-`APPENDIX D - B-102 PID and Drawings.pdf`, the only B-102 source in the package:
+`files/APPENDIX D - B-102 PID and Drawings.pdf`, the only B-102 source in the package:
 
 **1. The card's figures are a faithful transcription — of the wrong list.** Every B-102 tube figure
 traces to the `LISTE DE MATERIEL` on drawing **010-219D0002 rev 7** (p7): 6" items 8 + 22 =

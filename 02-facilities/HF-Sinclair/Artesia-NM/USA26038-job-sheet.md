@@ -5,14 +5,14 @@ client: HF Sinclair Navajo
 facility: HF-Sinclair-Artesia-NM
 last-updated: 2026-07-11
 tags: [job-sheet, HF-Sinclair, USA26038]
-source: "USA26038-job-sheet.html in this folder, rendered to USA26038-job-sheet.pdf — created at bid-win from the quoted work-up"
+source: "files/USA26038-job-sheet.html in this folder, rendered to files/USA26038-job-sheet.pdf — created at bid-win from the quoted work-up"
 verified: never
 ---
 
 # USA26038 — HF Sinclair Navajo Refinery, Artesia, NM
 
 > Vault-native copy of the printable crew job sheet. The canonical printable version is
-> `USA26038-job-sheet.pdf` (rendered from `USA26038-job-sheet.html`). A job sheet is static —
+> `files/USA26038-job-sheet.pdf` (rendered from `files/USA26038-job-sheet.html`). A job sheet is static —
 > created at bid-win from the quoted work-up. Actuals and timeline live on the job report, never here.
 
 ---
@@ -129,4 +129,4 @@ Full tube geometry, config rollup, and pig spec history: [[H19]], [[H20]].
 
 ## Notes
 
-Printable deliverable: `USA26038-job-sheet.pdf` (source `USA26038-job-sheet.html`), alongside this file. Billing tables reflect the quoted work-up (12-person resource plan). Actual mobilized crew and timeline are recorded on the job report, not here.
+Printable deliverable: `files/USA26038-job-sheet.pdf` (source `files/USA26038-job-sheet.html`), alongside this file. Billing tables reflect the quoted work-up (12-person resource plan). Actual mobilized crew and timeline are recorded on the job report, not here.

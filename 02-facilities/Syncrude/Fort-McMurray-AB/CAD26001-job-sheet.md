@@ -9,7 +9,7 @@ last-updated: 2026-09-02
 tags: [job-sheet, Syncrude, CAD26001]
 ---
 
-![DeBusk Services Canada](debusk-services-canada-logo.png)
+![DeBusk Services Canada](files/debusk-services-canada-logo.png)
 
 # CAD26001 — Syncrude Mildred Lake, Fort McMurray, AB
 
@@ -17,7 +17,7 @@ tags: [job-sheet, Syncrude, CAD26001]
 > is sold, planned, mobilized and executed exactly the same way as US work.
 
 > Vault-native copy of the printable crew job sheet. The printable is
-> `CAD26001-job-sheet.html` — print it from the browser. A job sheet is static —
+> `files/CAD26001-job-sheet.html` — print it from the browser. A job sheet is static —
 > created at bid-win from the quoted work-up. Actuals and timeline live on the job report, never here.
 >
 > **No rendered PDF for this job (retired 2026-09-02, Jesse).** One existed, dated 2026-08-25, but the
@@ -134,7 +134,7 @@ Full tube geometry, config rollup and pig spec history: [[7-1-F-1]].
 
 ## Reference Drawings (page 2 of the printable)
 
-![Fig 1 — connection points](CAD26001-fig1-connections.jpg)
+![Fig 1 — connection points](files/CAD26001-fig1-connections.jpg)
 
 **Fig 1 — Connection Points.** The temporary 180s are at the control valve station convection inlet
 flanges, one per pass; both the launcher and the receiver of each circuit are at the radiant outlet
@@ -142,12 +142,12 @@ flanges. Because the coils are looped at the inlets, **no launcher or receiver l
 inlet end at all** — the 180s take their place. Numbers are coils 1–8. **7-2 F-1 is a mirror
 image** — plenums, floor access doors, stairways and outlet-tube movement all opposite hand. We work 7-1.
 
-![Fig 3 — pass routing](CAD26001-fig3-pass-routing.jpg)
+![Fig 3 — pass routing](files/CAD26001-fig3-pass-routing.jpg)
 
 **Fig 3 — Pass Routing, Cells A–E.** All 8 passes traced through the radiant cells. Every coil is
 uniform — 47 tubes, 2,237 ft — which is why any pairing gives the same 4,474 ft circuit.
 
-![Fig 2 — elevations](CAD26001-fig2-elevations.jpg)
+![Fig 2 — elevations](files/CAD26001-fig2-elevations.jpg)
 
 **Fig 2 — Longitudinal & Sectional Elevations.** 6.625" OD Sch 40 tubes, A-335 P-5, 63'-6" effective
 convection length. Sectional views looking from the 'Z' and 'T' ends. Inlets 1, 2, 7 & 8 at EL. 66'-9";
@@ -157,7 +157,7 @@ inlets 3, 4, 5 & 6 on 6"-300# RF WN flanges. Colour banding is per pass.
 
 ## Notes
 
-Printable deliverable: `CAD26001-job-sheet.html`, alongside this file — two pages, project and heater
+Printable deliverable: `files/CAD26001-job-sheet.html`, alongside this file — two pages, project and heater
 data on page 1, the three reference drawings on page 2. Print from the browser; there is no PDF twin
 (see the note at the top of this file).
 

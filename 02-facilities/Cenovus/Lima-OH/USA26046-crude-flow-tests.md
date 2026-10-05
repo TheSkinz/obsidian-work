@@ -4,7 +4,7 @@ job-number: USA26046
 client: Cenovus Energy
 facility: Cenovus-Lima-OH
 heaters: [PR-170028]
-source: field sheets in `USA26046-flow-tests-crude-hds-coker.pdf` (beside this note; Jesse-supplied 2026-10-02); pass 3 from the corrected sheet `USA26046-crude-flow-test-pass3.jpg`
+source: field sheets in `files/USA26046-flow-tests-crude-hds-coker.pdf` (beside this note; Jesse-supplied 2026-10-02); pass 3 from the corrected sheet `files/USA26046-crude-flow-test-pass3.jpg`
 verified: 2026-10-02
 tags: [flow-test, Cenovus, Lima, USA26046]
 ---

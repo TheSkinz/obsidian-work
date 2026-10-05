@@ -67,12 +67,12 @@ The 2026 TA RFQ package. Drawing appendices for the five awarded heaters and the
 
 | In this folder | Covers |
 |---|---|
-| [RFQ Decoke 2026 TA](<RFQ Decoke 2026 TA - B-101 - B-102 - B-103 - B-151 - B-101 REV.pdf>) | Governing RFQ text, all five heaters |
-| [APPENDIX C](<APPENDIX C - B-101 PID and Drawings.pdf>) | [[B-101]] P&ID and drawings |
-| [APPENDIX D](<APPENDIX D - B-102 PID and Drawings.pdf>) | [[B-102]] P&ID and drawings |
-| [APPENDIX E](<APPENDIX E - B-1001 PID and Drawings.pdf>) | [[B-1001]] P&ID and drawings |
-| [APPENDIX F](<APPENDIX F - B-103 PID and Drawings.pdf>) | [[B-103]] P&ID and drawings |
-| [APPENDIX G](<APPENDIX G - B-151 PID and Drawings.pdf>) | [[B-151]] P&ID and drawings |
+| [RFQ Decoke 2026 TA](<files/RFQ Decoke 2026 TA - B-101 - B-102 - B-103 - B-151 - B-101 REV.pdf>) | Governing RFQ text, all five heaters |
+| [APPENDIX C](<files/APPENDIX C - B-101 PID and Drawings.pdf>) | [[B-101]] P&ID and drawings |
+| [APPENDIX D](<files/APPENDIX D - B-102 PID and Drawings.pdf>) | [[B-102]] P&ID and drawings |
+| [APPENDIX E](<files/APPENDIX E - B-1001 PID and Drawings.pdf>) | [[B-1001]] P&ID and drawings |
+| [APPENDIX F](<files/APPENDIX F - B-103 PID and Drawings.pdf>) | [[B-103]] P&ID and drawings |
+| [APPENDIX G](<files/APPENDIX G - B-151 PID and Drawings.pdf>) | [[B-151]] P&ID and drawings |
 
 **The RFQ filename is Suncor's and carries their typo** — it reads `B-101 - B-102 - B-103 - B-151 - B-101`, listing B-101 twice and never naming B-1001. Nothing is missing; B-1001 is Appendix E. The name is kept verbatim so it still matches the package as Suncor issued it.
 
