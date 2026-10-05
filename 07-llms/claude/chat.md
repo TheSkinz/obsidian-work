@@ -67,3 +67,11 @@ It also lacked three rules that global CLAUDE.md carries: the nothing-is-confide
 **For the next audit:** the vault holds no copy of either text, so ask Jesse to paste them again. Don't assume this note still matches the live settings.
 
 On the skill-library section above: as of 2026-10-01 the claude.ai library syncs *down* into Claude Code at `~/.claude/skills/synced/`. That manifest lists only Anthropic's skills (docs, docx, pdf, pptx, xlsx, skill-creator, google-workspace, import-memory), and no `usadebusk-*`. That suggests option 3 above is effectively what's live, but it is inferred from the manifest; the claude.ai library itself was not checked.
+
+## Memory on this account is one nightly summary, not topics (2026-10-05)
+
+Read from `claude.ai > Settings > Memory` in Chrome on 2026-10-05. The account shows a single **Summary**: "Here's what Claude remembers about you! This summary is regenerated each night and does not include projects." It has one pencil icon, under "Work context" and "Personal context" headings. It has no per-topic list.
+
+So **the 6 memories entered on 2026-10-04 were merged on purpose**: everything is folded into that one summary and rewritten nightly. The help article describing separate, individually editable topics (support.claude.com 11817273) does not match this account, and splitting the memories, or importing them via "Start import", ends up in the same summary. **Edits through the pencil are slow and land at the next nightly regeneration.** Make them once, then check the next day rather than re-editing.
+
+The regenerated text spells the company `USADeBusk`, the retired spelling. It is the generator's wording, not something entered.
