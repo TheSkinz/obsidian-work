@@ -143,6 +143,8 @@ USADebusk Filter Press #1 specs (all three are this model):
 - When pig OD ≤ tube ID: pins extend and dig into coke deposits
 - When pig OD > tube ID (oversized): urethane body compresses; pins lay back — differential hardness means pins cut coke but deflect off harder tube wall without damage
 
+Measured appendage hardness values live in [[pig-appendage-hardness]]. That is rare-ask reference for a customer's metallurgy concern only, never for routine customer documents.
+
 ## Tube Dimensions (Additional Sizes)
 
 Beyond the 4"/5"/6" sizes in `usadebusk-core`'s Common Tube Dimensions table:
