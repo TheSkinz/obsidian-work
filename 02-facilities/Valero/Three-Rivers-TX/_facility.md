@@ -44,7 +44,7 @@ Distance from the Deer Park shop is **240 one-way road miles**, the figure DSP#2
 
 ## Contracted Rates
 
-**No contract rates have been confirmed for this site.** The working basis is the Valero rate set carried on `DSP26094` (Valero Texas City, H-58 Coker, July 2026), which is **identical line-for-line to the Valero Port Arthur `DSP26035` set** in [[02-facilities/Valero/Port-Arthur-TX/_facility|Port Arthur]] — four months apart, two refineries, two independently produced documents. That pattern reads as a Valero master schedule rather than site pricing, which makes it the right precedent to quote from here, but it is precedent and not a confirmed contract. Read the governing contract for Three Rivers before finalising.
+**No contract rates have been confirmed for this site.** The working basis is the Valero rate set carried on `DSP26094` (Valero Texas City, H-58 Coker, July 2026), which is **identical line-for-line to the Valero Port Arthur `DSP26035` set** in the Port Arthur facility note (`02-facilities/Valero/Port-Arthur-TX/_facility.md`) — four months apart, two refineries, two independently produced documents. That pattern reads as a Valero master schedule rather than site pricing, which makes it the right precedent to quote from here, but it is precedent and not a confirmed contract. Read the governing contract for Three Rivers before finalising.
 
 | Line Item | Rate | Unit |
 |---|---|---|

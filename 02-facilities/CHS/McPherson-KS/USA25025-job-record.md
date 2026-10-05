@@ -191,7 +191,7 @@ Trimax hourly rates are crew-inclusive or labor was never entered. Unresolved.
   obtained.
 - **Customer request — pig types + bolted pigs: ANSWERED 2026-07-20.** Randy Lenhart's pig-type and
   bolted-pig (hardness + projection) questions answered via email body, not a formal supplement (Jesse's
-  call). Hardness sourced from AlphaMet File 23890 (see `00-inbox/2026-07-20-pig-appendage-hardness-reference.md`).
+  call). Hardness sourced from AlphaMet File 23890 (see [[pig-appendage-hardness]]).
   Disclosure held to: TC ~1700 HV standard, 600 HB / stainless ~260 HV on request; catalog/vendors/selection
   logic withheld; projection answered functionally (no number). Hell Razor and foam-pig legend dropped from
   the email at Jesse's direction.

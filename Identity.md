@@ -31,3 +31,5 @@ Jesse is a technical specialist based in League City, Texas. He works at USADebu
 - Actively experiments with AI workflows outside of USADebusk tasks
 
 - Long-term goal: systematize AI tooling across both personal and USADebusk domains
+
+- Recurring efficiency analysis of his 2023 Tesla Model 3 trip data: [[tesla-efficiency]]

@@ -229,6 +229,13 @@ the work is worth having is.
 | [[workup-billing-math]] | Work-Up Billing Math skill — Estimator |
 | [[proposal-assembly]] | Proposal Assembly skill — Scribe |
 | [[brand-standards]] | Brand Standards skill — Scribe (added 2026-09-07; Project Report and Proposal Assembly both depend on it) |
+| [[receipt-clean-copy]] | Receipt Clean Copy skill — Clerk (Bot-written, mirrored 2026-10-04) |
+| [[receipt-typesetting]] | Receipt Typesetting skill — Forms (Bot-written, mirrored 2026-10-04) |
+| [[fuel-form]] | Fuel Form skill — Fuel (Bot-written, mirrored 2026-10-04) |
+| [[service-gmail]] | Gmail service skill — shared signed-in session, mainly Docs (Bot-written, mirrored 2026-10-04) |
+| [[service-outlook]] | Outlook service skill — shared signed-in session, mainly Docs (Bot-written, mirrored 2026-10-04) |
+| [[service-isnetworld]] | ISNetworld service skill — Empower (Bot-written, mirrored 2026-10-04) |
+| [[safety-lms-training]] | Safety LMS Training skill — Empower (Bot-written, mirrored 2026-10-04) |
 
 **Read [[BACKTEST-SPECIMEN]] before uploading the four estimating skills.** It works all four against
 DSP26085 — six rules reproduce the real quote to the hour and to the line, and one rule was
