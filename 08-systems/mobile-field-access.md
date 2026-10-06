@@ -209,6 +209,12 @@ was running although the logon task showed `Ready`. `schtasks /run /tn "Claude R
 brought it back (`claude.exe remote-control --name vault --spawn same-dir` confirmed in the process
 list). Second time the task has been found stopped; cause again not recorded.
 
+**Second recurrence the same day, 2026-10-06 ~10:35.** Restarted at 10:24, found dead by 10:37
+while Jesse was experimenting with the iPhone app. This time the wrapper `cmd` itself was gone as
+well as `claude.exe`, so the whole console window closed: the loop cannot exit by itself. The
+same `schtasks /run` restored it (new `claude.exe` at 10:38). The cause still can't be recovered,
+because the wrapper echoes its exit codes only to that console. Logging them to a file is the fix.
+
 ---
 
 ## Before leaving town (2026-10-01)
