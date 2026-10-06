@@ -192,10 +192,22 @@ succeeded, not that Remote Control came up: confirm the `cmd` window titled
 Remote Control creates `~/.claude/bridge-spawn/cse_*` — runtime state, gitignored 2026-10-03 so it
 stops showing as untracked in the config repo.
 
-**`claude rc` is not a thing.** There is no `rc` subcommand; `claude --help` carries only the
-`--remote-control [name]` flag, and the working form is `claude remote-control --name vault`.
-The `rc` that exists is the in-session slash command `/rc vault`, documented above for carrying a
-desk conversation over. Easy to conflate from the phone.
+**`claude rc` is a real subcommand as of 2.1.291 (2026-10-06).** It is the short form of
+`claude remote-control`; the phone app's Code > Devices > Add device screen now tells you to run
+it, and `claude rc --help` on Linda2 answered with Remote Control's own auth error rather than
+treating `rc` as a prompt. An earlier version of this note said there was no `rc` subcommand,
+which was true of the build it was written against and is stale now. Two things still distinguish
+it. Run from a shell it is the server mode that puts Linda2 under **Devices** and lets the phone
+start new sessions; the in-session slash command `/rc` (or `/remote-control`) only shares the one
+session it is typed into and never makes the machine appear under Devices. And from a bare
+terminal it fails with "Remote Control requires claude.ai subscription auth" because
+`ANTHROPIC_API_KEY` is set at user scope — clear it for that window first
+(`$env:ANTHROPIC_API_KEY=$null`), which is what `start_remote_control.cmd` does.
+
+**Recurrence 2026-10-06.** Devices was empty on the phone at the desk; no `remote-control` process
+was running although the logon task showed `Ready`. `schtasks /run /tn "Claude Remote Control vault"`
+brought it back (`claude.exe remote-control --name vault --spawn same-dir` confirmed in the process
+list). Second time the task has been found stopped; cause again not recorded.
 
 ---
 
