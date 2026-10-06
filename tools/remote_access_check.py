@@ -45,7 +45,8 @@ $wl = Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
   svc_start     = if ($svc) { [string]$svc.StartType } else { $null }
   task_state    = if ($task) { [string]$task.State } else { $null }
   task_action   = if ($task) { [string]$task.Actions[0].Arguments } else { $null }
-  task_repeat   = if ($task) { [string]$task.Triggers[0].Repetition.Interval } else { $null }
+  task_repeat   = if ($task) { (@($task.Triggers | ForEach-Object { $_.Repetition.Interval }) | Where-Object { $_ }) -join ',' } else { $null }
+  task_next     = if ($task) { [string](Get-ScheduledTaskInfo -TaskName '%TASK%').NextRunTime } else { $null }
   rc_count      = @($rc).Count
   pause_until   = [string]$ux.PauseUpdatesExpiryTime
   autologon     = [string]$wl.AutoAdminLogon
@@ -93,9 +94,11 @@ def main():
         f"state={s['task_state']}" if s["task_state"] else "missing",
     ))
     rows.append((
-        "rc_watchdog.ps1" in (s["task_action"] or "") and s["task_repeat"] == "PT5M",
+        "rc_watchdog.ps1" in (s["task_action"] or "") and "PT5M" in (s["task_repeat"] or "")
+        and bool(s["task_next"]),
         "Task runs the hidden watchdog every 5 minutes",
-        f"repeat={s['task_repeat']}" if s["task_action"] else "no task action",
+        f"repeat={s['task_repeat']} next run={s['task_next'] or 'NONE — repeat only starts at next logon'}"
+        if s["task_action"] else "no task action",
     ))
     stopped = (LOG_DIR / "rc.stop").exists()
     if stopped:

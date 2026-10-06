@@ -242,8 +242,20 @@ The standing setup is **two doors, each of which survives an unattended restart:
 - **Remote Control, kept up by the scheduled task `Claude Remote Control vault`.**
   This is the vault door, and its auth is independent of the desktop app's. **Rebuilt
   2026-10-06 as a hidden watchdog.** The task runs `tools/rc_watchdog.ps1` under
-  `conhost --headless` at logon (30 s delay) and every 5 minutes after, with
-  `MultipleInstances=IgnoreNew` and a 5-minute limit. Each run takes about a second:
+  `conhost --headless`, with `MultipleInstances=IgnoreNew` and a 5-minute limit. It has two
+  triggers: at logon (30 s delay), and a time trigger repeating every 5 minutes indefinitely.
+  **Both are needed.** A repeat attached to a logon trigger only starts counting at a logon, so
+  the first build (logon trigger only, registered mid-session at 11:29) ran once at 11:31 and
+  then never again until the next logon. A phone session caught it from `NextRunTime` being
+  blank. Jesse added the time trigger by hand at 13:12, because the auto-mode classifier blocks
+  agents from editing the task; NextRunTime then read 13:15:48. `remote_access_check.py` fails
+  when NextRunTime is blank. The new trigger fired at 13:12:20 and found **no server running**,
+  so it started one (13:12:22), and it fired again on schedule at 13:15:48. The 11:30 server
+  (PID 23220) had died with no `exited` line in the log. A missing exit line means the runner
+  `cmd` was killed along with it, not that `claude` exited by itself. Leading suspect (inferred,
+  not shown): `Set-ScheduledTask` terminated processes still attached to the task, and the
+  watchdog brought it back two seconds later. If so, editing the task drops phone sessions for
+  a moment. Each run takes about a second:
   1. If no `vault` server is running, it starts `start_remote_control.cmd` in a hidden console.
      That script runs Remote Control once and appends its exit code to the log.
   2. If more than one is running, it logs a warning and touches nothing.
@@ -260,7 +272,9 @@ The standing setup is **two doors, each of which survives an unattended restart:
 
   **Tested at cutover, 2026-10-06 11:30, all through the task, not from a tool shell.** It
   started from nothing (11:29:59). A second run during a live server started no duplicate. A
-  killed server logged `exited (code 1)` and was back on the next run. The task's own process
+  server killed on purpose with `taskkill /F` logged `exited (code 1)` and was back on the next
+  run. That code 1 is the test kill, not a crash. These runs were all started by hand, so they
+  did not prove the schedule (see the two-trigger note above). The task's own process
   exits while Remote Control survives it. The update-restart path was **not** exercised live,
   because the restarted server resumes the previous phone session as a child process within
   seconds (docs: sessions resume when restarted in the same directory within ~4 h), so the
