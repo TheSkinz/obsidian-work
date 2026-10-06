@@ -249,13 +249,14 @@ The standing setup is **two doors, each of which survives an unattended restart:
   then never again until the next logon. A phone session caught it from `NextRunTime` being
   blank. Jesse added the time trigger by hand at 13:12, because the auto-mode classifier blocks
   agents from editing the task; NextRunTime then read 13:15:48. `remote_access_check.py` fails
-  when NextRunTime is blank. The new trigger fired at 13:12:20 and found **no server running**,
-  so it started one (13:12:22), and it fired again on schedule at 13:15:48. The 11:30 server
-  (PID 23220) had died with no `exited` line in the log. A missing exit line means the runner
-  `cmd` was killed along with it, not that `claude` exited by itself. Leading suspect (inferred,
-  not shown): `Set-ScheduledTask` terminated processes still attached to the task, and the
-  watchdog brought it back two seconds later. If so, editing the task drops phone sessions for
-  a moment. Each run takes about a second:
+  when NextRunTime is blank.
+
+  **Restart test passed, 2026-10-06, before the time trigger existed.** Jesse restarted Linda2
+  (System 1074 at 13:11:02, boot 13:11:36, logon event 7001 at 13:11:49). The logon trigger ran
+  the watchdog 30 s later at 13:12:20, and it found no server and started one at 13:12:22. Jesse
+  added the time trigger after that (its StartBoundary is 13:15:48), and it fired on schedule.
+  The 11:30 server left no `exited` line in the log because the shutdown killed its runner
+  `cmd` too. A missing exit line therefore means the runner died with it, not a crash. Each run takes about a second:
   1. If no `vault` server is running, it starts `start_remote_control.cmd` in a hidden console.
      That script runs Remote Control once and appends its exit code to the log.
   2. If more than one is running, it logs a warning and touches nothing.
