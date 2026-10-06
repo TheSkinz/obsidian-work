@@ -86,6 +86,10 @@ Use **Agent Builder** first for simple, declarative, read-only agents — lower 
 
 Start read-only: grounded in SharePoint, Outlook, and Teams with citations enabled, no write actions. Add write actions only after the read-only version is validated on real data. This is the proven maturation path — build the audit loop before adding automation.
 
+## Scheduled prompts email a link, not the content — 2026-10-06
+
+A scheduled prompt's email notification carries only a link to the result in Copilot Chat ("Microsoft 365 Copilot has successfully completed a prompt you scheduled", then the prompt title as a link). The response body is not in the email. This was read from a real notification Jesse received for his "Daily Outlook Chief-of-Staff Brief" prompt. Microsoft's support page and two third-party guides were all silent on it, and Copilot's own answer only repeated the documentation gap. So nothing downstream, whether a mail rule, Power Automate or an iPhone Shortcut, can pick the digest up from that email. Getting the content into an inbox takes a flow that generates it and sends it.
+
 ## Tenant-reality-first research pattern
 
 Before designing any Copilot feature or agent, verify what the actual tenant exposes: model picker availability, agent creation access, SharePoint grounding, connector catalog, publishing options, admin constraints. Do not design around advertised features that may be behind a license gate or admin toggle. Discovering a capability gap after building against it is expensive.
