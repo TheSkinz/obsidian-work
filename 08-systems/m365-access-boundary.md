@@ -34,6 +34,10 @@ Two pieces of prior work got this right before it was forced, and they are the m
 - `06-reviews/2026-07-23-idea-research-workup-to-proposal-generator.md` concluded on its own that the deciding artifacts "live in SharePoint/OneDrive, outside what this loop or the vault currently ingests" and resolved to have Jesse pull them.
 - `~/.claude/plans/handover-sharepoint-copilot-phase5-6.md` states plainly: *"Jesse runs the evals, not the session. Claude cannot reach the M365 desktop app… The session's job is to score them against the criteria below, not to run them."*
 
+## Sanctioned exception: the daily email digest — 2026-10-06
+
+Tech approved an automated weekday digest of Jesse's work email sent to his Gmail (jskinz2083@gmail.com), where sessions read it through the Gmail connector. Jesse confirmed the approval in session on 2026-10-06; the vault holds his statement, not a written approval. His iPhone builds the digest: a Shortcut reads the work account in Apple Mail, summarizes it with Apple Intelligence and sends it from Gmail at 6:00 PM. This does not reopen tenant access. Sessions still cannot reach Outlook, SharePoint or Copilot. They read the Gmail copy, the same way they read the OneDrive mirror.
+
 ## What this does not change
 
 **SharePoint is still canonical-of-record** for job documents and proposal workups (Jesse's ruling, 2026-07-22). That is unchanged and correct. What changed is that canon is now only reachable through him. The vault remains the index; the file estate remains the store; the recorded path remains the only pointer.
