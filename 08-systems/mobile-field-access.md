@@ -212,8 +212,12 @@ list). Second time the task has been found stopped; cause again not recorded.
 **Second recurrence the same day, 2026-10-06 ~10:35.** Restarted at 10:24, found dead by 10:37
 while Jesse was experimenting with the iPhone app. This time the wrapper `cmd` itself was gone as
 well as `claude.exe`, so the whole console window closed: the loop cannot exit by itself. The
-same `schtasks /run` restored it (new `claude.exe` at 10:38). The cause still can't be recovered,
-because the wrapper echoes its exit codes only to that console. Logging them to a file is the fix.
+same `schtasks /run` restored it (new `claude.exe` at 10:38). Jesse's account: as a deliberate
+test he started `claude remote-control` in a terminal of his own, then closed that terminal. Closing
+a terminal kills the Remote Control it hosts, so the session going offline is explained. What is
+not explained is the task's own window disappearing too. Either it had already stopped before the
+test, or a second instance using the same `vault` name made it exit. The wrapper echoes its exit
+codes only to that console, so a log file is what would settle this.
 
 ---
 
