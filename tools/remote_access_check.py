@@ -28,20 +28,24 @@ import datetime as dt
 import json
 import subprocess
 import sys
+from pathlib import Path
 
 TASK_NAME = "Claude Remote Control vault"
+LOG_DIR = Path(__file__).resolve().parent / "logs"
 
 PROBE = r"""
 $ErrorActionPreference = 'SilentlyContinue'
 $svc = Get-Service -Name 'RustDesk'
 $task = Get-ScheduledTask -TaskName '%TASK%'
-$rc = Get-CimInstance Win32_Process | Where-Object { $_.Name -match '^(claude|node)\.exe$' -and $_.CommandLine -match 'remote-control' }
+$rc = Get-CimInstance Win32_Process | Where-Object { $_.Name -match '^(claude|node)\.exe$' -and $_.CommandLine -match '\s(remote-control|rc)(\s|$)' -and $_.CommandLine -match '--name\s+"?vault' }
 $ux = Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings'
 $wl = Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'
 [pscustomobject]@{
   svc_status    = if ($svc) { [string]$svc.Status } else { $null }
   svc_start     = if ($svc) { [string]$svc.StartType } else { $null }
   task_state    = if ($task) { [string]$task.State } else { $null }
+  task_action   = if ($task) { [string]$task.Actions[0].Arguments } else { $null }
+  task_repeat   = if ($task) { [string]$task.Triggers[0].Repetition.Interval } else { $null }
   rc_count      = @($rc).Count
   pause_until   = [string]$ux.PauseUpdatesExpiryTime
   autologon     = [string]$wl.AutoAdminLogon
@@ -89,9 +93,21 @@ def main():
         f"state={s['task_state']}" if s["task_state"] else "missing",
     ))
     rows.append((
-        s["rc_count"] > 0,
-        "claude remote-control process running",
-        f"{s['rc_count']} process(es)",
+        "rc_watchdog.ps1" in (s["task_action"] or "") and s["task_repeat"] == "PT5M",
+        "Task runs the hidden watchdog every 5 minutes",
+        f"repeat={s['task_repeat']}" if s["task_action"] else "no task action",
+    ))
+    stopped = (LOG_DIR / "rc.stop").exists()
+    if stopped:
+        rc_detail = "turned off with rc_stop.cmd — run rc_start.cmd"
+    elif s["rc_count"] > 1:
+        rc_detail = f"{s['rc_count']} copies — the phone lists duplicates; close the hand-started one"
+    else:
+        rc_detail = f"{s['rc_count']} process(es)"
+    rows.append((
+        s["rc_count"] == 1 and not stopped,
+        "Exactly one Remote Control 'vault' process running",
+        rc_detail,
     ))
     if args.return_date:
         ok = pause is not None and pause > args.return_date
@@ -110,6 +126,11 @@ def main():
 
     for ok, label, detail in rows:
         print(f"{'PASS' if ok else 'FAIL'}  {label} — {detail}")
+    log = LOG_DIR / "rc_watchdog.log"
+    if log.exists():
+        print("\nLast watchdog events:")
+        for line in log.read_text(encoding="utf-8", errors="replace").splitlines()[-5:]:
+            print(f"  {line}")
     failed = sum(1 for ok, _, _ in rows if not ok)
     print(f"\n{len(rows) - failed}/{len(rows)} pass. "
           "Then restart and reach both doors from the phone on cellular.")

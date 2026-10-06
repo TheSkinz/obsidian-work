@@ -239,15 +239,46 @@ The standing setup is **two doors, each of which survives an unattended restart:
   **534 040 005**. Jesse connected from the phone the same day. The "not logged in" banner is
   for an optional RustDesk account (address-book sync) and does not affect connecting by
   ID + password.
-- **Remote Control, started at logon by the scheduled task `Claude Remote Control vault`.**
-  This is the vault door, and its auth is independent of the desktop app's. **Done
-  2026-10-01.** The task runs `tools/start_remote_control.cmd` at logon (30 s delay, no time
-  limit). The script loops, so a crash or a long network drop restarts it 30 s later. The
-  task opens it in a **minimized** console window titled "Claude Remote Control - vault", via
-  `cmd /c start /min`. Closing that window stops Remote Control. The exit code is then
-  `0xC000013A`, which Windows doesn't count as a failure, so nothing restarts it. That happened
-  in the first restart test on 2026-10-01, when the window was opened on screen. Two traps it handles, both
-  found the first time it ran unattended:
+- **Remote Control, kept up by the scheduled task `Claude Remote Control vault`.**
+  This is the vault door, and its auth is independent of the desktop app's. **Rebuilt
+  2026-10-06 as a hidden watchdog.** The task runs `tools/rc_watchdog.ps1` under
+  `conhost --headless` at logon (30 s delay) and every 5 minutes after, with
+  `MultipleInstances=IgnoreNew` and a 5-minute limit. Each run takes about a second:
+  1. If no `vault` server is running, it starts `start_remote_control.cmd` in a hidden console.
+     That script runs Remote Control once and appends its exit code to the log.
+  2. If more than one is running, it logs a warning and touches nothing.
+  3. If the npm Claude Code version differs from the one the server started with, it restarts
+     the server once the server has no child session processes, or regardless between 03:00
+     and 04:59.
+
+  There is no window, so nothing can be closed by accident. Turn it off on purpose with
+  `tools/rc_stop.cmd`, which writes `tools/logs/rc.stop` and kills the server; `rc_start.cmd`
+  reverses that. Events go to `tools/logs/rc_watchdog.log` (gitignored, rotated at 1 MB).
+  `remote_access_check.py` now passes only on **exactly one** server process and prints the
+  last five log lines. The original task XML is not kept; it ran `cmd /c start /min` on a
+  looping `start_remote_control.cmd`.
+
+  **Tested at cutover, 2026-10-06 11:30, all through the task, not from a tool shell.** It
+  started from nothing (11:29:59). A second run during a live server started no duplicate. A
+  killed server logged `exited (code 1)` and was back on the next run. The task's own process
+  exits while Remote Control survives it. The update-restart path was **not** exercised live,
+  because the restarted server resumes the previous phone session as a child process within
+  seconds (docs: sessions resume when restarted in the same directory within ~4 h), so the
+  "no session open" condition was false. `rc_server_version.txt` was left at a fake `2.1.290` so
+  the 03:00 window exercises it the first night; read the log the next morning. Resumed sessions
+  also mean the 03:00–04:59 fallback is likely the path most updates take in practice.
+
+  **Research behind it (2026-10-06, via a research agent; sources not re-read by me).** Starting
+  a second `remote-control --name vault` does not displace the first: anthropics/claude-code
+  #71532 and #87413 (both closed not-planned) report duplicate and ghost entries on the phone
+  that never clear. #84817 reports a running server still showing ready after an auto-update
+  while new sessions fail, with the workaround of restarting after updates. Power users on
+  Windows (Lhotka's blog 2026-09-21, curran-gehring/claude-remote-control-keepalive,
+  jozefkun/claude-rc-service) all use a scheduled-task watchdog, not NSSM or a service, because
+  the OAuth credentials live in the user profile. **Never start a second copy by hand;**
+  `rc_start.cmd` is the manual start.
+
+  Two traps from the original build still apply, both found the first time it ran unattended:
   - `ANTHROPIC_API_KEY` is set at user scope on Linda2. With it present, Remote Control exits
     with code 1 ("requires claude.ai subscription auth"). The script clears it for its own
     window only. A hand-run test from a Claude Code shell passes because that shell doesn't

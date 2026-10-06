@@ -16,3 +16,4 @@
 *.pdf  binary
 *.webp binary
 *.canvas binary
+*.cmd text eol=crlf

@@ -43,3 +43,6 @@ __pycache__/
 
 # pre-push notifier outcome, one line, overwritten each run (tools/notify_grok_bot.py)
 .grok-bot-last
+
+# Remote Control watchdog runtime state (log, stop flag, server version)
+tools/logs/
