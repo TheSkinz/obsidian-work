@@ -60,4 +60,4 @@ Two tags differ by one zero (20H200 vs 20H2000) and are two different heaters â€
 
 ## Notes
 
-Active bid: [[valero-wilmington-2026-11-bid-workup]] (DSP# not yet assigned).
+Active bid: [[DSP26112]]. USADebusk pigged [[31H3000]] once before Jesse joined; the old quote and receipts are pending upload and are of doubtful accuracy (Jesse, 2026-10-08).

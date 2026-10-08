@@ -42,7 +42,7 @@ For that to be computable, **the Execution cell must begin with a date token** �
 
 | Quote # | Facility | Scope | Value | Submitted | Valid Through |
 |---------|----------|-------|-------|-----------|---------------|
-| [[valero-wilmington-2026-11-bid-workup]] (DSP# pending) | Valero Wilmington, CA | Week of 2026-11-30 — [[20H200]] vac feed, [[20H2000]] vac, possibly [[31H3000]] coker; all at once, 2–3 Trimax, no press (Valero drums for fines), no smart pig. 6 passes total. Pumper allocation confirmed with Valero 2026-10-09; awaiting Valero contract rates; RFI for missing coil drawings | Not priced | RFQ received 2026-10-08 | — |
+| [[DSP26112]] | Valero Wilmington, CA | Week of 2026-11-30 — [[20H200]] vac feed, [[20H2000]] vac, possibly [[31H3000]] coker; all at once, 2–3 Trimax, no press (Valero drums for fines), no smart pig. 6 passes total. Pumper allocation confirmed with Valero 2026-10-09; awaiting Valero contract rates; RFI for missing coil drawings | Not priced | RFQ received 2026-10-08 | — |
 | [[DSP26100]] | Valero Three Rivers, TX | Aug. 2026 emergency — mechanical decoke + third-party smart pig, 100-H-1 / 100-H-2 / H-1102; 1 Trimax, filtration, 2 circuits per heater in double mode | $415,220.82 (USADebusk $113,230.82 + SteadyFlux $301,990.00) | Sent 2026-08-22 | 2027-03-10 |
 | [[DSP26095]] | Westlake South, Westlake LA | Sept. 2026 decoke — H-101 (TE II) EDC furnace, 2 passes; 1 Trimax, filtration, 4×3 pump | $44,415.88 | Sent 2026-07-29 | 2026-09-29 |
 | [[DSP26080]] | HF Sinclair Navajo, Artesia NM | Feb. 2027 outage — H-2421, H-30 & H-2501; 1 Trimax, filtration, 4×3 diesel pump | T&M + LS mob/demob; no total quoted | Date not recorded | Not recorded |
