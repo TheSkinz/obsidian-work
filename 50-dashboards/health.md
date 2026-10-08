@@ -44,6 +44,8 @@ One row per pending quote, plus any quote whose execution date is within 90 days
 | [[DSP26085]] | pending | 2026-09-29 | 2027-01 | execution in 85 d | ok |
 | [[DSP26100]] | pending | 2027-03-10 | 2026-08 | - | no bid folder path recorded |
 | [[DSP26112]] | pending | - | 2026-11 | execution in 24 d | no bid folder path recorded |
+| [[DSP26113]] | pending | - | 2026-11 | execution in 24 d | no bid folder path recorded |
+| [[DSP26114]] | pending | - | 2026-11 | execution in 24 d | no bid folder path recorded |
 
 ## Threshold gauges
 

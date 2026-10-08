@@ -60,4 +60,4 @@ Two tags differ by one zero (20H200 vs 20H2000) and are two different heaters â€
 
 ## Notes
 
-Active bid: [[DSP26112]]. USADebusk pigged [[31H3000]] once before Jesse joined; the old quote and receipts are pending upload and are of doubtful accuracy (Jesse, 2026-10-08).
+Active bids, one Trimax and one quote per heater: [[DSP26112]] (20H200), [[DSP26113]] (20H2000), [[DSP26114]] (31H3000). USADebusk pigged [[31H3000]] once before Jesse joined; the old quote and receipts are pending upload and are of doubtful accuracy (Jesse, 2026-10-08).
