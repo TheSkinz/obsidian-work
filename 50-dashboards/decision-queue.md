@@ -22,6 +22,9 @@ The single place every open decision lives. One row per open ask — not one not
 
 | id | opened | source | ask | risk | age (d) | status |
 |---|---|---|---|---|---|---|
+| DQ-038 | 2026-10-08 | [[2026-10-08-governance-lane-prefixes-and-lane-2-drift]] | The autonomy policy in `knowledge-system-governance.md` names `[auto]`/`[exp]`/`[default]`/`[gated]`; none has been used since 2026-08-24 (351 `[Lane N]` commits since), and Lane 2's experiment procedure has run once. Ratify `[Lane N]` and describe Lane 2 as used (A, recommended), ratify but restrict Lane 2 (B), or revert (C)? | med | 0 | open |
+
+**One open row as of 2026-10-08** — DQ-038, opened by the monthly Vault Review Loop on the overdue review of the governance note. *(Supersedes the zero-rows paragraph below.)*
 
 **Zero open rows as of 2026-10-01 (end of day)** — DQ-037's eleven domain questions ruled in one sitting. **Owed builds: DQ-017, DQ-034, DQ-035, DQ-036.** Earlier the same day: zero open rows, DQ-033 having been ruled the day it was opened. Earlier the same day: one open row (DQ-033), plus DQ-034 and DQ-035 under Owed builds — all three moved here from `00-inbox/` by the 2026-10-01 triage, where they had aged into the dashboard's inbox-age FAIL rows while posing work or questions no filing pass could clear. *(Superseded below: the 2026-09-08 paragraph — DQ-032 since closed.)*
 
