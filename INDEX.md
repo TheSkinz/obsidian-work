@@ -113,6 +113,11 @@
 - [[02-facilities/Valero/Three-Rivers-TX/_facility|_facility]] — Valero — Three Rivers, TX `(Valero/Three-Rivers-TX)`
 - [[DSP26100]] — DSP# 26100 — Valero Three Rivers August 2026 Emergency Decoke + Smart Pig `(Valero/Three-Rivers-TX)`
 - [[H-1102]] — H-1102 Crude Preflash Reboiler — Valero Three Rivers, TX `(Valero/Three-Rivers-TX)`
+- [[20H200]] — 20H200 Vacuum Tower Feed Heater — Valero Wilmington, CA `(Valero/Wilmington-CA)`
+- [[20H2000]] — 20H2000 Vacuum Heater — Valero Wilmington, CA `(Valero/Wilmington-CA)`
+- [[31H3000]] — 31H3000 Coker Feed Heater — Valero Wilmington, CA `(Valero/Wilmington-CA)`
+- [[02-facilities/Valero/Wilmington-CA/_facility|_facility]] — Valero — Wilmington, CA `(Valero/Wilmington-CA)`
+- [[valero-wilmington-2026-11-bid-workup]] — Valero Wilmington — Nov 30 2026 heater pigging (DSP# pending) `(Valero/Wilmington-CA)`
 - [[02-facilities/Westlake-Chemical/Westlake-LA/_facility|_facility]] — Westlake South — Westlake, LA `(Westlake-Chemical/Westlake-LA)`
 - [[DSP26095]] — DSP26095 — Westlake South H-101 (TE II) EDC Furnace Decoke, September 2026 `(Westlake-Chemical/Westlake-LA)`
 - [[H-101]] — H-101 TE II EDC Furnace — Westlake South, Westlake, LA `(Westlake-Chemical/Westlake-LA)`
