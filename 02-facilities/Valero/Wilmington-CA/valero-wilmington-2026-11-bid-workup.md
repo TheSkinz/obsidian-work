@@ -65,6 +65,7 @@ Recompute check: 2(39.333) + 8(35.5) = 362.67; 39.333 + 14(36.3125) = 547.71; 35
 - Outlet: one 6.625" × 0.280" AW A312 TP316L, length not stated.
 - **~830 ft/pass, ~1,660 ft heater (inferred, bends and outlet excluded).** ID 4.026" (computed from 0.237 wall) → default max pig 4.250"; outlet 6.065" → 6.250".
 - Inlet terminal ~el. 22'-6", outlet near grade. Flanges not stated.
+- **Radiant is plug-header on one end** (the end opposite the convection inlet flange) with U-bends on the other; **convection is all U-bends**. This is Jesse's reading of the GA, 2026-10-08. Plug-headers are a derate condition and add plug handling to the pigging work; it is listed as exposure because the derate gate is shut.
 
 ### 31H3000 — Coker Feed (HRC 1973 GA, 2017 crossover iso)
 
