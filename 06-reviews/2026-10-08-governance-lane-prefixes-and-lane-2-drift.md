@@ -1,6 +1,6 @@
 ---
 type: review
-status: for-review
+status: resolved
 review_type: stale-review
 source_authority: stated
 confidence: high
@@ -62,7 +62,7 @@ The switch to `[Lane N]` may have been ruled in a session that did not reach `ch
 
 ## Decision
 
-- [ ] A — ratify `[Lane N]`, describe Lane 2 as it is used, clear the four stale claims (recommended)
+- [x] A — ratify `[Lane N]`, describe Lane 2 as it is used, clear the four stale claims (recommended)
 - [ ] B — ratify `[Lane N]`, restrict Lane 2 to experiments, clear the four stale claims
 - [ ] C — revert to the four bracket prefixes, clear the four stale claims
 - [ ] Reject — leave the note as is, and record why on this note
@@ -73,3 +73,4 @@ The switch to `[Lane N]` may have been ruled in a session that did not reach `ch
 | Date | Action | By |
 |---|---|---|
 | 2026-10-08 | Review note written, DQ-038 queued. No canonical edit. | vault-review-loop (scheduled) |
+| 2026-10-08 | Jesse chose A. Applied to `knowledge-system-governance.md`: the four `[Lane N]` prefixes on the policy line and each Logging line, a paragraph on Lane 2 in practice, and three stale claims removed ("three loops", planned `90-sources/`, First Pilot Scope). `08-systems/experiments/` stays named as the home for a real experiment. Review dates refreshed. DQ-038 closed. | Claude, in session with Jesse |

@@ -4,8 +4,8 @@ status: active
 source_authority: primary
 confidence: high
 created: 2026-06-26
-last_reviewed: 2026-07-06
-review_after: 2026-10-05
+last_reviewed: 2026-10-08
+review_after: 2027-01-08
 tags: [knowledge-system, governance]
 ---
 
@@ -63,7 +63,7 @@ This table is the human-facing core set. The full machine-enforced vocabulary (i
 
 ## Delegated Autonomy Policy
 
-Four lanes. Every agent action belongs to exactly one. Commit-subject prefixes make the lane visible in `git log`: `[auto]`, `[exp]`, `[default]`, `[gated]`. When unsure which lane applies, act one lane more conservative. This policy refines the ceremony gradient above — it does not replace the Source Hierarchy, the human-gate on operational truth, or the three loops.
+Four lanes. Every agent action belongs to exactly one. Commit-subject prefixes make the lane visible in `git log`: `[Lane 1]`, `[Lane 2]`, `[Lane 3]`, `[Lane 4]`. These replaced `[auto]`, `[exp]`, `[default]` and `[gated]` in practice on 2026-08-24, and Jesse ratified the switch on 2026-10-08 (DQ-038). The old prefixes in `git log` before that date map one-to-one onto the lanes. When unsure which lane applies, act one lane more conservative. This policy refines the ceremony gradient above. It does not replace the Source Hierarchy, the human gate on operational truth, or the scheduled loops, whose live status is in [[system-workflow-reference]].
 
 **Git note (updated 2026-07-06 — supersedes the 2026-06 "gated" git policy below):** Commit and push are now delegated to the agent's judgment for content-lane work (Lanes 1-3), following each lane's own commit-prefix and staged-file-count discipline. This intentionally reopens what the original policy called "the silent-git-mutation hole" — Jesse reviewed that tradeoff on 2026-07-06 and decided the friction of gating every commit outweighed the risk, given the hard bans below still hold. The prior rule was in `CLAUDE.md`/session instructions, not enforced by tooling, and had been causing cross-session friction (constant re-confirmation, uncommitted work piling up across sessions).
 
@@ -73,11 +73,11 @@ Four lanes. Every agent action belongs to exactly one. Commit-subject prefixes m
 
 ### Lane 1 — Auto-act (reversible, low-risk: just do it)
 
-**May:** file any inbox item to its home, including operational documents → **draft** heater cards (`status: draft`, `verified: never`, source linked) — drafting is reversible, only *verification* is truth; create/append/refactor notes in `07-llms/`, `08-systems/`, `09-interests/`; fix dead wikilinks with an unambiguous target; normalize frontmatter to schema; file source documents to their home and link them (the `90-sources/` provenance layer is planned — Session B); reorganize a note's internal layout to its schema; `git mv` demonstrably superseded duplicates and generated files to `archive/`; **create, correct, or resolve discrepancies in any `02-facilities/` heater-card or facility-file content** (see facility-data note above — this is the one Lane-1 carve-out that includes correction/promotion, not just drafting).
+**May:** file any inbox item to its home, including operational documents → **draft** heater cards (`status: draft`, `verified: never`, source linked) — drafting is reversible, only *verification* is truth; create/append/refactor notes in `07-llms/`, `08-systems/`, `09-interests/`; fix dead wikilinks with an unambiguous target; normalize frontmatter to schema; file source documents to their home and link them; reorganize a note's internal layout to its schema; `git mv` demonstrably superseded duplicates and generated files to `archive/`; **create, correct, or resolve discrepancies in any `02-facilities/` heater-card or facility-file content** (see facility-data note above — this is the one Lane-1 carve-out that includes correction/promotion, not just drafting).
 
 **Must not:** change the *meaning* of any operational fact **outside `02-facilities/`**; touch pricing, rates, safety, or SOP content values **outside `02-facilities/`**; promote draft → verified **outside `02-facilities/`**; delete anything; rewrite Jesse's own words in his notes; sweep unrelated files into commits.
 
-**Logging:** `[auto]` commit prefix; the diff is the log. No change-log entry.
+**Logging:** `[Lane 1]` commit prefix; the diff is the log. No change-log entry.
 **Validation:** `tools/vault_lint.py` passes after the change; staged-file count verified before any commit.
 **Escalate when:** two plausible homes with different meanings; content contradicts an existing verified fact (→ add to the card's `## Open Flags` and continue — never merge); action would be hard to reverse.
 
@@ -85,9 +85,11 @@ Four lanes. Every agent action belongs to exactly one. Commit-subject prefixes m
 
 **May:** for any technical question (storage format, index structure, script design, schema field format, naming/linking conventions, lint implementation), define measurable success criteria *first*, build competing options in a branch or `tools/fixtures/`, run the comparison, adopt the winner when adoption is reversible, and record method + result + loser in `08-systems/experiments/` (one note per experiment, created on first use).
 
+**How Lane 2 is used in practice (ratified 2026-10-08, DQ-038).** The experiment procedure above applies when a technical question genuinely has competing options. It has run once. Most `[Lane 2]` commits are systems, tooling and governance housekeeping: loop and dashboard maintenance, close-outs, regenerated generated files, and notes about the tools themselves. That is accepted usage of the prefix, not a mislabel.
+
 **Must not:** experiment on domain truth (an experiment can decide how heater data is *stored*, never what a heater's tube ID *is*); let experimental artifacts leak into canonical folders before validation; use external paid services or install heavyweight dependencies; leave a failed experiment's debris outside its branch/note.
 
-**Logging:** `[exp]` commit prefix + the experiment note (criteria, options, result, decision).
+**Logging:** `[Lane 2]` commit prefix + the experiment note, when there is one (criteria, options, result, decision).
 **Escalate when:** the winning design implies a Lane 4 change (top-level restructure, breaking schema change) — the experiment note then feeds a Lane 3/4 proposal instead of being self-adopted.
 
 ### Lane 3 — Propose-with-default (medium risk: apply the default, make reverting trivial)
@@ -98,7 +100,7 @@ Four lanes. Every agent action belongs to exactly one. Commit-subject prefixes m
 
 **Must not:** batch many unrelated defaults into one commit; apply defaults to domain truth, pricing, safety, SOP values, or customer-facing content; remove or rename *existing* schema fields (that's Lane 4).
 
-**Logging:** `[default]` commit prefix + one change-log line: date | what | default chosen | revert path.
+**Logging:** `[Lane 3]` commit prefix + one change-log line: date | what | default chosen | revert path.
 **Escalate when:** Jesse reverts twice in the same area — that area is demoted to Lane 4 and the demotion is recorded here (the policy learns).
 
 ### Lane 4 — Human-gated (domain truth and irreversibles: ask, in-session)
@@ -107,7 +109,7 @@ Four lanes. Every agent action belongs to exactly one. Commit-subject prefixes m
 
 **Mechanic:** ask synchronously in-session and wait. In unattended runs, do not apply — instead **add a row to the decision queue** (`50-dashboards/decision-queue.md`) for a cross-cutting decision, or an **Open Flag** on the affected card for a card-local operational fact, so it surfaces at point of use. Never apply a Lane 4 change without Jesse's explicit approval.
 
-**Logging:** `[gated]` commit prefix + change-log entry recording Jesse's decision and rationale.
+**Logging:** `[Lane 4]` commit prefix + change-log entry recording Jesse's decision and rationale.
 
 ### Area → lane map
 
@@ -208,7 +210,3 @@ actually caused, measured from git rather than from inspection — is at
 column in that note. Its headline finding: the 2026-08-15 sweep cleared the review pile to zero and the queue
 to two, and both were back at ten within five days, because three loops fire daily and the only clearing
 resource is Jesse. Re-run the same method rather than re-deriving one.
-
-## First Pilot Scope
-
-For the first phase, apply this only to new review notes, new source notes, unresolved contradictions, and dashboard views. Do not mass-edit existing job, facility, heater, or proposal notes until the review loop is proven.
