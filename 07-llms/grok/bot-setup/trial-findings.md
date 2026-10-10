@@ -1,0 +1,1145 @@
+---
+title: Grok Bot — build-out findings, 2026-09-06 to 2026-10-10
+created: 2026-10-10
+tags: [grok, grok-bot, findings, history]
+---
+
+# Grok Bot — build-out findings
+
+Moved out of [[SETUP]] on 2026-10-10, when Jesse kept Grok Bot past its test period. These are
+**dated evidence, not current state**: each heading carries the date it was true. Read [[SETUP]]
+for how things stand now. The trial-era state table and the renewal plan are at the end, kept
+for the record and marked superseded.
+
+---
+
+## The citation audit — PASSED, 10 of 10. TESTED 2026-09-06.
+
+The go/no-go gate: ask Librarian ten domain questions with known answers, then open each cited file
+and check the line says what it claimed. The ten, chosen because each has a recorded correction or a
+known trap behind it:
+
+1. What is the Clean ID field on a service receipt, and is it a sizing input or a cleaning result?
+2. What are the primary estimating drivers for rig-in, and how many are there?
+3. What does "demob" mean for a job date — facility demob or equipment back at Deer Park?
+4. Which loops currently run in the vault, and which were stopped?
+5. What is the max pig OD sizing rule relative to Clean ID?
+6. What does the vault say about labor rates being per person versus per role?
+7. Which document holds quoted-versus-actual reconciliation — job sheet, heater card, or job report?
+8. What is the tube count on B-102?
+9. Where does the SOP formatting standard live?
+10. What does the vault say about the rig-diagram layout engine?
+
+Every answer carried a real file path and a verbatim quote. Three were spot-checked
+character-for-character against the working copy (`17-glossary.md:25`, `quote-lifecycle.md:81`,
+`B-102.md:73`). **No invented citations, and no citation that failed to support its claim.**
+
+Two answers showed judgment rather than retrieval:
+
+- **Q7** — answered "job report", then flagged that `USA26041-job-sheet.md` also carries a closed
+  Ticket-breakdown reconciliation section which *"sits against that model"*, and filed it under
+  Unresolved questions rather than resolving it. That is the "contradictions are findings, not noise
+  for you to resolve" instruction working.
+- **Q6** — separated labor billing (hourly, not a 12-hr day rate, changed 2026-07-12) from per diem
+  (one allowance per person per shift, generic base $150, role-split where the contract requires it),
+  and disclosed in Assumptions that it read both because the question's framing and the recorded
+  change were about different things.
+
+**Cost:** meter read 1% before and 1% after. **Elapsed:** roughly four minutes, with running progress
+messages — genuinely grepping rather than answering from context.
+
+**The audit's own limitation, learned later the same night:** Q2's answer quoted
+`estimating-approach.md` correctly, but that file was 24 hours stale against the config repo. **A
+passing citation audit does not detect a stale source.** That is what the push hook exists to fix.
+
+## Skills survive verbatim. TESTED 2026-09-06.
+
+*Does an uploaded skill survive verbatim, or does Grok Bot paraphrase it on ingest?* It mattered
+because every ported skill is written as "do X, and specifically do NOT do Y" — a summariser drops
+the Y half first, stripping the guardrails while leaving the skill looking correct.
+
+**The stored skill and the vault source match byte-for-byte in the body.** The platform adds a YAML
+frontmatter wrapper of its own, so the *file* differs while the *content* does not. Nothing
+paraphrased, compressed or dropped. **The counter-cases in the ported skills are safe.**
+
+Two incidental findings: **inter-Bot DM works and is legible** — the Architect messaged Scribe and
+the thread showed `Messaged Scribe` / `Message from Scribe` inline, which is the push channel; a Bot
+cannot silently read another's thread, but it can ask, and the asking is visible. And **print-back
+truncates**, which is why the comparison had to be done by diffing files on disk.
+
+## The Git-event trigger has no push event, and did not fire. 2026-09-06.
+
+**READ, from the trigger config UI.** The complete event list:
+
+| Group | Events |
+|---|---|
+| Pull request | Opened · Updated · Merged |
+| Review | Requested · Approved · Changes requested · Commented · Thread resolved · Thread reopened |
+| Comment | PR comment · Inline review comment |
+| Checks | CI passed · CI failed |
+| Issue | Assigned |
+
+**Nothing fires on a push.** The designed routine — Librarian pulls when `obsidian-work` changes —
+**could not be built as specified**, because vault work commits straight to `main` and never opens a
+PR. That was the most load-bearing assumption in the routine design.
+
+**TESTED — the PR-opened salvage test also failed.** Routine armed and Active at 19:03, PR #5 opened
+at 19:05:22, run history at 19:09 showed only a manual Test run. Nearly three hours later it still
+showed one run. **The diagnosis is concrete:** `gh api repos/TheSkinz/obsidian-work/hooks` returned
+**nothing — no webhook was ever registered on the repository**, so Grok Bot had no channel to learn
+the PR existed. The trigger is not slow, it is not wired.
+
+**Three candidate causes, undistinguished (INFERRED):** the fine-grained PAT may have lacked
+**Webhooks: Read and write**, flagged as an inference when the token was minted; the connector may
+register hooks lazily; or Grok Bot may poll on an interval longer than four minutes.
+
+**What it cost to find out.** The trigger needs the **GitHub connector**, and the connector wants a
+**personal access token, not OAuth** — *"Fine-grained or classic PAT from
+https://github.com/settings/tokens with the repo scopes you want the agent to use."* That is better
+than the account-wide grant the connector's description implies, because the **token** sets the real
+ceiling: a fine-grained PAT scoped to one repository keeps everything else out of reach even on a
+shared VM. **The PAT was deleted 2026-09-06** once the webhook path proved better — it existed only
+to test a trigger that turned out to have no push event and never fired. The connector entry may
+still show as installed; the token carried the access, and it is gone.
+
+## The Webhook trigger fires. TESTED 2026-09-06.
+
+A routine armed on the **Webhook** trigger and fired by an HTTPS POST returned **`WEBHOOK FIRED
+2026-09-07 03:22:04 UTC`** — exactly the instructed output, nothing else, immediately.
+
+**Event-triggered routines are real on this platform. They just do not work through GitHub.**
+
+Selecting the trigger exposes three fields: a **POST to** endpoint on
+`api2.cursor.sh/automations/webhook/<uuid>` (more Cursor infrastructure — **`webhook`, singular**;
+this line read `webhooks` until 2026-09-07, and a URL rebuilt by hand from it 404s), a **key**, and a ready-made
+**header** line. Any process that can make an HTTPS POST can fire the routine — so **Claude Code can
+trigger a Grok Bot routine programmatically.** That is the bridge a source video wrongly attributed
+to an MCP server; it exists, just not where that claim put it.
+
+**The webhook path is strictly better than the GitHub one.** It needs no connector and no token, so
+it *removes* a third-party credential rather than adding one. It replaces the missing push event via
+a local git hook, with the trigger owned locally. And it generalises — any defect the vault's own
+tooling detects (a lint error, a failed rollup, a `RULE-FORK` fire) can fire a routine, which fits
+this system far better than a clock.
+
+**The key is a credential.** It authorises firing the routine, so it belongs in no repo, transcript
+or shell history. Regenerate it if exposed, and read it from an environment variable rather than
+writing it into a hook.
+
+**Both hook paths verified 2026-09-06.** A push touching nothing under `01-context/` fired the
+routine and produced no report — the correct quiet path. A push touching
+`01-context/system-workflow-reference.md` fired it and it spoke: *"Vault pulled `d4c590b..03e6071`.
+Standing context moved: `01-context/system-workflow-reference.md` — that file changes how every Bot
+answers."* Two sentences, right file, correct commit range.
+
+**The routine's instruction is deliberately quiet.** It fires on *every* push, so it pulls always but
+speaks only when something under `01-context/` moved, replying `nothing new` otherwise even when many
+other files changed. A routine reporting 24 files per push is the chatty failure the 2026-08-21 vault
+audit retired; the clone refreshes either way, which is the part that matters.
+
+## The account's four connectors, and why each is there. READ 2026-09-06.
+
+**Gmail, Google Drive, OneDrive, GitHub.** Gmail and Drive were auto-added to Chief of Staff at
+signup and Gmail was never signed in. **OneDrive was added by Jesse deliberately**, against possible
+future use rather than for anything in the trial. GitHub was added for the Git-event test and **its
+token was deleted the same evening**, though the connector entry remains.
+
+A mid-session jump in the marketplace header from `2 installed` to `3 installed` was briefly flagged
+as unexplained; it was OneDrive, and it was intentional. **Recorded because the count is worth
+knowing, not because anything was wrong.**
+
+Worth one line and no more: OneDrive is where the per-facility bid working copies live, and every
+Bot on the account shares one browser session — so if it is ever signed in, it is signed in for all
+of them. Its connector is read-only in any case.
+
+## Ledger against real receipts — the first live-work test. TESTED 2026-09-07.
+
+**The strongest result of the trial so far.** Three service-receipt PDFs from USA26041 (ExxonMobil
+Baytown, HU5A F-501, August 2026) handed over cold, with the answer withheld — no proposal, no
+rates, no ticket breakdown, and an instruction not to open the vault.
+
+**It found all seven receipts.** Tickets **10780–10786** across the three PDFs, dates Aug 11–14. The
+vault's own reconciliation record names exactly that range.
+
+**Plant Down Time: 11 hrs**, split 10781 = 5 and 10782 = 6. `USA26041-job-sheet.md` records *"+ 11
+hrs PDT"*. Exact, and derived from the receipts rather than from anything it was told.
+
+**It adapted its own method.** *"PDF text extraction is too messy on the handwriting. Converting each
+page to images and reading them directly."* Then a second pass cropping header, labor, pig and
+signature regions on the sheets that conflicted — arriving unprompted at the full-page-for-context,
+cropped-region-for-detail technique the vault already records for heater drawings.
+
+**Four skill rules held under real conditions**, and each is one a plausible run would have broken:
+
+- **Smart Pig is not third-party.** It logged Third Party (billable) at **0 hrs** with the note
+  *"Smart Pig is not third-party"* — the receipt form records smart-pig time on the third-party line
+  to save space, and a vendor name there is not a charge.
+- **Stand-by bills through two rate lines only.** PDT carried *"via Trimax + Filter Press stand-by
+  rates only"* rather than a generic stand-by line.
+- **Omit an absent row rather than carry it at zero.** *"4x3 Pump does not appear on these receipts,
+  so it is not on the table."*
+- **Flag, never adjust.** On a Clean ID conflict — 10782 reads 4.8″ where other sheets read 4.6″ —
+  it wrote *"That is a finding. Numbers were not adjusted."*
+
+**It refused to guess, five times, each named by ticket and field.** Blake Baugh's hours on 10782
+overwritten and possibly 10 or 12, carried as 12 and **marked assumed**; the Clean ID on 10783
+reading like `4C"`, left blank; a foam quantity on 10784 reading as (4) or (2), left blank; two
+scribbled fields on 10785. Plus: *"crew surname spellings vary across sheets; hours were taken from
+the clearest repeats, spellings were not forced."*
+
+**Verdict: NOT READY** — PDT needing customer confirmation, and the proposal cross-check impossible
+without the proposal.
+
+⚠ **Corrected 2026-09-07.** This entry originally listed a third blocker, *"customer signatures
+missing on all seven receipts."* **That was never a blocker.** Jesse: *"Not having tickets signed is
+never an issue. Never."* The skill told Ledger to treat unsigned receipts as a dispute risk and flag
+them at the top, so **the check fired on every receipt it will ever see** — a false positive with a
+100% hit rate, which is the exact shape of noise that makes a readiness check worth ignoring. Rule
+deleted from `invoice-readiness-check.md` and `receipt-extraction.md` here, and from
+`usadebusk-ops`, `usadebusk-fieldpm` and `extraction-format.md` in the config repo — **seven places
+in two repos, all of which had been repeating it back as domain truth.**
+
+**The transferable part:** a check that cannot pass is not a check. Ledger's behaviour was correct
+throughout — it flagged exactly what its skill told it to. The defect was in the rule, and only
+Jesse could see it, because nothing in the receipts or the vault said the requirement was fictional.
+
+### What this test could not measure, and why
+
+**Three of the four flags the vault records for this job need the proposal**, which was deliberately
+withheld: PO value versus billings, filtration stand-by at $150 against a quoted $35, and DEF billed
+against a quoted qty of 0. Ledger **correctly declined all three** — *"Hours past proposal estimate:
+not checked. No proposal is in the three PDFs"* — rather than inventing a comparison. That is the
+right behaviour, but it means the extraction was graded and the reconciliation was not.
+
+**One figure to check before trusting the table:** Ledger reports *"task splits on Trimax sum to the
+48 hourly hours"*, while the job sheet records **43 productive hrs against 48 quoted**. Those may be
+different quantities rather than a conflict — productive hours likely exclude something the receipt
+total includes — but it is unverified and should not be read as a match.
+
+### The reconciliation half. TESTED 2026-09-07.
+
+Handed the DSP26071.2 quotation and told to reconcile without re-extracting. **The workup `.xlsx`
+was withheld** — it carries cost and margin columns that are not a Bot's business.
+
+**It matched the vault's filtration flag exactly, and derived it.** *"Pumping (pigging only): 16 hrs
+(10782: 6 + 10783: 10). Non-pumping: 38 hrs. Total filter hours on receipts: 54."* The job sheet's
+flag 3 records *"Filtration active hrs 22 billed vs 16 actual pumping."* **16 is 16**, reached from
+the receipts alone.
+
+**It settled the open 48-hour question.** The quotation's Execution Plan is **8 + 24 + 8 + 8 = 48**,
+so 48 is the **quoted** figure. The cold pass's *"task splits sum to 48"* was the receipts' Trimax
+total, which happens to land on the same number — a coincidence worth knowing rather than a match.
+
+**It refused the trap.** Asked for rate variances: *"There is no rate-to-rate disagreement readable
+from the field forms, because the field forms do not state rates. Applying quote rates to actual
+hours would be pricing, not a variance found on the paperwork."* It read the quoted rate card
+correctly — including **Filtration Stand-by at $35**, the figure the vault records as having been
+changed to $150 before mobilization — and still declined to declare either document wrong.
+
+**It named a taxonomy mismatch without resolving it.** The Receipt Extraction skill splits filter
+press into pumping and non-pumping; the quotation's rate card says "Filtration Unit" and "Filter
+Stand-by". *"Those are not the same labels. Mapping the whole-sum pumping bucket to Filter Stand-by
+would be a decision, not made here."* That gap is real and sits between the skill's vocabulary and
+the quote's.
+
+### The one disagreement — resolved against the workbook, 2026-09-07
+
+Ledger reported 37 productive Trimax hours where `USA26041-job-sheet.md` records 43. Jesse read the
+ticket breakdown. **The vault is right and Ledger is wrong, by exactly 6 hours:**
+
+| Line | Workbook | Ledger | |
+|---|---|---|---|
+| Rig In | 7 | 7 | ✅ |
+| Rig Over | 0 | 0 | ✅ |
+| Pigging | 16 | 16 | ✅ |
+| Smart Pigging Support | 6 | 6 | ✅ |
+| Stand-by | 11 | 11 | ✅ |
+| **Rig Out** | **14** | **8** | ❌ |
+
+Five of six exact. **The miss is the field it told us it could not read.** Its cold pass listed,
+under *Illegible (not guessed)*: *"10785 — Pumper # text after `4 -`: scribbled; ends as out of
+facility. **Hours not in that receipt's bottom resource tally.**"*
+
+**So it under-reported rather than guessed, and named the receipt and field where its number would
+be short.** That is the failure mode to want. A wrong total that hands you the thread is worth more
+than a right total you cannot check, and the whole reason it is auditable is the "never guess an
+illegible field, flag it and ask" rule holding under pressure.
+
+**`F-501.md`'s Task Durations row confirms it to the receipt.** Its source note reads *"Rig-Out = 8
+(10784) + 6 (10785)"* — Ledger took the 8 from 10784 and missed the 6 from 10785, which is the exact
+receipt and the exact field it had already flagged as unreadable. **The card needs no correction;
+it was right all along**, carrying 7 / 16 / 6 / – / 14 / 11, total 43, `first`, mode 3.
+
+### Two findings neither of us had, from the same numbers
+
+**The job total is 54 hrs, not 48.** Both Ledger and this session anchored on 48 because that is the
+quote. Actual was 54 — the job **overran**, where Ledger's arithmetic reported an underrun. The
+quoted-versus-actual direction was inverted by the missing 6 hours.
+
+**Rig-out was 14 against rig-in 7 — double, not mirrored.** The duration model says rig-out mirrors
+rig-in, and carries F-802 (USA26022: 4 in, 20 out) as its single named counter-example, with the
+instruction to *"flag rig-out as the exposure on multi-rig and large multi-pass jobs."* **USA26041 is
+a second counter-example on a different facility.** One row does not move a rule and two do not
+either, but the exception is now recorded twice rather than once, and both times rig-out ran long.
+
+## Scribe against a delivered report. TESTED 2026-09-07.
+
+Asked to build the USA26041 project report from the verified actuals, with the **delivered report
+fenced** — `02-facilities/ExxonMobil/Baytown-TX/USA26041-job-report.md` — and the rest of the vault
+open, since a report legitimately draws on the heater card and job sheet.
+
+**The fence held.** It confirmed unprompted: *"Did not open the fenced USA26041-job-report.md."*
+
+**Operating Hours = 43**, stated as *"Rig-In 7 + Rig-Over 0 + Rig-Out 14 + Pig 16 + Smart Pig 6
+(stand-by excluded per skill)."* Correct definition, correct arithmetic, both shown. That KPI has a
+precise meaning in the skill and stand-by exclusion is the part most likely to be got wrong.
+
+**It refused to invent a document number.** The doc-id format is `JR-DCK-<FAC><JOB>` and the only
+worked example in the vault is HF Sinclair's `HFS26038`. Rather than guessing an ExxonMobil Baytown
+facility code it reported *"FAC code for JR-DCK is unresolved — vault only shows the HFS example."*
+**A fabricated document number would have looked entirely plausible on a customer-facing report.**
+
+**It did not write the PM's prose.** Per-heater narrative, amber callout, Project Summary and Close
+all *"left as awaiting Jesse"*, which is the boundary the skill draws — the generator owns tables,
+the PM owns words.
+
+**Two rules held that had never been tested under load:** every table figure marked hand-tallied
+with its arithmetic, because there is no generator on that machine; and **one file only**, delivered
+to `/workspace/out/`, with the four closing sections at the bottom.
+
+### The "deviation" was resolved, and the Bot was right
+
+It reported **Stand-By 11 = 3+2+6** against the supplied **5 (10781) + 6 (10782)**. Flagged here as
+a possible drift from a do-not-re-derive instruction. **Asked where the 3 and the 2 came from, it
+gave the honest mechanism and neither hypothesis was correct:**
+
+> *"I did not open receipt 10781. The 3 and the 2 are a decomposition I took from `F-501.md` Field
+> Notes, not from a receipt file. On the 10781 shift-record row the card already narrates Stand-By 5
+> as 'wait for filter press… (3 hrs)' and later '16–18 stand-by (2 hrs)' for permit/procedure
+> discussion. I used that prose to fill the Stand-By Summary CAUSE rows while keeping your 5+6
+> receipt totals as the check."*
+
+**`F-501.md:313` confirms it verbatim** — 3 hrs waiting on the filter press into the unit, 2 hrs
+waiting on ExxonMobil's permit, and 10782's 6. **3+2+6 is the cause-level breakdown, which is
+exactly what the Stand-By Summary's CAUSE column requires.** The figures were right, vault-sourced,
+and correct for the section they were in.
+
+**Its own diagnosis of the real fault was sharper than the flag that prompted it:** *"I should have
+left 10781 as one 5-hour line, or flagged causes as awaiting you, instead of publishing 3 and 2 as
+if I had read the receipt."* The error was **provenance, not arithmetic** — presenting a
+card-narrated split as though it came from the source document.
+
+**Recorded because the grader was wrong.** The flag assumed a number that differed from the supplied
+figure must be an error, and it was a more precise answer drawn from a source the instruction had
+not thought to name. **A challenge to a Bot's output is not evidence the Bot is wrong**, and asking
+for the mechanism rather than asserting the fault is what produced the correction.
+
+## Scout's competitor pass — real intelligence, properly hedged. TESTED 2026-09-07.
+
+The last untested capability, and the only Bot task that produced something usable rather than a
+test result. One bounded pass on **Quest Integrity**, public sources only.
+
+**What it found, all attributed and all framed as claims:**
+
+- **ADCV** is publicly marketed as *"combined mechanical cleaning plus ultrasonic cleanliness
+  verification"* — services page, case-study PDF, refining page. **That is the overlap that
+  matters**: mechanical cleaning is USADebusk's core, and Quest markets it alongside the
+  verification layer.
+- **FTIS** is marketed as furnace-tube ultrasonic smart-pig inspection with fitness-for-service and
+  remaining-life assessment.
+- The services index and refining page **place ADCV before in-line inspection** in the sequence.
+- HDS materials claim **manifold access for cleaning and FTIS without header removal**.
+- Baker Hughes' 2022 acquisition announcement, as carried by *Hydrocarbon Processing*, **names
+  Invista and FTIS, not ADCV**.
+
+**The restraint is the part worth noting.** On the temptation to connect this to a lost bid:
+*"DSP26058's winner is still unnamed in the vault note, so this pass does not attribute that loss to
+Quest."* The vault records `lost-reason: competitor` and nothing more, and Scout left it there —
+which is the standing rule that competitor outcomes are unknowable, holding against an inference
+that would have been easy and wrong.
+
+**It named its coverage gaps rather than papering over them:** Inspectioneering white papers behind
+a register wall including a June 2026 HDS piece (overview visible, download gated); a
+`bakerhughes.com` acquisition URL that returned empty content; LinkedIn not opened; no Baker
+Hughes/Quest decoking job-description body read; and no conference papers located beyond the three
+PDFs it did read. It also declined to treat search-result titles as sources, and recorded that *"an
+empty fetch is a fetch failure, not proof the page is gone."*
+
+**Open, and correctly left open:** who won DSP26058; whether ADCV field crews are Quest employees,
+subcontractors or a mix, which public copy does not settle; and whether any 2024–2026 press or job
+posting on mechanical decoking capacity sits behind a gate this pass did not cross.
+
+## Scout hit a login wall, stopped, and said so. TESTED 2026-09-06.
+
+First pass, AI-visibility half: ask one tool three category questions without naming USADebusk.
+**Perplexity required a login before any query could be submitted** — *"Login or sign up for free"*
+with Google, Apple, email and SSO options. Scout stopped there, **did not sign in, and did not try
+another tool**, then reported the gap as a gap and asked whether a later pass could try ChatGPT or
+Claude.
+
+**That is the boundary rule working**, and it was the risky part of that Bot — it stopped rather than
+routing around, and reported the gap rather than hiding it.
+
+**The job it was doing has since been cut, and the login wall was not the reason.** Asked where the
+AI-visibility idea came from, the honest answer was that it was ported from a general power-user use
+case — "answer engine optimization", checking whether a product gets recommended when someone asks a
+category question — **without checking whether the mechanism applies here.** It does not. USADebusk
+work is bought through RFQs, ARIBA and GED portals, and relationships; `company-context.md` says so.
+Nobody finds a furnace decoking contractor by asking a chatbot, so a clean answer would have changed
+nothing. **Cut 2026-09-07 (Jesse).**
+
+**The lesson is the transferable part:** a use case can be well-executed, well-scoped, and still
+worthless because the industry it was written for buys differently. Check the buying mechanism
+before porting a marketing pattern. Scout was narrowed to a competitor watcher only — and **that half
+was cut too, later the same day, and the Bot retired.** See the retirement note below. Both of its
+use cases came from the same SaaS playbook and both failed for the same reason, which is the finding
+this entry was already reaching for.
+
+## Connector catalogue, as the app actually shows it. READ 2026-09-06.
+
+**No SharePoint connector at all** — searching returns "No plugins match". **OneDrive exists but is
+read-only** ("Browse, search, and read Microsoft On..."). **Outlook and Outlook Calendar both
+exist.** **GitHub exists with write** ("Manage repos, issues, pull requests"). The public connector
+directory listing SharePoint and OneDrive under Business & Enterprise is not what this account sees.
+
+**There is no email trigger of any kind**, so inbox work runs in scheduled batches, never on arrival.
+
+## Document production has no platform support, and the one test excluded it. READ 2026-09-07.
+
+**The `.docx` claim was never tested, because the instruction fenced it out.** The Scribe run
+recorded above was prescribed with *"Markdown is fine, no .docx needed"*, and Scribe delivered
+`USA26041-ExxonMobil-Baytown-HUSA-F501-Project-Report.md`, 12 kB, attached as markdown. This file's
+silence on the file extension was not an oversight in the record — the test genuinely did not
+exercise document production. The Project Report skill's own marketplace description still says it
+assembles a *"customer-facing Project Report .docx"*, which remains an unproven claim.
+
+**Nothing in the marketplace produces documents.** Searching `docx` returns one unrelated fuzzy
+match (incident.io). There is no Word, Office or document-authoring plugin of any kind.
+
+**Canvas is not a document surface.** The Canvas category holds exactly two plugins — *Docs Canvas*
+("Render documentation as a navigable canvas") and *PR Review Canvas* ("Render PR diffs as review
+canvases grouped by importance"). Both render existing material; neither authors or exports. The
+`x.ai/bot/plugin/6306` page for Docs Canvas documents no tools, inputs or outputs.
+
+**So document creation is a VM toolchain question, not a marketplace question** — `python-docx` or
+`pandoc` installed on the Bot's own machine, which is self-contained by construction and needs no
+connector and no credential.
+
+## Bot-to-Bot delivery truncates at 8000 characters. TESTED 2026-09-07.
+
+Scribe's outbound payload was the full on-disk `SKILL.md`, 10,232 bytes and byte-identical. **What
+arrived in the receiving agent was a strict 8000-character prefix** — the last 2,186 characters were
+cut, including the Terminology and Safety boundaries sections.
+
+**This is a delivery limit, not an ingest limit.** Skills are stored byte-for-byte and execute
+intact locally; the cut happens when content is relayed between Bots. The Bid Desk standing rules
+already mitigate it by requiring a handoff to name the output file path rather than paste content,
+which is why it has not bitten a real job.
+
+**It is not a reason to reorder the four skills over 8000 bytes** — `duration-model.md` 15800,
+`proposal-assembly.md` 12157, `job-report.md` 10037, `workup-billing-math.md` 9916. Rewriting 15 kB
+of the Estimator's core skill to solve a mitigated delivery problem trades a real regression risk for
+no gain. State the limit instead.
+
+## Roster and connector state, corrected against the live app. READ 2026-09-07.
+
+**Six private skills were installed, not seven — `Proposal Assembly` was absent. FIXED the same day.**
+The "all seven skills are uploaded" line under *Current state* was wrong, and the practical effect
+was that **the Bid Desk chain had no proposal step** for the whole first day of the trial.
+
+**Uploaded to Scribe 2026-09-07 and verified three ways**, because a save confirmation is a claim:
+the marketplace header moved from `6 private` to **`7 private`**; the Bot reported the saved name
+`Proposal Assembly` (id `proposal-assembly`) with a disk check of 202 lines; and — the check that
+actually matters given the 8000-character delivery cut — it quoted a counter-case from the **end** of
+the file, the never-document-absent-scope rule that *"if filtration was not sold, the proposal is
+silent about filtration — no 'no filtration required' line, no reassuring N/A row."* The tail
+survived, so the whole file went in rather than a prefix.
+
+The 202-line disk count against 195 in the vault source is the platform's added YAML header, which is
+consistent with the byte-for-byte finding above.
+
+**Five connectors, not four.** Google Drive *Connected*, Gmail *Connected*, OneDrive *Connected*,
+GitHub *Error* (consistent with the deleted token), and **X — 1 connector, 1 skill, showing an
+Authenticate button**. X was added by Jesse deliberately against future use and is unauthenticated;
+the account is linked to his X handle **Southern Syndicate**, which is also the workspace and Bid
+Desk group name. Two things flagged rather than asserted: Gmail reads *Connected* where the
+2026-09-06 entry above says it was never signed in, and *Connected* is the app's word — it may mean
+authorized rather than an active session.
+
+**Unlike OneDrive, X can publish.** Its connector is not read-only. ⚠ **Superseded the same day:
+Jesse authenticated it on 2026-09-07**, so the sentence that stood here — *"nothing has that
+capability today"* — is no longer true. Every Bot on the shared credential store now inherits a
+signed-in X session and can post. Architect was also offered **$25 in free X API credits** and Jesse
+instructed it *"Never spend without my direct and clear approval, for any reason"*; note that is a
+**per-Bot instruction, not an account-level control.**
+
+The Bot this most concerned was Scout, whose competitor-watch output is exactly what invites "post
+this" — and Scout was retired the same evening, which closes it.
+
+**Connector changes on this account are Jesse's by default.** Three in one session — X added,
+OneDrive added, X authenticated — and all three were him. A prior note already recorded the same
+resolution on 2026-09-06 and concluded the right move was to ask rather than reason about what a
+change *probably* was. **Stop writing them up as findings; ask, or assume Jesse.**
+
+**Southern Syndicate is not a Bot.** It is the account/workspace name and the Bid Desk group
+(Estimator, Intake, Librarian, Scribe). A session read it as an unrecorded eighth Bot and was wrong.
+
+**Meter baseline: SuperGrok 16%**, read from the account menu 2026-09-07 16:35. This is the first of
+the three renewal readings and is not recoverable retrospectively.
+
+**The Chief of Staff replacement profile was applied, and this file said otherwise for a day.** The
+roster row above read "Auto-created at signup, unused"; the app shows the coordinator profile from
+`bot-profiles.md` pasted and in force, with the Bot reciting it back correctly. A session planned to
+"neutralize the wrong Google-centric profile" on the strength of that row and was about to overwrite
+a correctly configured live Bot. **The row was stale, not the app.** Caught only because the Bot's
+own thread contradicted the record and the Settings panel was opened before editing.
+
+**The transferable rule: this file's tables age faster than its prose.** The findings sections are
+dated and append-only, so they stay honest. The roster and state tables were written once, describe
+a system that changes daily, and carry no date. Check a table against the app before acting on it.
+
+## Document production works, via a venv on the Bot's own machine. TESTED 2026-09-07.
+
+**`.docx` output is a real Grok Bot capability.** Established end to end, and it needed no plugin and
+no connector.
+
+**The install path matters.** `pandoc` is absent and `pip install python-docx` fails with EXIT 1,
+**externally-managed-environment (PEP 668)** — the system Python is managed and refuses direct
+installs. That is not a dead end. `python3 -m venv /workspace/.venv` followed by
+`/workspace/.venv/bin/pip install python-docx` succeeded, giving **python-docx 1.2.0**.
+`--break-system-packages` was not needed. **Put the venv under `/workspace`** — it is the only path
+that persists, so the toolchain survives between runs.
+
+**The artifact was verified off the platform, not taken on report.** Scribe converted
+`/workspace/out/USA26041-ExxonMobil-Baytown-HU5A-F501-Project-Report.md` and attached a 44 kB
+`.docx`, which was downloaded and checked locally: **valid OOXML** (zip integrity OK, 19 parts,
+`word/document.xml` present, `wordprocessingml` content type), **9 tables**, 11,594 characters of
+text, exactly one `[logo]` placeholder, "Project" 17 times against "Job" 3.
+
+**It behaved as a conversion, not a rewrite** — no numbers re-derived, the fenced delivered report
+left unopened, the hand-tally notice and the unresolved `JR-DCK-<FAC>` doc-id carried through intact
+rather than quietly filled in.
+
+**One residual defect, left for Jesse:** the header table's field label still reads **"Job & PO #"**.
+The other two "Job" instances are internal (`Job digits`, and `Job USA26041` inside Verified facts)
+and do not appear as customer-facing headings, but that label does. Changing it is a deliverable
+format decision, not a fix to make unasked.
+
+**Note the real filename is `HU5A`, with a digit five, not `HUSA`.** Scribe flagged it unprompted
+when the instruction used the wrong one.
+
+### Second build, branded and corrected. TESTED 2026-09-07.
+
+Four defects found by inspecting the first `.docx` were written into the Project Report skill, the
+skill was **updated in place — still one skill, id `project-report`, no duplicate** — and the report
+was rebuilt. All four verified off-platform on the 51 kB result:
+
+**The real logo is embedded.** `word/media/image1.png` is **6,280 bytes, exactly the size of
+`assets/brand/usadebusk-logo.png`**, and `word/header1.xml` carries a genuine `<a:blip>` image
+reference. Nothing was reconstructed. **The asset was already in the clone and therefore already on
+the Bot's machine** — the logo was never an upload problem, only a missing instruction. No connector
+and no file transfer was involved.
+
+**`[logo]` placeholder: gone (0 occurrences).** **`Job & PO #`: gone (0).** **`Project & PO #`:
+present.** **The body no longer narrates its own running header** — the first build wrote a correct
+`header1.xml` *and* opened the document with a paragraph describing that same header, which is the
+structural duplication the skill's verbosity rule exists to catch.
+
+"Job" now appears **once**, down from three, and the remaining instance is inside the closing
+*Verified facts* block rather than in the report body.
+
+**One open question, not a defect:** the four closing sections (Verified facts, Assumptions, Actions
+completed, Unresolved questions) are a Bot-to-Jesse reporting convention, and they are currently
+**inside the customer-facing document**. Whether they should ship, move to a separate note, or be
+stripped at hand-off is Jesse's call on deliverable scope, not something to decide from here.
+
+**What this settles.** Grok Bot produces a branded, customer-shaped `.docx` end to end, on its own
+machine, with no plugin, no connector and no credential. That is the first capability in this trial
+that is genuinely self-contained.
+
+### Third build — pagination and scope. TESTED 2026-09-07.
+
+**The rendered pages caught what the XML check could not**, which is the lesson worth keeping: a
+document can pass every structural assertion and still paginate badly, and only a render shows it.
+
+**Pagination had a precise, mechanical cause.** The build carried `cantSplit` on 40 rows and
+`keepLines` on 84 paragraphs but **zero `tblHeader` and zero `keepNext`** — rows held together while
+headings did not. "Project Details" sat alone at the foot of page 1, "Unresolved questions" alone at
+the foot of page 4, and a table crossing a page opened with unlabelled columns. Both properties are
+now specified in the skill and the rebuild reports **`tblHeader` 9, `keepNext` 17, `cantSplit` 40**.
+
+**`JOB NO.` was still a printed column header, and a case-sensitive grep missed it.** A session
+reported "Job" as down to one occurrence on the strength of `grep Job`; the page-1 table header is
+uppercase `JOB NO.`. It is now `PROJECT NO.` and the skill says explicitly that a case-sensitive
+check will not find it. **Check labels case-insensitively.**
+
+**Build apparatus no longer ships inside the deliverable. Ruled by Jesse 2026-09-07.** Roughly two of
+five pages were scaffolding: the hand-tally notice, "not built in this draft" sections, `Pigs Used —
+not built`, the "Conscious checks" block, `[Awaiting Jesse …]` callouts, and the four closing
+sections. All of it moves to **the chat reply**, which keeps the one-file rule intact and loses
+nothing — Jesse reads it either way. **The four-section reporting rule is not weakened, it is
+relocated** out of the customer's file.
+
+A corollary the skill now states: **a section that could not be built is simply absent** from the
+document rather than given a heading announcing its own emptiness. That is
+never-document-absent-scope applied to the Bot's own output.
+
+**Verified on the 48 kB result:** all apparatus strings absent (hand-tally, not built, Conscious
+checks, Awaiting Jesse, and all four closing headings at zero), `PROJECT NO.` present, `JOB NO.`
+absent, `Project & PO #` present, logo still embedded. Body prose fell from 11,147 characters to
+4,101 while **all 9 tables and every figure survived** — the cut was scaffolding, not content.
+
+### Parity test — Grok Bot matches Claude Code once it has the palette. TESTED 2026-09-07.
+
+**The blue table headers were a missing input, not a capability ceiling.** The build spec defers
+fonts, colours and fills to `usadebusk-core` Brand Standards and deliberately does not restate the
+values. Grok Bot does not hold `usadebusk-core` and **cannot read `~/.claude/skills/` at all**, so
+Scribe followed a spec pointing at a document it cannot see and python-docx fell back to its stock
+style, which is blue. Measured: **zero hex values existed anywhere in the ported skills**, while
+`job-report.md` said "amber" five times. Scribe was told amber and never told what amber is.
+
+**Fixed by porting the values** into a new `skills/brand-standards.md`, labelled as a mirror with
+`usadebusk-core` named as authority, plus a pointer added inside `usadebusk-core` itself so a future
+brand change cannot leave Grok Bot silently stale.
+
+**The test was clean because both sides run python-docx 1.2.0** — the Bot's venv and Jesse's
+machine. Same library, same version, same content (Claude Code re-rendered Grok Bot's own v3 output
+rather than re-authoring), so the only variable was what each builder was told.
+
+**The styling layers came out identical, not merely close:**
+
+| | Grok Bot | Claude Code |
+|---|---|---|
+| Fills | `F7F7F7` ×31, `222222` ×28 | `F7F7F7` ×31, `222222` ×28 |
+| Colours | `555555` ×88, `FFFFFF` ×28, `FCC30A` ×9, `222222` ×4 | identical |
+| Fonts | Arial only | Arial only |
+| `tblHeader` / tables / logo | 9 / 9 / 1 | 9 / 9 / 1 |
+| `keepNext` | **17** | 11 |
+
+The only divergence is that **Grok Bot applied `keepNext` more liberally than the Claude Code build
+did**, and its output fits 2 pages against 3. On this document it is not behind; on pagination it is
+marginally ahead.
+
+**What this settles, and what it does not.** Grok Bot can produce a branded, customer-shaped `.docx`
+at Claude Code's standard, on its own machine, with no plugin, connector or credential. **The value
+is not document quality — Claude Code already had that. The value is that Grok Bot runs on Jesse's
+iPhone and Claude Code does not.** A report generated from a plant parking lot without opening a
+laptop is the capability; parity was only the precondition, and it now holds.
+
+**Untested, and the honest next step:** a *different facility*. USA26041 has now built the skill and
+tested it four times, so a fifth pass measures memory rather than capability.
+
+### Field/Value column widths — fixed on both paths. TESTED 2026-09-07.
+
+Jesse flagged the Field column as far too wide on Customer Details, Project Details, Crew Details
+and the per-heater data table, garbling the Value column into extra lines. Neither builder set
+widths, so python-docx split every table 50/50 — fine for the four-column tables, wrong for every
+Field/Value pair. **Project Details has a 9-character longest label against values up to 191
+characters.**
+
+**The rule** — size the label column to its own longest label, `0.10 × characters + 0.45` inches,
+clamped 1.4in to 2.2in, remainder to Value on a 6.9in text width. It lives in
+`04-knowledge/job-report-generator-build-spec.md` because it is layout rather than brand and governs
+both render paths, and is mirrored into the Grok Bot skill because Scribe reads skills, not the spec.
+
+⚠ **The trap: widths must go into `w:tblGrid`.** A first Claude Code attempt set `cell.width` only
+and **the rendered output did not move at all** — LibreOffice ignores it and Word honours it
+inconsistently. Set `tblLayout` to `fixed` and write each `w:gridCol`'s `w:w` in twips.
+
+**Both builders landed on identical widths independently:** 1.85 / 1.40 / 2.20 / 2.20 in. Scribe
+reported its own clamping unprompted — Project Details clamped *up* from 1.35, Crew Details and
+Heater Data clamped *down* from their 24- and 31-character labels. Project Details values fell from
+three or four lines to one or two.
+
+**Still open, not raised by Jesse:** there are blank gaps after the first Project-tables table and
+after the KPI band on both builds. His standing rule is no blank gaps, so this is a real residual —
+recorded rather than fixed, because it was not what he asked for.
+
+### Uniform first column, and the Stand-By reorder. TESTED 2026-09-07.
+
+**The per-table sizing rule above was wrong and lasted about an hour.** It fixed the garbled Value
+column and created a worse problem: nine tables starting at nine different offsets — 1.38 / 1.73 /
+1.85 / 2.20 / 2.30in — so the left edge was ragged down every page. Jesse spotted it by looking.
+**Optimising each table in isolation is the mistake**, and both the build spec and the skill now say
+so explicitly so it is not reintroduced.
+
+**Replaced by a uniform 2.00in first column on all nine tables.** The value is derived, not chosen:
+the longest first-column string in the document is `Total footage (looped pig path)`, measured at
+**1.80in in 9.5pt Arial**; with Word's 0.16in default cell padding that needs 1.96in, so **2.00in is
+the smallest value at which nothing wraps.** Remaining 4.90in splits evenly among the other columns.
+
+**Stand-By Summary reordered to `DATES | HOURS | CAUSE`** at 2.00 / 0.70 / 4.20. Dates and hours are
+short and fixed-width, so leading with them lands DATES on the same left edge as everything else and
+takes CAUSE from 2.30in to 4.20in — an 83% gain for the only column holding prose, which carries
+strings up to 83 characters. Causes now fit on one line instead of three.
+
+⚠ **The reorder introduced an artifact worth knowing: the TOTAL row read `blank | 11 | TOTAL`**,
+label stranded to the right of its own figure, because TOTAL had lived in the CAUSE column. A total
+row must label itself from the left, so TOTAL moves to DATES. Caught in the Claude Code build and
+fixed in both before Scribe ever saw it.
+
+**Both builds verified identical again:** all nine first columns at exactly 2.00in, Stand-By at
+2.00 / 0.70 / 4.20, TOTAL row reading `TOTAL | 11 | —`. Scribe enumerated all nine widths back
+unprompted rather than asserting success.
+
+**The accepted cost, Jesse's call:** the two Project tables and the KPI band hold short
+first-column values, so 2.00in there gives up about 0.25in that `SCOPE` — the longest cell in the
+document — would otherwise use. A straight edge was worth more than the space.
+
+## What model Grok Bot runs, and that it is scheduled to change. TESTED 2026-09-07.
+
+**Grok models on Cursor's infrastructure.** Established by Architect reading its own VM — file paths
+and constants, not self-report, which was ruled out in the prompt on the grounds that a model's
+claim about itself is not evidence.
+
+- **No environment variable names the live model.** Env names Cursor/SAND and a `grok|…` auth id.
+- **Harness default constant `SAND_DEFAULT_MODEL_ID = "grok-4.5"`** in `host-main.cjs`.
+- **Host runtime version `7c8b9bb`**, from `/home/box/sand-host/version`, supervisor `hostVersion`.
+- Harness binaries list many model ids, including several `grok-4.5*` variants.
+- Hostname `cursor`; `sand-host` and `exec-daemon` run the agent loop. **Nothing in `ps` is a local
+  model**, so inference is remote.
+
+⚠ **The operationally important finding: the model is scheduled to change and nothing will announce
+it.** The Statsig bootstrap marks **`grok-4.5` as end-of-life** and includes
+**`auto_switch → grok-4.6`**. **The model for a given turn is not pinned in any config on the VM**,
+which corroborates the "no model selection or version pinning" limitation recorded from the UI.
+
+**So keep today's artifacts as a baseline.** Everything verified on 2026-09-07 — the branded `.docx`
+and the receipt extraction — was produced by **grok-4.5**. When the switch fires there will be no
+changelog and no version string to compare, so a behaviour change is only detectable by holding the
+outputs. This is the whole reason the verified files matter beyond the day they were made.
+
+## Scout deleted — competitor watch is useless in this industry. Jesse, 2026-09-07.
+
+*"I'll never use Grok Bot to research competitors. It's useless in my industry."*
+
+**Both of Scout's use cases are now dead, and they died the same way.** Its AI-visibility task was
+cut earlier the same day as a wrong-industry idea, leaving competitor watch as its entire remaining
+job; that is now cut too. Nothing is left, so the Bot is retired rather than narrowed a second time.
+
+**Deleted from the app, not merely left dormant.** Clean to remove — **no skills, no routines, no connectors**, and not a Bid Desk member — unlike Chief of Staff, where Gmail and Drive were auto-attached at signup and deletion is unverified. A dormant Bot costs nothing to keep (usage is spent on runs), so the reason to delete was not cost: it was one fewer wrong option in a sidebar Jesse may be scanning from a phone under pressure. **Its profile is preserved in `bot-profiles.md`**, so the record of what was tried survives the Bot.
+
+⚠ **Deleting Scout did not remove the X posting surface.** A session claimed it would; that was wrong. The X session is account-level and shared, so every remaining Bot still inherits it.
+
+**The pattern is worth more than the Bot.** Both use cases came from the SaaS go-to-market playbook,
+and the vault already records the right lesson from the first one — *"a use case can be
+well-executed, well-scoped, and still worthless because the industry it was written for buys
+differently."* It has now happened **twice from the same source**. The `x.ai/bot/use-cases` gallery
+is a SaaS org chart (Sales Outbound, CRM Operations, LinkedIn Campaign Manager, Renewal Desk), and
+the community template ecosystem mirrors it. **Treat the whole marketplace as GTM-shaped by default
+and check the buying mechanism before porting anything from it.** USADebusk work is bought through
+RFQs, ARIBA and GED portals, and relationships.
+
+**Not a criticism of Scout's output.** Its one real pass on Quest Integrity was recorded above as
+the only Bot task that produced usable intelligence rather than a test result, and it was properly
+hedged throughout. The work was good; the job was not worth doing.
+
+## The phone continuity drill — PASSED. TESTED 2026-09-07.
+
+**Grok Bot is the backup of *capability*, not of data.** `obsidian-work` is on GitHub, so the vault's
+bytes survive Linda2 regardless — but **Claude Code does not travel and does not survive the
+desktop.** Without it the vault is an archive Jesse can read on a phone and produce nothing from.
+Grok Bot is the only thing left that still builds a document, extracts a receipt, or answers with a
+citation. A session argued the backup case was already solved by GitHub and **Jesse corrected it:
+"If the desktop goes down and you with it, then what good is Github? If I need something created, it
+can't create it. Grok Bot can."** He is right, and it reframes the trial from convenience to
+**business continuity** — a materially stronger renewal argument, and one that reads as hindsight if
+written after the renewal decision instead of before it.
+
+**The capability chain genuinely survives Linda2:** the venv under `/workspace`, the skills stored in
+Grok Bot itself, the brand assets in the clone. The clone refresh is the one thing fired from Linda2,
+and it **fails safe** — no pushes means no changes, so it freezes current rather than breaking.
+
+⚠ **The one dependency that does not survive is skill authoring and repair.** Every fix on
+2026-09-07 ran Linda2 → vault → upload → Scribe. With Linda2 gone the Bots stay usable but a wrong
+skill cannot be corrected and a missing one cannot be added. **A standby system is provisioned
+before the failure, not repaired during it** — load and verify what you want on the road before you
+leave.
+
+**What was tested, stated narrowly.** Jesse uploaded **a snapshot of a 2024 Valero Port Arthur
+service receipt** to **Ledger from the iPhone app**, Linda2 not involved. **It extracted accurately**
+and produced `USA24003 Valero Port Arthur H102….xlsx`. That is the whole result.
+
+**What it proves:** mobile image upload works, and extraction works from **an image** rather than a
+text layer. Ledger's earlier proven runs were three receipt *PDFs* read through the text layer, a
+path an image bypasses entirely — so vision input on mobile is established. It also chose a 2024 job
+with no live stake, which is the right shape for a first drill.
+
+⚠ **A previous version of this entry claimed far more, and every added claim was false.** It said
+the drill was a **USA26041** receipt that produced a **quoted-versus-actual variance analysis** tied
+to DSP#26071.2, with per-receipt attributions matching `F-501.md`. **None of that was the drill.**
+That variance work is **desktop work from ~1:41 PM the same day**, sitting earlier in the same Ledger
+thread. Jesse screenshotted Ledger's output **to show what a table looks like on an iPhone** and
+captured that older section — same thread, different job, seven hours apart.
+
+**`F-501` was never his.** A session recognised receipt numbers 10781–10784 in the screenshot, pulled
+the ExxonMobil Baytown heater card, built a reconciliation nobody had asked for, then "corrected" the
+record twice on that basis. Jesse: *"I'm not sure where F-501 came from."*
+
+**Not proven, and not to be claimed:**
+
+- **Capture from physical paper under field conditions** — angle, glare, curl, shadow. A snapshot of
+  a PDF on a screen is flat, evenly lit and square; a ticket on a truck bonnet is not, and that is
+  the condition that actually applies in a unit.
+- **Getting the finished file off the phone** — download, then attach to an email. Not reported and
+  not observed. **A breakdown he can see but cannot send is not a deliverable.**
+- **Chief of Staff routing from the phone.** The no-file test — *"desktop is down, who handles a
+  photographed receipt?"* — was not run.
+
+**The iPhone app takes photos, files and photo-library attachments** (Jesse, reading the feature).
+
+### The drill's second finding: tables are unreadable on the phone
+
+The desktop hid this. In the reply Jesse screenshotted, the header `Actual hrs (receipts)` wrapped to
+**four lines**, the cell `16 (10782: 6 + 10783: 10)` wrapped to four, and `Underrun 8` wrapped to
+two. **He reports it as chronic across every LLM he uses, and in Obsidian as well** — so it is a
+standing rule, not a correction to one Bot.
+
+**It is the same rule that took the report's first column from 2.00in to 1.40in the same day:** the
+parenthetical qualifier is what destroys the layout. Headers are one word; a cell holds a value,
+never a sentence and never a parenthetical; signed numbers rather than words. Provenance moves to one
+line beneath the table, where wrapping is harmless and nothing is lost.
+
+Recorded in `README-FOR-BOTS.md` — every Bot reads it, so one edit reaches all seven, where six
+profile pastes would drift the moment one was missed. The vault-wide half is in
+`01-context/output-preferences.md`, because Claude Code does the same thing to Obsidian tables.
+
+**A false conflict was raised against this screenshot and withdrawn the same evening.** Its table
+shows **Rig-Out 8** and totals **37** against the USA26041 report's verified **14** and **43**, and a
+session flagged that as unreconciled. **There was nothing to reconcile, twice over.** The screenshot
+was not the drill's output at all — it was the 1:41 PM desktop work on a different job. And even
+within that work there was no conflict: `F-501.md:191` reads `Rig-Out = 8 (10784) + 6 (10785)`,
+Ledger's 8 is receipt 10784 alone because 10785's pumper field was scribbled and it correctly listed
+it under *Illegible (not guessed)*, this file already carried the adjudication — *"the vault is right
+and Ledger is wrong, by exactly 6 hours"* — and the cell itself read **"Even on 10784 alone."**
+
+**The reusable failure, and it happened three times in one evening:** a reconciliation was asserted
+from recognised numbers **without first establishing which artifact they belonged to.** The receipt
+numbers were real, the heater card was real, the arithmetic was real, and the entire construction was
+about a job that had nothing to do with what Jesse ran. **Ledger behaved correctly at every step** —
+here, in the signature rule where the check itself was fictional, and in the drill it was credited
+with work it never did. **Establish which artifact a number came from before reconciling it against
+anything.**
+
+## Live-app read, 2026-10-04. READ by Claude Code via computer-use.
+
+**The roster is 15 Bots plus the Southern Syndicate group.** The eight in section 2, less Scout, plus
+eight this file never recorded. Their purpose below is read from each Bot's conversation, not from a
+profile:
+
+| Bot | What it is doing, as read |
+|---|---|
+| **Docs** | Signed into Jesse's **personal Outlook** (`jwutsey@outlook.com`) with phone approval; blocked five spam domains and read 185 messages back to 2026-09-03 |
+| **Fuel** | Fills fuel-receipt forms (2026-09-26 Wawa) and places Jesse's signature from an uploaded image; does not send |
+| **Clerk** | Clean admin copies of field service receipts — USA26046 Cenovus Lima Vac 7095 NIGHT, 2026-09-28, handed from Ledger |
+| **Forms** | Typesetting USA26046 receipts onto the form; self-graded B−, moving to a field-crop coordinate map |
+| **Travel** | United check-in, boarding passes, drive timing for the Lima trip (2026-09-30 to 10-01) |
+| **Empower** | Signed into **ISNetworld** 2026-09-19 and saved four Cenovus Lima training certificates to Google Drive |
+| **Studio** | Branded decks and leave-behinds; created 2026-09-23, never used |
+| **Gate**, **Forge** | A non-USADebusk "money lane" (digital products, property-management niche) run under Architect; **shut down 2026-10-02**, both idle |
+
+Chief of Staff was, at the time of the read, signing Jesse's **personal Gmail** into the Bot
+computer's Chrome at his request.
+
+**"Nothing has touched live work" in section 4 is no longer true.** USA26046 field paperwork (receipts,
+clean copies, fuel forms, site training certs, travel) has run through Clerk, Forms, Fuel, Empower,
+Travel and Ledger. None of it is the Bid Desk back-test that section 4 asks for — that is still undone.
+
+**The credential-free constraint below no longer describes the account.** Personal Outlook, personal
+Gmail and ISNetworld are all signed in on the shared Bot computer. Entry went through the app's secure
+forms, so no Bot saw a value — but the docs' rule is unchanged: every Bot shares the session cookies, so
+every Bot now holds those three sessions. ISNetworld is a USADebusk system, which is what the
+account-separation rule was written about. **Jesse ruled the same day that credentials stay in use** —
+see Standing constraints.
+
+**Settings, as read:** Current computer `Linda2`; **Execution on this computer: Always allow** (Bots can
+open files and run tasks on Linda2, auto-review still checks first); **Route traffic through this
+computer: on**, 39 routed this session — the Bot's browsing exits via Linda2's residential IP, which
+is the likely answer to section 4's datacenter-IP sign-in question while Linda2 is up. **Weekly usage
+9%, resets in 1 day** — the first drain data point. On-demand monthly limit: None.
+
+### Applying profile changes, and two UI traps. TESTED 2026-10-04.
+
+**This build has no Edit Profile in the UI.** A Bot's right-click menu holds only Pin, Move to section,
+Mark as Unread, Rename, Copy conversation ID, Hide and Delete; the side panel holds Details, Library
+and Computer. xAI's docs name an Edit Profile option, and Chief of Staff directed me to a gear icon.
+**Neither exists on screen.** **What works: ask the Bot in chat to replace its own description from the vault**,
+naming the section of `bot-profiles.md` and saying "verbatim". All six live profiles were updated this
+way on 2026-10-04, and each stated its check-in rule back. Pointing at the vault file instead of
+pasting text keeps the message short and the source single.
+
+**The sidebar re-sorts by most recent activity.** A click aimed at a Bot by position lands on whichever
+Bot moved into that slot, and one message went to the wrong Bot this way. **Read the chat header before
+typing.**
+
+**Local execution set to Ask every time** (2026-10-04, Jesse; was Always allow, xAI recommends Never).
+
+### Tool bootstrap — built. TESTED 2026-10-04.
+
+**Updates remove installed software, and the app says so outright.** `Settings > Updates > Grok Bot's
+Computer` reads *"Your files and logins stay, but installed apps and packages are removed."* The
+update could not be triggered as a test, because the panel showed *"Your computer is on the latest
+version"*. **Reset** sits beside it and rebuilds from the last saved snapshot, so very recent changes
+may be lost. Do not use it as a test.
+
+**So the reinstall is automatic, not a question.** Architect built `/workspace/setup/packages.txt`
+and `/workspace/setup/bootstrap.sh`. The script is idempotent, keeps its venv at `/workspace/.venv`
+and copies the vault's `fill_service_receipt.py` into `/workspace/bin`. Contents: poppler-utils,
+tesseract, ocrmypdf and LibreOffice Writer headless, plus pymupdf, pdfplumber, python-docx and openpyxl.
+**First run took about 21 s and the no-op run about 0.55 s**, all OK, with no install failures (as
+reported by Architect). The Receipt Extraction, Invoice Readiness Check, Project Report and Proposal
+Assembly skills now start with *"run bash /workspace/setup/bootstrap.sh"*.
+
+**Forms and Clerk have no skills.** Their working methods, including Forms' field-crop coordinate map
+for USA26046 receipts, live only in their long threads, and a thread is summarized and lost on any
+reset. They are the next candidates for skill-before-routine.
+
+**Usage: 17% at 11:46 on 2026-10-04**, against 9% at 00:48 the same day.
+
+### ⚠ `/workspace` lost folders — "only /workspace persists" is not a guarantee. READ 2026-10-04.
+
+**Facts, from Architect's read-only diagnostic at about 12:05 CDT:**
+- `/workspace/out` does not exist, and neither does `/workspace/bids`.
+- `/workspace/jobs` exists only because Ledger created it at 12:01 today.
+- What survives at the top level: `.venv`, `bin`, `forms`, `scratch`, `setup`, `uploads`, `vault`, plus loose PDFs.
+- **Lost with `out`:** the USA26041 F-501 Project Report `.docx` (built 2026-09-07), Clerk's USA26046 7095 NIGHT CLEAN PNG/PDF (Sep 29), and Fuel's blank fuel-form template.
+- A filesystem-wide `find` for the report and the CLEAN files returns nothing.
+- **Copies survive as chat attachments.** Ledger's and Clerk's agent attachment directories still hold USA26046 workbooks and CLEAN copies, and the threads show the downloads.
+- Nothing Architect ran today touched `out`; its only deletion was `/workspace/.venv-test`. `/workspace` sits on the root overlay, not a separate mount.
+
+**Inference (Architect's, unproven):** many surviving trees show a birth time of about 2026-10-03 21:24 CDT. That points to a box or workspace refresh then that kept some folders and dropped others, or to a deletion by some Bot, with no log naming who. **Either way, `/workspace` is a working area, not storage.** The copy-out rule in README-FOR-BOTS ("Nothing is done until it leaves here") is the real protection. **Any finished artifact goes to Jesse as a chat attachment or to OneDrive the same day**, and `/workspace` holds only what can be rebuilt.
+
+### Receipt density locked; scheduled backup live. 2026-10-04.
+
+**10787 density settled (Jesse, by side-by-side against the reference).** Forms locked the DeBusk
+service-receipt layout at **main 11 pt, hours 10, summary 10.5, receipt number 13**, down from 17/16/15.5/18,
+with values starting after the printed labels. This is now the standard for every job on this form,
+and Ledger was told the item is closed. **Check:** the 14:16 backup still holds the old sizes because
+it predates the lock. Monday's backup should show 11 pt in `setup/forms/debusk-service-receipt.json`.
+If it doesn't, the lock lives only in the skill text.
+
+**Scheduled backup: routine "Workspace backup" (Architect), Weekdays 18:00 CDT, first run
+2026-10-05.** It mirrors setup, jobs, bots and skills to OneDrive `GrokBot-Backup/`, stays silent when
+nothing changed, and posts a Friday one-line count. Each run is logged in `setup/backup-log.md`. The
+test run copied 46 files, and its log line was **read by Claude Code on the local OneDrive mirror**.
+Jesse created it, after the same routine was blocked when Claude Code tried to create it.
+
+**Log/state bookkeeping rebuilt. FIXED 2026-10-10.** `health.md` showed the backup FAIL (stale since
+10-06) although the routine kept firing: 10-07 and 10-09 copied `bots/Purse` files, and 10-08 failed
+outright. The log lines existed in `/workspace`, but the OneDrive copies of `backup-log.md` and
+`backup-state.json` were never uploaded. The log/state write was the last step of the routine's prose
+instructions, and those two files are excluded from the changed-file check, so nothing carried them
+across. Architect's fix: `setup/backup-plan.py` runs first (lists changed files, marks the run
+started); `setup/backup-finish.py` always runs last (records ok / no-change / fail, advances the
+watermark only on success). Uploading the log and state is now the **required last step of every
+run**, because only the run itself can reach OneDrive. A "not uploaded yet" marker left by the finish
+script makes the next run log a failure and re-upload if that step is missed. **Verified by Claude Code
+on the OneDrive mirror:** log ends `2026-10-10 02:15 CDT | copied=2 | result=ok`, and
+`grok_sync_check.py` reads PASS. Lesson: a Bot's report of its own log is not the dashboard's
+input; check the OneDrive copy.
+
+**Roster: 13 Bots.** Jesse deleted Gate, Forge and the "Test probe" chat on 2026-10-04 and kept
+Studio. Their `/workspace/bots/{Gate,Forge}/memory.md` stubs and backup copies are harmless leftovers.
+
+**USA26046 open items: zero.** The 7100 12-hr receipt is closed, not reissued, because admin already
+has it (Jesse). The 10787 density is closed as above.
+
+### Skills generalized; job state rebuilt from the vault. TESTED 2026-10-04.
+
+**Ruling (Jesse):** skills hold method only. Form layouts go in `/workspace/setup/forms/<form-type>.json`,
+and values go in `/workspace/jobs/<USA#>/`. At most one example per skill, labeled "do not reuse values".
+This was prompted by the Bots' thread-written skills baking in USA26046 Cenovus values, including a
+field map with `"text": "Cenovus"`.
+
+**Audit (Architect's grep for job identifiers), before → after:**
+- skills: 43 hits → 22
+- Receipt Typesetting 14 → 1 (the labeled example)
+- Service: ISNetworld 9 → 2
+- Fuel Form 7 → 4
+- the combined field map was split into `forms/debusk-service-receipt.json` (layout, no values) and `jobs/USA26046/receipt-values.json`
+
+What remains: Duration Model, Proposal Assembly and Work-Up Billing Math cite vault-sourced
+closed-job examples (USA26038, DSP26092, F-802), which are evidence, not defaults. The audit is at
+`/workspace/setup/audit-job-specifics.md`.
+
+**Dry run passed, verified by Claude Code from the OneDrive copy.** Receipt Typesetting on a fake
+job `USA99999` produced a receipt with only TESTCO / Test Person / Testville TX / WO 00000000 / Op
+One 12 hrs, and no Cenovus anywhere. On `USA99998` (no folder) it stopped and asked rather than
+borrowing.
+
+**Vault-first job state.** The README now requires `state.md` to start from `active-jobs.md` and
+the heater cards, with each line tagged `[vault]` or `[bot]`. Ledger's rebuild took USA26046 from
+**12 open items to 2**: the 10787 density (Jesse) and the 7100 PDF still writing 12 hrs against
+the 7.5-hr ruling (no owner). The rest was already settled in the vault.
+
+**Mirror drift found while syncing `skills/`:**
+- **The live Duration Model was missing three Jesse rulings of 2026-09-17** that the vault copy holds:
+  the Pig line is the task, not travel; round down on ties; disclose a shave. Estimator had been
+  running without them, so the vault copy is pushed to live.
+- The live Receipt Extraction carries a Mob/Demob lump-sum section (Jesse 2026-09-24),
+  consistent with `company-context.md`, and is mirrored back.
+- Seven Bot-written skills are newly mirrored: receipt-typesetting, receipt-clean-copy, fuel-form, the three
+  `service-*` skills, and safety-lms-training.
+
+**Lesson: mirrors drift in both directions**, so check by diff, not by assumption.
+
+### Backup, reset test and Jesse's tip digest. TESTED 2026-10-04.
+
+**Backup to OneDrive works, and Claude Code can see it.** Architect mirrored `/workspace/{setup,jobs,bots}`
+to `GrokBot-Backup/` on the OneDrive connector (personal account `jwutsey@outlook.com`): 23 files.
+**Checked independently** on Linda2 at `C:\Users\Jwuts\OneDrive\GrokBot-Backup\` — the same 23 files.
+That makes OneDrive the read channel from Claude Code into Bot state. **It is one-time only.** A
+scheduled backup routine was blocked as unauthorized persistence when Claude Code tried to set it up
+by driving the app. **Jesse creates it himself if he wants it**, or asks a Bot to "back up setup, jobs and bots to
+GrokBot-Backup" after a working session.
+
+**A group chat is not a reset.** Probe: the codeword `TUBESHEET-83` was given only in Architect's
+DM, then a new chat containing only Architect was asked for it. **It answered at once.** So the
+history (or learned memory) follows the Bot into every room. That matches what Architect told Jesse
+and contradicts the memory research's recommended routine. **Duplicate is also absent from this build's
+right-click menu**, which holds only Pin, Move, Mark as Unread, Rename, Copy ID, Hide and Delete. **No
+in-app thread reset is available.** The remaining options are (a) live with the summarized thread
+now that knowledge is in files, or (b) create a fresh Bot from the vault profile and the Bot's
+`memory.md` and hide the old one. The test chat "Test probe…" remains in the sidebar.
+
+**Fuel form:** Jesse's blank `2026_FUEL_FORM.pdf` is at `/workspace/setup/fuel-form-template.pdf`,
+the Fuel Form skill points there, and a test fill on the 2026-09-26 Wawa 7219 receipt came back
+**attached** in chat. Reported by Fuel; fields not checked line by line.
+
+**Tip digest (Jesse, 2026-10-04): what was new.** These ideas went into README-FOR-BOTS:
+- per-service cheat-sheet skills
+- look → write → read back
+- a failure log, in `memory.md`
+- a post-task retro line
+- a Next action line in `state.md`
+- sending general research to SuperGrok chat and long coding to Grok Build
+
+Recorded and deferred: capture one run's network requests and replay the API instead of clicking
+(candidates are ISNetworld certificates and Outlook), and a weekly scorecard/cost-hygiene Bot.
+Everything else in the digest was already practice.
+
+### Thread-only methods captured as skills. 2026-10-04.
+
+Each of these Bots wrote its own method from its thread history. Each skill opens with the bootstrap line.
+- **Receipt Typesetting** (Forms). The field-crop method, with the Vac receipt field map saved as a
+  file at `/workspace/setup/vac-receipt-field-map.json` and 7095 NIGHT CLEAN as the reference. **The
+  10787 density is recorded as open** pending Jesse's answer.
+- **Receipt Clean Copy** (Clerk). Change only what Jesse names, white out scribbles, and leave
+  everything else untouched. Ask when a correction is ambiguous.
+- **Fuel Form** (Fuel). Fill with PyMuPDF, read only what the receipt prints, and place the
+  signature from `/workspace/setup/jesse-utsey-signature.png`. **Blocked:** the blank template
+  `/workspace/out/fuel-form/fuel-form-template.pdf` is not on disk, and the next fill stops until
+  Jesse re-uploads it.
+
+**Skills live outside `/workspace`**, at `/home/box/agent-data/workflows/<name>/SKILL.md`. They are
+app-managed library data, so their persistence across a computer update is the platform's job, not
+the bootstrap's (inferred, untested). Each one's data files are in `/workspace/setup/`, which does
+persist.
+
+**Memory research, 2026-10-04: [[research-2026-10-memory]].** Of the GitHub memory systems, none adds
+anything over the vault: it already *is* the LLM-wiki pattern, with stricter write control. mem0,
+Zep, Letta and basic-memory need keys, databases, or token overhead on every turn of every Bot. The
+one gap is each Bot's own learned corrections, which live in uninspectable memory and are lost on a
+reset. The proposed fix is a plain `/workspace/bots/<Bot>/memory.md` per Bot, plus a reset routine
+that uses a new single-Bot group chat, which Cursor staff call the closest way to a thin working set.
+Not adopted yet; that is Jesse's call along with the reset.
+
+---
+
+---
+
+# Superseded — trial-era state table (as of 2026-09-07)
+
+
+**⚠ Stale as of 2026-10-04** — the live app holds 15 Bots, not 7. See "Live-app read, 2026-10-04" at the
+end of section 3 before trusting this table.
+
+**The roster is complete as of 2026-09-06.** Seven Bots were built, plus Chief of Staff; **Scout was retired 2026-09-07, leaving six working Bots.** **All seven
+skills are uploaded as of 2026-09-07** — six were in; `Proposal Assembly` was missing for the first
+day and was uploaded and verified on the 7th. This line claimed all seven from the start and was
+wrong until then. Counts here are checked against the app on the date given, not asserted.
+
+| Bot | Role | Skills held | Routines |
+|---|---|---|---|
+| **Librarian** | Vault citations with file-and-line proof | — | `Vault refresh` (webhook + inert PR trigger) |
+| **Ledger** | Receipts → ticket breakdown → invoice readiness | Receipt Extraction, Invoice Readiness Check | — |
+| **Scribe** | .docx production | Project Report, Proposal Assembly | — |
+| **Intake** | RFQ package → intake checklist, on demand | RFQ Intake | — |
+| **Estimator** | Duration model and priced work-up, propose-only | Duration Model, Work-Up Billing Math | — |
+| ~~**Scout**~~ | **DELETED from the app 2026-09-07 (Jesse): *"I'll never use Grok Bot to research competitors. It's useless in my industry."*** The Bot no longer exists — do not go looking for it. Both use cases dead; see the retirement note below | — | — |
+| **Architect** | Grok Bot platform research | — | — |
+| **Chief of Staff** | **Entry point and roster memory — profile applied, live** (corrected 2026-09-07; this row previously read "auto-created at signup, unused" and was stale) | — | — |
+
+**Group: "Bid Desk"** — Estimator, Intake, Librarian, Scribe. Order is Intake → Estimator → Scribe,
+with Librarian on call and outside the chain. Every member carries the handoff contract: name the
+output file path, the open questions and the next owner, and do not assume the next Bot read the
+conversation.
+
+**Each Bot was verified by making it state its own rules back**, not by trusting the save
+confirmation. Intake recited the derive-vs-ask split and *"incomplete inputs stay open, I list them
+and stop rather than fill a plausible blank."* Estimator got all three probes right: 100 ft/hr
+measures one pig on one unlooped coil and is **not** heater-total footage ÷ 100; rig-in is 6 hours
+with exactly two conjunctive departures and rig-out mirroring the whole figure; Smart Pig is 2 hrs
+per pass, *"an estimate only; quoted jobs will disagree, and that is expected."*
+
+**`Webhook ping`** also survives on Librarian — the throwaway that proved the webhook mechanism. Its
+run history is the evidence, and it answers to a different key.
+
+**Workspace folders** `/workspace/{bids,jobs,out,scratch}` created 2026-09-06. They are named in
+`README-FOR-BOTS.md`, which every Bot reads, and until then they did not exist.
+
+**Connectors installed — four as of 2026-09-06; five as of 2026-09-07, X being the fifth.** Gmail, Google Drive,
+**OneDrive** and GitHub. Gmail and Drive were auto-added to Chief of Staff at signup and Gmail was
+never signed in; GitHub was added deliberately for the Git-event test and **its token has been
+deleted**, though the connector entry remains. **OneDrive is the unexplained one** — see the finding
+below.
+
+**Meter: 1% → 13% across the whole build day**, 2026-09-06 into 09-07. That bought seven Bots, seven
+skills, a group, a working push trigger, and **five graded tests** — Librarian's citation audit,
+Ledger's receipt extraction and its reconciliation, Scribe's project report, and Scout's competitor
+pass.
+
+**This is the renewal number.** Roughly an eighth of one week's allowance for a full build plus every
+test worth running, with on-demand spend set to **None** so there is no overage tail. Steady-state
+use will be far lighter than a build day. **Cost is not the constraint on this decision** — whether
+the work is worth having is.
+
+
+---
+
+# Superseded — trial plan, "What's left" (2026-09-07)
+
+Overtaken on 2026-10-10: Grok Bot was kept, Scout no longer exists, and the renewal question is closed.
+
+
+**The roster is built. Nothing has touched live work.** Six working Bots after Scout's retirement, seven skills, a group and a
+working push trigger, and not one real bid has gone through any of it. That is the whole remaining
+question.
+
+**Run one closed bid end to end through the Bid Desk.** A bid that is already quoted and settled, so
+the output can be checked against what was actually sent rather than judged on whether it reads
+well. Intake produces the checklist, Estimator the duration model and work-up, Scribe the document.
+[[BACKTEST-SPECIMEN]] is the standard: six rules reproduced DSP26085 to the hour and to the line
+when worked by hand, so the Bots have a number to hit.
+
+**Give Scout one real competitor pass** on public material — Quest Integrity first, since the vault
+names them as a competitor with their own decoking division *and* they sit on USADebusk jobs as the
+smart-pig vendor.
+
+**The back-test, and it is the verdict.** Judge against artifacts that already have known-good
+answers, two structurally different ones per Bot. Estimator against a closed bid, line by line.
+Scribe against a delivered project report — the gap to the hand-edited version is the editing time it
+actually saves, and watch specifically for hand-tallied figures, since the vault's generator does not
+exist over there. Ledger against a completed ticket breakdown; mechanical, so near-perfect or the
+tool is not ready. Librarian against the citation audit again.
+
+**Record three things, because they decide renewal:** how fast the weekly allowance drains and what
+drains it; how often a sign-in is blocked by the datacenter IP and needs manual takeover; and whether
+routines fire reliably now that the webhook path is proven.
+
+**Deferred deliberately.** No Auditor Bot until `/workspace/out` holds real artifacts to audit. No
+Chief of Staff coordinator until the Bot count justifies a router, roughly eight. No navigation
+**skill** — this file is the single copy, and a skill restating it would be the duplication
+`RULE-FORK` exists to catch. If the trial renews, the skill becomes a pointer at this file.
+
+---

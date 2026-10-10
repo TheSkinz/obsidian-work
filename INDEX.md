@@ -300,6 +300,7 @@
 - [[service-isnetworld]] — Service: ISNetworld `(grok/bot-setup/skills)`
 - [[service-outlook]] — Service: Outlook `(grok/bot-setup/skills)`
 - [[workup-billing-math]] — Skill — Work-Up Billing Math `(grok/bot-setup/skills)`
+- [[trial-findings]] — Grok Bot — build-out findings, 2026-09-06 to 2026-10-10 `(grok/bot-setup)`
 - [[drawing-extraction-strategy]] — Grok — Heater Drawing Extraction Strategy `(grok)`
 - [[f501-coil-flythrough-build-prompt]] — Grok Build prompt — F-501 Pass B POV flythrough (wormhole style) `(grok)`
 - [[07-llms/grok/overview|overview]] — Grok — Overview `(grok)`

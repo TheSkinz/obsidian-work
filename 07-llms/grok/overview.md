@@ -29,9 +29,7 @@ cloud Linux computer with a browser, filesystem and terminal, running saved skil
 `SAND_DEFAULT_MODEL_ID = "grok-4.5"`, the hostname is `cursor`, and inference is remote. ⚠ **`grok-4.5`
 is flagged end-of-life with `auto_switch → grok-4.6` configured, and no model is pinned**, so the
 model will change with no announcement. Evidence and file paths in [[SETUP]].
-An open-ended personal test started 2026-09-06 — not an official trial, no end date; it runs until Jesse loses interest (corrected 2026-10-03, previously called a one-month trial). The buildout — **six working Bots** (seven built, Scout
-deleted 2026-09-07) plus a live Chief of Staff, their standing instructions, the ported skills and the four-week back-test — is [[SETUP]] and
-the files beside it. **Southern Syndicate**, which appears as the workspace name and the Bid Desk
+Started 2026-09-06 as an open-ended personal test and **kept indefinitely as of 2026-10-10** (Jesse), alongside Claude Code on Linda2 as the primary work path. Current roster, routines and how to drive it are in [[SETUP]]; the dated build-out evidence is in [[trial-findings]]. **Southern Syndicate**, which appears as the workspace name and the Bid Desk
 group name, is Jesse's X handle and not a Bot.
 
 Two facts govern the trial. All Bots on an account share one computer and one credential store,
