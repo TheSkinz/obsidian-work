@@ -107,6 +107,17 @@ from pathlib import Path
 URL_VAR = "GROK_BOT_WEBHOOK_URL"
 KEY_VAR = "GROK_BOT_WEBHOOK_KEY"
 
+# `--target inbox` fires the "Claude inbox" routine instead (added 2026-10-10):
+# the wake-up for the Claude -> Bots handoff channel, see handoff/README.md. Run
+# it by hand after pushing a handoff file -- it is not wired to the hook, so an
+# ordinary push never wakes Chief of Staff. Same rules, separate variables, so
+# either routine can be switched off without touching the other.
+TARGETS = {
+    "vault": (URL_VAR, KEY_VAR, ".grok-bot-last", "obsidian-work pre-push"),
+    "inbox": ("GROK_INBOX_WEBHOOK_URL", "GROK_INBOX_WEBHOOK_KEY", ".grok-inbox-last",
+              "obsidian-work handoff"),
+}
+
 # Generous on purpose. Nothing waits on this any more -- the push has already
 # gone by the time the child is still holding the socket -- so the only thing a
 # short timeout would buy is throwing away a trigger that was about to succeed.
@@ -126,20 +137,20 @@ def note(msg: str) -> None:
     print(f"[grok-bot] {msg}", file=sys.stderr)
 
 
-def log(msg: str) -> None:
+def log(msg: str, path: Path = LOG_PATH) -> None:
     """Record the outcome where it can be read later. Never the key, never the URL."""
     try:
         stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-        LOG_PATH.write_text(f"{stamp} {msg}\n", encoding="utf-8")
+        path.write_text(f"{stamp} {msg}\n", encoding="utf-8")
     except OSError:
         pass  # An unwritable log is not a reason to make noise.
 
 
-def send(url: str, key: str) -> None:
+def send(url: str, key: str, source: str, log_path: Path) -> None:
     """The actual POST. Runs in the detached child; nothing is waiting on it."""
     req = urllib.request.Request(
         url,
-        data=json.dumps({"source": "obsidian-work pre-push"}).encode("utf-8"),
+        data=json.dumps({"source": source}).encode("utf-8"),
         headers={
             "Authorization": f"Bearer {key}",
             "Content-Type": "application/json",
@@ -149,15 +160,15 @@ def send(url: str, key: str) -> None:
     try:
         with urllib.request.urlopen(req, timeout=TIMEOUT_S) as resp:
             log(f"ok - HTTP {resp.status}" if resp.status < 400
-                else f"webhook returned HTTP {resp.status}")
+                else f"webhook returned HTTP {resp.status}", log_path)
     except urllib.error.HTTPError as exc:
         # Status only. The request carried the key; the message must not.
-        log(f"webhook returned HTTP {exc.code}")
+        log(f"webhook returned HTTP {exc.code}", log_path)
     except Exception as exc:  # noqa: BLE001 — nothing here may raise
-        log(f"webhook did not answer ({type(exc).__name__}) after {TIMEOUT_S}s")
+        log(f"webhook did not answer ({type(exc).__name__}) after {TIMEOUT_S}s", log_path)
 
 
-def spawn_detached() -> bool:
+def spawn_detached(target: str) -> bool:
     """Re-exec ourselves to POST in the background. True if the child started.
 
     The key travels by inherited environment, never in argv — argv is readable
@@ -179,29 +190,39 @@ def spawn_detached() -> bool:
     else:
         kwargs["start_new_session"] = True
     try:
-        subprocess.Popen([sys.executable, os.path.abspath(__file__), CHILD_FLAG], **kwargs)
+        subprocess.Popen([sys.executable, os.path.abspath(__file__), CHILD_FLAG,
+                          "--target", target], **kwargs)
         return True
     except Exception:  # noqa: BLE001 — a push must never fail on this
         return False
 
 
 def main() -> int:
-    url = os.environ.get(URL_VAR, "").strip()
-    key = os.environ.get(KEY_VAR, "").strip()
+    target = "vault"
+    if "--target" in sys.argv:
+        i = sys.argv.index("--target")
+        target = sys.argv[i + 1] if i + 1 < len(sys.argv) else ""
+    if target not in TARGETS:
+        note(f"unknown --target {target!r}; use one of: {', '.join(TARGETS)}")
+        return 0
+    url_var, key_var, log_name, source = TARGETS[target]
+    log_path = LOG_PATH.parent / log_name
+    url = os.environ.get(url_var, "").strip()
+    key = os.environ.get(key_var, "").strip()
 
     if not url or not key:
         # Idle, not broken. This is the documented off switch.
-        note(f"idle - set {URL_VAR} and {KEY_VAR} to notify Grok Bot on push")
+        note(f"idle - set {url_var} and {key_var} to notify Grok Bot ({target})")
         return 0
 
     if CHILD_FLAG in sys.argv:
-        send(url, key)
+        send(url, key, source, log_path)
         return 0
 
-    if not spawn_detached():
+    if not spawn_detached(target):
         # Could not fork. Do NOT fall back to a blocking send — that reintroduces
         # exactly the hang this design exists to prevent. Record and move on.
-        log("could not spawn detached sender; trigger skipped")
+        log("could not spawn detached sender; trigger skipped", log_path)
     return 0
 
 

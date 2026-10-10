@@ -132,7 +132,11 @@ INBOX_MAX_AGE_DAYS = 14
 
 # Folders never scanned for problems (archive is history; templates are blanks;
 # fixtures contain deliberate violations; .obsidian is app state).
-SKIP_SCAN = ("archive", "templates", "tools/fixtures", ".obsidian", ".git", ".claude")
+SKIP_SCAN = ("archive", "templates", "tools/fixtures", ".obsidian", ".git", ".claude",
+             "handoff")
+# `handoff` added 2026-10-10: task files for Grok Bot (see handoff/README.md).
+# They are messages, not notes -- no frontmatter, nothing links to them -- so
+# scanning them would only manufacture ORPHAN and frontmatter findings.
 # `.claude` added 2026-08-15. It carries only json config of its own, but Claude
 # Code checks out task worktrees under `.claude/worktrees/<name>/` — a complete
 # second copy of the vault. Scanning one double-counts every warning AND re-reads
@@ -331,7 +335,7 @@ def pointer_base_present(p: Path) -> bool | None:
 VAULT_TOP_DIRS = (
     "00-inbox", "01-context", "02-facilities", "04-knowledge", "06-reviews",
     "07-llms", "08-systems", "09-interests", "50-dashboards",
-    "apps", "archive", "assets", "templates", "tools", "_OUTPUTS",
+    "apps", "archive", "assets", "templates", "tools", "_OUTPUTS", "handoff",
     # Retired. `03-jobs` and `05-projects` were dissolved into heater cards;
     # `06-insights` was renamed to `06-reviews` on 2026-08-24 and that rename
     # took twelve days to reach the scheduled-task prompts. Keeping the dead
