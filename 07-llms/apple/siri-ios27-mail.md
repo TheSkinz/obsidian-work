@@ -37,11 +37,12 @@ Ask about one thing at a time: a facility and heater, a named person, or a condi
 - **"You haven't replied."** It misses replies sent as a new email instead of in the thread, or sent outside the window you asked about (#9). Treat it as a lead and look in Sent.
 - **"I'll update my records."** Siri said this after #9. It has not been shown to remember anything between questions, so don't rely on it.
 
-The routine Jesse runs himself, spoken or from a home-screen Shortcut:
+The routines Jesse runs himself, spoken or typed. The checks are written into the prompts so no follow-up question is needed:
 
-- **Morning:** "Which emails asked me for something in the last 14 days that I haven't replied to?" Then check each hit in Sent before acting on it.
-- **Per active job:** "What's the latest on [facility + heater]?"
-- **Weekly:** "What did Jason, Travis or Kyle send me this week?" Proposals Jesse writes are submitted from their mailboxes, so this is how he sees their side ([[outlook-email-architecture]], "Who submits a bid").
+- **Morning:** "Which emails or texts from the last 14 days asked me for something? For each one, check my Sent folder for any email I sent that person afterward, even a new email, and tell me if it's still open."
+- **Before a site visit or meeting:** "For [facility + heater], what's been decided, what's still open, and who owes the next step? Give the sender and date for every date or change you mention."
+- **Friday:** "What did Jason, Travis, Kyle or Dacorey send me this week, and did any customer reply get forwarded to me?" Jesse's proposals are submitted from their mailboxes, so this is how he sees their side ([[outlook-email-architecture]], "Who submits a bid").
+- **Weekly sync to the vault:** "List any schedule, PO, scope or contact changes on my active jobs since [last Friday's date], with the sender and date for each." Jesse pastes the answer into a Claude Code session, which updates [[active-jobs]] and the heater cards. Since 2026-09-07 this is the only way mailbox changes reach the vault.
 
 ## Not tested
 
