@@ -1188,6 +1188,20 @@ nothing changed, and posts a Friday one-line count. Each run is logged in `setup
 test run copied 46 files, and its log line was **read by Claude Code on the local OneDrive mirror**.
 Jesse created it, after the same routine was blocked when Claude Code tried to create it.
 
+**Log/state bookkeeping rebuilt. FIXED 2026-10-10.** `health.md` showed the backup FAIL (stale since
+10-06) although the routine kept firing: 10-07 and 10-09 copied `bots/Purse` files, and 10-08 failed
+outright. The log lines existed in `/workspace`, but the OneDrive copies of `backup-log.md` and
+`backup-state.json` were never uploaded. The log/state write was the last step of the routine's prose
+instructions, and those two files are excluded from the changed-file check, so nothing carried them
+across. Architect's fix: `setup/backup-plan.py` runs first (lists changed files, marks the run
+started); `setup/backup-finish.py` always runs last (records ok / no-change / fail, advances the
+watermark only on success). Uploading the log and state is now the **required last step of every
+run**, because only the run itself can reach OneDrive. A "not uploaded yet" marker left by the finish
+script makes the next run log a failure and re-upload if that step is missed. **Verified by Claude Code
+on the OneDrive mirror:** log ends `2026-10-10 02:15 CDT | copied=2 | result=ok`, and
+`grok_sync_check.py` reads PASS. Lesson: a Bot's report of its own log is not the dashboard's
+input; check the OneDrive copy.
+
 **Roster: 13 Bots.** Jesse deleted Gate, Forge and the "Test probe" chat on 2026-10-04 and kept
 Studio. Their `/workspace/bots/{Gate,Forge}/memory.md` stubs and backup copies are harmless leftovers.
 
