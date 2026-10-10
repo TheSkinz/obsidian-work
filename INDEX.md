@@ -285,15 +285,18 @@
 - [[bot-profiles]] — Bot profiles — paste-ready `(grok/bot-setup)`
 - [[README-FOR-BOTS]] — Orientation — read this before doing anything `(grok/bot-setup)`
 - [[SETUP]] — Grok Bot — Setup Runbook `(grok/bot-setup)`
+- [[drive-finals]] — Drive finals `(grok/bot-setup/skills)`
 - [[fuel-form]] — Fuel Form `(grok/bot-setup/skills)`
 - [[invoice-readiness-check]] — Skill — Invoice Readiness Check `(grok/bot-setup/skills)`
 - [[receipt-clean-copy]] `(grok/bot-setup/skills)`
 - [[receipt-extraction]] — Skill — Receipt Extraction `(grok/bot-setup/skills)`
 - [[receipt-typesetting]] — Receipt Typesetting `(grok/bot-setup/skills)`
 - [[safety-lms-training]] — Safety LMS online training (browser) `(grok/bot-setup/skills)`
+- [[service-ehs-insight]] — Service: EHS Insight (Debusk SG) `(grok/bot-setup/skills)`
 - [[service-gmail]] — Service: Gmail `(grok/bot-setup/skills)`
 - [[service-isnetworld]] — Service: ISNetworld `(grok/bot-setup/skills)`
 - [[service-outlook]] — Service: Outlook `(grok/bot-setup/skills)`
+- [[service-plenum]] — Service: Plenum (USA Debusk) `(grok/bot-setup/skills)`
 - [[trial-findings]] — Grok Bot — build-out findings, 2026-09-06 to 2026-10-10 `(grok/bot-setup)`
 - [[drawing-extraction-strategy]] — Grok — Heater Drawing Extraction Strategy `(grok)`
 - [[f501-coil-flythrough-build-prompt]] — Grok Build prompt — F-501 Pass B POV flythrough (wormhole style) `(grok)`

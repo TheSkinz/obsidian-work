@@ -196,6 +196,9 @@ the heater card itself carries the quoted 6/18/6/6.
 | [[service-gmail]] | Gmail service skill — shared signed-in session, mainly Docs (Bot-written, mirrored 2026-10-04) |
 | [[service-outlook]] | Outlook service skill — shared signed-in session, mainly Docs (Bot-written, mirrored 2026-10-04) |
 | [[service-isnetworld]] | ISNetworld service skill — Empower (Bot-written, mirrored 2026-10-04) |
+| [[service-ehs-insight]] | EHS Insight (USADebusk Safety Gateway) service skill — Empower (Bot-written, mirrored 2026-10-10) |
+| [[service-plenum]] | Plenum learning-portal service skill — Empower (Bot-written, mirrored 2026-10-10) |
+| [[drive-finals]] | Drive finals skill — every Bot uploads finished files to Google Drive `Grok Bot` (Bot-written, mirrored 2026-10-10) |
 | [[safety-lms-training]] | Safety LMS Training skill — Empower (Bot-written, mirrored 2026-10-04) |
 
 [[BACKTEST-SPECIMEN]] is the DSP26085 fixture, used 2026-09-06 for the retired estimating mirrors and 2026-10-10 for Claude Code on the box. Reuse it for any future estimating test.

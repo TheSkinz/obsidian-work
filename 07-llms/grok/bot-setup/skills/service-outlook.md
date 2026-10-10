@@ -12,6 +12,7 @@ Namespace `user-Outlook`. Confirm the mailbox with `get_me` before acting.
 - Open `get_mail_message` only when the preview is not enough. Previews almost never include URLs.
 - Do not download attachment bytes unless asked.
 - On 2026-10-03: Junk had 222 messages (220 unread). A 30-day read covered 185 messages, 2026-09-03 06:08 CT through 2026-10-03 14:01 CT. 37 older messages were not opened.
+- On 2026-10-06: Junk had 236 (+14). Fifteen messages after 2026-10-03 14:01 CT; blocked five domains had 0 of those new arrivals.
 - One `get_me` call failed with an OAuth refresh race. The retry worked. Do not switch to the browser for a read the connector can do.
 
 ## Junk pattern (Jesse's correction)
@@ -27,6 +28,11 @@ Worked path, personal account only, after `jwutsey@outlook.com` was signed in on
 3. Add the domain, Save, reload, and read the list back. All five domains above were absent, then present after save and reload.
 
 What failed: that same URL with no Outlook.com session redirected to the Microsoft marketing page “Sign in to Outlook” (`microsoft.com`, deeplink to junkEmail). `outlook.office.com` is the company host, not this personal mailbox.
+
+## Safe / trusted senders (browser, connector cannot)
+Same junkEmail settings URL. Path: **Junk email → Senders → tab “Safe senders and domains”**. Helper text: “Don't move email from these senders to my Junk Email folder.”
+Add the address, OK, Save (Save disables when done), reload, and read the list back.
+Jesse confirmed these as trusted (2026-10-06): `donotreply@rxtx.walgreens.com`, `spectrumadmin@cincsystems.net`, `inspection@bees360.com`, `contactusemails@shellfcu.org`. Only add addresses he names or confirms.
 
 ## Sign-in that worked (personal)
 Secure form, one visible field per step. Typed values go into the page and are never returned. Do not screenshot a secret field.
