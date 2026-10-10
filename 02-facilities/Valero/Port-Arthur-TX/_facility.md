@@ -73,6 +73,7 @@ Source: DSP #26035 Valero Port Arthur Decoke March 2026.pdf (quoted); Copy of US
 
 - [[H-102A]]
 - [[H-102B]]
+- [[B-301]] (DHT-243 Reactor Charge Heater; passivation support quoted on [[DSP26115]], Oct 2026)
 
 ---
 
