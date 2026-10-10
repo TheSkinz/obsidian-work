@@ -17,3 +17,5 @@ Idea seed captured 2026-10-09 at Jesse's request, as the task for a future sessi
 - Whose approval it needs. A branded redesign was built for DSP26112–26114 on 2026-10-08 and Jesse reverted it to Jason's format the same night (commit `22f326e`). Find out why before redesigning again. Was the problem the design itself, or the switch away from a format Jason and Travis already know?
 - Brand standards in `usadebusk-core`, and the existing generator `usadebusk-estimating/scripts/render_proposal.py`.
 - Show Jesse a one-page specimen before building the full template.
+
+**Method agreed 2026-10-10:** [[2026-10-10-quote-template-redesign-decision-method]]. It covers why the first redesign was reverted (not impressive, wrong moment), the format rulings, the criteria, three Word-built specimens, and the approval order. Next: build the specimens.
