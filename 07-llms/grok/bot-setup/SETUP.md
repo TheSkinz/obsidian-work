@@ -166,11 +166,21 @@ hook was removed from Linda2 the same day. Jesse deletes *Vault refresh* and the
 *Webhook ping* in the app; until he does they are idle, since nothing fires them.
 
 **Open, 2026-10-10.** The Bot computer now has a Claude Code CLI 2.1.289 (Jesse installed it). The
-test of whether it can run the real `usadebusk-*` skills from `claude-config` against the
-[[BACKTEST-SPECIMEN]] fixture is **blocked**. `claude-config` is private, and the box's git login
-reaches only the public vault. It needs read access to that repo (reconnect the GitHub connector),
-then the handoff is re-sent. If it passes, the Bid Desk Bots and their Grok-format skill mirrors in
-`skills/` are candidates to retire, which needs a separate ruling.
+**It runs the real `usadebusk-*` skills. TESTED 2026-10-10** (Architect's report). `git clone` of the
+private `claude-config` still fails, so Architect copied `skills/` and `CLAUDE.md` through the GitHub
+connector, which is scoped to that one repo. That copied 38 of 40 files; the two logo PNGs were missed
+because the connector returns text only. It linked them into `~/.claude` without `settings.json` or
+the hooks. Claude Code then listed all seven `usadebusk-*` skills. On DSP26085 F-201 it produced
+**6 rig-in, 12 pig, 8 smart pig, 6 rig-out, 32 hrs**, against the quoted 36, in 62 s on Opus 5.5.
+Rig-in, rig-out and the per-circuit pig path match the specimen. Smart pig 8 is the ruled 2 hrs/pass,
+an expected disagreement with the quote. Pig 12 against 18 is because the card records no radiant footage,
+and it flagged that as an open item instead of guessing, which is the vault's own rule. It was **partly exposed**:
+the heater card itself carries the quoted 6/18/6/6.
+
+**Not durable yet.** The copy is a snapshot that drifts as soon as `claude-config` changes. The CLI,
+the `~/.claude` links and the copy all sit where a computer update erases them, except the copy under
+`/workspace`. Making it durable means a way for `bootstrap.sh` to refresh the repo without a token,
+plus reinstalling the CLI and relinking. Until then the Bid Desk Bots and their mirrors in `skills/` stay.
 
 ## Files here
 
