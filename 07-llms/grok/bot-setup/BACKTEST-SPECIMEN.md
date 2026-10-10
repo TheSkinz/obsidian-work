@@ -72,7 +72,7 @@ on instead of opening an investigation.
 
 Propagated to all four places that stated the old figure: `01-context/estimating-approach.md`,
 `04-knowledge/concepts/estimating-pricing.md`, the `usadebusk-estimating` skill, and
-[[duration-model]] — leaving any of them behind would have recreated the rig-in drift in reverse.
+the Grok Duration Model mirror (retired 2026-10-10) — leaving any of them behind would have recreated the rig-in drift in reverse.
 
 ## What the composition pass found
 

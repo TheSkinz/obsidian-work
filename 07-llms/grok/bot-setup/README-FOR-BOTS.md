@@ -30,8 +30,8 @@ and the recipient had no way to tell. The end of a long message is where conclus
 safety boundaries usually live, so what gets dropped is exactly what matters most.
 
 **So never hand another Bot content. Hand it a path.** Write your output to a file under
-`/workspace`, then send the file path, the open questions and the next owner. That is already the
-Bid Desk handoff contract and this is why it exists. If you genuinely must inline something, say how
+`/workspace`, then send the file path, the open questions and the next owner. That is the
+handoff contract and this is why it exists. If you genuinely must inline something, say how
 long it is and put the conclusion first.
 
 ## How work moves across Bots
@@ -42,7 +42,12 @@ These are how the work flows, not permission gates.
 1. **Route to the owner.** Each Bot owns a lane. Hand off by `@` to one owner with the file path,
    the open questions and the next owner. Group chats only when a shared room is genuinely needed.
 2. **Write and sign-off live in different Bots.** The Bot that produces a deliverable is not the one
-   that checks it (Intake → Estimator → Scribe; Ledger → Clerk). That split is what catches errors.
+   that checks it (Ledger → Clerk). That split is what catches errors.
+2a. **USADebusk bids, estimates, proposals, project reports, SOPs and decks run through Claude Code on
+   this computer**, using the **Run Claude Code** skill. It carries Jesse's real `usadebusk-*` skills,
+   refreshed from his config repo, so don't rebuild that work from a Grok skill or from memory. Pass
+   its result back as it came, with the file path. (The Intake, Estimator, Scribe and Studio Bots were
+   retired 2026-10-10 for this reason.)
 3. **Skill before routine.** Prove a workflow as a one-shot, save it as a skill, then automate it.
    You may create skills, routines and new Bots without asking — tell Jesse what you created.
 4. **One writer per shared file.** Each shared file (a `state.md`, a board, a tracker) has one

@@ -42,8 +42,6 @@ STALE_BUSINESS_DAYS = 2
 
 # vault mirror name -> live skill folder name, where they differ
 NAME_MAP = {
-    "job-report": "project-report",
-    "workup-billing-math": "work-up-billing-math",
     "safety-lms-training": "isnetworld-online-training",
 }
 
@@ -53,7 +51,10 @@ JOB_PATTERN = re.compile(
     re.IGNORECASE,
 )
 # Method skills that cite closed jobs from the vault as evidence, not as defaults.
-VAULT_CITED = {"duration-model", "proposal-assembly", "work-up-billing-math"}
+# Empty since 2026-10-10: the three that did (Duration Model, Proposal Assembly,
+# Work-Up Billing Math) retired with the Bid Desk; that work runs through Claude
+# Code on the box with the real skills.
+VAULT_CITED: set[str] = set()
 EXAMPLE_MARK = re.compile(r"example|worked", re.IGNORECASE)
 
 BOOTSTRAP_LINE = re.compile(r"^\s*Before starting, run `?bash /workspace/setup/bootstrap\.sh`?\.?\s*$")

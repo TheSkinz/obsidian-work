@@ -156,7 +156,7 @@ because the table it replaces went stale within two weeks.
 | **Docs** | Company Microsoft lane, plus personal Outlook hygiene |
 | **Travel** | Flights, hotels, rental cars, check-in |
 | **Purse** | Jesse's personal finances only; never USADebusk |
-| **Intake**, **Estimator**, **Scribe**, **Studio** | The Bid Desk: RFQ intake, duration and work-up, proposal and report `.docx`, decks. **No real bid has gone through them.** Their future depends on the test below |
+| ~~Intake, Estimator, Scribe, Studio~~ | **Retired 2026-10-10 (Jesse).** Bid, proposal, report, SOP and deck work on the box runs through Claude Code with the real skills — the *Run Claude Code* skill |
 
 **Routines.** *Workspace backup* (Architect, weekdays 18:00 CDT) is read by the `health.md` row.
 *Claude inbox* (Chief of Staff, webhook) is the handoff channel; see `handoff/README.md`. **The
@@ -177,10 +177,9 @@ an expected disagreement with the quote. Pig 12 against 18 is because the card r
 and it flagged that as an open item instead of guessing, which is the vault's own rule. It was **partly exposed**:
 the heater card itself carries the quoted 6/18/6/6.
 
-**Not durable yet.** The copy is a snapshot that drifts as soon as `claude-config` changes. The CLI,
-the `~/.claude` links and the copy all sit where a computer update erases them, except the copy under
-`/workspace`. Making it durable means a way for `bootstrap.sh` to refresh the repo without a token,
-plus reinstalling the CLI and relinking. Until then the Bid Desk Bots and their mirrors in `skills/` stay.
+**Made durable the same day.** SSH to GitHub is refused from the box on every port, because its proxy carries HTTPS only, and Jesse declined a stored token. Instead, Architect's *Refresh claude-config* skill re-copies `skills/` and `CLAUDE.md` through the connector when Claude Code sends a handoff whose Goal is "Refresh claude-config". Binary assets come from OneDrive `GrokBot-Backup/setup/claude-config-assets/`. It records the tree and blob ids in `setup/claude-config-sha.txt`, and the `health.md` row *Grok claude-config copy* goes FAIL when `origin/main` moves past them. **So after pushing a skill change, send the refresh handoff.** `bootstrap.sh` reinstalls the CLI and relinks `~/.claude` on every run. `skills/synced/` is Claude Code's own account sync and is left alone.
+
+**Writing works too. TESTED 2026-10-10.** On DSP26085 F-201, Claude Code produced a clean one-page branded `.docx`: real logo, gold rules, card data, and radiant gaps flagged rather than filled. It took 357 s under `--permission-mode acceptEdits` with a narrow `--allowedTools` list, now saved as Architect's *Run Claude Code* skill. On that evidence Jesse retired the Bid Desk Bots and their six Grok skill mirrors (duration-model, workup-billing-math, proposal-assembly, job-report, rfq-intake, brand-standards). Git keeps them.
 
 ## Files here
 
@@ -191,12 +190,6 @@ plus reinstalling the CLI and relinking. Until then the Bid Desk Bots and their 
 | [[architect-profile]] | The Architect — platform research, plus its experiment queue |
 | [[receipt-extraction]] | Receipt Extraction skill — Ledger |
 | [[invoice-readiness-check]] | Invoice Readiness Check skill — Ledger |
-| [[job-report]] | Project Report skill — Scribe |
-| [[rfq-intake]] | RFQ Intake skill — Intake |
-| [[duration-model]] | Duration Model skill — Estimator |
-| [[workup-billing-math]] | Work-Up Billing Math skill — Estimator |
-| [[proposal-assembly]] | Proposal Assembly skill — Scribe |
-| [[brand-standards]] | Brand Standards skill — Scribe (added 2026-09-07; Project Report and Proposal Assembly both depend on it) |
 | [[receipt-clean-copy]] | Receipt Clean Copy skill — Clerk (Bot-written, mirrored 2026-10-04) |
 | [[receipt-typesetting]] | Receipt Typesetting skill — Forms (Bot-written, mirrored 2026-10-04) |
 | [[fuel-form]] | Fuel Form skill — Fuel (Bot-written, mirrored 2026-10-04) |
@@ -205,10 +198,7 @@ plus reinstalling the CLI and relinking. Until then the Bid Desk Bots and their 
 | [[service-isnetworld]] | ISNetworld service skill — Empower (Bot-written, mirrored 2026-10-04) |
 | [[safety-lms-training]] | Safety LMS Training skill — Empower (Bot-written, mirrored 2026-10-04) |
 
-**Read [[BACKTEST-SPECIMEN]] before uploading the four estimating skills.** It works all four against
-DSP26085 — six rules reproduce the real quote to the hour and to the line, and one rule was
-falsified. **None of the four carries a rate number**; rates belong to a contract and stay in the
-vault behind their own warnings.
+[[BACKTEST-SPECIMEN]] is the DSP26085 fixture, used 2026-09-06 for the retired estimating mirrors and 2026-10-10 for Claude Code on the box. Reuse it for any future estimating test.
 
 **Substrate.** `/workspace/vault` is a clone of the public `obsidian-work` repo — 6319 objects,
 16.21 MiB, **no credentials prompted**. git on the VM is version 2.47.3.
