@@ -25,10 +25,11 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 
 | Loop | Last fired | Last heartbeat | Cadence | Status |
 |---|---|---|---|---|
-| Consolidation loop | 2026-09-15 (24 d ago) | 2026-09-15 (25 d ago) | 31 d | ok |
+| Consolidation loop | 2026-09-15 (25 d ago) | 2026-09-15 (25 d ago) | 31 d | ok |
 | Review loop | 2026-10-08 (1 d ago) | 2026-10-08 (2 d ago) | 90 d | ok |
-| Skill-drift loop | 2026-10-01 (8 d ago) | 2026-10-01 (9 d ago) | 62 d | ok |
+| Skill-drift loop | 2026-10-01 (9 d ago) | 2026-10-01 (9 d ago) | 62 d | ok |
 | Grok Workspace backup | 2026-10-10 (0 d ago) | OneDrive backup-log.md | 1 bd | ok |
+| Grok claude-config copy | 2026-10-10 04:01 CDT | OneDrive claude-config-sha.txt | on change | ok |
 
 ## Commercial pipeline
 

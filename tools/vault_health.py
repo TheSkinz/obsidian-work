@@ -501,6 +501,14 @@ def loop_heartbeats(root: Path):
         g_fired = "-" if g_last is None else f"{g_last.isoformat()} ({(today - g_last).days} d ago)"
         rows.append(("Grok Workspace backup", g_fired, "OneDrive backup-log.md", "1 bd", g_status))
         any_overdue = any_overdue or g_status.startswith("FAIL")
+        # The Bot box's copy of claude-config, refreshed by handoff when a skill
+        # changes (it cannot pull the private repo itself). FAIL = Claude owes
+        # Architect a refresh handoff.
+        from grok_sync_check import claude_config_status
+        c_status, c_copied, _ = claude_config_status(DEFAULT_BACKUP)
+        rows.append(("Grok claude-config copy", c_copied or "-", "OneDrive claude-config-sha.txt",
+                     "on change", c_status))
+        any_overdue = any_overdue or c_status.startswith("FAIL")
     except ImportError:
         pass
     return rows, any_overdue

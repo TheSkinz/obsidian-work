@@ -30,6 +30,7 @@ import argparse
 import datetime as dt
 import difflib
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -92,6 +93,46 @@ def backup_status(backup: Path, today: dt.date | None = None):
     if gap > STALE_BUSINESS_DAYS:
         return "FAIL: backup stale", last_ok, f"{gap} business days since last ok run"
     return "ok", last_ok, f"{gap} business day(s) since last ok run"
+
+
+CLAUDE_CONFIG = Path.home() / ".claude"
+
+
+def claude_config_status(backup: Path):
+    """Return (status, copied_label_or_None, detail) for the Bot box's claude-config copy.
+
+    The Bot box cannot pull the private claude-config repo (its network carries
+    HTTPS only, and SSH is refused on every port -- 2026-10-10), so Architect
+    copies skills/ and CLAUDE.md through the GitHub connector when Claude Code
+    asks, and records the git object ids it copied in setup/claude-config-sha.txt
+    on OneDrive. Comparing tree/blob ids -- not the repo HEAD -- means a memory or
+    settings commit never reads as drift; only a change to what the box runs does.
+    Compared against origin/main because the box copies what is pushed.
+    """
+    if not backup.exists():
+        return "-", None, f"{backup} not present on this machine"
+    marker = backup / "setup" / "claude-config-sha.txt"
+    if not marker.exists():
+        return "FAIL: no copy marker", None, str(marker)
+    fields = dict(
+        line.split("=", 1) for line in marker.read_text(encoding="utf-8", errors="replace").splitlines()
+        if "=" in line
+    )
+    fields = {k.strip(): v.strip() for k, v in fields.items()}
+    copied = fields.get("copied")
+    want = {}
+    for key, ref in (("skills_tree", "origin/main:skills"), ("claude_md_blob", "origin/main:CLAUDE.md")):
+        try:
+            want[key] = subprocess.run(
+                ["git", "-C", str(CLAUDE_CONFIG), "rev-parse", ref],
+                capture_output=True, text=True, check=True,
+            ).stdout.strip()
+        except (OSError, subprocess.CalledProcessError):
+            return "-", copied, f"cannot read {ref} in {CLAUDE_CONFIG}"
+    behind = [k for k, sha in want.items() if fields.get(k) != sha]
+    if behind:
+        return "FAIL: box copy behind", copied, f"{', '.join(behind)} differ from origin/main -- send Architect a refresh handoff"
+    return "ok", copied, "skills/ and CLAUDE.md match origin/main"
 
 
 def skill_body(path: Path) -> list[str]:
@@ -219,6 +260,10 @@ def main() -> int:
     sections = [("Backup age", [("PASS" if status == "ok" else
                                   "SKIP" if status == "-" else "FAIL",
                                   f"last ok run {last_ok or '-'}; {detail}")])]
+    cc_status, cc_copied, cc_detail = claude_config_status(args.backup)
+    sections.append(("claude-config copy on the Bot box", [(
+        "PASS" if cc_status == "ok" else "SKIP" if cc_status == "-" else "FAIL",
+        f"copied {cc_copied or '-'}; {cc_detail}")]))
     if status != "-":
         sections += [
             ("Mirror drift (vault skills vs live)", check_drift(args.backup)),
