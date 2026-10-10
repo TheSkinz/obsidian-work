@@ -84,58 +84,33 @@ left inert alongside a working one.
 Follow the ladder: `run by hand → correct → save as skill → test the skill → attach a routine`.
 Skipping a rung is how the weekly allowance disappears.
 
-## Wiring the push hook
+## Waking a Bot from Linda2
 
-This is the working defect-trigger, and the most operationally useful thing in the file.
+`tools/notify_grok_bot.py --target inbox` POSTs to the *Claude inbox* routine's webhook. The task
+format and the order of steps are in `handoff/README.md`. The URL and key live in the user
+environment variables `GROK_INBOX_WEBHOOK_URL` and `GROK_INBOX_WEBHOOK_KEY` and never touch a file.
+The outcome is the one line in `.grok-inbox-last` at the vault root.
 
-`tools/notify_grok_bot.py` fires a Grok Bot webhook from a `pre-push` hook, so Librarian pulls the
-clone every time the vault is pushed and `/workspace/vault` stops going stale between sessions.
+**Retired 2026-10-10: the pre-push hook and *Vault refresh*.** Every push used to fire Librarian
+to pull `/workspace/vault`, which spent a Bot run per push. The Bots now pull in `bootstrap.sh` when
+they start work, so the hook (`.git/hooks/pre-push`) was deleted and the script's default `vault`
+target has nothing left to call it. The old variables `GROK_BOT_WEBHOOK_URL` and
+`GROK_BOT_WEBHOOK_KEY` are inert once the routine is deleted.
 
-**`pre-push`, not `post-commit`,** because Librarian pulls from the *remote* — the notification must
-tie to the push. Git has no `post-push` hook. If a push fails after the hook fires, Librarian pulls,
-finds nothing new, and says so.
+Lessons from the hook that still apply to the inbox webhook:
 
-**The POST runs in a detached child, and the push does not wait for it** (fixed 2026-09-07). The
-webhook does not acknowledge and return — it **blocks until the run is queued, and slows as runs pile
-up**. Measured back to back: `1.0s` against an idle endpoint, then `21.7s`, then `53.3s`. The
-original 5-second timeout therefore only ever worked on the first push of a session; every push after
-it printed `webhook unreachable (TimeoutError)`, which was **wrong** — DNS, TLS and the route were
-fine throughout, and an unauthenticated POST answered with a clean 401 in 0.3s. Raising the timeout
-would have hung `git push` for the better part of a minute, so the hook now spawns and returns. The
-hook costs about **2 seconds** now, which is Python interpreter startup and nothing else.
+⚠ **The webhook blocks until the run is queued and slows as runs pile up** (1.0 s, then 21.7 s, then
+53.3 s, measured back to back on 2026-09-07). The script therefore POSTs from a detached child and
+never waits.
 
-**Where failures show up:** `.grok-bot-last` at the vault root — one line, overwritten each run,
-gitignored. `ok - HTTP 200` is the good case. Nothing is printed to the push output any more, because
-by the time the outcome is known the push has already finished. **If the clone looks stale, read that
-file first** — it is the only place a failed trigger is recorded.
+⚠ **Click *into* each field and Ctrl+A before copying the URL or key.** The display truncates with
+an ellipsis, and copying what you can see yields a partial key and `Invalid API key`.
 
-**The shim** at `.git/hooks/pre-push` is untracked by nature, so the logic lives in `tools/` where it
-is versioned. Recreate it after any re-clone:
+⚠ **`setx` only reaches shells opened afterwards**, so Claude Code must be restarted after setting a
+variable.
 
-```bash
-printf '#!/bin/sh\nexec python "$(git rev-parse --show-toplevel)/tools/notify_grok_bot.py"\n' > .git/hooks/pre-push && chmod +x .git/hooks/pre-push
-```
-
-**Two environment variables, and the key never touches a file.** Read them off the routine's webhook
-trigger — click **When a webhook fires** to expand, then copy **POST to** and **key**:
-
-```bash
-setx GROK_BOT_WEBHOOK_URL "the POST to value"
-setx GROK_BOT_WEBHOOK_KEY "the key value"
-```
-
-⚠ **Click *into* each field and Ctrl+A before copying.** The display truncates with an ellipsis, and
-copying what you can see yields a partial key and `Invalid API key`.
-
-⚠ **`setx` only reaches shells opened afterwards** — and Claude Code's own Bash inherits its
-environment from startup, so **Claude Code must be restarted** before its pushes fire the hook.
-
-⚠ **PowerShell aliases `curl` to `Invoke-WebRequest`, which rejects `-H`.** Use `curl.exe`, or assign
-the URL and key to variables and call `Invoke-RestMethod` so the header is built by PowerShell rather
-than parsed by a shell. This cost four attempts.
-
-**It can never block a push.** Missing key, no network, webhook 500, xAI outage — every path exits 0
-with one line to stderr. **Unsetting either variable is the off switch**, with nothing to uninstall.
+⚠ **PowerShell aliases `curl` to `Invoke-WebRequest`, which rejects `-H`.** Use `curl.exe`, or
+`Invoke-RestMethod` with the URL and key in variables.
 
 ## Where things are
 
@@ -184,14 +159,18 @@ because the table it replaces went stale within two weeks.
 | **Intake**, **Estimator**, **Scribe**, **Studio** | The Bid Desk: RFQ intake, duration and work-up, proposal and report `.docx`, decks. **No real bid has gone through them.** Their future depends on the test below |
 
 **Routines.** *Workspace backup* (Architect, weekdays 18:00 CDT) is read by the `health.md` row.
-*Claude inbox* (Chief of Staff, webhook) is the handoff channel; see `handoff/README.md`. *Vault
-refresh* (Librarian, fired by the pre-push hook) is being retired as of 2026-10-10, replaced by a
-`git pull` in `bootstrap.sh`. *Webhook ping* (Librarian) is a test leftover to delete.
+*Claude inbox* (Chief of Staff, webhook) is the handoff channel; see `handoff/README.md`. **The
+Bots pull the vault at work time**: `bootstrap.sh` runs `git pull --ff-only` first, verified by
+Architect 2026-10-10 (HEAD matched origin). That replaced *Vault refresh* (Librarian), whose pre-push
+hook was removed from Linda2 the same day. Jesse deletes *Vault refresh* and the test leftover
+*Webhook ping* in the app; until he does they are idle, since nothing fires them.
 
-**Open, 2026-10-10.** The Bot computer now has a Claude Code CLI (Jesse installed it). A handoff to
-Architect is testing whether that CLI can run the real `usadebusk-*` skills from `claude-config`
-against the [[BACKTEST-SPECIMEN]] fixture. If it can, the Bid Desk Bots and their Grok-format skill
-mirrors in `skills/` are candidates to retire, which needs a separate ruling.
+**Open, 2026-10-10.** The Bot computer now has a Claude Code CLI 2.1.289 (Jesse installed it). The
+test of whether it can run the real `usadebusk-*` skills from `claude-config` against the
+[[BACKTEST-SPECIMEN]] fixture is **blocked**. `claude-config` is private, and the box's git login
+reaches only the public vault. It needs read access to that repo (reconnect the GitHub connector),
+then the handoff is re-sent. If it passes, the Bid Desk Bots and their Grok-format skill mirrors in
+`skills/` are candidates to retire, which needs a separate ruling.
 
 ## Files here
 
