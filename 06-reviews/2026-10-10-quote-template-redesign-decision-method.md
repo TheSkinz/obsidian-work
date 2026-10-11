@@ -137,8 +137,19 @@ Photos are placeholders. Jesse says his current photos are all from bad angles.
 
 The real DSP26071.2 summary folds mob into Equipment and demob into Manpower, with no Mob/Demob row. That is Jason's convention, and the concepts keep it.
 
+## Direction D: Jesse's picks (2026-10-11)
+
+Jesse picked **cover 1, Execution Plan 2 and Quotation 1**. He leans toward concept 1 overall, finds 2 OK and 3 mediocre.
+
+Direction D combines them: the concept-2 gantt is restyled in concept 1's black-band look. The cover uses a real photo from the Marathon LAR technical-proposal deck (`Marathon Carson RFQ/_Bids/Marathon_LAR_Technical_Proposal_DRAFT.pptx`, `image-1-1.jpeg`): the Trimax in front of coke-drum derricks. It is graded so everything but the yellow goes grey, the sky is darkened behind the logo, and the bottom fades to black (`build/cover_photo.py`).
+
+Checks: SEND with a $0.00 gap, and the $100-tampered copy blocks. Files are `Round 2 Concepts/DirectionD_Picks.pdf` and `.docx`.
+
+The deck holds only two real photos. The other is the crew walking past the unit (`image-18-1.jpeg`), a black-and-white accent candidate. Jesse says finding more photos will take a while.
+
 **Open:**
-- Jesse picks a version of each page (mixing allowed) in the concepts sheet.
+- Jesse reviews Direction D, then the full blank template gets built from it.
+- Safe / Fast / Sustainable cover wording needs Jason's agreement.
 - A photo plan: retouch his existing photos or shoot new ones.
 - B needs a sharper field photo; the current one is about 134 dpi at full width.
 - Fix the "USADeBusk Services" dead string in the real template.
