@@ -147,9 +147,33 @@ Checks: SEND with a $0.00 gap, and the $100-tampered copy blocks. Files are `Rou
 
 The deck holds only two real photos. The other is the crew walking past the unit (`image-18-1.jpeg`), a black-and-white accent candidate. Jesse says finding more photos will take a while.
 
+## Photo pipeline and cover options (2026-10-11)
+
+Jesse rejected the LAR coker shot because the trailer's rear is closest to the camera; he wants the front end nearest with the name readable (memory `feedback-cover-photo-angle`). The Canadian branding on the unit is fine (Jesse).
+
+**Local GPU photo pipeline built:** `C:\Users\Jwuts\photo-pipeline\` (scripts copied to `Round 2 Concepts/build/photos/` with a README). It runs on the RX 9070 XT via ROCm PyTorch:
+- Real-ESRGAN x4 upscaling;
+- BiRefNet matting, which must run in fp32 because fp16 returns an empty mask;
+- SDXL inpainting, used only to erase.
+
+Generated backdrops looked CGI and were dropped in favour of real plates.
+
+**Hard rule:** the unit is never inside a generative mask. The check is a pixel diff inside the matte, and it now refuses to pass on an empty mask. The first run passed vacuously on one.
+
+**Photo inventory:** 207 images screened. Best found:
+- #106, `Marathon Carson RFQ/_Presentation photos/IMG_1973-UPDATED-USADEBUSK-scaled.jpg`: the Trimax at a refinery with its front closest.
+- #107: the "Pigging in Progress" sign.
+- `Valero Meraux LA/_History/Pigs.jpg`: decoking pigs.
+- The Casper heater photos, which serve as plates.
+
+**Cover options:** `DirectionD_coverH1/H2/H3.pdf`.
+- **H1:** #106 as a band, barricade erased.
+- **H2:** the phone-photo unit composited on the blurred LAR coker derricks.
+- **H3:** the same unit on a blurred Casper heater structure.
+
+Unit diff: 0.0, 0.10 and 0.10 levels. All three return SEND. Inside-page accents (sign, crew, pigs) are ready.
+
 **Open:**
-- Jesse reviews Direction D, then the full blank template gets built from it.
+- Jesse picks a cover, then the full blank template gets built from Direction D.
 - Safe / Fast / Sustainable cover wording needs Jason's agreement.
-- A photo plan: retouch his existing photos or shoot new ones.
-- B needs a sharper field photo; the current one is about 134 dpi at full width.
 - Fix the "USADeBusk Services" dead string in the real template.
