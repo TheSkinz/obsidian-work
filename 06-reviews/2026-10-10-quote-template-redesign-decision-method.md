@@ -82,7 +82,19 @@ Template rules learned:
 - Never letter-space a label the gate reads ("Pricing Summary" comes out as "P R I C I N G").
 - Keep each line item's label, text and amount in one table row.
 
+## Round 2 strategy (2026-10-10, evening)
+
+Jesse superseded round 1 with a reference he likes: a commercial "Web Design Proposal" template with a charcoal and gold diagonal cover, a black-and-white photo in a slanted frame, a grey title strip on every page, a pricing table ending in a dark total box, and a gantt with gold cells.
+
+Rulings:
+- **References are inspiration only.** No template purchase.
+- **The art tooling call is mine.** I draw geometric art in code with exact brand hex, use real USADebusk photos, and never use AI image generation for equipment or people.
+
+Revised G2: decorative art may be anchored behind cover text or sit in the header/footer layer. Variable content never sits in images, text boxes or shapes.
+
+Harvest: Jesse's example plus 15 Behance references, broken into parts to tick, at https://claude.ai/artifact/LGNnfYucvXRpLcHszwPaQb. Next comes Direction D, three pages (Cover, Execution Plan as a gantt, Quotation), built from his picks. It needs one sharp landscape photo, at least 2400 px wide, of a Trimax on site; the OneDrive inventory has none.
+
 **Open:**
-- Jesse scores blind and picks a direction.
+- Jesse ticks parts on the mood board and pastes back his picks. This supersedes "scores blind and picks a direction".
 - B needs a sharper field photo; the current one is about 134 dpi at full width.
 - Fix the "USADeBusk Services" dead string in the real template.
