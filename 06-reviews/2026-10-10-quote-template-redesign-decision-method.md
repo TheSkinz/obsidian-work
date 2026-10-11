@@ -60,3 +60,29 @@ The comparison sheet sets the current template's same two pages beside A/B/C, wi
 ## Next step
 
 Build the three specimens in Word from DSP26115 and export them with soffice.exe directly. Run G1–G4 on each, assemble the comparison sheet, and hand it to Jesse for blind scoring.
+
+## Round 1 built (2026-10-10)
+
+Three Cover + Quotation specimens (A Refined, B Bold, C Data sheet) were built on **DSP26112, the Wilmington 20H200 decoke** instead of DSP26115 (Jesse's call). The gate didn't recognise DSP26115's "Passivation Support" line. All three were exported **through Word**, not soffice: the real workflow exports from Word, and the gate verdicts have to hold on that PDF.
+
+- Files: `OneDrive/USADeBusk/Company/Quote Template Redesign 2026-10/` holds the `.docx`, the `.pdf`, the comparison sheet and `build/` (docx-js scripts, `gates.py`, `word2pdf.ps1`).
+- Comparison sheet: https://claude.ai/artifact/3TuJdNtT6e9auE17GVVmif
+- Gates (tool output, not predictions):
+  - G1: all three return SEND with a $0.00 gap. With Labor raised $100, each blocks.
+  - G2: all pass.
+  - G3: all pass, but each adds one rule/grid grey that the brand table doesn't define.
+  - G4: all pass, 31/31 values.
+- My scores (A 4.0, B 4.6, C 4.0) sit hidden in the sheet until Jesse has scored.
+
+The gate needed three fixes before G1 could pass on any design:
+- config `21d82dd`: the extractor was reading the new `Rate Sheet` tab.
+- config `ab145f8`: xpdf `-layout` misplaces native-table amounts. The gate now retries with `-table`, and it strips leading item numbers.
+
+Template rules learned:
+- Never letter-space a label the gate reads ("Pricing Summary" comes out as "P R I C I N G").
+- Keep each line item's label, text and amount in one table row.
+
+**Open:**
+- Jesse scores blind and picks a direction.
+- B needs a sharper field photo; the current one is about 134 dpi at full width.
+- Fix the "USADeBusk Services" dead string in the real template.
