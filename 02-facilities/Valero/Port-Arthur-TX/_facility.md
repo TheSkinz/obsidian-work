@@ -18,9 +18,9 @@ tags: [facility, Valero]
 |---|---|
 | Address | (not recorded) |
 | Gate / check-in | (not recorded) |
-| Badge / access requirements | (not recorded) |
-| Site contact | (not recorded) |
-| Site contact phone | (not recorded) |
+| Badge / access requirements | Valero contractor badge request (SEC FRM-001) per person + temp drive-in pass per driver, submitted by Kelly Smith. **Route all badge and drive-in requests through Sami Watts** (Kenny Daigle, 2026-10-09). B-301 job: 5 badges + 3 drive-ins (Jesse, Brody, Dacorey) approved 2026-10-09. Badge office hours not recorded. USA26025 (Mar 2026): ISTC training (~4 hrs) first, then badging and drive-in on arrival. |
+| Site contact | Kenny Daigle, 243 Rebuild Project Construction Manager (B-301, 2026); Sami Watts (contractor), Valero Major Capital Projects, DHT 243 Rebuild — badging |
+| Site contact phone | Kenny: office (409) 985-1734, cell (409) 499-3555, Kenny.daigle@valero.com · Sami: office (409) 985-1169, cell (409) 594-4469, samantha.watts@contractor.valero.com |
 | Escort requirements | (not recorded) |
 
 ---
