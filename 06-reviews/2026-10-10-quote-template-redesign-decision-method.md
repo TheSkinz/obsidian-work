@@ -94,7 +94,51 @@ Revised G2: decorative art may be anchored behind cover text or sit in the heade
 
 Harvest: Jesse's example plus 15 Behance references, broken into parts to tick, at https://claude.ai/artifact/LGNnfYucvXRpLcHszwPaQb. Next comes Direction D, three pages (Cover, Execution Plan as a gantt, Quotation), built from his picks. It needs one sharp landscape photo, at least 2400 px wide, of a Trimax on site; the OneDrive inventory has none.
 
+## Round 2 concepts (2026-10-11)
+
+**Jesse's mood-board picks:**
+
+| Element | Pick |
+|---|---|
+| Page header | R11 |
+| Pricing table | R3, R11 |
+| Total callout | R3 |
+| Schedule | his example's gold-cell gantt |
+| Data tables | R3, R8 |
+| Photo treatment | his example |
+| Typography | his example, R5 |
+| Cover | none picked |
+
+He then supplied his own image-generated concept: a dark refinery cover, black title bands with a gold slash, timeline dots, an hours bar and a gold total box. Its figures ($98,134.26, 80 hrs) match no DSP26071 revision. The concepts use the real **DSP26071.2 Rev 2 ($60,287.42, 48 hrs)**, with execution dates corrected to 2026.
+
+**Three concepts, each Cover + Execution Plan + Quotation, built in Word:**
+1. His design made real.
+2. A blend: reference cover, R11 numbered headers, R3 tables, gold-cell gantt in 4-hour cells.
+3. A light contrast version.
+
+Photos are placeholders. Jesse says his current photos are all from bad angles.
+
+**Results:**
+- All three return SEND with a $0.00 gap, and each $100-tampered copy blocks.
+- Revised G2 passes: one behind-text cover image, no text boxes.
+- 36/36 values present.
+
+**Locations:**
+- Sheet: https://claude.ai/artifact/CoqSdjjXSXLmTRdbrkqeRe
+- Files: `OneDrive/USADeBusk/Company/Quote Template Redesign 2026-10/Round 2 Concepts/` (with `build/`)
+
+**Jesse's goal for the final template (2026-10-11):** a blank template where adjustments are easy to make.
+
+**Planned mechanics:**
+- Art is a swappable behind-text layer.
+- All words and numbers sit in styles and tables.
+- Word content controls are used for fill-in fields.
+- Picture content controls let anyone replace a photo.
+
+The real DSP26071.2 summary folds mob into Equipment and demob into Manpower, with no Mob/Demob row. That is Jason's convention, and the concepts keep it.
+
 **Open:**
-- Jesse ticks parts on the mood board and pastes back his picks. This supersedes "scores blind and picks a direction".
+- Jesse picks a version of each page (mixing allowed) in the concepts sheet.
+- A photo plan: retouch his existing photos or shoot new ones.
 - B needs a sharper field photo; the current one is about 134 dpi at full width.
 - Fix the "USADeBusk Services" dead string in the real template.
