@@ -1,38 +1,39 @@
 ---
 type: digest
 status: generated
-created: 2026-10-10
+created: 2026-10-12
 ---
 
-# Daily Email Digest — 2026-10-10
+# Daily Email Digest — 2026-10-12
 
-Source: the iPhone Shortcut export, modified 2026-10-10 19:38, covering Oct 9 7:44 PM to Oct 10 7:01 PM. 21 messages: 8 work, 13 personal dropped (bills, orders, subscriptions, Google security alerts, marketing). Calendar section empty.
+Source: the iPhone Shortcut export, modified 2026-10-12 17:40, covering Oct 12 6:19 AM to 4:16 PM. 18 messages: 14 work (3 of them Jesse's self-forwards to Gmail), 4 personal dropped (bills, HOA notice, marketing). Calendar section empty.
 
 ## Open
 
-NONE owed by reply. Every work request in the window has a later FROM: Jesse Utsey message on the same thread. One item is open on the work rather than the mail: Travis Trenholm asked on Oct 9 (7:10 PM) for a formal quote on DSP26115 Valero Port Arthur B-301 passivation, and Jason Harman answered Jesse's workup on Oct 9 (11:54 PM) with an approval to send. I'd infer the formal proposal itself has not gone out yet, because no customer send is visible in this window and [[DSP26115]] still records the proposal as not sent.
+Valero Port Arthur B-301 passivation ([[DSP26115]]), chloride sampling. Kenny Daigle (Valero) forwarded to Jesse on Oct 12 (3:24 PM) a note from Yeraldi Holsomback (Valero): the email says that before Phase II, and above all before the tubes are filled, Valero must sample USADebusk's solution to confirm under 50 ppm chlorides, as was done at the start of passivation, and that this is not in USADebusk's procedure. No reply visible in this window. I'd infer it needs either a hold point in SOP `USAD-Valero_PortArthur-SOP-PAS-B301-001-REV0` or a reply confirming Valero owns the sampling.
+
+ExxonMobil Baytown F-801 PS8 crude heater decoke ([[DSP26064]]), MOC tasks. Scott Kesseler (ExxonMobil) wrote to the temp-facilities review group, Jesse included, on Oct 12 (12:43 PM) asking everyone to complete their tasks in the GMOC. No reply visible in this window. The email links to an internal ExxonMobil SAP MOC page; not followed. I'd infer Jesse may have an assigned MOC task; whether he does is only visible in ExxonMobil's system.
 
 ## Changes
 
-Valero Port Arthur B-301 ([[DSP26115]]), PO amount. The email says Valero will increase their PO by $50,000 to cover USADebusk's costs, per Travis Trenholm after a call with Daniel of Chemical Cleaning (Oct 9, 7:10 PM, quoted inside Jesse's reply). Travis also estimates actual costs nearer $30,000. Email states $50,000 PO increase and ~$30,000 cost estimate, not entered in vault. **NEW** — `active-jobs.md` carries the PO as "Not recorded" and no PO number appears in the mail.
+Valero Port Arthur B-301, job number. Rachel Taylor's notice, forwarded by Jason Harman Oct 12 (10:46 AM), says job USA26056 has been created; the subject carries PO PENDING. **NEW** — `active-jobs.md` shows the job number as "(not assigned)" and the PO as "Not recorded" (the PO part matches).
 
-Valero Port Arthur B-301, schedule. Jesse's workup (Oct 9, 9:49 PM) states mobilize 10/11, start 10/12/26. **MATCHES VAULT** (`active-jobs.md`: mob Sun 2026-10-11, on site Mon 2026-10-12).
+Valero Port Arthur B-301, scope/procedure. The chloride sampling requirement above (Yeraldi Holsomback via Kenny Daigle, Oct 12). **NEW** — neither `active-jobs.md` nor [[B-301]] mentions chloride sampling.
 
-Valero Port Arthur B-301, crew and equipment. The workup states crew 5 (2 supervisors, 3 operators), 1 Trimax, 1 support unit and tractor, 2 crew trucks, 4 launchers, 30 hrs. **MATCHES VAULT** (DSP26115 rulings: crew 5, Trimax 4 + Support 4, two trucks, four launcher/receivers, 30 hrs).
+ExxonMobil Baytown F-801, temp facilities. Scott Kesseler's email (Oct 12, 12:43 PM) says environmental accepts diesel in the open-top tanks on the pigging facilities provided it is temporary and covered when not in use, and that an N2 purge, carbon canister and flame arrestor have been added to the MFD and attached to the GMOC with spec sheets. **NEW** — [[F-801]] and `active-jobs.md` record neither. The email gives no decoke date ("coming up").
 
-Valero Port Arthur B-301, price. Email states $28,637.35 revenue at 46.7% gross margin. The revenue **MATCHES VAULT** (DSP26115 `value: 28637.35`); the cost and margin figures are not entered in vault.
+Cenovus Lima HDS [[PR-175169]] (USA26046), delay hours. Cory Walker's email (Oct 12, 1:41 PM, addressed to Marshall Douglas) says Peter reported waiting a full night shift on the HDS before the plant allowed the water line and last launcher, while the service receipts show one hour of delay; Cory will submit it anyway. **CONFLICTS** — the email states 1 hr delay on the receipts and a full night shift per Peter; [[PR-175169]] records 2 hrs plant down time as written on the tickets and `active-jobs.md` records 2 stand-by.
 
-Valero Port Arthur B-301, execution plan wording. Jason Harman (Oct 9, 11:54 PM) noted the execution plan references only 1 crew truck. **MATCHES VAULT** — DSP26115 records this fixed on 2026-10-10 to (2) Crew Trucks, pricing unchanged.
-
-Valero Port Arthur B-301, customer contacts. Kenny Daigle (243 Rebuild Project Construction Manager, Valero) sent the EJP package on Oct 9 (2:32 PM), cc Donald Fowler and Will Moss of Valero, and asked Jesse and Kyle Ashworth to work together. **NEW** — none of Daigle, Fowler or Moss appears anywhere under `02-facilities/Valero/Port-Arthur-TX/` or `01-context/` (grep, 2026-10-10); Kyle is already recorded.
+Cenovus Lima, change-order rates. Cory's email (Oct 12, 12:29 PM) states personnel $210.42/hr, equipment $800/hr, per diem $450/shift beyond the quoted 110 hrs, 52 Vac stand-by hrs ($41,600 equipment, $10,941.84 personnel). Email states these figures, not entered in vault. The 52 stand-by hrs and the $800/hr equipment basis **MATCH VAULT** (`active-jobs.md` Vac final). Cory also says the account manager is redoing everything in a new change-order format.
 
 ## Upcoming
 
-2026-10-11: mobilize to Valero Port Arthur for B-301 passivation support (Jesse's workup, Oct 9).
-2026-10-12: start work at Valero Port Arthur B-301 (Jesse's workup, Oct 9). Same day, Kenny Daigle proposes a sit-down with Jesse and Kyle Ashworth "on Monday" (Kenny, Oct 9); I'd infer Monday means 10-12.
-
-Still owed by Valero before mobilization, per Jesse's Oct 9 email to Kenny: the four heater-flange-to-8" 300# RF adapters, test-pressure-rated valves, nitrogen supply and hoses, the nitrogen connection type, and the convection inlet flange rating. No reply from Valero is visible in this window.
+NONE dated in mail or calendar for the next 21 days. F-801's email says only that the decoke is "coming up"; the vault date (mob 2026-10-19, decoking from 10-20) comes from `active-jobs.md`, not this mail.
 
 ## Done
 
-Jesse sent Kyle Ashworth and Travis the B-301 details (Oct 9, 7:44 PM), and Travis and Jason the details and diagram (7:52 PM). He sent Kenny Daigle the B-301 procedure with the rig diagram as Attachment A, the scope, and the list of Valero-supplied items and open questions (7:59 PM), and forwarded that procedure to Daniel Harman (8:00 PM). He sent Travis and Jason the DSP26115 quote/workup summary (9:49 PM). Concur: expense report "J Utsey Reimb Oct 2026" was approved by Carrie Key for $123.65 (Oct 10, 10:10 AM) and set to Sent for Payment (Oct 10, 7:01 PM).
+Cenovus Lima change orders (USA26046), Oct 12 3:01 PM to Cory Walker and Marshall Douglas. Jesse sent Vac and Crude change-order summaries at Cory's rates, hours from the signed receipts. The email states Vac [[PR-170029]] CO-1 stand-by 52 hrs $54,491.84, CO-2 smart pigging 36 hrs over 38 quoted $37,725.12, decoking time saved 13 hrs −$13,622.96, net $78,594.00; Crude [[PR-170028]] smart pigging 38.25 hrs against 15 quoted, 23.25 over, $24,364.15, with no stand-by or delayed start on any of the 16 receipts. Figures not entered in vault. Earlier (1:35 PM) Jesse replied confirming scope; Cory confirmed Vac only and "don't worry about track" (1:41 PM).
+
+CHS McPherson 2025 TA (USA25025), Oct 12 4:14 PM to Travis Trenholm and Anthony Fazio. Randy Lenhart (CHS) had asked via Travis for the missing HP-2, HP-3 and HP-6 flow-test tables. Jesse found them in another folder, revised the job report and built a combined flow-test document for all heaters and coils. Travis replied (4:16 PM) that he will send it to the customer, so the customer send is not visible here, handed to Travis. Randy's email also calls the report the best pigging summary he has seen and a template for future work.
+
+Note for follow-up: I'd infer the HP-0002, HP-0003 and HP-0006 cards may lack those flow tests, since Jesse found them outside the report folder; not checked against the cards' Field Notes.
