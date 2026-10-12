@@ -244,6 +244,9 @@ DERIVED but hand-entered (no formula layer) — re-sum on any edit, do not trust
   Pig includes flow-test hours — before/after flow tests are NOT a separate column; fold
         into Pig. Add a Flow Test column only when a real receipt breaks the hours out.
   Pig also includes soda-ash PASSIVATION hours — the pump is running (Jesse, 2026-10-05).
+  CONCURRENT TASKS: when smart pigging runs at the same time as another task (e.g. one pass
+        smart pigged while the pump keeps cleaning others), the hours go to Smart Pig — smart
+        pigging takes priority; elapsed time is counted once (Jesse, 2026-10-12).
   NO GAPS: every hour from rig-in start to job completion is allocated to a column, including
         time between receipts (e.g. waiting on a third party after a short shift goes to
         Stand-By). The columns plus Stand-By must sum to the wall-clock span (Jesse, 2026-10-05).
