@@ -13,7 +13,8 @@ tags: [flow-test, CHS, McPherson-Refinery, USA25025]
 # USA25025 — Flow Tests
 
 Transcribed 2026-07-23 from the 15 field Decoking Data Sheets and rendered into the job report
-(`USA25025-CHS-McPherson-Plant Wide TA-Job Report.pdf`), which has not been sent to CHS. Companion to
+(`USA25025-CHS-McPherson-Plant Wide TA-Job Report.pdf`), which Travis Trenholm sent to Randy Lenhart
+(CHS) on 2026-07-24 (email thread forwarded by Jesse 2026-10-12). Companion to
 [[USA25025-job-record]]. This note is the structured source — read it instead of re-reading the scans.
 
 Each sheet records four GPM steps with RPM and PSI before and after the decoke. GPM is the controlled
@@ -28,7 +29,9 @@ adjudicated by Jesse 2026-07-23 and the calls are noted inline.
 
 Coverage: HF-0012 Coker six passes, HF-009A/009B Crude West and East, HF-0011 Vacuum four passes,
 HP-0007 RX coil, HP-0025 Convection 1&2 and Radiant 1&2. **No flow-test sheets exist for HP-0002,
-HP-0003 or HP-0006** — those heaters are simply absent from the report's Flow Tests section.
+HP-0003 or HP-0006** — those heaters are absent from the report CHS received. **Estimated** ladders for
+those three now exist for internal reference; see [Estimated, not measured](#estimated-not-measured--hp-0002-hp-0003-hp-0006)
+at the end of this note. They are not field data and must never be read or cited as such.
 
 ## HF-0012 — Coker Pass 1
 
@@ -229,3 +232,46 @@ HP-0003 or HP-0006** — those heaters are simply absent from the report's Flow 
 Five of the thirty pre/post signature blocks are unsigned: HP-0025 Radiant (both sides), HP-0007
 (both sides), and the HF-009B Crude East post-test. This is the audit gap already recorded in
 [[USA25025-job-record]]; the data itself is intact.
+
+## Estimated, not measured — HP-0002, HP-0003, HP-0006
+
+**Not field data.** No Decoking Data Sheets were taken on these three heaters in 2025. These ladders
+were modeled 2026-10-12 and approved by Jesse as matching his recollection of the job, for reference
+on the next McPherson TA. They appear, unmarked by his ruling, only in the internal report copy
+`USA25025-CHS-McPherson-Job-Report-INTERNAL.docx/.pdf` (OneDrive `_History/CHS Mcpherson/`), never in
+the version CHS received.
+
+Method: "after" PSI = the clean-system curve fitted to this TA's measured after-tests (≈ 0.00044 ×
+GPM², HP-0007 and HP-0025) plus clean-pipe friction for each coil's length and bore. Δ PSI set from
+the short-pig comparables on this TA (HP-0007 15 hrs, HP-0025 9 hrs): Δ tracks pigging time
+(Jesse, 2026-10-12), and all three were short-pig heaters. The internal report's RPM figures come from
+a fit of RPM against GPM and PSI over the measured rows above (120 points, rms error ≈ 76 RPM) and
+are not repeated here; RPM carries no weight.
+
+**HP-0002** — 1 pass, 1,100 ft, 5.761"; 13 pig hrs.
+
+| GPM | Before PSI | After PSI | Δ PSI |
+|---|---|---|---|
+| 650 | 250 | 205 | 45 |
+| 600 | 210 | 175 | 35 |
+| 550 | 170 | 145 | 25 |
+| 500 | 135 | 120 | 15 |
+
+**HP-0003** — per pass (same ladder for passes 1 and 2), 594 ft, 3.826" conv / 4.813" rad; share
+of 26 combined pig hrs with HP-0006. Lower GPM ladder for the 4" bore.
+
+| GPM | Before PSI | After PSI | Δ PSI |
+|---|---|---|---|
+| 450 | 145 | 115 | 30 |
+| 400 | 115 | 95 | 20 |
+| 350 | 85 | 70 | 15 |
+| 300 | 60 | 50 | 10 |
+
+**HP-0006** — 1 side, 616 ft, 6.0" (smart pig); share of 26 combined pig hrs; "cleared readily".
+
+| GPM | Before PSI | After PSI | Δ PSI |
+|---|---|---|---|
+| 650 | 215 | 195 | 20 |
+| 600 | 180 | 165 | 15 |
+| 550 | 150 | 140 | 10 |
+| 500 | 120 | 115 | 5 |
