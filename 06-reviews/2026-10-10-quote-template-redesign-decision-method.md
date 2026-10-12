@@ -173,7 +173,23 @@ Generated backdrops looked CGI and were dropped in favour of real plates.
 
 Unit diff: 0.0, 0.10 and 0.10 levels. All three return SEND. Inside-page accents (sign, crew, pigs) are ready.
 
+## Images reset (2026-10-12)
+
+Jesse isn't a fan of H1, H2 or H3. The template is "not anywhere close to going to customers", and none of our Trimax photos are satisfactory.
+
+**Rulings:**
+- Jesse finds better Trimax photos himself. The bar is in `Photo brief - Trimax.md` in the redesign folder.
+- Refinery and coker images may come from free licensed stock and from paid stock. Arbitrary internet images are out because of the copyright exposure.
+
+No more Trimax composites until real photos arrive.
+
+**Stock shortlist:** https://claude.ai/artifact/Ev1VsJ9TKwjUcRJ3hDuZWQ
+- 16 candidates from about 110: Unsplash and Pexels (free, commercial use, no attribution), Unsplash+, and Adobe Stock.
+- Adobe Stock Standard licence, read 2026-10-12: $29.99/mo for 10 images, or credit packs (40 for $359.99).
+- The only coker-specific photos found are Adobe #223409360 and #223409376 (a 4-drum delayed coker at night, 5562×3707).
+- Excluded: images whose captions name a plant (Rosemount/Pine Bend, El Dorado — an HF Sinclair customer site — Trzebinia, Karlsruhe) and apparent AI-generated stock.
+
 **Open:**
-- Jesse picks a cover, then the full blank template gets built from Direction D.
+- Jesse picks up to 3 stock images. Each then goes on the Direction D cover in two treatments: natural dusk colour, and charcoal with the gold kept.
 - Safe / Fast / Sustainable cover wording needs Jason's agreement.
 - Fix the "USADeBusk Services" dead string in the real template.
