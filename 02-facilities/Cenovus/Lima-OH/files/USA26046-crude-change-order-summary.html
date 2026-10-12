@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Crude Furnace Change Order Summary</title>
+<style>
+  :root{
+    --gold:#FCC30A; --ink:#222222; --body:#555555; --muted:#898781;
+    --rule:#e1e0d9; --surface:#ffffff; --plane:#f9f9f7;
+    --rig:#2a78d6; --pig:#eb6834; --smart:#1baf7a; --wait:#b9b7ae;
+    --over:#e34948;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--plane);color:var(--body);
+       font:10pt/1.45 Helvetica,Arial,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sheet{width:8.5in;margin:0 auto;background:var(--surface);padding:0.45in 0.5in}
+  h1{font-size:13pt;color:var(--ink);margin:0 0 2px;border-bottom:2px solid var(--gold);padding-bottom:5px}
+  h2{font-size:11pt;color:var(--gold);margin:17px 0 6px}
+  .sub{font-size:8.5pt;color:var(--muted);margin:5px 0 0}
+  .tiles{display:flex;gap:8px;margin:13px 0 4px}
+  .tile{flex:1;border:1px solid var(--rule);padding:8px 10px}
+  .tile .k{font-size:7pt;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+  .tile .v{font-size:15pt;color:var(--ink);font-weight:bold;line-height:1.2}
+  .tile .n{font-size:7.5pt;color:var(--body)}
+  .tile.flag{border-left:3px solid var(--gold)}
+  table{width:100%;border-collapse:collapse;font-size:8.5pt}
+  th{background:var(--ink);color:#fff;text-align:left;padding:4px 6px;font-size:7pt;
+     text-transform:uppercase;letter-spacing:.4px;font-weight:normal}
+  th.n,td.n{text-align:right}
+  td{padding:4px 6px;border-bottom:1px solid var(--rule);vertical-align:top}
+  tbody tr:nth-child(even){background:#F7F7F7}
+  td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+  tr.sum td{border-top:1.5px solid var(--ink);border-bottom:none;font-weight:bold;color:var(--ink)}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:8pt;margin:0 0 6px}
+  .legend span{display:flex;align-items:center;gap:5px}
+  .sw{width:11px;height:11px;border-radius:2px;display:inline-block}
+  .note{background:#FFFBE6;border-left:3px solid var(--gold);padding:7px 10px;font-size:8.5pt;margin:11px 0}
+  p.lead{font-size:9pt;margin:2px 0 8px}
+  .foot{margin-top:14px;border-top:1px solid var(--rule);padding-top:6px;font-size:7.5pt;color:var(--muted)}
+  .keep{break-inside:avoid;page-break-inside:avoid}
+  @media print{body{background:#fff}.sheet{width:auto;padding:0}}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <h1>Crude Furnace PR-170028 &mdash; Change Order Summary</h1>
+  <p class="sub">Cenovus Lima, OH &nbsp;&middot;&nbsp; Job USA26046 &nbsp;&middot;&nbsp; WO 82036534 &nbsp;&middot;&nbsp;
+     Quotation DSP#26013 &nbsp;&middot;&nbsp; 17 September 18:00 &ndash; 25 September 18:00, 2026 &nbsp;&middot;&nbsp;
+     16 shifts &nbsp;&middot;&nbsp; Service receipts 8401&ndash;8416</p>
+
+  <div class="tiles">
+    <div class="tile"><div class="k">Smart pig quoted</div><div class="v">15 hrs</div><div class="n">DSP#26013, Crude line</div></div>
+    <div class="tile"><div class="k">Smart pig actual</div><div class="v">38.25 hrs</div><div class="n">service receipts 8404&ndash;8415</div></div>
+    <div class="tile"><div class="k">Over quote</div><div class="v">23.25 hrs</div><div class="n">&nbsp;</div></div>
+    <div class="tile flag"><div class="k">Change order</div><div class="v">$24,364.15</div><div class="n">equipment, personnel, per diem</div></div>
+  </div>
+
+  <div class="note">
+    <strong>Rates.</strong> Equipment <strong>$800.00 per hour</strong> ($19,200 per 24 hours).
+    Personnel <strong>$210.42 per hour</strong> ($2,525.00 per 12-hour shift).
+    Per diem <strong>$450.00 per shift</strong>, charged on each 12 hours of change-order time.
+  </div>
+
+  <div class="keep">
+  <h2>How smart pigging hours are recorded</h2>
+  <p class="lead">
+    The service receipt has no separate box for smart pigging. Pump time is entered under Pigging Hours, and the
+    shift summary records each task with its clock times. Smart pigging hours are taken from those clock times.
+  </p>
+  <p class="lead">
+    The Trimax runs three passes at once, one per pump, so one pass can be on the inspection tool while the other two
+    are still being cleaned. On 22 September pass 4 went on the smart pig at 13:30 while passes 3 and 5 kept pigging.
+    The pump hour is billed once, as smart pigging. The chart shows that day and night pass by pass, and how the hours
+    are billed.
+  </p>
+
+  <div class="legend">
+    <span><i class="sw" style="background:var(--pig)"></i> Pigging</span>
+    <span><i class="sw" style="background:var(--smart)"></i> Smart pig</span>
+    <span><i class="sw" style="background:var(--rig)"></i> Dewater / rig-over</span>
+    <span><i class="sw" style="background:var(--wait)"></i> Permit / shift change</span>
+  </div>
+  <svg viewBox="0 0 640 140" width="100%" role="img" aria-label="22 September, passes 3 4 and 5 by hour">
+    <g id="lanes"></g>
+  </svg>
+  <p style="font-size:7.5pt;color:var(--muted);margin:2px 0 0">
+    From the shift summaries on receipts 8410 and 8411.
+  </p>
+  </div>
+
+  <div class="keep">
+  <h2>Smart pigging by receipt</h2>
+  <table>
+    <thead><tr><th>Receipt</th><th>Shift</th><th class="n">Hours</th><th>Shift summary</th></tr></thead>
+    <tbody>
+      <tr><td>8404</td><td>19 Sep day</td><td class="n">3</td>
+        <td>&ldquo;3pm &ndash; start smart pigging pass 8 (8&quot; section), run dummy tool; 4:30pm run live tool; 5:30pm tool out + check data&rdquo;</td></tr>
+      <tr><td>8405</td><td>19 Sep night</td><td class="n">12</td>
+        <td>&ldquo;6:30pm &ndash; 1:30am tool out, pass complete (pass 8); 1:30am &ndash; 5am run smart pig (pass 7), tool out (6&quot; + 8&quot; section); 5am &ndash; 6am run smart pig 8&quot;, tool in progress&rdquo;</td></tr>
+      <tr><td>8406</td><td>20 Sep day</td><td class="n">4.75</td>
+        <td>&ldquo;6:30am &ndash; 10am complete smart pigging pass 6; 10:30am sign off&rdquo; (with the 6:00 permit)</td></tr>
+      <tr><td>8410</td><td>22 Sep day</td><td class="n">4.5</td>
+        <td>&ldquo;1:30pm smart pig pass 4 &ndash; 6&quot; section &ndash; good data; 2:30pm smart pig pass 4 &ndash; 8&quot; section&rdquo;</td></tr>
+      <tr><td>8411</td><td>22 Sep night</td><td class="n">8.5</td>
+        <td>&ldquo;6:30pm &ndash; 10:30pm smart pig pass 5 + confirm data; 10:30pm &ndash; 2:30am smart pig pass 3 + confirm data&rdquo; (with the 6:00pm permit)</td></tr>
+      <tr><td>8415</td><td>24 Sep night</td><td class="n">5.5</td>
+        <td>&ldquo;12:30am &ndash; 6am smart pig pass 1 + 2, 8&quot; + 6&quot;&rdquo;</td></tr>
+      <tr class="sum"><td>Total</td><td></td><td class="n">38.25</td><td></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="keep">
+  <h2>Change order &mdash; Smart pigging</h2>
+  <table>
+    <thead><tr><th>Line</th><th class="n">Hours</th><th class="n">Rate</th><th class="n">Amount</th></tr></thead>
+    <tbody>
+      <tr><td>Equipment</td><td class="n">23.25</td><td class="n">$800.00</td><td class="n">$18,600.00</td></tr>
+      <tr><td>Personnel</td><td class="n">23.25</td><td class="n">$210.42</td><td class="n">$4,892.27</td></tr>
+      <tr><td>Per diem (1.94 shifts)</td><td class="n">23.25</td><td class="n">$450.00 / shift</td><td class="n">$871.88</td></tr>
+      <tr class="sum"><td>Change order total</td><td class="n">23.25</td><td></td><td class="n">$24,364.15</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p class="foot">Prepared from signed daily service receipts 8401&ndash;8416. Every hour shown is as recorded on a dated field ticket. USA DeBusk, LLC.</p>
+</div>
+
+<script>
+const C={pig:'#eb6834',smart:'#1baf7a',rig:'#2a78d6',wait:'#b9b7ae'};
+// hours from 06:00 22 Sep
+const ROWS=[
+ ['Pass 3',[[0,.5,'wait'],[.5,12,'pig','pigging'],[12,12.5,'wait'],[16.5,20.5,'smart','smart pig'],[20.5,22.5,'rig','dewater'],[22.5,24,'rig','rig-over']]],
+ ['Pass 4',[[0,.5,'wait'],[.5,7.5,'pig','pigging'],[7.5,12,'smart','smart pig'],[20.5,22.5,'rig','dewater'],[22.5,24,'rig','rig-over']]],
+ ['Pass 5',[[0,.5,'wait'],[.5,12,'pig','pigging'],[12,12.5,'wait'],[12.5,16.5,'smart','smart pig'],[20.5,22.5,'rig','dewater'],[22.5,24,'rig','rig-over']]],
+ null,
+ ['Billed as',[[0,7.5,'pig','Pig 7.5'],[7.5,20.5,'smart','Smart pig 13 (4.5 + 8.5)'],[20.5,24,'rig','Rig-over 3.5']]]];
+const X0=82, PW=540, HR=PW/24, RH=22, Y0=26;
+const x=h=>X0+h*HR;
+let s='';
+for(let h=0;h<=24;h+=3){
+  const lab=String((6+h)%24).padStart(2,'0')+':00';
+  s+=`<line x1="${x(h)}" y1="${Y0-4}" x2="${x(h)}" y2="${Y0+5*RH-6}" stroke="#e1e0d9"/>`;
+  s+=`<text x="${x(h)}" y="${Y0-8}" text-anchor="middle" font-size="7" fill="#898781">${lab}</text>`;
+}
+s+=`<line x1="${x(12)}" y1="4" x2="${x(12)}" y2="${Y0+5*RH-6}" stroke="#222" stroke-width="1.2" stroke-dasharray="3 2"/>`;
+s+=`<text x="${x(6)}" y="9" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#222">8410 &#183; 22 Sep day</text>`;
+s+=`<text x="${x(18)}" y="9" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#222">8411 &#183; 22 Sep night</text>`;
+ROWS.forEach((r,i)=>{
+  if(!r) return;
+  const y=Y0+i*RH;
+  s+=`<text x="${X0-6}" y="${y+12}" text-anchor="end" font-size="7.5" font-weight="${i>2?'bold':'normal'}" fill="#555">${r[0]}</text>`;
+  r[1].forEach(([a,b,k,t])=>{
+    s+=`<rect x="${x(a)+.5}" y="${y}" width="${Math.max(1,(b-a)*HR-1)}" height="${RH-6}" rx="2" fill="${C[k]}"/>`;
+    if(t && (b-a)*HR>t.length*3.6) s+=`<text x="${x((a+b)/2)}" y="${y+11}" text-anchor="middle" font-size="7" fill="#fff">${t}</text>`;
+  });
+});
+s+=`<line x1="${X0-70}" y1="${Y0+3*RH+8}" x2="${X0+PW}" y2="${Y0+3*RH+8}" stroke="#c3c2b7"/>`;
+document.getElementById('lanes').innerHTML=s;
+</script>
+</body>
+</html>
