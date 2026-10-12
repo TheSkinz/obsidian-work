@@ -200,9 +200,20 @@ Four covers (a0 or a3, natural or charcoal), in `Round 2 Concepts/*_COMP`:
 - To my eye natural colour beats charcoal, which flattens the night lights.
 - The pre-send check returns SEND.
 
+**Composites dropped (2026-10-12):** Jesse rejected the rig swap on the LAR coker as well ("doesn't look good"). The truck photo can't be fixed by a stronger model: its perspective, light and resolution don't match any plate. Generative editors redraw the lettering, so they're out for our own equipment.
+
+**Agreed instead — Direction E** (`Round 2 Concepts/DirectionE_cover_a0|a3_COMP.pdf`):
+- **Cover:** the licensed coker night shot alone, no Trimax, natural colour.
+- **New Requested Service / Trimax page** (Direction D styling): it uses the real Peterbilt photo as is, upscaled and trimmed, with no compositing.
+- **Execution Plan:** unchanged.
+- **Quotation:** unchanged.
+
+Four pages. The pre-send check returns SEND.
+
 **Open:**
-- Jesse picks one.
-- He licenses that plate through Adobe Stock: Standard licence, $29.99/mo for 10 images, or the free trial.
-- I rebuild from the full-resolution file (5562 px).
+- Jesse picks a0 or a3 and licenses it: Adobe Standard licence, $29.99/mo for 10 images, or the free trial.
+- Rebuild the cover from the 5562 px file.
+- Then build the blank Word template from Direction E.
+- A proper Trimax photo, per the photo brief, replaces the page photo when one exists.
 - Safe / Fast / Sustainable cover wording needs Jason's agreement.
 - Fix the "USADeBusk Services" dead string in the real template.
