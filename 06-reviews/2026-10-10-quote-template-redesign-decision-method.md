@@ -189,7 +189,20 @@ No more Trimax composites until real photos arrive.
 - The only coker-specific photos found are Adobe #223409360 and #223409376 (a 4-drum delayed coker at night, 5562×3707).
 - Excluded: images whose captions name a plant (Rosemount/Pine Bend, El Dorado — an HF Sinclair customer site — Trzebinia, Karlsruhe) and apparent AI-generated stock.
 
+**Jesse's picks and new photos (2026-10-12):**
+- Jesse picked Adobe a0 and a3 (the 4-drum delayed coker at night).
+- He sent two more Trimax photos. The Peterbilt-pulling-the-unit shot (front quarter, name readable, overcast) beats every earlier photo. It's 1628 px and Jesse doubts the original survives. The pre-cut dusk photo is worse.
+
+**Comps built:** `coker_jobs.py` and `coverlib.py`. The truck plus the real road is upscaled 4×, matted, darkened toward night, and composited in front of each coker plate. The truck diff is 0.10 and 0.14.
+
+Four covers (a0 or a3, natural or charcoal), in `Round 2 Concepts/*_COMP`:
+- They use Adobe's watermarked 1000 px previews, which serve as layout comps only.
+- To my eye natural colour beats charcoal, which flattens the night lights.
+- The pre-send check returns SEND.
+
 **Open:**
-- Jesse picks up to 3 stock images. Each then goes on the Direction D cover in two treatments: natural dusk colour, and charcoal with the gold kept.
+- Jesse picks one.
+- He licenses that plate through Adobe Stock: Standard licence, $29.99/mo for 10 images, or the free trial.
+- I rebuild from the full-resolution file (5562 px).
 - Safe / Fast / Sustainable cover wording needs Jason's agreement.
 - Fix the "USADeBusk Services" dead string in the real template.
