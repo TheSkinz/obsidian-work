@@ -1,39 +1,35 @@
 ---
 type: digest
 status: generated
-created: 2026-10-12
+created: 2026-10-13
 ---
 
-# Daily Email Digest — 2026-10-12
+# Daily Email Digest — 2026-10-13
 
-Source: the iPhone Shortcut export, modified 2026-10-12 17:40, covering Oct 12 6:19 AM to 4:16 PM. 18 messages: 14 work (3 of them Jesse's self-forwards to Gmail), 4 personal dropped (bills, HOA notice, marketing). Calendar section empty.
+Source: the iPhone Shortcut export, modified 2026-10-13 17:40, covering Oct 13 2:13 AM to 3:01 PM. 12 messages: 8 work (one of them Jesse's self-forward to Gmail), 4 personal dropped (card statement, payment-app history, app-store terms, subscription notice). Calendar section empty.
 
 ## Open
 
-Valero Port Arthur B-301 passivation ([[DSP26115]]), chloride sampling. Kenny Daigle (Valero) forwarded to Jesse on Oct 12 (3:24 PM) a note from Yeraldi Holsomback (Valero): the email says that before Phase II, and above all before the tubes are filled, Valero must sample USADebusk's solution to confirm under 50 ppm chlorides, as was done at the start of passivation, and that this is not in USADebusk's procedure. No reply visible in this window. I'd infer it needs either a hold point in SOP `USAD-Valero_PortArthur-SOP-PAS-B301-001-REV0` or a reply confirming Valero owns the sampling.
-
-ExxonMobil Baytown F-801 PS8 crude heater decoke ([[DSP26064]]), MOC tasks. Scott Kesseler (ExxonMobil) wrote to the temp-facilities review group, Jesse included, on Oct 12 (12:43 PM) asking everyone to complete their tasks in the GMOC. No reply visible in this window. The email links to an internal ExxonMobil SAP MOC page; not followed. I'd infer Jesse may have an assigned MOC task; whether he does is only visible in ExxonMobil's system.
+NONE. The one request to Jesse in this window, Cory Walker's HDS change order (Oct 13, 9:24 AM), was answered by Jesse at 12:00 PM the same day. Marshall Douglas's request to Kelly Smith to file the Cenovus job reports (11:01 AM) was Kelly's, and she replied at 11:05 AM that they are in SharePoint.
 
 ## Changes
 
-Valero Port Arthur B-301, job number. Rachel Taylor's notice, forwarded by Jason Harman Oct 12 (10:46 AM), says job USA26056 has been created; the subject carries PO PENDING. **NEW** — `active-jobs.md` shows the job number as "(not assigned)" and the PO as "Not recorded" (the PO part matches).
+Cenovus Lima HDS [[PR-175169]] (USA26046), stand-by hours. Cory Walker's email (Oct 13, 9:24 AM) states 11 hrs of front-end delay on night shift 9/25 for the water connection and launcher install, 43 total hrs against 36 quoted. **CONFLICTS** on the delay: the email says 11 hrs; [[PR-175169]] records 2 hrs plant down time as written on the tickets, carried as 2 stand-by, and `active-jobs.md` matches the card. The 43 total and 36 quoted **MATCH VAULT** (card: 43 as written, 36 quoted under [[DSP26013]]). Cory's Oct 12 email had already flagged that Peter reported a full night shift while the receipts showed one hour.
 
-Valero Port Arthur B-301, scope/procedure. The chloride sampling requirement above (Yeraldi Holsomback via Kenny Daigle, Oct 12). **NEW** — neither `active-jobs.md` nor [[B-301]] mentions chloride sampling.
+Cenovus Lima Vac [[PR-170029]] (USA26046), job report sent. Marshall Douglas emailed the Vacuum Charge Heater mechanical decoking report to Cenovus (Jessey Cox, Steve Camper, Caleb Hansen) on Oct 13, 10:51 AM, and Kelly Smith filed the Lima job reports in SharePoint (11:05 AM). **NEW** — `active-jobs.md` records the four reports as built, not the customer send.
 
-ExxonMobil Baytown F-801, temp facilities. Scott Kesseler's email (Oct 12, 12:43 PM) says environmental accepts diesel in the open-top tanks on the pigging facilities provided it is temporary and covered when not in use, and that an N2 purge, carbon canister and flame arrestor have been added to the MFD and attached to the GMOC with spec sheets. **NEW** — [[F-801]] and `active-jobs.md` record neither. The email gives no decoke date ("coming up").
+Valero Port Arthur B-301 passivation support (USA26056, [[DSP26115]]), progress. Jesse's receipt email (Oct 13, 8:26 AM) covers tickets 10788 (mob, Sun 10-11), 10789 (day, 10-12) and 10790 (night, 10-12): 24 hrs stand-by on 10-12, waiting on Valero to fab spools and inserts and build scaffold, with the first launcher hung on a radiant outlet at 5 AM on 10-13. **NEW** — [[B-301]]'s Task Durations table is empty. The crew, Trimax 5 / Support 4 and the 10-11 mob **MATCH VAULT**. I'd infer the radiant-outlet hang fits the card's 8" 900# radiant outlet flanges, which the card labels the receiver end.
 
-Cenovus Lima HDS [[PR-175169]] (USA26046), delay hours. Cory Walker's email (Oct 12, 1:41 PM, addressed to Marshall Douglas) says Peter reported waiting a full night shift on the HDS before the plant allowed the water line and last launcher, while the service receipts show one hour of delay; Cory will submit it anyway. **CONFLICTS** — the email states 1 hr delay on the receipts and a full night shift per Peter; [[PR-175169]] records 2 hrs plant down time as written on the tickets and `active-jobs.md` records 2 stand-by.
-
-Cenovus Lima, change-order rates. Cory's email (Oct 12, 12:29 PM) states personnel $210.42/hr, equipment $800/hr, per diem $450/shift beyond the quoted 110 hrs, 52 Vac stand-by hrs ($41,600 equipment, $10,941.84 personnel). Email states these figures, not entered in vault. The 52 stand-by hrs and the $800/hr equipment basis **MATCH VAULT** (`active-jobs.md` Vac final). Cory also says the account manager is redoing everything in a new change-order format.
+Valero Port Arthur B-301, safety supplies PO. Kelly Smith forwarded (Oct 13, 9:54 AM) PO US-533150, $300.00 for Valero gloves from Total Safety, buyer Travis Trenholm. **NEW** — an internal purchase PO, not the customer PO; `active-jobs.md` still shows the job's PO as not recorded. Email states $300.00, not entered in vault.
 
 ## Upcoming
 
-NONE dated in mail or calendar for the next 21 days. F-801's email says only that the decoke is "coming up"; the vault date (mob 2026-10-19, decoking from 10-20) comes from `active-jobs.md`, not this mail.
+NONE dated in mail or calendar for the next 21 days. The ExxonMobil Baytown F-801 mob on 2026-10-19 is in `active-jobs.md`, not in this window's mail.
 
 ## Done
 
-Cenovus Lima change orders (USA26046), Oct 12 3:01 PM to Cory Walker and Marshall Douglas. Jesse sent Vac and Crude change-order summaries at Cory's rates, hours from the signed receipts. The email states Vac [[PR-170029]] CO-1 stand-by 52 hrs $54,491.84, CO-2 smart pigging 36 hrs over 38 quoted $37,725.12, decoking time saved 13 hrs −$13,622.96, net $78,594.00; Crude [[PR-170028]] smart pigging 38.25 hrs against 15 quoted, 23.25 over, $24,364.15, with no stand-by or delayed start on any of the 16 receipts. Figures not entered in vault. Earlier (1:35 PM) Jesse replied confirming scope; Cory confirmed Vac only and "don't worry about track" (1:41 PM).
+Cenovus Lima HDS change order (USA26046), Oct 13 12:00 PM to Cory Walker and Marshall Douglas. Jesse sent the HDS change order summary Cory asked for that morning. The email body carries no figures, so which delay figure it used (Cory's 11 or the tickets' 2) is not visible here.
 
-CHS McPherson 2025 TA (USA25025), Oct 12 4:14 PM to Travis Trenholm and Anthony Fazio. Randy Lenhart (CHS) had asked via Travis for the missing HP-2, HP-3 and HP-6 flow-test tables. Jesse found them in another folder, revised the job report and built a combined flow-test document for all heaters and coils. Travis replied (4:16 PM) that he will send it to the customer, so the customer send is not visible here, handed to Travis. Randy's email also calls the report the best pigging summary he has seen and a template for future work.
+Valero Port Arthur B-301 receipts (USA26056), Oct 13 8:26 AM to Anthony Fazio, Jason Harman, Kelly Smith, Marshall Douglas, Rachel Taylor and Travis Trenholm. Tickets 10788–10790 with hours, crew, equipment and shift summaries; project total to date 24 hrs stand-by.
 
-Note for follow-up: I'd infer the HP-0002, HP-0003 and HP-0006 cards may lack those flow tests, since Jesse found them outside the report folder; not checked against the cards' Field Notes.
+Note for follow-up: I'd infer [[PR-175169]] will need a ruling on 2 vs 11 stand-by hrs once the HDS change order is settled, since the card is built from the tickets and the change order may bill Peter's account of the delay.
