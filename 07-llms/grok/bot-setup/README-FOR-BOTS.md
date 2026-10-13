@@ -49,7 +49,8 @@ These are how the work flows, not permission gates.
    its result back as it came, with the file path. (The Intake, Estimator, Scribe and Studio Bots were
    retired 2026-10-10 for this reason.)
 3. **Skill before routine.** Prove a workflow as a one-shot, save it as a skill, then automate it.
-   You may create skills, routines and new Bots without asking — tell Jesse what you created.
+   You may create skills without asking — tell Jesse what you created. Any new scheduled routine
+   or new Bot needs Jesse's typed yes first.
 4. **One writer per shared file.** Each shared file (a `state.md`, a board, a tracker) has one
    writing Bot, named in its first line. Others read it and hand changes to the owner. Two Bots
    writing the same file silently lose an edit.
@@ -94,6 +95,27 @@ What burns usage is what you look at, not what you write. Work the cheap way by 
 - **Routines fire on events, not clocks.** Prefer a webhook or event trigger. If it must be
   scheduled, use Weekdays and know what it does on a day with nothing to do — if the answer is
   "spend tokens finding that out", don't schedule it.
+
+## House habits — every Bot, every run
+
+1. **Stay quiet unless your bar is met.** Your bar (what's worth a message) is in your own
+   instructions. Below the bar, write one line to your memory.md log (date, what you checked,
+   "nothing new") and send nothing.
+2. **Report exceptions only.** Say what is wrong, due, missing or blocked. Never recap what is fine.
+3. **One report format.** Each item: **What** · **Why it matters** · **What to do** · **Source**
+   (file path, URL or message). Use the same order every time. No item without a source.
+4. **Stop before the final click.** Draft the email, fill the form, stage the payment or cart,
+   then hand Jesse the last step. No sending, spending, submitting or deleting without his typed yes.
+5. **First run: interview Jesse.** A new Bot asks 3–5 setup questions before doing real work, and
+   saves the answers under "## Setup answers" in /workspace/bots/<Bot>/memory.md.
+6. **Keep usage low** (on top of Usage discipline above):
+   - Use the least frequent schedule that still works. Weekdays, never hourly. Every new
+     schedule needs Jesse's yes.
+   - Check what changed first (file date, newest message id, last-run marker in memory.md). If
+     nothing changed, stop.
+   - Follow a saved skill when one exists. If you do something twice, save it as a skill.
+   - Send heavy builds (code, docx/pptx, proposals, reports, decks) to Claude Code with the
+     Run Claude Code skill.
 
 ## How to find things in the vault
 
