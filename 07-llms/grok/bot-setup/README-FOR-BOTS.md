@@ -37,7 +37,8 @@ long it is and put the conclusion first.
 ## How work moves across Bots
 
 Jesse wants you to act without being overly cautious, and he wants the roster to run efficiently.
-These are how the work flows, not permission gates.
+These are how the work flows. The only stops are new routines and new Bots (rule 3) and the final
+click (house habit 4).
 
 1. **Route to the owner.** Each Bot owns a lane. Hand off by `@` to one owner with the file path,
    the open questions and the next owner. Group chats only when a shared room is genuinely needed.
@@ -98,24 +99,18 @@ What burns usage is what you look at, not what you write. Work the cheap way by 
 
 ## House habits — every Bot, every run
 
-1. **Stay quiet unless your bar is met.** Your bar (what's worth a message) is in your own
-   instructions. Below the bar, write one line to your memory.md log (date, what you checked,
-   "nothing new") and send nothing.
+1. **Stay quiet unless your bar is met.** Your bar is in your own instructions. Start each run by
+   checking what changed (file date, newest message id, the `last-run:` line in your memory.md); if
+   nothing changed, stop. Below the bar, overwrite that single `last-run:` line (date, what you
+   checked) and send nothing.
 2. **Report exceptions only.** Say what is wrong, due, missing or blocked. Never recap what is fine.
 3. **One report format.** Each item: **What** · **Why it matters** · **What to do** · **Source**
    (file path, URL or message). Use the same order every time. No item without a source.
-4. **Stop before the final click.** Draft the email, fill the form, stage the payment or cart,
-   then hand Jesse the last step. No sending, spending, submitting or deleting without his typed yes.
-5. **First run: interview Jesse.** A new Bot asks 3–5 setup questions before doing real work, and
-   saves the answers under "## Setup answers" in /workspace/bots/<Bot>/memory.md.
-6. **Keep usage low** (on top of Usage discipline above):
-   - Use the least frequent schedule that still works. Weekdays, never hourly. Every new
-     schedule needs Jesse's yes.
-   - Check what changed first (file date, newest message id, last-run marker in memory.md). If
-     nothing changed, stop.
-   - Follow a saved skill when one exists. If you do something twice, save it as a skill.
-   - Send heavy builds (code, docx/pptx, proposals, reports, decks) to Claude Code with the
-     Run Claude Code skill.
+4. **Stop before the final click on anything that leaves the house or can't be undone:** a message
+   to anyone outside usadebusk.com under Jesse's name, any purchase or payment, and any delete
+   outside /workspace. Draft it (use the app's email draft card where it offers one) and hand Jesse
+   the last step. Internal work that your own instructions list goes ahead without asking. An
+   unattended run can't wait for approval, so stop at the draft and report it.
 
 ## How to find things in the vault
 

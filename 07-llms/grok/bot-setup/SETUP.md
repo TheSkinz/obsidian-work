@@ -87,8 +87,13 @@ Skipping a rung is how the weekly allowance disappears.
 ## Waking a Bot from Linda2
 
 `tools/notify_grok_bot.py --target inbox` POSTs to the *Claude inbox* routine's webhook. The task
-format and the order of steps are in `handoff/README.md`. The URL and key live in the user
+format and the order of steps are in the vault's `handoff/README.md` (repo root, not the OneDrive
+handoff folder). The URL and key live in the user
 environment variables `GROK_INBOX_WEBHOOK_URL` and `GROK_INBOX_WEBHOOK_KEY` and never touch a file.
+
+⚠ **2026-10-13: the notifier logged `HTTP 400` on two fires in a row, then a direct POST with the
+same payload returned 200 and queued the run.** The cause is unknown, because the script logs the
+status code only. A 400 in `.grok-inbox-last` therefore does not prove the channel is down.
 The outcome is the one line in `.grok-inbox-last` at the vault root.
 
 **Retired 2026-10-10: the pre-push hook and *Vault refresh*.** Every push used to fire Librarian
@@ -159,7 +164,7 @@ because the table it replaces went stale within two weeks.
 | ~~Intake, Estimator, Scribe, Studio~~ | **Retired 2026-10-10 (Jesse).** Bid, proposal, report, SOP and deck work on the box runs through Claude Code with the real skills — the *Run Claude Code* skill |
 
 **Routines.** *Workspace backup* (Architect, weekdays 18:00 CDT) is read by the `health.md` row.
-*Claude inbox* (Chief of Staff, webhook) is the handoff channel; see `handoff/README.md`. **The
+*Claude inbox* (Chief of Staff, webhook) is the handoff channel; see the vault's `handoff/README.md`. **The
 Bots pull the vault at work time**: `bootstrap.sh` runs `git pull --ff-only` first, verified by
 Architect 2026-10-10 (HEAD matched origin). That replaced *Vault refresh* (Librarian), whose pre-push
 hook was removed from Linda2 the same day. Jesse deletes *Vault refresh* and the test leftover

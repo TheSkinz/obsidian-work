@@ -28,7 +28,11 @@ cloud Linux computer with a browser, filesystem and terminal, running saved skil
 **It runs Grok models on Cursor's infrastructure** — the harness default is
 `SAND_DEFAULT_MODEL_ID = "grok-4.5"`, the hostname is `cursor`, and inference is remote. ⚠ **`grok-4.5`
 is flagged end-of-life with `auto_switch → grok-4.6` configured, and no model is pinned**, so the
-model will change with no announcement. Evidence and file paths in [[SETUP]].
+model will change with no announcement. Evidence and file paths in [[trial-findings]].
+**Re-checked 2026-10-13 (Architect):** the constant is still `grok-4.5` and the harness names no
+`grok-4.7`, though xAI says 4.7 was trained for the Bot harness (2026-09-21). The file has moved
+to `/opt/sand/sand-host/host-main.cjs`, and the end-of-life/`auto_switch` lines were no longer
+found in the Statsig bootstrap.
 Started 2026-09-06 as an open-ended personal test and **kept indefinitely as of 2026-10-10** (Jesse), alongside Claude Code on Linda2 as the primary work path. Current roster, routines and how to drive it are in [[SETUP]]; the dated build-out evidence is in [[trial-findings]]. **Southern Syndicate**, which appears as the workspace name and the Bid Desk
 group name, is Jesse's X handle and not a Bot.
 
