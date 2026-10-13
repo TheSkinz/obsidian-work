@@ -198,3 +198,11 @@ Trimax hourly rates are crew-inclusive or labor was never entered. Unresolved.
 - Correction: the 2025 flow-test data was **not** lost — see resolved item above. A CHS-facing sign-off
   form (initialed by CHS Mech/Process/Ops, per the 2022 precedent) was previously flagged as outstanding
   but is not needed — DeBusk's own field sheet is sufficient.
+- **Customer request — HP-0002 / 0003 / 0006 flow-test tables: CLOSED 2026-10-13.** Travis sent the job
+  report to Randy Lenhart 2026-07-24; on 2026-10-12 Randy called it "the best pigging summary I have seen"
+  and asked for the three missing tables. No sheets were taken on those heaters. Estimated ladders were
+  built for internal reference ([[USA25025-flow-tests]], estimated section) and placed in internal copies
+  only, in OneDrive `_History/CHS Mcpherson/`: `USA25025-CHS-McPherson-Job-Report-Rev1-INTERNAL` (current
+  house layout, re-render config `report_input_usa25025_rev1.py` beside it) and
+  `USA25025-CHS-McPherson-Flow-Tests-INTERNAL`. The version CHS received is unchanged. Project closed
+  (Jesse); next McPherson TA is several years out.

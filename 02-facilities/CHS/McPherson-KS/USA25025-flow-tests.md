@@ -238,7 +238,8 @@ Five of the thirty pre/post signature blocks are unsigned: HP-0025 Radiant (both
 **Not field data.** No Decoking Data Sheets were taken on these three heaters in 2025. These ladders
 were modeled 2026-10-12 and approved by Jesse as matching his recollection of the job, for reference
 on the next McPherson TA. They appear, unmarked by his ruling, only in the internal report copy
-`USA25025-CHS-McPherson-Job-Report-INTERNAL.docx/.pdf` (OneDrive `_History/CHS Mcpherson/`), never in
+`USA25025-CHS-McPherson-Job-Report-Rev1-INTERNAL.docx/.pdf` and
+`USA25025-CHS-McPherson-Flow-Tests-INTERNAL.docx/.pdf` (OneDrive `_History/CHS Mcpherson/`), never in
 the version CHS received.
 
 Method: "after" PSI = the clean-system curve fitted to this TA's measured after-tests (≈ 0.00044 ×
