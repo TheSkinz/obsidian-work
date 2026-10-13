@@ -123,6 +123,13 @@ variable.
 **Change limit** control for capping on-demand spend. On-demand is set to **None**, so there is no
 overage exposure.
 
+**Notifications (read 2026-10-13):** this build has **no app-wide notification switch** — Settings
+has only General, Computer, Usage & Billing and Updates, and no "Play Sound for Notifications" row
+(two Bots pointed Jesse at one; it does not exist). Per-Bot notifications are in each Bot's settings
+(Ctrl+Alt+B). Desktop toasts work: the Windows key `electron.app.Grok Bot` is not disabled and logged
+a toast 2026-10-13 15:09 CDT. The box-side `notifications.isEnabled: false` in
+`/home/box/agent-data/settings.json` does not stop them — ignore it.
+
 **Marketplace:** bottom-left, with separate **Plugins** and **Bots** tabs.
 
 **A Bot's screen:** the title-bar icon. It is a real Linux desktop — Chrome, an editor, and a
