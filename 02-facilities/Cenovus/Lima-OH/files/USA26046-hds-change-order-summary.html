@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>HDS Furnace Change Order Summary</title>
+<style>
+  :root{
+    --gold:#FCC30A; --ink:#222222; --body:#555555; --muted:#898781;
+    --rule:#e1e0d9; --surface:#ffffff; --plane:#f9f9f7;
+    --rig:#2a78d6; --pig:#eb6834; --smart:#1baf7a; --wait:#b9b7ae;
+    --over:#e34948;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--plane);color:var(--body);
+       font:10pt/1.45 Helvetica,Arial,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sheet{width:8.5in;margin:0 auto;background:var(--surface);padding:0.45in 0.5in}
+  h1{font-size:13pt;color:var(--ink);margin:0 0 2px;border-bottom:2px solid var(--gold);padding-bottom:5px}
+  h2{font-size:11pt;color:var(--gold);margin:17px 0 6px}
+  .sub{font-size:8.5pt;color:var(--muted);margin:5px 0 0}
+  .tiles{display:flex;gap:8px;margin:13px 0 4px}
+  .tile{flex:1;border:1px solid var(--rule);padding:8px 10px}
+  .tile .k{font-size:7pt;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+  .tile .v{font-size:15pt;color:var(--ink);font-weight:bold;line-height:1.2}
+  .tile .n{font-size:7.5pt;color:var(--body)}
+  .tile.flag{border-left:3px solid var(--gold)}
+  table{width:100%;border-collapse:collapse;font-size:8.5pt}
+  th{background:var(--ink);color:#fff;text-align:left;padding:4px 6px;font-size:7pt;
+     text-transform:uppercase;letter-spacing:.4px;font-weight:normal}
+  th.n,td.n{text-align:right}
+  td{padding:4px 6px;border-bottom:1px solid var(--rule);vertical-align:top}
+  tbody tr:nth-child(even){background:#F7F7F7}
+  td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+  .over{color:var(--over);font-weight:bold}
+  .under{color:var(--rig);font-weight:bold}
+  tr.sum td{border-top:1.5px solid var(--ink);border-bottom:none;font-weight:bold;color:var(--ink)}
+  tr.grand td{border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+              font-weight:bold;color:var(--ink);background:#F7F7F7}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:8pt;margin:0 0 6px}
+  .legend span{display:flex;align-items:center;gap:5px}
+  .sw{width:11px;height:11px;border-radius:2px;display:inline-block}
+  .note{background:#FFFBE6;border-left:3px solid var(--gold);padding:7px 10px;font-size:8.5pt;margin:11px 0}
+  p.lead{font-size:9pt;margin:2px 0 8px}
+  .foot{margin-top:14px;border-top:1px solid var(--rule);padding-top:6px;font-size:7.5pt;color:var(--muted)}
+  .keep{break-inside:avoid;page-break-inside:avoid}
+  @media print{body{background:#fff}.sheet{width:auto;padding:0}}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <h1>HDS Furnace PR-175169 &mdash; Change Order Summary</h1>
+  <p class="sub">Cenovus Lima, OH &nbsp;&middot;&nbsp; Job USA26046 &nbsp;&middot;&nbsp;
+     Quotation DSP#26013 &nbsp;&middot;&nbsp; 25 September 18:00 &ndash; 27 September 13:00, 2026 &nbsp;&middot;&nbsp;
+     4 shifts &nbsp;&middot;&nbsp; Service receipts 8417&ndash;8421</p>
+
+  <div class="tiles">
+    <div class="tile"><div class="k">CO-1 Front-end delay</div><div class="v">$11,527.12</div><div class="n">11 hours</div></div>
+    <div class="tile"><div class="k">Decoking time saved</div><div class="v">&minus;$4,191.68</div><div class="n">4 hours under quote</div></div>
+    <div class="tile"><div class="k">Hours on the heater</div><div class="v">43</div><div class="n">36 quoted</div></div>
+    <div class="tile flag"><div class="k">Net change</div><div class="v">$7,335.44</div><div class="n">change order less savings</div></div>
+  </div>
+
+  <div class="note">
+    <strong>Rates.</strong> Equipment <strong>$800.00 per hour</strong> ($19,200 per 24 hours).
+    Personnel <strong>$210.42 per hour</strong> ($2,525.00 per 12-hour shift).
+    Per diem <strong>$450.00 per shift</strong>, charged on each 12 hours of change-order time.
+  </div>
+
+  <div class="keep">
+  <h2>CO-1 &mdash; Front-end delay</h2>
+  <p class="lead">
+    The crew and pumping unit arrived at the HDS at the start of night shift on 25 September, straight from the Crude.
+    Pigging could not begin until the water connection was made and the launchers were installed. The 3&quot; fill
+    hose had to be carried over the road on a hose bridge, and the permit to pig was issued at 04:00. Eleven hours of
+    that shift were lost to the delay.
+  </p>
+  <table>
+    <thead><tr><th>Receipt</th><th>Shift</th><th class="n">Hours</th><th>Cause</th></tr></thead>
+    <tbody>
+      <tr><td>8417</td><td>25 Sep night</td><td class="n">11</td><td>Water connection (hose bridge over the road) and launcher install; permit to pig 04:00</td></tr>
+      <tr class="sum"><td>Total</td><td></td><td class="n">11</td><td></td></tr>
+    </tbody>
+  </table>
+  <table style="margin-top:8px">
+    <thead><tr><th>Line</th><th class="n">Hours</th><th class="n">Rate</th><th class="n">Amount</th></tr></thead>
+    <tbody>
+      <tr><td>Equipment</td><td class="n">11</td><td class="n">$800.00</td><td class="n">$8,800.00</td></tr>
+      <tr><td>Personnel</td><td class="n">11</td><td class="n">$210.42</td><td class="n">$2,314.62</td></tr>
+      <tr><td>Per diem (0.92 shift)</td><td class="n">11</td><td class="n">$450.00 / shift</td><td class="n">$412.50</td></tr>
+      <tr class="sum"><td>CO-1 total</td><td class="n">11</td><td></td><td class="n">$11,527.12</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="keep">
+  <h2>Decoking time saved</h2>
+  <p class="lead">
+    Once the delay cleared, the heater was decoked, smart pigged and rigged out in 32 hours against the 36 quoted.
+    Both circuits ran together, so the quoted rig-over was not needed.
+  </p>
+  <table>
+    <thead><tr><th>Shift</th><th>Receipt</th><th class="n">Hours</th><th class="n">Delay</th><th class="n">Work</th></tr></thead>
+    <tbody>
+      <tr><td>25 Sep night</td><td>8417</td><td class="n">12</td><td class="n">11</td><td class="n">1</td></tr>
+      <tr><td>26 Sep day</td><td>8418</td><td class="n">12</td><td class="n">&ndash;</td><td class="n">12</td></tr>
+      <tr><td>26 Sep night</td><td>8420</td><td class="n">12</td><td class="n">&ndash;</td><td class="n">12</td></tr>
+      <tr><td>27 Sep day</td><td>8421</td><td class="n">7</td><td class="n">&ndash;</td><td class="n">7</td></tr>
+      <tr class="sum"><td>Total</td><td></td><td class="n">43</td><td class="n">11</td><td class="n">32</td></tr>
+    </tbody>
+  </table>
+  <table style="margin-top:8px">
+    <thead><tr><th>Line</th><th class="n">Quoted hrs</th><th class="n">Actual hrs</th><th class="n">Saved hrs</th>
+      <th class="n">Equipment</th><th class="n">Personnel</th><th class="n">Per diem</th><th class="n">Saved</th></tr></thead>
+    <tbody>
+      <tr><td>Decoke, smart pig, rig-in/out</td><td class="n">36</td><td class="n">32</td><td class="n under">4</td>
+        <td class="n">$3,200.00</td><td class="n">$841.68</td><td class="n">$150.00</td><td class="n under">$4,191.68</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="keep">
+  <h2>Summary</h2>
+  <table>
+    <tbody>
+      <tr><td>CO-1 Front-end delay, 11 hours</td><td class="n" style="width:120px">$11,527.12</td></tr>
+      <tr><td>Decoking time saved, 4 hours under quote</td><td class="n under">&minus;$4,191.68</td></tr>
+      <tr class="grand"><td>Net change</td><td class="n">$7,335.44</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Shift timeline</h2>
+  <div class="legend">
+    <span><i class="sw" style="background:var(--wait)"></i> Front-end delay</span>
+    <span><i class="sw" style="background:var(--pig)"></i> Decoke, smart pig, rig-in/out</span>
+  </div>
+  <svg viewBox="0 0 640 72" width="100%" role="img" aria-label="Delay and work hours for each of the 4 shifts">
+    <g id="tl"></g>
+  </svg>
+  </div>
+
+  <p class="foot">Prepared from signed daily service receipts 8417&ndash;8421. USA DeBusk, LLC.</p>
+</div>
+
+<script>
+const SH=[['8417','9/25 N',11,1],['8418','9/26 D',0,12],['8420','9/26 N',0,12],['8421','9/27 D',0,7]];
+const X0=84, W=442, R=14, sx=v=>(v/12)*W;
+let s='';
+for(let h=0;h<=12;h+=3){const x=X0+sx(h);
+  s+=`<line x1="${x}" y1="10" x2="${x}" y2="${SH.length*R+12}" stroke="#e1e0d9"/>`;
+  s+=`<text x="${x}" y="7" text-anchor="middle" font-size="7" fill="#898781">${h}h</text>`;}
+SH.forEach((r,i)=>{const y=i*R+12;
+  s+=`<text x="${X0-6}" y="${y+9}" text-anchor="end" font-size="7.5" fill="#555">${r[0]} &#183; ${r[1]}</text>`;
+  if(r[2]) s+=`<rect x="${X0}" y="${y}" width="${sx(r[2])-1.5}" height="${R-4}" rx="1.5" fill="#b9b7ae"/>`;
+  s+=`<rect x="${X0+sx(r[2])}" y="${y}" width="${sx(r[3])-1.5}" height="${R-4}" rx="1.5" fill="#eb6834"/>`;
+});
+document.getElementById('tl').innerHTML=s;
+</script>
+</body>
+</html>
