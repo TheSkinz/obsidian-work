@@ -588,6 +588,21 @@ def check_dead_links(root: Path, notes: dict[Path, str]) -> list[Finding]:
         if rel.startswith((".git/", ".obsidian/", "tools/fixtures/", ".claude/")):
             continue
         known.add(p.stem.lower())
+    # Attachments resolve by full filename, anywhere in the vault. Added
+    # 2026-10-14: the set above held only note stems, so every embedded image
+    # or PDF ([[B-301-pass-map.png]]) reported dead. Obsidian now saves pastes
+    # to `./files/` beside the note (app.json attachmentFolderPath), which made
+    # every new paste a false error. Walked with pruning, not rglob("*"), so
+    # .git's object store is never listed.
+    attachments = set()
+    skip_dirs = {".git", ".obsidian", ".claude"}
+    for dirpath, dirnames, filenames in os.walk(root):
+        rel_dir = Path(dirpath).relative_to(root).as_posix()
+        dirnames[:] = [d for d in dirnames if d not in skip_dirs
+                       and f"{rel_dir}/{d}".lstrip("./") != "tools/fixtures"]
+        for fn in filenames:
+            if not fn.lower().endswith(".md"):
+                attachments.add(fn.lower())
     findings = []
     for path, text in notes.items():
         if path.relative_to(root).as_posix() in DEAD_LINK_EXEMPT:
@@ -600,7 +615,9 @@ def check_dead_links(root: Path, notes: dict[Path, str]) -> list[Finding]:
                     continue
                 # Obsidian resolves path-style links by their final segment.
                 stem = target.rsplit("/", 1)[-1].lower()
-                if stem not in known:
+                if stem.endswith(".md"):
+                    stem = stem[:-3]
+                if stem not in known and stem not in attachments:
                     findings.append(Finding("DEAD-LINK", path, f"[[{target}]] not found"))
     return findings
 
@@ -1839,6 +1856,34 @@ def self_test() -> int:
         findings.append(Finding("WORD-DELTA", wd / "after.md",
                                 f"{sum(lost.values())} word(s) left this note — "
                                 f"confirm each was meant to go: {format_delta(lost)}"))
+
+    # DEAD-LINK attachment resolution (2026-10-14). An image embedded from a
+    # `files/` subfolder must NOT fire; a link to an image that exists nowhere
+    # must. Built at runtime, like POINTER-DEAD, so no binary sits in fixtures/.
+    at_dir = fixtures / "02-facilities" / "AttachTest"
+    at_img = at_dir / "files" / "attach-selftest.png"
+    at_note = at_dir / "attach-selftest.md"
+    at_img.parent.mkdir(parents=True, exist_ok=True)
+    at_img.write_bytes(b"\x89PNG self-test scratch\n")
+    at_note.write_text("# self-test scratch — safe to delete\n\n![[attach-selftest.png]]\n"
+                       "![[missing-attach-selftest.png]]\n", encoding="utf-8")
+    try:
+        at_hits = check_dead_links(fixtures, {at_note: at_note.read_text(encoding="utf-8")})
+    finally:
+        at_note.unlink(missing_ok=True)
+        at_img.unlink(missing_ok=True)
+        for d in (at_img.parent, at_dir):
+            try:
+                d.rmdir()
+            except OSError:
+                pass
+    at_msgs = [f.detail for f in at_hits]
+    if any("[[attach-selftest.png]]" in m for m in at_msgs):
+        print("SELF-TEST FAILED — DEAD-LINK fired on an attachment that exists in files/")
+        return 2
+    if not any("missing-attach-selftest.png" in m for m in at_msgs):
+        print("SELF-TEST FAILED — DEAD-LINK missed a link to an attachment that exists nowhere")
+        return 2
 
     # CHECKBOX-DELTA is a diff rule like WORD-DELTA, so its fixture is also a
     # before/after pair. The pair loses no words — that is the point: it proves

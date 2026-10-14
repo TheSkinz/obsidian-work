@@ -47,6 +47,7 @@ repo being present on the machine.
 | `08-systems/secret-note.md` | SECRET | error |
 | `02-facilities/pointer-dead-temp-selftest.md` (built at runtime) | POINTER-DEAD | warning |
 | `02-facilities/TestClient/USA00000-job-sheet.{html,pdf}` (built at runtime) | JOBSHEET-PDF-STALE | warning |
+| `02-facilities/AttachTest/attach-selftest.md` + `files/attach-selftest.png` (built at runtime) | DEAD-LINK attachment resolution. Must not fire on an image in `files/`; must fire on a missing image | error |
 | `word-delta/before.md` + `after.md` | WORD-DELTA | warning |
 | `checkbox-delta/before.md` + `after.md` | CHECKBOX-DELTA | warning |
 
