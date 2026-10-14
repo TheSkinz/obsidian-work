@@ -16,7 +16,6 @@ const O = __dirname + '/img/';
   // Landscape cards replacing blur-filled side panels, so the rig fills the frame.
   const LAR = __dirname + '/../../../../Marathon/Carson-CA/DSP26098-technical-presentation/build/img/';
   await sharp(LAR + 'hero.jpg').jpeg({ quality: 86 }).toFile(O + 'card_diff.jpg');             // derricks, 16:9
-  // The readiness photo survives only as the sharp band inside the LAR blur panel (rows ~533-966).
-  await sharp(LAR + 'slot_ready.jpg').extract({ left: 0, top: 533, width: 920, height: 434 }).jpeg({ quality: 88 }).toFile(O + 'card_ready.jpg');
+  // card_ready.jpg (TriMax 4, IMG_1973) is made in prep_cover.js. The TriMax 6 shot now lives on the cover.
   console.log('slots done');
 })();

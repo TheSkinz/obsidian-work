@@ -16,10 +16,10 @@ A general heater pigging and decoking presentation for the Valero Texas City sit
 - `build/`:
   - `build.js` is the pptxgenjs generator.
   - `prep_map.js` renders `img/valero_map.png`.
-  - `prep_cover.js` renders `img/cover_trimax.jpg` from OneDrive `Marathon Carson RFQ/_Presentation photos/IMG_1973`, the front-closest Trimax shot.
+  - `prep_cover.js` renders `img/cover_night.jpg` from `src/trimax6_night.jpg` (Jesse's AI background replacement of the real TriMax 6 photo; rig real, night tank-farm background generated) and `img/card_ready.jpg` from OneDrive `Marathon Carson RFQ/_Presentation photos/IMG_1973` (real TriMax 4, front closest).
   - `prep_slots.js` renders the photo crops:
     - Services panel: from `src/onsite_heater.jpg`, with the concrete foreground cropped off.
-    - Readiness card: TriMax 6, cut from the sharp band of the LAR `slot_ready.jpg`. The LAR `trimax6.jpg` is the same photo, so it isn't used.
+    - (The readiness card is made in prep_cover.js. The LAR `trimax6.jpg` and `slot_ready.jpg` are the same TriMax 6 shot as the cover, so they aren't used.)
     - Capabilities card: the LAR `hero.jpg`.
     - Closing card: `src/road_night.jpg`, Jesse's AI background replacement of the real road photo. The rig is real; only the night terminal background is generated. Fully generated rig images were rejected.
   - `src/` holds the original photos the crops are made from.

@@ -71,20 +71,19 @@ async function icon(name, color, size = 256) {
   {
     const s = pres.addSlide();
     bg(s, C.dark);
-    s.addImage({ path: IMG + 'cover_trimax.jpg', x: 5.0, y: 0, w: W - 5.0, h: H });
-    s.addShape(pres.shapes.RECTANGLE, { x: 0.7, y: 2.1, w: 0.9, h: 0.07, fill: { color: C.gold }, line: { color: C.gold } });
-    s.addImage({ path: IMG + 'logo_white.png', x: 0.7, y: 0.65, w: 3.4, h: 3.4 * 101 / 674 });
-    txt(s, 'Heater Pigging\n& Decoking\nServices', { x: 0.7, y: 2.35, w: 4.2, h: 2.1, fontSize: 38, bold: true, color: C.white, valign: 'top', lineSpacingMultiple: 0.95 });
-    txt(s, 'Valero Texas City Refinery', { x: 0.7, y: 4.5, w: 4.2, h: 0.45, fontSize: 18, color: C.gold, bold: true });
-    txt(s, 'Mechanical pigging & decoking for fired heaters', { x: 0.7, y: 4.95, w: 4.2, h: 0.6, fontSize: 14, color: C.soft, valign: 'top' });
+    const ch = W * 960 / 2064;
+    s.addImage({ path: IMG + 'cover_night.jpg', x: 0, y: H - ch, w: W, h: ch });
+    s.addImage({ path: IMG + 'logo_white.png', x: 0.7, y: 0.5, w: 2.8, h: 2.8 * 101 / 674 });
     txt(s, [
       { text: 'Presented by Jason Harman', options: { bold: true, color: C.white, breakLine: true } },
-      { text: 'Commercial Manager', options: { color: C.soft, breakLine: true } },
-      { text: 'October 2026', options: { color: C.grey } },
-    ], { x: 0.7, y: 5.85, w: 4.2, h: 1.0, fontSize: 13, valign: 'top', paraSpaceAfter: 2 });
+      { text: 'Commercial Manager  |  October 2026', options: { color: C.soft } },
+    ], { x: 7.5, y: 0.45, w: 5.23, h: 0.6, fontSize: 12, align: 'right', valign: 'top', paraSpaceAfter: 2 });
+    txt(s, 'Heater Pigging & Decoking Services', { x: 0.7, y: 1.05, w: 12, h: 0.75, fontSize: 38, bold: true, color: C.white, valign: 'middle' });
+    s.addShape(pres.shapes.RECTANGLE, { x: 0.7, y: 1.92, w: 0.9, h: 0.06, fill: { color: C.gold }, line: { color: C.gold } });
+    txt(s, 'Valero Texas City Refinery', { x: 1.8, y: 1.75, w: 8, h: 0.4, fontSize: 18, color: C.gold, bold: true, valign: 'middle' });
     s.addNotes(`[~1 min] Open: thank the Texas City team for the time. Introduce yourself (Jason Harman, Commercial Manager) and anyone attending with you.
 Frame: "We're not new to Texas City: we've pigged your coker heater before. This is an overview of how we pig and decoke fired heaters, what we bring to site, and what we've done across the Valero system. About 30 minutes, then questions."
-The photo is TriMax 4 staged at a refinery, the same equipment we'd bring to Texas City.`);
+The photo is TriMax 6, one of the six identical units we'd bring to Texas City.`);
   }
 
   // =====================================================================
