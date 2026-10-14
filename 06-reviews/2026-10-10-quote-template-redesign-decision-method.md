@@ -215,6 +215,14 @@ Four pages. The pre-send check returns SEND.
 - Both return SEND.
 - These need no Adobe licence.
 
+**Requested Service page rebuilt (2026-10-14):** Jesse disliked the first version for its photo and its plain, text-heavy layout. The rebuild (`DirectionE2_road_night.pdf`) has:
+- scope as four icon tiles with gold tops;
+- commercial terms as a black and gold strip, matching the Quotation page;
+- the dusk TriMax 1 Grok edit (`trimax1_dusk.jpg`) at full width;
+- a gold "The USADebusk Trimax Pumper" caption bar carrying the closing line.
+
+The page photo differs from the road_night cover, keeping one photo per document. The pre-send check returns SEND.
+
 **Open:**
 - Jesse picks a cover: road_night, trimax6_night, or the coker a0/a3. If he picks a coker, he licenses it through Adobe Standard ($29.99/mo for 10 images, or the free trial).
 - Rebuild the cover from the 5562 px file.
