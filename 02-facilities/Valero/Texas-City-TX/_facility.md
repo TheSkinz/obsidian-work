@@ -38,8 +38,10 @@ None carded. Jesse confirmed (2026-10-13) that USADebusk has pigged the Texas Ci
   - USA22057: F501-A Heater ER, Aug/Sep 2022, DSP#22109.
   - USA22060: H2 Heater, Aug/Sep 2022, DSP#22110.
   - An H-57 coker process-line hose test package, Feb 2022.
+  - USA23027: H-57 Heater, DSP#23038, started 2023-03-22.
+  - USA24069: H-57 Coker, DSP#24102, started 2024-10-21.
 
-Treat all of these as leads until the job files are found. The F501-A entry may be conflated with Exxon Baytown's 2022 F-501 decoke, and the B-301 tag collides with Port Arthur's B-301. The OneDrive `_History\` folder for this site holds predecessor-brand quotes and drawings from 2006–2017, which are out of scope for the vault.
+The two H-57 jobs (2023 and 2024) are used in the capabilities deck. They are self-consistent, H-57 is a known Texas City coker heater tag, and Jesse confirmed coker work here. Copilot also points to a `2026 Job Numbers.xlsx` workbook on SharePoint that probably holds more Texas City history. Treat all of these as leads until the job files are found. The F501-A entry may be conflated with Exxon Baytown's 2022 F-501 decoke, and the B-301 tag collides with Port Arthur's B-301. The OneDrive `_History\` folder for this site holds predecessor-brand quotes and drawings from 2006–2017, which are out of scope for the vault.
 
 ---
 

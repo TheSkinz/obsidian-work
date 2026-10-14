@@ -83,7 +83,7 @@ async function icon(name, color, size = 256) {
       { text: 'October 2026', options: { color: C.grey } },
     ], { x: 0.7, y: 5.85, w: 4.2, h: 1.0, fontSize: 13, valign: 'top', paraSpaceAfter: 2 });
     s.addNotes(`[~1 min] Open: thank the Texas City team for the time. Introduce yourself (Jason Harman, Commercial Manager) and anyone attending with you.
-Frame: "We're not new to Texas City: we've pigged your coker heater before. This is an overview of how we pig and decoke fired heaters, what we bring to site, and what we've done across the Valero system. About 30 minutes, then questions."
+Frame: "We're not new to Texas City: we pigged your H-57 coker heater in 2023 and again in 2024. This is an overview of how we pig and decoke fired heaters, what we bring to site, and what we've done across the Valero system. About 30 minutes, then questions."
 The photo is TriMax 4 staged at a refinery, the same equipment we'd bring to Texas City.`);
   }
 
@@ -798,7 +798,7 @@ Data-driven and shared: our durations are built from recorded actuals, every job
     txt(s, '14', { x: 7.9, y: 1.7, w: 1.4, h: 1.0, fontSize: 60, bold: true, color: C.gold, valign: 'middle' });
     txt(s, 'heaters cleaned at\n5 Valero refineries', { x: 9.3, y: 1.8, w: 3.45, h: 0.8, fontSize: 16, bold: true, color: C.white, valign: 'middle' });
     const refs = [
-      ['Texas City, TX', 'Coker heater'],
+      ['Texas City, TX', 'H-57 coker heater, 2023 and 2024'],
       ['Port Arthur, TX', 'H-102A, H-102B, F-2000'],
       ['Three Rivers, TX', '100-H-1, 100-H-2, H-1102, H-1105, 440-H1'],
       ['Meraux, LA', 'VU-H-001, VU-H-002'],
@@ -812,7 +812,7 @@ Data-driven and shared: our durations are built from recorded actuals, every job
     });
     txt(s, 'Coker, vacuum, crude charge and reboiler service', { x: 7.9, y: 6.45, w: 4.85, h: 0.3, fontSize: 11.5, italic: true, color: C.gold });
     footer(s, true);
-    s.addNotes(`[~1.5 min] Texas City isn't new to us: we've pigged your coker heater before. Across Valero, that's 14 heaters at five refineries.
+    s.addNotes(`[~1.5 min] Texas City isn't new to us: we pigged your H-57 coker heater in 2023 and again in 2024. Across Valero, that's 14 heaters at five refineries.
 Port Arthur: the H-102A and H-102B vacuum heaters, which are the case study on the next slide, plus F-2000. Three Rivers: the 100-H-1 and 100-H-2 crude charge heaters, the H-1102 preflash reboiler, H-1105 and 440-H1. Meraux: both vacuum unit heaters. And on the West Coast, Wilmington's 20H200 and 20H2000 vacuum heaters and the 31H3000 coker feed heater.
 That covers coker, vacuum, crude charge and reboiler service. Reference contacts at any of these sites are available on request.`);
   }
@@ -868,7 +868,7 @@ The lesson is on pass 6B. The smart pig run found a quarter-inch coke ring at th
     chip(s, '10', 'Why USA DeBusk', true);
     title(s, 'Why USA DeBusk for Texas City', true, { w: 9.0, fontSize: 32 });
     const pts = [
-      ['Proven at Valero', '14 heaters at 5 Valero refineries, your coker heater among them'],
+      ['Proven at Valero', 'Your H-57 coker in 2023 and 2024, one of 14 Valero heaters we\'ve cleaned'],
       ['Close by', 'Fleet based in Deer Park, a short drive from Texas City'],
       ['Resilient execution', 'Triple-pass TriMax: a spare pump on every 2-pass heater'],
       ['Verified clean', '4-point verification and joint sign-off on every pass'],
@@ -883,7 +883,7 @@ The lesson is on pass 6B. The smart pig run found a quarter-inch coke ring at th
     }
     footer(s, true);
     s.addNotes(`[~1 min] Close with the five reasons, then open for questions.
-"We've already pigged your coker, we know Valero's refineries, our fleet is down the road in Deer Park, the triple-pass rig carries its own spare pump, you sign off on every pass, and we do it safely."`);
+"We've pigged your H-57 coker twice, we know Valero's refineries, our fleet is down the road in Deer Park, the triple-pass rig carries its own spare pump, you sign off on every pass, and we do it safely."`);
   }
 
   // =====================================================================
@@ -903,7 +903,7 @@ Likely questions and where the answer lives:
 - "How do you handle a plugged pass?" Bi-directional flow and stepwise pig sizing (slides 4–6); planning from drawings (slide 7).
 - "How long would our heater take?" Depends on footage, tube IDs and fouling. Offer to build a plan and quote from the heater's drawings.
 - "How fast can you get here?" Slide 17: the fleet stages at Deer Park; same day when a unit is in the yard.
-- "Have you worked at Valero before?" Slides 21–22: 14 heaters at five Valero refineries, including the Texas City coker heater. Reference contacts on request.
+- "Have you worked at Valero before?" Slides 21–22: 14 heaters at five Valero refineries, including H-57 here in 2023 and 2024. Reference contacts on request.
 - "Smart pig inspection?" The spare TriMax pump drives the inspection tool; Port Arthur had every pass inspected (slide 22).
 - "Filtration?" Optional, priced per the Valero rate sheet.
 - "Pump curves / pressure capability?" Slide 12 (Waterous CMU curves). Normal 150–300 psi; rated 600, 500–550 effective after valve losses.`);
