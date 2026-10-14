@@ -223,8 +223,20 @@ Four pages. The pre-send check returns SEND.
 
 The page photo differs from the road_night cover, keeping one photo per document. The pre-send check returns SEND.
 
+**Split cover, Jesse's preferred concept (2026-10-14):** Jesse liked his original mockup's cover better: the facility across the top half and the Trimax unit in the lower half.
+
+Rebuilt with real images in `split_cover.py`, output `DirectionE3_split_cover_COMP.pdf`:
+- Adobe a3 coker comp across the top 6.3", fading to black.
+- The Trimax 6 unit matted out of `trimax6_night` (a real rig) in the lower right, with a ground shadow and a gold slash behind it.
+- Text left of the unit, and Safe / Fast / Sustainable across the bottom.
+
+**Title bands fixed on every page:** the icon column was narrower than the 0.55" icon, so titles crowded it (Jesse). Column widened to 1300 twips with 240 right padding.
+
+The pre-send check returns SEND.
+
 **Open:**
-- Jesse picks a cover: road_night, trimax6_night, or the coker a0/a3. If he picks a coker, he licenses it through Adobe Standard ($29.99/mo for 10 images, or the free trial).
+- Jesse confirms the split cover.
+- License coker a3 (Adobe Standard) to replace the watermarked comp. If he picks a coker, he licenses it through Adobe Standard ($29.99/mo for 10 images, or the free trial).
 - Rebuild the cover from the 5562 px file.
 - Then build the blank Word template from Direction E.
 - A proper Trimax photo, per the photo brief, replaces the page photo when one exists.
