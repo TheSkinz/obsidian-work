@@ -71,20 +71,20 @@ async function icon(name, color, size = 256) {
   {
     const s = pres.addSlide();
     bg(s, C.dark);
-    s.addImage({ path: IMG + 'slot_title.jpg', x: 0, y: 0, w: W, h: H });
-    s.addImage({ path: IMG + 'fade_left.png', x: 0, y: 0, w: W, h: H });
+    s.addImage({ path: IMG + 'cover_trimax.jpg', x: 5.0, y: 0, w: W - 5.0, h: H });
+    s.addShape(pres.shapes.RECTANGLE, { x: 0.7, y: 2.1, w: 0.9, h: 0.07, fill: { color: C.gold }, line: { color: C.gold } });
     s.addImage({ path: IMG + 'logo_white.png', x: 0.7, y: 0.65, w: 3.4, h: 3.4 * 101 / 674 });
-    txt(s, 'Heater Pigging\n& Decoking Services', { x: 0.7, y: 2.35, w: 7.2, h: 1.9, fontSize: 44, bold: true, color: C.white, valign: 'top', lineSpacingMultiple: 0.95 });
-    txt(s, 'Valero Texas City Refinery', { x: 0.7, y: 4.3, w: 7.2, h: 0.45, fontSize: 20, color: C.gold, bold: true });
-    txt(s, 'Mechanical pigging & decoking for fired heaters', { x: 0.7, y: 4.78, w: 7.2, h: 0.4, fontSize: 16, color: C.soft });
+    txt(s, 'Heater Pigging\n& Decoking\nServices', { x: 0.7, y: 2.35, w: 4.2, h: 2.1, fontSize: 38, bold: true, color: C.white, valign: 'top', lineSpacingMultiple: 0.95 });
+    txt(s, 'Valero Texas City Refinery', { x: 0.7, y: 4.5, w: 4.2, h: 0.45, fontSize: 18, color: C.gold, bold: true });
+    txt(s, 'Mechanical pigging & decoking for fired heaters', { x: 0.7, y: 4.95, w: 4.2, h: 0.6, fontSize: 14, color: C.soft, valign: 'top' });
     txt(s, [
       { text: 'Presented by Jason Harman', options: { bold: true, color: C.white, breakLine: true } },
       { text: 'Commercial Manager', options: { color: C.soft, breakLine: true } },
       { text: 'October 2026', options: { color: C.grey } },
-    ], { x: 0.7, y: 5.75, w: 7, h: 1.0, fontSize: 13, valign: 'top', paraSpaceAfter: 2 });
+    ], { x: 0.7, y: 5.85, w: 4.2, h: 1.0, fontSize: 13, valign: 'top', paraSpaceAfter: 2 });
     s.addNotes(`[~1 min] Open: thank the Texas City team for the time. Introduce yourself (Jason Harman, Commercial Manager) and anyone attending with you.
-Frame: "This is an overview of how we pig and decoke fired heaters, what we bring to site, and what we've done across the Valero system. About 30 minutes, then questions."
-The photo is our TriMax triple pumper rigged into a heater, the same equipment we'd bring to Texas City.`);
+Frame: "We're not new to Texas City: we've pigged your coker heater before. This is an overview of how we pig and decoke fired heaters, what we bring to site, and what we've done across the Valero system. About 30 minutes, then questions."
+The photo is TriMax 4 staged at a refinery, the same equipment we'd bring to Texas City.`);
   }
 
   // =====================================================================
@@ -92,16 +92,18 @@ The photo is our TriMax triple pumper rigged into a heater, the same equipment w
   {
     const s = pres.addSlide();
     bg(s, C.dark);
-    s.addImage({ path: IMG + 'slot_agenda.jpg', x: 0, y: 0, w: 4.4, h: H });
-    txt(s, 'Agenda', { x: 5.0, y: 0.6, w: 7, h: 0.7, fontSize: 34, bold: true, color: C.white });
-    txt(s, 'Heater pigging & decoking at Texas City', { x: 5.0, y: 1.3, w: 7.5, h: 0.4, fontSize: 15, color: C.soft });
+    s.addShape(pres.shapes.RECTANGLE, { x: 0, y: 0, w: 0.18, h: H, fill: { color: C.gold }, line: { color: C.gold } });
+    txt(s, 'Agenda', { x: 0.9, y: 0.6, w: 7, h: 0.7, fontSize: 34, bold: true, color: C.white });
+    txt(s, 'Heater pigging & decoking at Texas City', { x: 0.9, y: 1.3, w: 7.5, h: 0.4, fontSize: 15, color: C.soft });
+    s.addImage({ path: IMG + 'logo_white.png', x: W - 0.6 - 2.6, y: 0.75, w: 2.6, h: 2.6 * 101 / 674 });
     const items = ['Pigging & decoking methodology', 'Execution', 'Readiness & resources', 'Equipment & technology', 'Cleanliness verification & QA/QC',
       'Emergency response', 'Safety & risk mitigation', 'Capabilities', 'Valero references & case study', 'Why USA DeBusk'];
     items.forEach((it, i) => {
       const col = i < 5 ? 0 : 1, row = i % 5;
-      const x = 5.0 + col * 4.1, y = 2.2 + row * 0.9;
-      txt(s, String(i + 1).padStart(2, '0'), { x, y, w: 0.75, h: 0.6, fontSize: 26, bold: true, color: C.gold, valign: 'middle' });
-      txt(s, it, { x: x + 0.8, y, w: 3.15, h: 0.6, fontSize: 15, color: C.white, valign: 'middle' });
+      const x = 0.9 + col * 6.0, y = 2.3 + row * 0.9;
+      txt(s, String(i + 1).padStart(2, '0'), { x, y, w: 0.85, h: 0.6, fontSize: 30, bold: true, color: C.gold, valign: 'middle' });
+      txt(s, it, { x: x + 0.95, y, w: 4.6, h: 0.6, fontSize: 18, color: C.white, valign: 'middle' });
+      s.addShape(pres.shapes.LINE, { x, y: y + 0.72, w: 5.4, h: 0, line: { color: C.char2, width: 1 } });
     });
     s.addNotes(`[~0.5 min] Walk the agenda quickly: how we clean a heater, how we run the job, what we bring, how you know it's clean, safety, and our Valero track record.
 Transition: "First, the services we offer a site like Texas City."`);
@@ -149,7 +151,7 @@ Transition: "Here's how we clean a pass."`);
   {
     const s = pres.addSlide();
     bg(s, C.white);
-    s.addImage({ path: IMG + 'slot_method.jpg', x: 9.33, y: 0, w: 4.0, h: H });
+    s.addImage({ path: IMG + 'slot_method_t6.jpg', x: 9.33, y: 0, w: 4.0, h: H });
     chip(s, '01', 'Methodology', false);
     title(s, 'Bi-directional mechanical decoking', false, { w: 8.4 });
     sub(s, 'Every pass follows the same controlled sequence', false, { w: 8.4 });
@@ -792,19 +794,27 @@ Data-driven and shared: our durations are built from recorded actuals, every job
     bg(s, C.dark);
     chip(s, '09', 'References & case study', true);
     title(s, 'Trusted across the Valero system', true);
-    s.addImage({ path: IMG + 'valero_map.png', x: 0.5, y: 1.7, w: 8.4, h: 8.4 * 1200 / 1860 });
-    txt(s, '15', { x: 9.7, y: 2.0, w: 3.0, h: 1.3, fontSize: 88, bold: true, color: C.gold });
-    txt(s, 'Valero sites where USA DeBusk has worked', { x: 9.7, y: 3.3, w: 3.0, h: 0.75, fontSize: 16, bold: true, color: C.white, valign: 'top' });
-    txt(s, [
-      { text: 'Gulf Coast, Mid-Continent and West Coast refineries', options: { bullet: true, breakLine: true } },
-      { text: 'Two Port Arthur jobs in 2026 alone', options: { bullet: true, breakLine: true } },
-      { text: 'Coker, crude and vacuum heater experience', options: { bullet: true } },
-    ], { x: 9.7, y: 4.25, w: 3.05, h: 2.0, fontSize: 12.5, color: C.soft, valign: 'top', paraSpaceAfter: 10 });
-    txt(s, 'DRAFT: * sites to confirm before release', { x: 9.7, y: 6.4, w: 3.05, h: 0.3, fontSize: 10, italic: true, color: C.gold });
+    s.addImage({ path: IMG + 'valero_map.png', x: 0.4, y: 1.95, w: 7.2, h: 7.2 * 1200 / 1860 });
+    txt(s, '14', { x: 7.9, y: 1.7, w: 1.4, h: 1.0, fontSize: 60, bold: true, color: C.gold, valign: 'middle' });
+    txt(s, 'heaters cleaned at\n5 Valero refineries', { x: 9.3, y: 1.8, w: 3.45, h: 0.8, fontSize: 16, bold: true, color: C.white, valign: 'middle' });
+    const refs = [
+      ['Texas City, TX', 'Coker heater'],
+      ['Port Arthur, TX', 'H-102A, H-102B, F-2000'],
+      ['Three Rivers, TX', '100-H-1, 100-H-2, H-1102, H-1105, 440-H1'],
+      ['Meraux, LA', 'VU-H-001, VU-H-002'],
+      ['Wilmington, CA', '20H200, 20H2000, 31H3000'],
+    ];
+    refs.forEach(([site, heaters], i) => {
+      const y = 2.95 + i * 0.68;
+      s.addShape(pres.shapes.RECTANGLE, { x: 7.9, y, w: 0.06, h: 0.52, fill: { color: i === 0 ? C.white : C.gold }, line: { color: i === 0 ? C.white : C.gold } });
+      txt(s, site, { x: 8.1, y: y - 0.02, w: 4.6, h: 0.28, fontSize: 13.5, bold: true, color: i === 0 ? C.gold : C.white });
+      txt(s, heaters, { x: 8.1, y: y + 0.26, w: 4.6, h: 0.26, fontSize: 11.5, color: C.soft });
+    });
+    txt(s, 'Coker, vacuum, crude charge and reboiler service', { x: 7.9, y: 6.45, w: 4.85, h: 0.3, fontSize: 11.5, italic: true, color: C.gold });
     footer(s, true);
-    s.addNotes(`[~1.5 min] Texas City wouldn't be our first Valero site. We've worked across the Valero system: on the Gulf Coast at Port Arthur, Houston, Three Rivers and both Corpus Christi refineries; in Louisiana at St. Charles, Meraux and Diamond Green Diesel; in the Mid-Continent at McKee, Ardmore and Memphis; and on the West Coast at Benicia and Wilmington.
-This year alone we've been at Port Arthur twice: the vacuum heater decoke in March, on the next slide, and the Unit 243 charge heater in October.
-Reference contacts at any of these sites are available on request.`);
+    s.addNotes(`[~1.5 min] Texas City isn't new to us: we've pigged your coker heater before. Across Valero, that's 14 heaters at five refineries.
+Port Arthur: the H-102A and H-102B vacuum heaters, which are the case study on the next slide, plus F-2000. Three Rivers: the 100-H-1 and 100-H-2 crude charge heaters, the H-1102 preflash reboiler, H-1105 and 440-H1. Meraux: both vacuum unit heaters. And on the West Coast, Wilmington's 20H200 and 20H2000 vacuum heaters and the 31H3000 coker feed heater.
+That covers coker, vacuum, crude charge and reboiler service. Reference contacts at any of these sites are available on request.`);
   }
 
   // =====================================================================
@@ -852,12 +862,13 @@ The lesson is on pass 6B. The smart pig run found a quarter-inch coke ring at th
   {
     const s = pres.addSlide();
     bg(s, C.dark);
-    s.addImage({ path: IMG + 'slot_why.jpg', x: 0, y: 0, w: W, h: H });
+    s.addImage({ path: IMG + 'slot_road.jpg', x: 0, y: 0, w: W, h: H });
     s.addImage({ path: IMG + 'fade_left.png', x: 0, y: 0, w: W, h: H });
+    s.addImage({ path: IMG + 'fade_left.png', x: 0, y: 0, w: 10.5, h: H });
     chip(s, '10', 'Why USA DeBusk', true);
     title(s, 'Why USA DeBusk for Texas City', true, { w: 9.0, fontSize: 32 });
     const pts = [
-      ['Proven at Valero', 'Port Arthur twice this year, and sites across the system'],
+      ['Proven at Valero', '14 heaters at 5 Valero refineries, your coker heater among them'],
       ['Close by', 'Fleet based in Deer Park, a short drive from Texas City'],
       ['Resilient execution', 'Triple-pass TriMax: a spare pump on every 2-pass heater'],
       ['Verified clean', '4-point verification and joint sign-off on every pass'],
@@ -872,7 +883,7 @@ The lesson is on pass 6B. The smart pig run found a quarter-inch coke ring at th
     }
     footer(s, true);
     s.addNotes(`[~1 min] Close with the five reasons, then open for questions.
-"We know Valero's refineries, our fleet is down the road in Deer Park, the triple-pass rig carries its own spare pump, you sign off on every pass, and we do it safely."`);
+"We've already pigged your coker, we know Valero's refineries, our fleet is down the road in Deer Park, the triple-pass rig carries its own spare pump, you sign off on every pass, and we do it safely."`);
   }
 
   // =====================================================================
@@ -880,7 +891,7 @@ The lesson is on pass 6B. The smart pig run found a quarter-inch coke ring at th
   {
     const s = pres.addSlide();
     bg(s, C.dark);
-    s.addImage({ path: IMG + 'slot_qa.jpg', x: 0, y: 0, w: W, h: H, transparency: 72 });
+    s.addShape(pres.shapes.RECTANGLE, { x: (W - 1.2) / 2, y: 4.3, w: 1.2, h: 0.06, fill: { color: C.gold }, line: { color: C.gold } });
     s.addImage({ path: IMG + 'logo_white.png', x: (W - 4.0) / 2, y: 1.6, w: 4.0, h: 4.0 * 101 / 674 });
     txt(s, 'Thank you', { x: 0.6, y: 2.6, w: 12.13, h: 1.0, fontSize: 48, bold: true, color: C.white, align: 'center' });
     txt(s, 'Questions & discussion', { x: 0.6, y: 3.55, w: 12.13, h: 0.5, fontSize: 22, color: C.gold, align: 'center' });
@@ -892,7 +903,7 @@ Likely questions and where the answer lives:
 - "How do you handle a plugged pass?" Bi-directional flow and stepwise pig sizing (slides 4–6); planning from drawings (slide 7).
 - "How long would our heater take?" Depends on footage, tube IDs and fouling. Offer to build a plan and quote from the heater's drawings.
 - "How fast can you get here?" Slide 17: the fleet stages at Deer Park; same day when a unit is in the yard.
-- "Have you worked at Valero before?" Slides 21–22: Port Arthur twice this year, plus sites across the system. Reference contacts on request.
+- "Have you worked at Valero before?" Slides 21–22: 14 heaters at five Valero refineries, including the Texas City coker heater. Reference contacts on request.
 - "Smart pig inspection?" The spare TriMax pump drives the inspection tool; Port Arthur had every pass inspected (slide 22).
 - "Filtration?" Optional, priced per the Valero rate sheet.
 - "Pump curves / pressure capability?" Slide 12 (Waterous CMU curves). Normal 150–300 psi; rated 600, 500–550 effective after valve losses.`);

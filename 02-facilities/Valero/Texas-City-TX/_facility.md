@@ -33,7 +33,13 @@ tags: [facility, Valero]
 
 ## Heaters at This Facility
 
-None carded. The only Texas City history in OneDrive (`Facilities\Valero\Valero Texas City TX\_History\`) is predecessor-brand quotes and drawings from 2006–2017, which are out of scope for the vault.
+None carded. Jesse confirmed (2026-10-13) that USADebusk has pigged the Texas City coker heater. A Copilot SharePoint pull adds job leads, all unverified:
+  - USA22024: "Coker C B-301 Pigging Agreement", March 2022, PO 4505474550, about $157,200.
+  - USA22057: F501-A Heater ER, Aug/Sep 2022, DSP#22109.
+  - USA22060: H2 Heater, Aug/Sep 2022, DSP#22110.
+  - An H-57 coker process-line hose test package, Feb 2022.
+
+Treat all of these as leads until the job files are found. The F501-A entry may be conflated with Exxon Baytown's 2022 F-501 decoke, and the B-301 tag collides with Port Arthur's B-301. The OneDrive `_History\` folder for this site holds predecessor-brand quotes and drawings from 2006–2017, which are out of scope for the vault.
 
 ---
 

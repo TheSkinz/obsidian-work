@@ -16,9 +16,16 @@ A general heater pigging and decoking presentation for the Valero Texas City sit
 - `build/`:
   - `build.js` is the pptxgenjs generator.
   - `prep_map.js` renders `img/valero_map.png`.
-  - `img/` holds the processed images copied from the LAR build.
+  - `prep_cover.js` renders `img/cover_trimax.jpg` from OneDrive `Marathon Carson RFQ/_Presentation photos/IMG_1973`, the front-closest Trimax shot.
+  - `prep_slots.js` renders the methodology side panel from the LAR `trimax6.jpg`.
+  - `img/` holds the processed images. Each photo appears on exactly one slide (Jesse, 2026-10-13). The agenda and Q&A slides have no photo because there aren't enough distinct photos to go round.
 
-**Status: draft specimen, not cleared for release.** Slide 21's reference map carries a DRAFT note and asterisks on sites that are unconfirmed: Oklahoma City, Houston and both Diamond Green Diesel sites. The headline count of 15 includes them. Confirm or cut them, then remove the DRAFT line and the asterisks before the deck goes to Valero. The org chart (slide 10) is the LAR team unchanged, with Jason highlighted.
+**Status: draft for Jesse/Jason review.** The references slide (21) claims **14 heaters at 5 Valero refineries**, built from Jesse's verified heater list (2026-10-13) plus the Texas City coker heater, which Jesse confirmed. The other Valero sites a Copilot SharePoint pull suggested are left off. Three entries were dropped as doubtful:
+  - Port Arthur AVU-146: the unit name of the H-102A/B job, so it would double count.
+  - Port Arthur B-301: the only vault record is USA26056 passivation support, not a cleaning.
+  - The Copilot-sourced 2022 Texas City F501-A and H2 heater jobs: Exxon Baytown has its own 2022 F-501 decoke, so they may be conflated.
+
+The Texas City coker is shown without a tag, because the Copilot "Coker C B-301" label collides with the Port Arthur tag. The org chart (slide 10) is the LAR team unchanged, with Jason highlighted.
 
 Case study (slide 22): Valero Port Arthur [[H-102A]] / [[H-102B]], USA26025. The figures come from those cards. Cost, overrun and the emergency framing are deliberately left out.
 

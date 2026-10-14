@@ -12,20 +12,12 @@ const O = __dirname + '/img/';
   const nation = topo.mesh(us, us.objects.states, (a, b) => a !== b);
   const path = d3.geoPath();
   const proj = d3.geoAlbersUsa().scale(1300).translate([487.5, 305]);
-  // [label, lat, lon, label dx, label dy, anchor]. Starred sites await confirmation before release.
+  // [label, lat, lon, label dx, label dy, anchor]. Only Valero refineries with heaters we have cleaned.
   const sites = [
-    ['Benicia, CA', 38.07, -122.14, 11, 4.5, 'start'],
     ['Wilmington, CA', 33.79, -118.24, 11, 4.5, 'start'],
-    ['McKee (Sunray), TX', 35.96, -101.86, -11, 4.5, 'end'],
-    ['Oklahoma City, OK*', 35.47, -97.52, 11, -2, 'start'],
-    ['Ardmore, OK', 34.17, -97.13, 11, 8, 'start'],
-    ['Memphis, TN', 35.08, -90.09, 11, 4.5, 'start'],
     ['Three Rivers, TX', 28.46, -98.18, -11, 4.5, 'end'],
-    ['Corpus Christi East & West, TX', 27.81, -97.42, -11, 10, 'end'],
-    ['Houston, TX*', 29.72, -95.25, -70, -48, 'end'],
-    ['Port Arthur, TX (incl. DGD*)', 29.87, -93.93, 30, -52, 'start'],
-    ['St. Charles & DGD*, Norco, LA', 29.99, -90.41, 40, -86, 'start'],
-    ['Meraux, LA', 29.93, -89.92, 34, 30, 'start'],
+    ['Port Arthur, TX', 29.87, -93.93, 30, -52, 'start'],
+    ['Meraux, LA', 29.93, -89.92, 11, 4.5, 'start'],
   ];
   let pins = '';
   for (const [name, lat, lon, dx, dy, anchor] of sites) {
