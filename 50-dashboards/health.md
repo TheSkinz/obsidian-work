@@ -14,7 +14,7 @@
 | Inbox oldest item | - | < 30 d | ok |
 | Sweepable now | 0 | 0 | ok |
 | Days since last commit | 0 d | - | ok |
-| Loop heartbeats overdue | yes | no | FAIL |
+| Loop heartbeats overdue | no | no | ok |
 | Open decisions not in the queue | 0 | 0 | ok |
 | Awarded job within 21 d, no PO | 0 | 0 | ok |
 | Regression baselines unjudgeable | 0 | 0 | ok |
@@ -29,7 +29,7 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 | Review loop | 2026-10-08 (6 d ago) | 2026-10-08 (6 d ago) | 90 d | ok |
 | Skill-drift loop | 2026-10-01 (13 d ago) | 2026-10-01 (13 d ago) | 62 d | ok |
 | Grok Workspace backup | 2026-10-13 (1 d ago) | OneDrive backup-log.md | 1 bd | ok |
-| Grok claude-config copy | 2026-10-13 15:33 CDT | OneDrive claude-config-sha.txt | on change | FAIL: box copy behind |
+| Grok claude-config copy | 2026-10-14 13:52 CDT | OneDrive claude-config-sha.txt | on change | ok |
 
 ## Commercial pipeline
 
