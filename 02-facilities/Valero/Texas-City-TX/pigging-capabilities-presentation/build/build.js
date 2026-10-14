@@ -96,7 +96,7 @@ The photo is TriMax 6, one of the six identical units we'd bring to Texas City.`
     txt(s, 'Heater pigging & decoking at Texas City', { x: 0.9, y: 1.3, w: 7.5, h: 0.4, fontSize: 15, color: C.soft });
     s.addImage({ path: IMG + 'logo_white.png', x: W - 0.6 - 2.6, y: 0.75, w: 2.6, h: 2.6 * 101 / 674 });
     const items = ['Pigging & decoking methodology', 'Execution', 'Readiness & resources', 'Equipment & technology', 'Cleanliness verification & QA/QC',
-      'Emergency response', 'Safety & risk mitigation', 'Capabilities', 'Valero references & case study', 'Why USA DeBusk'];
+      'Emergency response', 'Safety & risk mitigation', 'Capabilities', 'Valero references', 'Why USA DeBusk'];
     items.forEach((it, i) => {
       const col = i < 5 ? 0 : 1, row = i % 5;
       const x = 0.9 + col * 6.0, y = 2.3 + row * 0.9;
@@ -802,7 +802,7 @@ Data-driven and shared: our durations are built from recorded actuals, every job
   {
     const s = pres.addSlide();
     bg(s, C.dark);
-    chip(s, '09', 'References & case study', true);
+    chip(s, '09', 'References', true);
     title(s, 'Trusted across the Valero system', true);
     s.addImage({ path: IMG + 'valero_map.png', x: 0.4, y: 1.95, w: 7.2, h: 7.2 * 1200 / 1860 });
     txt(s, '14', { x: 7.9, y: 1.7, w: 1.4, h: 1.0, fontSize: 60, bold: true, color: C.gold, valign: 'middle' });
@@ -823,48 +823,8 @@ Data-driven and shared: our durations are built from recorded actuals, every job
     txt(s, 'Coker, vacuum, crude charge and reboiler service', { x: 7.9, y: 6.45, w: 4.85, h: 0.3, fontSize: 11.5, italic: true, color: C.gold });
     footer(s, true);
     s.addNotes(`[~1.5 min] Texas City isn't new to us: we've pigged your coker heater before. Across Valero, that's 14 heaters at five refineries.
-Port Arthur: the H-102A and H-102B vacuum heaters, which are the case study on the next slide, plus F-2000. Three Rivers: the 100-H-1 and 100-H-2 crude charge heaters, the H-1102 preflash reboiler, H-1105 and 440-H1. Meraux: both vacuum unit heaters. And on the West Coast, Wilmington's 20H200 and 20H2000 vacuum heaters and the 31H3000 coker feed heater.
+Port Arthur: the H-102A and H-102B vacuum heaters and F-2000. Three Rivers: the 100-H-1 and 100-H-2 crude charge heaters, the H-1102 preflash reboiler, H-1105 and 440-H1. Meraux: both vacuum unit heaters. And on the West Coast, Wilmington's 20H200 and 20H2000 vacuum heaters and the 31H3000 coker feed heater.
 That covers coker, vacuum, crude charge and reboiler service. Reference contacts at any of these sites are available on request.`);
-  }
-
-  // =====================================================================
-  // 20. CASE STUDIES
-  {
-    const s = pres.addSlide();
-    bg(s, C.white);
-    chip(s, '09', 'References & case study', false);
-    title(s, 'Valero case study & lessons learned', false);
-    const cs = [
-      ['Valero Port Arthur, TX: H-102A & H-102B', 'Vacuum heaters, March–April 2026',
-        [['16', 'passes, 2 heaters'], ["18,496'", 'coil footage'], ['434', 'pigs run']],
-        'Both 8-pass vacuum heaters pigged three passes at a time, with filtration and smart pig inspection of every pass.',
-        'Every pass signed clean and cleared by smart pig before rig-out. A replacement TriMax was rigged in mid-job within 2 hours, with no break in pigging.', 'Scope', 'Result'],
-      ['Pass 6B: coke ring found by smart pig', 'Mixed-diameter vacuum pass, 3" to 8"',
-        [['0.25"', 'thick coke ring'], ['24 h', 'dedicated pigging'], ['188 psi', 'flow-test reduction']],
-        'Inspection found a circumferential coke ring at the inlet of a 5" tube, just before the step-up to 8".',
-        'On mixed-diameter passes, stage pigs for every diameter and plan time at each step-up before the inspection run.', 'Challenge', 'Lesson learned'],
-    ];
-    cs.forEach(([h, d, stats, ch, lesson, chL, lesL], i) => {
-      const x = 0.6 + i * 6.17, y = 1.95, w = 5.96;
-      s.addShape(pres.shapes.RECTANGLE, { x, y, w, h: 4.8, fill: { color: C.light }, line: { color: C.light } });
-      txt(s, h, { x: x + 0.35, y: y + 0.3, w: w - 0.7, h: 0.4, fontSize: 17, bold: true, color: C.text });
-      txt(s, d, { x: x + 0.35, y: y + 0.7, w: w - 0.7, h: 0.3, fontSize: 12, color: C.muted });
-      stats.forEach(([n, l], k) => {
-        const sx = x + 0.35 + k * 1.8;
-        txt(s, n, { x: sx, y: y + 1.2, w: 1.75, h: 0.65, fontSize: 28, bold: true, color: C.text });
-        txt(s, l, { x: sx, y: y + 1.85, w: 1.75, h: 0.3, fontSize: 11, color: C.muted });
-      });
-      txt(s, [{ text: chL + '  ', options: { bold: true, color: C.text } }, { text: ch, options: { color: C.muted } }],
-        { x: x + 0.35, y: y + 2.45, w: w - 0.7, h: 0.8, fontSize: 13, valign: 'top' });
-      s.addShape(pres.shapes.RECTANGLE, { x: x + 0.35, y: y + 3.35, w: w - 0.7, h: 1.2, fill: { color: C.dark }, line: { color: C.dark } });
-      txt(s, [{ text: lesL + '  ', options: { bold: true, color: C.gold } }, { text: lesson, options: { color: C.white } }],
-        { x: x + 0.55, y: y + 3.45, w: w - 1.1, h: 1.0, fontSize: 13, valign: 'middle' });
-    });
-    footer(s, false);
-    s.addNotes(`[~2 min] A Valero job from this year: the H-102A and H-102B vacuum heaters at Port Arthur, March into April 2026.
-Two 8-pass heaters, 16 passes, about 18,500 feet of coil with diameters running from 3" up to 8" in the same pass. Heavy pitch and resid, concentrated in the 3" tubes. We ran in triple mode with filtration, and every pass was smart-pig inspected after cleaning. We went through 434 pigs, mostly in the 3" to 5" range.
-Midway through, we swapped one TriMax for another. The new unit was rigged into three passes within two hours and pigging never stopped. That's the standardized fleet paying off.
-The lesson is on pass 6B. The smart pig run found a quarter-inch coke ring at the inlet of the last 5" tube, right before the step-up to 8". It took about 24 hours of dedicated pigging to break, and inspection confirmed it clear before rig-out. Pass 6B's flow test came down 188 psi. What we took from it: on mixed-diameter passes, we stage pigs for every diameter and plan time at each step-up, so the inspection run confirms the result instead of finding work.`);
   }
 
   // =====================================================================
@@ -913,8 +873,8 @@ Likely questions and where the answer lives:
 - "How do you handle a plugged pass?" Bi-directional flow and stepwise pig sizing (slides 4–6); planning from drawings (slide 7).
 - "How long would our heater take?" Depends on footage, tube IDs and fouling. Offer to build a plan and quote from the heater's drawings.
 - "How fast can you get here?" Slide 17: the fleet stages at Deer Park; same day when a unit is in the yard.
-- "Have you worked at Valero before?" Slides 21–22: 14 heaters at five Valero refineries, including the Texas City coker heater. Reference contacts on request.
-- "Smart pig inspection?" The spare TriMax pump drives the inspection tool; Port Arthur had every pass inspected (slide 22).
+- "Have you worked at Valero before?" Slide 21: 14 heaters at five Valero refineries, including the Texas City coker heater. Reference contacts on request.
+- "Smart pig inspection?" The spare TriMax pump drives the inspection tool.
 - "Filtration?" Optional, priced per the Valero rate sheet.
 - "Pump curves / pressure capability?" Slide 12 (Waterous CMU curves). Normal 150–300 psi; rated 600, 500–550 effective after valve losses.`);
   }

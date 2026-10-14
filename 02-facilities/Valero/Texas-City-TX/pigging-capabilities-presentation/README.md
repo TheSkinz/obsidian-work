@@ -9,9 +9,9 @@ tags: [Valero, presentation]
 
 # Valero Texas City: pigging capabilities presentation
 
-A general heater pigging and decoking presentation for the Valero Texas City site. It is not tied to a bid. Jason Harman presents it, October 2026. It is forked from the Marathon LAR deck (`02-facilities/Marathon/Carson-CA/DSP26098-technical-presentation/`). Company-level slides carry over unchanged. The LAR heater data, five-year program, CARB fleet slide and MPC contacts are dropped. The scope, pig progression, coil controls, execution, emergency response, references and case study slides are rewritten for Texas City.
+A general heater pigging and decoking presentation for the Valero Texas City site. It is not tied to a bid. Jason Harman presents it, October 2026. It is forked from the Marathon LAR deck (`02-facilities/Marathon/Carson-CA/DSP26098-technical-presentation/`). Company-level slides carry over unchanged. The LAR heater data, five-year program, CARB fleet slide and MPC contacts are dropped. The scope, pig progression, coil controls, execution, emergency response and references slides are rewritten for Texas City.
 
-- `Valero_TXC_Pigging_Capabilities.pptx`: the deck, 24 slides, with speaker notes on every slide (about 30 minutes plus Q&A).
+- `Valero_TXC_Pigging_Capabilities.pptx`: the deck, 23 slides, with speaker notes on every slide (about 30 minutes plus Q&A).
 - `Valero_TXC_Pigging_Capabilities.pdf`: a PDF render of the deck.
 - `build/`:
   - `build.js` is the pptxgenjs generator.
@@ -33,7 +33,7 @@ A general heater pigging and decoking presentation for the Valero Texas City sit
 
 The Texas City row reads "Coker heater", with no tag and no year. Jesse ruled H-57 off the deck on 2026-10-13. Don't reintroduce the H-57 tag or the Copilot "Coker C B-301" label. The org chart (slide 10) and the safety stats (slide 18) match the LAR deck by design (Jesse, 2026-10-13). On slide 10, Jason is highlighted as presenter instead of Marshall.
 
-Case study (slide 22): Valero Port Arthur [[H-102A]] / [[H-102B]], USA26025. The figures come from those cards. Cost, overrun and the emergency framing are deliberately left out.
+The case study slide (Valero Port Arthur [[H-102A]] / [[H-102B]], USA26025) was removed on 2026-10-14 because Jason didn't need it. Nothing replaces it. It survives in git history if it's ever wanted back.
 
 To rebuild:
 1. Install the dependencies **outside the vault**, because `node_modules` isn't gitignored: `npm install` in a scratch folder, using this `package.json`.
