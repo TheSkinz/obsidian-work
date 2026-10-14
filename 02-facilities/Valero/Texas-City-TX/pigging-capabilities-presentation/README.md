@@ -25,7 +25,7 @@ A general heater pigging and decoking presentation for the Valero Texas City sit
   - Port Arthur B-301: the only vault record is USA26056 passivation support, not a cleaning.
   - The Copilot-sourced 2022 Texas City F501-A and H2 heater jobs: Exxon Baytown has its own 2022 F-501 decoke, so they may be conflated.
 
-The Texas City row reads "H-57 coker heater, 2023 and 2024". It comes from Copilot's job records USA23027/DSP#23038 and USA24069/DSP#24102, which no local file confirms. The Copilot "Coker C B-301" label is not used, because it collides with the Port Arthur tag. The org chart (slide 10) is the LAR team unchanged, with Jason highlighted.
+The Texas City row reads "Coker heater", with no tag and no year. Jesse ruled H-57 off the deck on 2026-10-13. Don't reintroduce the H-57 tag or the Copilot "Coker C B-301" label. The org chart (slide 10) is the LAR team unchanged, with Jason highlighted.
 
 Case study (slide 22): Valero Port Arthur [[H-102A]] / [[H-102B]], USA26025. The figures come from those cards. Cost, overrun and the emergency framing are deliberately left out.
 
