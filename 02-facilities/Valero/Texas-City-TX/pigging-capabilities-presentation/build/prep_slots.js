@@ -9,8 +9,10 @@ const O = __dirname + '/img/';
   const ch = 1450, cw = Math.round(ch * 4.0 / 7.5); // 773
   await sharp(__dirname + '/src/onsite_heater.jpg').extract({ left: 215, top: 0, width: cw, height: ch }).jpeg({ quality: 86 }).toFile(O + 'services_heater.jpg');
 
-  // Closing slide card (16:9): the full road shot, rig and tractor both in frame.
-  await sharp(__dirname + '/src/road.jpg').resize(1600, 900).jpeg({ quality: 86 }).toFile(O + 'why_road.jpg');
+  // Closing slide card (16:9): the road-shot rig and tractor on a night terminal background.
+  // src/road_night.jpg is Jesse's AI background replacement of src/road.jpg (2026-10-13): the rig is the real
+  // photo; only the background and lighting are generated. The fully generated variants were rejected.
+  await sharp(__dirname + '/src/road_night.jpg').resize(1600, 900, { fit: 'cover' }).jpeg({ quality: 88 }).toFile(O + 'why_road.jpg');
   // Landscape cards replacing blur-filled side panels, so the rig fills the frame.
   const LAR = __dirname + '/../../../../Marathon/Carson-CA/DSP26098-technical-presentation/build/img/';
   await sharp(LAR + 'hero.jpg').jpeg({ quality: 86 }).toFile(O + 'card_diff.jpg');             // derricks, 16:9

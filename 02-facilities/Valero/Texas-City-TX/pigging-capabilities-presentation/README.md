@@ -21,7 +21,7 @@ A general heater pigging and decoking presentation for the Valero Texas City sit
     - Services panel: from `src/onsite_heater.jpg`, with the concrete foreground cropped off.
     - Readiness card: TriMax 6, cut from the sharp band of the LAR `slot_ready.jpg`. The LAR `trimax6.jpg` is the same photo, so it isn't used.
     - Capabilities card: the LAR `hero.jpg`.
-    - Closing card: the full road shot, `src/road.jpg`.
+    - Closing card: `src/road_night.jpg`, Jesse's AI background replacement of the real road photo. The rig is real; only the night terminal background is generated. Fully generated rig images were rejected.
   - `src/` holds the original photos the crops are made from.
   - `img/` holds the processed images. Each photo appears on exactly one slide (Jesse, 2026-10-13). Landscape photos sit in landscape cards, never in tall blur-filled panels, so the rig fills the frame. The agenda and Q&A slides have no photo because there aren't enough distinct photos to go round.
 
