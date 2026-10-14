@@ -114,7 +114,7 @@ Transition: "First, the services we offer a site like Texas City."`);
   {
     const s = pres.addSlide();
     bg(s, C.white);
-    s.addImage({ path: IMG + 'onsite_40.jpg', x: 9.33, y: 0, w: 4.0, h: H });
+    s.addImage({ path: IMG + 'services_heater.jpg', x: 9.33, y: 0, w: 4.0, h: H });
     chip(s, null, 'Services', false);
     title(s, 'Our services for Texas City', false, { w: 8.4 });
     sub(s, 'Mechanical decoking of fired heater coils, planned or on short notice', false, { w: 8.4 });
@@ -151,7 +151,12 @@ Transition: "Here's how we clean a pass."`);
   {
     const s = pres.addSlide();
     bg(s, C.white);
-    s.addImage({ path: IMG + 'slot_method_t6.jpg', x: 9.33, y: 0, w: 4.0, h: H });
+    {
+      const cw = 3.98, chh = cw * 437 / 900, cx = W - 0.6 - cw, cy = 2.45;
+      s.addShape(pres.shapes.RECTANGLE, { x: cx - 0.05, y: cy - 0.05, w: cw + 0.1, h: chh + 0.1, fill: { color: C.white }, line: { color: C.rule, width: 1 } });
+      s.addImage({ path: IMG + 'pigs_lineup.jpg', x: cx, y: cy, w: cw, h: chh });
+      txt(s, 'Scraper pigs after runs: wear marks show where coke remains', { x: cx, y: cy + chh + 0.15, w: cw, h: 0.5, fontSize: 10.5, italic: true, color: C.muted, align: 'center', valign: 'top' });
+    }
     chip(s, '01', 'Methodology', false);
     title(s, 'Bi-directional mechanical decoking', false, { w: 8.4 });
     sub(s, 'Every pass follows the same controlled sequence', false, { w: 8.4 });
@@ -169,8 +174,8 @@ Transition: "Here's how we clean a pass."`);
       const y = y0 + i * rowH;
       s.addShape(pres.shapes.OVAL, { x: x0, y, w: 0.54, h: 0.54, fill: { color: i === 5 ? C.gold : C.dark }, line: { color: C.white, width: 2 } });
       txt(s, String(i + 1), { x: x0, y, w: 0.54, h: 0.54, fontSize: 15, bold: true, color: i === 5 ? C.dark : C.gold, align: 'center', valign: 'middle' });
-      txt(s, h, { x: x0 + 0.8, y: y - 0.02, w: 7.7, h: 0.3, fontSize: 15, bold: true, color: C.text });
-      txt(s, d, { x: x0 + 0.8, y: y + 0.28, w: 7.7, h: 0.3, fontSize: 12.5, color: C.muted });
+      txt(s, h, { x: x0 + 0.8, y: y - 0.02, w: 7.0, h: 0.3, fontSize: 15, bold: true, color: C.text });
+      txt(s, d, { x: x0 + 0.8, y: y + 0.28, w: 7.0, h: 0.3, fontSize: 12.5, color: C.muted });
     });
     footer(s, false);
     s.addNotes(`[~2.5 min] Walk the six steps. Emphasize "bi-directional": the TriMax reverses flow from the operator station without hose changes, so pigs work the coke from both sides. That is how we clear tight spots and plug headers.
@@ -342,10 +347,13 @@ We run 24/7 on 12-hour day and night shifts until the heater is handed back. Dur
   {
     const s = pres.addSlide();
     bg(s, C.white);
-    s.addImage({ path: IMG + 'slot_ready.jpg', x: 0, y: 0, w: 4.6, h: H });
-    const X = 5.1;
+    const X = 0.6;
+    {
+      const cw = 4.43, chh = cw * 434 / 920, cx = W - 0.6 - cw, cy = 1.95;
+      s.addImage({ path: IMG + 'card_ready.jpg', x: cx, y: cy, w: cw, h: chh });
+    }
     chip(s, '03', 'Readiness & resources', false, X);
-    title(s, 'Crew & equipment, every job', false, { x: X, w: 7.6, fontSize: 30 });
+    title(s, 'Crew & equipment, every job', false, { x: X, w: 12.1 });
     const col = (x, head, ic, items) => {
       txt(s, head, { x: x + 0.6, y: 2.0, w: 3.0, h: 0.4, fontSize: 16, bold: true, color: C.text, valign: 'middle' });
       items.forEach(([n, l], i) => {
@@ -360,12 +368,12 @@ We run 24/7 on 12-hour day and night shifts until the heater is handed back. Dur
     await iconCircle(s, 'FaUsers', X + 3.85, 1.95, 0.48, C.dark, C.gold);
     const st = [['~5%', 'crew turnover, last 12 months'], ['24/7', 'two 12-hour shifts'], ['100%', 'training verified before mobilization']];
     st.forEach(([n, l], i) => {
-      const x = X + i * 2.55;
-      s.addShape(pres.shapes.RECTANGLE, { x, y: 5.05, w: 2.35, h: 1.55, fill: { color: C.dark }, line: { color: C.dark } });
-      txt(s, n, { x: x + 0.2, y: 5.2, w: 2.0, h: 0.7, fontSize: 30, bold: true, color: C.gold });
-      txt(s, l, { x: x + 0.2, y: 5.9, w: 2.0, h: 0.6, fontSize: 11.5, color: C.white, valign: 'top' });
+      const x = X + i * 4.1;
+      s.addShape(pres.shapes.RECTANGLE, { x, y: 5.05, w: 3.93, h: 1.55, fill: { color: C.dark }, line: { color: C.dark } });
+      txt(s, n, { x: x + 0.25, y: 5.2, w: 3.4, h: 0.7, fontSize: 30, bold: true, color: C.gold });
+      txt(s, l, { x: x + 0.25, y: 5.9, w: 3.4, h: 0.6, fontSize: 12, color: C.white, valign: 'top' });
     });
-    footer(s, false, X);
+    footer(s, false);
     s.addNotes(`[~1.5 min] A standard single-rig job gets this package: one TriMax, one support unit carrying fittings, tooling and spares, two crew trucks. Bigger heaters get more rigs and more crew.
 Crew: day shift is a supervisor and two operators; night shift is a supervisor and an operator; a project manager owns the job and the daily updates.
 Readiness: turnover has run about 5% over the last 12 months. We hold onto people with competitive pay, ongoing training and certification, career paths, and dedicated core crews per site. For Texas City that means the same faces on your heaters job after job.
@@ -762,9 +770,13 @@ Full detail is in our safety manual and SSHASP, available on request.`);
   {
     const s = pres.addSlide();
     bg(s, C.dark);
-    s.addImage({ path: IMG + 'slot_diff.jpg', x: 9.33, y: 0, w: 4.0, h: H });
+    {
+      const cw = 4.28, chh = cw * 9 / 16, cx = W - 0.6 - cw, cy = 2.05 + (4.45 - chh) / 2;
+      s.addShape(pres.shapes.RECTANGLE, { x: cx - 0.06, y: cy - 0.06, w: cw + 0.12, h: chh + 0.12, fill: { color: C.gold }, line: { color: C.gold } });
+      s.addImage({ path: IMG + 'card_diff.jpg', x: cx, y: cy, w: cw, h: chh });
+    }
     chip(s, '08', 'Capabilities', true);
-    title(s, 'What sets USA DeBusk apart', true, { w: 8.4 });
+    title(s, 'What sets USA DeBusk apart', true, { w: 12.1 });
     const cards = [
       ['FaIndustry', 'Self-performed scope', 'Pigging, decoking and hydroblasting with our own equipment and crews: one contractor, no subs'],
       ['FaCogs', 'Largest standardized fleet', '6 identical TriMax units, 18 engines, with a spare pump on board even on a 2-pass heater'],
@@ -773,11 +785,11 @@ Full detail is in our safety manual and SSHASP, available on request.`);
     ];
     for (let i = 0; i < cards.length; i++) {
       const [ic, h, d] = cards[i];
-      const x = 0.6 + (i % 2) * 4.3, y = 2.05 + Math.floor(i / 2) * 2.35;
-      s.addShape(pres.shapes.RECTANGLE, { x, y, w: 4.1, h: 2.15, fill: { color: C.char }, line: { color: C.char } });
+      const x = 0.6 + (i % 2) * 3.85, y = 2.05 + Math.floor(i / 2) * 2.35;
+      s.addShape(pres.shapes.RECTANGLE, { x, y, w: 3.7, h: 2.15, fill: { color: C.char }, line: { color: C.char } });
       await iconCircle(s, ic, x + 0.3, y + 0.3, 0.72, C.gold, C.dark);
-      txt(s, h, { x: x + 1.2, y: y + 0.35, w: 2.75, h: 0.6, fontSize: 17, bold: true, color: C.white, valign: 'middle' });
-      txt(s, d, { x: x + 0.3, y: y + 1.18, w: 3.6, h: 0.9, fontSize: 12.5, color: C.soft, valign: 'top' });
+      txt(s, h, { x: x + 1.2, y: y + 0.3, w: 2.4, h: 0.72, fontSize: 16, bold: true, color: C.white, valign: 'middle' });
+      txt(s, d, { x: x + 0.3, y: y + 1.18, w: 3.2, h: 0.9, fontSize: 12, color: C.soft, valign: 'top' });
     }
     footer(s, true);
     s.addNotes(`[~1.5 min] Four differentiators, backed by more than 200 years of combined experience on our team.
@@ -862,11 +874,11 @@ The lesson is on pass 6B. The smart pig run found a quarter-inch coke ring at th
   {
     const s = pres.addSlide();
     bg(s, C.dark);
-    s.addImage({ path: IMG + 'slot_road.jpg', x: 0, y: 0, w: W, h: H });
-    s.addImage({ path: IMG + 'fade_left.png', x: 0, y: 0, w: W, h: H });
-    s.addImage({ path: IMG + 'fade_left.png', x: 0, y: 0, w: 10.5, h: H });
+    const pw = 6.2, ph = pw * 9 / 16, px = W - 0.6 - pw, py = 2.2;
+    s.addShape(pres.shapes.RECTANGLE, { x: px - 0.06, y: py - 0.06, w: pw + 0.12, h: ph + 0.12, fill: { color: C.gold }, line: { color: C.gold } });
+    s.addImage({ path: IMG + 'why_road.jpg', x: px, y: py, w: pw, h: ph });
     chip(s, '10', 'Why USA DeBusk', true);
-    title(s, 'Why USA DeBusk for Texas City', true, { w: 9.0, fontSize: 32 });
+    title(s, 'Why USA DeBusk for Texas City', true, { w: 12.1, fontSize: 32 });
     const pts = [
       ['Proven at Valero', '14 heaters at 5 Valero refineries, your coker heater among them'],
       ['Close by', 'Fleet based in Deer Park, a short drive from Texas City'],
@@ -878,8 +890,8 @@ The lesson is on pass 6B. The smart pig run found a quarter-inch coke ring at th
       const [h, d] = pts[i];
       const y = 2.05 + i * 0.92;
       await iconCircle(s, 'FaCheck', 0.6, y + 0.05, 0.55, C.gold, C.dark);
-      txt(s, h, { x: 1.35, y, w: 6, h: 0.35, fontSize: 18, bold: true, color: C.white });
-      txt(s, d, { x: 1.35, y: y + 0.36, w: 6, h: 0.3, fontSize: 13, color: C.soft });
+      txt(s, h, { x: 1.35, y, w: 4.9, h: 0.35, fontSize: 18, bold: true, color: C.white });
+      txt(s, d, { x: 1.35, y: y + 0.36, w: 4.9, h: 0.5, fontSize: 12, color: C.soft, valign: 'top' });
     }
     footer(s, true);
     s.addNotes(`[~1 min] Close with the five reasons, then open for questions.

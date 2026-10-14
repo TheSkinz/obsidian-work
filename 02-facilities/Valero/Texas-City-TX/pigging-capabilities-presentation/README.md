@@ -17,8 +17,13 @@ A general heater pigging and decoking presentation for the Valero Texas City sit
   - `build.js` is the pptxgenjs generator.
   - `prep_map.js` renders `img/valero_map.png`.
   - `prep_cover.js` renders `img/cover_trimax.jpg` from OneDrive `Marathon Carson RFQ/_Presentation photos/IMG_1973`, the front-closest Trimax shot.
-  - `prep_slots.js` renders the methodology side panel from the LAR `trimax6.jpg`.
-  - `img/` holds the processed images. Each photo appears on exactly one slide (Jesse, 2026-10-13). The agenda and Q&A slides have no photo because there aren't enough distinct photos to go round.
+  - `prep_slots.js` renders the photo crops:
+    - Services panel: from `src/onsite_heater.jpg`, with the concrete foreground cropped off.
+    - Readiness card: TriMax 6, cut from the sharp band of the LAR `slot_ready.jpg`. The LAR `trimax6.jpg` is the same photo, so it isn't used.
+    - Capabilities card: the LAR `hero.jpg`.
+    - Closing card: the full road shot, `src/road.jpg`.
+  - `src/` holds the original photos the crops are made from.
+  - `img/` holds the processed images. Each photo appears on exactly one slide (Jesse, 2026-10-13). Landscape photos sit in landscape cards, never in tall blur-filled panels, so the rig fills the frame. The agenda and Q&A slides have no photo because there aren't enough distinct photos to go round.
 
 **Status: draft for Jesse/Jason review.** The references slide (21) claims **14 heaters at 5 Valero refineries**, built from Jesse's verified heater list (2026-10-13) plus the Texas City coker heater, which Jesse confirmed. The other Valero sites a Copilot SharePoint pull suggested are left off. Three entries were dropped as doubtful:
   - Port Arthur AVU-146: the unit name of the H-102A/B job, so it would double count.
