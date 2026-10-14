@@ -16,6 +16,9 @@ const O = __dirname + '/img/';
   // Landscape cards replacing blur-filled side panels, so the rig fills the frame.
   const LAR = __dirname + '/../../../../Marathon/Carson-CA/DSP26098-technical-presentation/build/img/';
   await sharp(LAR + 'hero.jpg').jpeg({ quality: 86 }).toFile(O + 'card_diff.jpg');             // derricks, 16:9
+  // TriMax slide, full bleed: src/trimax1_dusk.jpg is Jesse's AI background replacement of the real TriMax 1
+  // yard photo (LAR trimax1.jpg); rig real, dusk refinery background generated. Already 16:9.
+  await sharp(__dirname + '/src/trimax1_dusk.jpg').resize(2400, 1350, { fit: 'cover' }).jpeg({ quality: 88 }).toFile(O + 'trimax_dusk.jpg');
   // card_ready.jpg (TriMax 4, IMG_1973) is made in prep_cover.js. The TriMax 6 shot now lives on the cover.
   console.log('slots done');
 })();

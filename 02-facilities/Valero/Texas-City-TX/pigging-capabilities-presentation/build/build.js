@@ -441,9 +441,8 @@ Under Travis: a bench of project managers, our equipment manager and a senior fi
   {
     const s = pres.addSlide();
     bg(s, C.dark);
-    s.addImage({ path: IMG + 'slot_trimax.jpg', x: 0, y: 0, w: W, h: H });
+    s.addImage({ path: IMG + 'trimax_dusk.jpg', x: 0, y: 0, w: W, h: H });
     s.addImage({ path: IMG + 'fade_left.png', x: 0, y: 0, w: W, h: H });
-    s.addImage({ path: IMG + 'fade_left.png', x: 0, y: 0, w: 10.5, h: H });
     chip(s, '04', 'Equipment & technology', true);
     title(s, 'The TriMax triple pumper', true, { w: 7 });
     sub(s, '6 identical TriMax units, 18 engines: one standardized fleet', true, { w: 7 });
