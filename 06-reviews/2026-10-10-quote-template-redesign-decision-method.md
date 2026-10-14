@@ -210,8 +210,13 @@ Four covers (a0 or a3, natural or charcoal), in `Round 2 Concepts/*_COMP`:
 
 Four pages. The pre-send check returns SEND.
 
+**Covers from the Texas City deck photos (2026-10-14):** Jesse's own Grok background swaps (real rig, generated background) were already approved for the Valero Texas City capabilities deck (`02-facilities/Valero/Texas-City-TX/pigging-capabilities-presentation/build/src/`). Two went on the Direction E cover as full-width bands: `DirectionE_cover_road_night.pdf` and `DirectionE_cover_trimax6_night.pdf`.
+- `road_night`: the yellow Peterbilt, front closest, name readable. It meets the cover-angle rule and is the strongest cover yet.
+- Both return SEND.
+- These need no Adobe licence.
+
 **Open:**
-- Jesse picks a0 or a3 and licenses it: Adobe Standard licence, $29.99/mo for 10 images, or the free trial.
+- Jesse picks a cover: road_night, trimax6_night, or the coker a0/a3. If he picks a coker, he licenses it through Adobe Standard ($29.99/mo for 10 images, or the free trial).
 - Rebuild the cover from the 5562 px file.
 - Then build the blank Word template from Direction E.
 - A proper Trimax photo, per the photo brief, replaces the page photo when one exists.
