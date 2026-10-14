@@ -239,7 +239,7 @@ If asked about short-radius bends or mule ears: pig body length and flexibility 
     bg(s, C.white);
     chip(s, '01', 'Methodology', false);
     title(s, 'Engineered decoking pigs, matched to the coke', false);
-    sub(s, 'The most diverse selection of engineered decoking pigs in the world', false);
+    sub(s, 'Body, durometer and studding chosen for the coil, the coke and the metallurgy', false);
     // photo panel
     s.addShape(pres.shapes.RECTANGLE, { x: 0.6, y: 2.25, w: 4.0, h: 4.5, fill: { color: C.white }, line: { color: C.rule, width: 1 } });
     s.addImage({ path: IMG + 'pigs_new.jpg', x: 0.85, y: 3.05, w: 3.5, h: 3.5 * 215 / 330 });
@@ -279,7 +279,7 @@ The photo shows new pigs: soft and hard bodies, bald and studded.`);
       ['FaLink', 'Connections', 'Coil flange size and rating confirmed; spools and adapters matched to our 300# launchers and receivers'],
       ['FaSyncAlt', 'Return bends', 'Pig length and flexibility selected for 180° returns, plug headers and mule ears'],
       ['FaLayerGroup', 'Launcher access', 'Inlet and outlet elevations walked down; rig layout set before rig-in'],
-      ['FaFire', 'Coke & service', 'Coker, crude or vacuum service sets the pig set staged on day one'],
+      ['FaFire', 'Coke & service', 'Coker, crude or vacuum service decides which pigs are staged on day one'],
     ];
     for (let i = 0; i < cards.length; i++) {
       const [ic, h, d] = cards[i];
@@ -366,7 +366,7 @@ We run 24/7 on 12-hour day and night shifts until the heater is handed back. Dur
     col(X + 3.85, 'Manpower', 'FaUsers', [['2', 'Supervisors: 1 day, 1 night'], ['3', 'Operators: 2 day, 1 night'], ['1', 'Project manager']]);
     await iconCircle(s, 'FaTruck', X, 1.95, 0.48, C.dark, C.gold);
     await iconCircle(s, 'FaUsers', X + 3.85, 1.95, 0.48, C.dark, C.gold);
-    const st = [['~5%', 'crew turnover, last 12 months'], ['24/7', 'two 12-hour shifts'], ['100%', 'training verified before mobilization']];
+    const st = [['5%', 'approximate crew turnover, last 12 months'], ['24/7', 'two 12-hour shifts'], ['100%', 'training verified before mobilization']];
     st.forEach(([n, l], i) => {
       const x = X + i * 4.1;
       s.addShape(pres.shapes.RECTANGLE, { x, y: 5.05, w: 3.93, h: 1.55, fill: { color: C.dark }, line: { color: C.dark } });
@@ -417,7 +417,7 @@ Every technician is USA DeBusk-certified, selected by heater-type experience, wi
     box(l3x[1] - bw / 2 + 0.05, 3.73, bw - 0.1, bh, 'Travis Trenholm', 'Pigging Operations Manager', 15);
     // team under Travis
     const team = [
-      ['Danilo Ramirez', 'Project Manager', 33], ['Jesse Utsey', 'Project Manager', 23], ['Sid Servin', 'Equipment Manager', 18], ['Danny Harman', 'Field Tech', 25],
+      ['Danilo Ramirez', 'Project Manager', 33], ['Jesse Utsey', 'Project Manager', 23], ['Sid Servin', 'Equipment Manager', 18], ['Danny Harman', 'Field Technician', 25],
       ['Dacorey Slater', 'Project Manager', 8], ['James Lee', 'Project Manager', 10], ['James McDaniel', 'Project Manager', 5], ['Rodney Lynch', 'Project Manager', 5],
     ];
     const gx0 = 4.25, gw = 2.05, gg = 0.1, gh = 0.66, gy0 = 4.93;
@@ -503,7 +503,7 @@ Power is a Cummins QSL9 at 333 bhp, Tier 4 Final, the same engine on every pump 
       { x: ix + iw + 0.6, y: by - 0.25, w: 3.2, h: 0.85, fontSize: 12, valign: 'top' });
     txt(s, [{ text: 'Reading the curve  ', options: { bold: true, color: C.text } }, { text: 'Each line is one engine speed; pressure falls as flow rises. Pigging runs well inside this envelope at 150 to 300 psi.', options: { color: C.muted } }],
       { x: ix + iw + 0.6, y: 5.55, w: 3.2, h: 1.2, fontSize: 11.5, valign: 'top' });
-    txt(s, 'Manufacturer curve: Waterous Company, form F-2692', { x: ix, y: iy + ih + 0.1, w: 5, h: 0.25, fontSize: 9.5, italic: true, color: C.grey });
+    txt(s, 'Manufacturer pump curve: Waterous Company', { x: ix, y: iy + ih + 0.1, w: 5, h: 0.25, fontSize: 9.5, italic: true, color: C.grey });
     const k = [['150–300', 'psi normal pigging'], ['500–550', 'psi effective max, after valve losses'], ['600', 'psi rated pump maximum']];
     k.forEach(([n, l], i) => {
       const y = 2.15 + i * 1.5;
@@ -609,8 +609,8 @@ The benefits: far less fresh water drawn, far less wastewater to handle (thousan
     s.addShape(pres.shapes.OVAL, { x: cx - 1.25, y: cy - 1.25, w: 2.5, h: 2.5, fill: { color: C.gold }, line: { color: C.gold } });
     txt(s, 'Joint\nsign-off\nper pass', { x: cx - 1.1, y: cy - 0.8, w: 2.2, h: 1.6, fontSize: 19, bold: true, color: C.dark, align: 'center', valign: 'middle' });
     const nodes = [
-      ['FaChartLine', '1  Sensor data', 'Coke shows as a pressure spike; the tech stops and scrubs that exact spot', 0.6, 2.35, 'r'],
-      ['FaWater', '2  Effluent returns', '"Black" in the return stream fades to nothing as the pass cleans', 8.95, 2.35, 'l'],
+      ['FaChartLine', '1  Sensor data', 'Coke shows as a pressure spike; the operator works that location until it clears', 0.6, 2.35, 'r'],
+      ['FaWater', '2  Effluent returns', 'Coke fines in the return stream taper off to nothing as the pass cleans', 8.95, 2.35, 'l'],
       ['PIGS', '3  Pig condition', 'Wear marks guide pig size and appendage choices', 0.6, 5.0, 'r'],
       ['FaCheckCircle', '4  Final gauge foam', 'Soft line-size (or slightly over) foam, witnessed by the Valero rep', 8.95, 5.0, 'l'],
     ];
@@ -630,7 +630,7 @@ The benefits: far less fresh water drawn, far less wastewater to handle (thousan
     const ln = (x1, y1, x2, y2) => s.addShape(pres.shapes.LINE, { x: Math.min(x1, x2), y: Math.min(y1, y2), w: Math.abs(x2 - x1), h: Math.abs(y2 - y1), line: { color: C.gold, width: 1.5, dashType: 'dash' }, flipH: (x2 < x1) !== (y2 < y1) });
     ln(4.38, 3.1, cx - 0.95, cy - 0.8); ln(8.95, 3.1, cx + 0.95, cy - 0.8);
     ln(4.38, 5.8, cx - 0.95, cy + 0.8); ln(8.95, 5.8, cx + 0.95, cy + 0.8);
-    txt(s, 'Field-proven process: successful sign-offs from all of our clients and reliable first-attempt smart pig data.', { x: 0.6, y: 6.6, w: 12.1, h: 0.35, fontSize: 12, italic: true, color: C.gold, align: 'center' });
+    txt(s, 'A pass is called clean only when all four indicators agree.', { x: 0.6, y: 6.6, w: 12.1, h: 0.35, fontSize: 12, italic: true, color: C.gold, align: 'center' });
     s.addNotes(`[~2.5 min] How do we know a pass is clean? Four independent indicators, and the pass isn't called clean until all four agree.
 1) Sensor data: live pressure data at the operator interface. Coke shows as a spike, and the technician can stop the pig and scrub that exact area.
 2) Effluent: the technician watches the returns. The "black" (coke fines) in the stream fades to an unnoticeable amount as the pass cleans.
@@ -739,7 +739,7 @@ Let the trend speak: this is a sustained improvement, not a single good year.`);
       ['FaClipboardCheck', 'JSA & permits', 'Job-specific JSA reviewed at every shift change; daily toolbox talks'],
       ['FaLock', 'Isolation first', "Valero's isolation and LOTO verified before any connection is made"],
       ['FaTachometerAlt', 'Pressure control', 'Normal 150–300 psi; over-pressure checklist above 500 psi'],
-      ['FaExclamationTriangle', 'Line of fire', 'Bleed to zero at every pig change; nobody in line with lids or hoses'],
+      ['FaExclamationTriangle', 'Line of fire', 'Bleed to zero at every pig change; no one in line with closures or hoses'],
       ['FaLink', 'Hose integrity', 'Tested & certified hard and flex pipe; whip checks on every connection'],
       ['FaHardHat', 'PPE & coil care', 'FRC and face shields; no galvanized metal on stainless'],
     ];
@@ -778,9 +778,9 @@ Full detail is in our safety manual and SSHASP, available on request.`);
     chip(s, '08', 'Capabilities', true);
     title(s, 'What sets USA DeBusk apart', true, { w: 12.1 });
     const cards = [
-      ['FaIndustry', 'Self-performed scope', 'Pigging, decoking and hydroblasting with our own equipment and crews: one contractor, no subs'],
-      ['FaCogs', 'Largest standardized fleet', '6 identical TriMax units, 18 engines, with a spare pump on board even on a 2-pass heater'],
-      ['FaDotCircle', 'Widest pig selection', 'Engineered decoking pigs matched to each coil and each coke condition'],
+      ['FaIndustry', 'Self-performed scope', 'Pigging, decoking and hydroblasting with our own equipment and crews: one contractor, no subcontractors'],
+      ['FaCogs', 'Standardized fleet', '6 identical triple-pass TriMax units, 18 engines, with a spare pump on board even on a 2-pass heater'],
+      ['FaDotCircle', 'Engineered pig selection', 'Decoking pigs matched to each coil and each coke condition'],
       ['FaDatabase', 'Data-driven, shared', 'Durations built from recorded actuals; lessons learned reviewed with Valero after every job'],
     ];
     for (let i = 0; i < cards.length; i++) {
@@ -839,8 +839,8 @@ That covers coker, vacuum, crude charge and reboiler service. Reference contacts
     const cs = [
       ['Valero Port Arthur, TX: H-102A & H-102B', 'Vacuum heaters, March–April 2026',
         [['16', 'passes, 2 heaters'], ["18,496'", 'coil footage'], ['434', 'pigs run']],
-        'Both 8-pass vacuum heaters pigged in triple mode, with filtration and smart pig inspection of every pass.',
-        'Every pass signed clean and cleared by smart pig before rig-out. A mid-job TriMax swap rigged in within 2 hours, with no break in pigging.', 'Scope', 'Result'],
+        'Both 8-pass vacuum heaters pigged three passes at a time, with filtration and smart pig inspection of every pass.',
+        'Every pass signed clean and cleared by smart pig before rig-out. A replacement TriMax was rigged in mid-job within 2 hours, with no break in pigging.', 'Scope', 'Result'],
       ['Pass 6B: coke ring found by smart pig', 'Mixed-diameter vacuum pass, 3" to 8"',
         [['0.25"', 'thick coke ring'], ['24 h', 'dedicated pigging'], ['188 psi', 'flow-test reduction']],
         'Inspection found a circumferential coke ring at the inlet of a 5" tube, just before the step-up to 8".',
@@ -881,7 +881,7 @@ The lesson is on pass 6B. The smart pig run found a quarter-inch coke ring at th
     title(s, 'Why USA DeBusk for Texas City', true, { w: 12.1, fontSize: 32 });
     const pts = [
       ['Proven at Valero', '14 heaters at 5 Valero refineries, your coker heater among them'],
-      ['Close by', 'Fleet based in Deer Park, a short drive from Texas City'],
+      ['Local', 'Fleet based in Deer Park, a short drive from Texas City'],
       ['Resilient execution', 'Triple-pass TriMax: a spare pump on every 2-pass heater'],
       ['Verified clean', '4-point verification and joint sign-off on every pass'],
       ['Safe by the numbers', 'EMR 0.48, ISNetworld A, zero fatalities in 3 years'],
