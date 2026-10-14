@@ -234,9 +234,18 @@ Rebuilt with real images in `split_cover.py`, output `DirectionE3_split_cover_CO
 
 The pre-send check returns SEND.
 
-**Open:**
-- Jesse confirms the split cover.
-- License coker a3 (Adobe Standard) to replace the watermarked comp. If he picks a coker, he licenses it through Adobe Standard ($29.99/mo for 10 images, or the free trial).
+**PAUSED (2026-10-14):** Jesse rejected the split cover ("terrible") and paused the work until he decides how to approach the cover sheet. Do not build more cover variants or license any image until he comes back with an approach.
+
+**State at pause:**
+- **Kept:** the inside pages, which are not rejected (Requested Service rebuild, Execution Plan gantt, Quotation), and the title-band spacing fix.
+- **Rejected covers so far:**
+  - round 1 A/B/C;
+  - H1–H3;
+  - the Adobe coker composites;
+  - the LAR rig swap;
+  - the coker-only cover;
+  - the split cover.
+- **Not yet ruled on:** the road_night and trimax6_night covers. If he picks a coker, he licenses it through Adobe Standard ($29.99/mo for 10 images, or the free trial).
 - Rebuild the cover from the 5562 px file.
 - Then build the blank Word template from Direction E.
 - A proper Trimax photo, per the photo brief, replaces the page photo when one exists.
