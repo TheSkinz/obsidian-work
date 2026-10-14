@@ -777,7 +777,7 @@ Full detail is in our safety manual and SSHASP, available on request.`);
     title(s, 'What sets USA DeBusk apart', true, { w: 12.1 });
     const cards = [
       ['FaIndustry', 'Self-performed scope', 'Pigging, decoking and hydroblasting with our own equipment and crews: one contractor, no subcontractors'],
-      ['FaCogs', 'Standardized fleet', '6 identical triple-pass TriMax units, 18 engines, with a spare pump on board even on a 2-pass heater'],
+      ['FaCogs', 'Largest triple-pass fleet', '6 identical triple-pass TriMax units, 18 engines, with a spare pump on board even on a 2-pass heater'],
       ['FaDotCircle', 'Engineered pig selection', 'Decoking pigs matched to each coil and each coke condition'],
       ['FaDatabase', 'Data-driven, shared', 'Durations built from recorded actuals; lessons learned reviewed with Valero after every job'],
     ];

@@ -26,7 +26,7 @@ A general heater pigging and decoking presentation for the Valero Texas City sit
   - `src/` holds the original photos the crops are made from.
   - `img/` holds the processed images. Each photo appears on exactly one slide (Jesse, 2026-10-13). Landscape photos sit in landscape cards, never in tall blur-filled panels, so the rig fills the frame. The agenda and Q&A slides have no photo because there aren't enough distinct photos to go round.
 
-**Status: draft for Jesse/Jason review.** The references slide (21) claims **14 heaters at 5 Valero refineries**, built from Jesse's verified heater list (2026-10-13) plus the Texas City coker heater, which Jesse confirmed. The other Valero sites a Copilot SharePoint pull suggested are left off. Three entries were dropped as doubtful:
+**Status: final, cleared by Jesse and Jason (2026-10-13).** "Same day" response and "largest triple-pass fleet" are confirmed with Jason. The references slide (21) claims **14 heaters at 5 Valero refineries**, built from Jesse's verified heater list (2026-10-13) plus the Texas City coker heater, which Jesse confirmed. The other Valero sites a Copilot SharePoint pull suggested are left off. Three entries were dropped as doubtful:
   - Port Arthur AVU-146: the unit name of the H-102A/B job, so it would double count.
   - Port Arthur B-301: the only vault record is USA26056 passivation support, not a cleaning.
   - The Copilot-sourced 2022 Texas City F501-A and H2 heater jobs: Exxon Baytown has its own 2022 F-501 decoke, so they may be conflated.
