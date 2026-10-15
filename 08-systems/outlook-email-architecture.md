@@ -6,6 +6,7 @@ related:
   - "[[copilot/overview]]"
   - "[[quote-lifecycle]]"
   - "[[company-context]]"
+  - "[[siri-ios27-mail]]"
 ---
 
 # Outlook Email Architecture
