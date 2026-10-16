@@ -243,6 +243,19 @@ over RustDesk** — it is pre-boot, so it waits until Jesse is physically at the
   trigger ran the watchdog 30 s later at 13:12:20; it found no server and started one at 13:12:22.
   The time trigger added afterwards (StartBoundary 13:15:48) fired on schedule. The 11:30 server
   left no `exited` line because the shutdown killed its runner `cmd` too.
+- **2026-10-16, Remote Control was down because the CLI's own login had expired, and nothing
+  flagged it.** Jesse reported that his remote stopped working for a while. The cause was that
+  Claude Code itself needed re-authenticating, and re-authenticating fixed it. When it started, what
+  the phone showed and the exact re-login step were not recorded. The watchdog log has nothing
+  between its 10-14 04:32 start and the outage, so **the watchdog did not see it**:
+  `rc_watchdog.ps1` tests only whether a `claude.exe` Remote Control process exists (lines 42–82),
+  and a process with dead credentials still counts as running. I'd expect the check script's
+  process row to have passed too, since it counts the same processes; that was not run during the
+  outage. This is a separate fault from the desktop app's `session_stale_relogin` below. Remote
+  Control survives that one because it does not use the desktop app's OAuth, but it does depend on
+  its own CLI login, which can expire. **No software here detects it.** From the road, the fix is to
+  open RustDesk and re-log the CLI at the box. A browser sign-in on Linda2 needs a human, so a
+  session on the box cannot finish it.
 
 ## Nothing pre-started: Dispatch
 
@@ -295,7 +308,9 @@ established:
 
 - **Remote Control survives it.** Its credentials are not the desktop app's OAuth session; when
   Dispatch was dead the `vault` session worked from Montreal all evening. That makes it the standing
-  fallback, not just a convenience.
+  fallback, not just a convenience. **It still has its own CLI login, and that login expired on
+  2026-10-16** (see the Test and failure record). If both logins lapse together, RustDesk is the
+  only door left.
 - **Screen capture from a Claude Code session on the machine is only half a channel.** GDI
   `CopyFromScreen` returns black for GPU-composited windows, and `PrintWindow` with
   `PW_RENDERFULLCONTENT` gets Chromium's browser frame — enough to read the URL bar — but not the
