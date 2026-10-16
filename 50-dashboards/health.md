@@ -14,7 +14,7 @@
 | Inbox oldest item | - | < 30 d | ok |
 | Sweepable now | 0 | 0 | ok |
 | Days since last commit | 0 d | - | ok |
-| Loop heartbeats overdue | yes | no | FAIL |
+| Loop heartbeats overdue | no | no | ok |
 | Open decisions not in the queue | 0 | 0 | ok |
 | Awarded job within 21 d, no PO | 0 | 0 | ok |
 | Regression baselines unjudgeable | 0 | 0 | ok |
@@ -29,7 +29,7 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 | Review loop | 2026-10-08 (8 d ago) | 2026-10-08 (8 d ago) | 90 d | ok |
 | Skill-drift loop | 2026-10-01 (15 d ago) | 2026-10-01 (15 d ago) | 62 d | ok |
 | Grok Workspace backup | 2026-10-16 (0 d ago) | OneDrive backup-log.md | 1 bd | ok |
-| Grok claude-config copy | 2026-10-14 13:52 CDT | OneDrive claude-config-sha.txt | on change | FAIL: box copy behind |
+| Grok claude-config copy | 2026-10-16 18:42 CDT | OneDrive claude-config-sha.txt | on change | ok |
 | Guard fail-opens | - | ~/.claude/hooks/fail-open.log | on event | ok |
 
 ## Commercial pipeline
@@ -75,7 +75,7 @@ One row per frozen fixture in `~/.claude/regression/frozen/`. Each reads its own
 | f3-fieldpm-extract | claude-config 26 | behind |
 | f4-sop-formatting-pass | claude-config 17 · vault 1 | behind |
 | f5-pig-sizing | claude-config 8 | behind |
-| f6-duration-mobdemob | claude-config 18 · vault 8 | behind |
+| f6-duration-mobdemob | claude-config 0 · vault 0 | current |
 
 ## Notes
 
