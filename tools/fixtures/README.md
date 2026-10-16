@@ -106,3 +106,7 @@ is the silent-approval failure rather than the silent-deletion one.
 codes — that set is the authority, not this table, and the two have drifted
 before. After any rule change, run the self-test and reconcile every code it
 names against a row here.
+
+**`fail-open/` belongs to `vault_health.py`, not the lint.** It holds a two-entry
+`fail-open.log` and two ack files for the dashboard's "Guard fail-opens" row, and
+is exercised by `python tools/vault_health.py --self-test`.

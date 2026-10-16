@@ -17,6 +17,7 @@ What it trends (the numbers you can act on in one glance):
 Usage:
     python tools/vault_health.py            write 50-dashboards/health.md
     python tools/vault_health.py --print     also print the dashboard to stdout
+    python tools/vault_health.py --self-test check the fail-open row against tools/fixtures/fail-open/
 
 Windows: `py tools/vault_health.py`.
 """
@@ -511,7 +512,60 @@ def loop_heartbeats(root: Path):
         any_overdue = any_overdue or c_status.startswith("FAIL")
     except ImportError:
         pass
+
+    f_status, f_last = fail_open_status(FAIL_OPEN_LOG, FAIL_OPEN_ACK)
+    rows.append(("Guard fail-opens", f_last or "-", "~/.claude/hooks/fail-open.log",
+                 "on event", f_status))
+    any_overdue = any_overdue or f_status.startswith("FAIL")
     return rows, any_overdue
+
+
+# The four PreToolUse guards in claude-config append one ISO-timestamped line per
+# fail-open to hooks/fail-open.log (config 891d639). A live session hears about it
+# in the tool result; this row is how one that happened unattended reaches Jesse.
+# Acknowledge by writing the current UTC ISO time into hooks/fail-open.ack — only
+# entries after that time FAIL, so the log itself is never deleted.
+FAIL_OPEN_LOG = Path.home() / ".claude" / "hooks" / "fail-open.log"
+FAIL_OPEN_ACK = Path.home() / ".claude" / "hooks" / "fail-open.ack"
+
+
+def fail_open_status(log: Path, ack: Path) -> tuple[str, str | None]:
+    """Return (status, last-entry date). FAIL = unacknowledged fail-opens."""
+    if not log.exists():
+        return "ok", None
+    acked = None
+    if ack.exists():
+        acked = parse_iso(ack.read_text(encoding="utf-8").strip())
+    stamps = []
+    for line in log.read_text(encoding="utf-8", errors="replace").splitlines():
+        ts = parse_iso(line.split(" ", 1)[0]) if line.strip() else None
+        if ts is not None:
+            stamps.append(ts)
+    if not stamps:
+        return "ok", None
+    last = max(stamps).date().isoformat()
+    new = [t for t in stamps if acked is None or t > acked]
+    if new:
+        return f"FAIL: {len(new)} unacknowledged", last
+    return "ok", last
+
+
+def self_test() -> int:
+    """Check fail_open_status against tools/fixtures/fail-open/."""
+    fx = Path(__file__).resolve().parent / "fixtures" / "fail-open"
+    cases = [
+        ("missing log", fx / "absent.log", fx / "absent.ack", "ok"),
+        ("unacked", fx / "fail-open.log", fx / "absent.ack", "FAIL: 2 unacknowledged"),
+        ("partly acked", fx / "fail-open.log", fx / "ack-between.ack", "FAIL: 1 unacknowledged"),
+        ("fully acked", fx / "fail-open.log", fx / "ack-after.ack", "ok"),
+    ]
+    bad = 0
+    for name, log, ack, want in cases:
+        got, _ = fail_open_status(log, ack)
+        ok = got == want
+        bad += not ok
+        print(f"{'PASS' if ok else 'FAIL'}  {name}: {got!r}" + ("" if ok else f" (want {want!r})"))
+    return 1 if bad else 0
 
 
 def parse_day(raw: str | None) -> date | None:
@@ -869,7 +923,10 @@ def build(root: Path) -> str:
         "**Grok Workspace backup** is the Grok Bot routine (Weekdays 18:00 CDT), read from its "
         "own run log on the OneDrive mirror; it is silent on success, so this row is the only "
         "place a stopped routine shows. FAIL past 2 business days; `-` when OneDrive is absent "
-        "on this machine. Detail: `python tools/grok_sync_check.py`.",
+        "on this machine. Detail: `python tools/grok_sync_check.py`. "
+        "**Guard fail-opens** reads `~/.claude/hooks/fail-open.log`: FAIL means a commit guard "
+        "let a command through unchecked and nobody has acknowledged it. Read the log, fix the "
+        "cause, then acknowledge by writing the current UTC ISO time to `hooks/fail-open.ack`.",
         "",
         "| Loop | Last fired | Last heartbeat | Cadence | Status |",
         "|---|---|---|---|---|",
@@ -992,7 +1049,10 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--root", type=Path, default=None)
     ap.add_argument("--print", action="store_true", dest="do_print")
+    ap.add_argument("--self-test", action="store_true", dest="self_test")
     args = ap.parse_args()
+    if args.self_test:
+        return self_test()
 
     try:  # keep --print from dying on a legacy Windows console codepage
         sys.stdout.reconfigure(encoding="utf-8")

@@ -14,22 +14,23 @@
 | Inbox oldest item | - | < 30 d | ok |
 | Sweepable now | 0 | 0 | ok |
 | Days since last commit | 0 d | - | ok |
-| Loop heartbeats overdue | no | no | ok |
+| Loop heartbeats overdue | yes | no | FAIL |
 | Open decisions not in the queue | 0 | 0 | ok |
 | Awarded job within 21 d, no PO | 0 | 0 | ok |
 | Regression baselines unjudgeable | 0 | 0 | ok |
 
 ## Loop heartbeats
 
-Two signals per loop: **Last fired** comes from the local run ledger (`50-dashboards/.loop-runs.json`, written by every run as its first and last action) and proves the scheduler is alive; **Last heartbeat** is the loop's closing commit and proves a run finished with output. `FAIL: started, never finished` = a run fired but never closed out (crash or interrupted). `FAIL: scheduler silent` = no firing within the staleness window — the task is disabled, deregistered, or the machine was off. **pending** = the ledger records no run for this task. A git heartbeat alone **cannot** promote that to `ok`: the commit prefix it greps is one Jesse also types by hand, so it cannot tell a scheduler run from his own work. This row read `ok` for `vault-review-loop` until 2026-09-05 off three attended commits — the loop had never fired at all. The Last-heartbeat column still shows the git date; only the status is withheld. The review loop moved from on-demand to monthly on 2026-08-21 and is listed here now; it is allowed to commit nothing in a month with nothing worth deciding, so its git heartbeat carries wide slack once the ledger proves the scheduler fired. The skill-drift loop is scheduled monthly and tracked here as of 2026-07-25; it commits only when it finds drift, so its heartbeat window is deliberately loose. **Grok Workspace backup** is the Grok Bot routine (Weekdays 18:00 CDT), read from its own run log on the OneDrive mirror; it is silent on success, so this row is the only place a stopped routine shows. FAIL past 2 business days; `-` when OneDrive is absent on this machine. Detail: `python tools/grok_sync_check.py`.
+Two signals per loop: **Last fired** comes from the local run ledger (`50-dashboards/.loop-runs.json`, written by every run as its first and last action) and proves the scheduler is alive; **Last heartbeat** is the loop's closing commit and proves a run finished with output. `FAIL: started, never finished` = a run fired but never closed out (crash or interrupted). `FAIL: scheduler silent` = no firing within the staleness window — the task is disabled, deregistered, or the machine was off. **pending** = the ledger records no run for this task. A git heartbeat alone **cannot** promote that to `ok`: the commit prefix it greps is one Jesse also types by hand, so it cannot tell a scheduler run from his own work. This row read `ok` for `vault-review-loop` until 2026-09-05 off three attended commits — the loop had never fired at all. The Last-heartbeat column still shows the git date; only the status is withheld. The review loop moved from on-demand to monthly on 2026-08-21 and is listed here now; it is allowed to commit nothing in a month with nothing worth deciding, so its git heartbeat carries wide slack once the ledger proves the scheduler fired. The skill-drift loop is scheduled monthly and tracked here as of 2026-07-25; it commits only when it finds drift, so its heartbeat window is deliberately loose. **Grok Workspace backup** is the Grok Bot routine (Weekdays 18:00 CDT), read from its own run log on the OneDrive mirror; it is silent on success, so this row is the only place a stopped routine shows. FAIL past 2 business days; `-` when OneDrive is absent on this machine. Detail: `python tools/grok_sync_check.py`. **Guard fail-opens** reads `~/.claude/hooks/fail-open.log`: FAIL means a commit guard let a command through unchecked and nobody has acknowledged it. Read the log, fix the cause, then acknowledge by writing the current UTC ISO time to `hooks/fail-open.ack`.
 
 | Loop | Last fired | Last heartbeat | Cadence | Status |
 |---|---|---|---|---|
 | Consolidation loop | 2026-10-15 (1 d ago) | 2026-10-15 (1 d ago) | 31 d | ok |
 | Review loop | 2026-10-08 (8 d ago) | 2026-10-08 (8 d ago) | 90 d | ok |
 | Skill-drift loop | 2026-10-01 (15 d ago) | 2026-10-01 (15 d ago) | 62 d | ok |
-| Grok Workspace backup | 2026-10-15 (1 d ago) | OneDrive backup-log.md | 1 bd | ok |
-| Grok claude-config copy | 2026-10-14 13:52 CDT | OneDrive claude-config-sha.txt | on change | ok |
+| Grok Workspace backup | 2026-10-16 (0 d ago) | OneDrive backup-log.md | 1 bd | ok |
+| Grok claude-config copy | 2026-10-14 13:52 CDT | OneDrive claude-config-sha.txt | on change | FAIL: box copy behind |
+| Guard fail-opens | - | ~/.claude/hooks/fail-open.log | on event | ok |
 
 ## Commercial pipeline
 
@@ -69,12 +70,12 @@ One row per frozen fixture in `~/.claude/regression/frozen/`. Each reads its own
 
 | Fixture | Commits behind | Status |
 |---|---|---|
-| f1-rfq-to-proposal | claude-config 19 · vault 12 | behind |
+| f1-rfq-to-proposal | claude-config 20 · vault 12 | behind |
 | f2-vault-ingest-dryrun | claude-config 12 | behind |
 | f3-fieldpm-extract | claude-config 26 | behind |
 | f4-sop-formatting-pass | claude-config 17 · vault 1 | behind |
 | f5-pig-sizing | claude-config 8 | behind |
-| f6-duration-mobdemob | claude-config 17 · vault 8 | behind |
+| f6-duration-mobdemob | claude-config 18 · vault 8 | behind |
 
 ## Notes
 
