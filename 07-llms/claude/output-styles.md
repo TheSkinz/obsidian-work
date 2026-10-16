@@ -144,8 +144,10 @@ Source: Claude Code session `06a84965`, 2026-08-17; config `8afdb26`.
 
 Global `outputStyle` in `~/.claude/settings.json` moved from the custom `Jesse Default` to Anthropic's
 **built-in `Concise`**, which ships in Claude Code 2.1.238 and is not in the four-built-in list above —
-that list was written against 2.1.220 and is now incomplete. `jesse-default.md` is retained unmodified
-as the fallback. The built-in's six rules are lead with the result, cut narration, short by default,
+that list was written against 2.1.220 and is now incomplete. `jesse-default.md` was retained unmodified
+as the fallback until 2026-10-16, when it was deleted (config `360ee0b`). The revert path that the
+2026-08-20 change-log row records no longer exists, and the named-task close rule now lives only in
+global CLAUDE.md. The built-in's six rules are lead with the result, cut narration, short by default,
 state things plainly, give full detail on request, and never trade correctness for brevity.
 
 **A custom style sharing a built-in's name shadows the built-in.** A stand-in `concise.md` was written

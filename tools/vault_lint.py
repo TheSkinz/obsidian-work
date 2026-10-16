@@ -1077,7 +1077,7 @@ RULE_FORK_REGISTRY = {
             "01-context/estimating-approach.md",
             "04-knowledge/concepts/estimating-pricing.md",
             "07-llms/grok/bot-setup/skills/duration-model.md",
-            "@config:skills/usadebusk-estimating/SKILL.md",
+            "@config:skills/usadebusk-estimating/references/duration-rig-and-standby.md",
         ],
     },
     "smart pig (hrs per pass)": {
@@ -1086,7 +1086,7 @@ RULE_FORK_REGISTRY = {
             "01-context/estimating-approach.md",
             "04-knowledge/concepts/estimating-pricing.md",
             "07-llms/grok/bot-setup/skills/duration-model.md",
-            "@config:skills/usadebusk-estimating/SKILL.md",
+            "@config:skills/usadebusk-estimating/references/duration-rig-and-standby.md",
         ],
     },
     "pigging benchmark (ft/hour)": {
@@ -1094,7 +1094,7 @@ RULE_FORK_REGISTRY = {
         "locations": [
             "04-knowledge/concepts/estimating-pricing.md",
             "07-llms/grok/bot-setup/skills/duration-model.md",
-            "@config:skills/usadebusk-estimating/SKILL.md",
+            "@config:skills/usadebusk-estimating/references/duration-pigging.md",
         ],
     },
     "max pig OD over ID (in)": {

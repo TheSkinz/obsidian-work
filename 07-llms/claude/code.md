@@ -415,6 +415,27 @@ Both are terminal-dialog commands, so they have to run from an interactive `clau
 
 Source: official CHANGELOG.md, read 2026-10-03. Each version was mapped to its release header by script; re-verify against the changelog before relying on one.
 
+## Releases 2.1.295–2.1.302 and the 2026-10-16 harness tune-up
+
+As of CLI 2.1.302, 2026-10-16. Re-verify the version-sensitive rows against `code.claude.com/docs` before relying on them. **Provenance:** these entries come from a subagent's summarizing fetch of the first 100,000 characters of the changelog, so the wording is paraphrased. The changelog gives no dates for these versions, so the dates are unverified, and 2.1.289–2.1.294 were not read for desktop items.
+
+Four entries touch how this harness is used:
+
+- In the desktop app and VS Code, subagents in the main conversation always run in the background, the same as in the terminal (2.1.302). The same release fixed the app pointing to the wrong place when an MCP server needs reauthorizing.
+- `/effort` and `/fast` in agent view set what new sessions start with (2.1.299).
+- The diff view in Remote Control sessions is fixed (2.1.300), and a session waiting on a permission prompt shows a clearer status on the phone (2.1.295). Both are on the phone path, so the npm-CLI currency rule above applies.
+
+The desktop docs list features that need no vault change: side chats (`Ctrl+;` or `/btw`, not saved to disk), split view, click-to-comment in the diff view, and per-session worktrees. Worktrees are a poor default for vault work, because Obsidian syncs the main working tree and an edit made in a worktree doesn't reach the iPhone until it's merged.
+
+The same session changed the harness in `~/.claude`:
+
+- **Guards announce a fail-open (config `891d639`).** When any of the four PreToolUse guards fails open, it now puts a `[guard] FAILED OPEN` note in the tool result and appends a line to `hooks/fail-open.log`. Before this, the notice went only to stderr, which the Code tab never shows. Global CLAUDE.md was updated to match (`75e3ad3`).
+- **Status line (`1d0b959`).** `hooks/statusline.mjs` shows the model, repo@branch and the changed-file count. It isn't yet confirmed to render in the Code tab.
+- **`output-styles/jesse-default.md` deleted (`360ee0b`).** See [[output-styles]].
+- **Estimating skill split (`396bff7`).** `usadebusk-estimating/SKILL.md` went from 76 KB to 23 KB, with 10 linked files in `references/`. The no-value-change check and the F1/F6 fixture replays are from the split session's own report and were not re-run independently. F6's one divergence reproduces on the pre-split file, so it's an existing issue in the skill.
+
+Source: Claude Code session "Claude Code desktop UI updates", 2026-10-16.
+
 ## Links
 
 - [[output-styles]] — the system-prompt layer, and why the vault's output rules stay in CLAUDE.md
