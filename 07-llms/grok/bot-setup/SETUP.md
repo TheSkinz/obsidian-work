@@ -152,7 +152,7 @@ source, **diff the files on disk** rather than trusting a dump.
 covers what Linda2 cannot: field paperwork from the phone, Jesse's personal accounts, the company
 Microsoft lane, and travel. It is also the continuity path if Linda2 is down.
 
-**Roster: 13 live Bot profiles on the box on 2026-10-17** (Alfred's audit, [[2026-10-17-grok-bot-org-audit-alfred]]): the 11 below plus Spam-Call Scrubber and Alfred, which is a one-time audit Bot. The "15" Chief of Staff listed on 2026-10-10 counted the retired Bid Desk Bots. Read the app before trusting this,
+**Roster: 12 live Bots as of 2026-10-17**: the 11 below plus Spam-Call Scrubber. Alfred (marketplace, Operations) ran a one-time read-only audit, [[2026-10-17-grok-bot-org-audit-alfred]], and was then deleted with its 3 paused review routines (Jesse, 2026-10-17). For the next audit, re-add it from Marketplace > Operations and compare against that report. The "15" Chief of Staff listed on 2026-10-10 counted the retired Bid Desk Bots. Read the app before trusting this,
 because the table it replaces went stale within two weeks.
 
 | Bot | Lane |
