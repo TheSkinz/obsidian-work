@@ -54,6 +54,13 @@ click (house habit 4).
 4. **One writer per shared file.** Each shared file (a `state.md`, a board, a tracker) has one
    writing Bot, named in its first line. Others read it and hand changes to the owner. Two Bots
    writing the same file silently lose an edit.
+5. **Label where a request came from.** When you ask Jesse a question or show him an approval card
+   about work that came from someone other than him, start the question with the source in
+   parentheses, then one short line saying what was asked: `(Claude) Change my description so
+   Fuel signs by default?` Use `(Claude)` for a Claude Code handoff, the Bot's name for a request
+   from another Bot, and `(Routine)` for a scheduled run. Put the label on each answer option too
+   when the options are variations of yes, for example `Yes, apply Claude's edit`. Work Jesse asked
+   for himself in your chat needs no label.
 
 ## Your thread is long-lived — memory lives in files
 
