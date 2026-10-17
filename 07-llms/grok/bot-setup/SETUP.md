@@ -165,7 +165,7 @@ because the table it replaces went stale within two weeks.
 | **Clerk** | Clean copies of handwritten receipts |
 | **Fuel** | Company fuel forms from fuel receipts |
 | **Empower** | ISNetworld and safety-training portals |
-| **Docs** | Company Microsoft lane, plus personal Outlook hygiene |
+| **Docs** | Personal Outlook (`jwutsey@outlook.com`) only — **no access to the company tenant** (company Outlook, SharePoint, OneDrive; Jesse, 2026-10-17). Still does some company tasks from files Jesse hands it, with drafts he sends himself |
 | **Travel** | Flights, hotels, rental cars, check-in |
 | **Purse** | Jesse's personal finances only; never USADebusk |
 | **Spam-Call Scrubber** | Added by Jesse 2026-10-17 from the community template (it installs as its own Bot, not as a skill on another). Personal data-broker opt-outs for his cell; owns the monthly recheck. Confirmations go to the Bot inbox, never personal mail. First run: FastPeopleSearch filed by the Bot; TruePeopleSearch and Whitepages blocked on the Bot's computer (datacenter IP, inferred) and filed by Jesse by hand on 2026-10-17. Whitepages accepted; TruePeopleSearch request received, final result by email within 45 days. Expect those two sites to stay blocked for the Bot, so its recheck verifies and does not refile — see [[research-2026-10-17-updates]] |
