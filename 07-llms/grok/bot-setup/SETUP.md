@@ -212,6 +212,10 @@ the heater card itself carries the quoted 6/18/6/6.
 | [[service-ehs-insight]] | EHS Insight (USADebusk Safety Gateway) service skill — Empower (Bot-written, mirrored 2026-10-10) |
 | [[service-plenum]] | Plenum learning-portal service skill — Empower (Bot-written, mirrored 2026-10-10) |
 | [[drive-finals]] | Drive finals skill — every Bot uploads finished files to Google Drive `Grok Bot` (Bot-written, mirrored 2026-10-10) |
+| [[run-claude-code]] | Run Claude Code — Architect runs bid, proposal, report, SOP and deck jobs through Claude Code on the box (mirrored 2026-10-17) |
+| [[refresh-claude-config]] | Refresh claude-config — Architect re-copies skills/ and CLAUDE.md from claude-config (mirrored 2026-10-17) |
+| [[handoff-reply]] | Handoff reply — how a Bot answers a Claude handoff in OneDrive (mirrored 2026-10-17) |
+| [[new-bot-starter]] | New bot starter — the checklist for any new Bot (mirrored 2026-10-17) |
 | [[safety-lms-training]] | Safety LMS Training skill — Empower (Bot-written, mirrored 2026-10-04) |
 
 [[BACKTEST-SPECIMEN]] is the DSP26085 fixture, used 2026-09-06 for the retired estimating mirrors and 2026-10-10 for Claude Code on the box. Reuse it for any future estimating test.
