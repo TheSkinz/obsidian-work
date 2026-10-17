@@ -430,7 +430,7 @@ The desktop docs list features that need no vault change: side chats (`Ctrl+;` o
 The same session changed the harness in `~/.claude`:
 
 - **Guards announce a fail-open (config `891d639`).** When any of the four PreToolUse guards fails open, it now puts a `[guard] FAILED OPEN` note in the tool result and appends a line to `hooks/fail-open.log`. Before this, the notice went only to stderr, which the Code tab never shows. Global CLAUDE.md was updated to match (`75e3ad3`).
-- **Status line (`1d0b959`).** `hooks/statusline.mjs` shows the model, repo@branch and the changed-file count. It isn't yet confirmed to render in the Code tab.
+- **Status line (`1d0b959`).** `hooks/statusline.mjs` shows the model, repo@branch and the changed-file count. Jesse confirmed on 2026-10-16 that it renders in the desktop Code tab.
 - **`output-styles/jesse-default.md` deleted (`360ee0b`).** See [[output-styles]].
 - **Estimating skill split (`396bff7`).** `usadebusk-estimating/SKILL.md` went from 76 KB to 23 KB, with 10 linked files in `references/`. The no-value-change check and the F1/F6 fixture replays are from the split session's own report and were not re-run independently. F6's one divergence reproduces on the pre-split file, so it's an existing issue in the skill.
 
