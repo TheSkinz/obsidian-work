@@ -161,7 +161,7 @@ because the table it replaces went stale within two weeks.
 | **Architect** | The Grok Bot platform itself; owns the Workspace backup routine |
 | **Librarian** | Vault and knowledge organization |
 | **Ledger** | Handwritten service receipts into tables (extract only) |
-| **Forms** | Fills blank DeBusk daily service receipts. Receipt numbers are per project, not one company sequence: receipts come from pre-printed books with their own ranges, a project may start mid-book or on a new one, numbers run consecutively within the project, and the next project usually uses a different range (Jesse, 2026-10-17). Forms asks for the starting number and tracks last-issued in the job folder; its weekly numbering check is being retired |
+| **Forms** | Fills blank DeBusk daily service receipts. Receipt numbers are per project, not one company sequence: receipts come from pre-printed books with their own ranges, a project may start mid-book or on a new one, numbers run consecutively within the project until a booklet runs out — on longer projects the next booklet's numbers jump out of sequence, which is normal and never a flag — and the next project usually uses a different range (Jesse, 2026-10-17). Forms asks for the starting number, states each next number before rendering so Jesse can correct it after a booklet switch, and tracks last-issued in the job folder; its weekly numbering check is being retired |
 | **Clerk** | Clean copies of handwritten receipts |
 | **Fuel** | Company fuel forms from fuel receipts |
 | **Empower** | ISNetworld and safety-training portals |
