@@ -7,7 +7,7 @@ tags: [grok, grok-bot, research]
 
 # Grok Bot updates, use cases and Spam-Call Scrubber (2026-10-17)
 
-Read-only web research, public sources only. `x.ai/changelog/bot` returned HTTP 403 to the fetcher, so the version lines below come from search-result summaries of it, not the page itself. Companion to [[research-2026-10-power-user]].
+Read-only web research, public sources only. `x.ai/changelog/bot` returned HTTP 403 to the fetcher, so the version lines below come from search-result summaries of it, not the page itself. Companion to [[research-2026-10-power-user]]; the community template directories are in [[research-2026-10-17-directories]].
 
 ## Updates since the power-user research
 
