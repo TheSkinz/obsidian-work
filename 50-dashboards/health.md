@@ -14,7 +14,7 @@
 | Inbox oldest item | - | < 30 d | ok |
 | Sweepable now | 0 | 0 | ok |
 | Days since last commit | 0 d | - | ok |
-| Loop heartbeats overdue | yes | no | FAIL |
+| Loop heartbeats overdue | no | no | ok |
 | Open decisions not in the queue | 0 | 0 | ok |
 | Awarded job within 21 d, no PO | 0 | 0 | ok |
 | Regression baselines unjudgeable | 0 | 0 | ok |
@@ -29,7 +29,7 @@ Two signals per loop: **Last fired** comes from the local run ledger (`50-dashbo
 | Review loop | 2026-10-08 (9 d ago) | 2026-10-08 (9 d ago) | 90 d | ok |
 | Skill-drift loop | 2026-10-01 (16 d ago) | 2026-10-01 (16 d ago) | 62 d | ok |
 | Grok Workspace backup | 2026-10-16 (1 d ago) | OneDrive backup-log.md | 1 bd | ok |
-| Grok claude-config copy | 2026-10-16 18:42 CDT | OneDrive claude-config-sha.txt | on change | FAIL: box copy behind |
+| Grok claude-config copy | 2026-10-17 12:05 CDT | OneDrive claude-config-sha.txt | on change | ok |
 | Guard fail-opens | - | ~/.claude/hooks/fail-open.log | on event | ok |
 | Remote Control login | 2026-10-17 11:55 | tools/logs/rc_login.json | 1 h | ok |
 
