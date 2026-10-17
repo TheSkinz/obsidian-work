@@ -1143,3 +1143,8 @@ Chief of Staff coordinator until the Bot count justifies a router, roughly eight
 `RULE-FORK` exists to catch. If the trial renews, the skill becomes a pointer at this file.
 
 ---
+
+**Feature research, 2026-10-17: [[research-2026-10-17-updates]].** Bot inboxes (10-09) and
+plus-alias routines (~10-14) are the new capability worth testing: a receipts alias would let
+field receipt photos reach the extraction skill from the phone's mail app. Spam-Call Scrubber is
+a community data-broker opt-out skill, not a call blocker.
