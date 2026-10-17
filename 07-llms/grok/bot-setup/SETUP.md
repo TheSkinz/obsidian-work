@@ -175,8 +175,9 @@ because the table it replaces went stale within two weeks.
 *Claude inbox* (Chief of Staff, webhook) is the handoff channel; see the vault's `handoff/README.md`. **The
 Bots pull the vault at work time**: `bootstrap.sh` runs `git pull --ff-only` first, verified by
 Architect 2026-10-10 (HEAD matched origin). That replaced *Vault refresh* (Librarian), whose pre-push
-hook was removed from Linda2 the same day. Jesse deletes *Vault refresh* and the test leftover
-*Webhook ping* in the app; until he does they are idle, since nothing fires them.
+hook was removed from Linda2 the same day. *Vault refresh* and the test leftover
+*Webhook ping* were deleted from the server by Librarian on Jesse's yes, 2026-10-10 (Librarian,
+2026-10-17); the `enabled` copies Alfred found on the box are stale local files from a restore.
 
 **Open, 2026-10-10.** The Bot computer now has a Claude Code CLI 2.1.289 (Jesse installed it). The
 **It runs the real `usadebusk-*` skills. TESTED 2026-10-10** (Architect's report). `git clone` of the
