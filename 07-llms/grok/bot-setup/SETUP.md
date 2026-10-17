@@ -152,7 +152,7 @@ source, **diff the files on disk** rather than trusting a dump.
 covers what Linda2 cannot: field paperwork from the phone, Jesse's personal accounts, the company
 Microsoft lane, and travel. It is also the continuity path if Linda2 is down.
 
-**Roster: 12 live Bots as of 2026-10-17**: the 11 below plus Spam-Call Scrubber. Alfred (marketplace, Operations) ran a one-time read-only audit, [[2026-10-17-grok-bot-org-audit-alfred]], and was then deleted with its 3 paused review routines (Jesse, 2026-10-17). For the next audit, re-add it from Marketplace > Operations and compare against that report. The "15" Chief of Staff listed on 2026-10-10 counted the retired Bid Desk Bots. Read the app before trusting this,
+**Roster: 13 live Bots as of 2026-10-17**: the 11 below plus Spam-Call Scrubber and House. Alfred (marketplace, Operations) ran a one-time read-only audit, [[2026-10-17-grok-bot-org-audit-alfred]], and was then deleted with its 3 paused review routines (Jesse, 2026-10-17). For the next audit, re-add it from Marketplace > Operations and compare against that report. The "15" Chief of Staff listed on 2026-10-10 counted the retired Bid Desk Bots. Read the app before trusting this,
 because the table it replaces went stale within two weeks.
 
 | Bot | Lane |
@@ -169,7 +169,7 @@ because the table it replaces went stale within two weeks.
 | **Travel** | Flights, hotels, rental cars, check-in |
 | **Purse** | Jesse's personal finances only; never USADebusk |
 | **Spam-Call Scrubber** | Added by Jesse 2026-10-17 from the community template (it installs as its own Bot, not as a skill on another). Personal data-broker opt-outs for his cell; owns the monthly recheck. Confirmations go to the Bot inbox, never personal mail. First run: FastPeopleSearch filed by the Bot; TruePeopleSearch and Whitepages blocked on the Bot's computer (datacenter IP, inferred) and filed by Jesse by hand on 2026-10-17. Whitepages accepted; TruePeopleSearch request received, final result by email within 45 days. Expect those two sites to stay blocked for the Bot, so its recheck verifies and does not refile — see [[research-2026-10-17-updates]] |
-| **House** *(designed 2026-10-17, pending creation)* | Personal: one register of due dates for the house (pool and pool heater included), appliances and warranties, personal papers and renewals, and the personal vehicle. Photo intake in chat; stores no ID numbers or ID photos; weekly reminder only when due, on Jesse's yes. Profile: [[bot-profiles]] section 8 |
+| **House** | Created by Chief of Staff on Jesse's yes, 2026-10-17 (description verified word for word against section 8).  Personal: one register of due dates for the house (pool and pool heater included), appliances and warranties, personal papers and renewals, and the personal vehicle. Photo intake in chat; stores no ID numbers or ID photos; weekly reminder only when due, on Jesse's yes. Profile: [[bot-profiles]] section 8 |
 | ~~Intake, Estimator, Scribe, Studio~~ | **Retired 2026-10-10 (Jesse).** Bid, proposal, report, SOP and deck work on the box runs through Claude Code with the real skills — the *Run Claude Code* skill |
 
 **Routines.** *Workspace backup* (Architect, weekdays 18:00 CDT) is read by the `health.md` row.
