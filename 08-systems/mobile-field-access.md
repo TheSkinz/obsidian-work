@@ -164,7 +164,8 @@ that. Events go to `tools/logs/rc_watchdog.log` (gitignored, rotated at 1 MB). A
 shutdown leaves no `exited` line, because the shutdown kills its runner `cmd` too — a missing exit
 line means the runner died with it, not a crash.
 
-The 03:00–04:59 fallback is likely the path most updates take in practice: a restarted server
+The 03:00–04:59 fallback is the path updates take in practice (both field updates went through it,
+see the 10-12 to 10-17 record below): a restarted server
 resumes the previous phone session as a child process within seconds (docs: sessions resume when
 restarted in the same directory within ~4 h), so the "no session open" condition is usually false.
 
@@ -256,6 +257,20 @@ over RustDesk** — it is pre-boot, so it waits until Jesse is physically at the
   its own CLI login, which can expire. **No software here detects it.** From the road, the fix is to
   open RustDesk and re-log the CLI at the box. A browser sign-in on Linda2 needs a human, so a
   session on the box cannot finish it.
+- **2026-10-12 to 10-17, both unattended recovery paths worked in the field**, which no hand-run
+  test had shown (read from `rc_watchdog.log` and the System event log on 2026-10-17). The
+  update-restart path fired twice, on 10-12 03:00:50 (2.1.291 → 2.1.296) and 10-17 03:00:50
+  (2.1.296 → 2.1.302). Each time it logged `2 session(s) open`, stopped the server and started a new
+  one 5 s later on the new version, so both runs came through the 03:00–04:59 fallback, as predicted
+  above. On 10-17 a resumed child session appeared 4 s after the restart, and sessions opened from
+  the phone later that morning were served. This closes the open item from the 10-06 cutover: the
+  fake `2.1.290` was overwritten by the 13:11 restart that day, so the planned first-night test
+  never ran, and these real updates replaced it. The reboot path fired on 10-14: Windows Update
+  restarted Linda2 twice with nobody at the desk (System 1074 from `MoUsoCoreWorker.exe` at 04:29:06
+  and from `TrustedInstaller.exe` at 04:31:10), and the watchdog found no server and started one at
+  04:32:38. That is the failure behind the 09-16 and 09-23 lockouts, now survived unattended. Both
+  updates landing at exactly 03:00 lines up with when Jesse's routines run; I'd expect a routine
+  starting up triggers the CLI auto-update, but that was not checked.
 
 ## Nothing pre-started: Dispatch
 
