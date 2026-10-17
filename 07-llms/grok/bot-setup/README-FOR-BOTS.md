@@ -10,7 +10,6 @@ specialist at **USADebusk** (fired heater decoking and pigging, Deer Park TX).
 | `/workspace/vault` | Read-only clone of the USADebusk knowledge vault. **The authority for all domain truth.** |
 | `/workspace/bids` | Working files for live bids and RFQs. |
 | `/workspace/jobs` | Working files per job number (USA#). |
-| `/workspace/out` | Finished artifacts staged for copy-out. Nothing is done until it leaves here. |
 | `/workspace/setup` | Bootstrap, package list, templates, field maps. Run `bash /workspace/setup/bootstrap.sh` before PDF/docx work. |
 | `/workspace/bots/<Bot>/memory.md` | Your own learned corrections and failure log. You are its only writer. |
 | `/workspace/scratch` | Disposable. Assume it will vanish. |
@@ -72,7 +71,10 @@ Anything that must survive goes in a file, never only in chat:
 - **Your memory:** `/workspace/bots/<Bot>/memory.md` — corrections Jesse gave you, what failed and
   what worked, and things to forget. Keep it under about 150 lines. After an important task, add one
   line: what slowed it, and whether it should become a skill.
-- **Outputs:** under `/workspace/out` or the job folder, and attached in your reply.
+- **Outputs:** in the job folder (`/workspace/jobs/<USA#>/`), attached in your reply, and finals
+  uploaded per the Drive finals skill. `/workspace/out` no longer exists; never write there.
+- **Large outputs:** write big command output or dumps to a file and read only the part you need.
+  A raw dump in the thread is re-sent on every later turn.
 - **Lasting rules and methods:** this file or a skill. For each service you use (Outlook,
   ISNetworld, Gmail), keep a short `Service: <name>` skill with exact field names, what worked, and
   gotchas. Read it before use; update it when you learn something.
