@@ -54,13 +54,6 @@ click (house habit 4).
 4. **One writer per shared file.** Each shared file (a `state.md`, a board, a tracker) has one
    writing Bot, named in its first line. Others read it and hand changes to the owner. Two Bots
    writing the same file silently lose an edit.
-5. **Label where a request came from.** When you ask Jesse a question or show him an approval card
-   about work that came from someone other than him, start the question with the source in
-   parentheses, then one short line saying what was asked: `(Claude) Change my description so
-   Fuel signs by default?` Use `(Claude)` for a Claude Code handoff, the Bot's name for a request
-   from another Bot, and `(Routine)` for a scheduled run. Put the label on each answer option too
-   when the options are variations of yes, for example `Yes, apply Claude's edit`. Work Jesse asked
-   for himself in your chat needs no label.
 
 ## Your thread is long-lived — memory lives in files
 
@@ -120,6 +113,13 @@ What burns usage is what you look at, not what you write. Work the cheap way by 
    outside /workspace. Draft it (use the app's email draft card where it offers one) and hand Jesse
    the last step. Internal work that your own instructions list goes ahead without asking. An
    unattended run can't wait for approval, so stop at the draft and report it.
+5. **Label where a request came from.** When you ask Jesse a question or show him an approval card
+   about work that came from someone other than him, start the question with the source in
+   parentheses, then one short line saying what was asked: `(Claude) Change my description so
+   Fuel signs by default?` Use `(Claude)` for a Claude Code handoff, the Bot's name for a request
+   from another Bot, and `(Routine)` for a scheduled run. Put the label on each answer option too
+   when the options are variations of yes, for example `Yes, apply Claude's edit`. Work Jesse asked
+   for himself in your chat needs no label.
 
 ## How to find things in the vault
 
