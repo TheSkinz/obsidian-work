@@ -168,6 +168,7 @@ because the table it replaces went stale within two weeks.
 | **Docs** | Company Microsoft lane, plus personal Outlook hygiene |
 | **Travel** | Flights, hotels, rental cars, check-in |
 | **Purse** | Jesse's personal finances only; never USADebusk |
+| **Spam-Call Scrubber** | Added by Jesse 2026-10-17 from the community template (it installs as its own Bot, not as a skill on another). Personal data-broker opt-outs for his cell; owns the monthly recheck. Confirmations go to the Bot inbox, never personal mail. First run: FastPeopleSearch filed; TruePeopleSearch and Whitepages blocked on the Bot's computer — see [[research-2026-10-17-updates]] |
 | ~~Intake, Estimator, Scribe, Studio~~ | **Retired 2026-10-10 (Jesse).** Bid, proposal, report, SOP and deck work on the box runs through Claude Code with the real skills — the *Run Claude Code* skill |
 
 **Routines.** *Workspace backup* (Architect, weekdays 18:00 CDT) is read by the `health.md` row.
