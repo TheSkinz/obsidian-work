@@ -157,6 +157,13 @@ Each watchdog run takes about a second:
 2. If more than one is running, it logs a warning and touches nothing.
 3. If the npm Claude Code version differs from the one the server started with, it restarts the
    server once the server has no child session processes, or regardless between 03:00 and 04:59.
+4. Hourly, and on every run while it is failing, it makes one real request on the CLI's claude.ai
+   login (`claude -p` on Haiku, API key removed for that process, about 5 s) and writes the result
+   to `tools/logs/rc_login.json`. A pass→fail change logs `LOGIN CHECK FAILED`. A fail→pass change
+   restarts the server so it picks up the fresh login. Added 2026-10-17 for the 10-16 outage below.
+   `claude auth status` was rejected as the probe because it returns in under a second, which
+   suggests it only checks that a token is stored locally and never asks the server. The
+   `health.md` row "Remote Control login" and a check-script row both read this file.
 
 There is no window, so nothing can be closed by accident. Turn it off on purpose with
 `tools/rc_stop.cmd`, which writes `tools/logs/rc.stop` and kills the server; `rc_start.cmd` reverses
@@ -186,14 +193,17 @@ survived one.
 restart Linda2 → from the phone **on cellular**, reach RustDesk and the `vault` session.
 
 The check script verifies conditions; only a restart test proves both doors work. Re-run the
-restart test only after something changes the logon path. The check has six rows as of the
-2026-10-06 watchdog rebuild (read from the script): RustDesk service, task exists, task runs the
-hidden watchdog every 5 minutes (fails when NextRunTime is blank), exactly one Remote Control
-`vault` process, Windows Update paused past return, and autologon. Expect **5/6** on a normal desk
-day — the update-pause row is the one FAIL, and it is correct to leave updates live when you are not
-travelling (before the watchdog row was added this read 4/5). The process row is the one that
-actually discriminates: it passes only on **exactly one** server, and the script prints the last
-five watchdog log lines. The service and task-exists rows passed on the attempt that failed too.
+restart test only after something changes the logon path. The check has seven rows as of
+2026-10-17 (read from the script): RustDesk service, task exists, task runs the hidden watchdog
+every 5 minutes (fails when NextRunTime is blank), exactly one Remote Control `vault` process, CLI
+login answers a real request (from the watchdog's result, failing if that is over 3 h old), Windows
+Update paused past return, and autologon. Expect **6/7** on a normal desk day. The update-pause row
+is the one FAIL, and it is correct to leave updates live when you are not travelling (this read
+4/5 before the watchdog row was added and 5/6 before the login row). The process and login rows are
+the ones that actually discriminate. The process row passes only on **exactly one** server, and the
+login row is the only one that catches a server that is running but can't serve, which is what
+happened on 10-16. The script prints the last five watchdog log lines. The service and task-exists
+rows passed on the attempt that failed too.
 
 **The task showing `Ready` is not a health signal** — it means registered and not currently
 running. `LastTaskResult 0` only says the launcher succeeded, not that Remote Control came up.
@@ -254,9 +264,15 @@ over RustDesk** — it is pre-boot, so it waits until Jesse is physically at the
   process row to have passed too, since it counts the same processes; that was not run during the
   outage. This is a separate fault from the desktop app's `session_stale_relogin` below. Remote
   Control survives that one because it does not use the desktop app's OAuth, but it does depend on
-  its own CLI login, which can expire. **No software here detects it.** From the road, the fix is to
-  open RustDesk and re-log the CLI at the box. A browser sign-in on Linda2 needs a human, so a
-  session on the box cannot finish it.
+  its own CLI login, which can expire. At the time no software here detected it. **Since
+  2026-10-17 the watchdog's hourly login check does** (step 4 above), and the result shows in
+  `health.md` and the check script. The fix still needs a human: open RustDesk and re-log the CLI at
+  the box, because a browser sign-in on Linda2 can't be finished by a session on the box. Once the
+  login passes again, the watchdog restarts Remote Control on its own. Tests on 10-17: the task-run
+  watchdog wrote a passing record without touching the server (PID unchanged), and the probe
+  function, pointed at an empty config dir, returned `exit 1: Not logged in · Please run /login`.
+  The fail→pass restart was not tested live, because simulating it means killing the running
+  server.
 - **2026-10-12 to 10-17, both unattended recovery paths worked in the field**, which no hand-run
   test had shown (read from `rc_watchdog.log` and the System event log on 2026-10-17). The
   update-restart path fired twice, on 10-12 03:00:50 (2.1.291 → 2.1.296) and 10-17 03:00:50

@@ -110,3 +110,7 @@ names against a row here.
 **`fail-open/` belongs to `vault_health.py`, not the lint.** It holds a two-entry
 `fail-open.log` and two ack files for the dashboard's "Guard fail-opens" row, and
 is exercised by `python tools/vault_health.py --self-test`.
+
+**`rc-login/` also belongs to `vault_health.py`.** Two watchdog login records, one
+passing and one dead, plus an `rc.stop` flag, for the "Remote Control login" row.
+The self-test pins the clock, so the files' fixed check time never goes stale.

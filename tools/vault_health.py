@@ -17,7 +17,8 @@ What it trends (the numbers you can act on in one glance):
 Usage:
     python tools/vault_health.py            write 50-dashboards/health.md
     python tools/vault_health.py --print     also print the dashboard to stdout
-    python tools/vault_health.py --self-test check the fail-open row against tools/fixtures/fail-open/
+    python tools/vault_health.py --self-test check the fail-open and Remote Control login rows
+                                             against tools/fixtures/fail-open/ and rc-login/
 
 Windows: `py tools/vault_health.py`.
 """
@@ -517,7 +518,44 @@ def loop_heartbeats(root: Path):
     rows.append(("Guard fail-opens", f_last or "-", "~/.claude/hooks/fail-open.log",
                  "on event", f_status))
     any_overdue = any_overdue or f_status.startswith("FAIL")
+
+    r_status, r_checked = rc_login_status(RC_LOGIN_FILE, RC_STOP_FLAG, datetime.now(timezone.utc))
+    rows.append(("Remote Control login", r_checked or "-", "tools/logs/rc_login.json",
+                 "1 h", r_status))
+    any_overdue = any_overdue or r_status.startswith("FAIL")
     return rows, any_overdue
+
+
+# rc_watchdog.ps1 makes one real request on the claude.ai login every hour and
+# writes the result here (2026-10-17). A Remote Control server with an expired
+# CLI login still counts as running, so the watchdog's process check missed the
+# 2026-10-16 outage; this row is where that failure reaches Jesse. Stale past
+# 3 h means the watchdog itself has stopped running.
+RC_LOGIN_FILE = Path(__file__).resolve().parent / "logs" / "rc_login.json"
+RC_STOP_FLAG = Path(__file__).resolve().parent / "logs" / "rc.stop"
+RC_LOGIN_STALE_HOURS = 3
+
+
+def rc_login_status(path: Path, stop_flag: Path, now: datetime) -> tuple[str, str | None]:
+    """Return (status, last-checked time). FAIL = dead login or watchdog not checking."""
+    if stop_flag.exists():
+        return "off (rc_stop.cmd)", None
+    if not path.exists():
+        return "pending", None
+    try:
+        rec = json.loads(path.read_text(encoding="utf-8-sig"))
+    except (OSError, ValueError):
+        return "FAIL: rc_login.json unreadable", None
+    checked = parse_iso(rec.get("checked"))
+    if checked is None:
+        return "FAIL: rc_login.json has no check time", None
+    shown = checked.strftime("%Y-%m-%d %H:%M")
+    if not rec.get("ok"):
+        return "FAIL: login dead, re-login at the box", shown
+    hours = (now - checked).total_seconds() / 3600
+    if hours > RC_LOGIN_STALE_HOURS:
+        return f"FAIL: not checked in {int(hours)} h", shown
+    return "ok", shown
 
 
 # The four PreToolUse guards in claude-config append one ISO-timestamped line per
@@ -551,7 +589,7 @@ def fail_open_status(log: Path, ack: Path) -> tuple[str, str | None]:
 
 
 def self_test() -> int:
-    """Check fail_open_status against tools/fixtures/fail-open/."""
+    """Check fail_open_status and rc_login_status against tools/fixtures/."""
     fx = Path(__file__).resolve().parent / "fixtures" / "fail-open"
     cases = [
         ("missing log", fx / "absent.log", fx / "absent.ack", "ok"),
@@ -562,6 +600,22 @@ def self_test() -> int:
     bad = 0
     for name, log, ack, want in cases:
         got, _ = fail_open_status(log, ack)
+        ok = got == want
+        bad += not ok
+        print(f"{'PASS' if ok else 'FAIL'}  {name}: {got!r}" + ("" if ok else f" (want {want!r})"))
+    rx = Path(__file__).resolve().parent / "fixtures" / "rc-login"
+    now = datetime(2026, 10, 17, 18, 0, tzinfo=timezone.utc)  # 13:00 CDT; fixtures checked 12:00 CDT
+    rc_cases = [
+        ("rc login missing", rx / "absent.json", rx / "absent.stop", now, "pending"),
+        ("rc login ok", rx / "ok.json", rx / "absent.stop", now, "ok"),
+        ("rc login dead", rx / "dead.json", rx / "absent.stop", now,
+         "FAIL: login dead, re-login at the box"),
+        ("rc login stale", rx / "ok.json", rx / "absent.stop",
+         datetime(2026, 10, 17, 22, 0, tzinfo=timezone.utc), "FAIL: not checked in 5 h"),
+        ("rc stopped on purpose", rx / "dead.json", rx / "rc.stop", now, "off (rc_stop.cmd)"),
+    ]
+    for name, path, stop, at, want in rc_cases:
+        got, _ = rc_login_status(path, stop, at)
         ok = got == want
         bad += not ok
         print(f"{'PASS' if ok else 'FAIL'}  {name}: {got!r}" + ("" if ok else f" (want {want!r})"))
@@ -926,7 +980,12 @@ def build(root: Path) -> str:
         "on this machine. Detail: `python tools/grok_sync_check.py`. "
         "**Guard fail-opens** reads `~/.claude/hooks/fail-open.log`: FAIL means a commit guard "
         "let a command through unchecked and nobody has acknowledged it. Read the log, fix the "
-        "cause, then acknowledge by writing the current UTC ISO time to `hooks/fail-open.ack`.",
+        "cause, then acknowledge by writing the current UTC ISO time to `hooks/fail-open.ack`. "
+        "**Remote Control login** is the watchdog's hourly real request on the CLI's claude.ai "
+        "login: FAIL `login dead` means the phone's `vault` session cannot work until the CLI "
+        "is re-logged at Linda2 (RustDesk in, run `claude`, then `/login`; the watchdog "
+        "restarts Remote Control by itself within 5 minutes of the fix). FAIL `not checked` "
+        "past 3 h means the watchdog itself stopped. Detail: `tools/logs/rc_watchdog.log`.",
         "",
         "| Loop | Last fired | Last heartbeat | Cadence | Status |",
         "|---|---|---|---|---|",

@@ -63,6 +63,24 @@ def probe():
     return json.loads(out.stdout.strip())
 
 
+def login_row(path):
+    """The watchdog's hourly real request on the CLI login. A server with a dead
+    login still counts as one running process (the 2026-10-16 outage)."""
+    label = "CLI login answers a real request (watchdog, hourly)"
+    try:
+        rec = json.loads(path.read_text(encoding="utf-8-sig"))
+        checked = dt.datetime.fromisoformat(rec["checked"])
+    except (OSError, ValueError, KeyError):
+        return (False, label, "no result yet — the watchdog writes logs/rc_login.json within 5 min")
+    age_h = (dt.datetime.now(checked.tzinfo) - checked).total_seconds() / 3600
+    detail = f"checked {checked:%Y-%m-%d %H:%M} ({age_h:.1f} h ago): {rec.get('detail', '')}"
+    if not rec.get("ok"):
+        detail += " — re-login at the box: run claude, then /login"
+    elif age_h > 3:
+        detail += " — stale; the watchdog has stopped checking"
+    return (bool(rec.get("ok")) and age_h <= 3, label, detail)
+
+
 def parse_pause(raw):
     if not raw:
         return None
@@ -112,6 +130,7 @@ def main():
         "Exactly one Remote Control 'vault' process running",
         rc_detail,
     ))
+    rows.append(login_row(LOG_DIR / "rc_login.json"))
     if args.return_date:
         ok = pause is not None and pause > args.return_date
         detail = f"paused until {pause}, return {args.return_date}" if pause \
