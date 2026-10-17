@@ -249,7 +249,8 @@ Consolidated from the dated findings below; each line was learned the hard way o
 - **Settings > Updates** holds the computer update control and **Reset**. Never use Reset, because it
   rebuilds from a snapshot and can lose recent work.
 - **Attaching a file:** copy it to `Downloads`, then click + > Attach files and type the full path.
-- **A group chat is not a reset.** The history follows the Bot into every room, and the app has no
+- **A group chat is not a reset** — re-tested on app 0.71.2, 2026-10-17, with a clean probe (see
+  `trial-findings.md`). The history follows the Bot into every room, and the app has no
   Duplicate option.
 - **Routine creation from Claude Code is blocked** as unauthorized persistence. Jesse creates routines.
 - **Hand Bots paths, not content.** Bot-to-Bot messages are cut at 8000 characters.
@@ -287,7 +288,9 @@ as it grows, with no new-chat control (Bot-reported 2026-10-04, consistent with 
 same day). **The whole transcript is resent every turn, so a long thread is a cost problem.** The
 community reset in [[research-2026-10-power-user]] (handoff summary, right-click > Duplicate, hide
 the original) **does not work in this build: there is no Duplicate option** (see the gotcha list
-above), and a group chat is not a reset either. Until a reset method is tested here, the lever is
+above), and a group chat is not a reset either (0.71.2, 2026-10-17, despite a Cursor staff claim
+for 0.71+; no "Reset chat" in the info pane). The only true reset left is a fresh Bot built from its
+vault profile and `memory.md`, with the old one hidden. Short of that, the lever is
 keeping large outputs in files rather than in the thread (2026-10-17, [[2026-10-17-grok-bot-org-audit-alfred]]). `/workspace` files are the only reliable task memory; no model selection or version pinning; Legacy
 Privacy Mode is unsupported and cloud storage is mandatory.
 

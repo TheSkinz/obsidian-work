@@ -1148,3 +1148,7 @@ Chief of Staff coordinator until the Bot count justifies a router, roughly eight
 plus-alias routines (~10-14) are the new capability worth testing: a receipts alias would let
 field receipt photos reach the extraction skill from the phone's mail app. Spam-Call Scrubber is
 a community data-broker opt-out skill, not a call blocker.
+
+### Conversation-reset re-test on 0.71.2. TESTED 2026-10-17.
+
+**A single-Bot group chat is still not a reset.** A Cursor staff reply on the forum (threads 174924 and 168333) said that from 0.71, Ctrl+Shift+N with one Bot opens a clean conversation. The 2026-10-04 probe could not tell thread from learned memory, so this one separated them. Jesse ran it on app **0.71.2** with Librarian. In the 1:1 chat Librarian printed `openssl rand -hex 6` output `58ce2c596095`, told not to save it. In a new single-Bot room it gave the string back at once, and a search of every file under `/workspace` and `/home/box/agent-data`, its memory and the shared user memory found no match. Librarian's own words: it knew the string only because "it's still in my conversation history." Tools still worked in the room (`ls`, reading `memory.md`). There is **no "Reset chat"** option in the info pane on this build. Conclusion: the old thread follows the Bot into every room, so the only true reset is a fresh Bot from its vault profile and `memory.md`. Not adopted; candidates if cost ever demands it are Architect and Travel. Source: [[research-2026-10-17-directories]] for the forum claim.
